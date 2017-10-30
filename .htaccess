@@ -36,13 +36,13 @@ RewriteRule ^guardar-servicio$ index.php?controller=services&a=newRegister
 RewriteRule ^eliminar-servicio-(\w+)$ index.php?controller=services&a=delete&data=$1
 RewriteRule ^modificar-servicio-(\w+)$ index.php?controller=services&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-servicio$ index.php?controller=services&a=update
- 
+
  #MARCAS
 RewriteRule ^nueva-marca$ index.php?controller=trademark
 RewriteRule ^guardar-marca$ index.php?controller=trademark&a=newRegister
 RewriteRule ^eliminar-marca-(\w+)$ index.php?controller=trademark&a=delete&data=$1
 RewriteRule ^modificar-marca-(\w+)$ index.php?controller=trademark&a=viewUpdate&data=$1
-RewriteRule ^guardar-modificacion-marca$ index.php?controller=trademark&a=update 
+RewriteRule ^guardar-modificacion-marca$ index.php?controller=trademark&a=update
 
  #CATEGORIAS
 RewriteRule ^nueva-categoria$ index.php?controller=category
@@ -66,3 +66,5 @@ RewriteRule ^guardar-inventario$ index.php?controller=stock&a=newRegister
 #VALIDACIONES AJAX
 RewriteRule ^validar_contraseña$ index.php?controller=doizer&a=validateSecurityPassword
 RewriteRule ^validar_documento$ index.php?controller=customers&a=readByNumDoc
+
+RewriteRule ^maxirecargas$ index.php?controller=views

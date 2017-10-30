@@ -38,7 +38,7 @@
 			    $_SESSION['CUSTOMER']=$pass['usu_codigo'];
 			    header("Location: dashboard");
 			} else {
-			    unset($_SESSION['ROL']);		
+			    unset($_SESSION['ROL']);
 		     	    $_SESSION['MESSAGE_ERROR']='La contraseña no es válida.';
 			    header("Location: iniciar--sesion");
 			}
