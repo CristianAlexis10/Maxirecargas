@@ -1,0 +1,68 @@
+RewriteEngine on
+
+RewriteRule ^dashboard$ index.php?controller=admin
+RewriteRule ^perfil$ index.php?controller=admin&a=profile
+RewriteRule ^pedidos$ index.php?controller=orders
+RewriteRule ^perfil-empresarial$ index.php?controller=business&a=profile
+RewriteRule ^configuraciones$ index.php?controller=admin&a=settings
+RewriteRule ^estadisticas$ index.php?controller=admin&a=statistics
+
+RewriteRule ^empresas$ index.php?controller=business
+RewriteRule ^clientes$ index.php?controller=customers
+RewriteRule ^cotizacion$ index.php?controller=quotation
+RewriteRule ^productos$ index.php?controller=products
+RewriteRule ^nueva-categoria$ index.php?controller=products&a=newCategory
+
+#LOGIN
+RewriteRule ^iniciar-sesion$ index.php?controller=login&a=viewSingIn
+RewriteRule ^iniciar--sesion$ index.php?controller=login&a=viewSingInPass
+RewriteRule ^finalizar$ index.php?controller=login&a=viewSingOut
+RewriteRule ^validar-inicio-sesion$ index.php?controller=login&a=validateUser
+RewriteRule ^validar-ingreso$ index.php?controller=login&a=validateUserpass
+
+#PEDIDOS
+RewriteRule ^detalles-pedido-(\w+)$ index.php?controller=orders&a=viewDetail&data=$1
+
+#CLIENTES
+RewriteRule ^guardar-cliente$ index.php?controller=customers&a=newRegister
+RewriteRule ^ver-cliente-(\w+)$ index.php?controller=customers&a=viewDetail&data=$1
+RewriteRule ^modificar-cliente-(\w+)$ index.php?controller=customers&a=viewUpdate&data=$1
+RewriteRule ^guardar-modificacion-cliente$ index.php?controller=customers&a=update
+RewriteRule ^eliminar-cliente-(\w+)$ index.php?controller=customers&a=delete&data=$1
+
+#SERVICIOS
+RewriteRule ^nuevo-servicio$ index.php?controller=services
+RewriteRule ^guardar-servicio$ index.php?controller=services&a=newRegister
+RewriteRule ^eliminar-servicio-(\w+)$ index.php?controller=services&a=delete&data=$1
+RewriteRule ^modificar-servicio-(\w+)$ index.php?controller=services&a=viewUpdate&data=$1
+RewriteRule ^guardar-modificacion-servicio$ index.php?controller=services&a=update
+ 
+ #MARCAS
+RewriteRule ^nueva-marca$ index.php?controller=trademark
+RewriteRule ^guardar-marca$ index.php?controller=trademark&a=newRegister
+RewriteRule ^eliminar-marca-(\w+)$ index.php?controller=trademark&a=delete&data=$1
+RewriteRule ^modificar-marca-(\w+)$ index.php?controller=trademark&a=viewUpdate&data=$1
+RewriteRule ^guardar-modificacion-marca$ index.php?controller=trademark&a=update 
+
+ #CATEGORIAS
+RewriteRule ^nueva-categoria$ index.php?controller=category
+RewriteRule ^guardar-categoria$ index.php?controller=category&a=newRegister
+RewriteRule ^eliminar-categoria-(\w+)$ index.php?controller=category&a=delete&data=$1
+RewriteRule ^modificar-categoria-(\w+)$ index.php?controller=category&a=viewUpdate&data=$1
+RewriteRule ^guardar-modificacion-categoria$ index.php?controller=category&a=update
+
+
+ #PRODUCTOS
+RewriteRule ^guardar-producto$ index.php?controller=products&a=newRegister
+RewriteRule ^eliminar-producto-(\w+)$ index.php?controller=products&a=delete&data=$1
+RewriteRule ^modificar-producto-(\w+)$ index.php?controller=products&a=viewUpdate&data=$1
+RewriteRule ^guardar-modificacion-producto$ index.php?controller=products&a=update
+
+#STOCK
+RewriteRule ^crear-inventario$ index.php?controller=stock&a=viewNewRegister
+RewriteRule ^guardar-inventario$ index.php?controller=stock&a=newRegister
+
+
+#VALIDACIONES AJAX
+RewriteRule ^validar_contraseña$ index.php?controller=doizer&a=validateSecurityPassword
+RewriteRule ^validar_documento$ index.php?controller=customers&a=readByNumDoc
