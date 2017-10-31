@@ -34,7 +34,7 @@ $('#tipo_usu').change(function(){
 function mostrar(value) {
   if (value == 2) {
     $(".frm-bussiness").show();
-    
+
   }else{
     $(".frm-bussiness").hide();
 
@@ -70,7 +70,7 @@ $('#contra').keyup(function(){
     contra=false;
     $('#rep_contra').attr('disabled',true);
     return ;
-  } 
+  }
   if (contra_ingresada>25) {
     $('.answer').html('La clave no puede tener más de 25 caracteres');
     contra=false;
@@ -116,7 +116,7 @@ $('#rep_contra').keyup(function(){
     $('.answer2').html('las contraseñas no coinciden');
   }
     enable(num_doc,contra);
-  
+
 });
 
 function mayusculas(contra_validate){
@@ -155,4 +155,3 @@ function enable(num_doc,contra){
     $('#registrar').attr('disabled',true);
   }
 }
-
