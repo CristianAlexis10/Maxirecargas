@@ -33,3 +33,24 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+
+$("#form--login").submit(function(e){
+  e.preventDefault();
+  dataJson=[];
+  $("input[name=data]").each(function() {
+    structure = {}
+    structure = $(this).val();
+    dataJson.push(structure);
+  });
+
+  $.ajax({
+    url: "",
+    type: "",
+    dataType: "",
+    data: ({user: dataJson}),
+    success: function(result){
+      $("#form--login").after("<div class='message-error'>"+result+"</div>")
+    }
+  });
+});

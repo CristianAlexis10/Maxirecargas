@@ -39,13 +39,15 @@
 }
 .container .rigth ul{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   color: white;
   margin-top:20px;
   font-family: 'lato';
   font-weight: 400;
   text-transform: capitalize;
+  font-size: 14px;
 }
+
 .container .rigth ul li a{
   padding: 20px;
 }

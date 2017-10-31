@@ -19,17 +19,17 @@
         </div>
         <div class="session--start">
             <h1>iniciar sesion</h1>
-          <form class="" action="validar-inicio-sesion" method="post" >
+          <form id="form--login">
             <div class="wrap--login">
               <label for="document" class="label">Documento de identidad</label>
-              <input type="text" name="data" id="document">
+              <input type="text" name="data" class="input--login">
             </div>
             <div class="wrap--login">
               <label for="password" class="label">Contraseña</label>
-              <input type="password" name="data" id="password">
+              <input type="password" name="data"class="input--login" >
             </div>
             <div class="wrap--login">
-              <input type="button" value="Iniciar Sesion">
+              <button type="button" name="button">iniciar sesion</button>
             </div>
           </form>
         </div>
@@ -43,10 +43,11 @@
       </div>
       <div class="rigth">
         <ul class="opcions">
-          <li><a href="#" id="who">¿quienes somos?</a></li>
-          <li><a href="#" id="our">nuestros servicios</a></li>
-          <li><a href="#" id="contc">contactanos</a></li>
-          <li><a href="#" id="session" onclick="close()">iniciar sesion</a></li>
+          <li><a id="who">¿quienes somos?</a></li>
+          <li><a id="our">nuestros servicios</a></li>
+          <li><a id="contc">contactanos</a></li>
+          <li><a>registrate</a></li>
+          <li><a id="session" onclick="close()">iniciar sesion</a></li>
         </ul>
         <div class="welcome">
           <p class="title">bienvenido</p>
@@ -97,15 +98,15 @@
         </div>
       </div>
       <div class="four--form">
-        <form class="form--contact" action="index.html" method="post">
+        <form>
           <label for="contact--name" class="label">Nombre</label>
-          <input type="text" name="name" id="contact--name">
+          <input type="text" name="data" id="contact--name">
           <label for="contact--email" class="label">Correo</label>
-          <input type="email" name="email" id="contact--email">
+          <input type="email" name="data" id="contact--email">
           <label for="contact--objetive" class="label">Objetivo</label>
-          <input type="text" name="objetive" id="contact--objetive">
+          <input type="text" name="data" id="contact--objetive">
           <label for="contact--message" class="label">Mensaje</label>
-          <textarea name="message" rows="5" cols="80" id="contact--message"></textarea>
+          <textarea name="data" rows="5" cols="80" id="contact--message"></textarea>
           <button type="button" name="button">ENVIAR</button>
         </form>
       </div>
