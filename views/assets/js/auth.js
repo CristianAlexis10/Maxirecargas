@@ -12,7 +12,9 @@ $("#form--login").submit(function(e) {
      dataType:'json',
      data: ({data: dataJson}),
      success: function(result){
-        console.log(result);
+        if (result==true) {
+            location.href = 'dashboard';
+        }
      }
   });
 
