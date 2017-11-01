@@ -39,3 +39,7 @@ var modalSignin =document.getElementById('modal--signin');
 signin.onclick = function() {
    modalSignin.style.display= "block";
 };
+
+$(".input-contact").focus(function(){
+    $(this).parent().addClass("color-label mover-label");
+});
