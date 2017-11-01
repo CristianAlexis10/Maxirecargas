@@ -51,13 +51,13 @@
 				$validate_password=false;
 				$_SESSION['message_error']=$password;
 				echo "<script>window.history.back(-1)</script>";
-				return;	
+				return;
 			}
 			if (!$validate_password==true && $data[14]===$data[15]) {
 				$_SESSION['message_error']="Las contraseñas son diferentes";
 				$validate_password = false;
-				echo "<script>window.history.back(-1)</script>";	
-				return;	
+				echo "<script>window.history.back(-1)</script>";
+				return;
 			}
 			if ($validate_password==true) {
 				 //cliente normal
@@ -75,7 +75,7 @@
 					$data_acceso[]=$password[1];
 					$result = $this->master->insert('acceso',$data_acceso,array('token'));
 				 }
-			  }    
+			  }
 			if ($result==1) {
 				$_SESSION['message']="Registrado Exitosamente";
 			}else{
@@ -95,7 +95,7 @@
 			$data=$_POST['data'];
 			$result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data));
 			if ($result != array()) {
-				echo   'El numero de documento ya esta registrado en el sistema';
+				echo  json_encode('El numero de documento ya esta registrado en el sistema');
 			}
 		}
 		function update(){

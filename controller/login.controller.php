@@ -19,26 +19,18 @@
 		}
 		function validateUser(){
 			$data = $_POST['data'];
-			$result  = $this->master->selectCount('usuario','usu_num_documento',$data);
-			if ($result[0]==1) {
-				$_SESSION['CUSTOMER'] = $_POST['data'];
-				echo json_encode(true);
+			$result  = $this->master->selectCount('usuario','usu_num_documento',$data[0]);
+			if ($result[0]!=1) {
+				echo json_encode('Numero de Documento Incorrecto');
 			}else{
-				echo json_encode(false);
-			}
-		}
-		function validateUserPass(){
-			$data = $_POST['data'];
-			$result  = $this->master->selectBy('usuario',array('usu_num_documento',$_SESSION['CUSTOMER']));
-			$_SESSION['ROL'] = $result['tip_usu_codigo'];
-			$pass  = $this->master->selectBy('acceso',array('usu_codigo',$result['usu_codigo']));
-			if (password_verify($data , $pass['acc_contra'])) {
-			    $_SESSION['CUSTOMER']=$pass['usu_codigo'];
-			    header("Location: dashboard");
-			} else {
-			    unset($_SESSION['ROL']);
-		     	    $_SESSION['MESSAGE_ERROR']='La contraseña no es válida.';
-			    header("Location: iniciar--sesion");
+				$result  = $this->master->selectBy('usuario',array('usu_num_documento',$data[0]));
+				$_SESSION['ROL'] = $result['tip_usu_codigo'];
+				$pass  = $this->master->selectBy('acceso',array('usu_codigo',$result['usu_codigo']));
+					if (password_verify($data[1] , $pass['acc_contra'])) {
+						echo json_encode(true);
+					}else{
+						echo json_encode('contraseña incorrecta');
+					}
 			}
 		}
 	}

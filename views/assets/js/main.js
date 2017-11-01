@@ -41,7 +41,6 @@ function mostrar(value) {
   }
 }
 
-//VALIDACIONES
 var num_doc = false;
 var contra = false;
 $('#rep_contra').attr('disabled',true);

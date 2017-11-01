@@ -1,8 +1,8 @@
 $("#form--login").submit(function(e) {
-  e.preventDefault();
+    e.preventDefault();
   dataJson = [];
-   dataJson = $("input[name=data]").each(function(){
-      structure = {}
+  $("input[name=data-login]").each(function(){
+      structure = {};
       structure = $(this).val();
       dataJson.push(structure);
   });
@@ -12,14 +12,8 @@ $("#form--login").submit(function(e) {
      dataType:'json',
      data: ({data: dataJson}),
      success: function(result){
-         if (result==true) {
-            alert('sad');
-         }
-     },
-     error: function(result) {
-                    // result = JSON.parse(result);
-                    console.log(result.responseText);
-                }
+        console.log(result);
+     }
   });
 
 });
