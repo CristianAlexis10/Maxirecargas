@@ -39,24 +39,3 @@ var modalSignin =document.getElementById('modal--signin');
 signin.onclick = function() {
    modalSignin.style.display= "block";
 };
-
-
-$("#form--login").submit(function(e){
-  e.preventDefault();
-  dataJson=[];
-  $("input[name=data]").each(function() {
-    structure = {}
-    structure = $(this).val();
-    dataJson.push(structure);
-  });
-
-  $.ajax({
-    url: "",
-    type: "",
-    dataType: "",
-    data: ({user: dataJson}),
-    success: function(result){
-    $("#form--login").after("<div class='message-error'>"+result+"</div>")
-    }
-  });
-});

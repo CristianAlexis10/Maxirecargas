@@ -22,12 +22,10 @@
 			$result  = $this->master->selectCount('usuario','usu_num_documento',$data);
 			if ($result[0]==1) {
 				$_SESSION['CUSTOMER'] = $_POST['data'];
-				header("Location: iniciar--sesion");
+				echo json_encode(true);
 			}else{
-				$_SESSION['MESSAGE_ERROR']="Numero de documento no valido";
-				header("Location: iniciar-sesion");
+				echo json_encode(false);
 			}
-
 		}
 		function validateUserPass(){
 			$data = $_POST['data'];
