@@ -31,8 +31,14 @@ close.onclick =function(){
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
-    }
-}
+    };
+};
+
+var signin = document.getElementById('signin');
+var modalSignin =document.getElementById('modal--signin');
+signin.onclick = function() {
+   modalSignin.style.display= "block";
+};
 
 
 $("#form--login").submit(function(e){
@@ -50,7 +56,7 @@ $("#form--login").submit(function(e){
     dataType: "",
     data: ({user: dataJson}),
     success: function(result){
-      $("#form--login").after("<div class='message-error'>"+result+"</div>")
+    $("#form--login").after("<div class='message-error'>"+result+"</div>")
     }
   });
 });
