@@ -1,7 +1,7 @@
 $("#form--login").submit(function(e) {
   e.preventDefault();
   dataJson = [];
-  $("input[name=data]").each(function(){
+   dataJson = $("input[name=data]").each(function(){
       structure = {}
       structure = $(this).val();
       dataJson.push(structure);
@@ -17,7 +17,8 @@ $("#form--login").submit(function(e) {
          }
      },
      error: function(result) {
-                    console.log(result);
+                    // result = JSON.parse(result);
+                    console.log(result.responseText);
                 }
   });
 
