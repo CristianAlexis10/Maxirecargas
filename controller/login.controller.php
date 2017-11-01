@@ -22,10 +22,11 @@
 			$result  = $this->master->selectCount('usuario','usu_num_documento',$data);
 			if ($result[0]==1) {
 				$_SESSION['CUSTOMER'] = $_POST['data'];
-				echo json_encode(true);
+				$jsondata['response'] = true;
 			}else{
-				echo json_encode(false);
+				$jsondata['response'] = false;
 			}
+			echo json_encode($jsondata);
 		}
 		function validateUserPass(){
 			$data = $_POST['data'];
