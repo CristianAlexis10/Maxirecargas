@@ -144,7 +144,7 @@ class MasterModel{
         }
 
         return $result;
-    } 
+    }
     public function selectAllBy($table,$condition){
         try {
             $this->sql="SELECT * FROM $table WHERE $condition[0] = ?";
@@ -156,7 +156,7 @@ class MasterModel{
         }
 
         return $result;
-    } 
+    }
     //MININO REGISTRO
     public function selectMin($table,$colum){
         try {
@@ -169,7 +169,7 @@ class MasterModel{
         }
 
         return $result;
-    }  
+    }
   //CONTAR REGISTRO
     public function selectCount($table,$colum,$condition){
         try {
@@ -182,7 +182,7 @@ class MasterModel{
         }
 
         return $result;
-    }  
+    }
     //MAXIMO REGISTRO
     public function selectMax($table,$colum){
         try {
@@ -232,6 +232,24 @@ class MasterModel{
         }
          return $result;
     }
+    //modificar pocos Campos
+    public function updateMin($table,$columns,$colCondition,$values){
+       try {
+           $cols=$this->columnsUpdate($columns);
+           $vals=$this->values($values);
+           //para evitar sql inyection agregar el valor de la columna en el arreglo vals para generar otra posicion
+           $vals.=",".$colCondition[1];
+           //convertir en string
+           $vals = explode(",",$vals);
+           $this->sql="UPDATE $table SET $cols WHERE  $colCondition[0] = ? ";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute($vals);
+           $result = true;
+       } catch (PDOException $e) {
+           $result =$e->getMessage();
+       }
+        return $result;
+   }
     public function delete($table,$condition){
         try {
             $vals=$this->values($condition);
@@ -267,7 +285,7 @@ class MasterModel{
             $result = $e->getMessage();
         }
         return $result;
-    }  
+    }
 
       public function moduleSecurity($condition){
         try {
