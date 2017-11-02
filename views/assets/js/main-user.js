@@ -40,6 +40,7 @@ signin.onclick = function() {
    modalSignin.style.display= "block";
 };
 
+
 $(".input-contact").focus(function(){
   $(this).parent().addClass("color-label mover-label");
 });
@@ -48,5 +49,17 @@ $(".input-contact").focusout(function(){
   if($(this).val() === "")
     $(this).parent().removeClass("mover-label");
     $(this).parent().removeClass("color-label");
-
 });
+
+// MENU
+var menu = document.getElementById('menu');
+var menuStart = document.getElementById('wrap--menu');
+var closeMenu = document.getElementById('close-menu');
+
+menu.onclick = function(){
+  menuStart.style.transform= "translateX(0)";
+};
+
+closeMenu.onclick = function(){
+  menuStart.style.transform = "translateX(-9999px)";
+};

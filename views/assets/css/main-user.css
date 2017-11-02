@@ -158,7 +158,7 @@
     color: #9e9e9e;
     display: block;
     transform: translateY(20px);
-    transition: all 0.5s;
+    transition: all 0.5s;17CW5
 }
 
 #modal--signin{
@@ -374,4 +374,43 @@
 .mover-label .label-contact{
     font-size: 12px;
     transform: translateY(0);
+}
+
+
+/*MENU HAMBURGUESA*/
+.wrap--menu{
+  display: flex;
+  z-index: 5;
+  transform: translateX(-9999px);
+  position: absolute;
+  width: 100%;
+  cursor: pointer;
+}
+
+.menu--home{
+  width: 25%;
+  height: 100vh;
+  background: red;
+  cursor: pointer;
+}
+
+.menu--order{
+  width: 25%;
+  height: 100vh;
+  background: yellow;
+  cursor: pointer;
+}
+
+.menu--quotation{
+  width: 25%;
+  height: 100vh;
+  background: pink;
+  cursor: pointer;
+}
+
+.menu--product{
+  width: 25%;
+  height: 100vh;
+  background: black;
+  cursor: pointer;
 }
