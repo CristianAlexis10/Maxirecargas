@@ -89,7 +89,7 @@
 }
 #modal--session .content--session {
   width: 30%;
-  height: 70%;
+  height: 500px;
   background: white;
   margin: 0 auto;
   margin-top: 100px;
@@ -151,7 +151,7 @@
   font-size: 16px;
   color: #9e9e9e;
   transition: all 0.5s;
-  transform: translateY(27px);
+  transform: translateY(25px);
 }
 
 .wrap--login{
@@ -168,7 +168,7 @@
   position: absolute;
   width: 100%;
   box-sizing: border-box;
-  height: 2px;
+  height: 1px;
   background: #9e9e9e;
   bottom: 0;
   left: 0;
@@ -189,6 +189,7 @@
 font-size: 12px;
 transform: translateY(0);
 }
+
 #btn--login{
   border: none;
   padding: 15px 20px;
@@ -199,36 +200,11 @@ transform: translateY(0);
   font-size: 14px;
   font-weight: bold;
   color: white;
-
+  
 }
 
 
 
-
-/*registar ha y que borrar esta mierda*/
-
-
-#modal--signin{
-  display: none;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  background: rgba(0,0,0,0.5);
-}
-
-#modal--signin .line--black{
-    margin-top: 200px;
-    margin: 0 auto;
-    background: rgba(0, 0, 0, 0.8);
-    width: 70%;
-    height: 200px;
-  }
-#modal--signin .signin--left{
-    left: 0;
-    width: 50%;
-    height: 100vh;
-    background: white;
-}
 
 
 
