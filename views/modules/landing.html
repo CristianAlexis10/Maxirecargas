@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -25,20 +25,26 @@
         </div>
         <div class="session--start">
             <h1>iniciar sesion</h1>
-          <form id="form--login">
+          <form id="form--login" data-parsley-validate>
             <div class="wrap--login">
               <label for="document" class="label-login">Documento de identidad</label>
-              <input type="text" name="data-login" class="input--login">
+              <input type="text" name="data-login" class="input--login" required>
             </div>
             <div class="wrap--login">
               <label for="password" class="label-login">Contraseña</label>
-              <input type="password" name="data-login" class="input--login" >
+              <input type="password" name="data-login" class="input--login" required>
             </div>
-              <button type="submit" name="button" >iniciar sesion</button>
+            <!-- <div class="wrap--login">
+              <label for="password" class="label-login">repita</label>
+              <input type="password" name="data-login" data-parsley-equalto="#pass"  required>
+            </div> -->
+              <button type="submit" name="button" id="btn--login">iniciar sesion</button>
           </form>
         </div>
       </div>
     </div>
+
+
 
     <div id="modal--signin">
         <div class="line--black">

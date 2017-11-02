@@ -40,7 +40,7 @@ signin.onclick = function() {
    modalSignin.style.display= "block";
 };
 
-
+// animacion de los inputs
 $(".input-contact").focus(function(){
   $(this).parent().addClass("color-label mover-label");
 });
@@ -50,16 +50,42 @@ $(".input-contact").focusout(function(){
     $(this).parent().removeClass("mover-label");
     $(this).parent().removeClass("color-label");
 });
+$(".input--login").focus(function(){
+  $(this).parent().addClass("clr-label-login mov-label-login");
+});
+
+$(".input--login").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("mov-label-login");
+    $(this).parent().removeClass("clr-label-login");
+});
 
 // MENU
 var menu = document.getElementById('menu');
 var menuStart = document.getElementById('wrap--menu');
 var closeMenu = document.getElementById('close-menu');
 
-menu.onclick = function(){
-  menuStart.style.transform= "translateX(0)";
-};
+menu.onclick = function() {
+    $(".wrap--menu").css({"transform":"translateX(0)"});
 
-closeMenu.onclick = function(){
-  menuStart.style.transform = "translateX(-9999px)";
-};
+    $(".menu--product").addClass("product-animation")
+    $(".menu--product").css({"transform":"translateX(0)"});
+
+    $(".menu--quotation").addClass("quotation-animation")
+    $(".menu--quotation").css({"transform":"translateX(0)"});
+
+    $(".menu--order").addClass("order-animation")
+    $(".menu--order").css({"transform":"translateX(0)"});
+
+    $(".menu--home").addClass("home-animation")
+    $(".menu--home").css({"transform":"translateX(0)"});
+}
+
+closeMenu.onclick = function() {
+    $(".wrap--menu").fadeOut(300, function(){$(this).remove()})
+
+    $(".menu--product").removeClass("product-animation")
+    $(".menu--quotation").removeClass("quotation-animation")
+    $(".menu--order").removeClass("order-animation")
+    $(".menu--home").removeClass("home-animation")
+}
