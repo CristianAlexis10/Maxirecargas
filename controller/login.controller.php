@@ -12,7 +12,7 @@
 		}
 		function viewSingOut(){
 			session_destroy();
-			require_once "views/modules/index.php";
+			require_once "views/modules/landing.html";
 		}
 		function validateUser(){
 			$data = $_POST['data'];

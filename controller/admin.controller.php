@@ -1,8 +1,11 @@
 <?php
+require_once "controller/doizer.controller.php";
 	class AdminController{
 	  	private $master;
+	  	private $doizer;
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
+	 		$this->doizer = new DoizerController;
 	 	}
 	 	function main(){
 			require_once "views/include/scope.header.php";

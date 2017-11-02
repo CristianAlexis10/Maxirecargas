@@ -1,7 +1,7 @@
 
 <?php
-	if (isset($_SESSION['CUSTOMER'])) {
-		$profile = $this->master->selectBy('usuario',array('usu_codigo',$_SESSION['CUSTOMER']));?>
+	if (isset($_SESSION['CUSTOMER']['ID'])) {
+		$profile = $this->master->selectBy('usuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']));?>
 
 		<div class="menu--top">
 			<div class="profile">
