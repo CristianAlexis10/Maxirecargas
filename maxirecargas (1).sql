@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2017 a las 23:46:49
--- Versión del servidor: 10.1.8-MariaDB
--- Versión de PHP: 5.6.14
+-- Tiempo de generación: 02-11-2017 a las 21:50:27
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -29,15 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `acceso` (
   `token` int(11) NOT NULL,
   `usu_codigo` int(11) NOT NULL,
-  `acc_contra` varchar(255) DEFAULT NULL
+  `acc_contraseña` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `acceso`
---
-
-INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
-(1, 8, '$2y$10$BRvvYPs./RIJrCd2ymoOWOqmSLaqQAUXStB2oNknTYGfTAB77n6Wu');
 
 -- --------------------------------------------------------
 
@@ -51,12 +44,18 @@ CREATE TABLE `ciudad` (
   `ciu_nombre` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `ciudad`
+-- Estructura de tabla para la tabla `cliente_empresarial`
 --
 
-INSERT INTO `ciudad` (`id_ciudad`, `id_departamento`, `ciu_nombre`) VALUES
-(1, 1, 'Medellin');
+CREATE TABLE `cliente_empresarial` (
+  `id_cliente_empresarial` int(11) NOT NULL,
+  `usu_codigo` int(11) NOT NULL,
+  `sed_codigo` int(11) NOT NULL,
+  `cli_emp_cargo` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -88,13 +87,6 @@ CREATE TABLE `departamento` (
   `dep_nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `departamento`
---
-
-INSERT INTO `departamento` (`id_departamento`, `id_pais`, `dep_nombre`) VALUES
-(1, 1, 'Antioquia');
-
 -- --------------------------------------------------------
 
 --
@@ -117,14 +109,6 @@ CREATE TABLE `estado` (
   `id_estado` int(11) NOT NULL,
   `est_estado` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `estado`
---
-
-INSERT INTO `estado` (`id_estado`, `est_estado`) VALUES
-(1, 'Activo'),
-(2, 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -157,19 +141,10 @@ CREATE TABLE `marca` (
 --
 
 CREATE TABLE `modulos` (
-  `id_modulo` int(11) NOT NULL,
-  `mod_nombre` varchar(45) DEFAULT NULL
+  `id_modulos` int(11) NOT NULL,
+  `mod_nombre` varchar(45) DEFAULT NULL,
+  `href` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `modulos`
---
-
-INSERT INTO `modulos` (`id_modulo`, `mod_nombre`) VALUES
-(1, 'pedidos'),
-(2, 'rutas'),
-(3, 'productos'),
-(4, 'usuarios');
 
 -- --------------------------------------------------------
 
@@ -181,13 +156,6 @@ CREATE TABLE `pais` (
   `id_pais` int(11) NOT NULL,
   `pai_nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `pais`
---
-
-INSERT INTO `pais` (`id_pais`, `pai_nombre`) VALUES
-(1, 'colombia');
 
 -- --------------------------------------------------------
 
@@ -227,23 +195,13 @@ CREATE TABLE `pedidoxproducto` (
 
 CREATE TABLE `permiso` (
   `id_permiso` int(11) NOT NULL,
+  `id_modulos` int(11) NOT NULL,
   `tip_usu_codigo` int(11) NOT NULL,
-  `id_modulo` int(11) NOT NULL,
   `per_crear` int(1) NOT NULL,
   `per_modificar` int(1) NOT NULL,
   `per_eliminar` int(1) NOT NULL,
   `per_buscar` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `permiso`
---
-
-INSERT INTO `permiso` (`id_permiso`, `tip_usu_codigo`, `id_modulo`, `per_crear`, `per_modificar`, `per_eliminar`, `per_buscar`) VALUES
-(1, 5, 1, 1, 1, 1, 1),
-(2, 5, 2, 0, 0, 0, 0),
-(3, 1, 3, 1, 0, 0, 0),
-(4, 5, 4, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -325,25 +283,6 @@ CREATE TABLE `servicio` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sexo`
---
-
-CREATE TABLE `sexo` (
-  `id_sexo` int(11) NOT NULL,
-  `sexo` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `sexo`
---
-
-INSERT INTO `sexo` (`id_sexo`, `sexo`) VALUES
-(1, 'Masculino'),
-(2, 'Femenino');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `stock`
 --
 
@@ -365,14 +304,6 @@ CREATE TABLE `tipo_documento` (
   `id_tipo_documento` int(11) NOT NULL,
   `tip_doc_nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tipo_documento`
---
-
-INSERT INTO `tipo_documento` (`id_tipo_documento`, `tip_doc_nombre`) VALUES
-(1, 'CC'),
-(2, 'TI');
 
 -- --------------------------------------------------------
 
@@ -417,16 +348,6 @@ CREATE TABLE `tipo_usuario` (
   `tip_usu_rol` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `tipo_usuario`
---
-
-INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`) VALUES
-(1, 'usuario'),
-(2, 'Cliente Empresarial'),
-(5, 'Admin'),
-(6, 'Cliente');
-
 -- --------------------------------------------------------
 
 --
@@ -447,20 +368,12 @@ CREATE TABLE `usuario` (
   `usu_direccion` varchar(200) NOT NULL,
   `usu_celular` int(20) NOT NULL,
   `usu_fecha_nacimiento` date NOT NULL,
-  `id_sexo` int(11) NOT NULL,
+  `usu_sexo` varchar(50) NOT NULL,
   `tip_usu_codigo` int(11) NOT NULL,
-  `foto` varchar(200) NOT NULL,
   `id_estado` int(11) NOT NULL,
   `usu_fechas_registro` date NOT NULL,
   `usu_ult_inicio_sesion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `id_sexo`, `tip_usu_codigo`, `foto`, `id_estado`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(8, 1, 1214, 'ale', 'cris', 'lop', 'bed', 'c orreo', 521, 1, 'calle', 232, '2017-10-16', 1, 5, '', 1, '2017-10-10', 14);
 
 -- --------------------------------------------------------
 
@@ -501,6 +414,14 @@ ALTER TABLE `acceso`
 ALTER TABLE `ciudad`
   ADD PRIMARY KEY (`id_ciudad`),
   ADD KEY `fk_ciudad_departamento1_idx` (`id_departamento`);
+
+--
+-- Indices de la tabla `cliente_empresarial`
+--
+ALTER TABLE `cliente_empresarial`
+  ADD PRIMARY KEY (`id_cliente_empresarial`),
+  ADD KEY `fk_cliente_empresarial_usuario1_idx` (`usu_codigo`),
+  ADD KEY `fk_cliente_empresarial_sede1_idx` (`sed_codigo`);
 
 --
 -- Indices de la tabla `cotizacion`
@@ -548,7 +469,7 @@ ALTER TABLE `marca`
 -- Indices de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  ADD PRIMARY KEY (`id_modulo`);
+  ADD PRIMARY KEY (`id_modulos`);
 
 --
 -- Indices de la tabla `pais`
@@ -578,7 +499,7 @@ ALTER TABLE `pedidoxproducto`
 --
 ALTER TABLE `permiso`
   ADD PRIMARY KEY (`id_permiso`),
-  ADD KEY `fk_permiso_modulos1_idx` (`id_modulo`),
+  ADD KEY `fk_permiso_modulos1_idx` (`id_modulos`),
   ADD KEY `fk_permiso_tipo_usuario1_idx` (`tip_usu_codigo`);
 
 --
@@ -622,12 +543,6 @@ ALTER TABLE `servicio`
   ADD PRIMARY KEY (`ser_codigo`),
   ADD KEY `item_codigo` (`item_codigo`),
   ADD KEY `fk_servicio_Tipo_servicio1_idx` (`Tip_ser_cod`);
-
---
--- Indices de la tabla `sexo`
---
-ALTER TABLE `sexo`
-  ADD PRIMARY KEY (`id_sexo`);
 
 --
 -- Indices de la tabla `stock`
@@ -674,7 +589,6 @@ ALTER TABLE `usuario`
   ADD KEY `tip_usu` (`tip_usu_codigo`),
   ADD KEY `fk_usuario_ciudad1_idx` (`id_ciudad`),
   ADD KEY `fk_usuario_estado1_idx` (`id_estado`),
-  ADD KEY `fk_usuario_sexo1_idx` (`id_sexo`),
   ADD KEY `fk_usuario_tipo_documento1_idx` (`id_tipo_documento`);
 
 --
@@ -699,12 +613,17 @@ ALTER TABLE `usuxemp`
 -- AUTO_INCREMENT de la tabla `acceso`
 --
 ALTER TABLE `acceso`
-  MODIFY `token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `token` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `cliente_empresarial`
+--
+ALTER TABLE `cliente_empresarial`
+  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
@@ -714,7 +633,7 @@ ALTER TABLE `cotizacion`
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `empresa`
 --
@@ -724,7 +643,7 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
-  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `item`
 --
@@ -739,12 +658,12 @@ ALTER TABLE `marca`
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_modulos` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
-  MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
@@ -759,7 +678,7 @@ ALTER TABLE `pedidoxproducto`
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
@@ -791,11 +710,6 @@ ALTER TABLE `sede`
 ALTER TABLE `servicio`
   MODIFY `ser_codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `sexo`
---
-ALTER TABLE `sexo`
-  MODIFY `id_sexo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
@@ -804,7 +718,7 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
-  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tipo_pedido`
 --
@@ -824,12 +738,12 @@ ALTER TABLE `tipo_servicio`
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --
@@ -845,6 +759,13 @@ ALTER TABLE `acceso`
 --
 ALTER TABLE `ciudad`
   ADD CONSTRAINT `fk_ciudad_departamento1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `cliente_empresarial`
+--
+ALTER TABLE `cliente_empresarial`
+  ADD CONSTRAINT `fk_cliente_empresarial_sede1` FOREIGN KEY (`sed_codigo`) REFERENCES `sede` (`sed_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_cliente_empresarial_usuario1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `cotizacion`
@@ -888,7 +809,7 @@ ALTER TABLE `pedidoxproducto`
 -- Filtros para la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  ADD CONSTRAINT `fk_permiso_modulos1` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_permiso_modulos1` FOREIGN KEY (`id_modulos`) REFERENCES `modulos` (`id_modulos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_permiso_tipo_usuario1` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -935,7 +856,6 @@ ALTER TABLE `stock`
 ALTER TABLE `usuario`
   ADD CONSTRAINT `fk_usuario_ciudad1` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_usuario_estado1` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_sexo1` FOREIGN KEY (`id_sexo`) REFERENCES `sexo` (`id_sexo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_usuario_tipo_documento1` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE;
 
