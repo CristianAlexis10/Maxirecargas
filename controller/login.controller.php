@@ -28,6 +28,7 @@
 							$_SESSION['CUSTOMER']['NAME']=$result['usu_primer_nombre'];
 							$_SESSION['CUSTOMER']['LAST_NAME']=$result['usu_primer_apellido'];
 							$_SESSION['CUSTOMER']['DOCUMENT']=$result['usu_num_documento'];
+							$_SESSION['CUSTOMER']['PERMITS'] = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
 							$pass  = $this->master->selectBy('acceso',array('usu_codigo',$result['usu_codigo']));
 							if (password_verify($data[1] , $pass['acc_contra'])) {
 								$fecha = date('Y-m-d');
