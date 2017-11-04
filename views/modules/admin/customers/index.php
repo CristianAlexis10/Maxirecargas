@@ -7,7 +7,7 @@
 
 		  <?php
 		  	//permisos-permit de scope.navigator
-		  	$modulo = 'usuarios';
+		  	$modulo = 'clientes';
 			$crud = permisos($modulo,$permit);
 			if ($crud[0]==true) {?>
 		    		<li><a href="#tabs-1">Registrar Clientes</a></li>	

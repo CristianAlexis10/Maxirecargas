@@ -16,6 +16,10 @@ $("#form--login").submit(function(e) {
                   if (result==true) {
                       location.href = 'dashboard';
                   }
+                  console.log(result);
+               },
+               error: function(result){
+                  console.log(result);
                }
             });
   }

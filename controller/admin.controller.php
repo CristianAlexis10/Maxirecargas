@@ -1,4 +1,5 @@
 <?php
+
 require_once "controller/doizer.controller.php";
 	class AdminController{
 	  	private $master;
