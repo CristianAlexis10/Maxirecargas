@@ -11,9 +11,15 @@
 	 		$this->updateException = array('id_producto');
 	 	}
 		function main(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/products/index.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				require_once "views/include/scope.header.php";
+				require_once "views/modules/admin/products/index.php";
+				require_once "views/include/scope.footer.php";
+			}else{
+				require_once "views/include/user/scope.header.php";
+				require_once "views/modules/user/products/index.php";
+				require_once "views/include/user/scope.footer.php";
+			}
 		}
 		function newCategory(){
 			require_once "views/include/scope.header.php";

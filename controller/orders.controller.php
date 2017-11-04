@@ -10,7 +10,9 @@
 				require_once "views/modules/admin/orders/index.php";
 				require_once "views/include/scope.footer.php";
 			}else{
-				echo "calma que no lo hemos hecho";
+				require_once "views/include/user/scope.header.php";
+				require_once "views/modules/user/orders/index.php";
+				require_once "views/include/user/scope.footer.php";;
 			}
 		}
 		function viewDetail(){
