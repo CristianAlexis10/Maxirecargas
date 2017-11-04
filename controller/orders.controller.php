@@ -5,9 +5,13 @@
 	 		$this->master = new MasterModel;
 	 	}
 		function main(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/orders/index.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				require_once "views/include/scope.header.php";
+				require_once "views/modules/admin/orders/index.php";
+				require_once "views/include/scope.footer.php";
+			}else{
+				echo "calma que no lo hemos hecho";
+			}
 		}
 		function viewDetail(){
 			require_once "views/include/scope.header.php";

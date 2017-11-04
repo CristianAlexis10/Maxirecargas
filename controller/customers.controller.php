@@ -91,11 +91,13 @@
 			$result = $this->master->selectBy($this->tableName,array('usu_codigo',$data));
 			return $result;
 		}
-		function readByNumDoc($data = null){
+		function readByNumDoc(){
 			$data=$_POST['data'];
 			$result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data));
 			if ($result != array()) {
-				echo  json_encode('El numero de documento ya esta registrado en el sistema');
+				echo  json_encode(true);
+			}else{
+				echo json_encode(false);
 			}
 		}
 		function update(){

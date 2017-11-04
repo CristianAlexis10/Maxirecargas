@@ -1,3 +1,29 @@
+$('#password').attr('disabled',true);
+//validar si el usuario existe
+$('#document').keyup(function(){
+    var value = $('#document').val();
+    if (value!='') {
+	    $.ajax({
+	      url: 'validar_documento',
+	      type:'post',
+	      dataType:'json',
+	      data:'data='+value,
+	  }).done(function(response){
+	    if(response==true) {
+		    $(".message").remove();
+		    $('#password').attr('disabled',false);
+	     }else{
+	     	$(".message").remove();
+		$("#document").after("<div class='message'>Documento no valido</div>");
+		$('#password').attr('disabled',true);
+	     }
+
+	  });
+    }else{
+    	$(".message").remove();
+    }
+});
+//capturar el evento submit
 $("#form--login").submit(function(e) {
     e.preventDefault();
     if ($(this).parsley().isValid()) {
@@ -8,7 +34,7 @@ $("#form--login").submit(function(e) {
                 dataJson.push(structure);
             });
             $.ajax({
-              url: "validar-inicio-sesion",
+              url: "validar-inicio-sesion", 
               type: "POST",
                dataType:'json',
                data: ({data: dataJson}),
