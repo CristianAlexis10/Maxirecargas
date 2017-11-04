@@ -64,7 +64,7 @@ class DoizerController{
 	}
 	//encriptar contraseña
 	function passwordEncrypt($password){
-		$password_hash = password_hash($password, PASSWORD_DEFAULT)."\n";
+		$password_hash = password_hash($password, PASSWORD_DEFAULT);
 		return $password_hash;
 	}
 //ARCHIVOS
