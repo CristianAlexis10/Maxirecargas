@@ -15,7 +15,6 @@ RewriteRule ^nueva-categoria$ index.php?controller=products&a=newCategory
 
 #LOGIN
 RewriteRule ^iniciar-sesion$ index.php?controller=login&a=viewSingIn
-RewriteRule ^iniciar--sesion$ index.php?controller=login&a=viewSingInPass
 RewriteRule ^finalizar$ index.php?controller=login&a=viewSingOut
 RewriteRule ^validar-inicio-sesion$ index.php?controller=login&a=validateUser
 RewriteRule ^validar-ingreso$ index.php?controller=login&a=validateUserpass

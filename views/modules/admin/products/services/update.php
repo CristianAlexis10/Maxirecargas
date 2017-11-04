@@ -7,14 +7,14 @@ $_SESSION['service_update']=base64_decode($_GET['data']);
 		<p>MODIFICAR SERVICIO</p>
 	</div>
 
-		    	<form class="frmServices" action="guardar-modificacion-servicio" method="post">
+		    	<form class="frmServices" id="frmUpdateService">
 		    		 <div class="form-group">
 			                <label for="nombre" class="required">Nombre:</label>
-			                <input type="text" name="data[]" id="nombre" value="<?php echo $result['nombre']?>" required>
+			                <input type="text" name="dataUpdateService" id="nombre" value="<?php echo $result['tip_ser_nombre']?>" required>
 			            </div>
 			             <div class="form-group">
 			                <label for="des" class="required">Descripción:</label>
-			                <textarea name="data[]" id="des"><?php echo $result['descripcion']?></textarea>
+			                <textarea name="data[]" id="des"><?php echo $result['tip_ser_descripcion']?></textarea>
 			            </div>
 			             
 			            <div class="form-group">

@@ -159,11 +159,11 @@
             			<tbody>
             				<?php foreach ($this->master->selectAll('tipo_servicio') as $row) {?>
                    				 <tr>
-                       				 <td><?php echo $row['nombre'];?></td>
-                        				<td><?php echo $row['descripcion'];?></td>
+                       				 <td><?php echo $row['tip_ser_nombre'];?></td>
+                        				<td><?php echo $row['tip_ser_descripcion'];?></td>
 				                       <td>
-				                       	<a href="modificar-servicio-<?php echo rtrim(strtr(base64_encode($row['id_servicio']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
-				                       	<a href="eliminar-servicio-<?php echo rtrim(strtr(base64_encode($row['id_servicio']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				                       	<a href="modificar-servicio-<?php echo rtrim(strtr(base64_encode($row['Tip_ser_cod']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
+				                       	<a href="eliminar-servicio-<?php echo rtrim(strtr(base64_encode($row['Tip_ser_cod']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 				                       </td>
                   				  </tr>
 

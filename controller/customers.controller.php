@@ -35,14 +35,45 @@
 
 		}
 		function viewDetail(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/customers/detail.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				//saber si puede acceder a este modulo
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+				$crud = permisos('clientes',$_SESSION['CUSTOMER']['PERMITS']);
+					if ($row['enlace']=='clientes' && $crud[1]==true) {
+						$access = true;
+					}	
+				}
+				if (isset($access)) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/customers/detail.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
 		}
 		function viewUpdate(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/customers/update.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				//saber si puede acceder a este modulo
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+					if ($row['enlace']=='clientes') {
+						$access = true;
+					}	
+				}
+				if (isset($access)) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/customers/update.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
 		}
 		function newRegister(){
 			$data = $_POST['data'];

@@ -7,8 +7,8 @@
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
 	 		$this->tableName="tipo_servicio";
-	 		$this->insertException=array('id_servicio');
-	 		$this->updateException = array('id_servicio','fecha_registro');
+	 		$this->insertException=array('Tip_ser_cod');
+	 		$this->updateException = array('Tip_ser_cod','tip_ser_registro');
 	 	}
 		function main(){
 			require_once "views/include/scope.header.php";
@@ -23,36 +23,37 @@
 		function newRegister(){
 			$data = $_POST['data'];
 			$data[]=date('Y-m-d');
-			$result = $this->master->insert($this->tableName,$data,$this->insertException);
-			if ($result==1) {
-				$_SESSION['message']="Registrado Exitosamente";
+			if ($data[0]!='') {
+				$result = $this->master->insert($this->tableName,$data,$this->insertException);
+				if ($result==1) {
+					echo json_encode(true);
+				}else{
+					echo json_encode($result);
+				}
 			}else{
-				$_SESSION['message_error']=$result;
+				echo  json_encode('campos vacios');
 			}
-			header("Location: productos");
 		}
 		function readAll(){
 			$result = $this->master->selectAll($this->tableName);
 			return $result;
 		}
 		function readBy($data){
-			$result = $this->master->selectBy($this->tableName,array('id_servicio',$data));
+			$result = $this->master->selectBy($this->tableName,array('Tip_ser_cod',$data));
 			return $result;
 		}
 		function update(){
 			$data=$_POST['data'];
-			$result = $this->master->update($this->tableName,array('id_servicio',$_SESSION['service_update']),$data,$this->updateException);
-			unset($_SESSION['service_update']);
+			$result = $this->master->update($this->tableName,array('Tip_ser_cod',$_SESSION['service_update']),$data,$this->updateException);
 			if ($result==1) {
-				$_SESSION['message']="Actualizado Exitosamente";
+				echo json_encode(true);
 			}else{
-				$_SESSION['message_error']=$result;
+				echo json_encode($result);
 			}
-			header("Location: productos");
 		}
 		function delete(){
 			$data = base64_decode($_GET['data']);
-			$result = $this->master->delete($this->tableName,array('id_servicio',$data));
+			$result = $this->master->delete($this->tableName,array('Tip_ser_cod',$data));
 			if ($result==1) {
 				$_SESSION['message']="Eliminado Exitosamente";
 			}else{
