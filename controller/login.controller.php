@@ -33,7 +33,11 @@
 							if (password_verify($data[1] , $pass['acc_contra'])) {
 								$fecha = date('Y-m-d');
 								// $this->master->updateMin('usuario',array('usu_ult_inicio_sesion'),array('usu_codigo',$result['usu_codigo']),$fecha);
-								echo json_encode(true);
+									if ($_SESSION['CUSTOMER']['ROL']==3) {
+										echo json_encode('customer');
+									}else{
+										echo json_encode(true);
+									}
 							}else{
 								echo json_encode('contraseña incorrecta');
 							}
