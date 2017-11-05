@@ -420,9 +420,8 @@ transform: translateY(0);
   height: 100vh;
   background: url("../image/fondo.jpg");
   cursor: pointer;
-  -webkit-filter: blur(3px);
-  filter:grayscale(50%);
-  mix-blend-mode: multiply;
+  -webkit-filter: hue-rotate(45deg);
+  
 }
 
 
