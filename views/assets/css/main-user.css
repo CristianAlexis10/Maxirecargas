@@ -418,29 +418,32 @@ transform: translateY(0);
 .menu--home{
   width: 25%;
   height: 100vh;
-  background: red;
+  background: url("../image/fondo.jpg");
   cursor: pointer;
+  -webkit-filter: blur(3px);
+  filter:grayscale(50%);
+  mix-blend-mode: multiply;
 }
 
 
 .menu--order{
   width: 25%;
   height: 100vh;
-  background: yellow;
+  background: url("../image/pedido.jpg");
   cursor: pointer;
 }
 
 .menu--quotation{
   width: 25%;
   height: 100vh;
-  background: pink;
+  background: url("../image/cotizacion.jpg");
   cursor: pointer;
 }
 
 .menu--product{
   width: 25%;
   height: 100vh;
-  background: black;
+  background: url("../image/");
   cursor: pointer;
 }
 
