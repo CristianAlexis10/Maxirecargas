@@ -76,7 +76,7 @@
 		<ul>
 			<?php
 			$modulo = 'usuarios';
-			$crud = permisos($modulo,$permit);
+			$crud = permisos($modulo,$permit); 
 			 if($crud[2]==1){?>
 			<li class="item"><a href="modificar-cliente-<?php echo $_GET['data']?>">Modificar</a></li>
 			<?php }  if($crud[3]==1){?>
