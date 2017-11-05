@@ -9,7 +9,7 @@ $('#document').keyup(function(){
 	      dataType:'json',
 	      data:'data='+value,
 	  }).done(function(response){
-	    if(response==true) {
+       if(response==true) {
 		    $(".message").remove();
 		    $('#password').attr('disabled',false);
 	     }else{
@@ -34,12 +34,15 @@ $("#form--login").submit(function(e) {
                 dataJson.push(structure);
             });
             $.ajax({
-              url: "validar-inicio-sesion", 
+              url: "validar-inicio-sesion",
               type: "POST",
                dataType:'json',
                data: ({data: dataJson}),
                success: function(result){
-                  if (result==true) {
+                 if (result=='customer') {
+                   location.href = 'maxirecargas';
+
+                 }else  if (result==true) {
                       location.href = 'dashboard';
                   }
                   console.log(result);
