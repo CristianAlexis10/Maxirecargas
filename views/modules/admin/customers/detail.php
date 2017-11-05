@@ -3,7 +3,7 @@
 	$inner = $this->master->innerJoinBy(array('usuario','tipo_documento'),array('id_tipo_documento','id_tipo_documento'),array('usu_codigo',base64_decode($_GET['data'])));
 	$inner2 = $this->master->innerJoinBy(array('usuario','ciudad'),array('id_ciudad','id_ciudad'),array('usu_codigo',base64_decode($_GET['data'])));
 	$inner3 = $this->master->innerJoinBy(array('usuario','tipo_usuario'),array('tip_usu_codigo','tip_usu_codigo'),array('usu_codigo',base64_decode($_GET['data'])));
-	$inner4 = $this->master->innerJoinBy(array('usuario','sexo'),array('id_sexo','id_sexo'),array('usu_codigo',base64_decode($_GET['data'])));
+	
 	$inner5 = $this->master->innerJoinBy(array('usuario','estado'),array('id_estado','id_estado'),array('usu_codigo',base64_decode($_GET['data'])));
 ?>
 <div class="modules customers">
@@ -37,7 +37,7 @@
 		</div>
 		<div class="detail">
 			<p class="item--detail">Sexo:</p>
-			<p class="data--detail"><?php echo  $inner4['sexo'];?></p>
+			<p class="data--detail"><?php echo  $result['usu_sexo'];?></p>
 		</div>
 		<div class="detail">
 			<p class="item--detail">Celular:</p>
@@ -57,7 +57,7 @@
 		</div>
 		<div class="detail">
 			<p class="item--detail">Fecha de Registro en el Sistema:</p>
-			<p class="data--detail"><?php echo  $result['usu_fecha_registro'];?></p>
+			<p class="data--detail"><?php echo  $result['usu_fechas_registro'];?></p>
 		</div>
 		<div class="detail">
 			<p class="item--detail">Último Ingreso en el Sistema:</p>
