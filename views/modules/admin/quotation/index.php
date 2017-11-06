@@ -32,7 +32,7 @@
             			</tbody>
       			  </table>
 		  </div>
-		  <div id="tabs-1">
+		  <div id="tabs-1" class="new quotation">
 				<div class="form--left">
 		    	<form class="frmBusiness" action="#" method="post" enctype="multipart/form-data">
 		    		 <div class="form-group">

@@ -34,7 +34,7 @@
             			</tbody>
       			  </table>
 		  </div>
-		  <div id="tabs-1">
+		  <div id="tabs-1" class="new orders">
 				<div class="form--left">
 		    	<form class="form Business" action="#" method="post" enctype="multipart/form-data">
 		    		 <div class="form-group">

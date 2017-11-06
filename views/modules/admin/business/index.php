@@ -29,7 +29,7 @@
             			</tbody>
       			  </table>
 		  </div>
-		  <div id="tabs-1">
+		  <div id="tabs-1" class="new business">
 				<div class="form--left">
 
 		    	<form class="frmBusiness" action="#" method="post" enctype="multipart/form-data">
@@ -54,7 +54,7 @@
 			                <input type="file" name="file" id="logoEmp" placeholder="Ingrese el logo de la empresa" required>
 			            </div>
 								</div>
-								<div class="form--rigth">							
+								<div class="form--rigth">
 			            <div class="form-group">
 			                <button class="btn">Guardar Empresa</button>
 			            </div>

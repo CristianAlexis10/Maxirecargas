@@ -36,7 +36,7 @@
             			</tbody>
       			  </table>
 		  </div>
-		  <div id="tabs-1">
+		  <div id="tabs-1" class="new products">
 			<div class="form--left">
 
 		    	<form class="frmBusiness" action="guardar-producto" method="post" enctype="multipart/form-data">
@@ -50,7 +50,7 @@
 			            </div>
 		    		 <div class="form-group">
 			                <label for="rf" class="required">Referencia:</label>
-			                <input type="text" name="data[]" id="rf" placeholder="Ingrese la referencia del producto" required>
+			                <input type="text" name="data[]" id="rf" required>
 			            </div>
 			             <div class="form-group">
 			                <label for="marca" class="required">Marca:</label>
