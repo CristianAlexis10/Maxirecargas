@@ -129,6 +129,8 @@
     margin-bottom: 5px;
 
 }
+
+
 #form--login{
   width: 80%;
   display: flex;
@@ -421,7 +423,7 @@ transform: translateY(0);
   background: url("../image/fondo.jpg");
   cursor: pointer;
   -webkit-filter: hue-rotate(45deg);
-  
+
 }
 
 
