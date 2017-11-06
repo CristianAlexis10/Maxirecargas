@@ -35,9 +35,9 @@
 		  <div id="tabs-1" class="new quotation">
 				<div class="form--left">
 		    	<form class="frmBusiness" action="#" method="post" enctype="multipart/form-data">
-		    		 <div class="form-group">
-			           <label for="numDoc" class="required">Numero de Documento:</label>
-			           <input type="text" name="data[]" id="numDoc" placeholder="Ingrese El numero de documento" required>
+		    		 <div class="form-group-liner">
+			           <label for="numDoc" class="label--liner">Numero de Documento:</label>
+			           <input type="text" name="data[]" id="numDoc" class="input--liner" required>
 			       </div>
 				</div>
 				<div class="form--rigth">

@@ -24,7 +24,7 @@ $("#frmNewService").submit(function(e) {
           });
          dataJson.push($('#des').val());
             $.ajax({
-              url: "guardar-servicio", 
+              url: "guardar-servicio",
               type: "POST",
                dataType:'json',
                data: ({data: dataJson}),
@@ -56,7 +56,7 @@ $("#frmUpdateService").submit(function(e) {
           });
          dataJson.push($('#des').val());
             $.ajax({
-              url: "guardar-modificacion-servicio", 
+              url: "guardar-modificacion-servicio",
               type: "POST",
                dataType:'json',
                data: ({data: dataJson}),
@@ -77,7 +77,17 @@ $("#frmUpdateService").submit(function(e) {
   }
 });
 
+// animacion de los inputs
 
+$(".input--liner").focus(function(){
+  $(this).parent().addClass("clr-label-liner mov-label-liner");
+});
+
+$(".input--liner").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("mov-label-liner");
+    $(this).parent().removeClass("clr-label-liner");
+});
 
 
 
