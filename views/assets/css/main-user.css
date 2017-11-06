@@ -413,9 +413,9 @@ transform: translateY(0);
   z-index: 5;
   position: fixed;
   width: 100%;
-  cursor: pointer;
   /*transition: 0.4s ease*/
-  overflow-y: hidden;
+  /*overflow-y: hidden;*/
+
 }
 
 .menu--home{
@@ -424,7 +424,6 @@ transform: translateY(0);
   justify-content: center;
   width: 25%;
   height: 100vh;
-  cursor: pointer;
   color: white;
   background: rgb(0, 255, 255);
 }
@@ -435,7 +434,6 @@ transform: translateY(0);
   justify-content: center;
   width: 25%;
   height: 100vh;
-  cursor: pointer;
   color: white;
   background: rgb(255, 0, 255);
 }
@@ -446,7 +444,6 @@ transform: translateY(0);
   justify-content: center;
   width: 25%;
   height: 100vh;
-  cursor: pointer;
   color: white;
   background: rgb(128, 128, 128);
 }
@@ -457,7 +454,6 @@ transform: translateY(0);
   justify-content: center;
   width: 25%;
   height: 100vh;
-  cursor: pointer;
   color: white;
   background: rgb(255, 255, 0);
 }
@@ -471,6 +467,23 @@ transform: translateY(0);
   text-transform: uppercase;
   margin-left: 30px;
 
+}
+.menu--home:hover,.menu--order:hover,.menu--product:hover,.menu--quotation:hover{
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  width: 27.5%;
+  background: none;
+  color: black;
+  font-size: 20px;
+}
+
+.menu--home,.menu--order,.menu--product,.menu--quotation{
+  transform: scale(2);
+  -moz-transform : scale(2);
+  -webkit-transform : scale(2);
+  -o-transform : scale(2);
 }
 .menu--home img,.menu--order img,.menu--product img,.menu--quotation img{
   mix-blend-mode: multiply;
@@ -491,6 +504,8 @@ transform: translateY(0);
   z-index: 999;
   bottom: 5.9em;
   left: 2.7em;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 .product-animation, .quotation-animation, .order-animation, .home-animation{

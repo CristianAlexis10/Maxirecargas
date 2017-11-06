@@ -2,23 +2,23 @@
 
   <div class="menu--home">
     <img src="views/assets/image/iniciomenu.jpg">
-    <div class="menu--title">Inicio</div>
+    <div class="menu--title"><a href="#">Inicio</a></div>
   </div>
 
   <div class="menu--order">
     <img src="views/assets/image/pedidosmenu.jpg" alt="">
-    <div class="menu--title">Pedidos</div>
+    <div class="menu--title"><a href="#">Pedidos</a></div>
   </div>
 
   <div class="menu--quotation">
-    <img src="views/assets/image/.jpg" alt="">
-    <div class="menu--title">Cotizaciones</div>
+    <img src="views/assets/image/cotizaciones.jpg" alt="">
+    <div class="menu--title"><a href="#">Cotizaciones</a></div>
   </div>
 
   <div class="menu--product">
     <img src="views/assets/image/producto.jpg" alt="">
     <span id="close-menu">&times;</span>
-    <div class="menu--title">Productos</div>
+    <div class="menu--title"><a href="#">Productos</a></div>
   </div>
 </div>
 
