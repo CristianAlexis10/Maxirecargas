@@ -18,7 +18,7 @@ menu.onclick = function() {
 
     $(".menu--home").addClass("home-animation")
     $(".menu--home").css({"transform":"translateX(0)"});
-    console.log('hg');
+    // console.log('hg');
 }
 
 closeMenu.onclick = function() {

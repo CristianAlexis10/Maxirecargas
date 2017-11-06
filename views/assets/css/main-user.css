@@ -415,6 +415,7 @@ transform: translateY(0);
   width: 100%;
   cursor: pointer;
   /*transition: 0.4s ease*/
+  overflow-y: hidden;
 }
 
 .menu--home{
@@ -424,8 +425,8 @@ transform: translateY(0);
   width: 25%;
   height: 100vh;
   cursor: pointer;
-  -webkit-filter: hue-rotate(45deg);
-
+  color: white;
+  background: rgb(0, 255, 255);
 }
 
 .menu--order{
@@ -436,7 +437,7 @@ transform: translateY(0);
   height: 100vh;
   cursor: pointer;
   color: white;
-  background: rgba(0, 255, 255, 0.5);
+  background: rgb(255, 0, 255);
 }
 
 .menu--product{
@@ -447,7 +448,7 @@ transform: translateY(0);
   height: 100vh;
   cursor: pointer;
   color: white;
-  background: rgba(128, 128, 128, 0.9);
+  background: rgb(128, 128, 128);
 }
 
 .menu--quotation{
@@ -458,7 +459,7 @@ transform: translateY(0);
   height: 100vh;
   cursor: pointer;
   color: white;
-  background: rgba(255, 255, 0, 0.2);
+  background: rgb(255, 255, 0);
 }
 
 .menu--title{
@@ -483,10 +484,13 @@ transform: translateY(0);
   transform: translateX(-9999px);
 }
 
-#close-menu{
+.menu--product span#close-menu{
+  position: relative;
   color: white;
-  font-size: 60px;
+  font-size: 50px;
   z-index: 999;
+  bottom: 5.9em;
+  left: 2.7em;
 }
 
 .product-animation, .quotation-animation, .order-animation, .home-animation{
