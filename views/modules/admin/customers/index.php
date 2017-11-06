@@ -62,9 +62,9 @@
 		 <?php if ($crud[0]==true) {?>
 		  <div id="tabs-1">
 		    	<form class="frmCustomers" action="guardar-cliente" method="post" enctype="multipart/form-data">
-		    		 <div class="form-group">
-			                <label for="tip_doc" class="required">Tipo de Documento:</label>
-			               <select name="data[0]"  id="tip_doc" required>
+		    		 <div class="form-group-liner">
+			                <label for="tip_doc" class="label--liner">Tipo de Documento:</label>
+			               <select name="data[0]" id="tip_doc" class="input--liner"  required>
 			               	<?php foreach ($this->master->selectAll('tipo_documento') as $row) {?>
 			               		<option value="<?php echo $row['id_tipo_documento']?>"><?php echo $row['tip_doc_nombre']?></option>
 			               	<?php } ?>
