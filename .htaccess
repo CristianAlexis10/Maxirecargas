@@ -16,6 +16,7 @@ RewriteRule ^pedidos$ index.php?controller=orders
 RewriteRule ^detalles-pedido-(\w+)$ index.php?controller=orders&a=viewDetail&data=$1
 
 #CLIENTES
+RewriteRule ^iniciar$ index.php?controller=views&a=newUser
 RewriteRule ^dashboard$ index.php?controller=admin
 RewriteRule ^perfil$ index.php?controller=admin&a=profile
 RewriteRule ^perfil-empresarial$ index.php?controller=business&a=profile
@@ -73,5 +74,5 @@ RewriteRule ^validar_documento$ index.php?controller=customers&a=readByNumDoc
 #LAND
 RewriteRule ^maxirecargas$ index.php?controller=views
 
-#RUTAS 
+#RUTAS
 RewriteRule ^rutas$ index.php?controller=routes
