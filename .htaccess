@@ -74,5 +74,9 @@ RewriteRule ^validar_documento$ index.php?controller=customers&a=readByNumDoc
 #LAND
 RewriteRule ^maxirecargas$ index.php?controller=views
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 62d47499aa3f890530aa3a300a6013c506ca9563
 #RUTAS
 RewriteRule ^rutas$ index.php?controller=routes
