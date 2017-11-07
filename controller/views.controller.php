@@ -9,7 +9,7 @@
 			}
 		}
 	 	function newUser(){
-				require_once "views/modules/user/singin.php";
+				require_once "views/modules/user/signin.php";
 		}
 
 	}
