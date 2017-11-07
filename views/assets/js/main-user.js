@@ -20,6 +20,7 @@ var close = document.getElementById("close");
 var start = document.getElementById("session");
 var modal = document.getElementById('modal--session');
 
+
 start.onclick = function(){
   modal.style.display = "block";
 };

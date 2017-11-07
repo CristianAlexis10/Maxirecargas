@@ -40,18 +40,36 @@
 }
 .container .rigth ul{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   color: white;
-  margin-top:20px;
   font-family: 'lato';
   font-weight: 400;
   text-transform: capitalize;
   font-size: 14px;
 }
 
-.container .rigth ul li a{
+.container .rigth ul li a, #opc--user{
   cursor: pointer;
+  display: flex;
   padding: 20px;
+}
+
+#user--dropdown{
+  min-width: 120px;
+  max-width: 120px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 17px;
+  margin-top: 50px;
+  display: none;
+}
+#user--dropdown a{
+  font-family: 'lato';
+  padding: 15px 16px;
+  text-transform: capitalize;
+
 
 }
 .container .rigth ul li a:hover{
