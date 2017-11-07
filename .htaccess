@@ -73,5 +73,6 @@ RewriteRule ^validar_documento$ index.php?controller=customers&a=readByNumDoc
 #LAND
 RewriteRule ^maxirecargas$ index.php?controller=views
 
-#RUTAS 
+
+#RUTAS
 RewriteRule ^rutas$ index.php?controller=routes
