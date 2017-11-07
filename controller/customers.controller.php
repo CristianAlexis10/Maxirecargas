@@ -19,7 +19,7 @@
 				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
 					if ($row['enlace']=='clientes') {
 						$access = true;
-					}	
+					}
 				}
 				if (isset($access)) {
 					require_once "views/include/scope.header.php";
@@ -34,6 +34,17 @@
 			}
 
 		}
+		function profile(){
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+					// require_once "views/modules/landing.html";
+					require_once "views/modules/customers/profile/profile.php";
+					// require_once "views/modules/landing.html";
+				}else{
+					require_once "views/modules/landing.html";
+				}
+
+
+		}
 		function viewDetail(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
 				//saber si puede acceder a este modulo
@@ -41,7 +52,7 @@
 				$crud = permisos('clientes',$_SESSION['CUSTOMER']['PERMITS']);
 					if ($row['enlace']=='clientes' && $crud[1]==true) {
 						$access = true;
-					}	
+					}
 				}
 				if (isset($access)) {
 					require_once "views/include/scope.header.php";
@@ -61,7 +72,7 @@
 				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
 					if ($row['enlace']=='clientes') {
 						$access = true;
-					}	
+					}
 				}
 				if (isset($access)) {
 					require_once "views/include/scope.header.php";

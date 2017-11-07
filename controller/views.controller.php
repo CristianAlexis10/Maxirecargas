@@ -8,6 +8,9 @@
 				require_once "views/modules/landing.html";
 			}
 		}
+	 	function newUser(){
+				require_once "views/modules/user/signin.php";
+		}
 
 	}
 ?>
