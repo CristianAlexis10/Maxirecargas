@@ -4,8 +4,10 @@ var menuStart = document.getElementById('wrap--menu');
 var closeMenu = document.getElementById('close-menu');
 
 menu.onclick = function() {
+
   $(".wrap--menu").show();
     $(".wrap--menu").css({"transform":"translateX(0)"});
+    $("body").css({"overflow":"hidden"});
 
     $(".menu--product").addClass("product-animation")
     $(".menu--product").css({"transform":"translateX(0)"});
@@ -23,6 +25,7 @@ menu.onclick = function() {
 
 closeMenu.onclick = function() {
     $(".wrap--menu").fadeOut(300, function(){ $(".wrap--menu").hide()});
+    $("body").css({"overflow":"auto"});
 
     $(".menu--product").removeClass("product-animation");
     $(".menu--quotation").removeClass("quotation-animation");

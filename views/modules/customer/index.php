@@ -45,7 +45,9 @@
           <li><a id="who">¿quienes somos?</a></li>
           <li><a id="our">nuestros servicios</a></li>
           <li><a id="contc">contactanos</a></li>
-          <li id="puto"><a id="opc--user"><i class="fa fa-user-o" aria-hidden="true"></i><p>name user</p></a></li>
+          <li id="puto"><a id="opc--user"><i class="fa fa-user-o" aria-hidden="true"></i><p>
+              <?php echo $_SESSION['CUSTOMER']['NAME'] ?>
+        </p></a></li>
         </ul>
         <div id="user--dropdown">
           <a href="miperfil">perfil</a>
