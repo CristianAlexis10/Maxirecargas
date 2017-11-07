@@ -16,10 +16,18 @@ $("#contc").click(function() {
   });
 });
 
-var open = document.getElementById('opc--user');
+var open = document.getElementById('puto');
 var opcions = document.getElementById('user--dropdown');
 
 
 open.onclick = function(){
   opcions.style.display = "flex";
+};
+
+window.onclick = function(event) {
+  console.log(event.path[1]);
+    if (event.path[1].id == '') {
+        opcions.style.display = "none";
+
+    }
 };

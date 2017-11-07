@@ -411,7 +411,7 @@ transform: translateY(0);
   background-color: rgb(255,0,255);
   transform: scaleX(0);
 }
-.color-::after{
+.color-label::after{
   transform: scaleX(1);
 }
 
