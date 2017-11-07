@@ -15,6 +15,10 @@ RewriteRule ^validar-ingreso$ index.php?controller=login&a=validateUserpass
 RewriteRule ^pedidos$ index.php?controller=orders
 RewriteRule ^detalles-pedido-(\w+)$ index.php?controller=orders&a=viewDetail&data=$1
 
+#CLIENTES Registrados
+RewriteRule ^miperfil$ index.php?controller=customers&a=profile
+RewriteRule ^historial$ index.php?controller=record
+
 #CLIENTES
 RewriteRule ^iniciar$ index.php?controller=views&a=newUser
 RewriteRule ^dashboard$ index.php?controller=admin
