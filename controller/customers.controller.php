@@ -37,7 +37,7 @@
 		function profile(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
 					// require_once "views/modules/landing.html";
-					require_once "views/modules/customers/profile/profile.php";
+					require_once "views/modules/customer/profile/profile.php";
 					// require_once "views/modules/landing.html";
 				}else{
 					require_once "views/modules/landing.html";
