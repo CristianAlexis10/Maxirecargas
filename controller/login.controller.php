@@ -31,6 +31,7 @@
 								$_SESSION['CUSTOMER']['LAST_NAME']=$result['usu_primer_apellido'];
 								$_SESSION['CUSTOMER']['DOCUMENT']=$result['usu_num_documento'];
 								$_SESSION['CUSTOMER']['MAIL']=$result['usu_correo'];
+								$_SESSION['CUSTOMER']['PHOTO']=$result['usu_foto'];
 								$_SESSION['CUSTOMER']['PERMITS'] = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
 								$fecha = date('Y-m-d');
 								// $this->master->updateMin('usuario',array('usu_ult_inicio_sesion'),array('usu_codigo',$result['usu_codigo']),$fecha);

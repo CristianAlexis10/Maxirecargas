@@ -6,7 +6,7 @@
 		<div class="menu--top">
 			<div class="profile">
 				<p><a href="perfil"><?php echo $profile['usu_primer_nombre']." ".$profile['usu_primer_apellido']?></a></p>
-				<img src="views/assets/image/profile<?php echo $profile['foto']?>" alt="">
+				<img src="views/assets/image/profile/<?php echo $_SESSION['CUSTOMER']['PHOTO']?>" alt="">
 			</div>
 			<div class="items">
 				<ul>
