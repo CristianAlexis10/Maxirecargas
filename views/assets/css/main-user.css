@@ -700,8 +700,21 @@ input .reference{
 
 /*module profile*/
 .container--profile{
-  background: url(../image/modifyprofile.jpg);
+  background: url(../image/profilemodify.jpg);
   width: 100%;
   height: 100vh;
-  
+  display: flex;
+  flex-direction: column;
+
+}
+.container--profile .title--profile{
+  font-family: 'oswald';
+  font-size: 40px;
+  font-weight: 200;
+  color:#35a4dd;
+  text-transform: uppercase;
+}
+
+.photo--profile{
+
 }
