@@ -1,49 +1,94 @@
 <?php
-	require_once "controller/files.controller.php";
 	require_once "controller/doizer.controller.php";
 	class CustomersController{
 		private $master;
 		private $tableName;
 		private $insertException;
 		private $updateException;
-		private $file;
 		private $doizer;
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
-	 		$this->file = new FilesController;
 	 		$this->doizer = new DoizerController;
 	 		$this->tableName="usuario";
 	 		$this->insertException=array('usu_codigo');
 	 		$this->updateException = array('usu_codigo','contra','fecha_registro','ultimo_ingreso','foto');
 	 	}
 		function main(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/customers/index.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				//saber si puede acceder a este modulo
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+					if ($row['enlace']=='clientes') {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/customers/index.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
+
+		}
+		function profile(){
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+					// require_once "views/modules/landing.html";
+					require_once "views/modules/customer/profile/profile.php";
+					// require_once "views/modules/landing.html";
+				}else{
+					require_once "views/modules/landing.html";
+				}
+
+
 		}
 		function viewDetail(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/customers/detail.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				//saber si puede acceder a este modulo
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+				$crud = permisos('clientes',$_SESSION['CUSTOMER']['PERMITS']);
+					if ($row['enlace']=='clientes' && $crud[1]==true) {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/customers/detail.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
 		}
 		function viewUpdate(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/customers/update.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				//saber si puede acceder a este modulo
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+					if ($row['enlace']=='clientes') {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/customers/update.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-			if (isset($_FILES['file'])) {
-			            $image=$this->file->image($_FILES);
-			            if ($image[0]==true) {
-			                move_uploaded_file($_FILES['file']['tmp_name'],"views/assets/image/profile/".$image[1]);
-			                $data[]=$image[1];
-			            }else{
-			            	$_SESSION['message_error']="Se ha generado un problema con la imagen de perfil, por favor intentalo de nuevo";
-			            	return ;
-			            }
-			 }
-			 //validar contraseñas
+			//validar contraseñas
 			$password =  $this->doizer->validateSecurityPassword($data[14]);
 			if (is_array($password)) {
 				$validate_password=true;
@@ -91,11 +136,13 @@
 			$result = $this->master->selectBy($this->tableName,array('usu_codigo',$data));
 			return $result;
 		}
-		function readByNumDoc($data = null){
+		function readByNumDoc(){
 			$data=$_POST['data'];
 			$result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data));
 			if ($result != array()) {
-				echo  json_encode('El numero de documento ya esta registrado en el sistema');
+				echo  json_encode(true);
+			}else{
+				echo json_encode(false);
 			}
 		}
 		function update(){

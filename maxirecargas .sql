@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2017 a las 21:50:27
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 08-11-2017 a las 03:24:23
+-- Versión del servidor: 10.1.26-MariaDB
+-- Versión de PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,8 +31,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `acceso` (
   `token` int(11) NOT NULL,
   `usu_codigo` int(11) NOT NULL,
-  `acc_contraseña` varchar(255) DEFAULT NULL
+  `acc_contra` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `acceso`
+--
+
+INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
+(1459, 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
+(2545, 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
+(2546, 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW');
 
 -- --------------------------------------------------------
 
@@ -43,6 +54,13 @@ CREATE TABLE `ciudad` (
   `id_departamento` int(11) NOT NULL,
   `ciu_nombre` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ciudad`
+--
+
+INSERT INTO `ciudad` (`id_ciudad`, `id_departamento`, `ciu_nombre`) VALUES
+(1, 1, 'Medellin');
 
 -- --------------------------------------------------------
 
@@ -87,6 +105,13 @@ CREATE TABLE `departamento` (
   `dep_nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `departamento`
+--
+
+INSERT INTO `departamento` (`id_departamento`, `id_pais`, `dep_nombre`) VALUES
+(1, 1, 'Antioquia');
+
 -- --------------------------------------------------------
 
 --
@@ -109,6 +134,14 @@ CREATE TABLE `estado` (
   `id_estado` int(11) NOT NULL,
   `est_estado` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`id_estado`, `est_estado`) VALUES
+(1, 'Activo'),
+(2, 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -141,10 +174,21 @@ CREATE TABLE `marca` (
 --
 
 CREATE TABLE `modulos` (
-  `id_modulos` int(11) NOT NULL,
+  `id_modulo` int(11) NOT NULL,
   `mod_nombre` varchar(45) DEFAULT NULL,
-  `href` varchar(100) NOT NULL
+  `enlace` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `modulos`
+--
+
+INSERT INTO `modulos` (`id_modulo`, `mod_nombre`, `enlace`) VALUES
+(1, 'clientes', 'clientes'),
+(2, 'productos', 'productos'),
+(3, 'Pedidos', 'pedidos'),
+(4, 'cotizacion', 'cotizacion'),
+(5, 'Rutas', 'rutas');
 
 -- --------------------------------------------------------
 
@@ -156,6 +200,13 @@ CREATE TABLE `pais` (
   `id_pais` int(11) NOT NULL,
   `pai_nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pais`
+--
+
+INSERT INTO `pais` (`id_pais`, `pai_nombre`) VALUES
+(1, 'Colombia');
 
 -- --------------------------------------------------------
 
@@ -195,13 +246,24 @@ CREATE TABLE `pedidoxproducto` (
 
 CREATE TABLE `permiso` (
   `id_permiso` int(11) NOT NULL,
-  `id_modulos` int(11) NOT NULL,
+  `id_modulo` int(11) NOT NULL,
   `tip_usu_codigo` int(11) NOT NULL,
   `per_crear` int(1) NOT NULL,
   `per_modificar` int(1) NOT NULL,
   `per_eliminar` int(1) NOT NULL,
   `per_buscar` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `permiso`
+--
+
+INSERT INTO `permiso` (`id_permiso`, `id_modulo`, `tip_usu_codigo`, `per_crear`, `per_modificar`, `per_eliminar`, `per_buscar`) VALUES
+(1, 1, 2, 1, 1, 1, 1),
+(2, 2, 2, 1, 1, 1, 1),
+(3, 3, 2, 1, 1, 1, 1),
+(4, 4, 2, 1, 1, 1, 1),
+(6, 5, 2, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -305,6 +367,13 @@ CREATE TABLE `tipo_documento` (
   `tip_doc_nombre` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tipo_documento`
+--
+
+INSERT INTO `tipo_documento` (`id_tipo_documento`, `tip_doc_nombre`) VALUES
+(1, 'Cedula');
+
 -- --------------------------------------------------------
 
 --
@@ -334,8 +403,21 @@ CREATE TABLE `tipo_producto` (
 --
 
 CREATE TABLE `tipo_servicio` (
-  `Tip_ser_cod` int(11) NOT NULL
+  `Tip_ser_cod` int(11) NOT NULL,
+  `tip_ser_nombre` varchar(50) NOT NULL,
+  `tip_ser_descripcion` longtext NOT NULL,
+  `tip_ser_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipo_servicio`
+--
+
+INSERT INTO `tipo_servicio` (`Tip_ser_cod`, `tip_ser_nombre`, `tip_ser_descripcion`, `tip_ser_registro`) VALUES
+(2, 'Recargasss', 'sad', '2017-11-04'),
+(3, 'sad', 'sad', '2017-11-04'),
+(5, 'dsf', 'dsf', '2017-11-04'),
+(6, 'dsf', 'dsf', '2017-11-04');
 
 -- --------------------------------------------------------
 
@@ -347,6 +429,14 @@ CREATE TABLE `tipo_usuario` (
   `tip_usu_codigo` int(11) NOT NULL,
   `tip_usu_rol` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_usuario`
+--
+
+INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`) VALUES
+(1, 'usuario'),
+(2, 'administrador');
 
 -- --------------------------------------------------------
 
@@ -372,8 +462,17 @@ CREATE TABLE `usuario` (
   `tip_usu_codigo` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
   `usu_fechas_registro` date NOT NULL,
-  `usu_ult_inicio_sesion` int(11) NOT NULL
+  `usu_ult_inicio_sesion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
+(1, 1, 1214, 'cristian', 'alexis', 'loepra', 'bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 2, 1, '2017-11-05', '0000-00-00'),
+(2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino?', 2, 1, '2017-11-02', '0000-00-00'),
+(3, 1, 1026, 'Estefania', '', 'Tapias', 'isaza', 'asdsadsdas', 2132, 1, '21323', 213213, '2017-11-09', 'femenino', 2, 1, '2017-11-02', '2017-11-01');
 
 -- --------------------------------------------------------
 
@@ -469,7 +568,7 @@ ALTER TABLE `marca`
 -- Indices de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  ADD PRIMARY KEY (`id_modulos`);
+  ADD PRIMARY KEY (`id_modulo`);
 
 --
 -- Indices de la tabla `pais`
@@ -499,7 +598,7 @@ ALTER TABLE `pedidoxproducto`
 --
 ALTER TABLE `permiso`
   ADD PRIMARY KEY (`id_permiso`),
-  ADD KEY `fk_permiso_modulos1_idx` (`id_modulos`),
+  ADD KEY `fk_permiso_modulos1_idx` (`id_modulo`),
   ADD KEY `fk_permiso_tipo_usuario1_idx` (`tip_usu_codigo`);
 
 --
@@ -613,137 +712,164 @@ ALTER TABLE `usuxemp`
 -- AUTO_INCREMENT de la tabla `acceso`
 --
 ALTER TABLE `acceso`
-  MODIFY `token` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2547;
+
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
   MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
   MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
   MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
-  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `item`
 --
 ALTER TABLE `item`
   MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
   MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `id_modulos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
-  MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `pedidoxproducto`
 --
 ALTER TABLE `pedidoxproducto`
   MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
   MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `prodxcot`
 --
 ALTER TABLE `prodxcot`
   MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
   MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `ruta`
 --
 ALTER TABLE `ruta`
   MODIFY `rut_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
   MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `servicio`
 --
 ALTER TABLE `servicio`
   MODIFY `ser_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
   MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
-  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_pedido`
 --
 ALTER TABLE `tipo_pedido`
   MODIFY `tip_ped_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
   MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
-  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -809,7 +935,7 @@ ALTER TABLE `pedidoxproducto`
 -- Filtros para la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  ADD CONSTRAINT `fk_permiso_modulos1` FOREIGN KEY (`id_modulos`) REFERENCES `modulos` (`id_modulos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_permiso_modulos1` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_permiso_tipo_usuario1` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -872,6 +998,7 @@ ALTER TABLE `usuarioxpedido`
 ALTER TABLE `usuxemp`
   ADD CONSTRAINT `usuxemp_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `usuxemp_ibfk_2` FOREIGN KEY (`emp_codigo`) REFERENCES `empresa` (`emp_codigo`) ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

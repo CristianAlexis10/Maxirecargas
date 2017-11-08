@@ -1,29 +1,33 @@
 RewriteEngine on
 
-RewriteRule ^dashboard$ index.php?controller=admin
-RewriteRule ^perfil$ index.php?controller=admin&a=profile
-RewriteRule ^pedidos$ index.php?controller=orders
-RewriteRule ^perfil-empresarial$ index.php?controller=business&a=profile
-RewriteRule ^configuraciones$ index.php?controller=admin&a=settings
-RewriteRule ^estadisticas$ index.php?controller=admin&a=statistics
-
-RewriteRule ^empresas$ index.php?controller=business
-RewriteRule ^clientes$ index.php?controller=customers
+#COTIZACION
 RewriteRule ^cotizacion$ index.php?controller=quotation
-RewriteRule ^productos$ index.php?controller=products
-RewriteRule ^nueva-categoria$ index.php?controller=products&a=newCategory
+
+
 
 #LOGIN
 RewriteRule ^iniciar-sesion$ index.php?controller=login&a=viewSingIn
-RewriteRule ^iniciar--sesion$ index.php?controller=login&a=viewSingInPass
 RewriteRule ^finalizar$ index.php?controller=login&a=viewSingOut
 RewriteRule ^validar-inicio-sesion$ index.php?controller=login&a=validateUser
 RewriteRule ^validar-ingreso$ index.php?controller=login&a=validateUserpass
 
 #PEDIDOS
+RewriteRule ^pedidos$ index.php?controller=orders
 RewriteRule ^detalles-pedido-(\w+)$ index.php?controller=orders&a=viewDetail&data=$1
 
+#CLIENTES Registrados
+RewriteRule ^miperfil$ index.php?controller=customers&a=profile
+RewriteRule ^historial$ index.php?controller=record
+
 #CLIENTES
+RewriteRule ^iniciar$ index.php?controller=views&a=newUser
+RewriteRule ^dashboard$ index.php?controller=admin
+RewriteRule ^perfil$ index.php?controller=admin&a=profile
+RewriteRule ^perfil-empresarial$ index.php?controller=business&a=profile
+RewriteRule ^configuraciones$ index.php?controller=admin&a=settings
+RewriteRule ^estadisticas$ index.php?controller=admin&a=statistics
+RewriteRule ^empresas$ index.php?controller=business
+RewriteRule ^clientes$ index.php?controller=customers
 RewriteRule ^guardar-cliente$ index.php?controller=customers&a=newRegister
 RewriteRule ^ver-cliente-(\w+)$ index.php?controller=customers&a=viewDetail&data=$1
 RewriteRule ^modificar-cliente-(\w+)$ index.php?controller=customers&a=viewUpdate&data=$1
@@ -45,6 +49,7 @@ RewriteRule ^modificar-marca-(\w+)$ index.php?controller=trademark&a=viewUpdate&
 RewriteRule ^guardar-modificacion-marca$ index.php?controller=trademark&a=update
 
  #CATEGORIAS
+ RewriteRule ^nueva-categoria$ index.php?controller=products&a=newCategory
 RewriteRule ^nueva-categoria$ index.php?controller=category
 RewriteRule ^guardar-categoria$ index.php?controller=category&a=newRegister
 RewriteRule ^eliminar-categoria-(\w+)$ index.php?controller=category&a=delete&data=$1
@@ -53,10 +58,13 @@ RewriteRule ^guardar-modificacion-categoria$ index.php?controller=category&a=upd
 
 
  #PRODUCTOS
+ RewriteRule ^productos$ index.php?controller=products
 RewriteRule ^guardar-producto$ index.php?controller=products&a=newRegister
 RewriteRule ^eliminar-producto-(\w+)$ index.php?controller=products&a=delete&data=$1
 RewriteRule ^modificar-producto-(\w+)$ index.php?controller=products&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-producto$ index.php?controller=products&a=update
+
+
 
 #STOCK
 RewriteRule ^crear-inventario$ index.php?controller=stock&a=viewNewRegister
@@ -69,3 +77,6 @@ RewriteRule ^validar_documento$ index.php?controller=customers&a=readByNumDoc
 
 #LAND
 RewriteRule ^maxirecargas$ index.php?controller=views
+
+#RUTAS
+RewriteRule ^rutas$ index.php?controller=routes

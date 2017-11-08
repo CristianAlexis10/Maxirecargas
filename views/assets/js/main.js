@@ -10,6 +10,98 @@ $(".input").focusout(function(){
 });
 
 // @user: Cristian Lopera
+
+//SERVICES
+//new
+$("#frmNewService").submit(function(e) {
+    e.preventDefault();
+    if ($(this).parsley().isValid()) {
+            dataJson = [];
+         $("input[name=dataNewService]").each(function(){
+              structure = {}
+              structure = $(this).val();
+              dataJson.push(structure);
+          });
+         dataJson.push($('#des').val());
+            $.ajax({
+              url: "guardar-servicio",
+              type: "POST",
+               dataType:'json',
+               data: ({data: dataJson}),
+               success: function(result){
+                if (result) {
+                  $("#frmNewService").after("<div class='message'>Registrado Exitosamente</div>");
+                }else{
+                  $("#frmNewService").after("<div class='message'>Ocurrio un error</div>");
+                }
+                 setTimeout(function(){
+                    $('div.message').remove();
+                  }, 2000);
+               },
+               error: function(result){
+                  console.log(result);
+               }
+            });
+  }
+});
+//update
+$("#frmUpdateService").submit(function(e) {
+    e.preventDefault();
+    if ($(this).parsley().isValid()) {
+            dataJson = [];
+         $("input[name=dataUpdateService]").each(function(){
+              structure = {}
+              structure = $(this).val();
+              dataJson.push(structure);
+          });
+         dataJson.push($('#des').val());
+            $.ajax({
+              url: "guardar-modificacion-servicio",
+              type: "POST",
+               dataType:'json',
+               data: ({data: dataJson}),
+               success: function(result){
+                if (result==true) {
+                  $("#frmUpdateService").after("<div class='message'>Actualizado Exitosamente</div>");
+                }else{
+                  $("#frmUpdateService").after("<div class='message'>Ocurrio un error</div>");
+                }
+                 setTimeout(function(){
+                    $('div.message').remove();
+                  }, 2000);
+               },
+               error: function(result){
+                  console.log(result);
+               }
+            });
+  }
+});
+
+// animacion de los inputs
+
+$(".input--liner").focus(function(){
+  $(this).parent().addClass("clr-label-liner mov-label-liner");
+});
+
+$(".input--liner").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("mov-label-liner");
+    $(this).parent().removeClass("clr-label-liner");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  $( function() {
     $( "#tabs" ).tabs();
   } );

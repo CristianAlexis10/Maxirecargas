@@ -22,6 +22,4 @@
         $controller = new $controller;
         $controller->main();
     }
-
-
 ?>

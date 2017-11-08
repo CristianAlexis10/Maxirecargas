@@ -5,9 +5,27 @@
 	 		$this->master = new MasterModel;
 	 	}
 		function main(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/orders/index.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+					if ($row['enlace']=='clientes') {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/orders/index.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					// require_once "views/include/scope.header.php";
+					require_once "views/modules/customer/orders/orders.php";
+					// require_once "views/include/scope.footer.php";
+
+				}
+			}else{
+				require_once "views/include/user/scope.header.php";
+				require_once "views/modules/user/orders/index.php";
+				require_once "views/include/user/scope.footer.php";;
+			}
 		}
 		function viewDetail(){
 			require_once "views/include/scope.header.php";

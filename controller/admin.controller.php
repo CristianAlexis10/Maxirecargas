@@ -1,4 +1,5 @@
 <?php
+
 require_once "controller/doizer.controller.php";
 	class AdminController{
 	  	private $master;
@@ -8,24 +9,40 @@ require_once "controller/doizer.controller.php";
 	 		$this->doizer = new DoizerController;
 	 	}
 	 	function main(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/dashboard.php";
-			require_once "views/include/scope.footer.php";
+	 		if (isset($_SESSION['CUSTOMER']['ROL']) && !isset($_SESSION['CUSTOMER']['CLIENT'])) {
+				require_once "views/include/scope.header.php";
+				require_once "views/modules/admin/dashboard.php";
+				require_once "views/include/scope.footer.php";
+			}else{
+				require_once "views/modules/landing.html";
+			}
 		}
 		function profile(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/profile/index.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])&& !isset($_SESSION['CUSTOMER']['CLIENT'])) {
+				require_once "views/include/scope.header.php";
+				require_once "views/modules/admin/profile/index.php";
+				require_once "views/include/scope.footer.php";
+			}else{
+				require_once "views/modules/landing.html";
+			}
 		}
 		function settings(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/profile/settings.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])&& !isset($_SESSION['CUSTOMER']['CLIENT'])) {
+				require_once "views/include/scope.header.php";
+				require_once "views/modules/admin/profile/settings.php";
+				require_once "views/include/scope.footer.php";
+			}else{
+				require_once "views/modules/landing.html";
+			}
 		}
 		function statistics(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/profile/statistics.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL']) && !isset($_SESSION['CUSTOMER']['CLIENT'])) {
+				require_once "views/include/scope.header.php";
+				require_once "views/modules/admin/profile/statistics.php";
+				require_once "views/include/scope.footer.php";
+			}else{
+				require_once "views/modules/landing.html";
+			}
 		}
 	}
 ?>

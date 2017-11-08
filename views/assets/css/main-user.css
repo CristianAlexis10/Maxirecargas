@@ -40,18 +40,36 @@
 }
 .container .rigth ul{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   color: white;
-  margin-top:20px;
   font-family: 'lato';
   font-weight: 400;
   text-transform: capitalize;
   font-size: 14px;
 }
 
-.container .rigth ul li a{
+.container .rigth ul li a, #opc--user{
   cursor: pointer;
+  display: flex;
   padding: 20px;
+}
+
+#user--dropdown{
+  min-width: 120px;
+  max-width: 120px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 17px;
+  margin-top: 50px;
+  display: none;
+}
+#user--dropdown a{
+  font-family: 'lato';
+  padding: 15px 16px;
+  text-transform: capitalize;
+
 
 }
 .container .rigth ul li a:hover{
@@ -129,6 +147,8 @@
     margin-bottom: 5px;
 
 }
+
+
 #form--login{
   width: 80%;
   display: flex;
@@ -377,7 +397,8 @@ transform: translateY(0);
  font-size: 16px;
  color: #9e9e9e;
  transition: all 0.5s;
- transform: translateY(25px);
+ transform: translateY(16px);
+ position: absolute;
 }
 .input-contact{
     position: relative;
@@ -386,6 +407,7 @@ transform: translateY(0);
     outline: none;
     padding: 8px 0;
     font-size: 16px;
+
 }
 .wrap--contact::after{
   background-color: rgb(255,0,255);
@@ -401,7 +423,7 @@ transform: translateY(0);
 
 .mover-label .label-contact{
     font-size: 12px;
-    transform: translateY(0);
+    transform: translateY(-5px);
 }
 
 
@@ -411,41 +433,98 @@ transform: translateY(0);
   z-index: 5;
   position: fixed;
   width: 100%;
-  cursor: pointer;
   /*transition: 0.4s ease*/
+  /*overflow-y: hidden;*/
+
 }
 
 .menu--home{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 25%;
   height: 100vh;
-  background: red;
-  cursor: pointer;
+  color: white;
+  background: rgb(0, 255, 255);
 }
-
 
 .menu--order{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 25%;
   height: 100vh;
-  background: yellow;
-  cursor: pointer;
-}
-
-.menu--quotation{
-  width: 25%;
-  height: 100vh;
-  background: pink;
-  cursor: pointer;
+  color: white;
+  background: rgb(255, 0, 255);
 }
 
 .menu--product{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 25%;
   height: 100vh;
-  background: black;
-  cursor: pointer;
+  color: white;
+  background: rgb(128, 128, 128);
+}
+
+.menu--quotation{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 100vh;
+  color: white;
+  background: rgb(255, 255, 0);
+}
+
+.menu--title{
+  position: absolute;
+  font-family: 'lato';
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-left: 30px;
+}
+.menu--home:hover,.menu--order:hover,.menu--product:hover,.menu--quotation:hover{
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  width: 27.5%;
+  background: none;
+  color: black;
+  font-size: 20px;
+}
+
+.menu--home,.menu--order,.menu--product,.menu--quotation{
+  transform: scale(2);
+  -moz-transform : scale(2);
+  -webkit-transform : scale(2);
+  -o-transform : scale(2);
+}
+.menu--home img,.menu--order img,.menu--product img,.menu--quotation img{
+  mix-blend-mode: multiply;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .wrap--menu,.menu--home,.menu--order,.menu--quotation,.menu--product{
   transform: translateX(-9999px);
+}
+
+.menu--product span#close-menu{
+  position: relative;
+  color: white;
+  font-size: 50px;
+  z-index: 999;
+  bottom: 5.9em;
+  left: 2.7em;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 .product-animation, .quotation-animation, .order-animation, .home-animation{
@@ -488,4 +567,154 @@ transform: translateY(0);
 @keyframes home{
   0%{ transform: translateX(-9999px);}
   100%{ transform: translateX(0); }
+}
+
+/*VIEW ORDERS*/
+.main--container{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background: url("../image/pedido.jpg");
+}
+
+.left--part{
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(1,86,123,0.9);
+}
+
+.main--container .left--part img{
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 130px;
+}
+.main--container .left--part span{
+  margin: 20px;
+  color: white;
+  font-size: 25px;
+}
+
+.rigth--part{
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.square{
+  display: flex;
+  width: 50%;
+  height: 50%;
+  border: 9px solid #02a7e9;
+  color: #02a7e9;
+  letter-spacing: 0.2em;
+  flex-direction: column;
+  text-transform: uppercase;
+
+  font-family: 'lato';
+  font-size: 50px;
+  font-weight: bold;
+  margin: 60px;
+  right: 30px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 70px;
+}
+
+.container--title{
+  width: 50%;
+  display: flex;
+  position: relative;
+  bottom: -50px;
+}
+
+.container-title-order{
+  /*position: relative;*/
+  display: flex;
+  font-family: 'lato';
+  font-size: 60px;
+  /*color: #4c5154; gris mas claro*/
+  color: #404348;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  margin-left: 165px;
+  justify-content: flex-end;
+}
+
+.title--right{
+  display: flex;
+  position: fixed;
+  font-family: 'lato';
+  color: #02a7e9;
+  font-size: 60px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 30px;
+}
+
+.wrap--product{
+  font-family: 'lato';
+  font-size: 16px;
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+  top: 150px;
+}
+
+.name--product{
+position: relative;
+background: transparent;
+border: none;
+outline: none;
+padding: 8px 0;
+font-size: 16px;
+/*width: 100%;*/
+}
+.arrow select{
+  border: 1px solid #ccc;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/*select .select--product{
+  width: 15px;
+  height: 15px;
+  outline-color: pink;
+}*/
+
+input .reference{
+  outline: none;
+  background: none;
+}
+
+/*module profile*/
+.container--profile{
+  background: url(../image/profilemodify.jpg);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+.container--profile .title--profile{
+  font-family: 'oswald';
+  font-size: 40px;
+  font-weight: 200;
+  color:#35a4dd;
+  text-transform: uppercase;
+}
+
+.photo--profile{
+
 }

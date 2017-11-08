@@ -36,7 +36,7 @@
             			</tbody>
       			  </table>
 		  </div>
-		  <div id="tabs-1">
+		  <div id="tabs-1" class="new products">
 			<div class="form--left">
 
 		    	<form class="frmBusiness" action="guardar-producto" method="post" enctype="multipart/form-data">
@@ -48,9 +48,9 @@
 			               	<?php } ?>
 			               </select>
 			            </div>
-		    		 <div class="form-group">
-			                <label for="rf" class="required">Referencia:</label>
-			                <input type="text" name="data[]" id="rf" placeholder="Ingrese la referencia del producto" required>
+		    		 <div class="form-group-liner">
+			                <label for="rf" class="label--liner">Referencia:</label>
+			                <input type="text" name="data[]" id="rf" class="input--liner" required>
 			            </div>
 			             <div class="form-group">
 			                <label for="marca" class="required">Marca:</label>
@@ -68,9 +68,10 @@
 			               	<?php } ?>
 			               </select>
 			            </div>
-			             <div class="form-group">
-			                <label for="caracteristica" class="required">Caracteristicas:</label>
-			                <textarea name="data[]" id="caracteristica"></textarea>
+			             <div class="form-group-liner">
+			                <label for="caracteristica" class="label--liner">Caracteristicas:</label>
+											<textarea name="data[]" id="caracteristica" class="input--liner"></textarea>
+
 			            </div>
 			            <div class="form-group">
 			                <label for="img" class="required">Logo:</label>
@@ -159,11 +160,11 @@
             			<tbody>
             				<?php foreach ($this->master->selectAll('tipo_servicio') as $row) {?>
                    				 <tr>
-                       				 <td><?php echo $row['nombre'];?></td>
-                        				<td><?php echo $row['descripcion'];?></td>
+                       				 <td><?php echo $row['tip_ser_nombre'];?></td>
+                        				<td><?php echo $row['tip_ser_descripcion'];?></td>
 				                       <td>
-				                       	<a href="modificar-servicio-<?php echo rtrim(strtr(base64_encode($row['id_servicio']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
-				                       	<a href="eliminar-servicio-<?php echo rtrim(strtr(base64_encode($row['id_servicio']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				                       	<a href="modificar-servicio-<?php echo rtrim(strtr(base64_encode($row['Tip_ser_cod']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
+				                       	<a href="eliminar-servicio-<?php echo rtrim(strtr(base64_encode($row['Tip_ser_cod']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 				                       </td>
                   				  </tr>
 
