@@ -572,7 +572,6 @@ transform: translateY(0);
 /*VIEW ORDERS*/
 .main--container{
   display: flex;
-  position: fixed;
   width: 100%;
   height: 100vh;
   background: url("../image/pedido.jpg");
@@ -612,8 +611,9 @@ transform: translateY(0);
   border: 9px solid #02a7e9;
   color: #02a7e9;
   letter-spacing: 0.2em;
-  text-align: center;
+  flex-direction: column;
   text-transform: uppercase;
+
   font-family: 'lato';
   font-size: 50px;
   font-weight: bold;
@@ -696,4 +696,12 @@ font-size: 16px;
 input .reference{
   outline: none;
   background: none;
+}
+
+/*module profile*/
+.container--profile{
+  background: url(../image/modifyprofile.jpg);
+  width: 100%;
+  height: 100vh;
+  
 }

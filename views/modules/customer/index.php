@@ -111,7 +111,7 @@
             </div>
             <div class="wrap--contact">
                 <label for="contact--email" class="label-contact">Correo</label>
-                <input type="email" name="data" class="input-contact" value="<?php echo $_SESSION['CUSTOMER']['MAIL']?>>
+                <input type="email" name="data" class="input-contact" value="<?php echo $_SESSION['CUSTOMER']['MAIL']?>">
             </div>
             <div class="wrap--contact">
                 <label for="contact--objetive" class="label-contact ">Objetivo</label>
