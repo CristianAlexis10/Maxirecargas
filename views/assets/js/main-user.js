@@ -35,11 +35,8 @@ window.onclick = function(event) {
     };
 };
 
-var signin = document.getElementById('signin');
-var modalSignin =document.getElementById('modal--signin');
-signin.onclick = function() {
-   modalSignin.style.display= "block";
-};
+
+
 
 // animacion de los inputs
 $(".input-contact").focus(function(){

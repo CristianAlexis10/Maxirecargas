@@ -31,3 +31,14 @@ window.onclick = function(event) {
 
     }
 };
+
+// animacon de inputs
+$(".input-contact").focus(function(){
+  $(this).parent().addClass("color-label mover-label");
+});
+
+$(".input-contact").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("mover-label");
+    $(this).parent().removeClass("color-label");
+});
