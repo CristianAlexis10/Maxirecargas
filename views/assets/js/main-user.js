@@ -35,9 +35,6 @@ window.onclick = function(event) {
     };
 };
 
-
-
-
 // animacion de los inputs
 $(".input-contact").focus(function(){
   $(this).parent().addClass("color-label mover-label");
@@ -48,6 +45,7 @@ $(".input-contact").focusout(function(){
     $(this).parent().removeClass("mover-label");
     $(this).parent().removeClass("color-label");
 });
+
 $(".input--login").focus(function(){
   $(this).parent().addClass("clr-label-login mov-label-login");
 });

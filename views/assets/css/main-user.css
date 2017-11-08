@@ -171,7 +171,8 @@
   font-size: 16px;
   color: #9e9e9e;
   transition: all 0.5s;
-  transform: translateY(25px);
+  transform: translateY(16px);
+  position: absolute;
 }
 
 .wrap--login{
@@ -207,7 +208,7 @@
 }
 .mov-label-login .label-login{
 font-size: 12px;
-transform: translateY(0);
+transform: translateY(-5px);
 }
 
 .parsley-errors-list .filled li{
