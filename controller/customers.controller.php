@@ -95,38 +95,39 @@
 			}else{
 				$validate_password=false;
 				$_SESSION['message_error']=$password;
-				echo "<script>window.history.back(-1)</script>";
 				return;
 			}
-			if (!$validate_password==true && $data[14]===$data[15]) {
-				$_SESSION['message_error']="Las contraseñas son diferentes";
-				$validate_password = false;
-				echo "<script>window.history.back(-1)</script>";
-				return;
-			}
+
+			// if (!$validate_password==true && $data[14]===$data[15]) {
+			// 	$_SESSION['message_error']="Las contraseñas son diferentes";
+			// 	$validate_password = false;
+			// 	return;
+			// }
 			if ($validate_password==true) {
 				 //cliente normal
-				 if ($data[13]!=2) {
-				 	unset($data[14]);
-				 	unset($data[15]);
-				 	$data[]=1;
-				 	$data[]=date('Y-m-d');
-				 	$data[]=date('Y-m-d');
-					$result = $this->master->insert($this->tableName,$data,$this->insertException);
+				 // if ($data[13]!=2) {
+				 	// unset($data[14]);
+				 	// unset($data[15]);
+				 	// $data[]=1;
+				 	// $data[]=date('Y-m-d');
+				 	// $data[]=date('Y-m-d');
+					// $result = $this->master->insert($this->tableName,$data,$this->insertException);
+					// echo $result;
 				 }
-				 if ($result==true) {
-					$result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[1]));
-					$data_acceso[]=$result['usu_codigo'];
-					$data_acceso[]=$password[1];
-					$result = $this->master->insert('acceso',$data_acceso,array('token'));
-				 }
-			  }
-			if ($result==1) {
-				$_SESSION['message']="Registrado Exitosamente";
-			}else{
-				$_SESSION['message_error']=$result;
-			}
-			header("Location: clientes");
+			// 	 if ($result==true) {
+			// 		$result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[1]));
+			// 		$data_acceso[]=$result['usu_codigo'];
+			// 		$data_acceso[]=$password[1];
+			// 		$result = $this->master->insert('acceso',$data_acceso,array('token'));
+			// 	 }
+			//   }
+			  // echo $result;
+			// if ($result==1) {
+			// 	$_SESSION['message']="Registrado Exitosamente";
+			// }else{
+			// 	$_SESSION['message_error']=$result;
+			// }
+			// header("Location: clientes");
 		}
 		function readAll(){
 			$result = $this->master->selectAll($this->tableName);

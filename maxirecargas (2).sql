@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2017 a las 19:26:34
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 09-11-2017 a las 20:10:58
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -205,8 +205,8 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
-(1, 'HP', '0'),
-(2, 'Epson', '0');
+(1, 'HP', 'sad'),
+(2, 'Epson', 'epson des');
 
 -- --------------------------------------------------------
 
@@ -217,19 +217,20 @@ INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
 CREATE TABLE `modulos` (
   `id_modulo` int(11) NOT NULL,
   `mod_nombre` varchar(45) DEFAULT NULL,
-  `enlace` varchar(100) NOT NULL
+  `enlace` varchar(100) NOT NULL,
+  `icon` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `modulos`
 --
 
-INSERT INTO `modulos` (`id_modulo`, `mod_nombre`, `enlace`) VALUES
-(1, 'clientes', 'clientes'),
-(2, 'productos', 'productos'),
-(3, 'Pedidos', 'pedidos'),
-(4, 'cotizacion', 'cotizacion'),
-(5, 'Rutas', 'rutas');
+INSERT INTO `modulos` (`id_modulo`, `mod_nombre`, `enlace`, `icon`) VALUES
+(1, 'clientes', 'clientes', '<i class="fa fa-users" aria-hidden="true"></i>'),
+(2, 'productos', 'productos', '<i class="fa fa-shopping-cart" aria-hidden="true"></i>'),
+(3, 'Pedidos', 'pedidos', '<i class="fa fa-bullhorn" aria-hidden="true"></i>'),
+(4, 'cotizacion', 'cotizacion', '<i class="fa fa-wrench" aria-hidden="true"></i>'),
+(5, 'Rutas', 'rutas', '<i class="fa fa-motorcycle" aria-hidden="true"></i>');
 
 -- --------------------------------------------------------
 
@@ -522,7 +523,7 @@ CREATE TABLE `tipo_producto` (
 --
 
 INSERT INTO `tipo_producto` (`tip_pro_codigo`, `tip_pro_nombre`, `tip_pro_descripcion`) VALUES
-(1, 'Computador HP', ''),
+(1, 'Computador HP', 'desp\r\n'),
 (2, 'Impresora HP', '');
 
 -- --------------------------------------------------------
@@ -544,7 +545,8 @@ CREATE TABLE `tipo_servicio` (
 
 INSERT INTO `tipo_servicio` (`Tip_ser_cod`, `tip_ser_nombre`, `tip_ser_descripcion`, `tip_ser_registro`) VALUES
 (1, 'Recargas', 'sad', '2017-11-04'),
-(2, 'Mantenimiento', 'sad', '2017-11-04');
+(2, 'Mantenimiento', 'sad', '2017-11-04'),
+(7, 'dssad', 'dsa', '2017-11-09');
 
 -- --------------------------------------------------------
 
@@ -898,7 +900,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
@@ -973,12 +975,12 @@ ALTER TABLE `tipo_pedido`
 -- AUTO_INCREMENT de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
-  MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
-  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --

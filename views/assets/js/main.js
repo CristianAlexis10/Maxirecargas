@@ -231,6 +231,6 @@ function enable(num_doc,contra){
   if (num_doc==true && contra==true) {
     $('#registrar').attr('disabled',false);
   }else{
-    $('#registrar').attr('disabled',true);
+    $('#registrar').attr('disabled',false);
   }
 }

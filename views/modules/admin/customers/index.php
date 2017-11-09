@@ -16,24 +16,8 @@
 		  		  <li><a href="#tabs-2">Clientes Registrados</a></li>
 			<?php } ?>
 		  </ul>
-		<!-- inicio mensajes de exito o error -->
-		  <?php if(isset($_SESSION['message'])){?>
-			<div class="msn">
-				<?php
-					echo $_SESSION['message'];
-					unset($_SESSION['message']);
-				?>
-			</div>
-		  <?php }
-		  	if ( isset($_SESSION['message_error'])) {?>
-		  	<div class="msn-error">
-				<?php
-					echo $_SESSION['message_error'];
-					unset($_SESSION['message_error']);
-				?>
-			</div>
-		<!-- fin mensajes de exito o error -->
-		  <?php }
+
+		  <?php
 		  if ($crud[1]==true) {?>
 		  <div id="tabs-2">
 		    	<table id="dataGrid">
@@ -122,9 +106,8 @@
 			            <div class="form-group">
 			                <label for="sexo" class="required">Sexo:</label>
 			               <select name="data[12]"  id="sexo" required>
-			               	<?php foreach ($this->master->selectAll('sexo') as $row) {?>
-			               		<option value="<?php echo $row['id_sexo']?>"><?php echo $row['sexo']?></option>
-			               	<?php } ?>
+							   <option value="femenino">Femenino</option>
+   			               	<option value="masculino">Masculino</option>
 			               </select>
 			            </div>
 		    		 <div class="form-group">
@@ -135,7 +118,7 @@
 			               	<?php } ?>
 			               </select>
 			            </div>
-			            <div class="frm-bussiness">
+			            <!-- <div class="frm-bussiness">
 			            	<div class="form-group-liner">
 						                <label for="nit" class="label--liner">NIT de la empresa:</label>
 						                <input type="number" name="data[16]" id="nit" class="input--liner" >
@@ -144,7 +127,7 @@
 						                <label for="cargo" class="label--liner">Cargo:</label>
 						                <input type="number" name="data[17]" id="cargo" class="input--liner" >
 			            	</div>
-			            </div>
+			            </div> -->
 			             <div class="form-group-liner">
 			                <label for="contra" class="label--liner">Contraseña:</label>
 			                <input type="password" name="data[14]" id="contra" class="input--liner" required>
