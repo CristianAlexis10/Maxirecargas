@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2017 a las 03:24:23
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.9
+-- Tiempo de generación: 09-11-2017 a las 04:52:08
+-- Versión del servidor: 10.1.8-MariaDB
+-- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -60,7 +58,8 @@ CREATE TABLE `ciudad` (
 --
 
 INSERT INTO `ciudad` (`id_ciudad`, `id_departamento`, `ciu_nombre`) VALUES
-(1, 1, 'Medellin');
+(1, 1, 'Medellin'),
+(2, 2, 'Bogota');
 
 -- --------------------------------------------------------
 
@@ -74,6 +73,14 @@ CREATE TABLE `cliente_empresarial` (
   `sed_codigo` int(11) NOT NULL,
   `cli_emp_cargo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cliente_empresarial`
+--
+
+INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_codigo`, `cli_emp_cargo`) VALUES
+(1, 1, 1, 'Supervisor'),
+(2, 2, 2, 'Supervisor');
 
 -- --------------------------------------------------------
 
@@ -90,8 +97,16 @@ CREATE TABLE `cotizacion` (
   `cot_referencia` varchar(100) NOT NULL,
   `cot_telefono` int(11) NOT NULL,
   `cot_correo` varchar(100) NOT NULL,
-  `cot_fecha` datetime NOT NULL
+  `cot_fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cotizacion`
+--
+
+INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `mar_codigo`, `cot_tipo_solicitud`, `cot_cantidad`, `cot_referencia`, `cot_telefono`, `cot_correo`, `cot_fecha`) VALUES
+(1, 1, 1, 'Recargas', 12, 'Impresora', 2114548, 'hola@gmail.com', '2017-11-06'),
+(2, 2, 2, 'Remanufactura', 5, 'Toner', 4502145, 'nada@gmail.com', '2017-11-04');
 
 -- --------------------------------------------------------
 
@@ -110,7 +125,8 @@ CREATE TABLE `departamento` (
 --
 
 INSERT INTO `departamento` (`id_departamento`, `id_pais`, `dep_nombre`) VALUES
-(1, 1, 'Antioquia');
+(1, 1, 'Antioquia'),
+(2, 1, 'Cundinamarca');
 
 -- --------------------------------------------------------
 
@@ -123,6 +139,14 @@ CREATE TABLE `empresa` (
   `sed_codigo` int(11) NOT NULL,
   `emp_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`emp_codigo`, `sed_codigo`, `emp_nombre`) VALUES
+(1, 1, 'Bancolombia'),
+(2, 2, 'Exito');
 
 -- --------------------------------------------------------
 
@@ -156,6 +180,14 @@ CREATE TABLE `item` (
   `ite_tip_item` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `item`
+--
+
+INSERT INTO `item` (`ite_codigo`, `mar_codigo`, `ser_codigo`, `ite_tip_item`) VALUES
+(1, 1, 1, NULL),
+(2, 2, 2, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -166,6 +198,14 @@ CREATE TABLE `marca` (
   `mar_codigo` int(11) NOT NULL,
   `mar_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `marca`
+--
+
+INSERT INTO `marca` (`mar_codigo`, `mar_nombre`) VALUES
+(1, 'HP'),
+(2, 'Epson');
 
 -- --------------------------------------------------------
 
@@ -216,7 +256,6 @@ INSERT INTO `pais` (`id_pais`, `pai_nombre`) VALUES
 
 CREATE TABLE `pedido` (
   `ped_codigo` int(11) NOT NULL,
-  `usu_codigo` int(11) NOT NULL,
   `ped_direccion` varchar(200) NOT NULL,
   `ped_correo` varchar(100) NOT NULL,
   `ped_fecha` date NOT NULL,
@@ -224,6 +263,14 @@ CREATE TABLE `pedido` (
   `tip_ped_codigo` int(11) DEFAULT NULL,
   `ped_estado` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`ped_codigo`, `ped_direccion`, `ped_correo`, `ped_fecha`, `emp_codigo`, `tip_ped_codigo`, `ped_estado`) VALUES
+(1, 'Calle 45', 'nada@gmail.com', '2017-08-14', 1, 1, 'En camino'),
+(2, 'Carrera 56', 'hola@gmail.com', '2017-10-23', 2, 1, 'En espera');
 
 -- --------------------------------------------------------
 
@@ -237,6 +284,14 @@ CREATE TABLE `pedidoxproducto` (
   `pedxpro_cantidad` int(11) NOT NULL,
   `pedxpro_valor_total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `pedidoxproducto`
+--
+
+INSERT INTO `pedidoxproducto` (`ped_codigo`, `ite_codigo`, `pedxpro_cantidad`, `pedxpro_valor_total`) VALUES
+(1, 1, 5, 100000),
+(2, 2, 3, 50000);
 
 -- --------------------------------------------------------
 
@@ -279,6 +334,14 @@ CREATE TABLE `producto` (
   `pro_imagen` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`ite_codigo`, `tip_pro_codigo`, `pro_referencia`, `pro_descripcion`, `pro_imagen`) VALUES
+(1, 2, 'gst234', 'Lorem Ipsum', 'nada.png'),
+(2, 1, 'dye746', 'Lorem Ipsum', 'gsydgs.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -291,6 +354,14 @@ CREATE TABLE `prodxcot` (
   `proxcot_cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `prodxcot`
+--
+
+INSERT INTO `prodxcot` (`ite_codigo`, `cot_codigo`, `proxcot_cantidad`) VALUES
+(1, 1, 10),
+(2, 2, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -302,6 +373,14 @@ CREATE TABLE `reporte` (
   `ped_codigo` int(11) NOT NULL,
   `rep_observacion` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `reporte`
+--
+
+INSERT INTO `reporte` (`rep_codigo`, `ped_codigo`, `rep_observacion`) VALUES
+(1, 1, 'No han cumplido con lo pedido'),
+(2, 2, 'Se han tardado mucho');
 
 -- --------------------------------------------------------
 
@@ -318,6 +397,14 @@ CREATE TABLE `ruta` (
   `usu_codigo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `ruta`
+--
+
+INSERT INTO `ruta` (`rut_codigo`, `rut_direccion`, `rut_fecha`, `rut_observaciones`, `rut_estado`, `usu_codigo`) VALUES
+(1, 'Calle 45', '2017-09-08', 'Necesita un mantenimiento para impresora', 'En espera', 3),
+(2, 'Carrera 65', '2017-09-18', 'Productos Toner', 'En camino', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -330,6 +417,14 @@ CREATE TABLE `sede` (
   `sed_direccion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `sede`
+--
+
+INSERT INTO `sede` (`sed_codigo`, `sed_nombre`, `sed_direccion`) VALUES
+(1, 'Mayorca', 'Calle 45'),
+(2, 'Alpujarra', 'Carrera 56');
+
 -- --------------------------------------------------------
 
 --
@@ -341,6 +436,14 @@ CREATE TABLE `servicio` (
   `item_codigo` int(11) NOT NULL,
   `Tip_ser_cod` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `servicio`
+--
+
+INSERT INTO `servicio` (`ser_codigo`, `item_codigo`, `Tip_ser_cod`) VALUES
+(1, 1, 1),
+(2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -355,6 +458,14 @@ CREATE TABLE `stock` (
   `sto_valor_venta` int(255) NOT NULL,
   `ite_codigo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `stock`
+--
+
+INSERT INTO `stock` (`sto_codigo`, `sto_cantidad`, `sto_valor_compra`, `sto_valor_venta`, `ite_codigo`) VALUES
+(1, 100, 250000, 100000, 1),
+(2, 50, 200000, 120000, 2);
 
 -- --------------------------------------------------------
 
@@ -385,6 +496,14 @@ CREATE TABLE `tipo_pedido` (
   `tip_ped_nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tipo_pedido`
+--
+
+INSERT INTO `tipo_pedido` (`tip_ped_codigo`, `tip_ped_nombre`) VALUES
+(1, 'Recarga'),
+(2, 'Toner');
+
 -- --------------------------------------------------------
 
 --
@@ -395,6 +514,14 @@ CREATE TABLE `tipo_producto` (
   `tip_pro_codigo` int(11) NOT NULL,
   `tip_pro_nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_producto`
+--
+
+INSERT INTO `tipo_producto` (`tip_pro_codigo`, `tip_pro_nombre`) VALUES
+(1, 'Computador HP'),
+(2, 'Impresora HP');
 
 -- --------------------------------------------------------
 
@@ -414,10 +541,8 @@ CREATE TABLE `tipo_servicio` (
 --
 
 INSERT INTO `tipo_servicio` (`Tip_ser_cod`, `tip_ser_nombre`, `tip_ser_descripcion`, `tip_ser_registro`) VALUES
-(2, 'Recargasss', 'sad', '2017-11-04'),
-(3, 'sad', 'sad', '2017-11-04'),
-(5, 'dsf', 'dsf', '2017-11-04'),
-(6, 'dsf', 'dsf', '2017-11-04');
+(1, 'Recargas', 'sad', '2017-11-04'),
+(2, 'Mantenimiento', 'sad', '2017-11-04');
 
 -- --------------------------------------------------------
 
@@ -435,8 +560,9 @@ CREATE TABLE `tipo_usuario` (
 --
 
 INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`) VALUES
-(1, 'usuario'),
-(2, 'administrador');
+(1, 'Usuario'),
+(2, 'Administrador'),
+(3, 'Cliente empresarial');
 
 -- --------------------------------------------------------
 
@@ -461,6 +587,7 @@ CREATE TABLE `usuario` (
   `usu_sexo` varchar(50) NOT NULL,
   `tip_usu_codigo` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
+  `usu_foto` longtext NOT NULL,
   `usu_fechas_registro` date NOT NULL,
   `usu_ult_inicio_sesion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -469,10 +596,10 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(1, 1, 1214, 'cristian', 'alexis', 'loepra', 'bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 2, 1, '2017-11-05', '0000-00-00'),
-(2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino?', 2, 1, '2017-11-02', '0000-00-00'),
-(3, 1, 1026, 'Estefania', '', 'Tapias', 'isaza', 'asdsadsdas', 2132, 1, '21323', 213213, '2017-11-09', 'femenino', 2, 1, '2017-11-02', '2017-11-01');
+INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
+(1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 2, 1, '', '2017-11-05', '0000-00-00'),
+(2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, '', '2017-11-02', '0000-00-00'),
+(3, 1, 1026, 'Estefania', '', 'Tapias', 'Isaza', 'asdsadsdas', 2132, 1, '21323', 213213, '2017-11-09', 'femenino', 2, 1, '', '2017-11-02', '2017-11-01');
 
 -- --------------------------------------------------------
 
@@ -485,6 +612,14 @@ CREATE TABLE `usuarioxpedido` (
   `ped_codigo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `usuarioxpedido`
+--
+
+INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`) VALUES
+(1, 1),
+(2, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -495,6 +630,16 @@ CREATE TABLE `usuxemp` (
   `usu_codigo` int(11) NOT NULL,
   `emp_codigo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuxemp`
+--
+
+INSERT INTO `usuxemp` (`usu_codigo`, `emp_codigo`) VALUES
+(1, 2),
+(3, 1),
+(1, 2),
+(3, 1);
 
 --
 -- Índices para tablas volcadas
@@ -581,7 +726,6 @@ ALTER TABLE `pais`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`ped_codigo`),
-  ADD KEY `usu_id` (`usu_codigo`),
   ADD KEY `emp_id` (`emp_codigo`),
   ADD KEY `tip_id` (`tip_ped_codigo`),
   ADD KEY `tip_ped_codigo` (`tip_ped_codigo`);
@@ -713,163 +857,136 @@ ALTER TABLE `usuxemp`
 --
 ALTER TABLE `acceso`
   MODIFY `token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2547;
-
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
-  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
   MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT de la tabla `item`
 --
 ALTER TABLE `item`
-  MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
   MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
   MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `pedidoxproducto`
 --
 ALTER TABLE `pedidoxproducto`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `prodxcot`
 --
 ALTER TABLE `prodxcot`
-  MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `ruta`
 --
 ALTER TABLE `ruta`
-  MODIFY `rut_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `rut_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `servicio`
 --
 ALTER TABLE `servicio`
-  MODIFY `ser_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `ser_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
   MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `tipo_pedido`
 --
 ALTER TABLE `tipo_pedido`
-  MODIFY `tip_ped_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `tip_ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
-  MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
   MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -897,7 +1014,8 @@ ALTER TABLE `cliente_empresarial`
 -- Filtros para la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  ADD CONSTRAINT `cotizacion_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `cotizacion_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `cotizacion_ibfk_2` FOREIGN KEY (`mar_codigo`) REFERENCES `marca` (`mar_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `departamento`
@@ -922,7 +1040,8 @@ ALTER TABLE `item`
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_4` FOREIGN KEY (`tip_ped_codigo`) REFERENCES `tipo_pedido` (`tip_ped_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedido_ibfk_4` FOREIGN KEY (`tip_ped_codigo`) REFERENCES `tipo_pedido` (`tip_ped_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_5` FOREIGN KEY (`emp_codigo`) REFERENCES `empresa` (`emp_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pedidoxproducto`
@@ -998,7 +1117,6 @@ ALTER TABLE `usuarioxpedido`
 ALTER TABLE `usuxemp`
   ADD CONSTRAINT `usuxemp_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `usuxemp_ibfk_2` FOREIGN KEY (`emp_codigo`) REFERENCES `empresa` (`emp_codigo`) ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
