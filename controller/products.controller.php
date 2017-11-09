@@ -11,10 +11,15 @@
 	 		$this->updateException = array('id_producto');
 	 	}
 		function main(){
-			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+			if (isset($_SESSION['CUSTOMER']['ROL'])&& !isset($_SESSION['CUSTOMER']['CLIENT'])) {
 				require_once "views/include/scope.header.php";
 				require_once "views/modules/admin/products/index.php";
 				require_once "views/include/scope.footer.php";
+			}elseif(isset($_SESSION['CUSTOMER']['ROL'])){
+				echo "Calma que no hemos hecho la vista";
+				// require_once "views/include/scope.header.php";
+				// require_once "views/modules/admin/products/index.php";
+				// require_once "views/include/scope.footer.php";
 			}else{
 				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/user/products/index.php";
@@ -33,7 +38,7 @@
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-			
+
 			 $data[]=date('Y-m-d');
 			$result = $this->master->insert($this->tableName,$data,$this->insertException);
 			if ($result==1) {
