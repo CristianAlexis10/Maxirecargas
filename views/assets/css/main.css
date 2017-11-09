@@ -341,3 +341,48 @@ table.dataTable tbody th, table.dataTable tbody td{
 .container--login article form .btn-pass-form{
   margin-top: 20px;
 }
+
+/*vistas detalles*/
+.detail{
+  display: flex;
+  padding: 8px 6px;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+.detail .item--detail{
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+}
+.detail .data--detail{
+ text-transform: capitalize;
+ display: flex;
+ justify-content: flex-start;
+ width: 50%;
+}
+.mudules.orders.detail{
+  display: flex;
+}
+.mudules.orders.detail .wrap--info{
+width: 60%;
+}
+.mudules.orders.detail .wrap--btns{
+width: 40%;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+
+}
+.mudules.orders.detail .wrap--btns li {
+  padding: 10px 0px;
+  transition:all 0.5s easy;
+}
+.mudules.orders.detail .wrap--btns li:hover{
+  color: #35a4dd;
+  font-size: 18px;
+
+}
