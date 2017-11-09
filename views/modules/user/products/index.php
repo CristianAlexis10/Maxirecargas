@@ -33,8 +33,8 @@
 
           <div class="container--popular">
             <div class="input--group">
-              <label for="label--firstchekbox">Populares</label>
               <input type="radio" name="data" value="" class="radio--button">
+              <label for="label--firstradio">Populares</label>
             </div>
           </div>
 
@@ -42,28 +42,28 @@
             <label for="label--list--products" class="title--secundario">Productos:</label>
 
             <div class="input--group">
-              <label for="first--product">Toner</label>
               <input type="radio" name="data" id="first--products" class="radio--button">
+              <label for="first--product">Toner</label>
             </div>
 
             <div class="input--group">
-              <label for="second--product">Cartuchos</label>
               <input type="radio" name="data" id="second--product"class="radio--button">
+              <label for="second--product">Cartuchos</label>
             </div>
 
             <div class="input--group">
-              <label for="third--product">Impresoras</label>
               <input type="radio" name="data" id="third--product" class="radio--button">
+              <label for="third--product">Impresoras</label>
             </div>
 
             <div class="input--group">
-              <label for="fourth--product">Computadores</label>
               <input type="radio" name="data" id="fourth--product" class="radio--button">
+              <label for="fourth--product">Computadores</label>
             </div>
 
             <div class="input--group">
-              <label for="fifth--product">Papelería</label>
               <input type="radio" name="data" id="fifth--product" class="radio--button">
+              <label for="fifth--product">Papelería</label>
             </div>
 
               <button type="button" name="button" class="button--search" id="bton-search">Buscar</button>
