@@ -44,7 +44,7 @@
           <input type="text" name="" value="" id="description" class="input--quotation">
         </div>
 
-        <button type="button" name="button" class="buttom--quotation">Cotizar</button>
+        <!-- <button type="button" name="button" class="buttom--quotation">Cotizar</button> -->
 
       </form>
       </div>
