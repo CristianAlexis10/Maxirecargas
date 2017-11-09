@@ -749,13 +749,16 @@ transform: translateY(-5px);
   color: white;
 }
 
-
-
 .input--group{
   position: relative;
   font-family: 'lato';
+  font-size: 15px;
 }
 
+.title--secundario{
+  font-family: 'lato';
+  font-size: 20px;
+}
 
 
 .main--container--product{
