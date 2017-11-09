@@ -435,7 +435,6 @@ transform: translateY(-5px);
   position: fixed;
   width: 100%;
   /*transition: 0.4s ease*/
-  /*overflow-y: hidden;*/
 
 }
 
@@ -493,10 +492,10 @@ transform: translateY(-5px);
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  width: 27.5%;
+  /*width: 27.5%;*/
   background: none;
   color: black;
-  font-size: 20px;
+  font-size: 40%;
 }
 
 .menu--home,.menu--order,.menu--product,.menu--quotation{
@@ -575,15 +574,18 @@ transform: translateY(-5px);
   display: flex;
   width: 100%;
   height: 100vh;
-  background: url("../image/pedido.jpg");
+  background-image: url("../image/pedido.jpg");
+  mix-blend-mode: multiply;
 }
 
 .left--part{
   width: 50%;
   height: 100vh;
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  background: rgba(1,86,123,0.9);
+  /*background: rgb(1,86,123);*/
+  background-color: rgba(1,86,123,0.7);
 }
 
 .main--container .left--part img{
@@ -607,16 +609,17 @@ transform: translateY(-5px);
 
 .square{
   display: flex;
-  width: 50%;
+  width: 45%;
   height: 50%;
   border: 9px solid #02a7e9;
   color: #02a7e9;
   letter-spacing: 0.2em;
   flex-direction: column;
   text-transform: uppercase;
-
+  word-spacing: 10cm;
+  padding-left: 40px;
   font-family: 'lato';
-  font-size: 50px;
+  font-size: 65px;
   font-weight: bold;
   margin: 60px;
   right: 30px;
@@ -630,20 +633,21 @@ transform: translateY(-5px);
   width: 50%;
   display: flex;
   position: relative;
-  bottom: -50px;
+  /*bottom: -50px;*/
 }
 
 .container-title-order{
-  /*position: relative;*/
-  display: flex;
   font-family: 'lato';
-  font-size: 60px;
+  font-size: 70px;
   /*color: #4c5154; gris mas claro*/
-  color: #404348;
+  /*color: #404348;*/
+  color: #616161;
+  font-weight: lighter;
   text-transform: uppercase;
-  letter-spacing: 0.4em;
-  margin-left: 165px;
-  justify-content: flex-end;
+  letter-spacing: 0.5em;
+  margin-left: 45%;
+  margin-top: 20%;
+  /*justify-content: flex-end;*/
 }
 
 .title--right{
@@ -651,6 +655,7 @@ transform: translateY(-5px);
   position: fixed;
   font-family: 'lato';
   color: #02a7e9;
+  font-weight: lighter;
   font-size: 60px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -681,22 +686,17 @@ padding: 8px 0;
 font-size: 16px;
 /*width: 100%;*/
 }
-.arrow select{
-  border: 1px solid #ccc;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
 
-/*select .select--product{
-  width: 15px;
-  height: 15px;
-  outline-color: pink;
-}*/
-
-input .reference{
+.select--product, .select--for, .reference, .quantity, .description{
+  border-bottom: none;
+  border-radius: 0;
+  position: relative;
+  background: transparent;
+  border: none;
   outline: none;
-  background: none;
+  padding: 8px 0;
+  font-size: 16px;
+  color: white;
 }
 
 /*module profile*/

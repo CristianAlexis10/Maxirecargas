@@ -13,7 +13,9 @@
       <div class="left--part">
         <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
         <div class="square"><p>Haz tu pedido</p></div>
-        <div class="container--title"><p class="container-title-order">Pedido</p></div>
+        <div class="container--title">
+          <p class="container-title-order">Pedido</p>
+        </div>
       </div>
 
       <div class="rigth--part">
@@ -24,15 +26,13 @@
           <div class="wrap--product">
 
             <label for="name--product">Servicio de</label>
-            <div class="arrow">
             <select class="select--product" name="data">
-              <option value=""></option>
+              <option value="">Recarga de toner</option>
             </select>
-          </div>
 
             <label for="name--for">Para</label>
             <select class="select--for" name="data">
-              <option value=""></option>
+              <option value="">Impresoras</option>
             </select>
 
             <label for="name--reference" class="label--reference">Referencia</label>
