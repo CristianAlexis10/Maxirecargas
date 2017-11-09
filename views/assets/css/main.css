@@ -187,7 +187,8 @@ table.dataTable.no-footer{
   border: 1px solid #111;
 }
 table.dataTable.no-footer thead {
-  background:rgba(53, 164, 222, 0.5)
+  background:rgb(53, 164, 221);
+  color: white;
 }
 table.dataTable tbody tr:nth-child(even){
 background: #eee;
