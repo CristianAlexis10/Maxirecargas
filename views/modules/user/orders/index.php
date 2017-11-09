@@ -21,6 +21,8 @@
       <div class="rigth--part">
         <p class="title--right">Datos del producto</p>
 
+        <form class="" action="index.html" method="post">
+
       <div class="product--form">
         <form>
           <div class="wrap--product">
@@ -49,35 +51,11 @@
             <button class="button--register"><a href="#">Registrar otro producto</a></button>
 
           </div>
+        </form>
           </div>
-
-
-
-
         </form>
       </div>
-
-
-
-
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="views/assets/lib/animate/animatescroll.js"> </script>
