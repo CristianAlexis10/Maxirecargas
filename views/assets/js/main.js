@@ -90,18 +90,6 @@ $(".input--liner").focusout(function(){
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
  $( function() {
     $( "#tabs" ).tabs();
   } );
