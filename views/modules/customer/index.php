@@ -78,17 +78,26 @@
     <section class="container three">
       <div class="three--left">
         <h1>nuestros servicios</h1>
-        <p><i class="fa fa-check" aria-hidden="true"></i>recarga y remanufactura de toner
-          y cartuchos.</p>
-        <p><i class="fa fa-check" aria-hidden="true"></i>venta de toner y cartuchos,
-          genericos y  originales.</p>
-        <p><i class="fa fa-check" aria-hidden="true"></i>matenimiento y reparacion de
-          impresoras y computadores.</p>
+        <p><i class="fa fa-check" aria-hidden="true"></i>Recarga y Remanufactura de Toner y Cartuchos.</p>
+        <p><i class="fa fa-check" aria-hidden="true"></i>Venta de Toner y Cartuchos, Genericos y  Originales.</p>
+        <p><i class="fa fa-check" aria-hidden="true"></i>Matenimiento y Reparacion de Impresoras y Computadores.</p>
         <p><i class="fa fa-check" aria-hidden="true"></i>Venta de insumos para oficinas.</p>
+        <button type="submit" name="button">hacer pedido</button>
       </div>
       <div class="three--rigth">
         <div class="services">
-
+          <div class="domicile">
+            <img src="views/assets/image/camion.png" alt="">
+          </div>
+          <div class="warranty">
+            <img src="views/assets/image/garantia.png" alt="">
+          </div>
+          <div class="country">
+            <img src="views/assets/image/pais.png" alt="">
+          </div>
+          <div class="money">
+            <img src="views/assets/image/credito.png" alt="">
+          </div>
         </div>
       </div>
     </section>
@@ -121,7 +130,7 @@
                 <label for="contact--message" class="label-contact">Mensaje</label>
                 <textarea name="data" rows="1" cols="80"  class="input-contact"></textarea>
             </div>
-              <button type="button" name="button">ENVIAR</button>
+              <button type="button" name="button" class="btn--contact">ENVIAR</button>
         </form>
       </div>
     </section>

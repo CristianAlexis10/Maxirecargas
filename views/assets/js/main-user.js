@@ -1,18 +1,18 @@
 $("#who").click(function(){
   $(".two").animatescroll({
-    scrollSpeed:2000, easing:'easeOutBounce'
+    scrollSpeed:2000, easing:'easeOutBack'
   });
 });
 
 $("#our").click(function(){
   $(".three").animatescroll({
-    scrollSpeed:2000, easing:'easeOutBounce'
+    scrollSpeed:2000, easing:'easeOutBack'
   });
 });
 
 $("#contc").click(function() {
   $(".four").animatescroll({
-    scrollSpeed:2000, easing:'easeOutBounce'
+    scrollSpeed:2000, easing:'easeOutBack'
   });
 });
 

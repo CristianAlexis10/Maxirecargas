@@ -125,7 +125,7 @@
   flex-direction: column;
   align-items: center;
 }
- .content--session .img--modal, .signin--left .img--modal {
+ .content--session .img--modal {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,7 +133,7 @@
  .content--session img, .signin--left img{
   width: 100px;
   margin-left: 30px;
-  margin-top: 20px;
+  margin-top: 30px;
 
 }
 #modal--session .content--session .session--start h1{
@@ -144,7 +144,7 @@
     letter-spacing: .2em;
     color: #9e9e9e;
     margin-top: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 
 }
 
@@ -156,6 +156,7 @@
   justify-content: center;
   align-items: center;
   font-family: 'lato';
+  margin-top: 10px;
 }
 .input--login{
   position: relative;
@@ -215,9 +216,10 @@ transform: translateY(-5px);
     background: red;
 }
 .form--out{
+  margin-top: 20px;
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content:center;
     font-size: 14px;
     font-family: 'lato'
 }
@@ -315,6 +317,22 @@ transform: translateY(-5px);
   font-size: 18px;
   padding: 20px;
 }
+.container.three .three--left p i{
+  color: #f8f400;
+  padding-right: 10px;
+}
+.container.three .three--left button{
+  padding: 20px 50px;
+  background: #f8f400;
+  border: none;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 300;
+  outline: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 50px;
+}
 .container.three .three--rigth{
   width: 70%;
   display: flex;
@@ -325,7 +343,12 @@ transform: translateY(-5px);
   width: 80%;
   height: 80vh;
   background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
+
 
 .container.four{
   display: flex;
@@ -375,7 +398,21 @@ transform: translateY(-5px);
   justify-content:center;
   align-items: flex-start;
   font-family: 'lato';
-
+}
+.container.four .btn--contact{
+  padding: 20px 40px;
+  border: 1px solid rgb(255,0,255);
+  background: transparent;
+  margin-top: 50px;
+  width:40%;
+  font-weight: bold;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.container.four .btn--contact:hover{
+  width: 100%;
+  background: rgb(255,0,255);
+  color: white;
 }
 .container.four .four--form .wrap--contact{
     display: flex;
