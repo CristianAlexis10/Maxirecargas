@@ -132,10 +132,12 @@ $('#numDoc').keyup(function(){
       type:'post',
       data:'data='+value,
   }).done(function(response){
-    $('#answer-user').html(response);
-    if (response=='') {
+    if (response=='true') {
+         $('#answer-user').show();
+        $('#answer-user').html('usuario no valido');
          num_doc = true;
      }else{
+         $('#answer-user').hide();
       num_doc = false;
      }
       enable(num_doc,contra);
