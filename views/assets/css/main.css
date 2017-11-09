@@ -166,34 +166,37 @@ body{
 }
 
 /*DATAGRID*/
+/*entries*/
 
-.dataTables_wrapper #dataGrid_length, #dataGrid_filter{
-  margin-bottom: 30px;
+.dataTables_wrapper .dataTables_length{
+margin-bottom: 30px;
 }
-
-.dataTables_wrapper #dataGrid_filter input[type="search"]{
-  outline: none;
-  border-radius: 8px;
-  border: 1px solid black;
+/*buscar*/
+.dataTables_wrapper .dataTables_filter{
+margin-bottom: 30px;
 }
-
-.dataTables_wrapper #dataGrid_filter input[type="search"]:focus{
-  border: 1px solid #35a4dd;
-}
-
-.dataTables_wrapper .dataTable thead{
-  background: #eee;
-  border: none:
-}
-
-.dataTables_wrapper .dataTable tbody{
-  border: none;
-
+/*informacion sobre la cantidad*/
+.dataTables_wrapper .dataTables_info{
 
 }
+/*paginacion*/
+.dataTables_wrapper .dataTables_paginate{
 
-#dataGrid_wrapper .dataTable tbody td{
-  padding-left: 20px;
+}
+table.dataTable.no-footer{
+  border: 1px solid #111;
+}
+table.dataTable.no-footer thead {
+  background:rgba(53, 164, 222, 0.5)
+}
+table.dataTable tbody tr:nth-child(even){
+background: #eee;
+border: 1px solid #ccc
+
+}
+table.dataTable tbody th, table.dataTable tbody td{
+  text-align: center;
+
 }
 /*FORM*/
 
