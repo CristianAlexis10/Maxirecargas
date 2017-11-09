@@ -5,7 +5,7 @@
 		    	<form class="form Services" id="frmNewService" data-parsley-validate>
 		    		 <div class="form-group">
 			                <label for="nombre" class="required">Nombre:</label>
-			                <input type="text" name="dataNewService" id="nombre" placeholder="Ingrese el nombre del servicio" required>
+			                <input type="text" name="dataNewService" id="nombre" required>
 			            </div>
 			             <div class="form-group">
 			                <label for="des" class="required">Descripción:</label>

@@ -86,17 +86,16 @@
 		    	</form>
 		  </div>
 		  <div id="tabs-3">
-		  	<div class="wrap--btns">
-		  		<ul>
-		  			<li class="item"><a href="nueva-categoria">Nueva Categoria</a></li>
-		  		</ul>
+		  	<div class="new--obj">
+					<i class="fa fa-plus" aria-hidden="true"></i>
+		  		<a href="nueva-categoria">Nueva Categoria</a>
 		  	</div>
 		  	<table class="datatable">
             			<thead>
                 				<tr>
-                    					<th>Nombre</th>
-                    					<th>Descripcion</th>
-                    					<th>Acciones</th>
+                					<th>Nombre</th>
+                    			<th>Descripcion</th>
+                    			<th>Acciones</th>
                 				</tr>
            			 </thead>
             			<tbody>
@@ -115,10 +114,9 @@
       			  </table>
 		  </div>
 		  <div id="tabs-4">
-		  	<div class="wrap--btns">
-		  		<ul>
-		  			<li class="item"><a href="nueva-marca">Nueva Marca</a></li>
-		  		</ul>
+		  	<div class="new--obj">
+					<i class="fa fa-plus" aria-hidden="true"></i>
+		  		<a href="nueva-marca">Nueva Marca</a>
 		  	</div>
 		  	<table class="datatable">
             			<thead>
@@ -144,10 +142,9 @@
       			  </table>
 		  </div>
 		  <div id="tabs-5">
-		  	<div class="wrap--btns">
-		  		<ul>
-		  			<li class="item"><a href="nuevo-servicio">Nuevo Servicio</a></li>
-		  		</ul>
+		  	<div class="new--obj">
+					<i class="fa fa-plus" aria-hidden="true"></i>
+		  		 <a href="nuevo-servicio">Nuevo Servicio</a>
 		  	</div>
 		  	<table class="datatable">
             			<thead>

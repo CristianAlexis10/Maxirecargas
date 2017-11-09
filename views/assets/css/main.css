@@ -144,6 +144,25 @@ body{
 
 }
 
+/*modules services*/
+.new--obj{
+  padding: 10px 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  width: 30%;
+  font-weight: bold;
+  display: flex;
+
+  transition: all 0.2s ease;
+}
+.new--obj:hover{
+  color: #35a4dd;
+}
+.new--obj a{
+padding-left: 8px;
+}
+
+
 /*tabs*/
 #tabs{
   border: none;
@@ -356,12 +375,14 @@ table.dataTable tbody th, table.dataTable tbody td{
   display: flex;
   justify-content: flex-start;
   width: 50%;
+  padding-right: 10px;
 }
 .detail .data--detail{
  text-transform: capitalize;
  display: flex;
  justify-content: flex-start;
  width: 50%;
+ padding-left: 10px;
 }
 .mudules.orders.detail{
   display: flex;

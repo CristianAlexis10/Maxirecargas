@@ -9,7 +9,7 @@
 		    <li><a href="#tabs-3">Configuraciones</a></li>
 		  </ul>
 		  <div id="tabs-2">
-		    	<table id="dataGrid">
+		    	<table id="dataGrid1">
             			<thead>
                 				<tr>
                     					<th>Cod</th>
@@ -48,25 +48,24 @@
 		    	 </form>
 		  </div>
 		  <div id="tabs-3">
-		    	<table id="dataGrid">
-            			<thead>
-                				<tr>
-                    					<th>Nombre</th>
-                    					<th>Dirección</th>
-                    					<th>Telefono</th>
-                    					<th>Ver mas</th>
-                				</tr>
-           			 </thead>
-            			<tbody>
-                   				 <tr>
-                       				 <td>Dompi</td>
-                        				<td>Ninguna</td>
-				                       <td>55555</td>
-				                       <td><a href="#"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
-                  				  </tr>
-            			</tbody>
-      			  </table>
+		    <table id="dataGrid">
+            <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Dirección</th>
+                  <th>Telefono</th>
+                  <th>Ver mas</th>
+                </tr>
+           	</thead>
+            <tbody>
+                <tr>
+                  <td>Dompi</td>
+                  <td>Ninguna</td>
+				          <td>55555</td>
+				          <td><a href="#"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+               	</tr>
+            </tbody>
+       </table>
 		  </div>
-
 	</div>
 </div>

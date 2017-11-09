@@ -1,14 +1,14 @@
 <?php
-	require_once "controller/files.controller.php";
+
 	class TrademarkController{
 		private $master;
 		private $tableName;
 		private $insertException;
 		private $updateException;
-		private $file;
+
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
-	 		$this->file = new FilesController;
+
 	 		$this->tableName="marca";
 	 		$this->insertException=array('id_marca');
 	 		$this->updateException = array('id_marca','logo');
@@ -24,18 +24,7 @@
 			require_once "views/include/scope.footer.php";
 		}
 		function newRegister(){
-			$data = $_POST['data'];
-			if (isset($_FILES['file'])) {
-			            $image=$this->file->image($_FILES);
-			            if ($image[0]==true) {
-			                move_uploaded_file($_FILES['file']['tmp_name'],"views/assets/image/trademark/".$image[1]);
-			                $data[]=$image[1];
-			            }else{
-			            	$_SESSION['message_error']="Se ha generado un problema con el logo de la marca, por favor intentalo de nuevo";
-			            	header("Location: productos");
-			            	return ;
-			            }
-			 }
+
 			$result = $this->master->insert($this->tableName,$data,$this->insertException);
 			if ($result==1) {
 				$_SESSION['message']="Registrado Exitosamente";
