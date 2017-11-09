@@ -45,8 +45,8 @@
             <label for="name--description">Descripcion del problema</label>
             <textarea name="data" rows="1" cols="80" class="description"></textarea>
 
-            <button class="button--following"><a href="following.php">Siguiente</a></button>
-            <button class="button--register">Registrar otro producto</button>
+            <button class="button--following"><a href="#">Siguiente</a></button>
+            <button class="button--register"><a href="#">Registrar otro producto</a></button>
 
           </div>
           </div>
