@@ -10,8 +10,8 @@
 	 		$this->master = new MasterModel;
 
 	 		$this->tableName="marca";
-	 		$this->insertException=array('id_marca');
-	 		$this->updateException = array('id_marca','logo');
+	 		$this->insertException=array('mar_codigo');
+	 		$this->updateException = array('mar_codigo');
 	 	}
 		function main(){
 			require_once "views/include/scope.header.php";
@@ -24,7 +24,7 @@
 			require_once "views/include/scope.footer.php";
 		}
 		function newRegister(){
-
+			$data = $_POST['data'];
 			$result = $this->master->insert($this->tableName,$data,$this->insertException);
 			if ($result==1) {
 				$_SESSION['message']="Registrado Exitosamente";
@@ -38,12 +38,13 @@
 			return $result;
 		}
 		function readBy($data){
-			$result = $this->master->selectBy($this->tableName,array('id_marca',$data));
+			$result = $this->master->selectBy($this->tableName,array('mar_codigo',$data));
 			return $result;
 		}
 		function update(){
 			$data=$_POST['data'];
-			$result = $this->master->update($this->tableName,array('id_marca',$_SESSION['trademark_update']),$data,$this->updateException);
+			$result = $this->master->update($this->tableName,array('mar_codigo',$_SESSION['trademark_update']),$data,$this->updateException);
+			// echo $result;
 			unset($_SESSION['trademark_update']);
 			if ($result==1) {
 				$_SESSION['message']="Actualizado Exitosamente";
@@ -54,7 +55,7 @@
 		}
 		function delete(){
 			$data = base64_decode($_GET['data']);
-			$result = $this->master->delete($this->tableName,array('id_marca',$data));
+			$result = $this->master->delete($this->tableName,array('mar_codigo',$data));
 			if ($result==1) {
 				$_SESSION['message']="Eliminado Exitosamente";
 			}else{

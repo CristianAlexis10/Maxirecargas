@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2017 a las 04:52:08
--- Versión del servidor: 10.1.8-MariaDB
--- Versión de PHP: 5.6.14
+-- Tiempo de generación: 09-11-2017 a las 19:26:34
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -196,16 +196,17 @@ INSERT INTO `item` (`ite_codigo`, `mar_codigo`, `ser_codigo`, `ite_tip_item`) VA
 
 CREATE TABLE `marca` (
   `mar_codigo` int(11) NOT NULL,
-  `mar_nombre` varchar(50) NOT NULL
+  `mar_nombre` varchar(50) NOT NULL,
+  `mar_descripcion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `marca`
 --
 
-INSERT INTO `marca` (`mar_codigo`, `mar_nombre`) VALUES
-(1, 'HP'),
-(2, 'Epson');
+INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
+(1, 'HP', '0'),
+(2, 'Epson', '0');
 
 -- --------------------------------------------------------
 
@@ -512,16 +513,17 @@ INSERT INTO `tipo_pedido` (`tip_ped_codigo`, `tip_ped_nombre`) VALUES
 
 CREATE TABLE `tipo_producto` (
   `tip_pro_codigo` int(11) NOT NULL,
-  `tip_pro_nombre` varchar(20) NOT NULL
+  `tip_pro_nombre` varchar(20) NOT NULL,
+  `tip_pro_descripcion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tipo_producto`
 --
 
-INSERT INTO `tipo_producto` (`tip_pro_codigo`, `tip_pro_nombre`) VALUES
-(1, 'Computador HP'),
-(2, 'Impresora HP');
+INSERT INTO `tipo_producto` (`tip_pro_codigo`, `tip_pro_nombre`, `tip_pro_descripcion`) VALUES
+(1, 'Computador HP', ''),
+(2, 'Impresora HP', '');
 
 -- --------------------------------------------------------
 

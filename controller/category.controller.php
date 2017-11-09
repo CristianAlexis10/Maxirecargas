@@ -1,5 +1,4 @@
 <?php
-	require_once "controller/files.controller.php";
 	class CategoryController{
 		private $master;
 		private $tableName;

@@ -15,20 +15,20 @@
             			<thead>
                 				<tr>
                     					<th>Referencia</th>
-                    					<th>Marca</th>
-                    					<th>Servicio</th>
+                    					<!-- <th>Marca</th> -->
+                    					<th>Descripción</th>
                     					<th>Acciones</th>
                 				</tr>
            			 </thead>
             			<tbody>
             				<?php foreach ($this->readAll() as $row) {?>
                    				 <tr>
-                       				 <td><?php echo $row['referencia'];?></td>
-                        				<td><?php echo $row['id_marca'];?></td>
-                        				<td><?php echo $row['id_servicio'];?></td>
+                       				 <td><?php echo $row['pro_referencia'];?></td>
+                        				<!-- <td><?php //echo $row['id_marca'];?></td> -->
+                        				<td><?php echo $row['pro_descripcion'];?></td>
 				                       <td>
-				                       	<a href="modificar-producto-<?php echo rtrim(strtr(base64_encode($row['tip_pro_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
-				                       	<a href="eliminar-producto-<?php echo rtrim(strtr(base64_encode($row['id_producto']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				                       	<a href="modificar-producto-<?php echo rtrim(strtr(base64_encode($row['ite_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
+				                       	<a href="eliminar-producto-<?php echo rtrim(strtr(base64_encode($row['ite_codigo']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 				                       </td>
                   				  </tr>
 
@@ -44,7 +44,7 @@
 			                <label for="categoria" class="required">Categoria:</label>
 			               <select name="data[]" id="categoria" required>
 			               	<?php foreach($this->master->selectAll("tipo_producto") AS $row) {?>
-			               		<option value="<?php echo $row['tip_pro_codigo']?>"><?php echo $row['nombre'] ?></option>
+			               		<option value="<?php echo $row['tip_pro_codigo']?>"><?php echo $row['tip_pro_nombre'] ?></option>
 			               	<?php } ?>
 			               </select>
 			            </div>
@@ -56,7 +56,7 @@
 			                <label for="marca" class="required">Marca:</label>
 			               <select name="data[]" id="marca" required>
 			               	<?php foreach($this->master->selectAll("marca") AS $row) {?>
-			               		<option value="<?php echo $row['id_marca']?>"><?php echo $row['nombre'] ?></option>
+			               		<option value="<?php echo $row['mar_codigo']?>"><?php echo $row['mar_nombre'] ?></option>
 			               	<?php } ?>
 			               </select>
 			            </div>
@@ -64,7 +64,7 @@
 			                <label for="servicio" class="required">Servicio:</label>
 			               <select name="data[]" id="servicio" required>
 			               	<?php foreach($this->master->selectAll("tipo_servicio") AS $row) {?>
-			               		<option value="<?php echo $row['id_servicio']?>"><?php echo $row['nombre'] ?></option>
+			               		<option value="<?php echo $row['Tip_ser_cod']?>"><?php echo $row['tip_ser_nombre'] ?></option>
 			               	<?php } ?>
 			               </select>
 			            </div>
@@ -101,8 +101,8 @@
             			<tbody>
             				<?php foreach ($this->master->selectAll('tipo_producto') as $row) {?>
                    				 <tr>
-                       				 <td><?php echo $row['nombre'];?></td>
-                        				<td><?php echo $row['descripcion'];?></td>
+                       				 <td><?php echo $row['tip_pro_nombre'];?></td>
+                        				<td><?php echo $row['tip_pro_descripcion'];?></td>
 				                       <td>
 				                       	<a href="modificar-categoria-<?php echo rtrim(strtr(base64_encode($row['tip_pro_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
 				                       	<a href="eliminar-categoria-<?php echo rtrim(strtr(base64_encode($row['tip_pro_codigo']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -129,11 +129,11 @@
             			<tbody>
             				<?php foreach ($this->master->selectAll('marca') as $row) {?>
                    				 <tr>
-                       				 <td><?php echo $row['nombre'];?></td>
-                        				<td><?php echo $row['descripcion'];?></td>
+                       				 <td><?php echo $row['mar_nombre'];?></td>
+                        				<td><?php echo $row['mar_descripcion'];?></td>
 				                       <td>
-				                       	<a href="modificar-marca-<?php echo rtrim(strtr(base64_encode($row['id_marca']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
-				                       	<a href="eliminar-marca-<?php echo rtrim(strtr(base64_encode($row['id_marca']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				                       	<a href="modificar-marca-<?php echo rtrim(strtr(base64_encode($row['mar_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
+				                       	<a href="eliminar-marca-<?php echo rtrim(strtr(base64_encode($row['mar_codigo']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 				                       </td>
                   				  </tr>
 

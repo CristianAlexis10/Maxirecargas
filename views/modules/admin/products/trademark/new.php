@@ -12,10 +12,10 @@
 			                <textarea name="data[]" id="des"></textarea>
 			            </div>
 
-			             <div class="form-group">
+			             <!-- <div class="form-group">
 			                <label for="logo" class="required">Logo:</label>
 			                <input type="file" name="file" id="logo">
-			            </div>
+			            </div> -->
 
 			            <div class="form-group">
 			                <button class="btn">Registrar</button>
