@@ -48,7 +48,7 @@
 		    	<form class="frmCustomers" action="guardar-cliente" method="post" enctype="multipart/form-data">
 		    		 <div class="form-group-liner">
 			                <label for="tip_doc" class="label--liner">Tipo de Documento:</label>
-			               <select name="data[0]" id="tip_doc" class="input--liner"  required>
+			               <select name="data[]" id="tip_doc" class="input--liner"  required>
 			               	<?php foreach ($this->master->selectAll('tipo_documento') as $row) {?>
 			               		<option value="<?php echo $row['id_tipo_documento']?>"><?php echo $row['tip_doc_nombre']?></option>
 			               	<?php } ?>
@@ -56,63 +56,67 @@
 			           </div>
 		    		 <div class="form-group-liner">
 			                <label for="numDoc" class="label--liner">Numero de Documento:</label>
-			                <input type="number" name="data[1]" id="numDoc" class="input--liner" required>
+			                <input type="number" name="data[]" id="numDoc" class="input--liner" required>
 			            </div>
 			            <div id="answer-user"></div>
 			             <div class="form-group-liner">
 			                <label for="priNom" class="label--liner">Primer Nombre:</label>
-			                <input type="text" name="data[2]" id="priNom" class="input--liner"  required>
+			                <input type="text" name="data[]" id="priNom" class="input--liner"  required>
 			            </div>
-			             <div class="form-group-liner">
+			             <!-- <div class="form-group-liner">
 			                <label for="segNom" class="label--liner">Segundo Nombre:</label>
-			                <input type="text" name="data[3]" id="segNom" class="input--liner"  required>
-			            </div>
+			                <input type="text" name="data[]" id="segNom" class="input--liner"  required>
+			            </div> -->
 			           <div class="form-group-liner">
 			                <label for="priApe" class="label--liner">Primer Apellido:</label>
-			                <input type="text" name="data[4]" id="priApe" class="input--liner" required>
+			                <input type="text" name="data[]" id="priApe" class="input--liner" required>
 			            </div>
-			             <div class="form-group-liner">
+			             <!-- <div class="form-group-liner">
 			                <label for="segApe"class="label--liner" >Segundo Apellido:</label>
-			                <input type="text" name="data[5]" id="segApe" class="input--liner" required>
-			            </div>
+			                <input type="text" name="data[]" id="segApe" class="input--liner" required>
+			            </div> -->
 			             <div class="form-group-liner">
 			                <label for="correo" class="label--liner">Correo:</label>
-			                <input type="email" name="data[6]" id="correo" class="input--liner" required>
+			                <input type="email" name="data[]" id="correo" class="input--liner" required>
 			            </div>
 			             <div class="form-group-liner">
 			                <label for="tel" class="label--liner">Telefono:</label>
-			                <input type="number" name="data[7]" id="tel" class="input--liner" required>
+			                <input type="number" name="data[]" id="tel" class="input--liner" required>
 			            </div>
 		    		 <div class="form-group">
 			                <label for="cuidad" class="required">Ciudad:</label>
-			               <select name="data[8]"  id="cuidad" required>
+			               <select name="data[]"  id="cuidad" required>
 			               	<?php foreach ($this->master->selectAll('ciudad') as $row) {?>
 			               		<option value="<?php echo $row['id_ciudad']?>"><?php echo $row['ciu_nombre']?></option>
 			               	<?php } ?>
 			               </select>
 			            </div>
-			             <div class="form-group-liner">
+						<!-- <div class="form-group-liner">
+						   <label for="dir" class="label--liner">Dirección:</label>
+						   <input type="texto" name="data[]" id="dir" class="input--liner" required>
+					   </div> -->
+			             <!-- <div class="form-group-liner">
 			                <label for="dir" class="label--liner">Dirección:</label>
-			                <input type="text" name="data[9]" id="dir" class="input--liner" required>
-			            </div>
-			             <div class="form-group-liner">
+			                <input type="text" name="data[]" id="dir" class="input--liner" required>
+			            </div> -->
+			             <!-- <div class="form-group-liner">
 			                <label for="cel" class="label--liner">Celular:</label>
-			                <input type="number" name="data[10]" id="cel" class="input--liner" required>
-			            </div>
+			                <input type="number" name="data[]" id="cel" class="input--liner" required>
+			            </div> -->
 			             <div class="form-group-liner">
 			                <label for="fecha_naci" class="required">Fecha de Nacimiento:</label>
-			                <input type="date" name="data[11]" id="fecha_naci" class="input--liner" required>
+			                <input type="date" name="data[]" id="fecha_naci" class="input--liner" required>
 			            </div>
 			            <div class="form-group">
 			                <label for="sexo" class="required">Sexo:</label>
-			               <select name="data[12]"  id="sexo" required>
+			               <select name="data[]"  id="sexo" required>
 							   <option value="femenino">Femenino</option>
    			               	<option value="masculino">Masculino</option>
 			               </select>
 			            </div>
 		    		 <div class="form-group">
 			                <label for="tipo_usu" class="required" >Tipo de Usuario:</label>
-			               <select name="data[13]"  id="tipo_usu" required>
+			               <select name="data[]"  id="tipo_usu" required>
 			               	<?php foreach ($this->master->selectAll('tipo_usuario') as $row) {?>
 			               		<option value="<?php echo $row['tip_usu_codigo']?>"><?php echo $row['tip_usu_rol']?></option>
 			               	<?php } ?>
@@ -121,27 +125,27 @@
 			            <!-- <div class="frm-bussiness">
 			            	<div class="form-group-liner">
 						                <label for="nit" class="label--liner">NIT de la empresa:</label>
-						                <input type="number" name="data[16]" id="nit" class="input--liner" >
+						                <input type="number" name="data[]" id="nit" class="input--liner" >
 			            	</div>
 			            	<div class="form-group-liner">
 						                <label for="cargo" class="label--liner">Cargo:</label>
-						                <input type="number" name="data[17]" id="cargo" class="input--liner" >
+						                <input type="number" name="data[]" id="cargo" class="input--liner" >
 			            	</div>
 			            </div> -->
 			             <div class="form-group-liner">
 			                <label for="contra" class="label--liner">Contraseña:</label>
-			                <input type="password" name="data[14]" id="contra" class="input--liner" required>
+			                <input type="password" name="data[]" id="contra" class="input--liner" required>
 			            </div>
 			            <div class="answer"></div>
 			             <div class="form-group-liner">
 			                <label for="rep_contra" class="label--liner">Repetir Contraseña:</label>
-			                <input type="password" name="data[15]" id="rep_contra" class="input--liner" required disabled>
+			                <input type="password" name="data[]" id="rep_contra" class="input--liner" required disabled>
 			            </div>
 			            <div class="answer2"></div>
-			             <div class="form-group">
+			             <!-- <div class="form-group">
 			                <label for="rep_contra" class="required">Foto de perfil:</label>
 			                <input type="file" name="file" >
-			            </div>
+			            </div> -->
 			            <div class="form-group">
 			                <button class="btn" disabled id="registrar">Registrar Cliente</button>
 			            </div>

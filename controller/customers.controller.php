@@ -10,7 +10,7 @@
 	 		$this->master = new MasterModel;
 	 		$this->doizer = new DoizerController;
 	 		$this->tableName="usuario";
-	 		$this->insertException=array('usu_codigo');
+	 		$this->insertException=array('usu_codigo','usu_segundo_nombre','usu_segundo_apellido','usu_direccion','usu_celular','usu_foto','usu_fechas_registro','usu_ult_inicio_sesion');
 	 		$this->updateException = array('usu_codigo','contra','fecha_registro','ultimo_ingreso','foto');
 	 	}
 		function main(){
@@ -88,8 +88,9 @@
 		}
 		function newRegister(){
 			$data = $_POST['data'];
+
 			//validar contraseñas
-			$password =  $this->doizer->validateSecurityPassword($data[14]);
+			$password =  $this->doizer->validateSecurityPassword($data[11]);
 			if (is_array($password)) {
 				$validate_password=true;
 			}else{
@@ -98,12 +99,28 @@
 				return;
 			}
 
+			if ($validate_password==true) {
+				// cliente normal
+				unset($data[10]);
+				unset($data[11]);
+				$data[] = 1;
+				   $result = $this->master->insert($this->tableName,$data,$this->insertException);
+				   if ($result==1) {
+					   $result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[1]));
+					   $data_acceso[]=$result['usu_codigo'];
+					   $data_acceso[]=$password[1];
+					   $result = $this->master->insert('acceso',$data_acceso,array('token'));
+				   }
+				}
+				// echo $result;
+				// print_r($data);
+				// die();
 			// if (!$validate_password==true && $data[14]===$data[15]) {
 			// 	$_SESSION['message_error']="Las contraseñas son diferentes";
 			// 	$validate_password = false;
 			// 	return;
 			// }
-			if ($validate_password==true) {
+			// if ($validate_password==true) {
 				 //cliente normal
 				 // if ($data[13]!=2) {
 				 	// unset($data[14]);
@@ -113,7 +130,7 @@
 				 	// $data[]=date('Y-m-d');
 					// $result = $this->master->insert($this->tableName,$data,$this->insertException);
 					// echo $result;
-				 }
+				 // }
 			// 	 if ($result==true) {
 			// 		$result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[1]));
 			// 		$data_acceso[]=$result['usu_codigo'];
@@ -122,12 +139,12 @@
 			// 	 }
 			//   }
 			  // echo $result;
-			// if ($result==1) {
-			// 	$_SESSION['message']="Registrado Exitosamente";
-			// }else{
-			// 	$_SESSION['message_error']=$result;
-			// }
-			// header("Location: clientes");
+			if ($result==1) {
+				$_SESSION['message']="Registrado Exitosamente";
+			}else{
+				$_SESSION['message_error']=$result;
+			}
+			header("Location: clientes");
 		}
 		function readAll(){
 			$result = $this->master->selectAll($this->tableName);
