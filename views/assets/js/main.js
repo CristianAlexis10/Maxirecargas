@@ -236,3 +236,16 @@ function enable(num_doc,contra){
     $('#registrar').attr('disabled',false);
   }
 }
+
+$("input[name='checkcliente']").change(function(){
+      if($(this).prop("checked")){
+        $("#module-cliente .wrap--perms").find("input").removeAttr("disabled")
+        $(".wrap--perms").toggleClass("perms--hide")
+      }else{
+        $(".wrap--perms").toggleClass("perms--hide")
+        $("#module-cliente .wrap--perms").find("input").attr("disabled",true)
+        $("#module-cliente .wrap--perms").find("input").attr("checked",false)
+      }
+
+
+});
