@@ -4,7 +4,6 @@
 	</div>
 	<div id="tabs">
 		  <ul>
-
 		  <?php
 		  	//permisos-permit de scope.navigator
 		  	$modulo = 'clientes';
@@ -48,11 +47,7 @@
 		    	<form class="frmCustomers" action="guardar-cliente" method="post" enctype="multipart/form-data">
 		    		 <div class="form-group-liner">
 			                <label for="tip_doc" class="label--liner">Tipo de Documento:</label>
-			               <select name="data[]" id="tip_doc" class="input--liner"  required>
-			               	<?php foreach ($this->master->selectAll('tipo_documento') as $row) {?>
-			               		<option value="<?php echo $row['id_tipo_documento']?>"><?php echo $row['tip_doc_nombre']?></option>
-			               	<?php } ?>
-			               </select>
+			               <select name="data[]" id="tip_doc" class="input--liner"  required></select>
 			           </div>
 		    		 <div class="form-group-liner">
 			                <label for="numDoc" class="label--liner">Numero de Documento:</label>
@@ -85,24 +80,8 @@
 			            </div>
 		    		 <div class="form-group">
 			                <label for="cuidad" class="required">Ciudad:</label>
-			               <select name="data[]"  id="cuidad" required>
-			               	<?php foreach ($this->master->selectAll('ciudad') as $row) {?>
-			               		<option value="<?php echo $row['id_ciudad']?>"><?php echo $row['ciu_nombre']?></option>
-			               	<?php } ?>
-			               </select>
+			               <select name="data[]"  id="cuidad" required> </select>
 			            </div>
-						<!-- <div class="form-group-liner">
-						   <label for="dir" class="label--liner">Dirección:</label>
-						   <input type="texto" name="data[]" id="dir" class="input--liner" required>
-					   </div> -->
-			             <!-- <div class="form-group-liner">
-			                <label for="dir" class="label--liner">Dirección:</label>
-			                <input type="text" name="data[]" id="dir" class="input--liner" required>
-			            </div> -->
-			             <!-- <div class="form-group-liner">
-			                <label for="cel" class="label--liner">Celular:</label>
-			                <input type="number" name="data[]" id="cel" class="input--liner" required>
-			            </div> -->
 			             <div class="form-group-liner">
 			                <label for="fecha_naci" class="required">Fecha de Nacimiento:</label>
 			                <input type="date" name="data[]" id="fecha_naci" class="input--liner" required>
@@ -116,11 +95,7 @@
 			            </div>
 		    		 <div class="form-group">
 			                <label for="tipo_usu" class="required" >Tipo de Usuario:</label>
-			               <select name="data[]"  id="tipo_usu" required>
-			               	<?php foreach ($this->master->selectAll('tipo_usuario') as $row) {?>
-			               		<option value="<?php echo $row['tip_usu_codigo']?>"><?php echo $row['tip_usu_rol']?></option>
-			               	<?php } ?>
-			               </select>
+			               <select name="data[]"  id="tipo_usu" required></select>
 			            </div>
 			            <!-- <div class="frm-bussiness">
 			            	<div class="form-group-liner">

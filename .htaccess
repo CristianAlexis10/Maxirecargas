@@ -1,5 +1,7 @@
 RewriteEngine on
 
+
+
 #COTIZACION
 RewriteRule ^cotizacion$ index.php?controller=quotation
 

@@ -8,5 +8,6 @@
    <script src="views/assets/lib/parsley/parsley.min.js"></script>
    <script src="views/assets/lib/parsley/es.js"></script>
    <script src="views/assets/js/main.js"></script>
+   <script src="views/assets/js/config.js"></script>
     </body>
 </html>
