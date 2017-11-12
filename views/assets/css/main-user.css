@@ -7,6 +7,7 @@
   width: 100%;
   height: 100vh;
   display: flex;
+
 }
 
 .container.one{
@@ -242,6 +243,9 @@ transform: translateY(-5px);
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: url("../image/ilustracion.jpg");
+  background-size: auto;
+
 }
 .container.two .section--one{
   width: 100%;
