@@ -37,3 +37,14 @@ if (document.getElementById('tip_doc')) {
         }
     });
 }
+
+if(document.getElementById('sexo')){
+  $.ajax({
+    url: "",
+    type:"POST",
+    dataType:'json',
+    success: function(result){
+      var selector = document.getElementById('sexo')
+    }
+  })
+}

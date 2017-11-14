@@ -237,6 +237,7 @@ function enable(num_doc,contra){
   }
 }
 
+// settings
 $("input[name='checkcliente']").change(function(){
       if($(this).prop("checked")){
         $("#module-cliente .wrap--perms").find("input").removeAttr("disabled")
@@ -246,6 +247,4 @@ $("input[name='checkcliente']").change(function(){
         $("#module-cliente .wrap--perms").find("input").attr("disabled",true)
         $("#module-cliente .wrap--perms").find("input").attr("checked",false)
       }
-
-
 });

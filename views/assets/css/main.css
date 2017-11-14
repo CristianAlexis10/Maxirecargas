@@ -405,6 +405,7 @@ align-items: center;
 .mudules.orders.detail .wrap--btns li:hover{
   color: #35a4dd;
 }
+/*settings*/
 
 .config--form .wrap--chmodule input[type="checkbox"] {
 	position: absolute;

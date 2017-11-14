@@ -44,77 +44,78 @@
 		  <?php } ?>
 		 <?php if ($crud[0]==true) {?>
 		  <div id="tabs-1">
-		    	<form class="frmCustomers" action="guardar-cliente" method="post" enctype="multipart/form-data">
+		    	<!-- <form class="frmCustomers" action="guardar-cliente" method="post" enctype="multipart/form-data"> -->
+					<form>
 		    		 <div class="form-group-liner">
 			                <label for="tip_doc" class="label--liner">Tipo de Documento:</label>
-			               <select name="data[]" id="tip_doc" class="input--liner"  required></select>
+			               <select name="dataCl" id="tip_doc" class="input--liner"  required></select>
 			           </div>
 		    		 <div class="form-group-liner">
 			                <label for="numDoc" class="label--liner">Numero de Documento:</label>
-			                <input type="number" name="data[]" id="numDoc" class="input--liner" required>
+			                <input type="number" name="dataCl" id="numDoc" class="input--liner" required>
 			            </div>
 			            <div id="answer-user"></div>
 			             <div class="form-group-liner">
 			                <label for="priNom" class="label--liner">Primer Nombre:</label>
-			                <input type="text" name="data[]" id="priNom" class="input--liner"  required>
+			                <input type="text" name="dataCl" id="priNom" class="input--liner"  required>
 			            </div>
 			             <!-- <div class="form-group-liner">
 			                <label for="segNom" class="label--liner">Segundo Nombre:</label>
-			                <input type="text" name="data[]" id="segNom" class="input--liner"  required>
+			                <input type="text" name="dataCl" id="segNom" class="input--liner"  required>
 			            </div> -->
 			           <div class="form-group-liner">
 			                <label for="priApe" class="label--liner">Primer Apellido:</label>
-			                <input type="text" name="data[]" id="priApe" class="input--liner" required>
+			                <input type="text" name="dataCl" id="priApe" class="input--liner" required>
 			            </div>
 			             <!-- <div class="form-group-liner">
 			                <label for="segApe"class="label--liner" >Segundo Apellido:</label>
-			                <input type="text" name="data[]" id="segApe" class="input--liner" required>
+			                <input type="text" name="dataCl" id="segApe" class="input--liner" required>
 			            </div> -->
 			             <div class="form-group-liner">
 			                <label for="correo" class="label--liner">Correo:</label>
-			                <input type="email" name="data[]" id="correo" class="input--liner" required>
+			                <input type="email" name="dataCl" id="correo" class="input--liner" required>
 			            </div>
 			             <div class="form-group-liner">
 			                <label for="tel" class="label--liner">Telefono:</label>
-			                <input type="number" name="data[]" id="tel" class="input--liner" required>
+			                <input type="number" name="dataCl" id="tel" class="input--liner" required>
 			            </div>
 		    		 <div class="form-group">
 			                <label for="cuidad" class="required">Ciudad:</label>
-			               <select name="data[]"  id="cuidad" required> </select>
+			               <select name="dataCl"  id="cuidad" required> </select>
 			            </div>
 			             <div class="form-group-liner">
 			                <label for="fecha_naci" class="required">Fecha de Nacimiento:</label>
-			                <input type="date" name="data[]" id="fecha_naci" class="input--liner" required>
+			                <input type="date" name="dataCl" id="fecha_naci" class="input--liner" required>
 			            </div>
 			            <div class="form-group">
 			                <label for="sexo" class="required">Sexo:</label>
-			               <select name="data[]"  id="sexo" required>
+			               <select name="dataCl"  id="sexo" required>
 							   <option value="femenino">Femenino</option>
    			               	<option value="masculino">Masculino</option>
 			               </select>
 			            </div>
 		    		 <div class="form-group">
 			                <label for="tipo_usu" class="required" >Tipo de Usuario:</label>
-			               <select name="data[]"  id="tipo_usu" required></select>
+			               <select name="dataCl"  id="tipo_usu" required></select>
 			            </div>
 			            <!-- <div class="frm-bussiness">
 			            	<div class="form-group-liner">
 						                <label for="nit" class="label--liner">NIT de la empresa:</label>
-						                <input type="number" name="data[]" id="nit" class="input--liner" >
+						                <input type="number" name="dataCl" id="nit" class="input--liner" >
 			            	</div>
 			            	<div class="form-group-liner">
 						                <label for="cargo" class="label--liner">Cargo:</label>
-						                <input type="number" name="data[]" id="cargo" class="input--liner" >
+						                <input type="number" name="dataCl" id="cargo" class="input--liner" >
 			            	</div>
 			            </div> -->
 			             <div class="form-group-liner">
 			                <label for="contra" class="label--liner">Contraseña:</label>
-			                <input type="password" name="data[]" id="contra" class="input--liner" required>
+			                <input type="password" name="dataCl" id="contra" class="input--liner" required>
 			            </div>
 			            <div class="answer"></div>
 			             <div class="form-group-liner">
 			                <label for="rep_contra" class="label--liner">Repetir Contraseña:</label>
-			                <input type="password" name="data[]" id="rep_contra" class="input--liner" required disabled>
+			                <input type="password" name="dataCl" id="rep_contra" class="input--liner" required disabled>
 			            </div>
 			            <div class="answer2"></div>
 			             <!-- <div class="form-group">
