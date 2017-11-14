@@ -10,72 +10,95 @@ $(".input").focusout(function(){
 });
 
 // @user: Cristian Lopera
-
 //SERVICES
-//new
-$("#frmNewService").submit(function(e) {
-    e.preventDefault();
-    if ($(this).parsley().isValid()) {
-            dataJson = [];
-         $("input[name=dataNewService]").each(function(){
-              structure = {}
-              structure = $(this).val();
-              dataJson.push(structure);
-          });
-         dataJson.push($('#des').val());
+    //new-service
+    $("#frmNewService").submit(function(e) {
+        e.preventDefault();
+        if ($(this).parsley().isValid()) {
+                dataJson = [];
+             $("input[name=dataNewService]").each(function(){
+                  structure = {}
+                  structure = $(this).val();
+                  dataJson.push(structure);
+              });
+             dataJson.push($('#des').val());
+                $.ajax({
+                  url: "guardar-servicio",
+                  type: "POST",
+                   dataType:'json',
+                   data: ({data: dataJson}),
+                   success: function(result){
+                    if (result) {
+                      $("#frmNewService").after("<div class='message'>Registrado Exitosamente</div>");
+                    }else{
+                      $("#frmNewService").after("<div class='message'>Ocurrio un error</div>");
+                    }
+                     setTimeout(function(){
+                        $('div.message').remove();
+                      }, 2000);
+                   },
+                   error: function(result){
+                      console.log(result);
+                   }
+                });
+      }
+    });
+    //update-service
+    $("#frmUpdateService").submit(function(e) {
+        e.preventDefault();
+        if ($(this).parsley().isValid()) {
+                dataJson = [];
+             $("input[name=dataUpdateService]").each(function(){
+                  structure = {}
+                  structure = $(this).val();
+                  dataJson.push(structure);
+              });
+             dataJson.push($('#des').val());
+                $.ajax({
+                  url: "guardar-modificacion-servicio",
+                  type: "POST",
+                   dataType:'json',
+                   data: ({data: dataJson}),
+                   success: function(result){
+                    if (result==true) {
+                      $("#frmUpdateService").after("<div class='message'>Actualizado Exitosamente</div>");
+                    }else{
+                      $("#frmUpdateService").after("<div class='message'>Ocurrio un error</div>");
+                    }
+                     setTimeout(function(){
+                        $('div.message').remove();
+                      }, 2000);
+                   },
+                   error: function(result){
+                      console.log(result);
+                   }
+                });
+      }
+    });
+    //delete-service
+    function confirmDelete(value){
+         var ya = false;
+    	if(confirm('¿Eliminar este registro?')){
+            console.log(value);
             $.ajax({
-              url: "guardar-servicio",
-              type: "POST",
-               dataType:'json',
-               data: ({data: dataJson}),
-               success: function(result){
-                if (result) {
-                  $("#frmNewService").after("<div class='message'>Registrado Exitosamente</div>");
-                }else{
-                  $("#frmNewService").after("<div class='message'>Ocurrio un error</div>");
-                }
-                 setTimeout(function(){
-                    $('div.message').remove();
-                  }, 2000);
-               },
-               error: function(result){
-                  console.log(result);
-               }
-            });
-  }
-});
-//update
-$("#frmUpdateService").submit(function(e) {
-    e.preventDefault();
-    if ($(this).parsley().isValid()) {
-            dataJson = [];
-         $("input[name=dataUpdateService]").each(function(){
-              structure = {}
-              structure = $(this).val();
-              dataJson.push(structure);
-          });
-         dataJson.push($('#des').val());
-            $.ajax({
-              url: "guardar-modificacion-servicio",
-              type: "POST",
-               dataType:'json',
-               data: ({data: dataJson}),
-               success: function(result){
-                if (result==true) {
-                  $("#frmUpdateService").after("<div class='message'>Actualizado Exitosamente</div>");
-                }else{
-                  $("#frmUpdateService").after("<div class='message'>Ocurrio un error</div>");
-                }
-                 setTimeout(function(){
-                    $('div.message').remove();
-                  }, 2000);
-               },
-               error: function(result){
-                  console.log(result);
-               }
-            });
-  }
-});
+    	      url: 'eliminar-servicio',
+    	      type:'post',
+    	      dataType:'json',
+    	      data:'data='+value,
+    	  }).done(function(response){
+              console.log(response);
+              var ya = true;
+              $('#dataTipSer').load('index.php?controller=datatables&a=dataTableServices');
+              // $('#dataTipSer').ajax.reload();
+    	  });
+          if (ya==true) {
+
+          }
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
 
 // animacion de los inputs
 
@@ -98,13 +121,7 @@ $(".input--liner").focusout(function(){
  $("#dataGrid1").DataTable();
 
  $(".datatable").DataTable();
-function confirmDelete(){
-	if(confirm('¿Eliminar este registro?')){
-		return true;
-	}else{
-		return false;
-	}
-}
+
 $(".frm-bussiness").hide();
 
 $('#tipo_usu').change(function(){

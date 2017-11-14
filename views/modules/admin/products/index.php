@@ -146,28 +146,9 @@
 					<i class="fa fa-plus" aria-hidden="true"></i>
 		  		 <a href="nuevo-servicio">Nuevo Servicio</a>
 		  	</div>
-		  	<table class="datatable">
-            			<thead>
-                				<tr>
-                    					<th>Nombre</th>
-                    					<th>Descripcion</th>
-                    					<th>Acciones</th>
-                				</tr>
-           			 </thead>
-            			<tbody>
-            				<?php foreach ($this->master->selectAll('tipo_servicio') as $row) {?>
-                   				 <tr>
-                       				 <td><?php echo $row['tip_ser_nombre'];?></td>
-                        				<td><?php echo $row['tip_ser_descripcion'];?></td>
-				                       <td>
-				                       	<a href="modificar-servicio-<?php echo rtrim(strtr(base64_encode($row['Tip_ser_cod']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
-				                       	<a href="eliminar-servicio-<?php echo rtrim(strtr(base64_encode($row['Tip_ser_cod']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-				                       </td>
-                  				  </tr>
 
-            				<?php	} ?>
-            			</tbody>
-      			  </table>
+            	<?php require_once "views/modules/config/datatables/datatable-services.php"; ?>
+
 		  </div>
 
 	</div>

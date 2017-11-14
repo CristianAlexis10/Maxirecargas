@@ -39,7 +39,7 @@ RewriteRule ^eliminar-cliente-(\w+)$ index.php?controller=customers&a=delete&dat
 #SERVICIOS
 RewriteRule ^nuevo-servicio$ index.php?controller=services
 RewriteRule ^guardar-servicio$ index.php?controller=services&a=newRegister
-RewriteRule ^eliminar-servicio-(\w+)$ index.php?controller=services&a=delete&data=$1
+RewriteRule ^eliminar-servicio$ index.php?controller=services&a=delete
 RewriteRule ^modificar-servicio-(\w+)$ index.php?controller=services&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-servicio$ index.php?controller=services&a=update
 

@@ -55,18 +55,18 @@ $("#form--login").submit(function(e) {
 });
 
 // dasboard nuevo cliente
-dataJson=[];
-$(input[name="dataCl"]).each(function(){
-  structure={}
-  structure= $(this).val();
-  dataJson.push(structure);
-});
-$.ajax({
-  url:"",
-  type ="POST",
-  dataType ='json',
-  data=({customer:dataJson}),
-  success: function(result) {
-    $("form").after(result);
-  }
-})
+// dataJson=[];
+// $(input[name="dataCl"]).each(function(){
+//   structure={}
+//   structure= $(this).val();
+//   dataJson.push(structure);
+// });
+// $.ajax({
+//   url:"",
+//   type ="POST",
+//   dataType ='json',
+//   data=({customer:dataJson}),
+//   success: function(result) {
+//     $("form").after(result);
+//   }
+// })
