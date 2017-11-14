@@ -2,14 +2,14 @@
 	<div class="title">
 		<p>NUEVA CATEGORIA</p>
 	</div>
-		    	<form class="form Services" action="guardar-categoria" method="post" >
+		    	<form class="form Services" id="frmNewCategorie"  >
 		    		 <div class="form-group">
 			                <label for="nombre" class="required">Nombre:</label>
-			                <input type="text" name="data[]" id="nombre" placeholder="Ingrese el nombre del servicio" required>
+			                <input type="text" name="dataNewCate" id="nombre" placeholder="Ingrese el nombre del servicio" required>
 			            </div>
 			             <div class="form-group">
 			                <label for="des" class="required">Descripción:</label>
-			                <textarea name="data[]" id="des"></textarea>
+			                <textarea  id="desCat"></textarea>
 			            </div>
 
 			            <div class="form-group">

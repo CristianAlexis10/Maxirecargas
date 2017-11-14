@@ -2,14 +2,14 @@
 	<div class="title">
 		<p>NUEVA MARCA</p>
 	</div>
-		    	<form class="form Services" action="guardar-marca" method="post"  enctype="multipart/form-data" >
+		    	<form class="form Services" id="frmNewMar" enctype="multipart/form-data" >
 		    		 <div class="form-group">
 			                <label for="nombre" class="required">Nombre:</label>
-			                <input type="text" name="data[]" id="nombre" placeholder="Ingrese el nombre del servicio" required>
+			                <input type="text" name="dataNewMark" id="nombre" placeholder="Ingrese el nombre del servicio" required>
 			            </div>
 			             <div class="form-group">
 			                <label for="des" class="required">Descripción:</label>
-			                <textarea name="data[]" id="des"></textarea>
+			                <textarea  id="desMar"></textarea>
 			            </div>
 
 			             <!-- <div class="form-group">

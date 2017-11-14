@@ -24,11 +24,10 @@
 			$data = $_POST['data'];
 			$result = $this->master->insert($this->tableName,$data,$this->insertException);
 			if ($result==1) {
-				$_SESSION['message']="Registrado Exitosamente";
+				echo json_encode("Registrado Exitosamente");
 			}else{
-				$_SESSION['message_error']=$result;
+				echo json_encode($result);
 			}
-			header("Location: productos");
 		}
 		function readAll(){
 			$result = $this->master->selectAll($this->tableName);
@@ -50,14 +49,13 @@
 			header("Location: productos");
 		}
 		function delete(){
-			$data = base64_decode($_GET['data']);
+			$data = $_POST['data'];
 			$result = $this->master->delete($this->tableName,array('tip_pro_codigo',$data));
 			if ($result==1) {
-				$_SESSION['message']="Eliminado Exitosamente";
+				echo json_encode("Eliminado Exitosamente");
 			}else{
-				$_SESSION['message_error']=$result;
+				echo json_encode($result);
 			}
-			header("Location: productos");
 		}
 	}
 ?>

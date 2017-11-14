@@ -13,7 +13,7 @@
                             <td><?php echo $row['tip_ser_descripcion'];?></td>
                            <td>
                             <a href="modificar-servicio-<?php echo rtrim(strtr(base64_encode($row['Tip_ser_cod']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
-                            <a href="#" onclick="return confirmDelete(
+                            <a href="#" onclick="return confirmDeleteService(
                             <?php
                          echo $row['Tip_ser_cod'];
                             ?>)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>

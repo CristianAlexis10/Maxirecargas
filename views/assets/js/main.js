@@ -9,7 +9,6 @@ $(".input").focusout(function(){
     $(this).parent().removeClass("porta");
 });
 
-// @user: Cristian Lopera
 //SERVICES
     //new-service
     $("#frmNewService").submit(function(e) {
@@ -76,10 +75,9 @@ $(".input").focusout(function(){
       }
     });
     //delete-service
-    function confirmDelete(value){
+    function confirmDeleteService(value){
          var ya = false;
     	if(confirm('¿Eliminar este registro?')){
-            console.log(value);
             $.ajax({
     	      url: 'eliminar-servicio',
     	      type:'post',
@@ -89,16 +87,165 @@ $(".input").focusout(function(){
               console.log(response);
               var ya = true;
               $('#dataTipSer').load('index.php?controller=datatables&a=dataTableServices');
-              // $('#dataTipSer').ajax.reload();
+              $("#dataTipSer").after("<div class='message'>"+response+"</div>");
+              setTimeout(function(){
+                 $('div.message').remove();
+               }, 2000);
     	  });
-          if (ya==true) {
-
-          }
     		return true;
     	}else{
     		return false;
     	}
     }
+
+
+    //MARCAS
+        //new-mark
+        $("#frmNewMar").submit(function(e) {
+            e.preventDefault();
+            if ($(this).parsley().isValid()) {
+                    dataJson = [];
+                 $("input[name=dataNewMark]").each(function(){
+                      structure = {}
+                      structure = $(this).val();
+                      dataJson.push(structure);
+                  });
+                 dataJson.push($('#desMar').val());
+                    $.ajax({
+                      url: "guardar-marca",
+                      type: "POST",
+                       dataType:'json',
+                       data: ({data: dataJson}),
+                       success: function(result){
+                        if (result) {
+                          $("#frmNewMar").after("<div class='message'>Registrado Exitosamente</div>");
+                        }else{
+                          $("#frmNewMar").after("<div class='message'>Ocurrio un error</div>");
+                        }
+                         setTimeout(function(){
+                            $('div.message').remove();
+                          }, 2000);
+                       },
+                       error: function(result){
+                          console.log(result);
+                       }
+                    });
+          }
+        });
+        //delete-mark
+        function confirmDeleteMark(value){
+        	if(confirm('¿Eliminar este registro?')){
+                $.ajax({
+        	      url: 'eliminar-marca',
+        	      type:'post',
+        	      dataType:'json',
+        	      data:'data='+value,
+        	  }).done(function(response){
+                  console.log(response);
+                  $('#datamark').load('index.php?controller=datatables&a=dataTableTrademark');
+                  $("#datamark").after("<div class='message'>"+response+"</div>");
+                  setTimeout(function(){
+                     $('div.message').remove();
+                   }, 2000);
+        	  });
+        		return true;
+        	}else{
+        		return false;
+        	}
+        }
+        //update-mark
+        $("#frmUpdateMark").submit(function(e) {
+            e.preventDefault();
+            if ($(this).parsley().isValid()) {
+                    dataJson = [];
+                 $("input[name=dataUpdateMark]").each(function(){
+                      structure = {}
+                      structure = $(this).val();
+                      dataJson.push(structure);
+                  });
+                 dataJson.push($('#desMark').val());
+                    $.ajax({
+                      url: "guardar-modificacion-marca",
+                      type: "POST",
+                       dataType:'json',
+                       data: ({data: dataJson}),
+                       success: function(result){
+                        if (result==true) {
+                          $("#frmUpdateMark").after("<div class='message'>"+result+"</div>");
+                        }else{
+                          $("#frmUpdateMark").after("<div class='message'>"+result+"</div>");
+                        }
+                         setTimeout(function(){
+                            $('div.message').remove();
+                          }, 2000);
+                       },
+                       error: function(result){
+                          console.log(result);
+                       }
+                    });
+          }
+        });
+
+//Categories
+            //new-mark
+            $("#frmNewCategorie").submit(function(e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                        dataJson = [];
+                     $("input[name=dataNewCate]").each(function(){
+                          structure = {}
+                          structure = $(this).val();
+                          dataJson.push(structure);
+                      });
+                     dataJson.push($('#desCat').val());
+                        $.ajax({
+                          url: "guardar-categoria",
+                          type: "POST",
+                           dataType:'json',
+                           data: ({data: dataJson}),
+                           success: function(result){
+                            if (result) {
+                              $("#dataTipSer").after("<div class='message'>"+result+"</div>");
+                            }else{
+                              $("#dataTipSer").after("<div class='message'>"+result+"</div>");
+                            }
+                             setTimeout(function(){
+                                $('div.message').remove();
+                              }, 2000);
+                           },
+                           error: function(result){
+                              console.log(result);
+                           }
+                        });
+              }
+            });
+
+            //delete-categories
+            function confirmDeleteCategories(value){
+                if(confirm('¿Eliminar este registro?')){
+                    $.ajax({
+                      url: 'eliminar-categoria',
+                      type:'post',
+                      dataType:'json',
+                      data:'data='+value,
+                  }).done(function(response){
+                      console.log(response);
+                      $('#dataCategories').load('index.php?controller=datatables&a=dataTableCategories');
+                      $("#dataCategories").after("<div class='message'>"+response+"</div>");
+                      setTimeout(function(){
+                         $('div.message').remove();
+                       }, 2000);
+                  });
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+
+
+
+
 
 // animacion de los inputs
 
