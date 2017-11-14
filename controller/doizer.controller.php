@@ -179,7 +179,18 @@ class DoizerController{
 		}
 		return $result;
 	}
-
+//ERRORES EN CONSULTAS
+	function knowError($code){
+		switch ($code) {
+			case '23000':
+				return 'No es posible eliminar ya que tienes datos relacionados con este registro';
+				break;
+			
+			default:
+				'ocurrio un error';
+				break;
+		}
+	}
 
 }
 

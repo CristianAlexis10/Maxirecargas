@@ -56,12 +56,13 @@
 		function delete(){
 			$data = base64_decode($_GET['data']);
 			$result = $this->master->delete($this->tableName,array('mar_codigo',$data));
-			if ($result==1) {
-				$_SESSION['message']="Eliminado Exitosamente";
-			}else{
-				$_SESSION['message_error']=$result;
-			}
-			header("Location: productos");
+			die($result);
+			// if ($result==1) {
+			// 	$_SESSION['message']="Eliminado Exitosamente";
+			// }else{
+			// 	$_SESSION['message_error']=$result;
+			// }
+			// header("Location: productos");
 		}
 	}
 ?>
