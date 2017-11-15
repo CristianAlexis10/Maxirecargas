@@ -23,11 +23,16 @@
 		  <?php } ?>
 		 <?php if ($crud[0]==true) {?>
 		  <div id="tabs-1">
-		    	<!-- <form class="frmCustomers" action="guardar-cliente" method="post" enctype="multipart/form-data"> -->
+		    	
 					<form>
+						<div class="form-group">
+								<label for="tipo_usu" class="select" >Tipo de Usuario:</label>
+								<select name="dataCl"  id="tipo_usu" required></select>
+						</div>
+
 		    		 <div class="form-group-liner">
-			                <label for="tip_doc" class="label--liner">Tipo de Documento:</label>
-			               <select name="dataCl" id="tip_doc" class="input--liner"  required></select>
+			                <label for="tip_doc" class="select">Tipo de Documento:</label>
+			               <select name="dataCl" id="tip_doc"   required></select>
 			           </div>
 		    		 <div class="form-group-liner">
 			                <label for="numDoc" class="label--liner">Numero de Documento:</label>
@@ -38,18 +43,12 @@
 			                <label for="priNom" class="label--liner">Primer Nombre:</label>
 			                <input type="text" name="dataCl" id="priNom" class="input--liner"  required>
 			            </div>
-			             <!-- <div class="form-group-liner">
-			                <label for="segNom" class="label--liner">Segundo Nombre:</label>
-			                <input type="text" name="dataCl" id="segNom" class="input--liner"  required>
-			            </div> -->
+
 			           <div class="form-group-liner">
 			                <label for="priApe" class="label--liner">Primer Apellido:</label>
 			                <input type="text" name="dataCl" id="priApe" class="input--liner" required>
 			            </div>
-			             <!-- <div class="form-group-liner">
-			                <label for="segApe"class="label--liner" >Segundo Apellido:</label>
-			                <input type="text" name="dataCl" id="segApe" class="input--liner" required>
-			            </div> -->
+
 			             <div class="form-group-liner">
 			                <label for="correo" class="label--liner">Correo:</label>
 			                <input type="email" name="dataCl" id="correo" class="input--liner" required>
@@ -77,16 +76,7 @@
 			                <label for="tipo_usu" class="required" >Tipo de Usuario:</label>
 			               <select name="dataCl"  id="tipo_usu" required></select>
 			            </div>
-			            <!-- <div class="frm-bussiness">
-			            	<div class="form-group-liner">
-						                <label for="nit" class="label--liner">NIT de la empresa:</label>
-						                <input type="number" name="dataCl" id="nit" class="input--liner" >
-			            	</div>
-			            	<div class="form-group-liner">
-						                <label for="cargo" class="label--liner">Cargo:</label>
-						                <input type="number" name="dataCl" id="cargo" class="input--liner" >
-			            	</div>
-			            </div> -->
+
 			             <div class="form-group-liner">
 			                <label for="contra" class="label--liner">Contraseña:</label>
 			                <input type="password" name="dataCl" id="contra" class="input--liner" required>
@@ -97,10 +87,7 @@
 			                <input type="password" name="dataCl" id="rep_contra" class="input--liner" required disabled>
 			            </div>
 			            <div class="answer2"></div>
-			             <!-- <div class="form-group">
-			                <label for="rep_contra" class="required">Foto de perfil:</label>
-			                <input type="file" name="file" >
-			            </div> -->
+
 			            <div class="form-group">
 			                <button class="btn" disabled id="registrar">Registrar Cliente</button>
 			            </div>

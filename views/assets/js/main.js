@@ -412,3 +412,7 @@ $("input[name='checkcliente']").change(function(){
         $("#module-cliente .wrap--perms").find("input").attr("checked",false)
       }
 });
+
+// new customers
+var valor = document.getElementById('tipo_usu').value;
+console.log(valor);
