@@ -9,73 +9,243 @@ $(".input").focusout(function(){
     $(this).parent().removeClass("porta");
 });
 
-// @user: Cristian Lopera
-
 //SERVICES
-//new
-$("#frmNewService").submit(function(e) {
-    e.preventDefault();
-    if ($(this).parsley().isValid()) {
-            dataJson = [];
-         $("input[name=dataNewService]").each(function(){
-              structure = {}
-              structure = $(this).val();
-              dataJson.push(structure);
-          });
-         dataJson.push($('#des').val());
+    //new-service
+    $("#frmNewService").submit(function(e) {
+        e.preventDefault();
+        if ($(this).parsley().isValid()) {
+                dataJson = [];
+             $("input[name=dataNewService]").each(function(){
+                  structure = {}
+                  structure = $(this).val();
+                  dataJson.push(structure);
+              });
+             dataJson.push($('#des').val());
+                $.ajax({
+                  url: "guardar-servicio",
+                  type: "POST",
+                   dataType:'json',
+                   data: ({data: dataJson}),
+                   success: function(result){
+                    if (result) {
+                      $("#frmNewService").after("<div class='message'>Registrado Exitosamente</div>");
+                    }else{
+                      $("#frmNewService").after("<div class='message'>Ocurrio un error</div>");
+                    }
+                     setTimeout(function(){
+                        $('div.message').remove();
+                      }, 2000);
+                   },
+                   error: function(result){
+                      console.log(result);
+                   }
+                });
+      }
+    });
+    //update-service
+    $("#frmUpdateService").submit(function(e) {
+        e.preventDefault();
+        if ($(this).parsley().isValid()) {
+                dataJson = [];
+             $("input[name=dataUpdateService]").each(function(){
+                  structure = {}
+                  structure = $(this).val();
+                  dataJson.push(structure);
+              });
+             dataJson.push($('#des').val());
+                $.ajax({
+                  url: "guardar-modificacion-servicio",
+                  type: "POST",
+                   dataType:'json',
+                   data: ({data: dataJson}),
+                   success: function(result){
+                    if (result==true) {
+                      $("#frmUpdateService").after("<div class='message'>Actualizado Exitosamente</div>");
+                    }else{
+                      $("#frmUpdateService").after("<div class='message'>Ocurrio un error</div>");
+                    }
+                     setTimeout(function(){
+                        $('div.message').remove();
+                      }, 2000);
+                   },
+                   error: function(result){
+                      console.log(result);
+                   }
+                });
+      }
+    });
+    //delete-service
+    function confirmDeleteService(value){
+         var ya = false;
+    	if(confirm('¿Eliminar este registro?')){
             $.ajax({
-              url: "guardar-servicio",
-              type: "POST",
-               dataType:'json',
-               data: ({data: dataJson}),
-               success: function(result){
-                if (result) {
-                  $("#frmNewService").after("<div class='message'>Registrado Exitosamente</div>");
-                }else{
-                  $("#frmNewService").after("<div class='message'>Ocurrio un error</div>");
-                }
-                 setTimeout(function(){
-                    $('div.message').remove();
-                  }, 2000);
-               },
-               error: function(result){
-                  console.log(result);
-               }
+    	      url: 'eliminar-servicio',
+    	      type:'post',
+    	      dataType:'json',
+    	      data:'data='+value,
+    	  }).done(function(response){
+              console.log(response);
+              var ya = true;
+              $('#dataTipSer').load('index.php?controller=datatables&a=dataTableServices');
+              $("#dataTipSer").after("<div class='message'>"+response+"</div>");
+              setTimeout(function(){
+                 $('div.message').remove();
+               }, 2000);
+    	  });
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+
+
+    //MARCAS
+        //new-mark
+        $("#frmNewMar").submit(function(e) {
+            e.preventDefault();
+            if ($(this).parsley().isValid()) {
+                    dataJson = [];
+                 $("input[name=dataNewMark]").each(function(){
+                      structure = {}
+                      structure = $(this).val();
+                      dataJson.push(structure);
+                  });
+                 dataJson.push($('#desMar').val());
+                    $.ajax({
+                      url: "guardar-marca",
+                      type: "POST",
+                       dataType:'json',
+                       data: ({data: dataJson}),
+                       success: function(result){
+                        if (result) {
+                          $("#frmNewMar").after("<div class='message'>Registrado Exitosamente</div>");
+                        }else{
+                          $("#frmNewMar").after("<div class='message'>Ocurrio un error</div>");
+                        }
+                         setTimeout(function(){
+                            $('div.message').remove();
+                          }, 2000);
+                       },
+                       error: function(result){
+                          console.log(result);
+                       }
+                    });
+          }
+        });
+        //delete-mark
+        function confirmDeleteMark(value){
+        	if(confirm('¿Eliminar este registro?')){
+                $.ajax({
+        	      url: 'eliminar-marca',
+        	      type:'post',
+        	      dataType:'json',
+        	      data:'data='+value,
+        	  }).done(function(response){
+                  console.log(response);
+                  $('#datamark').load('index.php?controller=datatables&a=dataTableTrademark');
+                  $("#datamark").after("<div class='message'>"+response+"</div>");
+                  setTimeout(function(){
+                     $('div.message').remove();
+                   }, 2000);
+        	  });
+        		return true;
+        	}else{
+        		return false;
+        	}
+        }
+        //update-mark
+        $("#frmUpdateMark").submit(function(e) {
+            e.preventDefault();
+            if ($(this).parsley().isValid()) {
+                    dataJson = [];
+                 $("input[name=dataUpdateMark]").each(function(){
+                      structure = {}
+                      structure = $(this).val();
+                      dataJson.push(structure);
+                  });
+                 dataJson.push($('#desMark').val());
+                    $.ajax({
+                      url: "guardar-modificacion-marca",
+                      type: "POST",
+                       dataType:'json',
+                       data: ({data: dataJson}),
+                       success: function(result){
+                        if (result==true) {
+                          $("#frmUpdateMark").after("<div class='message'>"+result+"</div>");
+                        }else{
+                          $("#frmUpdateMark").after("<div class='message'>"+result+"</div>");
+                        }
+                         setTimeout(function(){
+                            $('div.message').remove();
+                          }, 2000);
+                       },
+                       error: function(result){
+                          console.log(result);
+                       }
+                    });
+          }
+        });
+
+//Categories
+            //new-mark
+            $("#frmNewCategorie").submit(function(e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                        dataJson = [];
+                     $("input[name=dataNewCate]").each(function(){
+                          structure = {}
+                          structure = $(this).val();
+                          dataJson.push(structure);
+                      });
+                     dataJson.push($('#desCat').val());
+                        $.ajax({
+                          url: "guardar-categoria",
+                          type: "POST",
+                           dataType:'json',
+                           data: ({data: dataJson}),
+                           success: function(result){
+                            if (result) {
+                              $("#dataTipSer").after("<div class='message'>"+result+"</div>");
+                            }else{
+                              $("#dataTipSer").after("<div class='message'>"+result+"</div>");
+                            }
+                             setTimeout(function(){
+                                $('div.message').remove();
+                              }, 2000);
+                           },
+                           error: function(result){
+                              console.log(result);
+                           }
+                        });
+              }
             });
-  }
-});
-//update
-$("#frmUpdateService").submit(function(e) {
-    e.preventDefault();
-    if ($(this).parsley().isValid()) {
-            dataJson = [];
-         $("input[name=dataUpdateService]").each(function(){
-              structure = {}
-              structure = $(this).val();
-              dataJson.push(structure);
-          });
-         dataJson.push($('#des').val());
-            $.ajax({
-              url: "guardar-modificacion-servicio",
-              type: "POST",
-               dataType:'json',
-               data: ({data: dataJson}),
-               success: function(result){
-                if (result==true) {
-                  $("#frmUpdateService").after("<div class='message'>Actualizado Exitosamente</div>");
+
+            //delete-categories
+            function confirmDeleteCategories(value){
+                if(confirm('¿Eliminar este registro?')){
+                    $.ajax({
+                      url: 'eliminar-categoria',
+                      type:'post',
+                      dataType:'json',
+                      data:'data='+value,
+                  }).done(function(response){
+                      console.log(response);
+                      $('#dataCategories').load('index.php?controller=datatables&a=dataTableCategories');
+                      $("#dataCategories").after("<div class='message'>"+response+"</div>");
+                      setTimeout(function(){
+                         $('div.message').remove();
+                       }, 2000);
+                  });
+                    return true;
                 }else{
-                  $("#frmUpdateService").after("<div class='message'>Ocurrio un error</div>");
+                    return false;
                 }
-                 setTimeout(function(){
-                    $('div.message').remove();
-                  }, 2000);
-               },
-               error: function(result){
-                  console.log(result);
-               }
-            });
-  }
-});
+            }
+
+
+
+
+
 
 // animacion de los inputs
 
@@ -98,13 +268,7 @@ $(".input--liner").focusout(function(){
  $("#dataGrid1").DataTable();
 
  $(".datatable").DataTable();
-function confirmDelete(){
-	if(confirm('¿Eliminar este registro?')){
-		return true;
-	}else{
-		return false;
-	}
-}
+
 $(".frm-bussiness").hide();
 
 $('#tipo_usu').change(function(){
@@ -248,3 +412,7 @@ $("input[name='checkcliente']").change(function(){
         $("#module-cliente .wrap--perms").find("input").attr("checked",false)
       }
 });
+
+// new customers
+var valor = document.getElementById('tipo_usu').value;
+console.log(valor);

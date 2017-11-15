@@ -39,14 +39,14 @@ RewriteRule ^eliminar-cliente-(\w+)$ index.php?controller=customers&a=delete&dat
 #SERVICIOS
 RewriteRule ^nuevo-servicio$ index.php?controller=services
 RewriteRule ^guardar-servicio$ index.php?controller=services&a=newRegister
-RewriteRule ^eliminar-servicio-(\w+)$ index.php?controller=services&a=delete&data=$1
+RewriteRule ^eliminar-servicio$ index.php?controller=services&a=delete
 RewriteRule ^modificar-servicio-(\w+)$ index.php?controller=services&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-servicio$ index.php?controller=services&a=update
 
  #MARCAS
 RewriteRule ^nueva-marca$ index.php?controller=trademark
 RewriteRule ^guardar-marca$ index.php?controller=trademark&a=newRegister
-RewriteRule ^eliminar-marca-(\w+)$ index.php?controller=trademark&a=delete&data=$1
+RewriteRule ^eliminar-marca$ index.php?controller=trademark&a=delete
 RewriteRule ^modificar-marca-(\w+)$ index.php?controller=trademark&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-marca$ index.php?controller=trademark&a=update
 
@@ -54,7 +54,7 @@ RewriteRule ^guardar-modificacion-marca$ index.php?controller=trademark&a=update
  RewriteRule ^nueva-categoria$ index.php?controller=products&a=newCategory
 RewriteRule ^nueva-categoria$ index.php?controller=category
 RewriteRule ^guardar-categoria$ index.php?controller=category&a=newRegister
-RewriteRule ^eliminar-categoria-(\w+)$ index.php?controller=category&a=delete&data=$1
+RewriteRule ^eliminar-categoria$ index.php?controller=category&a=delete
 RewriteRule ^modificar-categoria-(\w+)$ index.php?controller=category&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-categoria$ index.php?controller=category&a=update
 

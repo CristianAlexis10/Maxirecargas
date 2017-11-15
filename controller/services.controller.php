@@ -20,6 +20,7 @@
 			require_once "views/modules/admin/products/services/update.php";
 			require_once "views/include/scope.footer.php";
 		}
+	
 		function newRegister(){
 			$data = $_POST['data'];
 			$data[]=date('Y-m-d');
@@ -52,14 +53,14 @@
 			}
 		}
 		function delete(){
-			$data = base64_decode($_GET['data']);
+			$data = $_POST['data'];
 			$result = $this->master->delete($this->tableName,array('Tip_ser_cod',$data));
 			if ($result==1) {
-				$_SESSION['message']="Eliminado Exitosamente";
+				echo json_encode('Eliminado Exitosamente');
 			}else{
-				$_SESSION['message_error']=$result;
+				echo json_encode($result);
 			}
-			header("Location: productos");
+
 		}
 	}
 ?>
