@@ -414,5 +414,16 @@ $("input[name='checkcliente']").change(function(){
 });
 
 // new customers
-var valor = document.getElementById('tipo_usu').value;
-console.log(valor);
+$('#tipo_usu').change(function(){
+  // var valor = document.getElementById('tipo_usu').value;
+var typeUser =$('#tipo_usu').val();
+  if (typeUser ==3) {
+    console.log("yes")
+    $(".customers--normal").toggleClass("normaldes")
+    $(".customers--business").removeClass("customers--business")
+  } else if (typeUser == 1) {
+    $(".customers--normal").removeClass("normaldes")
+    $(".customers--business").toggleClass("putoooo")
+    console.log("maldito");
+  }
+});

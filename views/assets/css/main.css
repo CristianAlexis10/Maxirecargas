@@ -250,7 +250,7 @@ table.dataTable tbody th, table.dataTable tbody td{
   box-shadow: 5px 10px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-.form-group{
+/*.form-group{
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -309,7 +309,16 @@ table.dataTable tbody th, table.dataTable tbody td{
   .mov-label-liner .label--liner{
   font-size: 12px;
   transform: translateY(-5px);
-  }
+  }*/
+
+.customers--business{display: none;}
+.normaldes{display: none;}
+.putoooo{
+  display: none;
+}
+
+
+
 /*LOGIN*/
 .container--login{
   background: url("../image/printer1.jpg");
