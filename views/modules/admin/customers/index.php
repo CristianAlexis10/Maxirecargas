@@ -1,19 +1,20 @@
 <div class="modules customers">
 	<div class="title">
-		<p>CLIENTES</p>
+		<p>USUARIOS</p>
 	</div>
 	<div id="tabs">
 		  <ul>
 		  <?php
 		  	//permisos-permit de scope.navigator
-		  	$modulo = 'clientes';
-			$crud = permisos($modulo,$permit);
+		  	$modulo = 'usuarios';
+				$crud = permisos($modulo,$permit);
 			if ($crud[0]==true) {?>
-		    		<li><a href="#tabs-1">Registrar Clientes</a></li>
+		    		<li><a href="#tabs-1">Registrar Usuario</a></li>
 			<?php }
 			if ($crud[1]==true) { ?>
 		  		  <li><a href="#tabs-2">Clientes Registrados</a></li>
 			<?php } ?>
+						<li><a href="#tabs-3">Empleados Registrados</a></li>
 		  </ul>
 		  <?php
 		  if ($crud[1]==true) {?>
@@ -23,7 +24,6 @@
 		  <?php } ?>
 		 <?php if ($crud[0]==true) {?>
 		  <div id="tabs-1">
-
 					<form>
 						<div class="form-group type--user">
 								<label for="tipo_usu" class="select" >Tipo de Usuario:</label>
@@ -139,13 +139,10 @@
 			                <button class="btn" disabled id="registrar">Registrar Cliente</button>
 			            </div>
 		    	</form>
-
-
-
-
-
-
 		  </div>
+			<div id="tabs-3">
+				
+			</div>
 
 		<?php }  ?>
 	</div>

@@ -344,10 +344,9 @@ table.dataTable tbody th, table.dataTable tbody td{
   transform: translateY(-5px);
   }*/
 
-.customers--business{display: none;}
-.businessaparece{display: block;
-}
-.normaldes{display: none;}
+.customers--business, .normaldes{display: none;}
+.businessaparece{display: block;}
+
 
 
 

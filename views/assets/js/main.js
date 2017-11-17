@@ -469,15 +469,23 @@ $("input[name='checkcolor']").change(function(){
 
 // new customers
 $('#tipo_usu').change(function(){
-var typeUser =$('#tipo_usu').val();
-  if (typeUser ==3) {
-    console.log("yes")
+var typeUser= $('#tipo_usu').val();
+  console.log(typeUser);
+  if (typeUser==3) {
     $(".customers--normal").addClass("normaldes")
-    $(".customers--business").toggleClass("businessaparece")
-  } else if (typeUser == 1) {
+    $(".customers--business").addClass("businessaparece")
+  }else {
     $(".customers--normal").removeClass("normaldes")
-    $(".customers--business").toggleClass("businessaparece")
-
-    console.log("maldito");
+    $(".customers--business").removeClass("businessaparece")
   }
-});
+   // if (typeUser ==3) {
+   //   console.log("yes")
+   //  $(".customers--normal").addClass("normaldes")
+   //  $(".customers--business").toggleClass("businessaparece")
+   // } else{
+   //  $(".customers--normal").removeClass("normaldes")
+   //  $(".customers--business").toggleClass("businessaparece")
+   //
+   //   console.log("maldito");
+   // }
+ });
