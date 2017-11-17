@@ -6,7 +6,7 @@ update: actualizaciones fecha y lo que se actualizo
 
 CONTENT RYLES CSS
 
-1. menu principal .main--nav
+1. menu principal
 2.menu superior .top--nav
 3- modules-orders
 */
@@ -37,37 +37,53 @@ body{
   color: #3d4756;
   position: fixed;
 }
-.main--nav .userProfile--img{
+.main--navdark{
+  max-width: 250px;
+  min-width: 250px;
+  height: 100vh;
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  background: #354052;
+  color: #8f9aac;
+}
+ .userProfile--img{
   width: 80%;
   margin:20px;
 }
 
-.main--nav .userProfile--img img{
+ .userProfile--img img{
   box-sizing: border-box;
+
 }
 
-.main--nav .navigator {
+ .navigator {
  width: 100%;
  margin: auto;
 
 }
 
-.main--nav .navigator li {
+ .navigator li {
   display: flex;
   flex-direction: column;
 }
-.main--nav .navigator li a{
+ .navigator li a{
   transition: all 0.3s ease;
   padding: 20px;
+  text-transform: capitalize;
 
 }
-.main--nav .navigator li a:hover{
+ .navigator li a:hover{
   background: white;
   padding-left: 50px;
   font-size: 20px;
   color: #35a4dd;
 }
-
+.navigatordark li a:hover{
+  background: #242c38;
+  padding-left: 50px;
+  font-size: 20px;
+  color:#8f9aac;
+}
 
 /*2.menu superior .menu--top*/
 
@@ -80,6 +96,14 @@ body{
   height: 60px;
   display: flex;
   background: rgba(187,187,187,0.5);
+}
+.menu--toposcuro{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  background: transparent;
+  border:none;
+  border-bottom: 3px solid #c1c1c1;
 }
 .menu--top .profile{
   width: 80%;
@@ -129,18 +153,18 @@ body{
   align-items: center;
 
 }
-.modules .title{
+ .title{
   width: 100%;
   margin-bottom: 30px;
   display: flex;
   justify-content: center;
 
 }
-.modules .title p{
+ .title p{
   color:grey;
-  font-size: 40px;
-  font-weight: bold;
-  letter-spacing: 20px;
+  font-size: 50px;
+  font-weight: 300;
+
 
 }
 
@@ -183,6 +207,15 @@ padding-left: 8px;
 #tabs .ui-widget-header li a:hover{
 
 }
+/*tabs vertical*/
+.ui-tabs-vertical { width: 100em; }
+ .ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .3em .2em; float: left; width: 12em; background: white}
+ .ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 5px -1px .2em 0; border: 1px solid #35a4dd; outline:none}
+ .ui-tabs-vertical .ui-tabs-nav li a { display:block; padding: 20px;}
+ .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; background:#35a4dd }
+ .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
+
+
 
 /*DATAGRID*/
 /*entries*/
@@ -312,10 +345,10 @@ table.dataTable tbody th, table.dataTable tbody td{
   }*/
 
 .customers--business{display: none;}
-.normaldes{display: none;}
-.putoooo{
-  display: none;
+.businessaparece{display: block;
 }
+.normaldes{display: none;}
+
 
 
 
@@ -416,11 +449,12 @@ align-items: center;
 }
 /*settings*/
 
-.config--form .wrap--chmodule input[type="checkbox"] {
+.config--form .wrap--chmodule input[type="checkbox"],.modo--color input[type="checkbox"] {
 	position: absolute;
 	opacity: 0;
 }
-.config--form input[type="checkbox"].swich + div{
+
+.config--form input[type="checkbox"].swich + div, .modo--color input[type="checkbox"].swich + div{
   vertical-align: middle;
   width: 40px;
   height: 20px;
@@ -434,13 +468,13 @@ align-items: center;
 
 }
 
-.config--form input[type="checkbox"].swich:checked + div{
+.config--form input[type="checkbox"].swich:checked + div, .modo--color input[type="checkbox"].swich:checked + div{
   background-position: 0 0;
   background-color:#35a4dd;
   border: 1px solid rgba(53, 164, 221,1);
   box-shadow: inset 0 0 0 10px rgba(53, 164, 221,1);
 }
-.config--form input[type="checkbox"].swich + div > div{
+.config--form input[type="checkbox"].swich + div > div, .modo--color input[type="checkbox"].swich + div > div{
   float: left;
   width: 18px;
   height: 18px;
@@ -458,7 +492,7 @@ align-items: center;
 
 }
 
-.config--form input[type="checkbox"].swich:checked + div > div{
+.config--form input[type="checkbox"].swich:checked + div > div, .modo--color input[type="checkbox"].swich:checked + div > div{
   transform: translate3d(20px, 0, 0);
   background-color: #ffffff;
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3), 0px 0px 0 1px rgba(8, 80, 172,1);
@@ -478,9 +512,7 @@ align-items: center;
 .wrap--chmodule input + div{
   margin-top: 5px;
   margin-bottom: 10px;
-
 }
-
-.perms--hide{
+.perms--hide, .perms--prod, .perms--pedi, .perms--cot, .perms--ruta{
   display: none;
 }

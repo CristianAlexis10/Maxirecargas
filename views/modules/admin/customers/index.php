@@ -61,7 +61,7 @@
 							</div>
 							<div class="form-group-liner">
 								<label for="fecha_naci" class="required">Fecha de Nacimiento:</label>
-								<input type="date" name="dataCl" id="fecha_naci" class="input--liner" required>
+								<input type="date" name="dataCl" id="fecha_naci" class="input--liner" max="2005-01-01" min="1950-01-01" required>
 							</div>
 							<div class="form-group">
 								<label for="sexo" class="required">Sexo:</label>

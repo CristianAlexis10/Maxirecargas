@@ -259,15 +259,19 @@ $(".input--liner").focusout(function(){
     $(this).parent().removeClass("clr-label-liner");
 });
 
-
+// tabs
  $( function() {
     $( "#tabs" ).tabs();
   } );
-
+  $( function() {
+     $( "#tabsConf" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+     $( "#tabsConf li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+   } );
+// datagrid
  $("#dataGrid").DataTable();
  $("#dataGrid1").DataTable();
-
  $(".datatable").DataTable();
+
 
 $(".frm-bussiness").hide();
 
@@ -412,18 +416,68 @@ $("input[name='checkcliente']").change(function(){
         $("#module-cliente .wrap--perms").find("input").attr("checked",false)
       }
 });
+$("input[name='checkpro']").change(function(){
+      if($(this).prop("checked")){
+        $("#module-producto .wrap--permsprod").find("input").removeAttr("disabled")
+        $(".wrap--permsprod").toggleClass("perms--prod")
+      }else{
+        $(".wrap--permsprod").toggleClass("perms--prod")
+        $("#module-producto .wrap--permsprod").find("input").attr("disabled",true)
+        $("#module-producto .wrap--permsprod").find("input").attr("checked",false)
+      }
+});
+$("input[name='checkpedido']").change(function(){
+      if($(this).prop("checked")){
+        $("#module-pedido .wrap--permspedi").find("input").removeAttr("disabled")
+        $(".wrap--permspedi").toggleClass("perms--pedi")
+      }else{
+        $(".wrap--permspedi").toggleClass("perms--pedi")
+        $("#module-pedido .wrap--permspedi").find("input").attr("disabled",true)
+        $("#module-pedido .wrap--permspedi").find("input").attr("checked",false)
+      }
+});
+$("input[name='checkcotiza']").change(function(){
+      if($(this).prop("checked")){
+        $("#module-cotizaciones .wrap--permscot").find("input").removeAttr("disabled")
+        $(".wrap--permscot").toggleClass("perms--cot")
+      }else{
+        $(".wrap--permscot").toggleClass("perms--cot")
+        $("#module-cotizaciones .wrap--permscot").find("input").attr("disabled",true)
+        $("#module-cotizaciones .wrap--permscot").find("input").attr("checked",false)
+      }
+});
+$("input[name='checkruta']").change(function(){
+      if($(this).prop("checked")){
+        $("#module-ruta .wrap--permsruta").find("input").removeAttr("disabled")
+        $(".wrap--permsruta").toggleClass("perms--ruta")
+      }else{
+        $(".wrap--permsruta").toggleClass("perms--ruta")
+        $("#module-ruta .wrap--permsruta").find("input").attr("disabled",true)
+        $("#module-ruta .wrap--permsruta").find("input").attr("checked",false)
+      }
+});
+$("input[name='checkcolor']").change(function(){
+  if($(this).prop("checked")){
+    $(".main--nav").addClass("main--navdark")
+    $(".menu--top").addClass("menu--toposcuro")
+    $(".navigator").addClass("navigatordark")
+  }else {
+    $(".main--nav").removeClass("main--navdark")
+    $(".menu--top").removeClass("menu--toposcuro")
+  }
+})
 
 // new customers
 $('#tipo_usu').change(function(){
-  // var valor = document.getElementById('tipo_usu').value;
 var typeUser =$('#tipo_usu').val();
   if (typeUser ==3) {
     console.log("yes")
-    $(".customers--normal").toggleClass("normaldes")
-    $(".customers--business").removeClass("customers--business")
+    $(".customers--normal").addClass("normaldes")
+    $(".customers--business").toggleClass("businessaparece")
   } else if (typeUser == 1) {
     $(".customers--normal").removeClass("normaldes")
-    $(".customers--business").toggleClass("putoooo")
+    $(".customers--business").toggleClass("businessaparece")
+
     console.log("maldito");
   }
 });
