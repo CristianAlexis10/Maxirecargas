@@ -3,12 +3,9 @@
 </div>
 <div id="tabsConf">
   <ul>
-    <li><a href="#config-dahs">Dashboard</a> </li>
     <li><a href="#config-permisos">Permisos</a></li>
     <li><a href="#general">General</a></li>
   </ul>
-  <div id="config-dahs">
-  </div>
   <div id="config-permisos">
     <div class="wrap--config">
   <div class="config--rol">

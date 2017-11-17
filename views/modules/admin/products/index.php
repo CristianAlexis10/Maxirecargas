@@ -48,9 +48,9 @@
 			               	<?php } ?>
 			               </select>
 			            </div>
-		    		 <div class="form-group-liner">
-			                <label for="rf" class="label--liner">Referencia:</label>
-			                <input type="text" name="data[]" id="rf" class="input--liner" required>
+		    		 <div class="form-group">
+			                <label for="rf" class="label">Referencia:</label>
+			                <input type="text" name="data[]" id="rf" class="input" required>
 			            </div>
 			             <div class="form-group">
 			                <label for="marca" class="required">Marca:</label>
@@ -68,9 +68,9 @@
 			               	<?php } ?>
 			               </select>
 			            </div>
-			             <div class="form-group-liner">
-			                <label for="caracteristica" class="label--liner">Caracteristicas:</label>
-											<textarea name="data[]" id="caracteristica" class="input--liner"></textarea>
+			             <div class="form-group">
+			                <label for="caracteristica" class="label">Caracteristicas:</label>
+											<textarea name="data[]" id="caracteristica" class="input"></textarea>
 
 			            </div>
 			            <div class="form-group">

@@ -37,21 +37,22 @@
 		  <div id="tabs-1" class="new orders">
 				<div class="form--left">
 		    	<form class="form Business" action="#" method="post" enctype="multipart/form-data">
-		    		 <div class="form-group-liner">
-			                <label for="rf" class="label--liner">Referencia:</label>
-			                <input type="text" name="data[]" class="input--liner" id="rf" required>
+		    		 <div class="form-group">
+			                <label for="rf" class="label">Referencia:</label>
+			                <input type="text" name="data[]" class="input" id="rf" required>
 			            </div>
-			             <div class="form-group-liner">
-			                <label for="caracteristica" class="label--liner">Caracteristicas:</label>
-			                <textarea name="data[]" id="caracteristica" class="input--liner"></textarea>
+			             <div class="form-group">
+			                <label for="caracteristica" class="label">Caracteristicas:</label>
+			                <!-- <textarea name="data[]" id="caracteristica" class="input"></textarea> -->
+											<textarea name="data[]" rows="5" cols="80" class="input"></textarea>
 			            </div>
-			            <div class="form-group-liner">
-			                <label for="precio_venta" class="label--liner">Precio de Venta:</label>
-			                <input type="number" name="data[]" class="input--liner" id="precio_venta" required>
+			            <div class="form-group">
+			                <label for="precio_venta" class="label">Precio de Venta:</label>
+			                <input type="number" name="data[]" class="input" id="precio_venta" required>
 			            </div>
-			            <div class="form-group-liner">
-			                <label for="precio_compra" class="label--liner">Precio de Compra:</label>
-			                <input type="number" name="data[]" class="input--liner" id="precio_compra" required>
+			            <div class="form-group">
+			                <label for="precio_compra" class="label">Precio de Compra:</label>
+			                <input type="number" name="data[]" class="input" id="precio_compra" required>
 			            </div>
 			            <div class="form-group">
 			                <label for="categoria" class="required">Categoria:</label>

@@ -30,38 +30,38 @@
 								<select name="dataCl"  id="tipo_usu" required></select>
 						</div>
 						<div class="customers--normal">
-							<div class="form-group-liner">
+							<div class="form-group">
 								<label for="tip_doc" class="select">Tipo de Documento:</label>
 								<select name="dataCl" id="tip_doc"   required></select>
 							</div>
-							<div class="form-group-liner">
-								<label for="numDoc" class="label--liner">Numero de Documento:</label>
-								<input type="number" name="dataCl" id="numDoc" class="input--liner" required>
+							<div class="form-group">
+								<label for="numDoc" class="label-">Numero de Documento:</label>
+								<input type="number" name="dataCl" id="numDoc" class="input-" required>
 							</div>
-							<div class="form-group-liner">
-								<label for="priNom" class="label--liner">Primer Nombre:</label>
-								<input type="text" name="dataCl" id="priNom" class="input--liner"  required>
+							<div class="form-group">
+								<label for="priNom" class="label">Primer Nombre:</label>
+								<input type="text" name="dataCl" id="priNom" class="input"  required>
 							</div>
-							<div class="form-group-liner">
-								<label for="priApe" class="label--liner">Primer Apellido:</label>
-								<input type="text" name="dataCl" id="priApe" class="input--liner" required>
+							<div class="form-group">
+								<label for="priApe" class="label">Primer Apellido:</label>
+								<input type="text" name="dataCl" id="priApe" class="input" required>
 							</div>
-							<div class="form-group-liner">
-								<label for="correo" class="label--liner">Correo:</label>
-								<input type="email" name="dataCl" id="correo" class="input--liner" required>
+							<div class="form-group">
+								<label for="correo" class="label">Correo:</label>
+								<input type="email" name="dataCl" id="correo" class="input" required>
 							</div>
-							<div class="form-group-liner">
-								<label for="tel" class="label--liner">Telefono:</label>
-								<input type="number" name="dataCl" id="tel" class="input--liner" required>
+							<div class="form-group">
+								<label for="tel" class="label">Telefono:</label>
+								<input type="number" name="dataCl" id="tel" class="input" required>
 							</div>
 
 							<div class="form-group">
 								<label for="cuidad" class="required">Ciudad:</label>
 								<select name="dataCl"  id="cuidad" required> </select>
 							</div>
-							<div class="form-group-liner">
+							<div class="form-group">
 								<label for="fecha_naci" class="required">Fecha de Nacimiento:</label>
-								<input type="date" name="dataCl" id="fecha_naci" class="input--liner" max="2005-01-01" min="1950-01-01" required>
+								<input type="date" name="dataCl" id="fecha_naci" class="input-" max="2005-01-01" min="1950-01-01" required>
 							</div>
 							<div class="form-group">
 								<label for="sexo" class="required">Sexo:</label>
@@ -117,27 +117,19 @@
 							</div>
 
 						</div>
-
-
-
 						<div class="customers--password">
-							<div class="form-group-liner">
-								<label for="contra" class="label--liner">Contraseña:</label>
-								<input type="password" name="dataCl" id="contra" class="input--liner" required>
+							<div class="form-group">
+								<label for="contra" class="label">Contraseña:</label>
+								<input type="password" name="dataCl" id="contra" class="input" required>
 							</div>
-							<div class="form-group-liner">
-								<label for="rep_contra" class="label--liner">Repetir Contraseña:</label>
-								<input type="password" name="dataCl" id="rep_contra" class="input--liner" required disabled>
+							<div class="form-group">
+								<label for="rep_contra" class="label">Repetir Contraseña:</label>
+								<input type="password" name="dataCl" id="rep_contra" class="input" required disabled>
 							</div>
 							</div>
-						<div class="">
-
-						</div>
-
-
-			            <div class="form-group">
-			                <button class="btn" disabled id="registrar">Registrar Cliente</button>
-			            </div>
+			      <div class="form-group">
+			        <button class="btn" disabled id="registrar">Registrar Cliente</button>
+			       </div>
 		    	</form>
 		  </div>
 			<div id="tabs-3">
