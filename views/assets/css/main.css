@@ -256,8 +256,13 @@ table.dataTable tbody th, table.dataTable tbody td{
   display: flex;
   justify-content:space-between;
 }
-.form--left, .form--rigth{
+.form--left{
   width: 50%;
+}
+.form--rigth{
+  width: 50%;
+  display: flex;
+  align-items:center;
 }
 .form-group{
   display: flex;
@@ -265,14 +270,18 @@ table.dataTable tbody th, table.dataTable tbody td{
   width: 100%;
 }
 .form-group label{
+  position: absolute;
+  transform: translateY(15px);
+  font-size: 18px;
 
 }
-.form-group input[type="text"],[type="number"],[type="email"],textarea{
+.form-group input[type="text"],[type="number"],[type="email"],textarea, select{
   padding:8px 2px;
   border-radius: 8px;
   outline: none;
   border: 1px solid #9e9e9e;
 }
+
 
 .customers--business, .normaldes{display: none;}
 .businessaparece{display: block;}
