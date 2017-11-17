@@ -274,7 +274,6 @@ $(".input--liner").focusout(function(){
 
 
 $(".frm-bussiness").hide();
-
 $('#tipo_usu').change(function(){
   var value = $('#tipo_usu').val();
   mostrar(value);
@@ -478,14 +477,4 @@ var typeUser= $('#tipo_usu').val();
     $(".customers--normal").removeClass("normaldes")
     $(".customers--business").removeClass("businessaparece")
   }
-   // if (typeUser ==3) {
-   //   console.log("yes")
-   //  $(".customers--normal").addClass("normaldes")
-   //  $(".customers--business").toggleClass("businessaparece")
-   // } else{
-   //  $(".customers--normal").removeClass("normaldes")
-   //  $(".customers--business").toggleClass("businessaparece")
-   //
-   //   console.log("maldito");
-   // }
  });

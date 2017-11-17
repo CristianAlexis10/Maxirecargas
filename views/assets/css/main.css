@@ -208,7 +208,7 @@ padding-left: 8px;
 
 }
 /*tabs vertical*/
-.ui-tabs-vertical { width: 100em; }
+.ui-tabs-vertical { width:55em; }
  .ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .3em .2em; float: left; width: 12em; background: white}
  .ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border-bottom-width: 1px !important; border-right-width: 0 !important; margin: 5px -1px .2em 0; border: 1px solid #35a4dd; outline:none}
  .ui-tabs-vertical .ui-tabs-nav li a { display:block; padding: 20px;}

@@ -141,7 +141,7 @@
 		    	</form>
 		  </div>
 			<div id="tabs-3">
-				
+				<!--  lopera aca va la direccion de php -->
 			</div>
 
 		<?php }  ?>
