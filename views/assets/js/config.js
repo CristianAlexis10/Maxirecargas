@@ -66,7 +66,7 @@ if(document.getElementById('sexo')){
 
 
 
-//REGISTRAR USUARIO
+//REGISTRAR PERSONA NATURAL
    $("#frmNewUser").submit(function(e) {
         e.preventDefault();
         var rol = $('#tipo_usu').val();
@@ -102,3 +102,41 @@ if(document.getElementById('sexo')){
             
         }
     });
+
+    //REGISTRAR PERSONA JURIDICA
+   $("#frmNewBusi").submit(function(e) {
+        e.preventDefault();
+        var rol = $('#tipo_usu').val();
+        if (rol == 3) {
+                dataJson = [];
+            
+
+                $(".dataEmp").each(function(){
+                                  structure = {}
+                                  structure = $(this).val();
+                                  dataJson.push(structure);
+                              });
+                console.log(dataJson);
+                  // $.ajax({
+                  //         url: "guardar-usuario",
+                  //         type: "POST",
+                  //          dataType:'json',
+                  //          data: ({data: dataJson}),
+                  //          success: function(result){
+                  //           if (result==true) {
+                  //             $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente</div>");
+                  //           }else{
+                  //             $("#frmNewBusi").after("<div class='message'>"+result+"</div>");
+                  //           }
+                  //            setTimeout(function(){
+                  //               $('div.message').remove();
+                  //             }, 2000);
+                  //          },
+                  //          error: function(result){
+                  //             console.log(result);
+                  //          }
+                  // });
+            
+        }
+    });
+   

@@ -35,13 +35,10 @@
 								<select class="dataCl" id="tip_doc"   required></select>
 							</div>
 							<div class="form-group">
-<<<<<<< HEAD
-								<label for="numDoc" class="label">Numero de Documento:</label>
-								<input type="number" name="dataCl" id="numDoc" class="input" required>
-=======
+
 								<label for="numDoc" class="label-">Numero de Documento:</label>
 								<input type="number"  id="numDoc" class="input- dataCl" required>  
->>>>>>> 65432f3902b30f7a8f1677deb800d2fcab3cb6e4
+
 							</div>
 							<div class="form-group">
 								<label for="priNom" class="label">Primer Nombre:</label>
@@ -69,7 +66,7 @@
 								<input type="date"  id="fecha_naci" class="input- dataCl" max="2005-01-01" min="1950-01-01" required>
 							</div>
 							<div class="form-group">
-								<label for="sexo" class="required dataCl">Sexo:</label>
+								<label for="sexo" class="required ">Sexo:</label>
 								<select class="dataCl"  id="sexo" required>
 									<option value="femenino">Femenino</option>
 									<option value="masculino">Masculino</option>
@@ -96,48 +93,56 @@
 							<h1>Datos de la empresa</h1>
 							<div class="form-group">
 								<label for="nit">NIT</label>
-								<input type="text" name="dataEmp" id="nit" required>
+								<input type="text" class="dataEmp" id="nit" required>
 							</div>
 							<div class="form-group">
 								<label for="social">Razon social</label>
-								<input type="text" name="dataEmp" id="social"required>
+								<input type="text" class="dataEmp" id="social"required>
 							</div>
 							<div class="form-group">
 								<label for="namebus">Nombre de la empresa</label>
-								<input type="text" name="dataEmp" id="namebus" required>
+								<input type="text" class="dataEmp" id="namebus" required>
 							</div>
 							<h1>datos de la sede</h1>
 							<div class="form-group">
 								<label for="sede-enc">Nombre del contacto</label>
-								<input type="text" name="dataEmp"  id="sede-enc"required>
+								<input type="text" class="dataEmp"  id="sede-enc"required>
 							</div>
 							<div class="form-group">
 								<label for="sede-enca">Apellido del contacto</label>
-								<input type="text" name="dataEmp"  id="sede-enca"required>
+								<input type="text" class="dataEmp"  id="sede-enca"required>
 							</div>
 							<div class="form-group">
 								<label for="sede-sexo">sexo</label>
-								<input type="text" name="dataEmp"  id="sede-sexo"required>
+								<input type="text" class="dataEmp"  id="sede-sexo"required>
 							</div>
 
 							<div class="form-group">
 								<label for="sede-tel">Telefono</label>
-								<input type="text" name="dataEmp" id="sede-tel" required>
+								<input type="text" class="dataEmp" id="sede-tel" required>
 							</div>
 							<div class="form-group">
 								<label for="sede-enc">Ext</label>
-								<input type="text" name="dataEmp"  id="sede-ext" required>
+								<input type="text" class="dataEmp"  id="sede-ext" required>
 							</div>
 							<div class="form-group">
 								<label for="sede-dir">Direccion</label>
-								<input type="text" name="dataEmp" id="sede-dir" required>
+								<input type="text" class="dataEmp" id="sede-dir" required>
 							</div>
 							<div class="form-group">
 								<label for="sede-correo">Correo</label>
-								<input type="text" name="dataEmp"  id="sede-correo"required>
+								<input type="text" class="dataEmp"  id="sede-correo"required>
 							</div>
 							<div class="form-group">
-			        					<button class="btn" disabled id="registrar">Registrar Empresa</button>
+								<label for="contra" class="label">Contraseña:</label>
+								<input type="password"  id="contra" class="input dataEmp" required>
+							</div>
+							<div class="form-group">
+								<label for="rep_contra" class="label">Repetir Contraseña:</label>
+								<input type="password"  id="rep_contra" class="input dataEmp" required >
+							</div>
+							<div class="form-group">
+			        					<button class="btn"  id="registrar">Registrar Empresa</button>
 			       				</div>
 		    	</form>
 						</div>	
