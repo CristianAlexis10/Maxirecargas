@@ -7,8 +7,8 @@
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
 	 		$this->tableName="producto";
-	 		$this->insertException=array('id_producto');
-	 		$this->updateException = array('id_producto');
+	 		$this->insertException=array('pro_codigo','pro_imagen');
+	 		$this->updateException = array('pro_codigo');
 	 	}
 		function main(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])&& !isset($_SESSION['CUSTOMER']['CLIENT'])) {
@@ -38,16 +38,20 @@
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-
-			 $data[]=date('Y-m-d');
-			$result = $this->master->insert($this->tableName,$data,$this->insertException);
-			if ($result==1) {
-				$_SESSION['message']="Registrado Exitosamente";
-				$_SESSION['new_stock']=$data[1];
+			if (isset($_POST['services'])) {
+				 $ser = $_POST['services'];
+				$result = $this->master->insert($this->tableName,$data,$this->insertException);
+				$data_pro = $this->master->selectBy('producto',array('pro_referencia',$data[2]));
+				foreach ($ser as $key) {
+					$result = $this->master->insert('servicioxproducto',array($key,$data_pro['pro_codigo']));
+				}
 			}else{
-				$_SESSION['message_error']=$result;
+				$result ='por favor seleccione un servicio';
 			}
-			header("Location: crear-inventario");
+			
+			//  $data[]=date('Y-m-d');
+			// header("Location: crear-inventario");
+			echo json_encode($result);
 		}
 		function readAll(){
 			$result = $this->master->selectAll($this->tableName);

@@ -39,10 +39,18 @@
 		  <div id="tabs-1" class="new products">
 			<div class="form--left">
 
-		    	<form class="frmBusiness" action="guardar-producto" method="post" enctype="multipart/form-data">
+		    	<form  id="frmNerProduct" enctype="multipart/form-data">
+		    		  <div class="form-group">
+			                <label for="marca" class="required ">Marca:</label>
+			               <select name="data[]" id="marca" class="data-new-pro" required >
+			               	<?php foreach($this->master->selectAll("marca") AS $row) {?>
+			               		<option value="<?php echo $row['mar_codigo']?>"><?php echo $row['mar_nombre'] ?></option>
+			               	<?php } ?>
+			               </select>
+			            </div>
 			            <div class="form-group">
 			                <label for="categoria" class="required">Categoria:</label>
-			               <select name="data[]" id="categoria" required>
+			               <select  id="categoria" class="data-new-pro" required>
 			               	<?php foreach($this->master->selectAll("tipo_producto") AS $row) {?>
 			               		<option value="<?php echo $row['tip_pro_codigo']?>"><?php echo $row['tip_pro_nombre'] ?></option>
 			               	<?php } ?>
@@ -50,33 +58,25 @@
 			            </div>
 		    		 <div class="form-group">
 			                <label for="rf" class="label">Referencia:</label>
-			                <input type="text" name="data[]" id="rf" class="input" required>
+			                <input type="text" name="data[]" id="rf" class="input data-new-pro" required>
 			            </div>
-			             <div class="form-group">
-			                <label for="marca" class="required">Marca:</label>
-			               <select name="data[]" id="marca" required>
-			               	<?php foreach($this->master->selectAll("marca") AS $row) {?>
-			               		<option value="<?php echo $row['mar_codigo']?>"><?php echo $row['mar_nombre'] ?></option>
-			               	<?php } ?>
-			               </select>
-			            </div>
-			             <div class="form-group">
-			                <label for="servicio" class="required">Servicio:</label>
-			               <select name="data[]" id="servicio" required>
-			               	<?php foreach($this->master->selectAll("tipo_servicio") AS $row) {?>
-			               		<option value="<?php echo $row['Tip_ser_cod']?>"><?php echo $row['tip_ser_nombre'] ?></option>
-			               	<?php } ?>
-			               </select>
-			            </div>
+			           
+			            <?php
+			            foreach ($this->master->selectAll("tipo_servicio") AS $row) {?>
+				      <label><?php echo $row['tip_ser_nombre'] ?>
+				        <input type="checkbox"  name="ch-tip-ser" value="<?php echo $row['Tip_ser_cod']?>"  >        
+				      </label>
+			            
+			            <?php }  ?>
 			             <div class="form-group">
 			                <label for="caracteristica" class="label">Caracteristicas:</label>
-											<textarea name="data[]" id="caracteristica" class="input"></textarea>
+											<textarea name="data[]" id="caracteristica" class="input data-new-pro"></textarea>
 
 			            </div>
-			            <div class="form-group">
+			           <!--  <div class="form-group">
 			                <label for="img" class="required">Logo:</label>
-			                <input type="file" name="file" id="img" required>
-			            </div>
+			                <input type="file" name="file" id="img-new-pro"  required>
+			            </div> -->
 			</div>
 								<div class="form--rigth">
 				            <div class="form-group">

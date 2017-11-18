@@ -478,3 +478,43 @@ var typeUser= $('#tipo_usu').val();
     $(".customers--business").removeClass("businessaparece")
   }
  });
+
+
+//REGISTRAR PRODUCTO
+   $("#frmNerProduct").submit(function(e) {
+        e.preventDefault();
+        dataJson = [];
+        var servicios= [];
+        $("input[name=ch-tip-ser").each(function(){
+                if ($( this ).is( ":checked" )  ) {
+                   servicios.push($(this).val());
+                }
+        });
+
+
+        $(".data-new-pro").each(function(){
+                          structure = {}
+                          structure = $(this).val();
+                          dataJson.push(structure);
+                      });
+        // console.log(servicios);
+          $.ajax({
+                  url: "guardar-producto",
+                  type: "POST",
+                   dataType:'json',
+                   data: ({data: dataJson, services:servicios}),
+                   success: function(result){
+                    if (result==true) {
+                      $("#frmNerProduct").after("<div class='message'>Registrado Exitosamente</div>");
+                    }else{
+                      $("#frmNerProduct").after("<div class='message'>"+result+"</div>");
+                    }
+                     setTimeout(function(){
+                        $('div.message').remove();
+                      }, 2000);
+                   },
+                   error: function(result){
+                      console.log(result);
+                   }
+          });
+    });

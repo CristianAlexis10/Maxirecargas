@@ -48,3 +48,18 @@ if(document.getElementById('sexo')){
     }
   })
 }
+
+
+// if(document.getElementById('valores')){
+//     $('#valores').click(function(){
+//     var servicios= [];
+//            $("input[name=ch-tip-ser").each(function(){
+//                 if ($( this ).is( ":checked" )  ) {
+//                    servicios.push($(this).val());
+//                 }
+//             });
+//                    console.log(servicios);  
+
+//     });
+
+// }
