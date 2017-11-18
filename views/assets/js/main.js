@@ -1,12 +1,23 @@
 
+// $(".input").focus(function(){
+//   $(this).parent().addClass("porfa listo");
+// });
+//
+// $(".input").focusout(function(){
+//   if ($(this).val() === "")
+//     $(this).parent().removeClass("listo");
+//     $(this).parent().removeClass("porta");
+// });
+
+
 $(".input").focus(function(){
-  $(this).parent().addClass("porfa listo");
+  $(this).parent().addClass("color-label mover-label");
 });
 
 $(".input").focusout(function(){
-  if ($(this).val() === "")
-    $(this).parent().removeClass("listo");
-    $(this).parent().removeClass("porta");
+  if($(this).val() === "")
+    $(this).parent().removeClass("mover-label");
+    $(this).parent().removeClass("color-label");
 });
 
 //SERVICES
@@ -243,21 +254,6 @@ $(".input").focusout(function(){
             }
 
 
-
-
-
-
-// animacion de los inputs
-
-$(".input").focus(function(){
-  $(this).parent().addClass("color-label .mover-label");
-});
-
-$(".input--liner").focusout(function(){
-  if($(this).val() === "")
-    $(this).parent().removeClass(".mover-label");
-    $(this).parent().removeClass("color-label");
-});
 
 // tabs
  $( function() {
