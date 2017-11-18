@@ -24,113 +24,125 @@
 		  <?php } ?>
 		 <?php if ($crud[0]==true) {?>
 		  <div id="tabs-1">
-					<form>
+					<form id="frmNewUser">
 						<div class="form-group type--user">
 								<label for="tipo_usu" class="select" >Tipo de Usuario:</label>
-								<select name="dataCl"  id="tipo_usu" required></select>
+								<select class="dataCl"  id="tipo_usu" required></select>
 						</div>
 						<div class="customers--normal">
 							<div class="form-group">
 								<label for="tip_doc" class="select">Tipo de Documento:</label>
-								<select name="dataCl" id="tip_doc"   required></select>
+								<select class="dataCl" id="tip_doc"   required></select>
 							</div>
 							<div class="form-group">
+<<<<<<< HEAD
 								<label for="numDoc" class="label">Numero de Documento:</label>
 								<input type="number" name="dataCl" id="numDoc" class="input" required>
+=======
+								<label for="numDoc" class="label-">Numero de Documento:</label>
+								<input type="number"  id="numDoc" class="input- dataCl" required>  
+>>>>>>> 65432f3902b30f7a8f1677deb800d2fcab3cb6e4
 							</div>
 							<div class="form-group">
 								<label for="priNom" class="label">Primer Nombre:</label>
-								<input type="text" name="dataCl" id="priNom" class="input"  required>
+								<input type="text"  id="priNom" class="input dataCl"  required> 
 							</div>
 							<div class="form-group">
 								<label for="priApe" class="label">Primer Apellido:</label>
-								<input type="text" name="dataCl" id="priApe" class="input" required>
+								<input type="text" id="priApe" class="input dataCl" required>
 							</div>
 							<div class="form-group">
 								<label for="correo" class="label">Correo:</label>
-								<input type="email" name="dataCl" id="correo" class="input" required>
+								<input type="email" class=" input dataCl" id="correo" required>
 							</div>
 							<div class="form-group">
 								<label for="tel" class="label">Telefono:</label>
-								<input type="number" name="dataCl" id="tel" class="input" required>
+								<input type="number" class="input dataCl" id="tel"  required>
 							</div>
 
 							<div class="form-group">
 								<label for="cuidad" class="required">Ciudad:</label>
-								<select name="dataCl"  id="cuidad" required> </select>
+								<select class="dataCl"  id="cuidad" required> </select>
 							</div>
 							<div class="form-group">
 								<label for="fecha_naci" class="required">Fecha de Nacimiento:</label>
-								<input type="date" name="dataCl" id="fecha_naci" class="input-" max="2005-01-01" min="1950-01-01" required>
+								<input type="date"  id="fecha_naci" class="input- dataCl" max="2005-01-01" min="1950-01-01" required>
 							</div>
 							<div class="form-group">
-								<label for="sexo" class="required">Sexo:</label>
-								<select name="dataCl"  id="sexo" required>
+								<label for="sexo" class="required dataCl">Sexo:</label>
+								<select class="dataCl"  id="sexo" required>
 									<option value="femenino">Femenino</option>
 									<option value="masculino">Masculino</option>
 								</select>
 							</div>
+							<div class="customers--password">
+							<div class="form-group">
+								<label for="contra" class="label">Contraseña:</label>
+								<input type="password"  id="contra" class="input dataCl" required>
+							</div>
+							<div class="form-group">
+								<label for="rep_contra" class="label">Repetir Contraseña:</label>
+								<input type="password"  id="rep_contra" class="input dataCl" required disabled>
+							</div>
+							</div>
+						      <div class="form-group">
+						        <button class="btn" disabled id="registrar">Registrar Cliente</button>
+						       </div>
 						</div>
-						<div class="customers--business">
+		    	</form>
+
+		    	<div class="customers--business">
+		    	<form id="frmNewBusi">
 							<h1>Datos de la empresa</h1>
 							<div class="form-group">
 								<label for="nit">NIT</label>
-								<input type="text" name="dataCl" id="nit" required>
+								<input type="text" name="dataEmp" id="nit" required>
 							</div>
 							<div class="form-group">
 								<label for="social">Razon social</label>
-								<input type="text" name="dataCl" id="social"required>
+								<input type="text" name="dataEmp" id="social"required>
 							</div>
 							<div class="form-group">
 								<label for="namebus">Nombre de la empresa</label>
-								<input type="text" name="dataCl" id="namebus" required>
+								<input type="text" name="dataEmp" id="namebus" required>
 							</div>
 							<h1>datos de la sede</h1>
 							<div class="form-group">
 								<label for="sede-enc">Nombre del contacto</label>
-								<input type="text" name="dataCl"  id="sede-enc"required>
+								<input type="text" name="dataEmp"  id="sede-enc"required>
 							</div>
 							<div class="form-group">
 								<label for="sede-enca">Apellido del contacto</label>
-								<input type="text" name="dataCl"  id="sede-enca"required>
+								<input type="text" name="dataEmp"  id="sede-enca"required>
 							</div>
 							<div class="form-group">
 								<label for="sede-sexo">sexo</label>
-								<input type="text" name="dataCl"  id="sede-sexo"required>
+								<input type="text" name="dataEmp"  id="sede-sexo"required>
 							</div>
 
 							<div class="form-group">
 								<label for="sede-tel">Telefono</label>
-								<input type="text" name="dataCl" id="sede-tel" required>
+								<input type="text" name="dataEmp" id="sede-tel" required>
 							</div>
 							<div class="form-group">
 								<label for="sede-enc">Ext</label>
-								<input type="text" name="dataCl"  id="sede-ext"required>
+								<input type="text" name="dataEmp"  id="sede-ext" required>
 							</div>
 							<div class="form-group">
 								<label for="sede-dir">Direccion</label>
-								<input type="text" name="dataCl" id="sede-dir" required>
+								<input type="text" name="dataEmp" id="sede-dir" required>
 							</div>
 							<div class="form-group">
 								<label for="sede-correo">Correo</label>
-								<input type="text" name="dataCl"  id="sede-correo"required>
-							</div>
-
-						</div>
-						<div class="customers--password">
-							<div class="form-group">
-								<label for="contra" class="label">Contraseña:</label>
-								<input type="password" name="dataCl" id="contra" class="input" required>
+								<input type="text" name="dataEmp"  id="sede-correo"required>
 							</div>
 							<div class="form-group">
-								<label for="rep_contra" class="label">Repetir Contraseña:</label>
-								<input type="password" name="dataCl" id="rep_contra" class="input" required disabled>
-							</div>
-							</div>
-			      <div class="form-group">
-			        <button class="btn" disabled id="registrar">Registrar Cliente</button>
-			       </div>
+			        					<button class="btn" disabled id="registrar">Registrar Empresa</button>
+			       				</div>
 		    	</form>
+						</div>	
+						
+					
 		  </div>
 			<div id="tabs-3">
 				<!--  lopera aca va la direccion de php -->
