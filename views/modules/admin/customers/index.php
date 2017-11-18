@@ -35,8 +35,8 @@
 								<select name="dataCl" id="tip_doc"   required></select>
 							</div>
 							<div class="form-group">
-								<label for="numDoc" class="label-">Numero de Documento:</label>
-								<input type="number" name="dataCl" id="numDoc" class="input-" required>
+								<label for="numDoc" class="label">Numero de Documento:</label>
+								<input type="number" name="dataCl" id="numDoc" class="input" required>
 							</div>
 							<div class="form-group">
 								<label for="priNom" class="label">Primer Nombre:</label>

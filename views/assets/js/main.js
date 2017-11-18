@@ -249,14 +249,14 @@ $(".input").focusout(function(){
 
 // animacion de los inputs
 
-$(".input--liner").focus(function(){
-  $(this).parent().addClass("clr-label-liner mov-label-liner");
+$(".input").focus(function(){
+  $(this).parent().addClass("color-label .mover-label");
 });
 
 $(".input--liner").focusout(function(){
   if($(this).val() === "")
-    $(this).parent().removeClass("mov-label-liner");
-    $(this).parent().removeClass("clr-label-liner");
+    $(this).parent().removeClass(".mover-label");
+    $(this).parent().removeClass("color-label");
 });
 
 // tabs
