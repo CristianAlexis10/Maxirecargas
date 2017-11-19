@@ -95,8 +95,8 @@
 				$ip_user = $_SERVER['REMOTE_ADDR'];
 				$validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
 				$result = json_decode($validation);
-				if($result->success!=true){
-					if ($data[0]==3) {
+				if($result->success==true){
+					if ($data[0]!=3) {
 						// validar contraseñas
 						if ($data[10]===$data[11]) {
 							$password =  $this->doizer->validateSecurityPassword($data[10]);
@@ -118,8 +118,8 @@
 								   $result = $this->master->insert('acceso',$data_acceso,array('token'));
 							   }else{
 							   	$result = $this->doizer->knowError($result);
-							   	echo  json_encode($result);
 							   }
+							   	echo  json_encode($result);
 
 							}			
 						}else{
