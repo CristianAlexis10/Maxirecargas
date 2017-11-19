@@ -42,7 +42,7 @@
 		    	<form  id="frmNerProduct" enctype="multipart/form-data">
 		    		  <div class="form-group">
 			                <label for="marca" class="required ">Marca:</label>
-			               <select name="data[]" id="marca" class="data-new-pro" required >
+			               <select name="data[]" id="marca" class="data-new-pro input" required >
 			               	<?php foreach($this->master->selectAll("marca") AS $row) {?>
 			               		<option value="<?php echo $row['mar_codigo']?>"><?php echo $row['mar_nombre'] ?></option>
 			               	<?php } ?>
@@ -50,7 +50,7 @@
 			            </div>
 			            <div class="form-group">
 			                <label for="categoria" class="required">Categoria:</label>
-			               <select  id="categoria" class="data-new-pro" required>
+			               <select  id="categoria" class="data-new-pro input " required>
 			               	<?php foreach($this->master->selectAll("tipo_producto") AS $row) {?>
 			               		<option value="<?php echo $row['tip_pro_codigo']?>"><?php echo $row['tip_pro_nombre'] ?></option>
 			               	<?php } ?>
@@ -60,13 +60,13 @@
 			                <label for="rf" class="label">Referencia:</label>
 			                <input type="text" name="data[]" id="rf" class="input data-new-pro" required>
 			            </div>
-			           
+
 			            <?php
 			            foreach ($this->master->selectAll("tipo_servicio") AS $row) {?>
 				      <label><?php echo $row['tip_ser_nombre'] ?>
-				        <input type="checkbox"  name="ch-tip-ser" value="<?php echo $row['Tip_ser_cod']?>"  >        
+				        <input type="checkbox"  name="ch-tip-ser" value="<?php echo $row['Tip_ser_cod']?>"  >
 				      </label>
-			            
+
 			            <?php }  ?>
 			             <div class="form-group">
 			                <label for="caracteristica" class="label">Caracteristicas:</label>

@@ -12,8 +12,8 @@
 
 .container.one{
   background: url("../image/fondo.jpg");
+  background-repeat: no-repeat;
 }
-
 
 .container .left{
   width: 50%;
@@ -248,15 +248,12 @@ transform: translateY(-5px);
 
 }
 .container.two .section--one{
-  width: 100%;
-  height: 20vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  float: left;
 }
 .container.two .section--one p{
-  font-family: 'oswald';
-  font-size: 60px;
+  font-family: 'lato';
+  font-weight: 300;
+  font-size: 10vw;
   text-transform: uppercase;
   color: #9e9e9e;
 }
@@ -927,3 +924,4 @@ transform: translateY(-5px);
 .photo--profile{
 
 }
+@import "responsive.css";

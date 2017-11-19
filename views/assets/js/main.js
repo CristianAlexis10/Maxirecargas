@@ -1,15 +1,4 @@
 
-// $(".input").focus(function(){
-//   $(this).parent().addClass("porfa listo");
-// });
-//
-// $(".input").focusout(function(){
-//   if ($(this).val() === "")
-//     $(this).parent().removeClass("listo");
-//     $(this).parent().removeClass("porta");
-// });
-
-
 $(".input").focus(function(){
   $(this).parent().addClass("color-label mover-label");
 });

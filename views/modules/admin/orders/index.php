@@ -56,14 +56,14 @@
 			            </div>
 			            <div class="form-group">
 			                <label for="categoria" class="required">Categoria:</label>
-			               <select name="data[]" id="categoria" required>
+			               <select name="data[]" id="categoria" class="input" required>
 			               	<option value="toner">Toner</option>
 			               	<option value="cartucho">Cartucho</option>
 			               </select>
 			            </div>
 			             <div class="form-group">
 			                <label for="marca" class="required">Marca:</label>
-			               <select name="data[]" id="marca" required>
+			               <select name="data[]" id="marca" class="input" required>
 			               	<option value="hp">Hp</option>
 			               	<option value="dell">Dell</option>
 			               </select>
