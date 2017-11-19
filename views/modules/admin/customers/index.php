@@ -82,6 +82,7 @@
 								<input type="password"  id="rep_contra" class="input dataCl" required disabled>
 							</div>
 							</div>
+							<div class="g-recaptcha" data-sitekey="6Ld_bDkUAAAAADkIoF_nn1BbWzhCuSm0Zk2E83eZ"></div>
 						      <div class="form-group">
 						        <button class="btn" disabled id="registrar">Registrar Cliente</button>
 						       </div>

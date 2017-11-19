@@ -79,26 +79,27 @@ if(document.getElementById('sexo')){
                                   structure = $(this).val();
                                   dataJson.push(structure);
                               });
-                console.log(dataJson);
-                  // $.ajax({
-                  //         url: "guardar-usuario",
-                  //         type: "POST",
-                  //          dataType:'json',
-                  //          data: ({data: dataJson}),
-                  //          success: function(result){
-                  //           if (result==true) {
-                  //             $("#frmNewUser").after("<div class='message'>Registrado Exitosamente</div>");
-                  //           }else{
-                  //             $("#frmNewUser").after("<div class='message'>"+result+"</div>");
-                  //           }
-                  //            setTimeout(function(){
-                  //               $('div.message').remove();
-                  //             }, 2000);
-                  //          },
-                  //          error: function(result){
-                  //             console.log(result);
-                  //          }
-                  // });
+                captcha =  grecaptcha.getResponse();
+                // console.log(dataJson);
+                  $.ajax({
+                          url: "guardar-cliente",
+                          type: "POST",
+                           dataType:'json',
+                           data: ({data: dataJson , get_captcha : captcha}),
+                           success: function(result){
+                            if (result==true) {
+                              $("#frmNewUser").after("<div class='message'>Registrado Exitosamente</div>");
+                            }else{
+                              $("#frmNewUser").after("<div class='message'>"+result+"</div>");
+                            }
+                             setTimeout(function(){
+                                $('div.message').remove();
+                              }, 2000);
+                           },
+                           error: function(result){
+                              console.log(result);
+                           }
+                  });
             
         }
     });

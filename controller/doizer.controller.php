@@ -182,10 +182,27 @@ class DoizerController{
 //ERRORES EN CONSULTAS
 	function knowError($code){
 		switch ($code) {
-			case '23000':
-				return 'No es posible eliminar ya que tienes datos relacionados con este registro';
+			case '1146':
+				return 'La tabla no existe en la base de datos';
 				break;
-			
+			case '1136':
+				return 'La cantidad de datos enviados no coinciden';
+				break;
+			case '1062':
+				return 'Este dato ya esta resgistrado en el sistema';
+				break;
+			case '1451':
+				return 'No se puede eliminar debido a que esta relacionado con otros registros';
+				break;
+			case '1054':
+				return 'El nombre de la columan no existe en la tabla';
+				break;
+			case '1452':
+				return 'No se puede modificar debido a que  existen otros registros relacionados con este';
+				break;
+			case 'HY093':
+				return 'los parametos a modificar no coinciden';
+				break;
 			default:
 				'ocurrio un error';
 				break;
