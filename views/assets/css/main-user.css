@@ -1,5 +1,6 @@
 @import "reset.css";
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700|Oswald:200,400,700');
+@import "responsive.css";
 
 /*landing */
 
@@ -950,4 +951,9 @@ transform: translateY(-5px);
 .photo--profile{
 
 }
-@import "responsive.css";
+
+#menu{
+  display: block;}
+
+#wrap--menu--mobile, #menu-mobile{
+  display: none;}
