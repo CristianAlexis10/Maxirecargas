@@ -255,8 +255,6 @@ table.dataTable tbody th, table.dataTable tbody td{
 #tabs-1{
   display: flex;
 }
-<<<<<<< HEAD
-=======
 #frmNewUser{width: 50%;}
 }
 
@@ -265,18 +263,13 @@ table.dataTable tbody th, table.dataTable tbody td{
   width: 50%;
 
 }
->>>>>>> a53695661fb58e6dafaf2884af0f2d4bb492c767
 .form--left{
   width: 50%;
 }
 .form--rigth{
   width: 50%;
   display: flex;
-<<<<<<< HEAD
-  align-items:center;
-=======
   justify-content: center;
->>>>>>> a53695661fb58e6dafaf2884af0f2d4bb492c767
 }
 .form-group{
   display: flex;
@@ -284,15 +277,6 @@ table.dataTable tbody th, table.dataTable tbody td{
   width: 100%;
   margin-bottom: 30px;
 }
-<<<<<<< HEAD
-.form-group label{
-  position: absolute;
-  transform: translateY(15px);
-  font-size: 18px;
-
-}
-.form-group input[type="text"],[type="number"],[type="email"],textarea, select{
-=======
 .form-group .label{
   transition: all 0.5s;
   transform: translateY(12px);
@@ -301,7 +285,6 @@ table.dataTable tbody th, table.dataTable tbody td{
 
 }
 .form-group .input  {
->>>>>>> a53695661fb58e6dafaf2884af0f2d4bb492c767
   padding:8px 2px;
   border-radius: 8px;
   outline: none;
@@ -333,13 +316,8 @@ table.dataTable tbody th, table.dataTable tbody td{
   width: 200px;
 }
 
-<<<<<<< HEAD
-
-.customers--business, .normaldes{display: none;}
-=======
 .customers--business{display: none;}
  .normaldes{display: none;}
->>>>>>> a53695661fb58e6dafaf2884af0f2d4bb492c767
 .businessaparece{display: block;}
 
 /*LOGIN*/
