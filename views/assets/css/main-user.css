@@ -12,7 +12,7 @@
 
 .container.one{
   background: url("../image/fondo.jpg");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
