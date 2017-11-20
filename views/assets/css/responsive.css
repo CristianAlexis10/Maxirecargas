@@ -1,11 +1,10 @@
-
-
 @media (max-width: 759px ) {
-  #menu-mobile,.opcions{
-    display: block;}
+  .opcions, #menu{
+    display: none !important; }
 
-  #menu{
-    display: none;}
+  #menu-mobile{
+    display: block;
+  }
 
   #wrap--menu--mobile{
     position: fixed;
@@ -17,7 +16,6 @@
     font-size: 30px;
     font-family: "Lato";
     font-weight: lighter;
-    display: flex;
     justify-content: center;
     align-items: center;
   }

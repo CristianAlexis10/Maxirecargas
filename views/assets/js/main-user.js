@@ -18,6 +18,7 @@ $("#contc").click(function() {
 
 var close = document.getElementById("close");
 var start = document.getElementById("session");
+var start1 = document.getElementById("session1");
 var modal = document.getElementById('modal--session');
 var close_mobile = document.getElementById('close--mobile');
 var open_mobile = document.getElementById('menu-mobile');
@@ -27,11 +28,12 @@ var open_mobile = document.getElementById('menu-mobile');
 start.onclick = function(){
   modal.style.display = "block";
 };
-
+start1.onclick = function(){
+  modal.style.display = "block";
+};
 close.onclick =function(){
   modal.style.display = "none"
 };
-
 
 close_mobile.onclick = function(){
   document.getElementById("wrap--menu--mobile").style.display = "none"
