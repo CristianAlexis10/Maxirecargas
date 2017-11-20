@@ -919,3 +919,8 @@ transform: translateY(-5px);
 .photo--profile{
 
 }
+#menu{
+  display: block;}
+
+#wrap--menu--mobile, #menu-mobile{
+  display: none;}

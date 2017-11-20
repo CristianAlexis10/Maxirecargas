@@ -51,13 +51,17 @@ class DoizerController{
 		      $error_clave = "La clave debe tener al menos un caracter numérico";
 		      return $error_clave;
 		   }
+		   $pattern = '/[\'\/~`\!\%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\\\]/';
+	   	    if (preg_match($pattern,$password)){
+	   	      	return 'la clave no debe tener caracteres especiales';
+	   	  	}
 		   $caracteres = strlen($password);
 			$i = 0;
 			while ($caracteres > $i) {
 			 if (ctype_space($password[$i])==true) {
 			        return "La clave no debe tener espacios en blaco";
-			    }			
-			    $i++;	
+			    }
+			    $i++;
 			}
 		   $result = array(true,$this->passwordEncrypt($password));
 		   return $result;
@@ -166,6 +170,14 @@ class DoizerController{
 		return  filter_var($number, FILTER_SANITIZE_NUMBER_INT);
 	}
 //TEXTO
+	function specialCharater($string){
+		$pattern = '/[\'\/~`\!\%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\\\]/';
+	    if (preg_match($pattern,$string)){
+	      	return false;
+	  	}else{
+			return true;
+		}
+	}
 	function deleteSpaces($string){
 		$caracteres = strlen($string);
 		$i = 0;
@@ -178,6 +190,14 @@ class DoizerController{
 		$i++;
 		}
 		return $result;
+	}
+
+	function validateEmail($mail){
+		if (preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/",$mail)){
+	        return true;
+	    }else{
+	        return false;
+	    }
 	}
 //ERRORES EN CONSULTAS
 	function knowError($code){
