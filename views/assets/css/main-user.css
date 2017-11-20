@@ -648,7 +648,6 @@ transform: translateY(-5px);
 .left--part{
   width: 50%;
   height: 100vh;
-  z-index: 10;
   display: flex;
   flex-direction: column;
   /*background: rgb(1,86,123);*/
@@ -746,7 +745,6 @@ transform: translateY(-5px);
 
 .name--product{
   position: relative;
-  background: transparent;
   border: none;
   outline: none;
   padding: 8px 0;
@@ -756,14 +754,13 @@ transform: translateY(-5px);
 
 .select--product, .select--for, .reference, .quantity, .description{
   border-bottom: none;
-  border-radius: 0;
+  border-radius: 3px;
   position: relative;
-  background: transparent;
-  border: none;
+  border: 3px;
   outline: none;
   padding: 8px 0;
   font-size: 16px;
-  color: white;
+  color: black;
 }
 
 .button--following{
@@ -845,7 +842,7 @@ transform: translateY(-5px);
 
 .left--part--product{
   height: 100vh;
-  z-index: 10;
+
 }
 
 .title--main{
@@ -901,7 +898,6 @@ transform: translateY(-5px);
 }
 .left--part--quotation{
   height: 100vh;
-  z-index: 10;
 }
 
 .title--main--quotation{

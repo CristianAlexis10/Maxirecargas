@@ -32,12 +32,12 @@
               <option value="">Recarga de toner</option>
             </select>
 
-            <label for="name--for">Para</label>
+            <label for="name--product">Para</label>
             <select class="select--for" name="data">
               <option value="">Impresoras</option>
             </select>
 
-            <label for="name--reference" class="label--reference">Referencia</label>
+            <label for="name--product" class="label--reference">Referencia</label>
             <input type="text" name="data" class="reference">
             </select>
 
