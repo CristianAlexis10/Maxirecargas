@@ -89,62 +89,51 @@
 		function newRegister(){
 			$data = $_POST['data'];
 
-			//validar contraseñas
-			$password =  $this->doizer->validateSecurityPassword($data[11]);
-			if (is_array($password)) {
-				$validate_password=true;
+			$response_re = $_POST['get_captcha'];
+			if (isset($response_re) && $response_re) {
+				$secret_key = '6Ld_bDkUAAAAAPiAHYM_GX7QxbzLi_WFku7-9_tX';
+				$ip_user = $_SERVER['REMOTE_ADDR'];
+				$validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
+				$result = json_decode($validation);
+				if($result->success==true){
+					if ($data[0]!=3) {
+						// validar contraseñas
+						if ($data[10]===$data[11]) {
+							$password =  $this->doizer->validateSecurityPassword($data[10]);
+							if (is_array($password)) {
+								$validate_password=true;
+							}else{
+								$validate_password=false;
+								echo json_encode($password);
+								return;
+							}
+							if ($validate_password==true) {
+							unset($data[10]);
+							unset($data[11]);
+							   $result = $this->master->insert($this->tableName,array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1),$this->insertException);
+							   if ($result==1) {
+								   $result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[2]));
+								   $data_acceso[]=$result['usu_codigo'];
+								   $data_acceso[]=$password[1];
+								   $result = $this->master->insert('acceso',$data_acceso,array('token'));
+							   }else{
+							   	$result = $this->doizer->knowError($result);
+							   }
+							   	echo  json_encode($result);
+
+							}			
+						}else{
+							echo json_encode('las contraseñas  no coinciden');
+						}
+					}
+
+				}else{
+					echo json_encode('por favor realiza correctamente el recaptcha');
+				}
 			}else{
-				$validate_password=false;
-				$_SESSION['message_error']=$password;
-				return;
+				echo json_encode('por favor realiza correctamente el recaptcha');
 			}
 
-			if ($validate_password==true) {
-				// cliente normal
-				unset($data[10]);
-				unset($data[11]);
-				$data[] = 1;
-				   $result = $this->master->insert($this->tableName,$data,$this->insertException);
-				   if ($result==1) {
-					   $result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[1]));
-					   $data_acceso[]=$result['usu_codigo'];
-					   $data_acceso[]=$password[1];
-					   $result = $this->master->insert('acceso',$data_acceso,array('token'));
-				   }
-				}
-				// echo $result;
-				// print_r($data);
-				// die();
-			// if (!$validate_password==true && $data[14]===$data[15]) {
-			// 	$_SESSION['message_error']="Las contraseñas son diferentes";
-			// 	$validate_password = false;
-			// 	return;
-			// }
-			// if ($validate_password==true) {
-				 //cliente normal
-				 // if ($data[13]!=2) {
-				 	// unset($data[14]);
-				 	// unset($data[15]);
-				 	// $data[]=1;
-				 	// $data[]=date('Y-m-d');
-				 	// $data[]=date('Y-m-d');
-					// $result = $this->master->insert($this->tableName,$data,$this->insertException);
-					// echo $result;
-				 // }
-			// 	 if ($result==true) {
-			// 		$result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[1]));
-			// 		$data_acceso[]=$result['usu_codigo'];
-			// 		$data_acceso[]=$password[1];
-			// 		$result = $this->master->insert('acceso',$data_acceso,array('token'));
-			// 	 }
-			//   }
-			  // echo $result;
-			if ($result==1) {
-				$_SESSION['message']="Registrado Exitosamente";
-			}else{
-				$_SESSION['message_error']=$result;
-			}
-			header("Location: clientes");
 		}
 		function readAll(){
 			$result = $this->master->selectAll($this->tableName);

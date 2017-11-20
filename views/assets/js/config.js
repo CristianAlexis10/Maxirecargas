@@ -48,3 +48,96 @@ if(document.getElementById('sexo')){
     }
   })
 }
+
+
+// if(document.getElementById('valores')){
+//     $('#valores').click(function(){
+//     var servicios= [];
+//            $("input[name=ch-tip-ser").each(function(){
+//                 if ($( this ).is( ":checked" )  ) {
+//                    servicios.push($(this).val());
+//                 }
+//             });
+//                    console.log(servicios);  
+
+//     });
+
+// }
+
+
+
+//REGISTRAR PERSONA NATURAL
+   $("#frmNewUser").submit(function(e) {
+        e.preventDefault();
+        var rol = $('#tipo_usu').val();
+        if (rol != 3) {
+                dataJson = [];
+            
+
+                $(".dataCl").each(function(){
+                                  structure = {}
+                                  structure = $(this).val();
+                                  dataJson.push(structure);
+                              });
+                captcha =  grecaptcha.getResponse();
+                // console.log(dataJson);
+                  $.ajax({
+                          url: "guardar-cliente",
+                          type: "POST",
+                           dataType:'json',
+                           data: ({data: dataJson , get_captcha : captcha}),
+                           success: function(result){
+                            if (result==true) {
+                              $("#frmNewUser").after("<div class='message'>Registrado Exitosamente</div>");
+                            }else{
+                              $("#frmNewUser").after("<div class='message'>"+result+"</div>");
+                            }
+                             setTimeout(function(){
+                                $('div.message').remove();
+                              }, 2000);
+                           },
+                           error: function(result){
+                              console.log(result);
+                           }
+                  });
+            
+        }
+    });
+
+    //REGISTRAR PERSONA JURIDICA
+   $("#frmNewBusi").submit(function(e) {
+        e.preventDefault();
+        var rol = $('#tipo_usu').val();
+        if (rol == 3) {
+                dataJson = [];
+            
+
+                $(".dataEmp").each(function(){
+                                  structure = {}
+                                  structure = $(this).val();
+                                  dataJson.push(structure);
+                              });
+                console.log(dataJson);
+                  // $.ajax({
+                  //         url: "guardar-usuario",
+                  //         type: "POST",
+                  //          dataType:'json',
+                  //          data: ({data: dataJson}),
+                  //          success: function(result){
+                  //           if (result==true) {
+                  //             $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente</div>");
+                  //           }else{
+                  //             $("#frmNewBusi").after("<div class='message'>"+result+"</div>");
+                  //           }
+                  //            setTimeout(function(){
+                  //               $('div.message').remove();
+                  //             }, 2000);
+                  //          },
+                  //          error: function(result){
+                  //             console.log(result);
+                  //          }
+                  // });
+            
+        }
+    });
+   

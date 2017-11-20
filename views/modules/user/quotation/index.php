@@ -14,13 +14,13 @@
         <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
         <div class="title--main--quotation">
           <p>Cotizaciones</p>
+        </div>
           <div class="triangle">
             <div class="square--quotation"><p>Crea tu cotizacion</p></div>
           </div>
-        </div>
       </div>
     </div>
-
+  <div class="wrap--form--quotation">
     <div class="rigth--part--quotation">
       <div class="container--form--quotation">
         <form class="form--quotation" action="" method="post">
@@ -44,12 +44,12 @@
           <input type="text" name="" value="" id="description" class="input--quotation">
         </div>
 
-        <!-- <button type="button" name="button" class="buttom--quotation">Cotizar</button> -->
+        <button type="button" name="button" class="buttom--quotation">Cotizar</button>
 
       </form>
       </div>
     </div>
-
+  </div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="views/assets/lib/animate/animatescroll.js"> </script>

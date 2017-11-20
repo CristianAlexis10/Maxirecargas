@@ -1,12 +1,12 @@
 
 $(".input").focus(function(){
-  $(this).parent().addClass("porfa listo");
+  $(this).parent().addClass("color-label mover-label");
 });
 
 $(".input").focusout(function(){
-  if ($(this).val() === "")
-    $(this).parent().removeClass("listo");
-    $(this).parent().removeClass("porta");
+  if($(this).val() === "")
+    $(this).parent().removeClass("mover-label");
+    $(this).parent().removeClass("color-label");
 });
 
 //SERVICES
@@ -244,21 +244,6 @@ $(".input").focusout(function(){
 
 
 
-
-
-
-// animacion de los inputs
-
-$(".input--liner").focus(function(){
-  $(this).parent().addClass("clr-label-liner mov-label-liner");
-});
-
-$(".input--liner").focusout(function(){
-  if($(this).val() === "")
-    $(this).parent().removeClass("mov-label-liner");
-    $(this).parent().removeClass("clr-label-liner");
-});
-
 // tabs
  $( function() {
     $( "#tabs" ).tabs();
@@ -300,12 +285,11 @@ $('#numDoc').keyup(function(){
       data:'data='+value,
   }).done(function(response){
     if (response=='true') {
-         $('#answer-user').show();
-        $('#answer-user').html('usuario no valido');
-         num_doc = true;
+        $('#numDoc').after('<div class="no-usu">usuario no valido</div>');
+         num_doc = false;
      }else{
-         $('#answer-user').hide();
-      num_doc = false;
+          $('.no-usu').remove();
+        num_doc = true;
      }
       enable(num_doc,contra);
   });
@@ -313,55 +297,57 @@ $('#numDoc').keyup(function(){
 //contraseñas
 $('#contra').keyup(function(){
   var contra_ingresada = $('#contra').val().length;
+  $('.contra-no-valid').remove();
   if (contra_ingresada<8) {
-    $('.answer').html('La clave debe tener al menos 8 caracteres');
+    $('#contra').after('<div class="contra-no-valid">La clave debe tener al menos 8 caracteres');
     contra=false;
     $('#rep_contra').attr('disabled',true);
     return ;
   }
   if (contra_ingresada>25) {
-    $('.answer').html('La clave no puede tener más de 25 caracteres');
+    $('#contra').after('<div class="contra-no-valid">La clave no puede tener más de 25 caracteres');
     contra=false;
     $('#rep_contra').attr('disabled',true);
     return ;
   }
   if (minusculas($('#contra').val())==0) {
-    $('.answer').html('La clave debe tener al menos una letra minúscula');
+    $('#contra').after('<div class="contra-no-valid">La clave debe tener al menos una letra minúscula');
     contra=false;
     $('#rep_contra').attr('disabled',true);
     return ;
   }
   if (mayusculas($('#contra').val())==0) {
-    $('.answer').html('La clave debe tener al menos una letra mayuscula');
+    $('#contra').after('<div class="contra-no-valid">La clave debe tener al menos una letra mayuscula');
     contra=false;
     $('#rep_contra').attr('disabled',true);
     return ;
   }
   if (numeros($('#contra').val())==0) {
-    $('.answer').html('La clave debe tener al menos un caracter numérico');
+    $('#contra').after('<div class="contra-no-valid">La clave debe tener al menos un caracter numérico');
     contra=false;
     $('#rep_contra').attr('disabled',true);
     return ;
   }
   if ($('#contra').val().indexOf(" ")!=-1) {
-   $('.answer').html( "La clave no debe tener espacios en blaco");
+   $('#contra').after( "<div class='contra-no-valid'>La clave no debe tener espacios en blaco");
    contra=false;
    $('#rep_contra').attr('disabled',true);
    return ;
   }
-  $('.answer').html("");
   $('#rep_contra').attr('disabled',false);
+
 });
 
 //repetir contra
 $('#rep_contra').keyup(function(){
+    $('.rep_contrasena').remove();
   var rep_contra = $('#rep_contra').val();
   if (rep_contra===$('#contra').val()) {
     contra=true;
-    $('.answer2').html('');
+    $('.rep_contrasena').remove();
   }else{
     contra=false;
-    $('.answer2').html('las contraseñas no coinciden');
+    $('#rep_contra').after('<div class="rep_contrasena">las contraseñas no coinciden</div>');
   }
     enable(num_doc,contra);
 
@@ -400,7 +386,7 @@ function enable(num_doc,contra){
   if (num_doc==true && contra==true) {
     $('#registrar').attr('disabled',false);
   }else{
-    $('#registrar').attr('disabled',false);
+    $('#registrar').attr('disabled',true);
   }
 }
 
@@ -478,3 +464,43 @@ var typeUser= $('#tipo_usu').val();
     $(".customers--business").removeClass("businessaparece")
   }
  });
+
+
+//REGISTRAR PRODUCTO
+   $("#frmNerProduct").submit(function(e) {
+        e.preventDefault();
+        dataJson = [];
+        var servicios= [];
+        $("input[name=ch-tip-ser").each(function(){
+                if ($( this ).is( ":checked" )  ) {
+                   servicios.push($(this).val());
+                }
+        });
+
+
+        $(".data-new-pro").each(function(){
+                          structure = {}
+                          structure = $(this).val();
+                          dataJson.push(structure);
+                      });
+        // console.log(servicios);
+          $.ajax({
+                  url: "guardar-producto",
+                  type: "POST",
+                   dataType:'json',
+                   data: ({data: dataJson, services:servicios}),
+                   success: function(result){
+                    if (result==true) {
+                      $("#frmNerProduct").after("<div class='message'>Registrado Exitosamente</div>");
+                    }else{
+                      $("#frmNerProduct").after("<div class='message'>"+result+"</div>");
+                    }
+                     setTimeout(function(){
+                        $('div.message').remove();
+                      }, 2000);
+                   },
+                   error: function(result){
+                      console.log(result);
+                   }
+          });
+    });
