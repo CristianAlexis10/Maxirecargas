@@ -2,7 +2,7 @@
 	class ViewsController{
 
 	 	function main(){
-			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+			if (isset($_SESSION['CUSTOMER']['CLIENT'])) {
 					require_once "views/modules/customer/index.php";
 			}else{
 				require_once "views/modules/landing.html";

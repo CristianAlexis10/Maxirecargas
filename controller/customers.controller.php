@@ -88,7 +88,6 @@
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-
 			$response_re = $_POST['get_captcha'];
 			if (isset($response_re) && $response_re) {
 				$secret_key = '6Ld_bDkUAAAAAPiAHYM_GX7QxbzLi_WFku7-9_tX';
@@ -96,35 +95,56 @@
 				$validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
 				$result = json_decode($validation);
 				if($result->success==true){
-					if ($data[0]!=3) {
-						// validar contraseñas
-						if ($data[10]===$data[11]) {
-							$password =  $this->doizer->validateSecurityPassword($data[10]);
-							if (is_array($password)) {
-								$validate_password=true;
-							}else{
-								$validate_password=false;
-								echo json_encode($password);
-								return;
-							}
-							if ($validate_password==true) {
-							unset($data[10]);
-							unset($data[11]);
-							   $result = $this->master->insert($this->tableName,array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1),$this->insertException);
-							   if ($result==1) {
-								   $result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[2]));
-								   $data_acceso[]=$result['usu_codigo'];
-								   $data_acceso[]=$password[1];
-								   $result = $this->master->insert('acceso',$data_acceso,array('token'));
-							   }else{
-							   	$result = $this->doizer->knowError($result);
-							   }
-							   	echo  json_encode($result);
-
-							}			
-						}else{
-							echo json_encode('las contraseñas  no coinciden');
+					foreach ($data as $input) {
+						$result = $this->doizer->specialCharater($input);
+						if ($result==false) {
+							echo json_encode('los campos no deben tener caracteres especiales');
+							return;
 						}
+					}
+					if ($data[0]!=3) {
+						//validar numero de documento
+						if(	$this->doizer->onlyNumbers($data[2])==true){
+							// validar contraseñas
+							if ($this->doizer->validateEmail($data[5])==true) {
+								if ($this->doizer->validateDate($data[8],'past')==false) {
+									if ($data[10]===$data[11]) {
+										$password =  $this->doizer->validateSecurityPassword($data[10]);
+										if (is_array($password)) {
+											$validate_password=true;
+										}else{
+											$validate_password=false;
+											echo json_encode($password);
+											return;
+										}
+										if ($validate_password==true) {
+											unset($data[10]);
+											unset($data[11]);
+											   $result = $this->master->insert($this->tableName,array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1),$this->insertException);
+											   if ($result==1) {
+												   $result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[2]));
+												   $data_acceso[]=$result['usu_codigo'];
+												   $data_acceso[]=$password[1];
+												   $result = $this->master->insert('acceso',$data_acceso,array('token'));
+											   }else{
+											   	$result = $this->doizer->knowError($result);
+											   }
+											   	echo  json_encode($result);
+										}
+									}else{
+										echo json_encode('las contraseñas  no coinciden');
+									}
+								}else{
+									echo json_encode('al fecha de nacimiento no es valida');
+								}
+							}else{
+								echo json_encode('formato de correo no valido');
+							}
+						}else{
+							echo json_encode('El numero de identidad no es valido');
+						}
+					}else{
+						//ciente empresarial
 					}
 
 				}else{

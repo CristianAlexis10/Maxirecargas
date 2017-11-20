@@ -22,7 +22,7 @@ function permisos($modulo,$permit){
 		  $permits=array($create_user,$read_user,$update_user,$delete_user);
 		 return $permits;
 }
-		
-		
+
+
 
 ?>

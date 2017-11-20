@@ -3,7 +3,7 @@
 	$inner = $this->master->innerJoinBy(array('usuario','tipo_documento'),array('id_tipo_documento','id_tipo_documento'),array('usu_codigo',base64_decode($_GET['data'])));
 	$inner2 = $this->master->innerJoinBy(array('usuario','ciudad'),array('id_ciudad','id_ciudad'),array('usu_codigo',base64_decode($_GET['data'])));
 	$inner3 = $this->master->innerJoinBy(array('usuario','tipo_usuario'),array('tip_usu_codigo','tip_usu_codigo'),array('usu_codigo',base64_decode($_GET['data'])));
-	
+
 	$inner5 = $this->master->innerJoinBy(array('usuario','estado'),array('id_estado','id_estado'),array('usu_codigo',base64_decode($_GET['data'])));
 ?>
 <div class="modules customers">
@@ -76,7 +76,7 @@
 		<ul>
 			<?php
 			$modulo = 'usuarios';
-			$crud = permisos($modulo,$permit); 
+			$crud = permisos($modulo,$permit);
 			 if($crud[2]==1){?>
 			<li class="item"><a href="modificar-cliente-<?php echo $_GET['data']?>">Modificar</a></li>
 			<?php }  if($crud[3]==1){?>
