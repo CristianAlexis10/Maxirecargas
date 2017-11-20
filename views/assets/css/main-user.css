@@ -12,7 +12,7 @@
 
 .container.one{
   background: url("../image/fondo.jpg");
-  background-repeat:no-repeat;
+  background-size: contain;
 }
 
 .container .left{
@@ -23,7 +23,7 @@
   background: rgba(250,250,250, 0.2);
 }
 .container .left img{
-  width: 50vw;
+  width: 25vw;
   margin: 0 auto;
   margin-top: 130px;
 }
@@ -248,14 +248,15 @@ transform: translateY(-5px);
 
 }
 .container.two .section--one{
-  float: left;
+  width: 100%;
 }
 .container.two .section--one p{
-  font-family: 'lato';
-  font-weight: 300;
-  font-size: 10vw;
+  font-family:'oswald';
+  font-weight:300;
+  font-size: 5vw;
   text-transform: uppercase;
   color: #9e9e9e;
+  padding: 30px 0 0 40px;
 }
 .container.two .section--two{
   width: 100%;
@@ -351,7 +352,7 @@ transform: translateY(-5px);
 }
 .container.mediafour{
   width: 100%;
-  height: 50vh;
+  height: 70vh;
   display: flex;
 }
 
@@ -641,7 +642,7 @@ transform: translateY(-5px);
   width: 100%;
   height: 100vh;
   background-image: url("../image/pedido.jpg");
-  mix-blend-mode: multiply;
+  /*mix-blend-mode: multiply;*/
 }
 
 .left--part{
