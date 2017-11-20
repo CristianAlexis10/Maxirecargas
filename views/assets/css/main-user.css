@@ -804,85 +804,9 @@ transform: translateY(-5px);
 }
 
 /*VIEW PRODUCTS*/
-.wrap--form{
-  width: 90%;
-  max-width: 500px;
-  padding: 20px;
-}
-
-.container--form{
-  width: 100%;
-  color: white;
-}
-
-.input--group{
-  position: relative;
-  font-family: 'lato';
-  font-size: 15px;
-}
-
-.title--secundario{
-  font-family: 'lato';
-  font-size: 20px;
-}
 
 
-.main--container--product{
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  background-image: url("../image/productos.jpg");
-  mix-blend-mode: multiply;
 
-}
-.main--container--product .left--part--product span{
-  margin: 20px;
-  color: white;
-  font-size: 25px;
-  display: inline-flex;
-}
-
-.left--part--product{
-  height: 100vh;
-
-}
-
-.title--main{
-  position: relative;
-  color: rgb(0,255,255);
-  font-family: 'lato';
-  font-size: 70px;
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-right: 80px;
-  letter-spacing: 0.1em;
-  left: 4.8em;
-}
-
-.container--search{
-  display: flex;
-  flex-direction: column;
-}
-
-.input--search{
-  width: 20%;
-  border: 0;
-  outline: none;
-  background: none;
-  color: white;
-}
-
-.input--search:focus{
-  color: white;
-}
-
-.label--search{
-  color: white;
-  font-family: 'lato';
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
 
 /* VIEW QUOTATION*/
 
@@ -951,7 +875,6 @@ transform: translateY(-5px);
 .photo--profile{
 
 }
-
 #menu{
   display: block;}
 
