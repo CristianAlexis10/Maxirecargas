@@ -1,19 +1,32 @@
-<table id="dataGrid">
+<table id="datatableUser" class="datatable">
     <thead>
       <tr>
         <th>Nombre</th>
         <th>Dirección</th>
         <th>Telefono</th>
-        <th>Ver mas</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($this->readAll() as $row) {?>
+      <?php foreach ($this->master->selectAll('usuario') as $row) {?>
           <tr>
             <td><?php echo $row['usu_primer_nombre']?></td>
             <td><?php echo $row['usu_direccion']?></td>
             <td><?php echo $row['usu_telefono']?></td>
-            <td><a href="ver-cliente-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+            <td><a href="ver-cliente-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+            <a href="#" onclick="return confirmDeleteUser(
+            <?php
+         echo $row['usu_codigo'];
+            ?>)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            <?php if ($row['id_estado']==1){?>
+                <a href="#" onclick="return confirmOffUser(
+                <?php
+                echo $row['usu_codigo'];
+                ?>)"><i class="fa fa-power-of" aria-hidden="true"></i></a>
+            <?php }else{?>
+
+            <?php } ?>
+        </td>
           </tr>
         <?php } ?>
       </tbody>

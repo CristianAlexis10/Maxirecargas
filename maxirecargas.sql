@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2017 a las 23:36:50
+-- Tiempo de generación: 21-11-2017 a las 22:30:14
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -40,6 +40,51 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaLogin` (IN `documento` INT(
   SELECT * FROM usuario INNER JOIN acceso ON(usuario.usu_codigo=acceso.usu_codigo) WHERE usuario.usu_num_documento = documento;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crearAcceso` (`token` INT(11), `usu_codigo` INT(11), `acc_contra` VARCHAR(255))  BEGIN
+INSERT INTO acceso (token, usu_codigo, acc_contra) VALUES (token, usu_codigo, acc_contra);
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crearUsuario` (`id_tipo_documento` INT(11), `usu_num_documento` INT(11), `usu_primer_nombre` VARCHAR(50), `usu_primer_apellido` VARCHAR(50), `usu_correo` VARCHAR(100), `usu_telefono` INT(10), `id_ciudad` INT(11), `usu_fecha_nacimiento` DATE, `usu_sexo` VARCHAR(50), `tip_usu_codigo` INT(11), `id_estado` INT(11), `usu_foto` LONGTEXT, `usu_fechas_registro` DATE, `usu_ult_inicio_sesion` DATE)  BEGIN
+INSERT INTO usuario  (id_tipo_documento, usu_num_documento, usu_primer_nombre, usu_primer_apellido,  usu_correo,  usu_telefono, id_ciudad, usu_fecha_nacimiento,  usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion) VALUES (id_tipo_documento, usu_num_documento,  usu_primer_nombre, usu_primer_apellido, usu_correo, usu_telefono, id_ciudad, usu_fecha_nacimiento, usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion);
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarUsuario` (IN `codigo` INT(11))  BEGIN
+IF EXISTS (SELECT usu_codigo FROM usuario WHERE usu_codigo = codigo) 
+THEN 
+DELETE FROM usuario WHERE usu_codigo = codigo;
+END if;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inactivar` (IN `estado` INT(11), IN `codigo` INT(11))  BEGIN
+
+UPDATE usuario 
+SET id_estado = estado
+WHERE usu_codigo = codigo;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarUsuario` (IN `codigo` INT(11), IN `tipo_documento` INT(11), IN `documento` INT(11), IN `nombre` VARCHAR(50), IN `apellido` VARCHAR(50), IN `correo` VARCHAR(100), IN `telefono` INT(10), IN `ciudad` INT(11), IN `nacimiento` DATE, IN `sexo` VARCHAR(50), IN `tipo_codigo` INT(11), IN `estado` INT(11), IN `foto` LONGTEXT)  BEGIN
+
+UPDATE usuario 
+SET  id_tipo_documento = tipo_documento,
+	 usu_num_documento = documento,
+     usu_primer_nombre = nombre,
+     usu_primer_apellido = apellido,
+     usu_correo = correo,
+     usu_telefono = telefono,
+     id_ciudad = ciudad,
+     usu_fecha_nacimiento = nacimiento,
+     usu_sexo = sexo,
+     tip_usu_codigo = tipo_codigo,
+     id_estado = estado,
+     usu_foto = foto
+     
+WHERE usu_codigo = codigo;
+
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -61,8 +106,7 @@ CREATE TABLE `acceso` (
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
 (1459, 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
 (2545, 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
-(2546, 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW'),
-(2553, 16, '$2y$10$Kh8pl8II4xfUETvZcWRO4.3oaGqLEA7Fxrlhn1lJe2SMD8/JGxxdy');
+(2546, 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW');
 
 -- --------------------------------------------------------
 
@@ -159,18 +203,18 @@ INSERT INTO `departamento` (`id_departamento`, `id_pais`, `dep_nombre`) VALUES
 
 CREATE TABLE `empresa` (
   `emp_codigo` int(11) NOT NULL,
-  `sed_codigo` int(11) NOT NULL,
   `emp_nombre` varchar(50) NOT NULL,
-  `emp_nit` int(100) NOT NULL
+  `emp_nit` int(100) NOT NULL,
+  `emp_razon_social` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`emp_codigo`, `sed_codigo`, `emp_nombre`, `emp_nit`) VALUES
-(1, 1, 'Bancolombia', 0),
-(2, 2, 'Exito', 0);
+INSERT INTO `empresa` (`emp_codigo`, `emp_nombre`, `emp_nit`, `emp_razon_social`) VALUES
+(1, 'Bancolombia', 0, ''),
+(2, 'Exito', 0, '');
 
 -- --------------------------------------------------------
 
@@ -445,17 +489,19 @@ INSERT INTO `ruta` (`rut_codigo`, `rut_direccion`, `rut_fecha`, `rut_observacion
 
 CREATE TABLE `sede` (
   `sed_codigo` int(11) NOT NULL,
+  `emp_codigo` int(11) DEFAULT NULL,
   `sed_nombre` varchar(50) NOT NULL,
-  `sed_direccion` varchar(200) NOT NULL
+  `sed_direccion` varchar(200) NOT NULL,
+  `sed_telefono` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `sede`
 --
 
-INSERT INTO `sede` (`sed_codigo`, `sed_nombre`, `sed_direccion`) VALUES
-(1, 'Mayorca', 'Calle 45'),
-(2, 'Alpujarra', 'Carrera 56');
+INSERT INTO `sede` (`sed_codigo`, `emp_codigo`, `sed_nombre`, `sed_direccion`, `sed_telefono`) VALUES
+(1, NULL, 'Mayorca', 'Calle 45', 0),
+(2, NULL, 'Alpujarra', 'Carrera 56', 0);
 
 -- --------------------------------------------------------
 
@@ -498,7 +544,8 @@ CREATE TABLE `tipo_documento` (
 --
 
 INSERT INTO `tipo_documento` (`id_tipo_documento`, `tip_doc_nombre`) VALUES
-(1, 'Cedula');
+(1, 'Cedula'),
+(2, 'Tarjeta de identidad');
 
 -- --------------------------------------------------------
 
@@ -618,8 +665,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
 (1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 3, 1, '', '2017-11-05', '0000-00-00'),
 (2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, '', '2017-11-02', '0000-00-00'),
-(3, 1, 1026, 'Estefania', '', 'Tapias', 'Isaza', 'asdsadsdas', 2132, 1, '21323', 213213, '2017-11-09', 'femenino', 2, 1, '', '2017-11-02', '2017-11-01'),
-(16, 1, 990420, 'Cristian', '', 'Lopera', '', 'aa@dd', 888, 1, '', 0, '2017-11-11', 'femenino', 2, 1, '', '0000-00-00', '0000-00-00');
+(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 1, 1, 'kojada', '2017-11-02', '2017-11-01');
 
 -- --------------------------------------------------------
 
@@ -685,8 +731,7 @@ ALTER TABLE `departamento`
 -- Indices de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  ADD PRIMARY KEY (`emp_codigo`),
-  ADD KEY `sed_id` (`sed_codigo`);
+  ADD PRIMARY KEY (`emp_codigo`);
 
 --
 -- Indices de la tabla `estado`
@@ -786,7 +831,8 @@ ALTER TABLE `ruta`
 -- Indices de la tabla `sede`
 --
 ALTER TABLE `sede`
-  ADD PRIMARY KEY (`sed_codigo`);
+  ADD PRIMARY KEY (`sed_codigo`),
+  ADD KEY `emp_codigo` (`emp_codigo`);
 
 --
 -- Indices de la tabla `servicioxproducto`
@@ -923,7 +969,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `pedidoxproducto`
 --
 ALTER TABLE `pedidoxproducto`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
@@ -933,7 +979,7 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `prodxcot`
 --
@@ -958,12 +1004,12 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
-  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipo_pedido`
 --
@@ -978,7 +1024,7 @@ ALTER TABLE `tipo_producto`
 -- AUTO_INCREMENT de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
-  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
@@ -1024,12 +1070,6 @@ ALTER TABLE `cotizacion`
 --
 ALTER TABLE `departamento`
   ADD CONSTRAINT `fk_departamento_pais1` FOREIGN KEY (`id_pais`) REFERENCES `pais` (`id_pais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `empresa`
---
-ALTER TABLE `empresa`
-  ADD CONSTRAINT `empresa_ibfk_1` FOREIGN KEY (`sed_codigo`) REFERENCES `sede` (`sed_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `estiloxcliente`
@@ -1083,6 +1123,12 @@ ALTER TABLE `prodxcot`
 --
 ALTER TABLE `reporte`
   ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `sede`
+--
+ALTER TABLE `sede`
+  ADD CONSTRAINT `sede_ibfk_1` FOREIGN KEY (`emp_codigo`) REFERENCES `empresa` (`emp_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `servicioxproducto`

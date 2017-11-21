@@ -104,7 +104,7 @@
 				$ip_user = $_SERVER['REMOTE_ADDR'];
 				$validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
 				$result = json_decode($validation);
-				if($result->success!=true){
+				if($result->success==true){
 					$i = 0;
 					foreach ($data as $input) {
 						if ($i==5) {
@@ -117,6 +117,7 @@
 							}
 						}
 						$i++;
+					}
 						//foto de perfil
 						if (isset($_FILES['file']['tmp_name'])) {
 							$profile = $this->doizer->ValidateImage($_FILES,"assets/image/profile/");
@@ -129,7 +130,6 @@
 						}else{
 							$profile = 'defaul.jpg';
 						}
-					}
 					//registrar roles menos cliente empresarial
 					if ($data[0]!=3) {
 						//validar numero de documento
@@ -150,7 +150,8 @@
 											unset($data[10]);
 											unset($data[11]);
 											$date = date('Y-m-d');
-											   $result = $this->master->insert($this->tableName,array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1,$profile,$date,$date),$this->insertException);
+											   $result = $this->master->procedure14('crearUsuario',array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1,$profile,$date,$date));
+											   die(json_encode($result));
 											   if ($result==1) {
 												   $result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[2]));
 												   $data_acceso[]=$result['usu_codigo'];
@@ -256,14 +257,24 @@
 			header("Location: clientes");
 		}
 		function delete(){
-			$data = base64_decode($_GET['data']);
-			$result = $this->master->delete($this->tableName,array('usu_codigo',$data));
-			if ($result==1) {
-				$_SESSION['message']="Eliminado Exitosamente";
-			}else{
-				$_SESSION['message_error']=$result;
+			$data = $_POST['data'];
+			$result = $this->master->procedureNR('eliminarUsuario',$data);
+			// die(json_encode($result));
+			if ($result==true) {
+				echo json_encode('Eliminado correctamente');
+			}else {
+				echo json_encode($this->doizer->knowError($result));
 			}
-			header("Location: clientes");
+		}
+		function off(){
+			$data = $_POST['data'];
+			$result = $this->master->procedureNR('inactivar',array(2,$data));
+			// die(json_encode($result));
+			if ($result==true) {
+				echo json_encode('Desactivado correctamente');
+			}else {
+				echo json_encode($this->doizer->knowError($result));
+			}
 		}
 	}
 ?>

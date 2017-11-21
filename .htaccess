@@ -2,6 +2,7 @@ RewriteEngine on
 
 #USURAIOS
 RewriteRule ^registrate$ index.php?controller=customers&a=ViewNewUser
+RewriteRule ^eliminar-usuario$ index.php?controller=customers&a=delete
 
 #COTIZACION
 RewriteRule ^cotizacion$ index.php?controller=quotation

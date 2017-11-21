@@ -158,6 +158,33 @@ class MasterModel{
 
         return $result;
     }
+     public function procedureNR($name,$value){
+        try {
+            $this->sql="call $name(?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute(array($value));
+            $result = $query->errorInfo()[1];
+            if ($result==null) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            $result = $query->errorInfo()[1];
+        }
+
+        return $result;
+    }
+     public function procedure14($name,$value){
+        try {
+            $this->sql="call $name(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute($value);
+            $result = true;
+        } catch (PDOException $e) {
+            $result = $e->getMessage();
+        }
+
+        return $result;
+    }
     public function selectAllBy($table,$condition){
         try {
             $this->sql="SELECT * FROM $table WHERE $condition[0] = ?";

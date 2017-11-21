@@ -504,3 +504,28 @@ var typeUser= $('#tipo_usu').val();
                    }
           });
     });
+
+
+
+//ELIMINAR USUARIO
+function confirmDeleteUser(value){
+     var ya = false;
+    if(confirm('¿Eliminar este registro?')){
+        $.ajax({
+          url: 'eliminar-usuario',
+          type:'post',
+          dataType:'json',
+          data:'data='+value,
+      }).done(function(response){
+          console.log(response);
+          $('#datatableUser').load('index.php?controller=datatables&a=dataTableUser');
+          $("#datatableUser").after("<div class='message'>"+response+"</div>");
+          setTimeout(function(){
+             $('div.message').remove();
+           }, 2000);
+      });
+        return true;
+    }else{
+        return false;
+    }
+}

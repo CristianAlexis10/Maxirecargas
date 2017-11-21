@@ -171,7 +171,7 @@ class DoizerController{
 	}
 //TEXTO
 	function specialCharater($string){
-		$pattern = '/[\'\/~`\!\%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\\\]/';
+		$pattern = '/[\'\/~`\!\%\^&\*\(\)\+=\{\}\[\]\|;:"\<\>,\\\]/';
 	    if (preg_match($pattern,$string)){
 	      	return false;
 	  	}else{
