@@ -3,14 +3,13 @@
 
 /*landing */
 
-.container.one, .container.two, .container.three{
+.container.one, .container.two,{
   width: 100%;
   height: 100vh;
-  display: flex;
-
 }
 
 .container.one{
+  display: flex;
   background: url("../image/fondo.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -244,31 +243,26 @@ transform: translateY(-5px);
 .container.two{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: url("image/ilustracion.jpg");
-  background-size: auto;
-
 }
 .container.two .section--one{
   width: 100%;
   height: 20vh;
   display: flex;
   align-items: center;
-  margin-top: 50px;
-  font-family: 'lato';
-  font-size: 90px;
+  margin-top: 20px;
+  font-family: 'oswald';
+  font-size: 5vw;
   font-weight: 300;
   text-transform: uppercase;
   color: #9e9e9e;
 }
 .container.two .section--one p{
-  padding-left: 60px;
+  padding-left: 30px;
 }
 .container.two .section--two{
   width: 100%;
   height: 80vh;
   display: flex;
-  margin-top: 80px;
 }
 .container.two .section--two .section-left{
   padding: 30px;
@@ -282,10 +276,10 @@ transform: translateY(-5px);
   font-size: 35px;
   text-transform: uppercase;
   color: #689198;
-  padding: 0px 0px 10px 80px
+  padding: 0px 0px 10px 30px
 }
 .container.two .section--two .section-left p, .section-rigth p{
-  padding: 0px 100px 50px 80px;
+  padding: 0px 30px 50px 30px;
   font-family: 'lato';
   font-weight: 300;
   line-height: 22px;
@@ -299,37 +293,45 @@ transform: translateY(-5px);
   flex-direction: column;
   justify-content:flex-end;
 }
+#iconPc{
+  padding: 0 0 0 30px;
+  width: 300px;
+}
+#iconPrinter{
+  width: 300px;
+}
 
 .container.three{
   background: url("../image/fondo3.jpg");
+  width: 100%;
+  height: 100vh;
   display: flex;
 }
 .container.three .three--left{
-  width: 30%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .container.three .three--left h1{
   color: #f8f400;
-  width: 80%;
-  font-family: 'lato';
-  font-weight: bold;
-  font-size: 50px;
-  margin-top: 100px;
+  width: 100%;
+  font-family: 'oswald';
+  font-weight: 300;
+  font-size: 4vw;
   box-sizing: border-box;
-  text-align: center;
   text-transform: uppercase;
-  margin-bottom: 30px;
-
+  padding: 30px 0 0 30px;
+  margin-bottom: 50px;
 }
 .container.three .three--left p{
-  width: 80%;
-  color: #7b7c7c;
+  width: 100%;
+  color: #9e9e9e;
   font-family: 'lato';
   font-weight: 400;
-  font-size: 18px;
-  padding: 20px;
+  font-size: 20px;
+  padding: 40px 0 0 50px;
+
 }
 .container.three .three--left p i{
   color: #f8f400;
@@ -348,24 +350,35 @@ transform: translateY(-5px);
   margin-top: 50px;
 }
 .container.three .three--rigth{
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 60%;
+  margin-top: -32px;
+  background: url("../image/flat/fondo_servicios.png");
+  background-repeat: no-repeat;
+  background-size: 750px;
+  display:inline;
 }
-.container.three .three--rigth .services{
-  width: 80%;
-  height: 80vh;
-  background: white;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+
+#services-domicilio{
+  width: 150px;
+  position:absolute;
+  padding: 70px 0 0 80px;
 }
+ #services-servicio{
+  width: 200px;
+  position: absolute;
+  padding: 150px 0 0 300px;
+}
+ #services-asistencia{
+  width: 150px;
+  position:absolute;
+  padding: 70px 0 0 550px;
+}
+
 .container.mediafour{
   width: 100%;
   height: 70vh;
   display: flex;
+
 }
 
 .container.mediafour h1{
@@ -401,7 +414,9 @@ transform: translateY(-5px);
   display: flex;
   width: 100%;
   height: 70vh;
-  background: #dadada;
+  background: url("../image/maps.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .container.four .four--contact{
   width: 50%;
