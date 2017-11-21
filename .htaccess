@@ -1,6 +1,7 @@
 RewriteEngine on
 
-
+#USURAIOS
+RewriteRule ^registrate$ index.php?controller=customers&a=ViewNewUser
 
 #COTIZACION
 RewriteRule ^cotizacion$ index.php?controller=quotation

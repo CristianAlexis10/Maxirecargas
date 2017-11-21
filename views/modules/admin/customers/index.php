@@ -27,7 +27,7 @@
 					<form id="frmNewUser">
 						<div class="form-group type--user">
 								<label for="tipo_usu" class="select" >Tipo de Usuario:</label>
-								<select class="dataCl input"  id="tipo_usu" required></select>
+								<select class="dataCl dataEmp input"  id="tipo_usu" required></select>
 						</div>
 						<div class="customers--normal">
 							<div class="form-group">
@@ -122,6 +122,16 @@
 							</div>
 							<h1>datos del contacto</h1>
 							<div class="form-group">
+								<label for="tip_doc" class="label">Tipo de documento</label>
+								<select class="dataEmp input" id="tip_doc">
+									<option value="1">Cedula</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="numDoc" class="label">Numero de documento</label>
+								<input type="text" class="dataEmp input"  id="numDoc" required>
+							</div>
+							<div class="form-group">
 								<label for="sede-enc" class="label">Nombre del contacto</label>
 								<input type="text" class="dataEmp input"  id="sede-enc"required>
 							</div>
@@ -130,8 +140,10 @@
 								<input type="text" class="dataEmp input"  id="sede-enca"required>
 							</div>
 							<div class="form-group">
-								<label for="sede-sexo" class="label">sexo</label>
-								<input type="text" class="dataEmp input"  id="sede-sexo" required >
+								<label for="cuidad" class="label">Ciudad</label>
+								<select class="dataEmp input" id="cuidad">
+									<option value="1">Medellin</option>
+								</select>
 							</div>
 
 							<div class="form-group">
@@ -141,6 +153,10 @@
 							<div class="form-group">
 								<label for="sede-correo" class="label">Correo</label>
 								<input type="email" class="dataEmp input"  id="sede-correo" required>
+							</div>
+							<div class="form-group">
+								<label for="cargo" class="label">Cargo:</label>
+								<input type="text"  id="cargo" class="input dataEmp" required>
 							</div>
 							<div class="form-group">
 								<label for="contraEmp" class="label">Contraseña:</label>
