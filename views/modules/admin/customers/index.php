@@ -82,6 +82,10 @@
 								<input type="password"  id="rep_contra" class="input dataCl" required disabled>
 							</div>
 							</div>
+							<!-- <div class="form-group">
+								<label for="image" class="laber">Foto de perfil:</label>
+								<input type="file" name="file" id="imageupload">
+							</div> -->
 						      <div class="form-group">
 						        <button class="btn" disabled id="registrar">Registrar Cliente</button>
 						       </div>

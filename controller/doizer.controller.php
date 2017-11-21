@@ -102,7 +102,7 @@ class DoizerController{
 	                return "Error: No se ha reconocido la imagen";
 	            }
 	        }else{
-	            return "Error: ".$image['file']['error'];
+	            return "Ha ocurrido un error  con la imagen ";
 	        }
             }
 //FECHAS

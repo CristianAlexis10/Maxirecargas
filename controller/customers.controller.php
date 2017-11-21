@@ -10,8 +10,8 @@
 	 		$this->master = new MasterModel;
 	 		$this->doizer = new DoizerController;
 	 		$this->tableName="usuario";
-	 		$this->insertException=array('usu_codigo','usu_segundo_nombre','usu_segundo_apellido','usu_direccion','usu_celular','usu_foto','usu_fechas_registro','usu_ult_inicio_sesion');
-	 		$this->updateException = array('usu_codigo','contra','fecha_registro','ultimo_ingreso','foto');
+	 		$this->insertException=array('usu_codigo','usu_segundo_nombre','usu_segundo_apellido','usu_direccion','usu_celular');
+	 		$this->updateException = array('usu_codigo','fecha_registro','ultimo_ingreso');
 	 	}
 		function main(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
@@ -94,15 +94,31 @@
 				$ip_user = $_SERVER['REMOTE_ADDR'];
 				$validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
 				$result = json_decode($validation);
-				if($result->success==true){
+				if($result->success!=true){
+					$i = 0;
 					foreach ($data as $input) {
-						$result = $this->doizer->specialCharater($input);
-						if ($result==false) {
-							echo json_encode('los campos no deben tener caracteres especiales');
-							return;
+						if ($i==5) {
+							
+						}else{
+							$result = $this->doizer->specialCharater($data[$i]);
+							if ($result==false) {
+								echo json_encode('los campos no deben tener caracteres especiales');
+								return;
+							}
 						}
 					}
 					if ($data[0]!=3) {
+						if (isset($_FILES['file']['tmp_name'])) {
+							$profile = $this->doizer->ValidateImage($_FILES,"assets/image/profile/");
+							if (is_array($profile)) {
+								$profile = $profile[1];
+							}else{
+								echo json_encode($profile);
+								return ;
+							}
+						}else{
+							$profile = 'defaul.jpg';
+						}
 						//validar numero de documento
 						if(	$this->doizer->onlyNumbers($data[2])==true){
 							// validar contraseñas
@@ -120,7 +136,8 @@
 										if ($validate_password==true) {
 											unset($data[10]);
 											unset($data[11]);
-											   $result = $this->master->insert($this->tableName,array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1),$this->insertException);
+											$date = date('Y-m-d');
+											   $result = $this->master->insert($this->tableName,array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1,$profile,$date,$date),$this->insertException);
 											   if ($result==1) {
 												   $result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[2]));
 												   $data_acceso[]=$result['usu_codigo'];
