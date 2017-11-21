@@ -32,5 +32,12 @@
     top: 20px;
     font-size: 40px
   }
-
+  #iconPc{
+    width: 120px;
+  }
+  .container.three .three--rigth{
+    background-size: 400px 600px;
+    display:block;
+    
+  }
 }
