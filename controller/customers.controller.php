@@ -116,6 +116,7 @@
 								return;
 							}
 						}
+						$i++;
 					}
 					if ($data[0]!=3) {
 						if (isset($_FILES['file']['tmp_name'])) {
