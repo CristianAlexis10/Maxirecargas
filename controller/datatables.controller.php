@@ -20,6 +20,9 @@ require_once "controller/doizer.controller.php";
         function dataTableUser(){
             require_once "views/modules/config/datatables/datatable-user.php";
         }
+        function dataTableEmployee(){
+            require_once "views/modules/config/datatables/datatable-employee.php";
+        }
 
 
 	}

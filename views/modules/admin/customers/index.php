@@ -160,7 +160,7 @@
 
 		  </div>
 			<div id="tabs-3">
-				<!--  lopera aca va la direccion de php -->
+			 <?php require_once "views/modules/config/datatables/datatable-employee.php"; ?>
 			</div>
 
 		<?php }  ?>
