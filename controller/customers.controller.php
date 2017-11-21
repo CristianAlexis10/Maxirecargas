@@ -117,8 +117,7 @@
 							}
 						}
 						$i++;
-					}
-					if ($data[0]!=3) {
+						//foto de perfil
 						if (isset($_FILES['file']['tmp_name'])) {
 							$profile = $this->doizer->ValidateImage($_FILES,"assets/image/profile/");
 							if (is_array($profile)) {
@@ -130,6 +129,9 @@
 						}else{
 							$profile = 'defaul.jpg';
 						}
+					}
+					//registrar roles menos cliente empresarial
+					if ($data[0]!=3) {
 						//validar numero de documento
 						if(	$this->doizer->onlyNumbers($data[2])==true){
 							// validar contraseñas
@@ -173,6 +175,48 @@
 						}
 					}else{
 						//ciente empresarial
+						//contraseñas iguales
+						if ($data[15]==$data[16]) {
+								//caracteres especiales
+								$i = 0;
+								foreach ($data as $input) {
+									if ($i==13) {
+										//formato de correo
+										$result = $this->doizer->validateEmail($data[5]);
+										if ($result!=true) {
+											echo json_encode('Formato de correo no valido');
+											return ;
+										}
+									}else{
+										$result = $this->doizer->specialCharater($data[$i]);
+										if ($result==false) {
+											echo json_encode('los campos no deben tener caracteres especiales');
+											return;
+										}
+									}
+									$i++;
+								}
+								//contraseñas
+								$password =  $this->doizer->validateSecurityPassword($data[15]);
+								if (is_array($password)) {
+									$validate_password=true;
+								}else{
+									$validate_password=false;
+									echo json_encode($password);
+									return;
+								}
+								//insertar
+								$date = date('Y-m-d');
+								$result = $this->master->procedure('',$data);
+								if ($result==1) {
+									echo json_encode('Registedo Exitosamente');
+								}else{
+									$result = $this->doizer->knowError($result);
+									echo json_encode($result);
+								}
+						}else{
+							echo json_encode('Contraseñas diferentes');
+						}
 					}
 
 				}else{
