@@ -109,6 +109,19 @@
 							</div>
 							<h1>datos de la sede</h1>
 							<div class="form-group">
+								<label for="sed-nom" class="label">Nombre de la sede</label>
+								<input type="text" class="dataEmp input" id="sed-nom" required>
+							</div>
+							<div class="form-group">
+								<label for="sede-dir" class="label">Direccion</label>
+								<input type="text" class="dataEmp input" id="sede-dir" required>
+							</div>
+							<div class="form-group">
+								<label for="sede-tel" class="label">Telefono</label>
+								<input type="number" class="dataEmp input" id="sede-tel" required>
+							</div>
+							<h1>datos del contacto</h1>
+							<div class="form-group">
 								<label for="sede-enc" class="label">Nombre del contacto</label>
 								<input type="text" class="dataEmp input"  id="sede-enc"required>
 							</div>
@@ -118,35 +131,27 @@
 							</div>
 							<div class="form-group">
 								<label for="sede-sexo" class="label">sexo</label>
-								<input type="text" class="dataEmp input"  id="sede-sexo"required>
+								<input type="text" class="dataEmp input"  id="sede-sexo" required >
 							</div>
 
 							<div class="form-group">
-								<label for="sede-tel" class="label">Telefono</label>
-								<input type="text" class="dataEmp input" id="sede-tel" required>
-							</div>
-							<div class="form-group">
 								<label for="sede-enc" class="label">Ext</label>
-								<input type="text" class="dataEmp input"  id="sede-ext" required>
-							</div>
-							<div class="form-group">
-								<label for="sede-dir" class="label">Direccion</label>
-								<input type="text" class="dataEmp input" id="sede-dir" required>
+								<input type="number" class="dataEmp input"  id="sede-ext" required>
 							</div>
 							<div class="form-group">
 								<label for="sede-correo" class="label">Correo</label>
-								<input type="text" class="dataEmp input"  id="sede-correo"required>
+								<input type="email" class="dataEmp input"  id="sede-correo" required>
 							</div>
 							<div class="form-group">
-								<label for="contra" class="label">Contraseña:</label>
-								<input type="password"  id="contra" class="input dataEmp" required>
+								<label for="contraEmp" class="label">Contraseña:</label>
+								<input type="password"  id="contraEmp" class="input dataEmp" required>
 							</div>
 							<div class="form-group">
-								<label for="rep_contra" class="label">Repetir Contraseña:</label>
-								<input type="password"  id="rep_contra" class="input dataEmp" required >
+								<label for="rep_contraEmp" class="label">Repetir Contraseña:</label>
+								<input type="password"  id="rep_contraEmp" class="input dataEmp" required >
 							</div>
 							<div class="form-group">
-			        					<button class="btn"  id="registrar">Registrar Empresa</button>
+			        					<button class="btn"  id="registrarEmp">Registrar Empresa</button>
 			       				</div>
 						</div>
 						<div class="g-recaptcha" data-sitekey="6Ld_bDkUAAAAADkIoF_nn1BbWzhCuSm0Zk2E83eZ"></div>
