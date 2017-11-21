@@ -34,6 +34,16 @@
 			}
 
 		}
+		function ViewNewUser(){
+			require_once "views/include/user/scope.header.php";
+			require_once "views/modules/user/registrate.php";
+			// require_once "views/modules/user/quotation/index.php";
+			require_once "views/include/user/scope.footer.php";
+				// require_once "views/include/user/scope.header.php";
+				// require_once "views/include/user/scope.footer.php";
+
+		}
+
 		function profile(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
 					// require_once "views/modules/landing.html";
@@ -98,7 +108,7 @@
 					$i = 0;
 					foreach ($data as $input) {
 						if ($i==5) {
-							
+
 						}else{
 							$result = $this->doizer->specialCharater($data[$i]);
 							if ($result==false) {
@@ -188,7 +198,7 @@
 			}else{
 				echo json_encode(false);
 			}
-		}		
+		}
 		function update(){
 			$data=$_POST['data'];
 			$result = $this->master->update($this->tableName,array('usu_codigo',$_SESSION['user_update']),$data,$this->updateException);
