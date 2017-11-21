@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 18, 2017 at 05:10 AM
--- Server version: 10.1.8-MariaDB
--- PHP Version: 5.6.14
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 20-11-2017 a las 23:36:50
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,35 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `maxirecargas`
+-- Base de datos: `maxi`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaExisteEmail` (IN `correo` VARCHAR(100))  BEGIN
+  SELECT * FROM usuario INNER JOIN acceso ON(usuario.usu_codigo=acceso.usu_codigo) WHERE usuario.usu_correo = correo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaExisteEmpresarial` (IN `empresarial` VARCHAR(100))  BEGIN
+  SELECT * FROM empresa WHERE emp_nit = empresarial;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaExisteUsuario` (IN `documento` VARCHAR(100))  BEGIN
+  SELECT * FROM usuario WHERE usu_num_documento = documento;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaLogin` (IN `documento` INT(11))  BEGIN
+  SELECT * FROM usuario INNER JOIN acceso ON(usuario.usu_codigo=acceso.usu_codigo) WHERE usuario.usu_num_documento = documento;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acceso`
+-- Estructura de tabla para la tabla `acceso`
 --
 
 CREATE TABLE `acceso` (
@@ -33,7 +55,7 @@ CREATE TABLE `acceso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `acceso`
+-- Volcado de datos para la tabla `acceso`
 --
 
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
@@ -45,7 +67,7 @@ INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ciudad`
+-- Estructura de tabla para la tabla `ciudad`
 --
 
 CREATE TABLE `ciudad` (
@@ -55,7 +77,7 @@ CREATE TABLE `ciudad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ciudad`
+-- Volcado de datos para la tabla `ciudad`
 --
 
 INSERT INTO `ciudad` (`id_ciudad`, `id_departamento`, `ciu_nombre`) VALUES
@@ -65,7 +87,7 @@ INSERT INTO `ciudad` (`id_ciudad`, `id_departamento`, `ciu_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cliente_empresarial`
+-- Estructura de tabla para la tabla `cliente_empresarial`
 --
 
 CREATE TABLE `cliente_empresarial` (
@@ -76,7 +98,7 @@ CREATE TABLE `cliente_empresarial` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cliente_empresarial`
+-- Volcado de datos para la tabla `cliente_empresarial`
 --
 
 INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_codigo`, `cli_emp_cargo`) VALUES
@@ -86,7 +108,7 @@ INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cotizacion`
+-- Estructura de tabla para la tabla `cotizacion`
 --
 
 CREATE TABLE `cotizacion` (
@@ -102,7 +124,7 @@ CREATE TABLE `cotizacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `cotizacion`
+-- Volcado de datos para la tabla `cotizacion`
 --
 
 INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `mar_codigo`, `cot_tipo_solicitud`, `cot_cantidad`, `cot_referencia`, `cot_telefono`, `cot_correo`, `cot_fecha`) VALUES
@@ -112,7 +134,7 @@ INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `mar_codigo`, `cot_tipo_so
 -- --------------------------------------------------------
 
 --
--- Table structure for table `departamento`
+-- Estructura de tabla para la tabla `departamento`
 --
 
 CREATE TABLE `departamento` (
@@ -122,7 +144,7 @@ CREATE TABLE `departamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `departamento`
+-- Volcado de datos para la tabla `departamento`
 --
 
 INSERT INTO `departamento` (`id_departamento`, `id_pais`, `dep_nombre`) VALUES
@@ -132,27 +154,28 @@ INSERT INTO `departamento` (`id_departamento`, `id_pais`, `dep_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa`
+-- Estructura de tabla para la tabla `empresa`
 --
 
 CREATE TABLE `empresa` (
   `emp_codigo` int(11) NOT NULL,
   `sed_codigo` int(11) NOT NULL,
-  `emp_nombre` varchar(50) NOT NULL
+  `emp_nombre` varchar(50) NOT NULL,
+  `emp_nit` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `empresa`
+-- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`emp_codigo`, `sed_codigo`, `emp_nombre`) VALUES
-(1, 1, 'Bancolombia'),
-(2, 2, 'Exito');
+INSERT INTO `empresa` (`emp_codigo`, `sed_codigo`, `emp_nombre`, `emp_nit`) VALUES
+(1, 1, 'Bancolombia', 0),
+(2, 2, 'Exito', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estado`
+-- Estructura de tabla para la tabla `estado`
 --
 
 CREATE TABLE `estado` (
@@ -161,7 +184,7 @@ CREATE TABLE `estado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `estado`
+-- Volcado de datos para la tabla `estado`
 --
 
 INSERT INTO `estado` (`id_estado`, `est_estado`) VALUES
@@ -171,7 +194,40 @@ INSERT INTO `estado` (`id_estado`, `est_estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `marca`
+-- Estructura de tabla para la tabla `estiloxcliente`
+--
+
+CREATE TABLE `estiloxcliente` (
+  `ec_codigo` int(11) NOT NULL,
+  `ec_nombre_color` varchar(100) NOT NULL,
+  `ec_hexadecimal` varchar(100) NOT NULL,
+  `usu_codigo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `gestion_web`
+--
+
+CREATE TABLE `gestion_web` (
+  `gw_codigo` int(11) NOT NULL,
+  `gw_tl_section1` varchar(100) NOT NULL,
+  `gw_st_section1` varchar(100) NOT NULL,
+  `gw_tl_section2` varchar(100) NOT NULL,
+  `gw_st_section2-1` varchar(100) NOT NULL,
+  `gw_st_section2-2` varchar(100) NOT NULL,
+  `gw_ct_telefono` int(7) NOT NULL,
+  `gw_ct_whatsapp` int(10) NOT NULL,
+  `gw_ct_correo` varchar(255) NOT NULL,
+  `gw_ct_direccion` varchar(200) NOT NULL,
+  `usu_codigo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `marca`
 --
 
 CREATE TABLE `marca` (
@@ -181,7 +237,7 @@ CREATE TABLE `marca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `marca`
+-- Volcado de datos para la tabla `marca`
 --
 
 INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
@@ -191,7 +247,7 @@ INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modulos`
+-- Estructura de tabla para la tabla `modulos`
 --
 
 CREATE TABLE `modulos` (
@@ -202,20 +258,20 @@ CREATE TABLE `modulos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `modulos`
+-- Volcado de datos para la tabla `modulos`
 --
 
 INSERT INTO `modulos` (`id_modulo`, `mod_nombre`, `enlace`, `icon`) VALUES
-(1, 'usuarios', 'clientes', '<i class="fa fa-users" aria-hidden="true"></i>'),
-(2, 'productos', 'productos', '<i class="fa fa-shopping-cart" aria-hidden="true"></i>'),
-(3, 'Pedidos', 'pedidos', '<i class="fa fa-bullhorn" aria-hidden="true"></i>'),
-(4, 'cotizacion', 'cotizacion', '<i class="fa fa-wrench" aria-hidden="true"></i>'),
-(5, 'Rutas', 'rutas', '<i class="fa fa-motorcycle" aria-hidden="true"></i>');
+(1, 'usuarios', 'clientes', '<i class=\"fa fa-users\" aria-hidden=\"true\"></i>'),
+(2, 'productos', 'productos', '<i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"></i>'),
+(3, 'Pedidos', 'pedidos', '<i class=\"fa fa-bullhorn\" aria-hidden=\"true\"></i>'),
+(4, 'cotizacion', 'cotizacion', '<i class=\"fa fa-wrench\" aria-hidden=\"true\"></i>'),
+(5, 'Rutas', 'rutas', '<i class=\"fa fa-motorcycle\" aria-hidden=\"true\"></i>');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pais`
+-- Estructura de tabla para la tabla `pais`
 --
 
 CREATE TABLE `pais` (
@@ -224,7 +280,7 @@ CREATE TABLE `pais` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pais`
+-- Volcado de datos para la tabla `pais`
 --
 
 INSERT INTO `pais` (`id_pais`, `pai_nombre`) VALUES
@@ -233,7 +289,7 @@ INSERT INTO `pais` (`id_pais`, `pai_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedido`
+-- Estructura de tabla para la tabla `pedido`
 --
 
 CREATE TABLE `pedido` (
@@ -243,42 +299,35 @@ CREATE TABLE `pedido` (
   `ped_fecha` date NOT NULL,
   `emp_codigo` int(11) DEFAULT NULL,
   `tip_ped_codigo` int(11) DEFAULT NULL,
+  `rut_codigo` int(11) NOT NULL,
   `ped_estado` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `pedido`
+-- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`ped_codigo`, `ped_direccion`, `ped_correo`, `ped_fecha`, `emp_codigo`, `tip_ped_codigo`, `ped_estado`) VALUES
-(1, 'Calle 45', 'nada@gmail.com', '2017-08-14', 1, 1, 'En camino'),
-(2, 'Carrera 56', 'hola@gmail.com', '2017-10-23', 2, 1, 'En espera');
+INSERT INTO `pedido` (`ped_codigo`, `ped_direccion`, `ped_correo`, `ped_fecha`, `emp_codigo`, `tip_ped_codigo`, `rut_codigo`, `ped_estado`) VALUES
+(1, 'Calle 45', 'nada@gmail.com', '2017-08-14', 1, 1, 1, 'En camino'),
+(2, 'Carrera 56', 'hola@gmail.com', '2017-10-23', 2, 1, 2, 'En espera');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedidoxproducto`
+-- Estructura de tabla para la tabla `pedidoxproducto`
 --
 
 CREATE TABLE `pedidoxproducto` (
   `ped_codigo` int(11) NOT NULL,
-  `ite_codigo` int(11) NOT NULL,
+  `pro_codigo` int(11) NOT NULL,
   `pedxpro_cantidad` int(11) NOT NULL,
   `pedxpro_valor_total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `pedidoxproducto`
---
-
-INSERT INTO `pedidoxproducto` (`ped_codigo`, `ite_codigo`, `pedxpro_cantidad`, `pedxpro_valor_total`) VALUES
-(1, 1, 5, 100000),
-(2, 2, 3, 50000);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permiso`
+-- Estructura de tabla para la tabla `permiso`
 --
 
 CREATE TABLE `permiso` (
@@ -292,7 +341,7 @@ CREATE TABLE `permiso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `permiso`
+-- Volcado de datos para la tabla `permiso`
 --
 
 INSERT INTO `permiso` (`id_permiso`, `id_modulo`, `tip_usu_codigo`, `per_crear`, `per_modificar`, `per_eliminar`, `per_buscar`) VALUES
@@ -305,7 +354,7 @@ INSERT INTO `permiso` (`id_permiso`, `id_modulo`, `tip_usu_codigo`, `per_crear`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `producto`
+-- Estructura de tabla para la tabla `producto`
 --
 
 CREATE TABLE `producto` (
@@ -317,30 +366,38 @@ CREATE TABLE `producto` (
   `pro_imagen` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`pro_codigo`, `mar_codigo`, `tip_pro_codigo`, `pro_referencia`, `pro_descripcion`, `pro_imagen`) VALUES
+(1, 1, 1, 'hfg', 'fgjf', 'fgj'),
+(2, 2, 2, 'fgh', 'ghf', 'fjhg');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prodxcot`
+-- Estructura de tabla para la tabla `prodxcot`
 --
 
 CREATE TABLE `prodxcot` (
-  `ite_codigo` int(11) NOT NULL,
+  `pro_codigo` int(11) NOT NULL,
   `cot_codigo` int(11) NOT NULL,
   `proxcot_cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `prodxcot`
+-- Volcado de datos para la tabla `prodxcot`
 --
 
-INSERT INTO `prodxcot` (`ite_codigo`, `cot_codigo`, `proxcot_cantidad`) VALUES
+INSERT INTO `prodxcot` (`pro_codigo`, `cot_codigo`, `proxcot_cantidad`) VALUES
 (1, 1, 10),
 (2, 2, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reporte`
+-- Estructura de tabla para la tabla `reporte`
 --
 
 CREATE TABLE `reporte` (
@@ -350,7 +407,7 @@ CREATE TABLE `reporte` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `reporte`
+-- Volcado de datos para la tabla `reporte`
 --
 
 INSERT INTO `reporte` (`rep_codigo`, `ped_codigo`, `rep_observacion`) VALUES
@@ -360,7 +417,7 @@ INSERT INTO `reporte` (`rep_codigo`, `ped_codigo`, `rep_observacion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ruta`
+-- Estructura de tabla para la tabla `ruta`
 --
 
 CREATE TABLE `ruta` (
@@ -373,7 +430,7 @@ CREATE TABLE `ruta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `ruta`
+-- Volcado de datos para la tabla `ruta`
 --
 
 INSERT INTO `ruta` (`rut_codigo`, `rut_direccion`, `rut_fecha`, `rut_observaciones`, `rut_estado`, `usu_codigo`) VALUES
@@ -383,7 +440,7 @@ INSERT INTO `ruta` (`rut_codigo`, `rut_direccion`, `rut_fecha`, `rut_observacion
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sede`
+-- Estructura de tabla para la tabla `sede`
 --
 
 CREATE TABLE `sede` (
@@ -393,7 +450,7 @@ CREATE TABLE `sede` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `sede`
+-- Volcado de datos para la tabla `sede`
 --
 
 INSERT INTO `sede` (`sed_codigo`, `sed_nombre`, `sed_direccion`) VALUES
@@ -403,7 +460,7 @@ INSERT INTO `sede` (`sed_codigo`, `sed_nombre`, `sed_direccion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `servicioxproducto`
+-- Estructura de tabla para la tabla `servicioxproducto`
 --
 
 CREATE TABLE `servicioxproducto` (
@@ -414,7 +471,7 @@ CREATE TABLE `servicioxproducto` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stock`
+-- Estructura de tabla para la tabla `stock`
 --
 
 CREATE TABLE `stock` (
@@ -428,7 +485,7 @@ CREATE TABLE `stock` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_documento`
+-- Estructura de tabla para la tabla `tipo_documento`
 --
 
 CREATE TABLE `tipo_documento` (
@@ -437,7 +494,7 @@ CREATE TABLE `tipo_documento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tipo_documento`
+-- Volcado de datos para la tabla `tipo_documento`
 --
 
 INSERT INTO `tipo_documento` (`id_tipo_documento`, `tip_doc_nombre`) VALUES
@@ -446,7 +503,7 @@ INSERT INTO `tipo_documento` (`id_tipo_documento`, `tip_doc_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_pedido`
+-- Estructura de tabla para la tabla `tipo_pedido`
 --
 
 CREATE TABLE `tipo_pedido` (
@@ -455,7 +512,7 @@ CREATE TABLE `tipo_pedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tipo_pedido`
+-- Volcado de datos para la tabla `tipo_pedido`
 --
 
 INSERT INTO `tipo_pedido` (`tip_ped_codigo`, `tip_ped_nombre`) VALUES
@@ -465,7 +522,7 @@ INSERT INTO `tipo_pedido` (`tip_ped_codigo`, `tip_ped_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_producto`
+-- Estructura de tabla para la tabla `tipo_producto`
 --
 
 CREATE TABLE `tipo_producto` (
@@ -475,7 +532,7 @@ CREATE TABLE `tipo_producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tipo_producto`
+-- Volcado de datos para la tabla `tipo_producto`
 --
 
 INSERT INTO `tipo_producto` (`tip_pro_codigo`, `tip_pro_nombre`, `tip_pro_descripcion`) VALUES
@@ -487,7 +544,7 @@ INSERT INTO `tipo_producto` (`tip_pro_codigo`, `tip_pro_nombre`, `tip_pro_descri
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_servicio`
+-- Estructura de tabla para la tabla `tipo_servicio`
 --
 
 CREATE TABLE `tipo_servicio` (
@@ -498,7 +555,7 @@ CREATE TABLE `tipo_servicio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tipo_servicio`
+-- Volcado de datos para la tabla `tipo_servicio`
 --
 
 INSERT INTO `tipo_servicio` (`Tip_ser_cod`, `tip_ser_nombre`, `tip_ser_descripcion`, `tip_ser_registro`) VALUES
@@ -508,7 +565,7 @@ INSERT INTO `tipo_servicio` (`Tip_ser_cod`, `tip_ser_nombre`, `tip_ser_descripci
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_usuario`
+-- Estructura de tabla para la tabla `tipo_usuario`
 --
 
 CREATE TABLE `tipo_usuario` (
@@ -517,7 +574,7 @@ CREATE TABLE `tipo_usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tipo_usuario`
+-- Volcado de datos para la tabla `tipo_usuario`
 --
 
 INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`) VALUES
@@ -529,7 +586,7 @@ INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -555,7 +612,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
@@ -567,7 +624,7 @@ INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarioxpedido`
+-- Estructura de tabla para la tabla `usuarioxpedido`
 --
 
 CREATE TABLE `usuarioxpedido` (
@@ -576,54 +633,33 @@ CREATE TABLE `usuarioxpedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `usuarioxpedido`
+-- Volcado de datos para la tabla `usuarioxpedido`
 --
 
 INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`) VALUES
 (1, 1),
 (2, 2);
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `usuxemp`
---
-
-CREATE TABLE `usuxemp` (
-  `usu_codigo` int(11) NOT NULL,
-  `emp_codigo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `usuxemp`
---
-
-INSERT INTO `usuxemp` (`usu_codigo`, `emp_codigo`) VALUES
-(1, 2),
-(3, 1),
-(1, 2),
-(3, 1);
-
---
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `acceso`
+-- Indices de la tabla `acceso`
 --
 ALTER TABLE `acceso`
   ADD PRIMARY KEY (`token`),
   ADD KEY `fk_acceso_usuario1_idx` (`usu_codigo`);
 
 --
--- Indexes for table `ciudad`
+-- Indices de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
   ADD PRIMARY KEY (`id_ciudad`),
   ADD KEY `fk_ciudad_departamento1_idx` (`id_departamento`);
 
 --
--- Indexes for table `cliente_empresarial`
+-- Indices de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
   ADD PRIMARY KEY (`id_cliente_empresarial`),
@@ -631,7 +667,7 @@ ALTER TABLE `cliente_empresarial`
   ADD KEY `fk_cliente_empresarial_sede1_idx` (`sed_codigo`);
 
 --
--- Indexes for table `cotizacion`
+-- Indices de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
   ADD PRIMARY KEY (`cot_codigo`),
@@ -639,61 +675,78 @@ ALTER TABLE `cotizacion`
   ADD KEY `mar_codigo` (`mar_codigo`);
 
 --
--- Indexes for table `departamento`
+-- Indices de la tabla `departamento`
 --
 ALTER TABLE `departamento`
   ADD PRIMARY KEY (`id_departamento`),
   ADD KEY `fk_departamento_pais1_idx` (`id_pais`);
 
 --
--- Indexes for table `empresa`
+-- Indices de la tabla `empresa`
 --
 ALTER TABLE `empresa`
   ADD PRIMARY KEY (`emp_codigo`),
   ADD KEY `sed_id` (`sed_codigo`);
 
 --
--- Indexes for table `estado`
+-- Indices de la tabla `estado`
 --
 ALTER TABLE `estado`
   ADD PRIMARY KEY (`id_estado`);
 
 --
--- Indexes for table `marca`
+-- Indices de la tabla `estiloxcliente`
+--
+ALTER TABLE `estiloxcliente`
+  ADD PRIMARY KEY (`ec_codigo`),
+  ADD KEY `usu_codigo` (`usu_codigo`);
+
+--
+-- Indices de la tabla `gestion_web`
+--
+ALTER TABLE `gestion_web`
+  ADD PRIMARY KEY (`gw_codigo`),
+  ADD UNIQUE KEY `gw_codigo` (`gw_codigo`),
+  ADD KEY `usu_codigo` (`usu_codigo`);
+
+--
+-- Indices de la tabla `marca`
 --
 ALTER TABLE `marca`
   ADD PRIMARY KEY (`mar_codigo`);
 
 --
--- Indexes for table `modulos`
+-- Indices de la tabla `modulos`
 --
 ALTER TABLE `modulos`
   ADD PRIMARY KEY (`id_modulo`);
 
 --
--- Indexes for table `pais`
+-- Indices de la tabla `pais`
 --
 ALTER TABLE `pais`
   ADD PRIMARY KEY (`id_pais`);
 
 --
--- Indexes for table `pedido`
+-- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`ped_codigo`),
   ADD KEY `emp_id` (`emp_codigo`),
   ADD KEY `tip_id` (`tip_ped_codigo`),
-  ADD KEY `tip_ped_codigo` (`tip_ped_codigo`);
+  ADD KEY `tip_ped_codigo` (`tip_ped_codigo`),
+  ADD KEY `rut_codigo` (`rut_codigo`);
 
 --
--- Indexes for table `pedidoxproducto`
+-- Indices de la tabla `pedidoxproducto`
 --
 ALTER TABLE `pedidoxproducto`
-  ADD PRIMARY KEY (`ped_codigo`,`ite_codigo`),
-  ADD KEY `pro_id` (`ite_codigo`);
+  ADD PRIMARY KEY (`ped_codigo`),
+  ADD KEY `pro_codigo` (`pro_codigo`),
+  ADD KEY `pro_codigo_2` (`pro_codigo`);
 
 --
--- Indexes for table `permiso`
+-- Indices de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   ADD PRIMARY KEY (`id_permiso`),
@@ -701,7 +754,7 @@ ALTER TABLE `permiso`
   ADD KEY `fk_permiso_tipo_usuario1_idx` (`tip_usu_codigo`);
 
 --
--- Indexes for table `producto`
+-- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`pro_codigo`),
@@ -709,353 +762,356 @@ ALTER TABLE `producto`
   ADD KEY `mar_codigo` (`mar_codigo`);
 
 --
--- Indexes for table `prodxcot`
+-- Indices de la tabla `prodxcot`
 --
 ALTER TABLE `prodxcot`
-  ADD KEY `pro_codigo` (`ite_codigo`),
+  ADD KEY `pro_codigo` (`pro_codigo`),
   ADD KEY `cot_codigo` (`cot_codigo`);
 
 --
--- Indexes for table `reporte`
+-- Indices de la tabla `reporte`
 --
 ALTER TABLE `reporte`
   ADD PRIMARY KEY (`rep_codigo`),
   ADD KEY `ped_id` (`ped_codigo`);
 
 --
--- Indexes for table `ruta`
+-- Indices de la tabla `ruta`
 --
 ALTER TABLE `ruta`
   ADD PRIMARY KEY (`rut_codigo`),
   ADD KEY `fk_ruta_usuario1_idx` (`usu_codigo`);
 
 --
--- Indexes for table `sede`
+-- Indices de la tabla `sede`
 --
 ALTER TABLE `sede`
   ADD PRIMARY KEY (`sed_codigo`);
 
 --
--- Indexes for table `servicioxproducto`
+-- Indices de la tabla `servicioxproducto`
 --
 ALTER TABLE `servicioxproducto`
   ADD KEY `tip_ser_cod` (`tip_ser_cod`),
   ADD KEY `pro_codigo` (`pro_codigo`);
 
 --
--- Indexes for table `stock`
+-- Indices de la tabla `stock`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`sto_codigo`),
   ADD KEY `pro_codigo` (`pro_codigo`);
 
 --
--- Indexes for table `tipo_documento`
+-- Indices de la tabla `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
   ADD PRIMARY KEY (`id_tipo_documento`);
 
 --
--- Indexes for table `tipo_pedido`
+-- Indices de la tabla `tipo_pedido`
 --
 ALTER TABLE `tipo_pedido`
   ADD PRIMARY KEY (`tip_ped_codigo`);
 
 --
--- Indexes for table `tipo_producto`
+-- Indices de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
   ADD PRIMARY KEY (`tip_pro_codigo`);
 
 --
--- Indexes for table `tipo_servicio`
+-- Indices de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
   ADD PRIMARY KEY (`Tip_ser_cod`);
 
 --
--- Indexes for table `tipo_usuario`
+-- Indices de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
   ADD PRIMARY KEY (`tip_usu_codigo`);
 
 --
--- Indexes for table `usuario`
+-- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`usu_codigo`),
+  ADD UNIQUE KEY `usu_num_documento` (`usu_num_documento`),
   ADD KEY `tip_usu` (`tip_usu_codigo`),
   ADD KEY `fk_usuario_ciudad1_idx` (`id_ciudad`),
   ADD KEY `fk_usuario_estado1_idx` (`id_estado`),
   ADD KEY `fk_usuario_tipo_documento1_idx` (`id_tipo_documento`);
 
 --
--- Indexes for table `usuarioxpedido`
+-- Indices de la tabla `usuarioxpedido`
 --
 ALTER TABLE `usuarioxpedido`
   ADD PRIMARY KEY (`usu_codigo`),
   ADD KEY `ped_codigo` (`ped_codigo`);
 
 --
--- Indexes for table `usuxemp`
---
-ALTER TABLE `usuxemp`
-  ADD KEY `usu_codigo` (`usu_codigo`),
-  ADD KEY `emp_codigo` (`emp_codigo`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `acceso`
+-- AUTO_INCREMENT de la tabla `acceso`
 --
 ALTER TABLE `acceso`
   MODIFY `token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2554;
 --
--- AUTO_INCREMENT for table `ciudad`
+-- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
   MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `cliente_empresarial`
+-- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
   MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `cotizacion`
+-- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
   MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `departamento`
+-- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
   MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `empresa`
+-- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
   MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `estado`
+-- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
   MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `marca`
+-- AUTO_INCREMENT de la tabla `estiloxcliente`
+--
+ALTER TABLE `estiloxcliente`
+  MODIFY `ec_codigo` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `gestion_web`
+--
+ALTER TABLE `gestion_web`
+  MODIFY `gw_codigo` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
   MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `modulos`
+-- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
   MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `pais`
+-- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
   MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `pedido`
+-- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `pedidoxproducto`
+-- AUTO_INCREMENT de la tabla `pedidoxproducto`
 --
 ALTER TABLE `pedidoxproducto`
   MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `permiso`
+-- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `producto`
+-- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
   MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT for table `prodxcot`
+-- AUTO_INCREMENT de la tabla `prodxcot`
 --
 ALTER TABLE `prodxcot`
-  MODIFY `ite_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `reporte`
+-- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
   MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `ruta`
+-- AUTO_INCREMENT de la tabla `ruta`
 --
 ALTER TABLE `ruta`
   MODIFY `rut_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `sede`
+-- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
   MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `stock`
+-- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
   MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `tipo_documento`
+-- AUTO_INCREMENT de la tabla `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
   MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `tipo_pedido`
+-- AUTO_INCREMENT de la tabla `tipo_pedido`
 --
 ALTER TABLE `tipo_pedido`
   MODIFY `tip_ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `tipo_producto`
+-- AUTO_INCREMENT de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
   MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `tipo_servicio`
+-- AUTO_INCREMENT de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
   MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `tipo_usuario`
+-- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
   MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `acceso`
+-- Filtros para la tabla `acceso`
 --
 ALTER TABLE `acceso`
   ADD CONSTRAINT `acceso_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ciudad`
+-- Filtros para la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
   ADD CONSTRAINT `fk_ciudad_departamento1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `cliente_empresarial`
+-- Filtros para la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
   ADD CONSTRAINT `fk_cliente_empresarial_sede1` FOREIGN KEY (`sed_codigo`) REFERENCES `sede` (`sed_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_cliente_empresarial_usuario1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `cotizacion`
+-- Filtros para la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
   ADD CONSTRAINT `cotizacion_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `cotizacion_ibfk_2` FOREIGN KEY (`mar_codigo`) REFERENCES `marca` (`mar_codigo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `departamento`
+-- Filtros para la tabla `departamento`
 --
 ALTER TABLE `departamento`
   ADD CONSTRAINT `fk_departamento_pais1` FOREIGN KEY (`id_pais`) REFERENCES `pais` (`id_pais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `empresa`
+-- Filtros para la tabla `empresa`
 --
 ALTER TABLE `empresa`
   ADD CONSTRAINT `empresa_ibfk_1` FOREIGN KEY (`sed_codigo`) REFERENCES `sede` (`sed_codigo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `pedido`
+-- Filtros para la tabla `estiloxcliente`
+--
+ALTER TABLE `estiloxcliente`
+  ADD CONSTRAINT `estiloxcliente_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `gestion_web`
+--
+ALTER TABLE `gestion_web`
+  ADD CONSTRAINT `gestion_web_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
   ADD CONSTRAINT `pedido_ibfk_4` FOREIGN KEY (`tip_ped_codigo`) REFERENCES `tipo_pedido` (`tip_ped_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pedido_ibfk_5` FOREIGN KEY (`emp_codigo`) REFERENCES `empresa` (`emp_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedido_ibfk_5` FOREIGN KEY (`emp_codigo`) REFERENCES `empresa` (`emp_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_6` FOREIGN KEY (`rut_codigo`) REFERENCES `ruta` (`rut_codigo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `pedidoxproducto`
+-- Filtros para la tabla `pedidoxproducto`
 --
 ALTER TABLE `pedidoxproducto`
   ADD CONSTRAINT `pedidoxproducto_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pedidoxproducto_ibfk_2` FOREIGN KEY (`ite_codigo`) REFERENCES `item` (`ite_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedidoxproducto_ibfk_2` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `permiso`
+-- Filtros para la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  ADD CONSTRAINT `fk_permiso_modulos1` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_permiso_tipo_usuario1` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `permiso_ibfk_1` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `permiso_ibfk_2` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `producto`
+-- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`tip_pro_codigo`) REFERENCES `tipo_producto` (`tip_pro_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`mar_codigo`) REFERENCES `marca` (`mar_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`mar_codigo`) REFERENCES `marca` (`mar_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`tip_pro_codigo`) REFERENCES `tipo_producto` (`tip_pro_codigo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `prodxcot`
+-- Filtros para la tabla `prodxcot`
 --
 ALTER TABLE `prodxcot`
-  ADD CONSTRAINT `prodxcot_ibfk_1` FOREIGN KEY (`ite_codigo`) REFERENCES `item` (`ite_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `prodxcot_ibfk_2` FOREIGN KEY (`cot_codigo`) REFERENCES `cotizacion` (`cot_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `prodxcot_ibfk_1` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `reporte`
+-- Filtros para la tabla `reporte`
 --
 ALTER TABLE `reporte`
   ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `ruta`
---
-ALTER TABLE `ruta`
-  ADD CONSTRAINT `fk_ruta_usuario1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `servicioxproducto`
+-- Filtros para la tabla `servicioxproducto`
 --
 ALTER TABLE `servicioxproducto`
   ADD CONSTRAINT `servicioxproducto_ibfk_1` FOREIGN KEY (`tip_ser_cod`) REFERENCES `tipo_servicio` (`Tip_ser_cod`) ON UPDATE CASCADE,
   ADD CONSTRAINT `servicioxproducto_ibfk_2` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `stock`
+-- Filtros para la tabla `stock`
 --
 ALTER TABLE `stock`
   ADD CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `usuario`
+-- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `fk_usuario_ciudad1` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_estado1` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_tipo_documento1` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_4` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `usuarioxpedido`
+-- Filtros para la tabla `usuarioxpedido`
 --
 ALTER TABLE `usuarioxpedido`
-  ADD CONSTRAINT `usuarioxpedido_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuarioxpedido_ibfk_2` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
-
---
--- Constraints for table `usuxemp`
---
-ALTER TABLE `usuxemp`
-  ADD CONSTRAINT `usuxemp_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuxemp_ibfk_2` FOREIGN KEY (`emp_codigo`) REFERENCES `empresa` (`emp_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuarioxpedido_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarioxpedido_ibfk_2` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

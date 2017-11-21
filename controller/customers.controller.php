@@ -182,13 +182,13 @@
 		}
 		function readByNumDoc(){
 			$data=$_POST['data'];
-			$result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data));
+			$result = $this->master->procedure('consultaExisteUsuario',$data);
 			if ($result != array()) {
 				echo  json_encode(true);
 			}else{
 				echo json_encode(false);
 			}
-		}
+		}		
 		function update(){
 			$data=$_POST['data'];
 			$result = $this->master->update($this->tableName,array('usu_codigo',$_SESSION['user_update']),$data,$this->updateException);
