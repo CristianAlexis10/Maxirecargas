@@ -152,7 +152,7 @@
 											$date = date('Y-m-d');
 											   $result = $this->master->procedure14('crearUsuario',array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1,$profile,$date,$date));
 											   if ($result==1) {
-												   $result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[2]));
+											   	$result  = $this->master->procedure("consultaExisteUsuario",$data[2]);
 												   $data_acceso[]=md5($data[2].$data[5].date('Y-M-D'));
 												   $data_acceso[]=$result['usu_codigo'];
 												   $data_acceso[]=$password[1];

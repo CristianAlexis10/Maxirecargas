@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($this->master->selectAll('usuario') as $row) {?>
+      <?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',1)) as $row) {?>
           <tr>
             <td><?php echo $row['usu_primer_nombre']?></td>
             <td><?php echo $row['usu_direccion']?></td>

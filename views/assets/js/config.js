@@ -124,11 +124,12 @@ if(document.getElementById('sexo')){
                           dataJson.push(structure);
                 });
                 console.log(dataJson);
+                 captcha =  grecaptcha.getResponse();
                   $.ajax({
                           url: "guardar-cliente-empresarial",
                           type: "POST",
                            dataType:'json',
-                           data: ({data: dataJson}),
+                           data: ({data: dataJson , get_captcha : captcha}),
                            success: function(result){
                             if (result==true) {
                               $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente</div>");
@@ -168,6 +169,25 @@ $('#nit').keyup(function(){
           num_nit = true;
      }
        enableEmp(num_nit,contraEmp);
+  });
+});
+//validar numero de documento
+$('#numDocEmp').keyup(function(){
+    var value = $('#numDocEmp').val();
+    $.ajax({
+      url: 'validar_documento',
+      type:'post',
+      data:'data='+value,
+  }).done(function(response){
+    console.log(response);
+    if (response=='true') {
+        $('#numDocEmp').after('<div class="no-usu">Usuario no valido</div>');
+         num_doc_emp = false;
+     }else{
+          $('.no-usu').remove();
+          num_doc_emp = true;
+     }
+       // enableEmp(num_nit,contraEmp);
   });
 });
 //contraseña empresarial
