@@ -19,15 +19,15 @@
     <div class="main--container--quotation">
       <div class="left--part--quotation">
         <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
-        <form id="frmNewUser">
             <div class="form-group type--user">
                     <label for="tipo_usu" class="select" >Tipo de Usuario:</label>
                     <select class="input"  id="tipo_usu" required></select>
             </div>
+        <form id="frmNewUser">
             <div class="customers--normal">
                 <div class="form-group">
                     <label for="tip_doc" class="select">Tipo de Documento:</label>
-                    <select class="dataCl input" id="tip_doc"   required></select>
+                    <select class="dataCl dataEmp  input" id="tip_doc"   required></select>
                 </div>
                 <div class="form-group">
 
@@ -81,12 +81,90 @@
                     <label for="image" class="laber">Foto de perfil:</label>
                     <input type="file" name="file" id="imageupload">
                 </div> -->
-                <div class="g-recaptcha" data-sitekey="6Ld_bDkUAAAAADkIoF_nn1BbWzhCuSm0Zk2E83eZ"></div>
                   <div class="form-group">
                     <button class="btn" disabled id="registrar">Registrar Cliente</button>
                    </div>
             </div>
         </form>
+                    <div class="customers--business">
+                        <form id="frmNewBusi" > 
+                            <h1>Datos de la empresa</h1>
+                            <div class="form-group">
+                                <label for="nit" class="label">NIT</label>
+                                <input type="text" class="dataEmp input" id="nit" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="social" class="label">Razon social</label>
+                                <input type="text" class="dataEmp input" id="social"required>
+                            </div>
+                            <div class="form-group">
+                                <label for="namebus" class="label">Nombre de la empresa</label>
+                                <input type="text" class="dataEmp input" id="namebus" required>
+                            </div>
+                            <h1>datos de la sede</h1>
+                            <div class="form-group">
+                                <label for="sed-nom" class="label">Nombre de la sede</label>
+                                <input type="text" class="dataEmp input" id="sed-nom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sede-dir" class="label">Direccion</label>
+                                <input type="text" class="dataEmp input" id="sede-dir" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sede-tel" class="label">Telefono</label>
+                                <input type="number" class="dataEmp input" id="sede-tel" required>
+                            </div>
+                            <h1>datos del contacto</h1>
+                            <div class="form-group">
+                                <label for="tip_doc" class="label">Tipo de documento</label>
+                                <select class="dataEmp input" id="tip_doc">
+                                    <option value="1">Cedula</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="numDoc" class="label">Numero de documento</label>
+                                <input type="text" class="dataEmp input"  id="numDocEmp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sede-enc" class="label">Nombre del contacto</label>
+                                <input type="text" class="dataEmp input"  id="sede-enc"required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sede-enca" class="label">Apellido del contacto</label>
+                                <input type="text" class="dataEmp input"  id="sede-enca"required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cuidad" class="label">Ciudad</label>
+                                <select class="dataEmp input" id="cuidad">
+                                    <option value="1">Medellin</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sede-enc" class="label">Ext</label>
+                                <input type="number" class="dataEmp input"  id="sede-ext" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sede-correo" class="label">Correo</label>
+                                <input type="email" class="dataEmp input"  id="sede-correo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cargo" class="label">Cargo:</label>
+                                <input type="text"  id="cargo" class="input dataEmp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contraEmp" class="label">Contraseña:</label>
+                                <input type="password"  id="contraEmp" class="input dataEmp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rep_contraEmp" class="label">Repetir Contraseña:</label>
+                                <input type="password"  id="rep_contraEmp" class="input dataEmp" required >
+                            </div>
+                            <div class="form-group">
+                                        <button class="btn"  id="registrarEmp">Registrar Empresa</button>
+                                </div>
+                        </div>
+                <div class="g-recaptcha" data-sitekey="6Ld_bDkUAAAAADkIoF_nn1BbWzhCuSm0Zk2E83eZ"></div>
       </div>
     </div>
 

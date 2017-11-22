@@ -12,9 +12,10 @@
 		    		<li><a href="#regis-user">Registrar Usuario</a></li>
 			<?php }
 			if ($crud[1]==true) { ?>
-		  		  <li><a href="#tabs-2">Clientes Registrados</a></li>
+		  		  <li><a href="#tabs-2">Clientes </a></li>
+		  		  <li><a href="#tabs-4">Empresariales</a></li>
 			<?php } ?>
-						<li><a href="#tabs-3">Empleados Registrados</a></li>
+						<li><a href="#tabs-3">Empleados </a></li>
 		  </ul>
 		  <?php
 		  if ($crud[1]==true) {?>
@@ -129,7 +130,7 @@
 							</div>
 							<div class="form-group">
 								<label for="numDoc" class="label">Numero de documento</label>
-								<input type="text" class="dataEmp input"  id="numDoc" required>
+								<input type="text" class="dataEmp input"  id="numDocEmp" required>
 							</div>
 							<div class="form-group">
 								<label for="sede-enc" class="label">Nombre del contacto</label>
@@ -175,10 +176,14 @@
 
 
 		  </div>
+		 <?php if ($crud[1]==true) { ?>
 			<div id="tabs-3">
 			 <?php require_once "views/modules/config/datatables/datatable-employee.php"; ?>
 			</div>
+			<div id="tabs-4">
+			 <?php require_once "views/modules/config/datatables/datatable-cliEmp.php"; ?>
+			</div>
 
-		<?php }  ?>
+		<?php } } ?>
 	</div>
 </div>
