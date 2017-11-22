@@ -558,6 +558,62 @@ function confirmOffUser(action,value){
         return false;
     }
 }
+//INACTIVAR USUARIO EMPRESARIAL
+function confirmOffUserEmp(action,value){
+     var ya = false;
+     var message;
+     if (action==1) {
+        message = 'Activar';
+     }else{
+        message = 'Inactivar';
+     }
+    if(confirm('¿'+message+'  este registro?')){
+        $.ajax({
+          url: 'inactivar-usuario',
+          type:'post',
+          dataType:'json',
+          data:'data='+value+'&estado='+action,
+      }).done(function(response){
+          // console.log(response);
+          $('#datatableCliiEmp').load('index.php?controller=datatables&a=dataTableCliEmp');
+          $("#datatableCliiEmp").after("<div class='message'>"+response+"</div>");
+          setTimeout(function(){
+             $('div.message').remove();
+           }, 2000);
+      });
+        return true;
+    }else{
+        return false;
+    }
+}
+//INACTIVAR USUARIO Empleado
+function confirmOffUserEmpleado(action,value){
+     var ya = false;
+     var message;
+     if (action==1) {
+        message = 'Activar';
+     }else{
+        message = 'Inactivar';
+     }
+    if(confirm('¿'+message+'  este registro?')){
+        $.ajax({
+          url: 'inactivar-usuario',
+          type:'post',
+          dataType:'json',
+          data:'data='+value+'&estado='+action,
+      }).done(function(response){
+          // console.log(response);
+          $('#dataEmployee').load('index.php?controller=datatables&a=dataTableEmployee');
+          $("#dataEmployee").after("<div class='message'>"+response+"</div>");
+          setTimeout(function(){
+             $('div.message').remove();
+           }, 2000);
+      });
+        return true;
+    }else{
+        return false;
+    }
+}
 
 //MODIFICARUSUARIO
 $("#frmUpdtateUser").submit(function(e) {

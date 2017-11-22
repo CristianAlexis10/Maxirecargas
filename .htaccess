@@ -36,6 +36,8 @@ RewriteRule ^empresas$ index.php?controller=business
 RewriteRule ^clientes$ index.php?controller=customers
 RewriteRule ^guardar-cliente$ index.php?controller=customers&a=newRegister
 RewriteRule ^ver-cliente-(\w+)$ index.php?controller=customers&a=viewDetail&data=$1
+RewriteRule ^ver-cliente-empresarial-(\w+)$ index.php?controller=customers&a=viewDetailEmp&data=$1
+RewriteRule ^datos-empresariales-(\w+)$ index.php?controller=customers&a=viewEmpData&data=$1
 RewriteRule ^modificar-cliente-(\w+)$ index.php?controller=customers&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-cliente$ index.php?controller=customers&a=update
 RewriteRule ^eliminar-cliente-(\w+)$ index.php?controller=customers&a=delete&data=$1

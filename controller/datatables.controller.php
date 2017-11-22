@@ -23,6 +23,9 @@ require_once "controller/doizer.controller.php";
         function dataTableEmployee(){
             require_once "views/modules/config/datatables/datatable-employee.php";
         }
+        function dataTableCliEmp(){
+            require_once "views/modules/config/datatables/datatable-cliEmp.php";
+        }
 
 
 	}

@@ -76,6 +76,48 @@
 				require_once "views/modules/landing.html";
 			}
 		}
+		function viewDetailEmp(){
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				//saber si puede acceder a este modulo
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+				$crud = permisos('usuarios',$_SESSION['CUSTOMER']['PERMITS']);
+					if ($row['enlace']=='clientes' && $crud[1]==true) {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/customers/detail-emp.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
+		}
+		function viewEmpData(){
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				//saber si puede acceder a este modulo
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+				$crud = permisos('usuarios',$_SESSION['CUSTOMER']['PERMITS']);
+					if ($row['enlace']=='clientes' && $crud[1]==true) {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/customers/dataEmp.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
+		}
 		function viewUpdate(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
 				//saber si puede acceder a este modulo
@@ -157,7 +199,7 @@
 												   $data_acceso[]=$result['usu_codigo'];
 												   $data_acceso[]=$password[1];
 												   $result = $this->master->procedureAcceso($data_acceso);
-												   
+
 											   }else{
 											   	$result = $this->doizer->knowError($result);
 											   }
@@ -284,7 +326,7 @@
 				$result = $this->doizer->knowError($result);
 				echo json_encode($result);
 			}
-			
+
 		}
 		function delete(){
 			$data = $_POST['data'];

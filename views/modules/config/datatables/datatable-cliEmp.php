@@ -13,7 +13,7 @@
             <td><?php echo $row['usu_primer_nombre']?></td>
             <td><?php echo $row['usu_direccion']?></td>
             <td><?php echo $row['usu_telefono']?></td>
-            <td><a href="ver-cliente-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+            <td><a href="ver-cliente-empresarial-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i></a>
             <!-- eliminar  -->
             <a href="#" onclick="return confirmDeleteUser(
             <?php
@@ -22,13 +22,13 @@
 
             <!-- inactivar -->
             <?php if ($row['id_estado']==1){?>
-                <a href="#" onclick="return confirmOffUser(2,
+                <a href="#" onclick="return confirmOffUserEmp(2,
                 <?php
                 echo $row['usu_codigo'];
                 ?>)">inactivar</i></a>
                 <!-- activar -->
             <?php }else{?>
-                    <a href="#" onclick="return confirmOffUser(1,
+                    <a href="#" onclick="return confirmOffUserEmp(1,
                 <?php
                 echo $row['usu_codigo'];
                 ?>)">Activar</i></a>
