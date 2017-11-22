@@ -93,15 +93,15 @@
 						 $result = $this->master->procedureAcceso($data_acceso);
 						 if ($result==true) {
 						 	//crear empresa(FALTA PROCEDURE)
-							$result = $this->master->insert('empresa',array($data[3],$data[1],$data[2]),array('emp_codigo'));
+							$result = $this->master->crearEmpresa(array($data[3],$data[1],$data[2]));
 							if ($result==true) {
 								//crear la sede(FALTA PROCEDURE)
-								$result = $this->master->selectBy('empresa',array('emp_nit',$data[1]));
-								$result = $this->master->insert('sede',array($result['emp_codigo'],$data[4],$data[5],$data[6]),array('sed_codigo'));
+								$result = $this->master->ConsultaEmpresa($data[1]);
+								$result = $this->master->crearSede(array($result['emp_codigo'],$data[4],$data[5],$data[6]));
 								if ($result==true) {
 									//crear cliente empresarial(FALTA PROCEDURE)
-									$result = $this->master->selectBy('sede',array('sed_nombre',$data[4]));
-									$result = $this->master->insert('cliente_empresarial',array($usu_code,$result['sed_codigo'],$data[14]),array('id_cliente_empresarial'));
+									$result = $this->master->consultaSede($data[4]);
+									$result = $this->master->clienteEmpresarial(array($usu_code,$result['sed_codigo'],$data[14]));
 									if ($result == true) {
 										echo json_encode('Registrado correctamente');
 									}else{

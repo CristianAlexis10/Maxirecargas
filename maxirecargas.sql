@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2017 a las 22:30:14
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 22-11-2017 a las 21:56:00
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `maxi`
+-- Base de datos: `maxirecargas`
 --
 
 DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultaEmpresa` (IN `empresa` INT(11))  BEGIN
+	SELECT * FROM empresa WHERE emp_codigo = empresa;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaExisteEmail` (IN `correo` VARCHAR(100))  BEGIN
   SELECT * FROM usuario INNER JOIN acceso ON(usuario.usu_codigo=acceso.usu_codigo) WHERE usuario.usu_correo = correo;
 END$$
@@ -40,14 +44,61 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaLogin` (IN `documento` INT(
   SELECT * FROM usuario INNER JOIN acceso ON(usuario.usu_codigo=acceso.usu_codigo) WHERE usuario.usu_num_documento = documento;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaSede` (IN `sede` INT(11))  BEGIN
+	SELECT * FROM sede WHERE sed_codigo = sede;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultaSedeExistente` (IN `nombre` VARCHAR(50))  BEGIN
+	SELECT * FROM sede WHERE sed_nombre = nombre;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `crearAcceso` (`token` INT(11), `usu_codigo` INT(11), `acc_contra` VARCHAR(255))  BEGIN
 INSERT INTO acceso (token, usu_codigo, acc_contra) VALUES (token, usu_codigo, acc_contra);
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crearClienteEmpresarial` (IN `usu_codigo` INT(11), IN `sed_codigo` INT(11), IN `cli_emp_cargo` VARCHAR(45))  BEGIN
+
+INSERT INTO cliente_empresarial (usu_codigo, sed_codigo, cli_emp_cargo) VALUES (usu_codigo, sed_codigo, cli_emp_cargo);
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crearEmpresa` (IN `emp_nombre` VARCHAR(50), IN `emp_nit` INT(100), IN `emp_razon_social` VARCHAR(100))  BEGIN
+
+INSERT INTO empresa (emp_nombre, emp_nit, emp_razon_social) VALUES (emp_nombre, emp_nit, emp_razon_social);
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crearSede` (IN `emp_codigo` INT(11), IN `sed_nombre` VARCHAR(50), IN `sed_direccion` VARCHAR(200), IN `sed_telefono` INT(11))  BEGIN
+
+INSERT INTO sede (emp_codigo, sed_nombre, sed_direccion, sed_telefono) VALUES (emp_codigo, sed_nombre, sed_direccion, sed_telefono);
 
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `crearUsuario` (`id_tipo_documento` INT(11), `usu_num_documento` INT(11), `usu_primer_nombre` VARCHAR(50), `usu_primer_apellido` VARCHAR(50), `usu_correo` VARCHAR(100), `usu_telefono` INT(10), `id_ciudad` INT(11), `usu_fecha_nacimiento` DATE, `usu_sexo` VARCHAR(50), `tip_usu_codigo` INT(11), `id_estado` INT(11), `usu_foto` LONGTEXT, `usu_fechas_registro` DATE, `usu_ult_inicio_sesion` DATE)  BEGIN
 INSERT INTO usuario  (id_tipo_documento, usu_num_documento, usu_primer_nombre, usu_primer_apellido,  usu_correo,  usu_telefono, id_ciudad, usu_fecha_nacimiento,  usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion) VALUES (id_tipo_documento, usu_num_documento,  usu_primer_nombre, usu_primer_apellido, usu_correo, usu_telefono, id_ciudad, usu_fecha_nacimiento, usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion);
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarClienteEmpresarial` (IN `codigo` INT(11))  BEGIN
+IF EXISTS (SELECT id_cliente_empresarial FROM cliente_empresarial WHERE id_cliente_empresarial = codigo) 
+THEN 
+DELETE FROM cliente_empresarial WHERE id_cliente_empresarial = codigo;
+END if;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarEmpresa` (IN `codigo` INT(11))  BEGIN
+IF EXISTS (SELECT emp_codigo FROM empresa WHERE emp_codigo = codigo) 
+THEN 
+DELETE FROM empresa WHERE emp_codigo = codigo;
+END if;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarSede` (IN `codigo` INT(11))  BEGIN
+IF EXISTS (SELECT sed_codigo FROM sede WHERE sed_codigo = codigo) 
+THEN 
+DELETE FROM sede WHERE sed_codigo = codigo;
+END if;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarUsuario` (IN `codigo` INT(11))  BEGIN
@@ -62,6 +113,61 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `inactivar` (IN `estado` INT(11), IN
 UPDATE usuario 
 SET id_estado = estado
 WHERE usu_codigo = codigo;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinClienteEmpresarial` (IN `codigo` INT(11))  BEGIN
+SELECT * FROM usuario t1
+INNER JOIN cliente_empresarial t2 on t1.usu_codigo=t2.usu_codigo
+INNER JOIN sede t3 on t2.sed_codigo=t3.sed_codigo
+INNER JOIN empresa t4 on t3.emp_codigo=t4.emp_codigo
+WHERE t1.usu_codigo=codigo;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinUsuario` (IN `codigo` INT(11))  BEGIN
+SELECT * FROM usuario T1
+INNER JOIN tipo_documento T2 on T1.id_tipo_documento=T2.id_tipo_documento
+INNER JOIN ciudad T3 on T1.id_ciudad=T3.id_ciudad
+INNER JOIN tipo_usuario T4 on T1.tip_usu_codigo=T4.tip_usu_codigo
+INNER JOIN estado T5 on T1.id_estado=T5.id_estado
+
+ where T1.usu_codigo=codigo;
+
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarClienteEmpresarial` (IN `codigo` INT(11), IN `usu_codigo` INT(11), IN `sed_codigo` INT(11), IN `cargo` VARCHAR(45))  BEGIN
+UPDATE cliente_empresarial
+SET  usu_codigo = usu_codigo,
+     sed_codigo = sed_codigo,
+     cli_emp_cargo = cargo
+     
+WHERE id_cliente_empresarial = codigo;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarEmpresa` (IN `codigo` INT(11), IN `nombre` VARCHAR(50), IN `nit` INT(11), IN `razon_social` VARCHAR(100))  BEGIN
+
+UPDATE empresa
+SET  emp_nombre = nombre,
+	 emp_nit = nit,
+     emp_razon_social = razon_social
+     
+WHERE emp_codigo = codigo;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarSede` (IN `codigo` INT(11), IN `emp_codigo` INT(11), IN `nombre` VARCHAR(50), IN `direccion` VARCHAR(200), IN `telefono` INT(11))  BEGIN
+
+UPDATE sede
+SET sed_codigo = codigo, 
+	emp_codigo = emp_codigo,
+	sed_nombre = nombre,
+    sed_direccion = direccion,
+    sed_telefono = telefono
+     
+WHERE sed_codigo = codigo;
 
 END$$
 
@@ -147,7 +253,8 @@ CREATE TABLE `cliente_empresarial` (
 
 INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_codigo`, `cli_emp_cargo`) VALUES
 (1, 1, 1, 'Supervisor'),
-(2, 2, 2, 'Supervisor');
+(2, 2, 2, 'Supervisor'),
+(4, 3, 2, 'dfdff');
 
 -- --------------------------------------------------------
 
@@ -213,7 +320,7 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`emp_codigo`, `emp_nombre`, `emp_nit`, `emp_razon_social`) VALUES
-(1, 'Bancolombia', 0, ''),
+(1, 'Bancolombia', 1588, 'hsgd'),
 (2, 'Exito', 0, '');
 
 -- --------------------------------------------------------
@@ -306,11 +413,11 @@ CREATE TABLE `modulos` (
 --
 
 INSERT INTO `modulos` (`id_modulo`, `mod_nombre`, `enlace`, `icon`) VALUES
-(1, 'usuarios', 'clientes', '<i class=\"fa fa-users\" aria-hidden=\"true\"></i>'),
-(2, 'productos', 'productos', '<i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"></i>'),
-(3, 'Pedidos', 'pedidos', '<i class=\"fa fa-bullhorn\" aria-hidden=\"true\"></i>'),
-(4, 'cotizacion', 'cotizacion', '<i class=\"fa fa-wrench\" aria-hidden=\"true\"></i>'),
-(5, 'Rutas', 'rutas', '<i class=\"fa fa-motorcycle\" aria-hidden=\"true\"></i>');
+(1, 'usuarios', 'clientes', '<i class="fa fa-users" aria-hidden="true"></i>'),
+(2, 'productos', 'productos', '<i class="fa fa-shopping-cart" aria-hidden="true"></i>'),
+(3, 'Pedidos', 'pedidos', '<i class="fa fa-bullhorn" aria-hidden="true"></i>'),
+(4, 'cotizacion', 'cotizacion', '<i class="fa fa-wrench" aria-hidden="true"></i>'),
+(5, 'Rutas', 'rutas', '<i class="fa fa-motorcycle" aria-hidden="true"></i>');
 
 -- --------------------------------------------------------
 
@@ -665,7 +772,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
 (1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 3, 1, '', '2017-11-05', '0000-00-00'),
 (2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, '', '2017-11-02', '0000-00-00'),
-(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 1, 1, 'kojada', '2017-11-02', '2017-11-01');
+(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 3, 1, 'kojada', '2017-11-02', '2017-11-01');
 
 -- --------------------------------------------------------
 
@@ -914,7 +1021,7 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
-  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
@@ -929,7 +1036,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
@@ -999,7 +1106,7 @@ ALTER TABLE `ruta`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
