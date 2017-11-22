@@ -3,11 +3,13 @@ RewriteEngine on
 #USURAIOS
 RewriteRule ^registrate$ index.php?controller=customers&a=ViewNewUser
 RewriteRule ^eliminar-usuario$ index.php?controller=customers&a=delete
+RewriteRule ^inactivar-usuario$ index.php?controller=customers&a=offUser
 
 #COTIZACION
 RewriteRule ^cotizacion$ index.php?controller=quotation
 
-
+#EMPRESA
+RewriteRule ^guardar-cliente-empresarial$ index.php?controller=business&a=newBusiness
 
 #LOGIN
 RewriteRule ^iniciar-sesion$ index.php?controller=login&a=viewSingIn
@@ -78,6 +80,7 @@ RewriteRule ^guardar-inventario$ index.php?controller=stock&a=newRegister
 #VALIDACIONES AJAX
 RewriteRule ^validar_contraseña$ index.php?controller=doizer&a=validateSecurityPassword
 RewriteRule ^validar_documento$ index.php?controller=customers&a=readByNumDoc
+RewriteRule ^validar_nit$ index.php?controller=business&a=readByNit
 
 #LAND
 RewriteRule ^maxirecargas$ index.php?controller=views

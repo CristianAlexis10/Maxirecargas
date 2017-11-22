@@ -284,12 +284,13 @@ $('#numDoc').keyup(function(){
       type:'post',
       data:'data='+value,
   }).done(function(response){
+    // console.log(response);
     if (response=='true') {
         $('#numDoc').after('<div class="no-usu">usuario no valido</div>');
          num_doc = false;
      }else{
           $('.no-usu').remove();
-        num_doc = true;
+          num_doc = true;
      }
       enable(num_doc,contra);
   });
@@ -529,3 +530,59 @@ function confirmDeleteUser(value){
         return false;
     }
 }
+//INACTIVAR USUARIO
+function confirmOffUser(action,value){
+     var ya = false;
+     var message;
+     if (action==1) {
+        message = 'Activar';
+     }else{
+        message = 'Inactivar';
+     }
+    if(confirm('¿'+message+'  este registro?')){
+        $.ajax({
+          url: 'inactivar-usuario',
+          type:'post',
+          dataType:'json',
+          data:'data='+value+'&estado='+action,
+      }).done(function(response){
+          // console.log(response);
+          $('#datatableUser').load('index.php?controller=datatables&a=dataTableUser');
+          $("#datatableUser").after("<div class='message'>"+response+"</div>");
+          setTimeout(function(){
+             $('div.message').remove();
+           }, 2000);
+      });
+        return true;
+    }else{
+        return false;
+    }
+}
+
+//MODIFICARUSUARIO
+$("#frmUpdtateUser").submit(function(e) {
+            e.preventDefault();
+                    dataJson = [];
+                 $(".userUpdate").each(function(){
+                      structure = {}
+                      structure = $(this).val();
+                      dataJson.push(structure);
+                  });
+                 // console.log(dataJson);
+                    $.ajax({
+                      url: "guardar-modificacion-cliente",
+                      type: "POST",
+                       dataType:'json',
+                       data: ({data: dataJson}),
+                       success: function(result){
+                        // console.log(result);
+                          $("#updateUser").after("<div class='message'>"+result+"</div>");
+                         setTimeout(function(){
+                            $('div.message').remove();
+                          }, 3000);
+                       },
+                       error: function(result){
+                          console.log(result);
+                       }
+                    });
+        });
