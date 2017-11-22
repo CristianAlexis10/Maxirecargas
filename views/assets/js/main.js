@@ -642,3 +642,25 @@ $("#frmUpdtateUser").submit(function(e) {
                        }
                     });
         });
+        //ELIMINAR CLIENTE EMPRESARIAL
+        function confirmDeleteCliEmp(value){
+             var ya = false;
+            if(confirm('¿Eliminar este registro?')){
+                $.ajax({
+                  url: 'eliminar-cliente-empresarial',
+                  type:'post',
+                  dataType:'json',
+                  data:'data='+value,
+              }).done(function(response){
+                  // console.log(response);
+                  $('#datatableCliiEmp').load('index.php?controller=datatables&a=dataTableCliEmp');
+                  $("#datatableCliiEmp").after("<div class='message'>"+response+"</div>");
+                  setTimeout(function(){
+                     $('div.message').remove();
+                   }, 2000);
+              });
+                return true;
+            }else{
+                return false;
+            }
+        }

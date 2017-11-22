@@ -133,5 +133,15 @@
 				echo json_encode('por favor realiza correctamente el recaptcha');
 			}
 		}
+		function delete(){
+			$data = $_POST['data'];
+			$result = $this->master->EliminarUsuarioyClienteEmpresarial($data);
+			// die(json_encode($result));
+			if ($result=='true') {
+				echo json_encode('Eliminado exitosamente');
+			}else{
+				echo json_encode($this->doizer->knowError($result));
+			}
+		}
 }
 ?>
