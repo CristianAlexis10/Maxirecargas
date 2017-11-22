@@ -74,7 +74,7 @@
   .container.three .three--rigth{
   background-size: 300px 600px;
   align-items: center;
-  flex-direction: column;
+
   }
   .container.three .three--left p{
   font-size: 16px;
@@ -91,14 +91,112 @@
   .container.one{
     flex-direction: column;
   }
-  .container.one .left, .container.one .rigth{
+  .container.one .left {
     width: 100%;
     height: 50vh;
+  }
+  .container.one .rigth{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .container .left img{
     max-width: 300px;
     min-width: 300px;
     margin-top: 25px;
   }
+  .container .rigth .opcions{
+    display: none;
+  }
+  .container .rigth .welcome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 80%;
+  }
+  .container .rigth .welcome .title{
+    font-size: 70px;
+  }
+  .container .rigth .welcome .subtitle{
+      font-size: 18px;
+  }
+  .container.two .section--one{
+    justify-content: center;
+    margin: 0;
+  }
+  .container.two .section--one p{
+    padding: 0;
+    font-size: 40px;
+  }
+  .container.two .section--two{
+    flex-direction: column;
+  }
+  .container.two .section--two .section-left h1, .section-rigth h1{
+    text-align: center;
+    padding: 0 0 10px 0;
+  }
+  .container.two .section--two .section-left p, .section-rigth p{
+    font-size: 18px;
+  }
+  .container.three{
+    flex-direction: column;
 
+  }
+  .container.three .three--left{
+    width: 100%;
+    height: 50vh;
+    box-sizing: border-box;
+  }
+  .container.three .three--left h1{
+    text-align: center;
+  }
+  .container.three .three--left p{
+    font-size: 18px;
+  }
+  .container.three .three--rigth{
+    width: 100%;
+    height: 50vh;
+    background: #efefef;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .container.mediafour{
+    flex-direction: column;
+  }
+
+  .container.mediafour h1{
+    font-size: 50px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .container.mediafour img{
+    width: 40%;
+    padding-top: 30px;
+  }
+  .container.four{
+    flex-direction:column-reverse;
+    height: 100vh;
+  }
+  .container.four .four--contact{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container.four .four--form{
+    width: 100%;
+    height: 50vh;
+  }
+  .container.four .four--contact h1{
+    font-size: 50px;
+  }
+  .container.four .four--contact li{
+    font-size: 20px;
+  }
 }

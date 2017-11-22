@@ -296,8 +296,6 @@ transform: translateY(-5px);
   font-weight: 300;
   line-height: 22px;
   font-size: 18px;
-
-
 }
 .container.two .section--two .section-rigth{
   padding: 30px;
@@ -317,7 +315,6 @@ transform: translateY(-5px);
 #iconPrinter{
   width: 300px;
 }
-
 .container.three{
   background: url("../image/fondo3.jpg");
   width: 100%;
