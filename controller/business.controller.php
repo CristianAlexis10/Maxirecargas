@@ -41,7 +41,7 @@
 				$ip_user = $_SERVER['REMOTE_ADDR'];
 				$validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
 				$result = json_decode($validation);
-				if($result->success!=true){
+				if($result->success==true){
 					//imagen
 					if (isset($_FILES['file']['tmp_name'])) {
 							$profile = $this->doizer->ValidateImage($_FILES,"assets/image/profile/");
@@ -114,13 +114,13 @@
 								}
 							}else{
 								$result = $this->doizer->knowError($result);
-								echo json_encode($result);	
+								echo json_encode($result);
 							}
 						 }else{
 						 	$result = $this->doizer->knowError($result);
 							echo json_encode($result);
 						 }
-					
+
 					}else{
 						$result = $this->doizer->knowError($result);
 						echo json_encode($result);
