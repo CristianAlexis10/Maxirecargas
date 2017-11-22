@@ -664,3 +664,36 @@ $("#frmUpdtateUser").submit(function(e) {
                 return false;
             }
         }
+
+
+    //modificar empresa
+    $("#frmUpdaDataEmp").submit(function(e) {
+        e.preventDefault();
+                dataJson = [];
+             $(".dataEmp").each(function(){
+                  structure = {}
+                  structure = $(this).val();
+                  dataJson.push(structure);
+              });
+              // console.log(dataJson);
+                $.ajax({
+                  url: "guardar-modificar-cliente-empresarial",
+                  type: "POST",
+                   dataType:'json',
+                   data: ({data: dataJson}),
+                   success: function(result){
+                       console.log(result);
+                    if (result==true) {
+                      $("#frmUpdateService").after("<div class='message'>Actualizado Exitosamente</div>");
+                    }else{
+                      $("#frmUpdateService").after("<div class='message'>Ocurrio un error</div>");
+                    }
+                     setTimeout(function(){
+                        $('div.message').remove();
+                      }, 2000);
+                   },
+                   error: function(result){
+                      console.log(result);
+                   }
+                });
+    });
