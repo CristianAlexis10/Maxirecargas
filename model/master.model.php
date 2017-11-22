@@ -145,36 +145,9 @@ class MasterModel{
 
         return $result;
     }
-    //no se
-     public function procedure($name,$value){
-        try {
-            $this->sql="call $name(?)";
-            $query=$this->pdo->prepare($this->sql);
-            $query->execute(array($value));
-            $result = $query->fetch(PDO::FETCH_BOTH);
-        } catch (PDOException $e) {
-            $result = $e->getMessage();
-        }
 
-        return $result;
-    }
-     public function procedureNR($name,$value){
-        try {
-            $this->sql="call $name(?)";
-            $query=$this->pdo->prepare($this->sql);
-            $query->execute(array($value));
-            $result = $query->errorInfo()[1];
-            if ($result==null) {
-                $result = true;
-            }
-        } catch (PDOException $e) {
-            $result = $query->errorInfo()[1];
-        }
 
-        return $result;
-    }
-  
-     
+
     public function selectAllBy($table,$condition){
         try {
             $this->sql="SELECT * FROM $table WHERE $condition[0] = ?";
@@ -397,10 +370,35 @@ class MasterModel{
 
         return $result;
     }
+    //no se
+     public function procedure($name,$value){
+        try {
+            $this->sql="call $name(?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute(array($value));
+            $result = $query->fetch(PDO::FETCH_BOTH);
+        } catch (PDOException $e) {
+            $result = $e->getMessage();
+        }
 
+        return $result;
+    }
+     public function procedureNR($name,$value){
+        try {
+            $this->sql="call $name(?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute(array($value));
+            $result = $query->errorInfo()[1];
+            if ($result==null) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            $result = $query->errorInfo()[1];
+        }
+
+        return $result;
+    }
 
 }
 
  ?>
-
-

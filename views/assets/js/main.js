@@ -284,7 +284,7 @@ $('#numDoc').keyup(function(){
       type:'post',
       data:'data='+value,
   }).done(function(response){
-    // console.log(response);
+    console.log(response);
     if (response=='true') {
         $('#numDoc').after('<div class="no-usu">usuario no valido</div>');
          num_doc = false;

@@ -87,7 +87,7 @@
             </div>
         </form>
                     <div class="customers--business">
-                        <form id="frmNewBusi" > 
+                        <form id="frmNewBusi" >
                             <h1>Datos de la empresa</h1>
                             <div class="form-group">
                                 <label for="nit" class="label">NIT</label>
