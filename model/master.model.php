@@ -445,8 +445,22 @@ class MasterModel{
            $this->sql="call consultaSede(?)";
            $query=$this->pdo->prepare($this->sql);
            $query->execute(array($value));
-           $result = $query->errorInfo()[1];
            $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    public function EliminarUsuarioyClienteEmpresarial($value){
+       try {
+           $this->sql="call EliminarUsuarioyClienteEmpresarial(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($value));
+           $result = $query->errorInfo()[1];
+           if ($result==null) {
+               $result = true;
+           }
        } catch (PDOException $e) {
            $result = $query->errorInfo()[1];
        }
