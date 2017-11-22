@@ -71,6 +71,13 @@ if(document.getElementById('sexo')){
         e.preventDefault();
         var rol = $('#tipo_usu').val();
         if (rol != 3) {
+                if (rol==5) {
+                  if(confirm('¿Asignar  permisos de empleado a este usuario?')){     
+                         
+                    }else{
+                      return false;
+                    }
+                }
                 dataJson = [];
 
 
@@ -118,7 +125,7 @@ if(document.getElementById('sexo')){
                 });
                 console.log(dataJson);
                   $.ajax({
-                          url: "guardar-usuario",
+                          url: "guardar-cliente-empresarial",
                           type: "POST",
                            dataType:'json',
                            data: ({data: dataJson}),
@@ -141,103 +148,95 @@ if(document.getElementById('sexo')){
     });
 
 
+var num_nit = true;
+var contraEmp = false;
+$('#registrarEmp').attr('disabled',true);
+//Validar Nit
+$('#nit').keyup(function(){
+    var value = $('#nit').val();
+    $.ajax({
+      url: 'validar_nit',
+      type:'post',
+      data:'data='+value,
+  }).done(function(response){
+    console.log(response);
+    if (response=='true') {
+        $('#nit').after('<div class="no-usu">Nit no valido</div>');
+         num_nit = false;
+     }else{
+          $('.no-usu').remove();
+          num_nit = true;
+     }
+       enableEmp(num_nit,contraEmp);
+  });
+});
+//contraseña empresarial
+ $('#rep_contraEmp').attr('disabled',true);
+$('#contraEmp').keyup(function(){
+  var contra_ingresada = $('#contraEmp').val().length;
+  $('.contra-no-valid').remove();
+  if (contra_ingresada<8) {
+    $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos 8 caracteres');
+    contraEmp=false;
+    $('#rep_contraEmp').attr('disabled',true);
+    return ;
+  }
+  if (contra_ingresada>25) {
+    $('#contraEmp').after('<div class="contra-no-valid">La clave no puede tener más de 25 caracteres');
+    contraEmp=false;
+    $('#rep_contraEmp').attr('disabled',true);
+    return ;
+  }
+  if (minusculas($('#contraEmp').val())==0) {
+    $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos una letra minúscula');
+    contraEmp=false;
+    $('#rep_contraEmp').attr('disabled',true);
+    return ;
+  }
+  if (mayusculas($('#contraEmp').val())==0) {
+    $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos una letra mayuscula');
+    contraEmp=false;
+    $('#rep_contraEmp').attr('disabled',true);
+    return ;
+  }
+  if (numeros($('#contraEmp').val())==0) {
+    $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos un caracter numérico');
+    contraEmp=false;
+    $('#rep_contraEmp').attr('disabled',true);
+    return ;
+  }
+  if ($('#contraEmp').val().indexOf(" ")!=-1) {
+   $('#contraEmp').after( "<div class='contra-no-valid'>La clave no debe tener espacios en blaco");
+   contraEmp=false;
+   $('#rep_contraEmp').attr('disabled',true);
+   return ;
+  }
+  $('#rep_contraEmp').attr('disabled',false);
+    enableEmp(num_nit,contraEmp);
 
-//
-// //contraseña empresarial
-// var num_nit = true;
-// var contra = false;
-//  $('#rep_contraEmp').attr('disabled',true);
-// $('#contraEmp').keyup(function(){
-//   var contra_ingresada = $('#contraEmp').val().length;
-//   $('.contra-no-valid').remove();
-//   if (contra_ingresada<8) {
-//     $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos 8 caracteres');
-//     contra=false;
-//     $('#rep_contraEmp').attr('disabled',true);
-//     return ;
-//   }
-//   if (contra_ingresada>25) {
-//     $('#contraEmp').after('<div class="contra-no-valid">La clave no puede tener más de 25 caracteres');
-//     contra=false;
-//     $('#rep_contraEmp').attr('disabled',true);
-//     return ;
-//   }
-//   if (minusculas($('#contraEmp').val())==0) {
-//     $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos una letra minúscula');
-//     contra=false;
-//     $('#rep_contraEmp').attr('disabled',true);
-//     return ;
-//   }
-//   if (mayusculas($('#contraEmp').val())==0) {
-//     $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos una letra mayuscula');
-//     contra=false;
-//     $('#rep_contraEmp').attr('disabled',true);
-//     return ;
-//   }
-//   if (numeros($('#contraEmp').val())==0) {
-//     $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos un caracter numérico');
-//     contra=false;
-//     $('#rep_contraEmp').attr('disabled',true);
-//     return ;
-//   }
-//   if ($('#contraEmp').val().indexOf(" ")!=-1) {
-//    $('#contraEmp').after( "<div class='contra-no-valid'>La clave no debe tener espacios en blaco");
-//    contra=false;
-//    $('#rep_contraEmp').attr('disabled',true);
-//    return ;
-//   }
-//   $('#rep_contraEmp').attr('disabled',false);
-//
-// });
-//
-// //repetir contra
-// $('#rep_contraEmp').keyup(function(){
-//     $('.rep_contrasena').remove();
-//   var rep_contra = $('#rep_contraEmp').val();
-//   if (rep_contra===$('#contraEmp').val()) {
-//     contra=true;
-//     $('.rep_contrasena').remove();
-//   }else{
-//     contra=false;
-//     $('#rep_contraEmp').after('<div class="rep_contrasena">las contraseñas no coinciden</div>');
-//   }
-//     enable(num_nit,contra);
-//
-// });
-//
-// function mayusculas(contra_validate){
-// var letras_mayusculas="ABCDEFGHYJKLMNÑOPQRSTUVWXYZ";
-//    for(i=0; i<contra_validate.length; i++){
-//       if (letras_mayusculas.indexOf(contra_validate.charAt(i),0)!=-1){
-//          return 1;
-//       }
-//    }
-//    return 0;
-// }
-// function minusculas(contra_validate){
-// var letras_mayusculas="abcdefghyjklmnñopqrstuvwxyz";
-//    for(i=0; i<contra_validate.length; i++){
-//       if (letras_mayusculas.indexOf(contra_validate.charAt(i),0)!=-1){
-//          return 1;
-//       }
-//    }
-//    return 0;
-// }
-//
-// function numeros(contra_validate){
-// var numeros="0123456789";
-//    for(i=0; i<contra_validate.length; i++){
-//       if (numeros.indexOf(contra_validate.charAt(i),0)!=-1){
-//          return 1;
-//       }
-//    }
-//    return 0;
-// }
-// //desabilitar boton
-// function enable(num_doc,contra){
-//   if (num_doc==true && contra==true) {
-//     $('#registrarEmp').attr('disabled',false);
-//   }else{
-//     $('#registrarEmp').attr('disabled',true);
-//   }
-// }
+});
+
+//repetir contra
+$('#rep_contraEmp').keyup(function(){
+    $('.rep_contrasena').remove();
+  var rep_contra = $('#rep_contraEmp').val();
+  if (rep_contra===$('#contraEmp').val()) {
+    contraEmp=true;
+    $('.rep_contrasena').remove();
+  }else{
+    contraEmp=false;
+    $('#rep_contraEmp').after('<div class="rep_contrasena">las contraseñas no coinciden</div>');
+  }
+    enableEmp(num_nit,contraEmp);
+
+});
+
+
+//desabilitar boton
+function enableEmp(num_nit,contraEmp){
+  if (num_nit==true && contraEmp==true) {
+    $('#registrarEmp').attr('disabled',false);
+  }else{
+    $('#registrarEmp').attr('disabled',true);
+  }
+}

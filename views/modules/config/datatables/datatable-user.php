@@ -14,17 +14,24 @@
             <td><?php echo $row['usu_direccion']?></td>
             <td><?php echo $row['usu_telefono']?></td>
             <td><a href="ver-cliente-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+            <!-- eliminar  -->
             <a href="#" onclick="return confirmDeleteUser(
             <?php
          echo $row['usu_codigo'];
             ?>)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+            <!-- inactivar -->
             <?php if ($row['id_estado']==1){?>
-                <a href="#" onclick="return confirmOffUser(
+                <a href="#" onclick="return confirmOffUser(2,
                 <?php
                 echo $row['usu_codigo'];
-                ?>)"><i class="fa fa-power-of" aria-hidden="true"></i></a>
+                ?>)">inactivar</i></a>
+                <!-- activar -->
             <?php }else{?>
-
+                    <a href="#" onclick="return confirmOffUser(1,
+                <?php
+                echo $row['usu_codigo'];
+                ?>)">Activar</i></a>
             <?php } ?>
         </td>
           </tr>

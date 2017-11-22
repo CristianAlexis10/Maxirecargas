@@ -59,7 +59,7 @@
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
 				//saber si puede acceder a este modulo
 				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
-				$crud = permisos('clientes',$_SESSION['CUSTOMER']['PERMITS']);
+				$crud = permisos('usuarios',$_SESSION['CUSTOMER']['PERMITS']);
 					if ($row['enlace']=='clientes' && $crud[1]==true) {
 						$access = true;
 					}
@@ -151,12 +151,13 @@
 											unset($data[11]);
 											$date = date('Y-m-d');
 											   $result = $this->master->procedure14('crearUsuario',array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1,$profile,$date,$date));
-											   die(json_encode($result));
 											   if ($result==1) {
 												   $result = $this->master->selectBy($this->tableName,array('usu_num_documento',$data[2]));
+												   $data_acceso[]=md5($data[2].$data[5].date('Y-M-D'));
 												   $data_acceso[]=$result['usu_codigo'];
 												   $data_acceso[]=$password[1];
-												   $result = $this->master->insert('acceso',$data_acceso,array('token'));
+												   $result = $this->master->procedureAcceso($data_acceso);
+												   
 											   }else{
 											   	$result = $this->doizer->knowError($result);
 											   }
@@ -247,14 +248,43 @@
 		}
 		function update(){
 			$data=$_POST['data'];
-			$result = $this->master->update($this->tableName,array('usu_codigo',$_SESSION['user_update']),$data,$this->updateException);
-			unset($_SESSION['user_update']);
-			if ($result==1) {
-				$_SESSION['message']="Actualizado Exitosamente";
+			//foto de perfil
+			if (isset($_FILES['file']['tmp_name'])) {
+				$profile = $this->doizer->ValidateImage($_FILES,"assets/image/profile/");
+				if (is_array($profile)) {
+					$profile = $profile[1];
+				}else{
+					echo json_encode($profile);
+					return ;
+				}
 			}else{
-				$_SESSION['message_error']=$result;
+				$profile = 'defaul.jpg';
 			}
-			header("Location: clientes");
+			$i = 0;
+			foreach ($data as $input) {
+				if ($i==4) {
+					$result = $this->doizer->validateEmail($data[4]);
+					if ($result!=true) {
+						echo json_encode('Formato de correo no valido');
+						return ;
+					}
+				}else{
+					$result = $this->doizer->specialCharater($data[$i]);
+					if ($result==false) {
+						echo json_encode('los campos no deben tener caracteres especiales');
+						return;
+				}
+				}
+				$i++;
+			}
+			$result = $this->master->procedureUpdate(array($_SESSION['user_update'],$data[0],$data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[10],$profile));
+			if ($result==true) {
+				echo json_encode('Modificado Exitosamente');
+			}else{
+				$result = $this->doizer->knowError($result);
+				echo json_encode($result);
+			}
+			
 		}
 		function delete(){
 			$data = $_POST['data'];
@@ -266,12 +296,18 @@
 				echo json_encode($this->doizer->knowError($result));
 			}
 		}
-		function off(){
+		function offUser(){
 			$data = $_POST['data'];
-			$result = $this->master->procedureNR('inactivar',array(2,$data));
+			$action = $_POST['estado'];
+			$result = $this->master->procedureOFUser('inactivar',array($action,$data));
 			// die(json_encode($result));
 			if ($result==true) {
-				echo json_encode('Desactivado correctamente');
+				if ($action==1) {
+					$mesage = 'Activado';
+				}else{
+					$mesage = 'Desactivado';
+				}
+				echo json_encode("$mesage correctamente");
 			}else {
 				echo json_encode($this->doizer->knowError($result));
 			}

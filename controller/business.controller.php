@@ -20,5 +20,17 @@
 			require_once "views/modules/admin/profile/business/index.php";
 			require_once "views/include/scope.footer.php";
 		}
+		function readByNit(){
+			$data=$_POST['data'];
+			$result = $this->master->procedure('consultaExisteEmpresarial',$data);
+			if ($result != array()) {
+				echo  json_encode(true);
+			}else{
+				echo json_encode(false);
+			}
+		}
+		function newBusiness(){
+			
+		}
 	}
 ?>
