@@ -409,7 +409,7 @@ class MasterModel{
            }
        } catch (PDOException $e) {
            $result = $query->errorInfo()[1];
-       }
+       } 
 
        return $result;
    }
