@@ -1,6 +1,6 @@
 $('#password').attr('disabled',true);
 //validar si el usuario existe
-$('#document').keyup(function(){
+$('#pass').focus(function(){
     var value = $('#document').val();
     if (value!='') {
 	    $.ajax({
