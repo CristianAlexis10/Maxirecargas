@@ -79,9 +79,7 @@
 			$crud = permisos($modulo,$permit);
 			 if($crud[2]==1){?>
 			<li class="item"><a href="modificar-cliente-<?php echo $_GET['data']?>">Modificar</a></li>
-			<?php }  if($crud[3]==1){?>
-			<li class="item"><a href="eliminar-cliente-<?php echo $_GET['data']?>" onclick="return confirmDelete()">Eliminar</a></li>
-			<?php } ?>
+			<?php }  ?>
 		</ul>
 	</div>
 </div>

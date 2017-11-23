@@ -684,9 +684,9 @@ $("#frmUpdtateUser").submit(function(e) {
                    success: function(result){
                        console.log(result);
                     if (result==true) {
-                      $("#frmUpdateService").after("<div class='message'>Actualizado Exitosamente</div>");
+                      $("#frmUpdaDataEmp").after("<div class='message'>Actualizado Exitosamente</div>");
                     }else{
-                      $("#frmUpdateService").after("<div class='message'>Ocurrio un error</div>");
+                      $("#frmUpdaDataEmp").after("<div class='message'>"+result+"</div>");
                     }
                      setTimeout(function(){
                         $('div.message').remove();

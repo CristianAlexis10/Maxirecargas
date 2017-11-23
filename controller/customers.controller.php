@@ -170,7 +170,7 @@
 								return ;
 							}
 						}else{
-							$profile = 'defaul.jpg';
+							$profile = 'default.jpg';
 						}
 					//registrar roles menos cliente empresarial
 					if ($data[0]!=3) {

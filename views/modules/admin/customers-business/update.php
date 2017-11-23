@@ -5,6 +5,8 @@
 	$empresa= $this->master->selectBy('empresa',array('emp_codigo',$sede['emp_codigo']));
 	// print_r($result);
 	$_SESSION['emp_code']=$empresa['emp_codigo'];
+	$_SESSION['sed_code']=$sede['sed_codigo'];
+	$_SESSION['cli_code']=$result['id_cliente_empresarial'];
 ?>
 <div class="modules customers">
 	<div class="title">
@@ -37,6 +39,10 @@
 						<div class="detail">
 							<p class="item--detail">Telefono sede:</p>
 							<input type="text" class="dataEmp" value="<?php echo  $sede['sed_telefono'];?>">
+						</div>
+						<div class="detail">
+							<p class="item--detail">Cargo :</p>
+							<input type="text" class="dataEmp" value="<?php echo  $result['cli_emp_cargo'];?>">
 						</div>
 						<div class="detail">
 

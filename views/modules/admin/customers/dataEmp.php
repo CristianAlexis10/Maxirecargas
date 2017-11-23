@@ -31,6 +31,10 @@
 			<p class="data--detail"><?php echo $sede['sed_telefono']?> </p>
 		</div>
 		<div class="detail">
+			<p class="item--detail">Cargo en la sede:</p>
+			<p class="data--detail"><?php echo $result['cli_emp_cargo']?> </p>
+		</div>
+		<div class="detail">
 			<p class="item--detail">Logo:</p>
 			<p class="data--detail"> <img src="views/assets/image/profile/<?php echo  $result['foto'];?>" alt="Foto  no Disponible"></p>
 		</div>

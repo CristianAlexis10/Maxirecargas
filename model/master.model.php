@@ -442,7 +442,7 @@ class MasterModel{
    }
     public function consultaSede($value){
        try {
-           $this->sql="call consultaSede(?)";
+           $this->sql="call ConsultaSedeExistente(?)";
            $query=$this->pdo->prepare($this->sql);
            $query->execute(array($value));
            $result = $query->fetch(PDO::FETCH_BOTH);
@@ -487,6 +487,37 @@ class MasterModel{
     public function modificarEmpresa($value){
         try {
             $this->sql="call modificarEmpresa(?,?,?,?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute($value);
+            $result = $query->errorInfo()[1];
+            if ($result==null) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            $result = $query->errorInfo()[1];
+        }
+
+        return $result;
+    }
+   //EDITAR SEDE
+    public function modificarSede($value){
+        try {
+            $this->sql="call modificarSede(?,?,?,?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute($value);
+            $result = $query->errorInfo()[1];
+            if ($result==null) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            $result = $query->errorInfo()[1];
+        }
+
+        return $result;
+    }//EDITAR CLIENTE EMPRE
+    public function modificarClienteEmpresarial($value){
+        try {
+            $this->sql="call modificarClienteEmpresarial(?,?)";
             $query=$this->pdo->prepare($this->sql);
             $query->execute($value);
             $result = $query->errorInfo()[1];

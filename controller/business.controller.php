@@ -185,9 +185,11 @@
 				$i++;
 			}
 
-			$result = $this->master->modificarEmpresa(array($_SESSION['emp_code'],$data[0],$data[1],$data[3]));
+			$result = $this->master->modificarEmpresa(array($_SESSION['emp_code'],$data[0],$data[1],$data[2]));
+			$result = $this->master->modificarSede(array($_SESSION['sed_code'],$data[3],$data[4],$data[5]));
+			$result = $this->master->modificarClienteEmpresarial(array($data[6],$_SESSION['cli_code']));
 			if ($result==true) {
-				echo json_encode("Modificación Exiitosa");
+				echo json_encode(true);
 			}else{
 				echo json_encode($this->doizer->knowError($result));
 			}

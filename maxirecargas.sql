@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2017 a las 06:20:11
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 7.0.15
+-- Tiempo de generación: 23-11-2017 a las 05:01:21
+-- Versión del servidor: 10.1.8-MariaDB
+-- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -45,7 +45,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaLogin` (IN `documento` INT(
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaSede` (IN `sede` INT(11))  BEGIN
-	SELECT * FROM sede WHERE sed_nombre = sede;
+	SELECT * FROM sede WHERE sed_codigo = sede;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultaSedeExistente` (IN `nombre` VARCHAR(50))  BEGIN
@@ -131,6 +131,14 @@ WHERE t1.usu_codigo=codigo;
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinClienteySede` (IN `codigo` INT(11))  BEGIN
+SELECT * FROM cliente_empresarial C1
+INNER JOIN sede C2 ON C1.sed_codigo = C2.sed_codigo
+INNER JOIN empresa C3 ON C2.emp_codigo = C3.emp_codigo
+WHERE C1.usu_codigo=codigo;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinUsuario` (IN `codigo` INT(11))  BEGIN
 SELECT * FROM usuario T1
 INNER JOIN tipo_documento T2 on T1.id_tipo_documento=T2.id_tipo_documento
@@ -143,10 +151,10 @@ INNER JOIN estado T5 on T1.id_estado=T5.id_estado
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarClienteEmpresarial` (IN `codigo` INT(11), IN `usu_codigo` INT(11), IN `sed_codigo` INT(11), IN `cargo` VARCHAR(45))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarClienteEmpresarial` (IN `cargo` VARCHAR(45), IN `codigo` INT(11))  NO SQL
+BEGIN
 UPDATE cliente_empresarial
-SET  usu_codigo = usu_codigo,
-     sed_codigo = sed_codigo,
+SET  
      cli_emp_cargo = cargo
      
 WHERE id_cliente_empresarial = codigo;
@@ -164,17 +172,13 @@ WHERE emp_codigo = codigo;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarSede` (IN `codigo` INT(11), IN `emp_codigo` INT(11), IN `nombre` VARCHAR(50), IN `direccion` VARCHAR(200), IN `telefono` INT(11))  BEGIN
-
-UPDATE sede
-SET sed_codigo = codigo, 
-	emp_codigo = emp_codigo,
-	sed_nombre = nombre,
-    sed_direccion = direccion,
-    sed_telefono = telefono
-     
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarSede` (IN `codigo` INT(11), IN `nombre` VARCHAR(50), IN `dir` VARCHAR(200), IN `tel` INT(11))  NO SQL
+BEGIN 
+update sede SET
+sed_nombre = nombre,
+sed_direccion= dir,
+sed_telefono = tel
 WHERE sed_codigo = codigo;
-
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarUsuario` (IN `codigo` INT(11), IN `tipo_documento` INT(11), IN `documento` INT(11), IN `nombre` VARCHAR(50), IN `apellido` VARCHAR(50), IN `correo` VARCHAR(100), IN `telefono` INT(10), IN `ciudad` INT(11), IN `nacimiento` DATE, IN `sexo` VARCHAR(50), IN `tipo_codigo` INT(11), IN `estado` INT(11), IN `foto` LONGTEXT)  BEGIN
@@ -206,7 +210,7 @@ DELIMITER ;
 --
 
 CREATE TABLE `acceso` (
-  `token` int(11) NOT NULL,
+  `token` varchar(250) NOT NULL,
   `usu_codigo` int(11) NOT NULL,
   `acc_contra` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -216,10 +220,9 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
-(0, 24, '$2y$10$.v4QuIFjT2knvwO3eeSpqOolv2hG1bImURFqy/kIe.1.sekWZ0FlW'),
-(1459, 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
-(2545, 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
-(2546, 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW');
+('1459', 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
+('2545', 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
+('2546', 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW');
 
 -- --------------------------------------------------------
 
@@ -253,13 +256,6 @@ CREATE TABLE `cliente_empresarial` (
   `sed_codigo` int(11) NOT NULL,
   `cli_emp_cargo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `cliente_empresarial`
---
-
-INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_codigo`, `cli_emp_cargo`) VALUES
-(22, 24, 11, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -319,13 +315,6 @@ CREATE TABLE `empresa` (
   `emp_nit` int(100) NOT NULL,
   `emp_razon_social` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `empresa`
---
-
-INSERT INTO `empresa` (`emp_codigo`, `emp_nombre`, `emp_nit`, `emp_razon_social`) VALUES
-(12, 'sistemOn1', 1234, 'sede1');
 
 -- --------------------------------------------------------
 
@@ -417,11 +406,11 @@ CREATE TABLE `modulos` (
 --
 
 INSERT INTO `modulos` (`id_modulo`, `mod_nombre`, `enlace`, `icon`) VALUES
-(1, 'usuarios', 'clientes', '<i class=\"fa fa-users\" aria-hidden=\"true\"></i>'),
-(2, 'productos', 'productos', '<i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"></i>'),
-(3, 'Pedidos', 'pedidos', '<i class=\"fa fa-bullhorn\" aria-hidden=\"true\"></i>'),
-(4, 'cotizacion', 'cotizacion', '<i class=\"fa fa-wrench\" aria-hidden=\"true\"></i>'),
-(5, 'Rutas', 'rutas', '<i class=\"fa fa-motorcycle\" aria-hidden=\"true\"></i>');
+(1, 'usuarios', 'clientes', '<i class="fa fa-users" aria-hidden="true"></i>'),
+(2, 'productos', 'productos', '<i class="fa fa-shopping-cart" aria-hidden="true"></i>'),
+(3, 'Pedidos', 'pedidos', '<i class="fa fa-bullhorn" aria-hidden="true"></i>'),
+(4, 'cotizacion', 'cotizacion', '<i class="fa fa-wrench" aria-hidden="true"></i>'),
+(5, 'Rutas', 'rutas', '<i class="fa fa-motorcycle" aria-hidden="true"></i>');
 
 -- --------------------------------------------------------
 
@@ -606,13 +595,6 @@ CREATE TABLE `sede` (
   `sed_telefono` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `sede`
---
-
-INSERT INTO `sede` (`sed_codigo`, `emp_codigo`, `sed_nombre`, `sed_direccion`, `sed_telefono`) VALUES
-(11, 12, 'sede', 'dir', 213);
-
 -- --------------------------------------------------------
 
 --
@@ -773,10 +755,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 2, 1, '', '2017-11-05', '0000-00-00'),
-(2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, '', '2017-11-02', '0000-00-00'),
-(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 2, 1, 'kojada', '2017-11-02', '2017-11-01'),
-(24, 1, 12345, 'asdasd', '', '22', '', '12@mm.com', 4324, 1, '', 0, '2017-11-23', 'null', 3, 1, 'defaul.jpg', '2017-11-23', '2017-11-23');
+(1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 2, 1, 'default.jpg', '2017-11-05', '0000-00-00'),
+(2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, 'default.jpg', '2017-11-02', '0000-00-00'),
+(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 2, 1, 'kojada', '2017-11-02', '2017-11-01');
 
 -- --------------------------------------------------------
 
@@ -1012,11 +993,6 @@ ALTER TABLE `usuarioxpedido`
 --
 
 --
--- AUTO_INCREMENT de la tabla `acceso`
---
-ALTER TABLE `acceso`
-  MODIFY `token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2554;
---
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
@@ -1025,7 +1001,7 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
-  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
@@ -1040,7 +1016,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
@@ -1110,7 +1086,7 @@ ALTER TABLE `ruta`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
@@ -1145,7 +1121,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- Restricciones para tablas volcadas
 --
