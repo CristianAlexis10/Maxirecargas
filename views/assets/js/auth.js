@@ -45,7 +45,10 @@ $("#form--login").submit(function(e) {
                  }else  if (result==true) {
                       location.href = 'dashboard';
                   }
-                  console.log(result);
+                  $('#form--login').after('<div class="message">'+result+'</div>');
+                  setTimeout(function(){
+                     $('div.message').remove();
+                   }, 2000);
                },
                error: function(result){
                   console.log(result);
