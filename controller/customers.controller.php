@@ -149,6 +149,10 @@
 				if($result->success==true){
 					$i = 0;
 					foreach ($data as $input) {
+						if ($data[$i]=='') {
+							echo json_encode('Campos vacios');
+							return ;
+						}
 						if ($i==5) {
 
 						}else{
@@ -304,6 +308,10 @@
 			}
 			$i = 0;
 			foreach ($data as $input) {
+				if ($data[$i]=='') {
+					echo json_encode('Campos vacios');
+					return ;
+				}
 				if ($i==4) {
 					$result = $this->doizer->validateEmail($data[4]);
 					if ($result!=true) {
