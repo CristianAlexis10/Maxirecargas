@@ -14,7 +14,7 @@ $('#pass').focus(function(){
 		    $('#password').attr('disabled',false);
 	     }else{
 	     	$(".message").remove();
-		$("#document").after("<div class='message'>Documento no valido</div>");
+		$("#document").after("<div class='message-red'>Documento no valido</div>");
 		$('#password').attr('disabled',true);
 	     }
 
@@ -22,6 +22,9 @@ $('#pass').focus(function(){
     }else{
     	$(".message").remove();
     }
+    setTimeout(function(){
+       $('div.message-red').remove();
+     }, 2000);
 });
 //capturar el evento submit
 $("#form--login").submit(function(e) {
@@ -41,13 +44,14 @@ $("#form--login").submit(function(e) {
                success: function(result){
                  if (result=='customer') {
                    location.href = 'maxirecargas';
-
+                    return;
                  }else  if (result==true) {
                       location.href = 'dashboard';
+                      return;
                   }
-                  $('#form--login').after('<div class="message">'+result+'</div>');
+                  $('#form--login').after('<div class="message-red">'+result+'</div>');
                   setTimeout(function(){
-                     $('div.message').remove();
+                     $('div.message-red').remove();
                    }, 2000);
                },
                error: function(result){

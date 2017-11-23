@@ -19,10 +19,10 @@
 			if ($data[0]!='' && $data[1] != '') {
 				if ($this->doizer->onlyNumbers($data[0])==true) {
 					$result  = $this->master->procedure("consultaLogin",$data[0]);
-					if ($result['id_estado']==1) {
 						if ($result != array()) {
 							// die(print_r($result));
 							if (password_verify($data[1] , $result['acc_contra'])) {
+								if ($result['id_estado']==1) {
 								$_SESSION['CUSTOMER']['ROL'] = $result['tip_usu_codigo'];
 								$_SESSION['CUSTOMER']['ID']=$result['usu_codigo'];
 								$_SESSION['CUSTOMER']['NAME']=$result['usu_primer_nombre'];
@@ -40,13 +40,13 @@
 									echo json_encode(true);
 								}
 							}else{
-									echo json_encode('contraseña incorrecta');
+								echo json_encode('Usuario Inactivo');
 								}
 						}else{
 							echo json_encode('Numero de Documento Incorrecto');
 						}
 					}else{
-						echo json_encode('Usuario Inactivo');
+						echo json_encode('contraseña incorrecta');
 					}
 				}else{
 					echo json_encode('caracteres invalidos en el numero de documento');

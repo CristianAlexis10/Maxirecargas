@@ -99,9 +99,11 @@
   font-size: 18px;
 }
 .container .rigth .welcome .subtitle-contc{
-  font-family: 'oswald';
+  font-family: 'lato';
+  font-weight: 300;
   font-size: 25px;
-  padding-top: 20px
+  padding-top: 20px;
+  text-align: right;
 }
 .container .rigth .welcome .subtitle-contc i{
   color: #35a4dd;
@@ -965,3 +967,10 @@ transform: translateY(-5px);
 
 #wrap--menu--mobile, #menu-mobile{
   display: none;}
+
+/*alert*/
+.message-red{
+  padding: 10px;
+  background: #f44336;
+  color: white;
+}
