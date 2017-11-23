@@ -409,7 +409,7 @@ class MasterModel{
            }
        } catch (PDOException $e) {
            $result = $query->errorInfo()[1];
-       } 
+       }
 
        return $result;
    }
@@ -440,9 +440,33 @@ class MasterModel{
 
        return $result;
    }
+    public function ConsultaEmpresaByCod($value){
+       try {
+           $this->sql="call ConsultaEmpresa(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($value));
+          $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
     public function consultaSede($value){
        try {
            $this->sql="call ConsultaSedeExistente(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($value));
+           $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    public function consultaSedeByCodi($value){
+       try {
+           $this->sql="call ConsultaSede(?)";
            $query=$this->pdo->prepare($this->sql);
            $query->execute(array($value));
            $result = $query->fetch(PDO::FETCH_BOTH);

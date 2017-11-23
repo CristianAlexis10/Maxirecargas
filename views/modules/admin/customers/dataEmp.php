@@ -1,8 +1,7 @@
 <?php
 	$result = $this->master->selectBy('cliente_empresarial',array('usu_codigo',base64_decode($_GET['data'])));
-
-	$sede= $this->master->selectBy('sede',array('sed_codigo',$result['sed_codigo']));
-	$empresa= $this->master->selectBy('empresa',array('emp_codigo',$sede['emp_codigo']));
+	$sede= $this->master->consultaSedeByCodi($result['sed_codigo']);
+	$empresa= $this->master->ConsultaEmpresaByCod($sede['emp_codigo']);
 	// print_r($result);
 ?>
 <div class="modules customers">
