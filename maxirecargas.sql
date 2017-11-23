@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2017 a las 22:35:02
--- Versión del servidor: 10.1.19-MariaDB
--- Versión de PHP: 5.6.28
+-- Tiempo de generación: 23-11-2017 a las 06:20:11
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 7.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -45,7 +45,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaLogin` (IN `documento` INT(
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaSede` (IN `sede` INT(11))  BEGIN
-	SELECT * FROM sede WHERE sed_codigo = sede;
+	SELECT * FROM sede WHERE sed_nombre = sede;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultaSedeExistente` (IN `nombre` VARCHAR(50))  BEGIN
@@ -216,6 +216,7 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
+(0, 24, '$2y$10$.v4QuIFjT2knvwO3eeSpqOolv2hG1bImURFqy/kIe.1.sekWZ0FlW'),
 (1459, 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
 (2545, 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
 (2546, 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW');
@@ -258,9 +259,7 @@ CREATE TABLE `cliente_empresarial` (
 --
 
 INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_codigo`, `cli_emp_cargo`) VALUES
-(1, 1, 1, 'Supervisor'),
-(2, 2, 2, 'Supervisor'),
-(4, 3, 2, 'dfdff');
+(22, 24, 11, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -326,8 +325,7 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`emp_codigo`, `emp_nombre`, `emp_nit`, `emp_razon_social`) VALUES
-(1, 'Bancolombia', 1588, 'hsgd'),
-(2, 'Exito', 0, '');
+(12, 'sistemOn1', 1234, 'sede1');
 
 -- --------------------------------------------------------
 
@@ -419,11 +417,11 @@ CREATE TABLE `modulos` (
 --
 
 INSERT INTO `modulos` (`id_modulo`, `mod_nombre`, `enlace`, `icon`) VALUES
-(1, 'usuarios', 'clientes', '<i class="fa fa-users" aria-hidden="true"></i>'),
-(2, 'productos', 'productos', '<i class="fa fa-shopping-cart" aria-hidden="true"></i>'),
-(3, 'Pedidos', 'pedidos', '<i class="fa fa-bullhorn" aria-hidden="true"></i>'),
-(4, 'cotizacion', 'cotizacion', '<i class="fa fa-wrench" aria-hidden="true"></i>'),
-(5, 'Rutas', 'rutas', '<i class="fa fa-motorcycle" aria-hidden="true"></i>');
+(1, 'usuarios', 'clientes', '<i class=\"fa fa-users\" aria-hidden=\"true\"></i>'),
+(2, 'productos', 'productos', '<i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"></i>'),
+(3, 'Pedidos', 'pedidos', '<i class=\"fa fa-bullhorn\" aria-hidden=\"true\"></i>'),
+(4, 'cotizacion', 'cotizacion', '<i class=\"fa fa-wrench\" aria-hidden=\"true\"></i>'),
+(5, 'Rutas', 'rutas', '<i class=\"fa fa-motorcycle\" aria-hidden=\"true\"></i>');
 
 -- --------------------------------------------------------
 
@@ -613,8 +611,7 @@ CREATE TABLE `sede` (
 --
 
 INSERT INTO `sede` (`sed_codigo`, `emp_codigo`, `sed_nombre`, `sed_direccion`, `sed_telefono`) VALUES
-(1, NULL, 'Mayorca', 'Calle 45', 0),
-(2, NULL, 'Alpujarra', 'Carrera 56', 0);
+(11, 12, 'sede', 'dir', 213);
 
 -- --------------------------------------------------------
 
@@ -776,9 +773,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 3, 1, '', '2017-11-05', '0000-00-00'),
+(1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 2, 1, '', '2017-11-05', '0000-00-00'),
 (2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, '', '2017-11-02', '0000-00-00'),
-(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 3, 1, 'kojada', '2017-11-02', '2017-11-01');
+(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 2, 1, 'kojada', '2017-11-02', '2017-11-01'),
+(24, 1, 12345, 'asdasd', '', '22', '', '12@mm.com', 4324, 1, '', 0, '2017-11-23', 'null', 3, 1, 'defaul.jpg', '2017-11-23', '2017-11-23');
 
 -- --------------------------------------------------------
 
@@ -1027,7 +1025,7 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
-  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
@@ -1042,7 +1040,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
@@ -1112,7 +1110,7 @@ ALTER TABLE `ruta`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
@@ -1147,7 +1145,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- Restricciones para tablas volcadas
 --
