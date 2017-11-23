@@ -170,6 +170,17 @@ class DoizerController{
 		return  filter_var($number, FILTER_SANITIZE_NUMBER_INT);
 	}
 //TEXTO
+	function validateSpacesBlank($txt){
+		$caracteres = strlen($txt);
+			$i = 0;
+			while ($caracteres > $i) {
+			 if (ctype_space($txt[$i])==true) {
+			        return true;
+			    }
+			    $i++;
+			 }
+			 return false;
+	}
 	function specialCharater($string){
 		$pattern = '/[\'\/~`\!\%\^&\*\(\)\+=\{\}\[\]\|;:"\<\>,\\\]/';
 	    if (preg_match($pattern,$string)){

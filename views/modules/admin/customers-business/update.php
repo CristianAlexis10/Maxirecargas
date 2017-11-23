@@ -4,6 +4,7 @@
 	$sede= $this->master->selectBy('sede',array('sed_codigo',$result['sed_codigo']));
 	$empresa= $this->master->selectBy('empresa',array('emp_codigo',$sede['emp_codigo']));
 	// print_r($result);
+	$_SESSION['emp_code']=$empresa['emp_codigo'];
 ?>
 <div class="modules customers">
 	<div class="title">

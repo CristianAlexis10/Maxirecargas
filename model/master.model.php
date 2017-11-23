@@ -483,6 +483,23 @@ class MasterModel{
         return $result;
     }
 
+    //EDITAR EMPRESA
+    public function modificarEmpresa($value){
+        try {
+            $this->sql="call modificarEmpresa(?,?,?,?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute($value);
+            $result = $query->errorInfo()[1];
+            if ($result==null) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            $result = $query->errorInfo()[1];
+        }
+
+        return $result;
+    }
+
 }
 
  ?>

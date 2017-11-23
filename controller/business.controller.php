@@ -57,6 +57,10 @@
 				$i = 0;
 				//validar caracteres especiales y correo
 					foreach ($data as $input) {
+						if ($data[$i]=='') {
+							echo json_encode('Campos vacios');
+							return ;
+						}
 						if ($i==13) {
 							if ($this->doizer->validateEmail($data[13])!=true) {
 								echo json_encode('Formato de correo no valido');
@@ -92,10 +96,8 @@
 						 $data_acceso[]=$password[1];
 						 $result = $this->master->procedureAcceso($data_acceso);
 						 if ($result==true) {
-						 	//crear empresa(FALTA PROCEDURE)
 							$result = $this->master->crearEmpresa(array($data[3],$data[1],$data[2]));
 							if ($result==true) {
-								//crear la sede(FALTA PROCEDURE)
 								$result = $this->master->ConsultaEmpresa($data[1]);
 								$result = $this->master->crearSede(array($result['emp_codigo'],$data[4],$data[5],$data[6]));
 								if ($result==true) {
@@ -166,7 +168,30 @@
 		}
 		function update(){
 			$data = $_POST['data'];
-			echo json_encode('dasd');
+			$i = 0;
+			foreach ($data as $input) {
+				if ($data[$i]=='') {
+					echo json_encode('Campos vacios');
+					return ;
+				}
+				if ($i==13) {
+				}else{
+					$result = $this->doizer->specialCharater($data[$i]);
+					if ($result==false) {
+						echo json_encode('los campos no deben tener caracteres especiales');
+						return;
+					}
+				}
+				$i++;
+			}
+
+			$result = $this->master->modificarEmpresa(array($_SESSION['emp_code'],$data[0],$data[1],$data[3]));
+			if ($result==true) {
+				echo json_encode("Modificación Exiitosa");
+			}else{
+				echo json_encode($this->doizer->knowError($result));
+			}
+
 		}
 }
 ?>
