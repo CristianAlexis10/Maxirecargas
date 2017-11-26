@@ -1,3 +1,24 @@
+$('#moveleft').click(function() {
+    $('#formularios--run').animate({
+    'marginLeft':"0"
+    });
+
+    $('.contenido--run').animate({
+    'marginLeft' : "100%"
+    });
+});
+
+$('#moveright').click(function() {
+    $('#formularios--run').animate({
+    'marginLeft' : "50%"
+    });
+
+    $('.contenido--run').animate({
+    'marginLeft': "0"
+    });
+});
+
+
 if (document.getElementById('cuidad')) {
     $.ajax({
         url: "index.php?controller=config&a=selectCity",

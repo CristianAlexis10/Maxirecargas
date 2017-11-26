@@ -10,20 +10,27 @@
     <link rel="stylesheet" href="views/assets/css/main-user.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
-  <style >
-      body{
-          color:white;
-      }
-  </style>
+
   <body>
-    <div class="main--container--quotation">
-      <div class="left--part--quotation">
-        <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
+    <div class="fondoimagenes">
+      <div class="imagenes--left"></div>
+      <div class="imagenes--rigth"></div>
+    </div>
+
+    <div id="formularios--run">
+      <div class="contenido--run">
+        <div class="runform--left">
+        <div class="runform--contenido">
+          <h1>Crea tu cuenta</h1>
+          <p>registrate y conoce los beneficios que tenemos para ti</p>
+          <div class="main--container--quotation">
+            <div class="left--part--quotation">
+              <!-- <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span> -->
             <div class="form-group type--user">
-                    <label for="tipo_usu" class="select" >Tipo de Usuario:</label>
-                    <select class="input"  id="tipo_usu" required></select>
+                <label for="tipo_usu" class="select" >Tipo de Usuario:</label>
+                <select class="input"  id="tipo_usu" required></select>
             </div>
-        <form id="frmNewUser">
+            <form id="frmNewUser">
             <div class="customers--normal">
                 <div class="form-group">
                     <label for="tip_doc" class="select">Tipo de Documento:</label>
@@ -85,8 +92,8 @@
                     <button class="btn" disabled id="registrar">Registrar Cliente</button>
                    </div>
             </div>
-        </form>
-                    <div class="customers--business">
+            </form>
+                <div class="customers--business">
                         <form id="frmNewBusi" >
                             <h1>Datos de la empresa</h1>
                             <div class="form-group">
@@ -165,15 +172,43 @@
                                 </div>
                         </div>
                 <div class="g-recaptcha" data-sitekey="6Ld_bDkUAAAAADkIoF_nn1BbWzhCuSm0Zk2E83eZ"></div>
+              </div>
+            </div>
+            <button id="moveright">Iniciar Sesión</button>
+        </div>
+        </div>
+        <div class="runform--rigth">
+        <div class="runform--contenido">
+        <h1>iniciar sesion</h1>
+        <p>Agrega tu documento de identidad y contraseña para ingresar a maxirecargas</p>
+        <form id="form--login" data-parsley-validate>
+          <div class="wrap--login">
+            <label for="document" class="label-login">Documento de identidad</label>
+            <input type="text" name="data-login" class="input--login" id="document" required>
+          </div>
+          <div class="wrap--login">
+            <label for="password" class="label-login">Contraseña</label>
+            <input type="password" name="data-login" id="pass" class="input--login" required>
+          </div>
+          <!-- <div class="wrap--login">
+            <label for="password" class="label-login">repita</label>
+            <input type="password" name="data-login" data-parsley-equalto="#pass"  required>
+          </div> -->
+            <button type="submit" name="button" id="btn--login">iniciar sesion</button>
+        </form>
+        <button id="moveleft">Registrate</button>
+        </div>
+      </div>
       </div>
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- <script type="text/javascript" src="views/assets/js/config.js"></script> -->
     <script type="text/javascript" src="views/assets/js/registro.js"></script>
-    <script type="text/javascript" src="views/assets/js/menu.js"></script>
+    <!-- <script type="text/javascript" src="views/assets/js/menu.js"></script> -->
 
   </body>
 </html>
