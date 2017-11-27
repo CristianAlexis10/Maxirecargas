@@ -58,6 +58,7 @@ RewriteRule ^guardar-marca$ index.php?controller=trademark&a=newRegister
 RewriteRule ^eliminar-marca$ index.php?controller=trademark&a=delete
 RewriteRule ^modificar-marca-(\w+)$ index.php?controller=trademark&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-marca$ index.php?controller=trademark&a=update
+RewriteRule ^cropp-(\w+)$ index.php?controller=cropp&a=image&folder=$1
 
  #CATEGORIAS
  RewriteRule ^nueva-categoria$ index.php?controller=products&a=newCategory
