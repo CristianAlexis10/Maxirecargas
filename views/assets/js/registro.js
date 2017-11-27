@@ -18,6 +18,33 @@ $('#moveright').click(function() {
     });
 });
 
+$(".input--login").focus(function(){
+  $(this).parent().addClass("clr-label-login mov-label-login");
+});
+
+$(".input--login").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("mov-label-login");
+    $(this).parent().removeClass("clr-label-login");
+});
+
+
+var customerPart1 = document.getElementById("customers--normal--part1");
+var customerPart2 = document.getElementById('customers--normal--part2') ;
+var irParte2 = document.getElementById('normalIrParte2');
+var irAtras = document.getElementById('irAtras');
+
+irParte2.onclick = function() {
+  customerPart1.style.display= "none";
+  customerPart2.style.display= "block";
+}
+
+irAtras.onclick = function() {
+  customerPart1.style.display= "block";
+  customerPart2.style.display= "none";
+}
+
+
 
 if (document.getElementById('cuidad')) {
     $.ajax({
