@@ -1,5 +1,5 @@
 
-<link type="text/css" rel="stylesheet" href="croppie.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"  media="screen,projection"/>
 <div class="modules customers">
 	<div class="title">
 		<p>PRODUCTOS</p>
@@ -14,14 +14,51 @@
 				   <label for="des" class="required">Descripción:</label>
 			   		<textarea  id="desMar"></textarea>
 				</div>
-
+				<div class="form-group">
+					<input type="hidden" id="img" name="dataNewMark">
+				</div>
+				<div class="form-group">
+					<div id="wrap-result"><img src="views/assets/image/icn-maxi.png" ></div>
+					<span class="" id="cropp-img">Cambiar foto</span>
+				</div>
 
 				<div class="form-group">
 					<button class="btn">Registrar</button>
 				</div>
 			</form>
-			<a class="waves-effect waves-light btn" href="#uploadImage">Seleccionar foto</a>
 	</div>
+	<div id="uploadImage">
+		  <div id="wrap-upload" style="width:350px"></div>
+		  <input type="file" id="upload">
+		   <button class="btn btn-success upload-result">Recortar Imagen</button>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </div>

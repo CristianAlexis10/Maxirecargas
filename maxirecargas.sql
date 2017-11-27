@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2017 a las 19:18:21
+-- Tiempo de generación: 27-11-2017 a las 23:42:35
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -224,6 +224,8 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
+('$2y$10$TnW63efPw1lmVeDpAdP.gu/76sxEItBF4AGJS2jo.hmktfuF0Q34m', 28, '$2y$10$G/yVDnSpze4qwD33o1PV9O9mw9CkhRZm8eBzNjf3D45Z6IPr/zNl2'),
+('$2y$10$y/sf6/q2J1mdkwlurARcJe1hsvSeRKQj7I42Cj0LrTfas2VEWDvu6', 29, '$2y$10$Rlz9sCNabvxsQhpZLmrCA.EMLZCr2xUQElxmkFabyz9PpseY0iQJC'),
 ('1459', 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
 ('2545', 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
 ('2546', 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW');
@@ -381,16 +383,18 @@ CREATE TABLE `gestion_web` (
 CREATE TABLE `marca` (
   `mar_codigo` int(11) NOT NULL,
   `mar_nombre` varchar(50) NOT NULL,
-  `mar_descripcion` varchar(200) NOT NULL
+  `mar_descripcion` varchar(200) NOT NULL,
+  `mar_foto` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `marca`
 --
 
-INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
-(1, 'HP', 'sad'),
-(2, 'Epson', 'epson des');
+INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`, `mar_foto`) VALUES
+(1, 'HP', 'sad', ''),
+(2, 'Epson', 'epson des', ''),
+(8, '34', '324', '');
 
 -- --------------------------------------------------------
 
@@ -761,7 +765,9 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
 (1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 2, 1, 'default.jpg', '2017-11-05', '0000-00-00'),
 (2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, 'default.jpg', '2017-11-02', '0000-00-00'),
-(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 2, 1, 'kojada', '2017-11-02', '2017-11-01');
+(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 2, 1, 'kojada', '2017-11-02', '2017-11-01'),
+(28, 1, 123, 'weqwe', '', 'qwe', '', 'sad@ds.c', 23, 1, '', 0, '2004-12-30', 'femenino', 1, 1, 'default.jpg', '2017-11-23', '2017-11-23'),
+(29, 1, 546, 'fgfd', '', 'sgd', '', 'udsu@gmail.c', 156842, 1, '', 0, '2004-12-28', 'femenino', 1, 2, 'default.jpg', '2017-11-23', '2017-11-23');
 
 -- --------------------------------------------------------
 
@@ -1005,7 +1011,7 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
-  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
@@ -1020,7 +1026,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
@@ -1040,7 +1046,7 @@ ALTER TABLE `gestion_web`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
@@ -1090,7 +1096,7 @@ ALTER TABLE `ruta`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
@@ -1125,7 +1131,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- Restricciones para tablas volcadas
 --
