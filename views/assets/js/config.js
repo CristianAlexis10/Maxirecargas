@@ -72,8 +72,8 @@ if(document.getElementById('sexo')){
         var rol = $('#tipo_usu').val();
         if (rol != 3) {
                 if (rol==5) {
-                  if(confirm('¿Asignar  permisos de empleado a este usuario?')){     
-                         
+                  if(confirm('¿Asignar  permisos de empleado a este usuario?')){
+
                     }else{
                       return false;
                     }
@@ -259,4 +259,30 @@ function enableEmp(num_nit,contraEmp){
   }else{
     $('#registrarEmp').attr('disabled',true);
   }
+}
+
+//MARCAS
+if (document.getElementById('marca')) {
+    $(".newMark--modal").hide();
+    $('#marca').change(function(){
+        var value = $('#marca').val();
+        if (value == 'newMark') {
+            console.log('modal');
+            $(".newMark--modal").show();
+        }
+    });
+}
+
+function selectMark(){
+    $.ajax({
+        url: "index.php?controller=config&a=selectMark",
+        type: "POST",
+        dataType:'json',
+        success: function(result){
+            var selector = document.getElementById('marca');
+            for (var i = 0; i < result.length; i++) {
+                selector.options[i] = new Option(result[i].mar_nombre,result[i].mar_descripcion);
+            }
+        }
+    });
 }

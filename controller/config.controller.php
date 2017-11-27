@@ -17,5 +17,9 @@ class ConfigController{
             $result = $this->master->selectAll('tipo_documento');
             echo json_encode($result);
         }
+        function selectMark(){
+            $result = $this->master->selectAll('marca');
+            echo json_encode($result);
+        }
 }
 ?>

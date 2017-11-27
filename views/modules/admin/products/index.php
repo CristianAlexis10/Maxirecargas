@@ -1,7 +1,30 @@
+
+<link type="text/css" rel="stylesheet" href="croppie.css"  media="screen,projection"/>
 <div class="modules customers">
 	<div class="title">
 		<p>PRODUCTOS</p>
 	</div>
+	<div class="newMark--modal">
+			<form id="frmNewMar">
+				<div class="form-group">
+				   <label for="nombre" class="required">Nombre:</label>
+				   <input type="text" name="dataNewMark" id="nombre" placeholder="Ingrese el nombre del servicio" required>
+				</div>
+				<div class="form-group">
+				   <label for="des" class="required">Descripción:</label>
+			   		<textarea  id="desMar"></textarea>
+				</div>
+
+
+				<div class="form-group">
+					<button class="btn">Registrar</button>
+				</div>
+			</form>
+			<a class="waves-effect waves-light btn" href="#uploadImage">Seleccionar foto</a>
+	</div>
+
+
+</div>
 	<div id="tabs">
 		  <ul>
 		    <li><a href="#tabs-2">Lista de Productos</a></li>
@@ -46,6 +69,7 @@
 			               	<?php foreach($this->master->selectAll("marca") AS $row) {?>
 			               		<option value="<?php echo $row['mar_codigo']?>"><?php echo $row['mar_nombre'] ?></option>
 			               	<?php } ?>
+							<option value="newMark">Otra</option>
 			               </select>
 			            </div>
 			            <div class="form-group">
