@@ -271,6 +271,11 @@ if (document.getElementById('marca')) {
             $(".newMark--modal").show();
         }
     });
+};
+var closeNew = document.getElementById('newMarkClose');
+var modalNer = document.getElementById('modalNew');
+close.onclick = function(){
+  modalNew.style.display= "none"
 }
 
 function selectMark(){

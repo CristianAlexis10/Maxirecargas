@@ -1,37 +1,47 @@
-
 <link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"  media="screen,projection"/>
 <div class="modules customers">
 	<div class="title">
 		<p>PRODUCTOS</p>
 	</div>
-	<div class="newMark--modal">
-			<form id="frmNewMar">
-				<div class="form-group">
-				   <label for="nombre" class="required">Nombre:</label>
-				   <input type="text" name="dataNewMark" id="nombre" placeholder="Ingrese el nombre del servicio" required>
-				</div>
-				<div class="form-group">
-				   <label for="des" class="required">Descripción:</label>
-			   		<textarea  id="desMar"></textarea>
-				</div>
-				<div class="form-group">
-					<input type="hidden" id="img" name="dataNewMark">
-				</div>
-				<div class="form-group">
-					<div id="wrap-result"><img src="views/assets/image/icn-maxi.png" ></div>
-					<span class="" id="cropp-img">Cambiar foto</span>
-				</div>
+	<div class="newMark--modal" id="modalNew">
+		<div class="newMark--container">
+			<span id="newMarkClose">&times;</span>
+			<div class="newMark--form">
+				<form id="frmNewMar">
+					<h2>Registra una nueva marca</h2>
+					<div class="form-group">
+						<label for="nombre" class="required label">Nombre:</label>
+						<input type="text" name="dataNewMark" id="nombre" class="input" required>
+					</div>
+					<div class="form-group">
+						<label for="des" class="required label">Descripción:</label>
+						<textarea  id="desMar" class="input"></textarea>
+					</div>
+						<div class="form-group">
+							<input type="hidden" id="img" name="dataNewMark">
+						</div>
+						<div class="form-group">
+							<div id="wrap-result"><img src="views/assets/image/icn-maxi.png" ></div>
+							<span class="" id="cropp-img">Cambiar foto</span>
+						</div>
 
-				<div class="form-group">
-					<button class="btn">Registrar</button>
+					<div class="form-group">
+						<button class="btn">Registrar</button>
+					</div>
+
+				</form>
+			</div>
+			<div class="newMark--img">
+				<div id="uploadImage">
+					<div id="wrap-upload" style="width:350px"></div>
+					<input type="file" id="upload">
+					 <button class="btn btn-success upload-result">Recortar Imagen</button>
 				</div>
-			</form>
+			</div>
+		</div>
+
 	</div>
-	<div id="uploadImage">
-		  <div id="wrap-upload" style="width:350px"></div>
-		  <input type="file" id="upload">
-		   <button class="btn btn-success upload-result">Recortar Imagen</button>
-	</div>
+
 
 
 
