@@ -551,6 +551,6 @@ align-items: center;
   font-size: 16px;
   cursor: pointer;
 }
-.cr-slider-wrap{
+.thumb .active, .value{
   display: none;
 }
