@@ -204,6 +204,7 @@
 												   $data_acceso[]=$password[1];
 												   $result = $this->master->procedureAcceso($data_acceso);
 												   $token  = $this->master->procedure("consultaLogin",$data[2]);
+												   $token =  rtrim(strtr(base64_encode($token['token']), '+/', '-_'), '=');
 													$título = 'Maxirecargas-Activa tu cuenta';
 													$mensaje = '
 													<html>
@@ -212,11 +213,12 @@
 													</head>
 													<body>
 													  <p>Bienvenido a Maxirecargas, para poder disfrutar de tus beneficios es neceseario que actives tu cuenta, por favor visita en siguiente enlace</p>
-													  <a href="http://localhost/maxirecargas/activar-cuenta-'.$token['token'].'">Activar tu MaxiCuenta</a>
+													  <a href="http://localhost/maxirecargas/activar-cuenta-'.$token.'">Activar tu MaxiCuenta</a>
 
 													</body>
 													</html>
 													';
+
 													$cabeceras= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 													if(mail($data[5], $título, $mensaje, $cabeceras)){
 													    $result = "Revisa tu correo para activar tu cuenta";
@@ -387,10 +389,14 @@
 			require_once "views/modules/customer/activateAccount.php";
 		}
 		function activateAccount(){
-			$token = $_GET['token'];
+			$token = base64_decode($_GET['token']);
 			$result = $this->master->procedureConsultaToken($token);
-			$result = $this->master->procedureOFUser('inactivar',array(2,$result['usu_codigo']));
-			echo $result;
+			$result = $this->master->procedureOFUser('inactivar',array(1,$result['usu_codigo']));
+			if ($result==1) {
+				echo "Activado Exitosamente";
+			}else{
+				echo "Ocurrio un error";
+			}
 		}
 	}
 ?>
