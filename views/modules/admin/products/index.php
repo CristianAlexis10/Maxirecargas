@@ -4,15 +4,21 @@
 	<div class="title">
 		<p>PRODUCTOS</p>
 	</div>
-	<div class="newMark--modal">
-			<form id="frmNewMar">
+	<div class="newMark--modal" id="modal--new">
+		<div class="container--newMark">
+			<div class="div--close">
+				<span id="closeNew">&times;</span>
+			</div>
+		<div class="div--contenido">
+			<div class="form--newMark">
+				<form id="frmNewMar">
 				<div class="form-group">
-				   <label for="nombre" class="required">Nombre:</label>
-				   <input type="text" name="dataNewMark" id="nombre" placeholder="Ingrese el nombre del servicio" required>
+				   <label for="nombre" class="required label">Nombre:</label>
+				   <input type="text" name="dataNewMark" id="nombre" class="input" required>
 				</div>
 				<div class="form-group">
-				   <label for="des" class="required">Descripción:</label>
-			   		<textarea  id="desMar"></textarea>
+				   <label for="des" class="required label">Descripción:</label>
+			   		<textarea  id="desMar" class="input"></textarea>
 				</div>
 				<div class="form-group">
 					<input type="hidden" id="img" name="dataNewMark">
@@ -26,11 +32,16 @@
 					<button class="btn">Registrar</button>
 				</div>
 			</form>
-	</div>
-	<div id="uploadImage">
+			</div>
+			<div class="newMark--img">
+				<div id="uploadImage">
 		  <div id="wrap-upload" style="width:350px"></div>
 		  <input type="file" id="upload">
 		   <button class="btn btn-success upload-result">Recortar Imagen</button>
+		 </div>
+			</div>
+		</div>
+		</div>
 	</div>
 
 
