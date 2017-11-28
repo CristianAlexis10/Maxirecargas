@@ -110,15 +110,12 @@ $(".input").focusout(function(){
                       structure = $(this).val();
                       dataJson.push(structure);
                   });
-                    dataReal = [];
-                    dataReal.push(dataJson[0]);
-                    // dataReal.push($('#desMar').val());
-                    dataReal.push(dataJson[1]);
+                    dataJson.push($('#desMar').val());
                     $.ajax({
                       url: "guardar-marca",
                       type: "POST",
                        dataType:'json',
-                       data: ({data: dataReal}),
+                       data: ({data: dataJson}),
                        success: function(result){
                         if (result) {
                           $("#frmNewMar").after("<div class='message'>Registrado Exitosamente</div>");
