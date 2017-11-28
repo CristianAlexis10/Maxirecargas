@@ -1,10 +1,46 @@
 $("#frmNewRol").submit(function(e) {
-            dataJson = [];
-            $("input[name=data-login]").each(function(){
-                structure = {};
-                structure = $(this).val();
-                dataJson.push(structure);
-            });
+    e.preventDefault();
+    dataUser = [];
+    dataProducts = [];
+    dataOrder = [];
+    dataQuation = [];
+    dataRoutes = [];
+
+    // var user 
+    var rolName = $("input[name=data-rol-name]").val();
+    $("input[name=data-rol-users]").each(function(){
+        if ($(this).prop("checked")) {
+            dataUser.push($(this).val());
+        }
+    });
+    $("input[name=data-rol-products]").each(function(){
+        if ($(this).prop("checked")) {
+            dataProducts.push($(this).val());
+        }
+    });
+    $("input[name=data-rol-order]").each(function(){
+        if ($(this).prop("checked")) {
+            dataOrder.push($(this).val());
+        }
+    });
+    $("input[name=data-rol-quoation]").each(function(){
+        if ($(this).prop("checked")) {
+            dataQuation.push($(this).val());
+        }
+    });
+    $("input[name=data-rol-routes]").each(function(){
+        if ($(this).prop("checked")) {
+            dataRoutes.push($(this).val());
+        }
+    });
+    dataReal = [];
+    dataReal.push(rolName);
+    dataReal.push(dataUser);
+    dataReal.push(dataProducts);
+    dataReal.push(dataOrder);
+    dataReal.push(dataQuation);
+    dataReal.push(dataRoutes);
+    console.log(dataReal);
             // $.ajax({
             //   url: "validar-inicio-sesion",
             //   type: "POST",
