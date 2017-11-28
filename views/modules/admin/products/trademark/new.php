@@ -11,10 +11,7 @@
 			                <label for="des" class="required">Descripción:</label>
 			                <textarea  id="desMar"></textarea>
 			            </div>
-						<div class="form-group">
-							<input type="hidden" id="img" name="dataNewMark" value="icn-maxi.png">
-						</div>
-
+						
 			             <!-- <div class="form-group">
 			                <label for="logo" class="required">Logo:</label>
 			                <input type="file" name="file" id="logo">

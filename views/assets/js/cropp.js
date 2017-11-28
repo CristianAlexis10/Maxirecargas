@@ -37,7 +37,7 @@ $('.upload-result').on('click', function (ev) {
   }).then(function (resp) {
 
     $.ajax({
-      url: "cropp-trademark",
+      url: "cropp-products",
       type: "POST",
       data: {"image":resp},
       success: function (data) {

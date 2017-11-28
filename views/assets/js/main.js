@@ -112,7 +112,7 @@ $(".input").focusout(function(){
                   });
                     dataReal = [];
                     dataReal.push(dataJson[0]);
-                    dataReal.push($('#desMar').val());
+                    // dataReal.push($('#desMar').val());
                     dataReal.push(dataJson[1]);
                     $.ajax({
                       url: "guardar-marca",
@@ -125,7 +125,7 @@ $(".input").focusout(function(){
                           $("input[name=dataNewMark]").each(function(){
                               $(this).val(" ");
                               $('#desMar').val(" ");
-                              $("#wrap-upload").hide();
+                              // $("#wrap-upload").hide();
                            });
                           selectMark();
                         }else{
@@ -214,9 +214,10 @@ $(".input").focusout(function(){
                            data: ({data: dataJson}),
                            success: function(result){
                             if (result) {
-                              $("#dataTipSer").after("<div class='message'>"+result+"</div>");
+                              $("#frmNewCategorie").after("<div class='message'>"+result+"</div>");
+                              selectCategory();
                             }else{
-                              $("#dataTipSer").after("<div class='message'>"+result+"</div>");
+                              $("#frmNewCategorie").after("<div class='message'>"+result+"</div>");
                             }
                              setTimeout(function(){
                                 $('div.message').remove();
@@ -251,7 +252,33 @@ $(".input").focusout(function(){
                 }
             }
 
+//select
+function selectCategory(){
+    if (document.getElementById('categoria')) {
+        $.ajax({
+            url: "index.php?controller=config&a=selectCategory",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                var selector = document.getElementById('categoria');
+                for (var i = 0; i < result.length; i++) {
+                    selector.options[i] = new Option(result[i].tip_pro_nombre,result[i].tip_pro_codigo);
+                }
+            }
+        });
+    }
+}
 
+if (document.getElementById('categoria')) {
+    $(".new--category").hide();
+    $('#categoria').change(function(){
+        var value = $('#categoria').val();
+        if (value == 'newCategory') {
+            $(".new--category").show();
+            console.log('otro');
+        }
+    });
+}
 
 // tabs
  $( function() {
