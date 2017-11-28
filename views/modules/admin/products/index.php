@@ -21,7 +21,7 @@
 			   		<textarea  id="desMar" class="input"></textarea>
 				</div>
 				<div class="form-group">
-					<input type="hidden" id="img" name="dataNewMark">
+					<input type="hidden" id="img" name="dataNewMark" value="icn-maxi.png">
 				</div>
 				<div class="form-group">
 					<div id="wrap-result"><img src="views/assets/image/icn-maxi.png" ></div>

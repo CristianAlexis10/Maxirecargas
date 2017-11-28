@@ -122,6 +122,11 @@ $(".input").focusout(function(){
                        success: function(result){
                         if (result) {
                           $("#frmNewMar").after("<div class='message'>Registrado Exitosamente</div>");
+                          $("input[name=dataNewMark]").each(function(){
+                              $(this).val(" ");
+                              $('#desMar').val(" ");
+                              $("#wrap-upload").hide();
+                           });
                           selectMark();
                         }else{
                           $("#frmNewMar").after("<div class='message'>Ocurrio un error</div>");
