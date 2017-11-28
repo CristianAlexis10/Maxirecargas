@@ -488,6 +488,18 @@ class MasterModel{
 
        return $result;
    }
+    public function procedureConsultaToken($token){
+       try {
+           $this->sql="call activar(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($token));
+           $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
     public function EliminarUsuarioyClienteEmpresarial($value){
        try {
            $this->sql="call EliminarUsuarioyClienteEmpresarial(?)";

@@ -196,13 +196,33 @@
 											unset($data[10]);
 											unset($data[11]);
 											$date = date('Y-m-d');
-											   $result = $this->master->procedure14('crearUsuario',array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],1,$profile,$date,$date));
+											   $result = $this->master->procedure14('crearUsuario',array($data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[0],2,$profile,$date,$date));
 											   if ($result==1) {
 											   	$result  = $this->master->procedure("consultaExisteUsuario",$data[2]);
-												   $data_acceso[]=password_hash($data[2],PASSWORD_DEFAULT);
+												   $data_acceso[]=md5($data[2].$data[5]);
 												   $data_acceso[]=$result['usu_codigo'];
 												   $data_acceso[]=$password[1];
 												   $result = $this->master->procedureAcceso($data_acceso);
+												   $token  = $this->master->procedure("consultaLogin",$data[2]);
+													$título = 'Maxirecargas-Activa tu cuenta';
+													$mensaje = '
+													<html>
+													<head>
+													  <title>Maxirecargas-Activa tu cuenta</title>
+													</head>
+													<body>
+													  <p>Bienvenido a Maxirecargas, para poder disfrutar de tus beneficios es neceseario que actives tu cuenta, por favor visita en siguiente enlace</p>
+													  <a href="http://localhost/maxirecargas/activar-cuenta-'.$token['token'].'">Activar tu MaxiCuenta</a>
+
+													</body>
+													</html>
+													';
+													$cabeceras= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+													if(mail($data[5], $título, $mensaje, $cabeceras)){
+													    $result = "Revisa tu correo para activar tu cuenta";
+													}else{
+													    $result = "error al enviar correo";
+													}
 
 											   }else{
 											   	$result = $this->doizer->knowError($result);
@@ -361,6 +381,16 @@
 			}else {
 				echo json_encode($this->doizer->knowError($result));
 			}
+		}
+		function viewActivateAccount(){
+			$token = $_GET['token'];
+			require_once "views/modules/customer/activateAccount.php";
+		}
+		function activateAccount(){
+			$token = $_GET['token'];
+			$result = $this->master->procedureConsultaToken($token);
+			$result = $this->master->procedureOFUser('inactivar',array(2,$result['usu_codigo']));
+			echo $result;
 		}
 	}
 ?>

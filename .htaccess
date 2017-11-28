@@ -2,6 +2,8 @@ RewriteEngine on
 
 #USURAIOS
 RewriteRule ^registrate$ index.php?controller=customers&a=ViewNewUser
+RewriteRule ^activar-cuenta-(\w+)$ index.php?controller=customers&a=viewActivateAccount&token=$1
+RewriteRule ^activarCuenta-(\w+)$ index.php?controller=customers&a=activateAccount&token=$1
 RewriteRule ^eliminar-usuario$ index.php?controller=customers&a=delete
 RewriteRule ^inactivar-usuario$ index.php?controller=customers&a=offUser
 
