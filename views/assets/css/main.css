@@ -491,3 +491,66 @@ align-items: center;
   background: #2196F3;
   color: white;
 }
+
+/*modal newMark*/
+.newMark--modal{
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container--newMark{
+  width: 70%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+.div--close{
+  float: right;
+  width: 30px;
+  padding: 10px 0 10px 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.container--newMark .div--contenido{
+  display: flex;
+  padding: 0 20px 0 40px;
+}
+.form--newMark, .newMark--img{
+  width: 50%;
+}
+.form--newMark .btn{
+  border: none;
+  padding: 20px 15px;
+  background: #35a4dd;
+  color: white;
+  font-size: 16px;
+}
+#frmNewMar{
+  width: 80%;
+}
+#uploadImage{
+  width: 100%;
+  box-sizing: border-box;
+}
+.croppie-container{
+  width: 100% !important;
+}
+ .upload-result{
+  padding: 15px 10px;
+  border: none;
+  background: #35a4dd;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+.cr-slider-wrap{
+  display: none;
+}

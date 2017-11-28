@@ -273,6 +273,13 @@ if (document.getElementById('marca')) {
     });
 }
 
+var closeNew = document.getElementById('closeNew');
+var modalNew = document.getElementById('modal--new');
+
+closeNew.onclick= function() {
+  modalNew.style.display= "none";
+} 
+
 function selectMark(){
     $.ajax({
         url: "index.php?controller=config&a=selectMark",
