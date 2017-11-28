@@ -281,15 +281,17 @@ closeNew.onclick= function() {
 } 
 
 function selectMark(){
-    $.ajax({
-        url: "index.php?controller=config&a=selectMark",
-        type: "POST",
-        dataType:'json',
-        success: function(result){
-            var selector = document.getElementById('marca');
-            for (var i = 0; i < result.length; i++) {
-                selector.options[i] = new Option(result[i].mar_nombre,result[i].mar_descripcion);
+    if (document.getElementById('marca')) {
+        $.ajax({
+            url: "index.php?controller=config&a=selectMark",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                var selector = document.getElementById('marca');
+                for (var i = 0; i < result.length; i++) {
+                    selector.options[i] = new Option(result[i].mar_nombre,result[i].mar_descripcion);
+                }
             }
-        }
-    });
+        });
+    }
 }
