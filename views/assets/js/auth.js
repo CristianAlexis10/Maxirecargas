@@ -1,4 +1,4 @@
-$('#password').attr('disabled',true);
+// $('#password').attr('disabled',true);
 //validar si el usuario existe
 $('#pass').focus(function(){
     var value = $('#document').val();
@@ -11,11 +11,11 @@ $('#pass').focus(function(){
 	  }).done(function(response){
        if(response==true) {
 		    $(".message").remove();
-		    $('#password').attr('disabled',false);
+		    // $('#password').attr('disabled',false);
 	     }else{
 	     	$(".message").remove();
 		$("#document").after("<div class='message-red'>Documento no valido</div>");
-		$('#password').attr('disabled',true);
+		// $('#password').attr('disabled',true);
 	     }
 
 	  });
@@ -45,14 +45,15 @@ $("#form--login").submit(function(e) {
                  if (result=='customer') {
                    location.href = 'maxirecargas';
                     return;
-                 }else  if (result==true) {
+                 }else if (result==true) {
                       location.href = 'dashboard';
                       return;
+                  }else{
+                      $('#form--login').after('<div class="message-red">Contraseña Incorrecta</div>');
+                      setTimeout(function(){
+                          $('div.message-red').remove();
+                      }, 2000);
                   }
-                  $('#form--login').after('<div class="message-red">'+result+'</div>');
-                  setTimeout(function(){
-                     $('div.message-red').remove();
-                   }, 2000);
                },
                error: function(result){
                   console.log(result);

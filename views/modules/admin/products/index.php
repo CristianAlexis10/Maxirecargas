@@ -154,7 +154,7 @@
 
 			            </div>
 						<div class="form-group">
-							<input type="hidden" id="img" name="dataNewMark" value="icn-maxi.png">
+							<input type="text" id="img" class="data-new-pro" value="icn-maxi.png">
 						</div>
 
 					 <div class="form-group">
