@@ -7,7 +7,7 @@
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
 	 		$this->tableName="producto";
-	 		$this->insertException=array('pro_codigo','pro_imagen');
+	 		$this->insertException=array('pro_codigo');
 	 		$this->updateException = array('pro_codigo');
 	 	}
 		function main(){
@@ -48,7 +48,7 @@
 			}else{
 				$result ='por favor seleccione un servicio';
 			}
-			
+
 			//  $data[]=date('Y-m-d');
 			// header("Location: crear-inventario");
 			echo json_encode($result);
