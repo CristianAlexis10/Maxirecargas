@@ -34,15 +34,6 @@ var customerPart2 = document.getElementById('customers--normal--part2') ;
 var irParte2 = document.getElementById('normalIrParte2');
 var irAtras = document.getElementById('irAtras');
 
-irParte2.onclick = function() {
-  customerPart1.style.display= "none";
-  customerPart2.style.display= "block";
-}
-
-irAtras.onclick = function() {
-  customerPart1.style.display= "block";
-  customerPart2.style.display= "none";
-}
 
 
 

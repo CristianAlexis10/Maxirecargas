@@ -22,7 +22,7 @@
 </span>
         <div class="runform--contenido">
           <h1>Crea tu cuenta</h1>
-          <p>registrate y conoce los beneficios que tenemos para ti</p>
+          <p id="parralert">registrate y conoce los beneficios que tenemos para ti</p>
           <div class="main--container--quotation">
             <div class="left--part--quotation">
               <!-- <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span> -->
@@ -35,29 +35,29 @@
                 <div id="customers--normal--part1">
                   <div class="form-group">
                     <label for="tip_doc" class="select">Tipo de Documento:</label>
-                    <select class="dataCl dataEmp  input" id="tip_doc"   required></select>
+                    <select class="dataCl dataEmp input" id="tip_doc" name="data"  required></select>
                   </div>
                   <div class="form-group">
                     <label for="numDoc" class="label">Numero de Documento:</label>
-                    <input type="number"  id="numDoc" class="input dataCl" required>
+                    <input type="number"  id="numDoc" class="input dataCl" name="data" required>
                   </div>
                   <div class="form-group">
-                    <label for="priNom" class="label">Primer Nombre:</label>
-                    <input type="text"  id="priNom" class="input dataCl"  required>
+                    <label for="priNom" class="label">Nombre:</label>
+                    <input type="text"  id="priNom" class="input dataCl" name="data"  required>
                   </div>
                   <div class="form-group">
-                    <label for="priApe" class="label">Primer Apellido:</label>
-                    <input type="text" id="priApe" class="input dataCl" required>
+                    <label for="priApe" class="label">Apellido:</label>
+                    <input type="text" id="priApe" class="input dataCl" name="data" required>
                   </div>
                   <div class="form-group">
                     <label for="correo" class="label">Correo:</label>
-                    <input type="email" class=" input dataCl" id="correo" required>
+                    <input type="email" class=" input dataCl" id="correo" name="data" required>
                   </div>
                   <div class="form-group">
                     <label for="tel" class="label">Telefono:</label>
-                    <input type="number" class="input dataCl" id="tel"  required>
+                    <input type="number" class="input dataCl" id="tel" name="data" required>
                   </div>
-                  <input type="submit" id="normalIrParte2" value="siguiente">
+                  <button type="button" id="normalIrParte2" >siguiente</button>
                 </div>
 
                 <div id="customers--normal--part2">
@@ -67,7 +67,7 @@
                   </div>
                   <div class="form-group">
                     <label for="fecha_naci" class="required">Fecha de Nacimiento:</label>
-                    <input type="date"  id="fecha_naci" class="input dataCl" max="2005-01-01" min="1950-01-01" required>
+                    <input type="date" name="data"  id="fecha_naci" class="input dataCl" max="2005-01-01" min="1950-01-01" required>
                   </div>
                   <div class="form-group">
                     <label for="sexo" class="required ">Sexo:</label>
@@ -79,11 +79,11 @@
                   <div class="customers--password">
                   <div class="form-group">
                       <label for="contra" class="label">Contraseñasda:</label>
-                      <input type="password"  id="contra" class="input dataCl" required>
+                      <input type="password" name="data" id="contra" class="input dataCl" required>
                   </div>
                   <div class="form-group">
                       <label for="rep_contra" class="label">Repetir Contraseña:</label>
-                      <input type="password"  id="rep_contra" class="input dataCl" required disabled>
+                      <input type="password" name="data" id="rep_contra" class="input dataCl" required disabled>
                     </div>
                     <div class="form-group">
                       <input type="submit" id="irAtras" value="atras">
@@ -174,7 +174,7 @@
                               </div>
                             </div>
                           </div>
-                <div class="g-recaptcha" data-sitekey="6Ld_bDkUAAAAADkIoF_nn1BbWzhCuSm0Zk2E83eZ"></div>
+                        </form>
               </div>
             </div>
             <button id="moveright">Iniciar Sesión</button>
@@ -193,10 +193,7 @@
             <label for="password" class="label-login">Contraseña</label>
             <input type="password" name="data-login" id="pass" class="input--login" required>
           </div>
-          <!-- <div class="wrap--login">
-            <label for="password" class="label-login">repita</label>
-            <input type="password" name="data-login" data-parsley-equalto="#pass"  required>
-          </div> -->
+
             <button type="submit" name="button" id="btn--login">iniciar sesion</button>
         </form>
         <button id="moveleft">Registrate</button>
