@@ -554,3 +554,13 @@ align-items: center;
 .thumb .active, .value{
   display: none;
 }
+/*dasboar graphi*/
+.container--charts{
+  width: 100%;
+  display: grid;
+}
+
+#first--pie, #second--pies{
+  width: 200px;
+  height: 200px;
+}
