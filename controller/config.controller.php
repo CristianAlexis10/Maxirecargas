@@ -21,5 +21,9 @@ class ConfigController{
             $result = $this->master->selectAll('marca');
             echo json_encode($result);
         }
+        function selectCategory(){
+            $result = $this->master->selectAll('tipo_producto');
+            echo json_encode($result);
+        }
 }
 ?>

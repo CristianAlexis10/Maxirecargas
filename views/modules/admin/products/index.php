@@ -20,26 +20,14 @@
 				   <label for="des" class="required label">Descripción:</label>
 			   		<textarea  id="desMar" class="input"></textarea>
 				</div>
-				<div class="form-group">
-					<input type="hidden" id="img" name="dataNewMark">
-				</div>
-				<div class="form-group">
-					<div id="wrap-result"><img src="views/assets/image/icn-maxi.png" ></div>
-					<span class="" id="cropp-img">Cambiar foto</span>
-				</div>
+
 
 				<div class="form-group">
 					<button class="btn">Registrar</button>
 				</div>
 			</form>
 			</div>
-			<div class="newMark--img">
-				<div id="uploadImage">
-		  <div id="wrap-upload" style="width:350px"></div>
-		  <input type="file" id="upload">
-		   <button class="btn btn-success upload-result">Recortar Imagen</button>
-		 </div>
-			</div>
+
 		</div>
 		</div>
 	</div>
@@ -107,10 +95,29 @@
             			</tbody>
       			  </table>
 		  </div>
+		  <!-- modal categoria -->
+		  <div class="new--category">
+			  <form class="form Services" id="frmNewCategorie"  >
+				   <div class="form-group">
+						  <label for="nombre" class="required">Nombre:</label>
+						  <input type="text" name="dataNewCate" id="nombre" placeholder="Ingrese el nombre del servicio" required>
+					  </div>
+					   <div class="form-group">
+						  <label for="des" class="required">Descripción:</label>
+						  <textarea  id="desCat"></textarea>
+					  </div>
+
+
+
+					  <div class="form-group">
+						  <button class="btn">Registrar</button>
+					  </div>
+			  </form>
+		  </div>
 		  <div id="tabs-1" class="new products">
 			<div class="form--left">
 
-		    	<form  id="frmNerProduct" enctype="multipart/form-data">
+		    	<form  id="frmNerProduct">
 		    		  <div class="form-group">
 			                <label for="marca" class="required ">Marca:</label>
 			               <select name="data[]" id="marca" class="data-new-pro input" required >
@@ -126,6 +133,7 @@
 			               	<?php foreach($this->master->selectAll("tipo_producto") AS $row) {?>
 			               		<option value="<?php echo $row['tip_pro_codigo']?>"><?php echo $row['tip_pro_nombre'] ?></option>
 			               	<?php } ?>
+							<option value="newCategory">Otra</option>
 			               </select>
 			            </div>
 		    		 <div class="form-group">
@@ -145,11 +153,21 @@
 											<textarea name="data[]" id="caracteristica" class="input data-new-pro"></textarea>
 
 			            </div>
+						<div class="form-group">
+							<input type="hidden" id="img" name="dataNewMark" value="icn-maxi.png">
+						</div>
+
+					 <div class="form-group">
+						 <div id="wrap-result"><img src="views/assets/image/icn-maxi.png" ></div>
+						 <span class="" id="cropp-img">Cambiar foto</span>
+					 </div>
+
+
 			           <!--  <div class="form-group">
 			                <label for="img" class="required">Logo:</label>
 			                <input type="file" name="file" id="img-new-pro"  required>
 			            </div> -->
-			</div>
+					</div>
 								<div class="form--rigth">
 				            <div class="form-group">
 				                <button class="btn" >Registrar</button>
@@ -157,6 +175,18 @@
 								</div>
 		    	</form>
 		  </div>
+
+		  <div class="img-product">
+			  <div class="newMark--img">
+				  <div id="uploadImage">
+					  <div id="wrap-upload" style="width:350px"></div>
+					  <input type="file" id="upload">
+					  <button class="btn btn-success upload-result">Recortar Imagen</button>
+					</div>
+			  </div>
+		  </div>
+
+
 		  <div id="tabs-3">
 		  	<div class="new--obj">
 					<i class="fa fa-plus" aria-hidden="true"></i>

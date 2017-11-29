@@ -7,12 +7,12 @@ $("#cropp-img").click(function(){
 $uploadCrop = $('#wrap-upload').croppie({
     enableExif: true,
     viewport: {
-        width: 200,
-        height: 200
+        width: 250,
+        height: 250
     },
     boundary: {
-        width: 300,
-        height: 300
+        width: 350,
+        height: 350
     }
 });
 
@@ -37,7 +37,7 @@ $('.upload-result').on('click', function (ev) {
   }).then(function (resp) {
 
     $.ajax({
-      url: "cropp-trademark",
+      url: "cropp-products",
       type: "POST",
       data: {"image":resp},
       success: function (data) {

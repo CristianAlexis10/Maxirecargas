@@ -267,7 +267,6 @@ if (document.getElementById('marca')) {
     $('#marca').change(function(){
         var value = $('#marca').val();
         if (value == 'newMark') {
-            console.log('modal');
             $(".newMark--modal").show();
         }
     });
@@ -278,7 +277,7 @@ var modalNew = document.getElementById('modal--new');
 
 closeNew.onclick= function() {
   modalNew.style.display= "none";
-} 
+}
 
 function selectMark(){
     if (document.getElementById('marca')) {
@@ -289,7 +288,7 @@ function selectMark(){
             success: function(result){
                 var selector = document.getElementById('marca');
                 for (var i = 0; i < result.length; i++) {
-                    selector.options[i] = new Option(result[i].mar_nombre,result[i].mar_descripcion);
+                    selector.options[i] = new Option(result[i].mar_nombre,result[i].mar_codigo);
                 }
             }
         });

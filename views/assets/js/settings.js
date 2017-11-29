@@ -6,40 +6,60 @@ $("#frmNewRol").submit(function(e) {
     dataQuation = [];
     dataRoutes = [];
 
-    // var user 
+    var modUser = false;
+    var modProducts = false;
+    var modOrder = false;
+    var modQuation = false;
+    var modRoute = false;
+
     var rolName = $("input[name=data-rol-name]").val();
     $("input[name=data-rol-users]").each(function(){
         if ($(this).prop("checked")) {
             dataUser.push($(this).val());
+            modUser = true;
         }
     });
     $("input[name=data-rol-products]").each(function(){
         if ($(this).prop("checked")) {
             dataProducts.push($(this).val());
+            modProducts = true;
         }
     });
     $("input[name=data-rol-order]").each(function(){
         if ($(this).prop("checked")) {
             dataOrder.push($(this).val());
+            modOrder = true;
         }
     });
     $("input[name=data-rol-quoation]").each(function(){
         if ($(this).prop("checked")) {
             dataQuation.push($(this).val());
+            modQuation = true;
         }
     });
     $("input[name=data-rol-routes]").each(function(){
         if ($(this).prop("checked")) {
             dataRoutes.push($(this).val());
+            modRoute = true;
         }
     });
     dataReal = [];
     dataReal.push(rolName);
-    dataReal.push(dataUser);
-    dataReal.push(dataProducts);
-    dataReal.push(dataOrder);
-    dataReal.push(dataQuation);
-    dataReal.push(dataRoutes);
+    if (modUser==true) {
+        dataReal.push(dataUser);
+    }
+    if (modProducts==true) {
+        dataReal.push(dataProducts);
+    }
+    if (modOrder==true) {
+        dataReal.push(dataOrder);
+    }
+    if (modQuation==true) {
+        dataReal.push(dataQuation);
+    }
+    if (modRoute==true) {
+        dataReal.push(dataRoutes);
+    }
     console.log(dataReal);
             // $.ajax({
             //   url: "validar-inicio-sesion",
