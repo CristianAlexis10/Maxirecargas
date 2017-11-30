@@ -31,7 +31,6 @@ var ctx2 = document.getElementById("second--pie");
                         window.chartColors.black,
                         window.chartColors.yellow,
                     ],
-                    label: 'que mierda es eso'
                 }],
                 labels:["pink","red","purple","black","yellow"]},
                 option:{

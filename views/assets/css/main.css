@@ -492,10 +492,11 @@ align-items: center;
   color: white;
 }
 
-/*modal newMark*/
-.newMark--modal{
+/*modal newMark and newCategory*/
+.newMark--modal, .new--category{
   background: rgba(0, 0, 0, 0.7);
   position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: 9999;
@@ -506,33 +507,41 @@ align-items: center;
   align-items: center;
 }
 
-.container--newMark{
-  width: 70%;
+.container--newMark, .container--newcategory{
+  width: 40%;
+  min-height: 400px;
+  max-height: 400px;
   background: white;
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
-.div--close{
-  float: right;
-  width: 30px;
+.container--newcategory form{
+  width: 80%;
+}
+.container--newMark h1, .container--newcategory h1{
+  font-weight: 300;
+  text-transform: capitalize;
+  color: #35a4dd;
+  margin-bottom: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+.container--newMark .btn, .container--newcategory .btn{
+  padding: 15px 20px;
+  border: none;
+  background: #35a4dd;
+  color: white;
+}
+#closeNew, #closeNewCt{
+  float: left;
   padding: 10px 0 10px 10px;
   font-size: 30px;
   cursor: pointer;
 }
-.container--newMark .div--contenido{
-  display: flex;
-  padding: 0 20px 0 40px;
-}
-.form--newMark, .newMark--img{
-  width: 50%;
-}
-.form--newMark .btn{
-  border: none;
-  padding: 20px 15px;
-  background: #35a4dd;
-  color: white;
-  font-size: 16px;
-}
+
+
+/*recorta img*/
 #frmNewMar{
   width: 80%;
 }

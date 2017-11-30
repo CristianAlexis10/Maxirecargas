@@ -6,12 +6,9 @@
 	</div>
 	<div class="newMark--modal" id="modal--new">
 		<div class="container--newMark">
-			<div class="div--close">
 				<span id="closeNew">&times;</span>
-			</div>
-		<div class="div--contenido">
-			<div class="form--newMark">
 				<form id="frmNewMar">
+				<h1>crea una nueva marca</h1>
 				<div class="form-group">
 				   <label for="nombre" class="required label">Nombre:</label>
 				   <input type="text" name="dataNewMark" id="nombre" class="input" required>
@@ -20,42 +17,33 @@
 				   <label for="des" class="required label">Descripción:</label>
 			   		<textarea  id="desMar" class="input"></textarea>
 				</div>
-
-
 				<div class="form-group">
 					<button class="btn">Registrar</button>
 				</div>
 			</form>
 			</div>
-
 		</div>
+
+
+	<div class="new--category" id="modal--newCt">
+		<div class="container--newcategory">
+				<span id="closeNewCt">&times;</span>
+				<h1>Registra una nueva categoria</h1>
+				<form class="form Services" id="frmNewCategorie">
+					<div class="form-group">
+						<label for="nombre" class="required label">Nombre:</label>
+						<input type="text" name="dataNewCate" id="nombre" class="input" required>
+					</div>
+					<div class="form-group">
+						<label for="des" class="required label">Descripción:</label>
+						<textarea  id="desCat" class="input"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn">Registrar</button>
+					</div>
+				</form>
+			</div>
 		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -95,25 +83,7 @@
             			</tbody>
       			  </table>
 		  </div>
-		  <!-- modal categoria -->
-		  <div class="new--category">
-			  <form class="form Services" id="frmNewCategorie"  >
-				   <div class="form-group">
-						  <label for="nombre" class="required">Nombre:</label>
-						  <input type="text" name="dataNewCate" id="nombre" placeholder="Ingrese el nombre del servicio" required>
-					  </div>
-					   <div class="form-group">
-						  <label for="des" class="required">Descripción:</label>
-						  <textarea  id="desCat"></textarea>
-					  </div>
 
-
-
-					  <div class="form-group">
-						  <button class="btn">Registrar</button>
-					  </div>
-			  </form>
-		  </div>
 		  <div id="tabs-1" class="new products">
 			<div class="form--left">
 
