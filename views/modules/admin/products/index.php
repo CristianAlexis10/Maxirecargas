@@ -127,10 +127,7 @@
 							<input type="hidden" id="img" class="data-new-pro" value="icn-maxi.png">
 						</div>
 
-					 <div class="form-group">
-						 <div id="wrap-result"><img src="views/assets/image/icn-maxi.png" ></div>
-						 <span class="" id="cropp-img">Cambiar foto</span>
-					 </div>
+
 
 
 			           <!--  <div class="form-group">
@@ -138,7 +135,11 @@
 			                <input type="file" name="file" id="img-new-pro"  required>
 			            </div> -->
 					</div>
-								<div class="form--rigth">
+								<div class="form--rigth rigth--product">
+									<div class="form-group Cambiar--img">
+			 						 <div id="wrap-result"><img src="views/assets/image/icn-maxi.png" ></div>
+			 						 <span class="" id="cropp-img">Cambiar foto</span>
+			 					 </div>
 				            <div class="form-group">
 				                <button class="btn" >Registrar</button>
 				            </div>

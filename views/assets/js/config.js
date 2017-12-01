@@ -279,6 +279,7 @@ closeNew.onclick= function() {
   modalNew.style.display= "none";
 }
 
+
 function selectMark(){
     if (document.getElementById('marca')) {
         $.ajax({

@@ -267,16 +267,56 @@ table.dataTable tbody th, table.dataTable tbody td{
   width: 50%;
 }
 .form--rigth{
-  width: 50%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
 }
+
+.form-group.Cambiar--img, .form-group.product{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+#wrap-result{
+  background: #eee;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+#cropp-img{
+  cursor: pointer;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: all .2s ease;
+}
+#cropp-img:hover{
+  color: #35a4dd;
+
+}
+.form-group .btn{
+  border: none;
+  background: #35a4dd;
+  padding: 15px 30px;
+  cursor: pointer;
+  color: white;
+}
+.form-group .btn:hover{
+  box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
 .form-group{
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 30px;
 }
+
+
 .form-group .label{
   transition: all 0.5s;
   transform: translateY(12px);
