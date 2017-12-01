@@ -86,13 +86,14 @@ if(document.getElementById('sexo')){
                                   structure = $(this).val();
                                   dataJson.push(structure);
                               });
-                captcha =  grecaptcha.getResponse();
+                // captcha =  grecaptcha.getResponse();
                 // console.log(dataJson);
                   $.ajax({
                           url: "guardar-cliente",
                           type: "POST",
                            dataType:'json',
-                           data: ({data: dataJson , get_captcha : captcha}),
+                           data: ({data: dataJson}),
+                           // data: ({data: dataJson , get_captcha : captcha}),
                            success: function(result){
                             if (result==true) {
                               $("#frmNewUser").after("<div class='message'>Registrado Exitosamente</div>");
@@ -271,27 +272,29 @@ if (document.getElementById('marca')) {
         }
     });
 }
+if(document.getElementById('closeNew')){
 
-var closeNew = document.getElementById('closeNew');
-var modalNew = document.getElementById('modal--new');
+    var closeNew = document.getElementById('closeNew');
+    var modalNew = document.getElementById('modal--new');
 
-closeNew.onclick= function() {
-  modalNew.style.display= "none";
-}
+    closeNew.onclick= function() {
+        modalNew.style.display= "none";
+    }
 
 
-function selectMark(){
-    if (document.getElementById('marca')) {
-        $.ajax({
-            url: "index.php?controller=config&a=selectMark",
-            type: "POST",
-            dataType:'json',
-            success: function(result){
-                var selector = document.getElementById('marca');
-                for (var i = 0; i < result.length; i++) {
-                    selector.options[i] = new Option(result[i].mar_nombre,result[i].mar_codigo);
+    function selectMark(){
+        if (document.getElementById('marca')) {
+            $.ajax({
+                url: "index.php?controller=config&a=selectMark",
+                type: "POST",
+                dataType:'json',
+                success: function(result){
+                    var selector = document.getElementById('marca');
+                    for (var i = 0; i < result.length; i++) {
+                        selector.options[i] = new Option(result[i].mar_nombre,result[i].mar_codigo);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }
