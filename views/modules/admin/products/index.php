@@ -58,30 +58,7 @@
 		    <li><a href="#tabs-5">Servicios</a></li>
 		  </ul>
 		  <div id="tabs-2">
-		  	<table class="datatable">
-            			<thead>
-                				<tr>
-                    					<th>Referencia</th>
-                    					<!-- <th>Marca</th> -->
-                    					<th>Descripción</th>
-                    					<th>Acciones</th>
-                				</tr>
-           			 </thead>
-            			<tbody>
-            				<?php foreach ($this->readAll() as $row) {?>
-                   				 <tr>
-                       				 <td><?php echo $row['pro_referencia'];?></td>
-                        				<!-- <td><?php //echo $row['id_marca'];?></td> -->
-                        				<td><?php echo $row['pro_descripcion'];?></td>
-				                       <td>
-				                       	<a href="modificar-producto-<?php echo rtrim(strtr(base64_encode($row['ite_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
-				                       	<a href="eliminar-producto-<?php echo rtrim(strtr(base64_encode($row['ite_codigo']), '+/', '-_'), '=');?>" onclick="return confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-				                       </td>
-                  				  </tr>
-
-            				<?php	} ?>
-            			</tbody>
-      			  </table>
+		  		<?php require_once "views/modules/config/datatables/datatable-products.php"; ?>
 		  </div>
 
 		  <div id="tabs-1" class="new products">

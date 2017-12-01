@@ -74,7 +74,7 @@ RewriteRule ^guardar-modificacion-categoria$ index.php?controller=category&a=upd
  #PRODUCTOS
  RewriteRule ^productos$ index.php?controller=products
 RewriteRule ^guardar-producto$ index.php?controller=products&a=newRegister
-RewriteRule ^eliminar-producto-(\w+)$ index.php?controller=products&a=delete&data=$1
+RewriteRule ^eliminar-producto$ index.php?controller=products&a=delete
 RewriteRule ^modificar-producto-(\w+)$ index.php?controller=products&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-producto$ index.php?controller=products&a=update
 

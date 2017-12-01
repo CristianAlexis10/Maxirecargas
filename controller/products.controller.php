@@ -73,14 +73,13 @@
 			header("Location: productos");
 		}
 		function delete(){
-			$data = base64_decode($_GET['data']);
-			$result = $this->master->delete($this->tableName,array('id_producto',$data));
+			$data = $_POST['data'];
+			$result = $this->master->delete($this->tableName,array('pro_codigo',$data));
 			if ($result==1) {
-				$_SESSION['message']="Eliminado Exitosamente";
+				 echo json_encode($result);
 			}else{
-				$_SESSION['message_error']=$result;
+				echo json_encode($this->doizer->knowError($result));
 			}
-			header("Location: productos");
 		}
 	}
 ?>

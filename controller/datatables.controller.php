@@ -26,6 +26,9 @@ require_once "controller/doizer.controller.php";
         function dataTableCliEmp(){
             require_once "views/modules/config/datatables/datatable-cliEmp.php";
         }
+        function dataTableProduct(){
+            require_once "views/modules/config/datatables/datatable-products.php";
+        }
 
 
 	}

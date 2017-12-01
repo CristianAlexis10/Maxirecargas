@@ -539,6 +539,29 @@ var typeUser= $('#tipo_usu').val();
           });
     });
 
+    //delete-producto
+    function confirmDeleteProduct(value){
+        // console.log(value);
+    	if(confirm('¿Eliminar este registro?')){
+            $.ajax({
+    	      url: 'eliminar-producto',
+    	      type:'post',
+    	      dataType:'json',
+    	      data:'data='+value,
+    	  }).done(function(response){
+              console.log(response);
+              $('#datableProduct').load('index.php?controller=datatables&a=dataTableProduct');
+              $("#datableProduct").after("<div class='message'>"+response+"</div>");
+              setTimeout(function(){
+                 $('div.message').remove();
+               }, 2000);
+    	  });
+    		return true;
+
+    	}else{
+    		return false;
+    	}
+    }
 
 
 //ELIMINAR USUARIO
