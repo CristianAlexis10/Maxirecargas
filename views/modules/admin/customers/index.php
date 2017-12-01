@@ -171,7 +171,7 @@
 			        					<button class="btn"  id="registrarEmp">Registrar Empresa</button>
 			       				</div>
 						</div>
-						<div class="g-recaptcha" data-sitekey="6Ld_bDkUAAAAADkIoF_nn1BbWzhCuSm0Zk2E83eZ"></div>
+						<!-- <div class="g-recaptcha" data-sitekey="6Ld_bDkUAAAAADkIoF_nn1BbWzhCuSm0Zk2E83eZ"></div> -->
 		    	</form>
 
 

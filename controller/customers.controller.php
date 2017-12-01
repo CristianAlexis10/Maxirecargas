@@ -140,13 +140,13 @@
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-			$response_re = $_POST['get_captcha'];
-			if (isset($response_re) && $response_re) {
-				$secret_key = '6Ld_bDkUAAAAAPiAHYM_GX7QxbzLi_WFku7-9_tX';
-				$ip_user = $_SERVER['REMOTE_ADDR'];
-				$validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
-				$result = json_decode($validation);
-				if($result->success==true){
+			// $response_re = $_POST['get_captcha'];
+			// if (isset($response_re) && $response_re) {
+				// $secret_key = '6Ld_bDkUAAAAAPiAHYM_GX7QxbzLi_WFku7-9_tX';
+				// $ip_user = $_SERVER['REMOTE_ADDR'];
+				// $validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
+				// $result = json_decode($validation);
+				// if($result->success==true){
 					$i = 0;
 					foreach ($data as $input) {
 						if ($data[$i]=='') {
@@ -289,12 +289,12 @@
 						}
 					}
 
-				}else{
-					echo json_encode('por favor realiza correctamente el recaptcha');
-				}
-			}else{
-				echo json_encode('por favor realiza correctamente el recaptcha');
-			}
+			// 	}else{
+			// 		echo json_encode('por favor realiza correctamente el recaptcha');
+			// 	}
+			// }else{
+			// 	echo json_encode('por favor realiza correctamente el recaptcha');
+			// }
 
 		}
 		function readAll(){
