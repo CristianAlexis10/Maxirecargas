@@ -314,6 +314,15 @@
 				echo json_encode(false);
 			}
 		}
+		function readByEmail(){
+			$data=$_POST['data'];
+			$result = $this->master->selectBy('usuario',array('usu_correo',$data));
+			if ($result != array()) {
+				echo  json_encode(true);
+			}else{
+				echo json_encode(false);
+			}
+		}
 		function update(){
 			$data=$_POST['data'];
 			//foto de perfil

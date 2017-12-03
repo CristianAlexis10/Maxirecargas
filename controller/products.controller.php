@@ -76,7 +76,7 @@
 			$data = $_POST['data'];
 			$result = $this->master->delete($this->tableName,array('pro_codigo',$data));
 			if ($result==1) {
-				 echo json_encode($result);
+				 echo json_encode('Eliminado Exitosamente');
 			}else{
 				echo json_encode($this->doizer->knowError($result));
 			}

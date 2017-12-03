@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2017 a las 20:30:33
+-- Tiempo de generación: 01-12-2017 a las 21:21:17
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -150,6 +150,14 @@ SELECT * FROM cliente_empresarial C1
 INNER JOIN sede C2 ON C1.sed_codigo = C2.sed_codigo
 INNER JOIN empresa C3 ON C2.emp_codigo = C3.emp_codigo
 WHERE C1.usu_codigo=codigo;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinProducto` (IN `codigo` INT(11))  BEGIN
+SELECT * FROM producto t1
+INNER JOIN tipo_producto t2 on t1.tip_pro_codigo=t2.tip_pro_codigo
+INNER JOIN marca t3 on t1.mar_codigo=t3.mar_codigo
+WHERE t1.pro_codigo=codigo;
 
 END$$
 
@@ -400,17 +408,16 @@ CREATE TABLE `gestion_web` (
 CREATE TABLE `marca` (
   `mar_codigo` int(11) NOT NULL,
   `mar_nombre` varchar(50) NOT NULL,
-  `mar_descripcion` varchar(200) NOT NULL,
-  `mar_foto` longtext NOT NULL
+  `mar_descripcion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `marca`
 --
 
-INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`, `mar_foto`) VALUES
-(1, 'HP', 'sad', ''),
-(2, 'Epson', 'epson des', '');
+INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
+(1, 'HP', 'sad'),
+(2, 'Epson', 'epson des');
 
 -- --------------------------------------------------------
 
