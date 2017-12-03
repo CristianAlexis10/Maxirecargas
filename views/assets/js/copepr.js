@@ -1,4 +1,3 @@
-
 $(".input").focus(function(){
   $(this).parent().addClass("color-label mover-label");
 });
