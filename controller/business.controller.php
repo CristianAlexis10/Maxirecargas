@@ -35,13 +35,13 @@
 		function newBusiness(){
 			$data = $_POST['data'];
 			//validar el capcha
-			$response_re = $_POST['get_captcha'];
-			if (isset($response_re) && $response_re) {
-				$secret_key = '6Ld_bDkUAAAAAPiAHYM_GX7QxbzLi_WFku7-9_tX';
-				$ip_user = $_SERVER['REMOTE_ADDR'];
-				$validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
-				$result = json_decode($validation);
-				if($result->success==true){
+			// $response_re = $_POST['get_captcha'];
+			// if (isset($response_re) && $response_re) {
+				// $secret_key = '6Ld_bDkUAAAAAPiAHYM_GX7QxbzLi_WFku7-9_tX';
+				// $ip_user = $_SERVER['REMOTE_ADDR'];
+				// $validation = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret_key&response=$response_re&remoteip=$ip_user");
+				// $result = json_decode($validation);
+				// if($result->success==true){
 					//imagen
 					if (isset($_FILES['file']['tmp_name'])) {
 							$profile = $this->doizer->ValidateImage($_FILES,"assets/image/profile/");
@@ -101,7 +101,6 @@
 								$result = $this->master->ConsultaEmpresa($data[1]);
 								$result = $this->master->crearSede(array($result['emp_codigo'],$data[4],$data[5],$data[6]));
 								if ($result==true) {
-									//crear cliente empresarial(FALTA PROCEDURE)
 									$result = $this->master->consultaSede($data[4]);
 									$result = $this->master->clienteEmpresarial(array($usu_code,$result['sed_codigo'],$data[14]));
 									if ($result == true) {
@@ -128,12 +127,12 @@
 						echo json_encode($result);
 					}
 
-				}else{
-					echo json_encode('por favor realiza correctamente el recaptcha');
-				}
-			}else{
-				echo json_encode('por favor realiza correctamente el recaptcha');
-			}
+			// 	}else{
+			// 		echo json_encode('por favor realiza correctamente el recaptcha');
+			// 	}
+			// }else{
+			// 	echo json_encode('por favor realiza correctamente el recaptcha');
+			// }
 		}
 		function delete(){
 			$data = $_POST['data'];

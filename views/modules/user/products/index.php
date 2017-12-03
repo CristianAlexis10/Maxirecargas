@@ -12,7 +12,15 @@
 
   <div class="container--products">
     <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
-  </div>
+    <div class="wrap--menu--products">
+      <ul class="option--menu">
+        <li><a id="toner">Toner</a></li>
+        <li><a id="cartuchos">Cartuchos</a></li>
+        <li><a id="impresoras">Impresoras</a></li>
+        <li><a id="computadores">Computadores</a></li>
+        <li><a id="papeleria">papeleria</a></li>
+      </ul>
+    </div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="views/assets/lib/animate/animatescroll.js"> </script>

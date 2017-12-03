@@ -276,6 +276,7 @@ if (document.getElementById('categoria')) {
         }
     });
 }
+if (document.getElementById('closeNewCt')) {
  var closeModalCt = document.getElementById('closeNewCt');
  var modalCategory = document.getElementById('modal--newCt');
 
@@ -283,6 +284,8 @@ if (document.getElementById('categoria')) {
    modalCategory.style.display= "none";
   
  }
+  
+}
 
 
 // tabs
@@ -495,15 +498,22 @@ $("input[name='checkcolor']").change(function(){
 })
 
 // new customers
+ $(".employe-rol").hide();
 $('#tipo_usu').change(function(){
 var typeUser= $('#tipo_usu').val();
   console.log(typeUser);
   if (typeUser==3) {
     $(".customers--normal").addClass("normaldes")
     $(".customers--business").addClass("businessaparece")
+     $(".employe-rol").hide();
+  }else if(typeUser=="maxi"){
+      $(".customers--normal").removeClass("normaldes")
+    $(".customers--business").removeClass("businessaparece")
+      $(".employe-rol").show();
   }else {
     $(".customers--normal").removeClass("normaldes")
     $(".customers--business").removeClass("businessaparece")
+     $(".employe-rol").hide();
   }
  });
 

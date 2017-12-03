@@ -13,7 +13,7 @@
                   <p class="">crear un nuevo rol</p>
                   <div class="config--form">
                       <label for="">pertenece a Maxirecargas</label>
-                      <input type="checkbox" name="data-rol-name" required>
+                      <input type="checkbox" name="data-rol-maxi" >
                   </div>
                   <div class="config--form">
                       <label for="">nombre del rol</label>

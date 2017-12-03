@@ -10,7 +10,7 @@ class ConfigController{
             echo json_encode($result);
         }
         function selectRole(){
-            $result = $this->master->selectAll('tipo_usuario');
+            $result = $this->master->selectAllBy('tipo_usuario',array('tip_usu_maxi','true'));
             echo json_encode($result);
         }
         function selectTipDoc(){

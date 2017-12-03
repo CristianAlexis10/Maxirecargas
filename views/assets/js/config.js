@@ -11,13 +11,13 @@ if (document.getElementById('cuidad')) {
         }
     });
 }
-if (document.getElementById('tipo_usu')) {
+if (document.getElementById('type_user')) {
     $.ajax({
         url: "index.php?controller=config&a=selectRole",
         type: "POST",
         dataType:'json',
         success: function(result){
-            var selector = document.getElementById('tipo_usu');
+            var selector = document.getElementById('type_user');
             for (var i = 0; i < result.length; i++) {
                 selector.options[i] = new Option(result[i].tip_usu_rol,result[i].tip_usu_codigo);
             }
@@ -112,23 +112,24 @@ if(document.getElementById('sexo')){
 //REGISTRAR PERSONA NATURAL
    $("#frmNewUser").submit(function(e) {
         e.preventDefault();
+         dataJson = [];
         var rol = $('#tipo_usu').val();
         if (rol != 3) {
-                if (rol==5) {
-                  if(confirm('¿Asignar  permisos de empleado a este usuario?')){
-
-                    }else{
-                      return false;
-                    }
-                }
-                dataJson = [];
-
-
                 $(".dataCl").each(function(){
                                   structure = {}
                                   structure = $(this).val();
                                   dataJson.push(structure);
                               });
+                 if (rol=="maxi") {
+                      if(confirm('¿Asignar  permisos de empleado a este usuario?')){
+                              dataJson[0] = $('#type_user').val();
+                              console.log(dataJson);
+                              console.log($('#type_user').val());
+                        }else{
+                          return false;
+                        }
+                }
+               
                 // captcha =  grecaptcha.getResponse();
                 // console.log(dataJson);
                   $.ajax({
@@ -168,12 +169,12 @@ if(document.getElementById('sexo')){
                           dataJson.push(structure);
                 });
                 console.log(dataJson);
-                 captcha =  grecaptcha.getResponse();
+                 // captcha =  grecaptcha.getResponse();
                   $.ajax({
                           url: "guardar-cliente-empresarial",
                           type: "POST",
                            dataType:'json',
-                           data: ({data: dataJson , get_captcha : captcha}),
+                           data: ({data: dataJson}),
                            success: function(result){
                             if (result==true) {
                               $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente</div>");
