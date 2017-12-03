@@ -262,7 +262,7 @@ class MasterModel{
             $query->execute(array($vals[1]));
             $result = true;
         } catch (Exception $e) {
-            $result = $e->getMessage();
+            $result = $query->errorInfo()[1];
         }
         return $result;
     }

@@ -547,6 +547,8 @@ var typeUser= $('#tipo_usu').val();
           });
     });
 
+
+
     //delete-producto
     function confirmDeleteProduct(value){
         // console.log(value);

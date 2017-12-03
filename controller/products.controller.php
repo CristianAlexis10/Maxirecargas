@@ -1,11 +1,14 @@
 <?php
+	require_once "controller/doizer.controller.php";
 	class ProductsController{
 		private $master;
 		private $tableName;
 		private $insertException;
 		private $updateException;
+		private $doizer;
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
+	 		$this->doizer = new DoizerController;
 	 		$this->tableName="producto";
 	 		$this->insertException=array('pro_codigo');
 	 		$this->updateException = array('pro_codigo');
@@ -38,6 +41,7 @@
 		}
 		function newRegister(){
 			$data = $_POST['data'];
+			$data[]=1;
 			if (isset($_POST['services'])) {
 				 $ser = $_POST['services'];
 				$result = $this->master->insert($this->tableName,$data,$this->insertException);
@@ -58,23 +62,33 @@
 			return $result;
 		}
 		function readBy($data){
-			$result = $this->master->selectBy($this->tableName,array('id_producto',$data));
+			$result = $this->master->selectBy($this->tableName,array('pro_codigo',$data));
 			return $result;
 		}
 		function update(){
 			$data=$_POST['data'];
-			$result = $this->master->update($this->tableName,array('id_producto',$_SESSION['category_update']),$data,$this->updateException);
-			unset($_SESSION['product_update']);
-			if ($result==1) {
-				$_SESSION['message']="Actualizado Exitosamente";
-			}else{
-				$_SESSION['message_error']=$result;
+			$services = $_POST['services'];
+			$result = $this->master->selectBy($this->tableName,array('pro_codigo',$_SESSION['product_update']));
+			unlink("views/assets/image/products/".$result['pro_imagen']);
+			$result = $this->master->update($this->tableName,array('pro_codigo',$_SESSION['product_update']),$data,$this->updateException);
+
+			$result = $this->master->delete('servicioxproducto',array('pro_codigo',$_SESSION['product_update']));
+			foreach ($services as $service) {
+				$result = $this->master->insert("servicioxproducto",array($service,$_SESSION['product_update']));
 			}
-			header("Location: productos");
+			if ($result==true) {
+				echo json_encode("Modificado Exitosamente");
+			}else{
+				echo  json_encode($this->doizer->knowError($result));
+			}
+		
 		}
 		function delete(){
 			$data = $_POST['data'];
+			$result = $this->master->selectBy($this->tableName,array('pro_codigo',$data));
+			unlink("views/assets/image/products/".$result['pro_imagen']);
 			$result = $this->master->delete($this->tableName,array('pro_codigo',$data));
+			// echo json_encode($result);
 			if ($result==1) {
 				 echo json_encode('Eliminado Exitosamente');
 			}else{
