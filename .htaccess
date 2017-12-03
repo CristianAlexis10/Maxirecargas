@@ -88,6 +88,7 @@ RewriteRule ^guardar-inventario$ index.php?controller=stock&a=newRegister
 #VALIDACIONES AJAX
 RewriteRule ^validar_contraseña$ index.php?controller=doizer&a=validateSecurityPassword
 RewriteRule ^validar_documento$ index.php?controller=customers&a=readByNumDoc
+RewriteRule ^validar_correo$ index.php?controller=customers&a=readByEmail
 RewriteRule ^validar_nit$ index.php?controller=business&a=readByNit
 
 #LAND
@@ -95,3 +96,7 @@ RewriteRule ^maxirecargas$ index.php?controller=views
 
 #RUTAS
 RewriteRule ^rutas$ index.php?controller=routes
+
+#ROLES
+RewriteRule ^nuevo-rol$ index.php?controller=role&a=newRegister
+
