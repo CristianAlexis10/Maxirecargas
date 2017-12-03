@@ -592,14 +592,7 @@ align-items: center;
 .croppie-container{
   width: 100% !important;
 }
- .upload-result{
-  padding: 15px 10px;
-  border: none;
-  background: #35a4dd;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
+
 .thumb .active, .value{
   display: none;
 }
@@ -613,3 +606,5 @@ align-items: center;
   width: 200px;
   height: 200px;
 }
+
+/*modal cortar imagen*/

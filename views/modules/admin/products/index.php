@@ -23,8 +23,6 @@
 			</form>
 			</div>
 		</div>
-
-
 	<div class="new--category" id="modal--newCt">
 		<div class="container--newcategory">
 				<span id="closeNewCt">&times;</span>
@@ -44,7 +42,16 @@
 				</form>
 			</div>
 		</div>
-
+	<div id="img-product">
+			<div class="newMark--img">
+				<span id="closeImg">&times;</span>
+				<div id="uploadImage">
+					<div id="wrap-upload" style="width:300px"></div>
+					<input type="file" id="upload">
+					<button class="btn btn-success upload-result">Recortar Imagen</button>
+				</div>
+			</div>
+		</div>
 
 
 
@@ -124,15 +131,7 @@
 		    	</form>
 		  </div>
 
-		  <div class="img-product">
-			  <div class="newMark--img">
-				  <div id="uploadImage">
-					  <div id="wrap-upload" style="width:350px"></div>
-					  <input type="file" id="upload">
-					  <button class="btn btn-success upload-result">Recortar Imagen</button>
-					</div>
-			  </div>
-		  </div>
+
 
 
 		  <div id="tabs-3">

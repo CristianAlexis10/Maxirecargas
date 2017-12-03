@@ -1,22 +1,63 @@
+/*modal modificar imagen*/
+#img-product{
+	display: none;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	left: 0;
+	top: 0;
+	position: fixed;
+	z-index: 9999;
+
+}
+.newMark--img{
+	margin: auto;
+	background: white;
+	width:500px;
+	height: 600px;
+}
+
+#closeImg{
+	float: right;
+	padding: 10px;
+	font-size: 25px;
+	cursor: pointer;
+}
 #wrap-result img{
 	width: 150px;
 	height: 150px;
 }
-
+#upload{
+	display: block;
+	margin: auto;
+	padding-bottom: 15px;
+}
+.upload-result{
+	padding: 15px 10px;
+	border: none;
+	background: #35a4dd;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	float: right;
+	margin-right: 50px;
+}
 .croppie-container .cr-image {
 	z-index: -1;
 	position: absolute;
 	top: 0;
 	left: 0;
 	transform-origin: 0 0;
-    max-width: none;
+  max-width: none;
 }
 
 .croppie-container .cr-boundary {
 	position: relative;
 	overflow: hidden;
-	margin: 0 auto;
+	margin: 40px 0 0 75px;
 	z-index: 1;
+
 }
 
 .croppie-container .cr-viewport {
@@ -42,6 +83,7 @@
 	width: 75%;
 	margin: 0 auto;
 	margin-top: 25px;
+	margin-bottom: 35px;
 	text-align: center;
 }
 .croppie-result {

@@ -276,6 +276,14 @@ if (document.getElementById('categoria')) {
         }
     });
 }
+ var closeModalCt = document.getElementById('closeNewCt');
+ var modalCategory = document.getElementById('modal--newCt');
+
+ closeModalCt.onclick= function() {
+   modalCategory.style.display= "none";
+  
+ }
+
 
 // tabs
  $( function() {
