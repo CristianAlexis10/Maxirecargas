@@ -11,14 +11,39 @@
 	 		$this->updateException = array('Tip_ser_cod','tip_ser_registro');
 	 	}
 		function main(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/products/services/new.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				$modulo = 'productos';
+				$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+				$crud = permisos($modulo,$permit);			
+				if ($crud[2]==true) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/products/services/new.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
 		}
 		function viewUpdate(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/products/services/update.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				$modulo = 'productos';
+				$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+				$crud = permisos($modulo,$permit);			
+				if ($crud[2]==true) {
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/products/services/update.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
+			
 		}
 	
 		function newRegister(){

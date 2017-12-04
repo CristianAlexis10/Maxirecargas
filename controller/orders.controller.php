@@ -7,7 +7,7 @@
 		function main(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
 				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
-					if ($row['enlace']=='clientes') {
+					if ($row['enlace']=='pedidos') {
 						$access = true;
 					}
 				}
@@ -24,7 +24,7 @@
 			}else{
 				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/user/orders/index.php";
-				require_once "views/include/user/scope.footer.php";;
+				require_once "views/include/user/scope.footer.php";
 			}
 		}
 		function viewDetail(){
