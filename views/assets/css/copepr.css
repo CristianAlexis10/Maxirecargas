@@ -1,0 +1,109 @@
+/*views quotation*/
+
+.container--quotation{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background: url("../image/cotizacionfondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.quotation--left, .quotation--rigth{
+  width: 50%;
+  height: 100vh;
+  display: flex;
+}
+.quotation--left{
+  flex-direction: column;
+  font-family: 'lato';
+}
+.quotation--left .quotation--form{
+  margin: 0 auto;
+  color: #9e9e9e;
+  width: 60%;
+
+}
+.quotation--left span {
+  margin: 20px;
+  color: white;
+  font-size: 25px;
+}
+.subtitle.quo{
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+.form-group.btn input{
+  background: transparent;
+  border: 1px solid #f8f400;
+  outline: none;
+  padding: 15px 30px;
+  color: white;
+  font-size: 18px;
+  transition: all .3s ease;
+}
+.form-group.btn input:hover{
+  background: #f8f400;
+  color: black;
+  box-shadow: 5px 5px 20px 10px rgba(0, 0, 0, 0.8);
+}
+.quotation--rigth{
+  background: rgba(248, 244, 0, .3);
+  /*mix-blend-mode: multiply;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.title--quo{
+  font-family: 'oswald';
+  font-size: 100px;
+  font-weight: 300;
+  margin-top: 30px;
+  color:white;
+  text-transform: uppercase;
+}
+/*inputs*/
+.form-group{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+
+.form-group .label{
+  transition: all 0.5s;
+  transform: translateY(12px);
+  position: absolute;
+  padding: 0 0 0 5px;
+
+}
+.form-group .input  {
+  padding:8px 2px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #9e9e9e;
+  position: relative;
+  font-size: 16px;
+  background: transparent;
+  color:white;
+}
+ .input:after, .input:before {
+   content: "";
+   background: #9e9e9e;
+   box-sizing: border-box;
+   border: 1px solid #9e9e9e;
+   transition: all 0.5s;
+}
+
+.color-label .input{
+  border: 1px solid #f8f400;
+}
+.color-label .label{
+  color: #f8f400;
+}
+.mover-label .label{
+  transform: translateY(-15px);
+  font-size: 12px;
+}
