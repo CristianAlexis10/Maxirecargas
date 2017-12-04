@@ -4,6 +4,10 @@
 	<div class="title">
 		<p>PRODUCTOS</p>
 	</div>
+	<?php
+		$modulo = 'productos';
+		$crud = permisos($modulo,$permit);			
+		if ($crud[0]==true) {?>
 	<div class="newMark--modal" id="modal--new">
 		<div class="container--newMark">
 				<span id="closeNew">&times;</span>
@@ -53,21 +57,29 @@
 			</div>
 		</div>
 
-
+<?php } ?>
 
 </div>
 	<div id="tabs">
 		  <ul>
-		    <li><a href="#tabs-2">Lista de Productos</a></li>
-		    <li><a href="#tabs-1">Nuevo Producto</a></li>
-		    <li><a href="#tabs-3">Categorias</a></li>
-		    <li><a href="#tabs-4">Marcas</a></li>
-		    <li><a href="#tabs-5">Servicios</a></li>
+		    <?php if ($crud[0]==true) {?>
+		   	 <li><a href="#tabs-1">Nuevo Producto</a></li>
+		   <?php } ?>
+		  <?php if ($crud[1]==true) {?>
+		  	  <li><a href="#tabs-2">Lista de Productos</a></li>
+			    <li><a href="#tabs-3">Categorias</a></li>
+			    <li><a href="#tabs-4">Marcas</a></li>
+			    <li><a href="#tabs-5">Servicios</a></li>
+		 <?php } ?>
 		  </ul>
-		  <div id="tabs-2">
-		  		<?php require_once "views/modules/config/datatables/datatable-products.php"; ?>
-		  </div>
 
+
+		  <?php if ($crud[1]==true) {?>
+			  <div id="tabs-2">
+			  		<?php require_once "views/modules/config/datatables/datatable-products.php"; ?>
+			  </div>
+		<?php }?>
+		  <?php if ($crud[0]==true) {?> 
 		  <div id="tabs-1" class="new products">
 			<div class="form--left">
 
@@ -130,32 +142,41 @@
 								</div>
 		    	</form>
 		  </div>
-
+		  <?php } ?>
 
 
 
 		  <div id="tabs-3">
-		  	<div class="new--obj">
-					<i class="fa fa-plus" aria-hidden="true"></i>
-		  		<a href="nueva-categoria">Nueva Categoria</a>
-		  	</div>
-				<?php require_once "views/modules/config/datatables/datatable-categories.php"; ?>
+		  	<?php if ($crud[0]==true) {?>
+			  	<div class="new--obj">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+			  		<a href="nueva-categoria">Nueva Categoria</a>
+			  	</div>
+		  	<?php } if ($crud[1]==true) {
+		  	 require_once "views/modules/config/datatables/datatable-categories.php"; 
+		  	} ?>
 
 		  </div>
 		  <div id="tabs-4">
-		  	<div class="new--obj">
-					<i class="fa fa-plus" aria-hidden="true"></i>
-		  		<a href="nueva-marca">Nueva Marca</a>
-		  	</div>
-				<?php require_once "views/modules/config/datatables/datatable-trademark.php"; ?>
+		  	<?php if ($crud[0]==true) {?>
+			  	<div class="new--obj">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+			  		<a href="nueva-marca">Nueva Marca</a>
+			  	</div>
+			<?php }  if ($crud[1]==true) {
+				require_once "views/modules/config/datatables/datatable-trademark.php"; 
+			} ?>
 		  </div>
 		  <div id="tabs-5">
+		  	<?php if ($crud[0]==true) {?>
 		  	<div class="new--obj">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 		  		 <a href="nuevo-servicio">Nuevo Servicio</a>
 		  	</div>
 
-            	<?php require_once "views/modules/config/datatables/datatable-services.php"; ?>
+            	<?php }  if ($crud[1]==true) {
+            		require_once "views/modules/config/datatables/datatable-services.php"; 
+            	} ?>
 
 		  </div>
 

@@ -12,12 +12,18 @@
                          <td><?php echo $row['tip_ser_nombre'];?></td>
                             <td><?php echo $row['tip_ser_descripcion'];?></td>
                            <td>
+                             <?php 
+                             $modulo = 'productos';
+                            $crud = permisos($modulo,$permit);      
+                            if ($crud[2]==true) {?>
                             <a href="modificar-servicio-<?php echo rtrim(strtr(base64_encode($row['Tip_ser_cod']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
+                            <?php }   if ($crud[3]==true) {?>
                             <a href="#" onclick="return confirmDeleteService(
                             <?php
                          echo $row['Tip_ser_cod'];
                             ?>)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                            </td>
+                           <?php } ?>
                       </tr>
 
                 <?php	} ?>
