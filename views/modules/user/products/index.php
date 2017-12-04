@@ -6,27 +6,39 @@
     <title> Maxirecargas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="views/assets/image/logo.png">
-    <link rel="stylesheet" href="views/assets/css/main-user.css">
+    <link rel="stylesheet" href="views/assets/css/copepr.css">
   </head>
   <body>
 
   <div class="container--products">
-    <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
-    <div class="wrap--menu--products">
-      <ul class="option--menu">
-        <li><a id="toner">Toner</a></li>
-        <li><a id="cartuchos">Cartuchos</a></li>
-        <li><a id="impresoras">Impresoras</a></li>
-        <li><a id="computadores">Computadores</a></li>
-        <li><a id="papeleria">papeleria</a></li>
-      </ul>
+    <span ><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
+    <div class="products">
+      <div class="toner">
+        <img src="views/assets/image/toner.png">
+        <h3>toner</h3>
+      </div>
+      <div class="cartucho">
+        <img src="views/assets/image/cartuchos.png" >
+        <h3>cartuchos</h3>
+      </div>
+      <div class="impresora">
+        <img src="views/assets/image/impresora.png">
+        <h3>impresoras</h3>
+      </div>
+      <div class="computadores">
+        <img src="views/assets/image/computador.png">
+        <h3>computadores</h3>
+      </div>
     </div>
+    <div class="products--marcas">
+    </div>
+  </div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="views/assets/lib/animate/animatescroll.js"> </script>
     <script src="views/assets/lib/parsley/parsley.min.js"></script>
     <script src="views/assets/lib/parsley/es.js"></script>
-    <script type="text/javascript" src="views/assets/js/main-user.js"></script>
+    <script type="text/javascript" src="views/assets/js/copepr.js"></script>
     <script type="text/javascript" src="views/assets/js/auth.js"></script>
     <script type="text/javascript" src="views/assets/js/menu.js"></script>
 

@@ -63,6 +63,39 @@
   color:white;
   text-transform: uppercase;
 }
+
+/*views product*/
+.container--products{
+  display: flex;
+  background: red;
+}
+.container--products span{
+  margin: 20px;
+  font-size: 25px;
+}
+.products{
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+}
+.toner img{
+  width: 150px;
+  height: 100px;
+  margin-top: 12px;
+}
+.toner img:hover{
+  width: 180px;
+  height: 130px;
+  transition: all .2s ease-in;
+}
+.cartucho img, .impresora img, .computadores img{
+  width: 150px;
+  height: 120px;
+}
+
+
 /*inputs*/
 .form-group{
   display: flex;
