@@ -95,6 +95,28 @@
 						 $data_acceso[]=$result['usu_codigo'];
 						 $data_acceso[]=$password[1];
 						 $result = $this->master->procedureAcceso($data_acceso);
+						 $token  = $this->master->procedure("consultaLogin",$data[2]);
+						 $token =  rtrim(strtr(base64_encode($token['token']), '+/', '-_'), '=');
+						 $título = 'Maxirecargas-Activa tu cuenta Empresarial';
+						  $mensaje = '
+						  <html>
+						  <head>
+							<title>Maxirecargas-Activa tu cuenta </title>
+						  </head>
+						  <body>
+							<p>Bienvenido a Maxirecargas, para poder disfrutar de tus beneficios es neceseario que actives tu cuenta, por favor visita en siguiente enlace</p>
+							<a href="http://localhost/maxirecargas/activar-cuenta-'.$token.'">Activar tu MaxiCuenta</a>
+
+						  </body>
+						  </html>
+						  ';
+
+						  $cabeceras= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+						  if(mail($data[5], $título, $mensaje, $cabeceras)){
+							  $result = "Revisa tu correo para activar tu cuenta";
+						  }else{
+							  $result = "error al enviar correo";
+						  }
 						 if ($result==true) {
 							$result = $this->master->crearEmpresa(array($data[3],$data[1],$data[2]));
 							if ($result==true) {
@@ -104,7 +126,7 @@
 									$result = $this->master->consultaSede($data[4]);
 									$result = $this->master->clienteEmpresarial(array($usu_code,$result['sed_codigo'],$data[14]));
 									if ($result == true) {
-										echo json_encode('Registrado correctamente');
+										echo json_encode('Registrado correctamente, revisa tu correo para activar tu cuenta');
 									}else{
 										$result = $this->doizer->knowError($result);
 										echo json_encode($result);

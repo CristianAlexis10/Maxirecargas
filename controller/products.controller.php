@@ -45,6 +45,7 @@
 			if (isset($_POST['services'])) {
 				 $ser = $_POST['services'];
 				$result = $this->master->insert($this->tableName,$data,$this->insertException);
+				// die($result);
 				$data_pro = $this->master->selectBy('producto',array('pro_referencia',$data[2]));
 				foreach ($ser as $key) {
 					$result = $this->master->insert('servicioxproducto',array($key,$data_pro['pro_codigo']));
@@ -53,9 +54,9 @@
 				$result ='por favor seleccione un servicio';
 			}
 
+			echo json_encode($result);
 			//  $data[]=date('Y-m-d');
 			// header("Location: crear-inventario");
-			echo json_encode($result);
 		}
 		function readAll(){
 			$result = $this->master->selectAll($this->tableName);
@@ -81,7 +82,7 @@
 			}else{
 				echo  json_encode($this->doizer->knowError($result));
 			}
-		
+
 		}
 		function delete(){
 			$data = $_POST['data'];

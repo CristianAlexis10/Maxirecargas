@@ -65,7 +65,7 @@ if(document.getElementById('sexo')){
 // }
 
 
-   //MODIFICAR PRODUCTO 
+   //MODIFICAR PRODUCTO
       $("#frmUpdateProduct").submit(function(e) {
         e.preventDefault();
         if(confirm('modificar este registro?')){
@@ -106,7 +106,7 @@ if(document.getElementById('sexo')){
         return false;
       }
 
-       
+
     });
 
 //REGISTRAR PERSONA NATURAL
@@ -129,7 +129,7 @@ if(document.getElementById('sexo')){
                           return false;
                         }
                 }
-               
+
                 // captcha =  grecaptcha.getResponse();
                 // console.log(dataJson);
                   $.ajax({
