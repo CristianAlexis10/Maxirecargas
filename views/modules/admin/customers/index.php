@@ -14,8 +14,8 @@
 			if ($crud[1]==true) { ?>
 		  		  <li><a href="#tabs-2">Clientes </a></li>
 		  		  <li><a href="#tabs-4">Empresariales</a></li>
+				<li><a href="#tabs-3">Empleados </a></li>
 			<?php } ?>
-						<li><a href="#tabs-3">Empleados </a></li>
 		  </ul>
 		  <?php
 		  if ($crud[1]==true) {?>

@@ -73,7 +73,12 @@
 		</div>
 	</div>
 	<div class="wrap--btns">
-		<a href="datos-empresariales-<?php echo $_GET['data']?>">Datos Empresariales</a>
-		<a href="modificar-cliente-<?php echo $_GET['data']?>">Modificar</a>
+		<?php
+			$modulo = 'usuarios';
+			$crud = permisos($modulo,$permit);
+			 if($crud[2]==1){?>
+			<a href="datos-empresariales-<?php echo $_GET['data']?>">Datos Empresariales</a>
+			<a href="modificar-cliente-<?php echo $_GET['data']?>">Modificar</a>
+		<?php }?>
 	</div>
 </div>
