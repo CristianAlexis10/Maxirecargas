@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-12-2017 a las 19:19:49
+-- Tiempo de generación: 07-12-2017 a las 20:49:38
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -183,6 +183,11 @@ INNER JOIN estado T5 on T1.id_estado=T5.id_estado
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listaVisitas` (IN `user` INT)  NO SQL
+BEGIN 
+SELECT * FROM pedido WHERE ped_encargado = user;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarClienteEmpresarial` (IN `cargo` VARCHAR(45), IN `codigo` INT(11))  NO SQL
 BEGIN
 UPDATE cliente_empresarial
@@ -231,6 +236,11 @@ SET  id_tipo_documento = tipo_documento,
      
 WHERE usu_codigo = codigo;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `porcentajeMensual` (IN `Mes` INT)  NO SQL
+BEGIN
+	select usu_codigo, count(*) as cantidad, ven_fecha from ventas  WHERE MONTH(ven_fecha)= Mes group by usu_codigo;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `porcentajeVentas` (IN `Mes` DATE)  NO SQL
@@ -546,18 +556,19 @@ CREATE TABLE `pedido` (
   `emp_codigo` int(11) DEFAULT NULL,
   `tip_ped_codigo` int(11) DEFAULT NULL,
   `rut_codigo` int(11) NOT NULL,
-  `ped_estado` varchar(100) NOT NULL
+  `ped_estado` varchar(100) NOT NULL,
+  `ped_encargado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`ped_codigo`, `ped_direccion`, `ped_correo`, `ped_fecha`, `emp_codigo`, `tip_ped_codigo`, `rut_codigo`, `ped_estado`) VALUES
-(1, 'Calle 45', 'nada@gmail.com', '2017-08-14', 1, 1, 1, 'En camino'),
-(2, 'Carrera 56', 'hola@gmail.com', '2017-10-23', 2, 1, 2, 'En espera'),
-(3, '435', '45', '2017-12-09', 43, 45, 34, '43'),
-(88, '4354', '435', '2017-12-08', 435, 435, 453, '345');
+INSERT INTO `pedido` (`ped_codigo`, `ped_direccion`, `ped_correo`, `ped_fecha`, `emp_codigo`, `tip_ped_codigo`, `rut_codigo`, `ped_estado`, `ped_encargado`) VALUES
+(1, 'Calle 45', 'nada@gmail.com', '2017-08-14', 1, 1, 1, 'En camino', 1),
+(2, 'Carrera 56', 'hola@gmail.com', '2017-10-23', 2, 1, 2, 'En espera', 2),
+(3, '435', '45', '2017-12-09', 43, 45, 34, '43', 1),
+(88, '4354', '435', '2017-12-08', 435, 435, 453, '345', 1);
 
 -- --------------------------------------------------------
 
@@ -1068,7 +1079,8 @@ ALTER TABLE `pedido`
   ADD KEY `emp_id` (`emp_codigo`),
   ADD KEY `tip_id` (`tip_ped_codigo`),
   ADD KEY `tip_ped_codigo` (`tip_ped_codigo`),
-  ADD KEY `rut_codigo` (`rut_codigo`);
+  ADD KEY `rut_codigo` (`rut_codigo`),
+  ADD KEY `ped_encargado` (`ped_encargado`);
 
 --
 -- Indices de la tabla `pedidoxproducto`
@@ -1385,6 +1397,12 @@ ALTER TABLE `gestion_web`
 --
 ALTER TABLE `historial_productos`
   ADD CONSTRAINT `historial_productos_ibfk_1` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`ped_encargado`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pedidoxproducto`

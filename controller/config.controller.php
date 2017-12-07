@@ -25,5 +25,39 @@ class ConfigController{
             $result = $this->master->selectAll('tipo_producto');
             echo json_encode($result);
         }
+        function clientesRegistrados(){
+            $result = $this->master->clientesRegistrados();
+            echo json_encode($result);
+        }
+        function promedioComprasMesUsuario(){
+            $result = $this->master->porcentajeMensual(date('m'));
+            echo json_encode($result);
+        }
+        function productosMasSolicitados(){
+            $result = $this->master->productosMasSolicitados(date('m'),(date('m')-1),(date('m')-2));
+            echo json_encode($result);
+        }
+        function clientesEstrellas(){
+            $result = $this->master->clientesEstrellas();
+            echo json_encode($result);
+        }
+        function ventaDiaria(){
+            $result = $this->master->ventaDiaria(date('Y-m-d'));
+            echo json_encode($result);
+        }
+        function ventaMensual(){
+            $result = $this->master->ventaMensual(date('m'));
+            echo json_encode($result);
+        }
+        function productosAgotarse(){
+            $result = $this->master->productosAgotarse();
+            echo json_encode($result);
+        }
+        function listaVisitas(){
+			// $user = $_GET['data'];
+			$user = 1;
+            $result = $this->master->listaVisitas($user);
+            echo json_encode($result);
+        }
 }
 ?>

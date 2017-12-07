@@ -592,6 +592,110 @@ class MasterModel{
 
        return $result;
    }
+    //USUARIOS EXISTENTES
+    public function clientesRegistrados(){
+       try {
+           $this->sql="call clientesRegistrados()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //porcentaje USUARIO compra mensual
+    public function porcentajeMensual($mes){
+       try {
+           $this->sql="call porcentajeMensual(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($mes));
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //5 productos mas vencidos
+    public function productosMasSolicitados($mes,$mes2,$mes3){
+       try {
+           $this->sql="call productoMasVendido(?,?,?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($mes,$mes2,$mes3));
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //cliente estrella
+    public function clientesEstrellas(){
+       try {
+           $this->sql="call clientesEstrellas()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //venta diaria
+    public function ventaDiaria($date){
+       try {
+           $this->sql="call ventaDiaria(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($date));
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //venta diaria
+    public function ventaMensual($date){
+       try {
+           $this->sql="call ventaMensual(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($date));
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //visitias diarias
+    public function listaVisitas($user){
+       try {
+           $this->sql="call listaVisitas(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($user));
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //productosAgotarse
+    public function productosAgotarse(){
+       try {
+           $this->sql="call productosAgotarse()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
 
 }
 

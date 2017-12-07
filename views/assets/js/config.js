@@ -342,3 +342,105 @@ if(document.getElementById('closeNew')){
         }
     }
 }
+
+//estadisticas
+
+function clientesRegistrados(){
+    // if (document.getElementById('marca')) {
+        $.ajax({
+            url: "index.php?controller=config&a=clientesRegistrados",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                console.log(result[0]);
+            }
+        });
+    // }
+}
+clientesRegistrados();
+
+
+//promedio de compras
+function promedioComprasMesUsuario(){
+        $.ajax({
+            url: "index.php?controller=config&a=promedioComprasMesUsuario",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                console.log(result);
+            }
+        });
+}
+promedioComprasMesUsuario();
+
+function productosMasSolicitados(){
+        $.ajax({
+            url: "index.php?controller=config&a=productosMasSolicitados",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                console.log(result);
+            }
+        });
+}
+productosMasSolicitados();
+//estrella de cliente
+function clientesEstrellas(){
+        $.ajax({
+            url: "index.php?controller=config&a=clientesEstrellas",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                console.log(result);
+            }
+        });
+}
+clientesEstrellas();
+//venta diaria
+function ventaDiaria(){
+        $.ajax({
+            url: "index.php?controller=config&a=ventaDiaria",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                console.log(result);
+            }
+        });
+}
+ventaDiaria();
+//venta mensual
+function ventaMensual(){
+        $.ajax({
+            url: "index.php?controller=config&a=ventaMensual",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                console.log(result);
+            }
+        });
+}
+ventaMensual();
+//visitias diarias al dia
+function listaVisitas(){
+        $.ajax({
+            url: "index.php?controller=config&a=listaVisitas",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                console.log(result);
+            }
+        });
+}
+listaVisitas();
+//productos a agotarse
+function productosAgotarse(){
+        $.ajax({
+            url: "index.php?controller=config&a=productosAgotarse",
+            type: "POST",
+            dataType:'json',
+            success: function(result){
+                console.log(result);
+            }
+        });
+}
+productosAgotarse();
