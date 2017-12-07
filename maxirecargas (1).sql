@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2017 a las 21:21:17
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 07-12-2017 a las 19:19:49
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,6 +28,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `activar` (IN `activar` VARCHAR(250)
 
 SELECT * FROM acceso INNER JOIN usuario ON(acceso.usu_codigo = usuario.usu_codigo) WHERE acceso.token = activar;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `clientesEstrellas` ()  NO SQL
+BEGIN
+	select usu_codigo, count(*) as cantidad, ven_fecha from ventas group by usu_codigo order by ven_fecha desc LIMIT 1;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `clientesRegistrados` ()  NO SQL
+BEGIN
+	SELECT COUNT(*) FROM usuario WHERE tip_usu_codigo = 3 OR tip_usu_codigo = 1;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaClienteEmpresarial` (IN `cliente` INT(11))  BEGIN
@@ -223,6 +233,34 @@ WHERE usu_codigo = codigo;
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `porcentajeVentas` (IN `Mes` DATE)  NO SQL
+BEGIN
+	DECLARE total INTEGER;
+    
+    SELECT COUNT(*) INTO total FROM usuario WHERE tip_usu_codigo = 3 OR tip_usu_codigo = 1;
+    
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `productoMasVendido` (IN `Mes1` INT, IN `Mes2` INT, IN `Mes3` INT)  NO SQL
+BEGIN
+SELECT pro_codigo,SUM(his_pro_cantidad) FROM historial_productos WHERE MONTH(his_pro_fecha) = Mes1 OR MONTH(his_pro_fecha) = Mes2 OR MONTH(his_pro_fecha) = Mes3 LIMIT 5;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `productosAgotarse` ()  NO SQL
+BEGIN 
+SELECT * FROM stock WHERE stock.sto_cantidad <= 5;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ventaDiaria` (IN `fecha` DATE)  NO SQL
+BEGIN
+SELECT SUM(ventas.ven_total) FROM ventas WHERE ven_fecha = fecha;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ventaMensual` (IN `Mes` DATE)  NO SQL
+BEGIN
+SELECT SUM(ventas.ven_total) FROM ventas WHERE MONTH(ven_fecha)= Mes;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -242,7 +280,9 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
+('112daaf62d419900664134a51308b48c', 6, '$2y$10$E0/mCH8R1C/Wp1UUOe/e3e6qb1Y1VpP2skxgTbl5Dgif3D4b8NvnO'),
 ('1459', 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
+('1e3ca150b867bcdd2829cf7635b7028a', 4, '$2y$10$BmvFxqFFoLw2VFgUJOFDAOpWvENIWGalWjAJ/09tIMIxtdcrtRf1a'),
 ('2545', 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
 ('2546', 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW');
 
@@ -278,6 +318,14 @@ CREATE TABLE `cliente_empresarial` (
   `sed_codigo` int(11) NOT NULL,
   `cli_emp_cargo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cliente_empresarial`
+--
+
+INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_codigo`, `cli_emp_cargo`) VALUES
+(1, 4, 1, '3242'),
+(2, 4, 1, '3242');
 
 -- --------------------------------------------------------
 
@@ -345,7 +393,9 @@ CREATE TABLE `empresa` (
 INSERT INTO `empresa` (`emp_codigo`, `emp_nombre`, `emp_nit`, `emp_razon_social`) VALUES
 (1, 'ACUATUBOS S.A', '800226360-1', 'ACUATUBOS S.A'),
 (2, 'AGENCIAUTO S.A', '890900016-9', 'AGENCIAUTO S.A'),
-(3, 'ANDINA DE MATERIALES INDUSTRIALES S.A', '811030946-2', 'ANDINA DE MATERIALES INDUSTRIALES S.A');
+(3, 'ANDINA DE MATERIALES INDUSTRIALES S.A', '811030946-2', 'ANDINA DE MATERIALES INDUSTRIALES S.A'),
+(4, '234', '324324', '34234324'),
+(5, '234', '324324', '34234324');
 
 -- --------------------------------------------------------
 
@@ -402,6 +452,27 @@ CREATE TABLE `gestion_web` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `historial_productos`
+--
+
+CREATE TABLE `historial_productos` (
+  `id_his_pro` int(11) NOT NULL,
+  `pro_codigo` int(11) NOT NULL,
+  `his_pro_fecha` date NOT NULL,
+  `his_pro_cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `historial_productos`
+--
+
+INSERT INTO `historial_productos` (`id_his_pro`, `pro_codigo`, `his_pro_fecha`, `his_pro_cantidad`) VALUES
+(1, 1, '2017-11-05', 2),
+(2, 1, '2017-12-07', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `marca`
 --
 
@@ -437,11 +508,11 @@ CREATE TABLE `modulos` (
 --
 
 INSERT INTO `modulos` (`id_modulo`, `mod_nombre`, `enlace`, `icon`) VALUES
-(1, 'usuarios', 'clientes', '<i class=\"fa fa-users\" aria-hidden=\"true\"></i>'),
-(2, 'productos', 'productos', '<i class=\"fa fa-shopping-cart\" aria-hidden=\"true\"></i>'),
-(3, 'Pedidos', 'pedidos', '<i class=\"fa fa-bullhorn\" aria-hidden=\"true\"></i>'),
-(4, 'cotizacion', 'cotizacion', '<i class=\"fa fa-wrench\" aria-hidden=\"true\"></i>'),
-(5, 'Rutas', 'rutas', '<i class=\"fa fa-motorcycle\" aria-hidden=\"true\"></i>');
+(1, 'usuarios', 'clientes', '<i class="fa fa-users" aria-hidden="true"></i>'),
+(2, 'productos', 'productos', '<i class="fa fa-shopping-cart" aria-hidden="true"></i>'),
+(3, 'Pedidos', 'pedidos', '<i class="fa fa-bullhorn" aria-hidden="true"></i>'),
+(4, 'cotizacion', 'cotizacion', '<i class="fa fa-wrench" aria-hidden="true"></i>'),
+(5, 'Rutas', 'rutas', '<i class="fa fa-motorcycle" aria-hidden="true"></i>');
 
 -- --------------------------------------------------------
 
@@ -484,7 +555,9 @@ CREATE TABLE `pedido` (
 
 INSERT INTO `pedido` (`ped_codigo`, `ped_direccion`, `ped_correo`, `ped_fecha`, `emp_codigo`, `tip_ped_codigo`, `rut_codigo`, `ped_estado`) VALUES
 (1, 'Calle 45', 'nada@gmail.com', '2017-08-14', 1, 1, 1, 'En camino'),
-(2, 'Carrera 56', 'hola@gmail.com', '2017-10-23', 2, 1, 2, 'En espera');
+(2, 'Carrera 56', 'hola@gmail.com', '2017-10-23', 2, 1, 2, 'En espera'),
+(3, '435', '45', '2017-12-09', 43, 45, 34, '43'),
+(88, '4354', '435', '2017-12-08', 435, 435, 453, '345');
 
 -- --------------------------------------------------------
 
@@ -498,6 +571,21 @@ CREATE TABLE `pedidoxproducto` (
   `pedxpro_cantidad` int(11) NOT NULL,
   `pedxpro_valor_total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `pedidoxproducto`
+--
+
+INSERT INTO `pedidoxproducto` (`ped_codigo`, `pro_codigo`, `pedxpro_cantidad`, `pedxpro_valor_total`) VALUES
+(1, 1, 5, 500);
+
+--
+-- Disparadores `pedidoxproducto`
+--
+DELIMITER $$
+CREATE TRIGGER `productoMaquina` AFTER INSERT ON `pedidoxproducto` FOR EACH ROW INSERT INTO `historial_productos` (`id_his_pro`, `pro_codigo`, `his_pro_fecha`, `his_pro_cantidad`) VALUES (NULL, NEW.pro_codigo,NOW(),NEW.pedxpro_cantidad)
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -524,7 +612,8 @@ INSERT INTO `permiso` (`id_permiso`, `id_modulo`, `tip_usu_codigo`, `per_crear`,
 (2, 2, 2, 1, 1, 1, 1),
 (3, 3, 2, 1, 1, 1, 1),
 (4, 4, 2, 1, 1, 1, 1),
-(6, 5, 2, 1, 1, 1, 1);
+(6, 5, 2, 1, 1, 1, 1),
+(7, 1, 6, 0, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -538,16 +627,17 @@ CREATE TABLE `producto` (
   `tip_pro_codigo` int(11) NOT NULL,
   `pro_referencia` varchar(100) DEFAULT NULL,
   `pro_descripcion` varchar(100) DEFAULT NULL,
-  `pro_imagen` varchar(200) DEFAULT NULL
+  `pro_imagen` varchar(200) DEFAULT NULL,
+  `pro_estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`pro_codigo`, `mar_codigo`, `tip_pro_codigo`, `pro_referencia`, `pro_descripcion`, `pro_imagen`) VALUES
-(1, 1, 1, 'hfg', 'fgjf', 'fgj'),
-(2, 2, 2, 'fgh', 'ghf', 'fjhg');
+INSERT INTO `producto` (`pro_codigo`, `mar_codigo`, `tip_pro_codigo`, `pro_referencia`, `pro_descripcion`, `pro_imagen`, `pro_estado`) VALUES
+(1, 1, 1, 'hfg', 'fgjf', 'fgj', 0),
+(2, 1, 1, 'dfs', 'sdf', '1512413244.png', 1);
 
 -- --------------------------------------------------------
 
@@ -626,6 +716,14 @@ CREATE TABLE `sede` (
   `sed_telefono` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `sede`
+--
+
+INSERT INTO `sede` (`sed_codigo`, `emp_codigo`, `sed_nombre`, `sed_direccion`, `sed_telefono`) VALUES
+(1, 4, '32423', '234324', 234),
+(2, 4, '32423', '234324', 234);
+
 -- --------------------------------------------------------
 
 --
@@ -636,6 +734,19 @@ CREATE TABLE `servicioxproducto` (
   `tip_ser_cod` int(11) NOT NULL,
   `pro_codigo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `servicioxproducto`
+--
+
+INSERT INTO `servicioxproducto` (`tip_ser_cod`, `pro_codigo`) VALUES
+(4, 0),
+(4, 0),
+(4, 0),
+(4, 0),
+(4, 0),
+(4, 0),
+(4, 2);
 
 -- --------------------------------------------------------
 
@@ -650,6 +761,14 @@ CREATE TABLE `stock` (
   `sto_valor_compra` int(255) NOT NULL,
   `sto_valor_venta` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `stock`
+--
+
+INSERT INTO `stock` (`sto_codigo`, `pro_codigo`, `sto_cantidad`, `sto_valor_compra`, `sto_valor_venta`) VALUES
+(1, 1, 4, 5445, 546),
+(2, 2, 5, 54645, 56456);
 
 -- --------------------------------------------------------
 
@@ -729,8 +848,8 @@ CREATE TABLE `tipo_servicio` (
 --
 
 INSERT INTO `tipo_servicio` (`Tip_ser_cod`, `tip_ser_nombre`, `tip_ser_descripcion`, `tip_ser_registro`) VALUES
-(1, 'Recargas', 'sad', '2017-11-04'),
-(2, 'Mantenimiento', 'sad', '2017-11-04');
+(3, '66', '66', '2017-12-01'),
+(4, 'recarga', 'sadsa', '2017-12-04');
 
 -- --------------------------------------------------------
 
@@ -740,18 +859,20 @@ INSERT INTO `tipo_servicio` (`Tip_ser_cod`, `tip_ser_nombre`, `tip_ser_descripci
 
 CREATE TABLE `tipo_usuario` (
   `tip_usu_codigo` int(11) NOT NULL,
-  `tip_usu_rol` varchar(50) NOT NULL
+  `tip_usu_rol` varchar(50) NOT NULL,
+  `tip_usu_maxi` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tipo_usuario`
 --
 
-INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`) VALUES
-(1, 'Persona Natural'),
-(2, 'Administrador'),
-(3, 'Persona Juridica'),
-(5, 'Empleado');
+INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`, `tip_usu_maxi`) VALUES
+(1, 'Persona Natural', ''),
+(2, 'Administrador', ''),
+(3, 'Persona Juridica', ''),
+(5, 'Empleado', ''),
+(6, 'Secretaria', 'true');
 
 -- --------------------------------------------------------
 
@@ -786,9 +907,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 2, 1, 'default.jpg', '2017-11-05', '0000-00-00'),
+(1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 1, 1, 'default.jpg', '2017-11-05', '0000-00-00'),
 (2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, 'default.jpg', '2017-11-02', '0000-00-00'),
-(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 2, 2, 'kojada', '2017-11-02', '2017-11-01');
+(3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 2, 2, 'kojada', '2017-11-02', '2017-11-01'),
+(4, 1, 32423, '34234', '', '32423', '', 'yonos', 32423, 1, '', 0, '2017-12-04', 'null', 3, 1, 'defaul.jpg', '2017-12-04', '2017-12-04'),
+(6, 1, 8888, 'sdsad', '', 'asdsa', '', 'yonosoybond@gmail.com', 324324, 1, '', 0, '2004-12-31', 'femenino', 6, 1, 'default.jpg', '2017-12-04', '2017-12-04');
 
 -- --------------------------------------------------------
 
@@ -798,16 +921,51 @@ INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `
 
 CREATE TABLE `usuarioxpedido` (
   `usu_codigo` int(11) NOT NULL,
-  `ped_codigo` int(11) NOT NULL
+  `ped_codigo` int(11) NOT NULL,
+  `usuxped_total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarioxpedido`
 --
 
-INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`) VALUES
-(1, 1),
-(2, 2);
+INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`, `usuxped_total`) VALUES
+(1, 1, 500),
+(1, 3, 700);
+
+--
+-- Disparadores `usuarioxpedido`
+--
+DELIMITER $$
+CREATE TRIGGER `ventas` AFTER INSERT ON `usuarioxpedido` FOR EACH ROW INSERT INTO `ventas` (`id_venta`, `usu_codigo`,`ven_total`, `ped_codigo`, `ven_fecha`) VALUES (NULL, NEW.usu_codigo, NEW.usuxped_total, NEW.ped_codigo, NOW())
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ventas`
+--
+
+CREATE TABLE `ventas` (
+  `usu_codigo` int(11) NOT NULL,
+  `id_venta` int(11) NOT NULL,
+  `ven_total` float NOT NULL,
+  `ped_codigo` int(11) NOT NULL,
+  `ven_fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ventas`
+--
+
+INSERT INTO `ventas` (`usu_codigo`, `id_venta`, `ven_total`, `ped_codigo`, `ven_fecha`) VALUES
+(0, 2, 600, 1, '2017-12-08'),
+(2, 4, 400, 88, '2017-12-08'),
+(2, 6, 500, 1, '2017-12-07'),
+(0, 7, 100, 1, '2017-12-07'),
+(1, 9, 500, 1, '2017-12-07'),
+(1, 10, 700, 3, '2017-12-07');
 
 --
 -- Índices para tablas volcadas
@@ -878,6 +1036,13 @@ ALTER TABLE `gestion_web`
   ADD KEY `usu_codigo` (`usu_codigo`);
 
 --
+-- Indices de la tabla `historial_productos`
+--
+ALTER TABLE `historial_productos`
+  ADD PRIMARY KEY (`id_his_pro`),
+  ADD KEY `pro_codigo` (`pro_codigo`);
+
+--
 -- Indices de la tabla `marca`
 --
 ALTER TABLE `marca`
@@ -909,9 +1074,10 @@ ALTER TABLE `pedido`
 -- Indices de la tabla `pedidoxproducto`
 --
 ALTER TABLE `pedidoxproducto`
-  ADD PRIMARY KEY (`ped_codigo`),
   ADD KEY `pro_codigo` (`pro_codigo`),
-  ADD KEY `pro_codigo_2` (`pro_codigo`);
+  ADD KEY `pro_codigo_2` (`pro_codigo`),
+  ADD KEY `ped_codigo` (`ped_codigo`),
+  ADD KEY `ped_codigo_2` (`ped_codigo`);
 
 --
 -- Indices de la tabla `permiso`
@@ -1016,8 +1182,16 @@ ALTER TABLE `usuario`
 -- Indices de la tabla `usuarioxpedido`
 --
 ALTER TABLE `usuarioxpedido`
-  ADD PRIMARY KEY (`usu_codigo`),
-  ADD KEY `ped_codigo` (`ped_codigo`);
+  ADD KEY `ped_codigo` (`ped_codigo`),
+  ADD KEY `usu_codigo` (`usu_codigo`);
+
+--
+-- Indices de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD PRIMARY KEY (`id_venta`),
+  ADD KEY `ped_codigo` (`ped_codigo`),
+  ADD KEY `usu_codigo` (`usu_codigo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -1032,7 +1206,7 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
-  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
@@ -1047,7 +1221,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
@@ -1063,6 +1237,11 @@ ALTER TABLE `estiloxcliente`
 --
 ALTER TABLE `gestion_web`
   MODIFY `gw_codigo` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `historial_productos`
+--
+ALTER TABLE `historial_productos`
+  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
@@ -1082,17 +1261,12 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `pedidoxproducto`
---
-ALTER TABLE `pedidoxproducto`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
@@ -1117,12 +1291,12 @@ ALTER TABLE `ruta`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
@@ -1142,17 +1316,22 @@ ALTER TABLE `tipo_producto`
 -- AUTO_INCREMENT de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
-  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT de la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Restricciones para tablas volcadas
 --
@@ -1202,6 +1381,25 @@ ALTER TABLE `gestion_web`
   ADD CONSTRAINT `gestion_web_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `historial_productos`
+--
+ALTER TABLE `historial_productos`
+  ADD CONSTRAINT `historial_productos_ibfk_1` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedidoxproducto`
+--
+ALTER TABLE `pedidoxproducto`
+  ADD CONSTRAINT `pedidoxproducto_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedidoxproducto_ibfk_2` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `stock`
+--
+ALTER TABLE `stock`
+  ADD CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -1209,6 +1407,19 @@ ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON UPDATE CASCADE,
   ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `usuario_ibfk_4` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuarioxpedido`
+--
+ALTER TABLE `usuarioxpedido`
+  ADD CONSTRAINT `usuarioxpedido_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarioxpedido_ibfk_2` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
