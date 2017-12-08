@@ -12,7 +12,6 @@
 			<div class="items">
 				<ul>
 				<li><a href="configuraciones"><i class="fa fa-cogs" aria-hidden="true"></i></a></li>
-				<li><a href="estadisticas"><i class="fa fa-bar-chart" aria-hidden="true"></i></a></li>
 				<li><a href="finalizar"><i class="fa fa-power-off" aria-hidden="true"></i></a></li>
 			</ul>
 			</div>

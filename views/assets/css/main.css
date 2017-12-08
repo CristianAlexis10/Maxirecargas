@@ -596,15 +596,54 @@ align-items: center;
 .thumb .active, .value{
   display: none;
 }
+
+
 /*dasboar graphi*/
 .container--charts{
-  width: 100%;
   display: grid;
+  grid-template-areas:
+  "number1 number2 number3"
+  "liner liner pie1"
+  "liner liner pie2";
+  justify-content: stretch;
+  align-items: stretch;
+  grid-gap: 10px;
+
 }
 
-#first--pie, #second--pies{
-  width: 200px;
-  height: 200px;
+.num--users{grid-area:number1;}
+.num--orders{grid-area:number2;}
+.num--quotation{grid-area: number3;}
+.num--users,.num--orders, .num--quotation {
+  background: #ededed;
+  padding: 10px 20px 20px 20px;
+  font-family: 'Oswald';
+  font-weight: 200;
 }
+.num--users h2,.num--orders h2, .num--quotation h2 {
+  font-size: 16px;
+  color: #484848;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+.num--users p,.num--orders p, .num--quotation p{
+  font-size: 30px;
+}
+.liner{
+  grid-area: liner;
+  background: #ededed;
 
-/*modal cortar imagen*/
+}
+.graphyPie1{
+  grid-area: pie1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ededed;
+
+}
+.graphyPie2{
+  grid-area: pie2;
+  background: #ededed;
+
+}
