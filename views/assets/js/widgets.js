@@ -34,57 +34,62 @@ var ctx2 = document.getElementById("second--pie");
                 }});
 
 
-// var liner = document.getElementById("linerGraphy");
-// var linerGraphy= new chart(liner,{
-//       type: 'line',
-//       data: {
-//           labels: ["January", "February", "March", "April", "May", "June", "July"],
-//           datasets: [{
-//               label: "My First dataset",
-//               backgroundColor: window.chartColors.red,
-//               borderColor: window.chartColors.red,
-//               data: [ 4,5,23,34,12,12,34,12],
-//               fill: false,
-//           }, {
-//               label: "My Second dataset",
-//               fill: false,
-//               backgroundColor: window.chartColors.blue,
-//               borderColor: window.chartColors.blue,
-//               data: [34,2,23,12,32,45,23 ],
-//           }]
-//       },
-//       options: {
-//           responsive: true,
-//           title:{
-//               display:true,
-//               text:'Chart.js Line Chart'
-//           },
-//           tooltips: {
-//               mode: 'index',
-//               intersect: false,
-//           },
-//           hover: {
-//               mode: 'nearest',
-//               intersect: true
-//           },
-//           scales: {
-//               xAxes: [{
-//                   display: true,
-//                   scaleLabel: {
-//                       display: true,
-//                       labelString: 'Month'
-//                   }
-//               }],
-//               yAxes: [{
-//                   display: true,
-//                   scaleLabel: {
-//                       display: true,
-//                       labelString: 'Value'
-//                   }
-//               }]
-//           }
-//       }
-//       window.onload = function() {
-//           var liner = document.getElementById("linerGraphy").getContext("2d");
-//           window.myLine = new Chart(liner, linerGraphy);
-// });
+var liner = document.getElementById("linerGraphy");
+var linerGraphy= new Chart(liner,{
+      type: 'bar',
+      data: {
+          labels: ["Q2612A", "CF283A", "CE285A", "CE505A", "CE505X"],
+          datasets: [{
+              label: "Toner mas solicitados",
+              backgroundColor: window.chartColors.blue,
+              borderColor: window.chartColors.blue,
+              data: [ 4,5,23,50,12],
+              fill: false,
+          }]
+      },
+      options: {
+          responsive: true,
+          title:{
+              display:true,
+              text:'Toner mas solicitados '
+          },
+          tooltips: {
+              mode: 'index',
+              intersect: false,
+          },
+          hover: {
+              mode: 'nearest',
+              intersect: true
+          },
+          scales: {
+              xAxes: [{
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'Month'
+                  }
+              }],
+              yAxes: [{
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'CANTIDAD'
+                  }
+              }]
+          }
+      }
+});
+ $("#dataGrid").DataTable();
+ function clientesRegistrados(){
+     // if (document.getElementById('marca')) {
+         $.ajax({
+             url: "index.php?controller=config&a=clientesRegistrados",
+             type: "POST",
+             dataType:'json',
+             success: function(result){
+                 $("#userRegistrado").html(result);
+                 console.log(result[0]);
+             }
+         });
+     // }
+ }

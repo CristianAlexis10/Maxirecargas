@@ -352,6 +352,7 @@ function clientesRegistrados(){
             type: "POST",
             dataType:'json',
             success: function(result){
+                $("#userRegistrado").html(result);
                 console.log(result[0]);
             }
         });

@@ -603,30 +603,45 @@ align-items: center;
   display: grid;
   grid-template-areas:
   "number1 number2 number3"
-  "liner liner pie1"
-  "liner liner pie2";
+  "ventadia ventames visitas"
+  "liner liner liner ";
   justify-content: stretch;
-  align-items: stretch;
   grid-gap: 10px;
-
+}
+.wrap--pie {
+  margin-top: 10px;
+  display: grid ;
+  grid-template-areas:
+  "pie1 pie2";
+  justify-content: center;
+  
+  grid-gap: 10px;
+}
+.graphyPie1{
+  grid-area: pie1;
+  background: #ededed;
+}
+.graphyPie2{
+  grid-area: pie2;
+  background: #ededed;
 }
 
 .num--users{grid-area:number1;}
 .num--orders{grid-area:number2;}
 .num--quotation{grid-area: number3;}
-.num--users,.num--orders, .num--quotation {
+.num--users,.num--orders, .num--quotation, .ventasDia, .ventasMes, .visitas {
   background: #ededed;
   padding: 10px 20px 20px 20px;
   font-family: 'Oswald';
   font-weight: 200;
 }
-.num--users h2,.num--orders h2, .num--quotation h2 {
+.num--users h2,.num--orders h2, .num--quotation h2, .ventasDia h2, .ventasMes h2, .visitas h2 {
   font-size: 16px;
   color: #484848;
   text-transform: uppercase;
   margin-bottom: 15px;
 }
-.num--users p,.num--orders p, .num--quotation p{
+.num--users p,.num--orders p, .num--quotation p, .ventasDia p, .ventasMes p, .visitas p{
   font-size: 30px;
 }
 .liner{
@@ -634,16 +649,16 @@ align-items: center;
   background: #ededed;
 
 }
-.graphyPie1{
-  grid-area: pie1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ededed;
 
+.ventasDia{
+  grid-area: ventadia;
+  background: #ededed;
 }
-.graphyPie2{
-  grid-area: pie2;
+.ventasMes{
+  grid-area: ventames;
   background: #ededed;
-
+}
+.visitas{
+  grid-area: visitas;
+  background: #ededed;
 }
