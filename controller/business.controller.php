@@ -86,7 +86,7 @@
 					}
 					$date = date('Y-m-d');
 					// insertar usuario
-					$result = $this->master->procedure14('crearUsuario',array($data[7],$data[8],$data[9],$data[10],$data[13],$data[12],$data[11],$date,'null',$data[0],1,$profile,$date,$date));
+					$result = $this->master->procedure14('crearUsuario',array($data[7],$data[8],$data[9],$data[10],$data[13],$data[12],$data[11],$date,'null',$data[0],2,$profile,$date,$date));
 					if ($result==true) {
 						//crear acceso
 						$result  = $this->master->procedure("consultaExisteUsuario",$data[8]);
@@ -95,7 +95,7 @@
 						 $data_acceso[]=$result['usu_codigo'];
 						 $data_acceso[]=$password[1];
 						 $result = $this->master->procedureAcceso($data_acceso);
-						 $token  = $this->master->procedure("consultaLogin",$data[2]);
+						 $token  = $this->master->procedure("consultaLogin",$data[8]);
 						 $token =  rtrim(strtr(base64_encode($token['token']), '+/', '-_'), '=');
 						 $título = 'Maxirecargas-Activa tu cuenta Empresarial';
 						  $mensaje = '
@@ -112,7 +112,7 @@
 						  ';
 
 						  $cabeceras= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-						  if(mail($data[5], $título, $mensaje, $cabeceras)){
+						  if(mail($data[13], $título, $mensaje, $cabeceras)){
 							  $result = "Revisa tu correo para activar tu cuenta";
 						  }else{
 							  $result = "error al enviar correo";

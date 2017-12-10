@@ -11,6 +11,19 @@ if (document.getElementById('cuidad')) {
         }
     });
 }
+if (document.getElementById('cuidadBusi')) {
+    $.ajax({
+        url: "index.php?controller=config&a=selectCity",
+        type: "POST",
+        dataType:'json',
+        success: function(result){
+            var selector = document.getElementById('cuidadBusi');
+            for (var i = 0; i < result.length; i++) {
+                selector.options[i] = new Option(result[i].ciu_nombre,result[i].id_ciudad);
+            }
+        }
+    });
+}
 if (document.getElementById('type_user')) {
     $.ajax({
         url: "index.php?controller=config&a=selectRole",
@@ -31,6 +44,19 @@ if (document.getElementById('tip_doc')) {
         dataType:'json',
         success: function(result){
             var selector = document.getElementById('tip_doc');
+            for (var i = 0; i < result.length; i++) {
+                selector.options[i] = new Option(result[i].tip_doc_nombre,result[i].id_tipo_documento);
+            }
+        }
+    });
+}
+if (document.getElementById('tip_docBusi')) {
+    $.ajax({
+        url: "index.php?controller=config&a=selectTipDoc",
+        type: "POST",
+        dataType:'json',
+        success: function(result){
+            var selector = document.getElementById('tip_docBusi');
             for (var i = 0; i < result.length; i++) {
                 selector.options[i] = new Option(result[i].tip_doc_nombre,result[i].id_tipo_documento);
             }
@@ -133,6 +159,7 @@ if(document.getElementById('sexo')){
                 // captcha =  grecaptcha.getResponse();
                 // console.log(dataJson);
                   $.ajax({
+
                           url: "guardar-cliente",
                           type: "POST",
                            dataType:'json',

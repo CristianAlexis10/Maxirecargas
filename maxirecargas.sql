@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-12-2017 a las 18:22:45
+-- Tiempo de generación: 10-12-2017 a las 19:17:36
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -99,8 +99,8 @@ INSERT INTO sede (emp_codigo, sed_nombre, sed_direccion, sed_telefono) VALUES (e
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `crearUsuario` (`id_tipo_documento` INT(11), `usu_num_documento` INT(11), `usu_primer_nombre` VARCHAR(50), `usu_primer_apellido` VARCHAR(50), `usu_correo` VARCHAR(100), `usu_telefono` INT(10), `id_ciudad` INT(11), `usu_fecha_nacimiento` DATE, `usu_sexo` VARCHAR(50), `tip_usu_codigo` INT(11), `id_estado` INT(11), `usu_foto` LONGTEXT, `usu_fechas_registro` DATE, `usu_ult_inicio_sesion` DATE)  BEGIN
-INSERT INTO usuario  (id_tipo_documento, usu_num_documento, usu_primer_nombre, usu_primer_apellido,  usu_correo,  usu_telefono, id_ciudad, usu_fecha_nacimiento,  usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion) VALUES (id_tipo_documento, usu_num_documento,  usu_primer_nombre, usu_primer_apellido, usu_correo, usu_telefono, id_ciudad, usu_fecha_nacimiento, usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crearUsuario` (IN `id_tipo_documento` INT(11), IN `usu_num_documento` INT(11), IN `usu_primer_nombre` VARCHAR(50), IN `usu_primer_apellido` VARCHAR(50), IN `usu_correo` VARCHAR(100), IN `usu_telefono` INT(10), IN `id_ciudad` INT(11), IN `dir` VARCHAR(200), IN `usu_sexo` VARCHAR(50), IN `tip_usu_codigo` INT(11), IN `id_estado` INT(11), IN `usu_foto` LONGTEXT, IN `usu_fechas_registro` DATE, IN `usu_ult_inicio_sesion` DATE)  BEGIN
+INSERT INTO usuario  (id_tipo_documento, usu_num_documento, usu_primer_nombre, usu_primer_apellido,  usu_correo,  usu_telefono, id_ciudad, usu_direccion,  usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion) VALUES (id_tipo_documento, usu_num_documento,  usu_primer_nombre, usu_primer_apellido, usu_correo, usu_telefono, id_ciudad, dir, usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion);
 
 END$$
 
@@ -293,9 +293,7 @@ INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
 ('1459', 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
 ('1e3ca150b867bcdd2829cf7635b7028a', 4, '$2y$10$BmvFxqFFoLw2VFgUJOFDAOpWvENIWGalWjAJ/09tIMIxtdcrtRf1a'),
 ('2545', 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
-('2546', 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW'),
-('af760a2ad632c3099024a4e898b8992f', 9, '$2y$10$Ytvi8cS.IMj3d/UDaVT6eOMztKfLm8DecXmAG08fJk/AsjSvE3Kpu'),
-('f4329de7096b0af39fcdcdd8f888ffe5', 10, '$2y$10$BbBMLECzBeCN1Io6v9NGuOAn6Ni4iUgH9qUab8Yo5g1pPHhyjNTZa');
+('2546', 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW');
 
 -- --------------------------------------------------------
 
@@ -952,9 +950,7 @@ INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `
 (1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, '34324', 324324, '2017-11-22', 'masculino', 1, 1, 'default.jpg', '2017-11-05', '0000-00-00'),
 (2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, 'default.jpg', '2017-11-02', '0000-00-00'),
 (3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 2, 2, 'kojada', '2017-11-02', '2017-11-01'),
-(4, 1, 32423, '34234', '', '32423', '', 'yonos', 32423, 1, '', 0, '2017-12-04', 'null', 3, 1, 'defaul.jpg', '2017-12-04', '2017-12-04'),
-(9, 1, 98787, '897', '', '89798', '', 'cristian1020011@gmail.com', 786, 1, '', 0, '2004-12-30', 'femenino', 1, 2, 'default.jpg', '2017-12-10', '2017-12-10'),
-(10, 1, 4354, '345', '', '43534', '', 'sdjkashdhsabdkjsgfkgdsjgfdshgfdsh@gmail.com', 4554, 1, '', 0, '2004-12-31', 'femenino', 1, 2, 'default.jpg', '2017-12-10', '2017-12-10');
+(4, 1, 32423, '34234', '', '32423', '', 'yonos', 32423, 1, '', 0, '2017-12-04', 'null', 3, 1, 'defaul.jpg', '2017-12-04', '2017-12-04');
 
 -- --------------------------------------------------------
 
@@ -1376,7 +1372,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --

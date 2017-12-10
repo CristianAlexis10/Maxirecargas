@@ -10,7 +10,7 @@
 	 		$this->master = new MasterModel;
 	 		$this->doizer = new DoizerController;
 	 		$this->tableName="usuario";
-	 		$this->insertException=array('usu_codigo','usu_segundo_nombre','usu_segundo_apellido','usu_direccion','usu_celular');
+	 		$this->insertException=array('');
 	 		$this->updateException = array('usu_codigo','fecha_registro','ultimo_ingreso');
 	 	}
 		function main(){

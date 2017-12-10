@@ -75,8 +75,8 @@
 								<select class="dataCl input"  id="cuidad" required> </select>
 							</div>
 							<div class="form-group">
-								<label for="fecha_naci" class="required">Fecha de Nacimiento:</label>
-								<input type="date"  id="fecha_naci" class="input dataCl" max="2005-01-01" min="1950-01-01" required>
+								<label for="dir" class="label">Direccion:</label>
+								<input type="text" class="input dataCl" id="dir"  required>
 							</div>
 							<div class="form-group">
 								<label for="sexo" class="required ">Sexo:</label>
@@ -137,7 +137,7 @@
 							<h1>datos del contacto</h1>
 							<div class="form-group">
 								<label for="tip_doc" class="label">Tipo de documento</label>
-								<select class="dataEmp input" id="tip_doc">
+								<select class="dataEmp input" id="tip_docBusi">
 									<option value="1">Cedula</option>
 								</select>
 							</div>
@@ -155,7 +155,7 @@
 							</div>
 							<div class="form-group">
 								<label for="cuidad" class="label">Ciudad</label>
-								<select class="dataEmp input" id="cuidad">
+								<select class="dataEmp input" id="cuidadBusi">
 									<option value="1">Medellin</option>
 								</select>
 							</div>
