@@ -55,9 +55,13 @@ class ConfigController{
         }
         function listaVisitas(){
 			// $user = $_GET['data'];
-			$user = 1;
+						$user = 1;
             $result = $this->master->listaVisitas($user);
             echo json_encode($result);
         }
+			 function directions(){
+				 $result = $this->master->selectAllBy('usuario',array('tip_usu_codigo',1));
+				 echo json_encode($result);
+			 }
 }
 ?>

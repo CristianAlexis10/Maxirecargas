@@ -95,3 +95,4 @@ var linerGraphy= new Chart(liner,{
          });
      // }
  }
+ clientesRegistrados();

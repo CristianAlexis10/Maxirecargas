@@ -65,12 +65,26 @@
 				</table>
 			</div>
 
+			<div class="container--map">
+				 <div id="map"></div>
+				 <style >
+					  #map{
+					  width: 100%;
+					  height: 350px;
+					  margin: 0 auto;
+
+					}
+				</style>
+			</div>
+
 </article>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
 <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
 <script src="views/assets/lib/chart/utils.js"></script>
 <script src="views/assets/js/widgets.js"></script>
+<script type="text/javascript" src="views/assets/js/gmaps.js"></script>
+   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYIb-jxF2zZivhG13bGeEKI9gJthF4Ovg&libraries=adsense&sensor=false&language=es"></script>
+    <script type="text/javascript" src="views/assets/js/maps.js"></script>
 </body>
 </html>
