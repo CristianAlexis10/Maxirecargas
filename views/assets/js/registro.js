@@ -40,37 +40,71 @@ $(".input").focusout(function(){
 
 
 var customerPart1 = document.getElementById("customers--normal--part1");
-var customerPart2 = document.getElementById('customers--normal--part2') ;
+var customerPart2 = document.getElementById('customers--normal--part2');
+var customerPart3 = document.getElementById('customers--normal--part3') ;
 var irParte2 = document.getElementById('normalIrParte2');
+var irParte3 = document.getElementById('normalIrParte3');
 var irAtras = document.getElementById('irAtras');
+var irAtras2 = document.getElementById('irAtras2');
+
 
 irParte2.onclick = function(){
-  customerPart2.style.transform= "translateX(0px)"
-  customerPart1.style.transform= "translateX(-5000px)";
+  customerPart1.style.display= "none"
+  customerPart2.style.display= "block";
 }
 irAtras.onclick = function(){
-  customerPart1.style.transform= "translateX(0px)"
-  customerPart2.style.transform= "translateX(-5000px)";
+  customerPart2.style.display= "none"
+  customerPart1.style.display= "block";
+}
+irParte3.onclick = function(){
+  customerPart2.style.display= "none"
+  customerPart3.style.display= "block";
+}
+irAtras2.onclick = function(){
+  customerPart3.style.display= "none"
+  customerPart2.style.display= "block";
 }
 var businessPart1 = document.getElementById('business--parte1');
 var businessPart2 = document.getElementById('business--parte2');
 var businessPart3 = document.getElementById('business--parte3');
+var businessPart4 = document.getElementById('business--parte4');
+
 var irParte2busi = document.getElementById('businessIrParte2');
+
 var irAtras2busi = document.getElementById('irAtrasbusi');
 var irParte3busi = document.getElementById('businessIrParte3');
 
+var irAtras3busi = document.getElementById('irAtras3busi');
+var irParte4busi = document.getElementById('businessIrParte4');
+
+var irAtras4busi = document.getElementById('irAtras4busi');
+
+
 irParte2busi.onclick = function(){
-  businessPart2.style.transform= "translateX(0px)"
-  businessPart1.style.transform= "translateX(-5000px)";
+  businessPart1.style.display= "none"
+  businessPart2.style.display= "block";
 }
 irAtras2busi.onclick = function(){
-  businessPart1.style.transform= "translateX(0px)"
-  businessPart2.style.transform= "translateX(-5000px)";
+  businessPart2.style.display= "none"
+  businessPart1.style.display= "block";
 }
 irParte3busi.onclick = function(){
-  businessPart2.style.transform= "translateX(-5000px)";
-  businessPart3.style.transform= "translateX(0px)"
+  businessPart2.style.display= "none";
+  businessPart3.style.display= "block"
 }
+irAtras3busi.onclick = function(){
+  businessPart3.style.display= "none"
+  businessPart2.style.display= "block";
+}
+irParte4busi.onclick = function(){
+  businessPart3.style.display= "none";
+  businessPart4.style.display= "block"
+}
+irAtras4busi.onclick = function(){
+  businessPart4.style.display= "none";
+  businessPart3.style.display= "block"
+}
+
 
 if (document.getElementById('cuidad')) {
     $.ajax({
@@ -269,9 +303,9 @@ $('#tipo_usu').change(function(){
   var tipo = $('#tipo_usu').val();
   if (tipo==3) {
       $('.customers--business').show();
-      $('#frmNewUser').hide();
+      $('.customers--normal').hide();
   }else{
-      $('#frmNewUser').show();
+      $('.customers--normal').show();
       $('.customers--business').hide();
   }
 });
