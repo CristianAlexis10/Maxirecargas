@@ -6,32 +6,29 @@
       <div class="quotation--left">
           <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
             <div class="quotation--form">
-          <form>
+          <form  id="quotationUser">
             <p class="subtitle quo">Ingresa los datos de los Producto o Servicios que desea cotizar y espera nuetra respuesta. </p>
-            <div class="form-group">
-              <label for="nameC" class="label">Nombre Completo</label>
-              <input type="text" name="data[]" class="input" id="nameC" required>
-            </div>
-            <div class="form-group">
-              <label for="Correoquo" class="label">Correo</label>
-              <input type="text" name="data[]" class="input" id="Correoquo" required>
-            </div>
-
-          <div class="form-group">
-              <label for="solicitud" class="label">Tipo de solicitud</label>
-              <input type="text" name="data[]" class="input" id="solicitud" required>
-            </div>
-            <div class="form-group">
-              <label for="solicitud" class="label">Cantidad</label>
-              <input type="number" name="data[]" class="input" id="solicitud" required>
-            </div>
             <div class="form-group">
               <label for="dataprod" class="label">Referencia del producto</label>
               <input type="text" name="data[]" class="input" id="dataprod">
             </div>
             <div class="form-group">
-              <label for="rf" class="label">Descripcion del proyecto</label>
-              <textarea name="data[]" rows="2" cols="80" class="input"></textarea>
+              <label for="cantidad" class="label">Cantidad</label>
+              <input type="number" name="data[]" class="input" id="cantidad" required>
+            </div>
+          <div class="form-group">
+              <label for="solicitud" class="label">Tipo de Servicio</label>
+              <select name="data[]" class="input" id="solicitud" required>
+
+              </select>
+            </div>
+
+            <div class="form-group btn">
+              <input type="button" id="before" value="Anterior">
+                <input type="button" id="nextExis" value="Siguiente">
+            </div>
+            <div class="form-group btn">
+              <input type="button" id="next" value="Otro Producto">
             </div>
             <div class="form-group btn">
               <input type="submit" name="data[]" value="ENVIAR">
@@ -45,7 +42,26 @@
         <h1 class="title--quo">cotizacion</h1>
       </div>
 </div>
+
+<!-- ACA ESTA EL MODAL QUE TE TOCA -->
+<div class="quotation--left">
+  <form>
+    <div class="form-group">
+      <label for="nameC" class="label">Nombre Completo</label>
+      <input type="text" name="data[]" class="input" id="nameC" required>
+    </div>
+    <div class="form-group">
+      <label for="Correoquo" class="label">Correo</label>
+      <input type="text" name="data[]" class="input" id="Correoquo" required>
+    </div>
+    <div class="form-group">
+      <label for="rf" class="label">Descripcion del proyecto</label>
+      <textarea name="data[]" rows="2" cols="80" class="input"></textarea>
+    </div>
+  </form>
+</div>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="views/assets/js/copepr.js"></script>
     <script type="text/javascript" src="views/assets/js/auth.js"></script>
     <script type="text/javascript" src="views/assets/js/menu.js"></script>
+    <script type="text/javascript" src="views/assets/js/quotation.js"></script>

@@ -63,5 +63,16 @@ class ConfigController{
 				 $result = $this->master->selectAllBy('usuario',array('tip_usu_codigo',1));
 				 echo json_encode($result);
 			 }
+			 function selectServices(){
+				 $data=$_POST['data'];
+				 $result = $this->master->selectBy('producto',array('pro_referencia',$data));
+				 if ($result!=array()) {
+					 $result = $this->master->selectAllBy('servicioxproducto',array('pro_codigo',$data));
+				 }else{
+					 $result = "No existe Este producto";
+				 }
+
+				 echo json_encode($result);
+			 }
 }
 ?>
