@@ -1,4 +1,5 @@
-<nav class="navigator">
+
+<nav class="navigator <?php echo $_SESSION['CUSTOMER']['STYLE']['est_usu_navigator'] ;?> ">
   <ul>
       <li><a href="dashboard" class="item"><i class="fa fa-home" aria-hidden="true"></i>
 Inicio</a></li>

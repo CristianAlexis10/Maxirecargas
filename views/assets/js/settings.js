@@ -1,3 +1,33 @@
+$("#saveStyle").click(function() {
+  if ($("#styleButton").prop("checked")) {
+      var style = new Object();
+      style = {"menu":'main--navdark ',"navigator" : 'navigatordark' ,"menu_top" : 'menu--toposcuro'};
+  }else{
+    style = {"menu":' ',"navigator" : '  ' ,"menu_top" : ' '};
+  }
+  $.ajax({
+    url: "cambiar-estilo",
+    type: "POST",
+     dataType:'json',
+     data: ({data: style}),
+     success: function(result){
+        console.log(result);
+        if (result==true) {
+          $('#saveStyle').after('<div class="message">Disfurta de tu nuevo estilo!</div>');
+          // $('#frmNewRol')[0].reset();
+        }else{
+          $('#saveStyle').after('<div class="message">'+result+'</div>');
+        }
+        setTimeout(function(){
+           $('div.message').remove();
+         }, 2000);
+     },
+     error: function(result){
+        console.log(result);
+     }
+  });
+});
+
 $("#frmNewRol").submit(function(e) {
     e.preventDefault();
     dataUser = [];
@@ -12,7 +42,7 @@ $("#frmNewRol").submit(function(e) {
     var modQuation = false;
     var modRoute = false;
 
-    
+
     $("input[name=data-rol-maxi]").each(function(){
       if ($(this).prop("checked")) {
             rol_maxi = true;
@@ -66,7 +96,7 @@ $("#frmNewRol").submit(function(e) {
              dataRoutes.push(0);
         }
     });
-    dataReal = new Object();;
+    dataReal = new Object();
     dataReal['rol_name']=rolName;
     dataReal['rol_maxi']=rol_maxi;
 
@@ -99,7 +129,7 @@ $("#frmNewRol").submit(function(e) {
                     $('#frmNewRol').after('<div class="message">Registrado Exitosamente</div>');
                     // $('#frmNewRol')[0].reset();
                   }else{
-                    $('#frmNewRol').after('<div class="message">'+result+'</div>'); 
+                    $('#frmNewRol').after('<div class="message">'+result+'</div>');
                   }
                   setTimeout(function(){
                      $('div.message').remove();

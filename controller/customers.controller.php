@@ -202,6 +202,7 @@
 												   $data_acceso[]=md5($data[2].$data[5]);
 												   $data_acceso[]=$result['usu_codigo'];
 												   $data_acceso[]=$password[1];
+													 $code=$result['usu_codigo'];
 												   $result = $this->master->procedureAcceso($data_acceso);
 												   $token  = $this->master->procedure("consultaLogin",$data[2]);
 												   $token =  rtrim(strtr(base64_encode($token['token']), '+/', '-_'), '=');
@@ -222,6 +223,7 @@
 													$cabeceras= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 													if(mail($data[5], $título, $mensaje, $cabeceras)){
 													    $result = "Revisa tu correo para activar tu cuenta";
+															$this->master->insert('estiloxusuario',array($code,' ', ' ', ' '));
 													}else{
 													    $result = "error al enviar correo";
 													}
@@ -406,6 +408,17 @@
 			}else{
 				echo "Ocurrio un error";
 			}
+		}
+
+		function chageStyle(){
+			$data = $_POST['data'];
+			$result = $this->master->update('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']),$data,array('usu_codigo'));
+			if ($result==true) {
+				$_SESSION['CUSTOMER']['STYLE'] = $this->master->selectBy('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
+			}else{
+				$result = $this->doizer->knowError($result);
+			}
+			echo json_encode($result);
 		}
 	}
 ?>

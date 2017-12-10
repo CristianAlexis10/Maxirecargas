@@ -53,7 +53,7 @@
 			}else{
 				$result ='por favor seleccione un servicio';
 			}
-
+			$_SESSION['new_stock'] =	$data[2]; 
 			echo json_encode($result);
 			//  $data[]=date('Y-m-d');
 			// header("Location: crear-inventario");

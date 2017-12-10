@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-12-2017 a las 20:49:38
--- Versión del servidor: 10.1.19-MariaDB
--- Versión de PHP: 5.6.28
+-- Tiempo de generación: 10-12-2017 a las 18:22:45
+-- Versión del servidor: 10.1.8-MariaDB
+-- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -290,11 +290,12 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
-('112daaf62d419900664134a51308b48c', 6, '$2y$10$E0/mCH8R1C/Wp1UUOe/e3e6qb1Y1VpP2skxgTbl5Dgif3D4b8NvnO'),
 ('1459', 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
 ('1e3ca150b867bcdd2829cf7635b7028a', 4, '$2y$10$BmvFxqFFoLw2VFgUJOFDAOpWvENIWGalWjAJ/09tIMIxtdcrtRf1a'),
 ('2545', 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
-('2546', 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW');
+('2546', 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW'),
+('af760a2ad632c3099024a4e898b8992f', 9, '$2y$10$Ytvi8cS.IMj3d/UDaVT6eOMztKfLm8DecXmAG08fJk/AsjSvE3Kpu'),
+('f4329de7096b0af39fcdcdd8f888ffe5', 10, '$2y$10$BbBMLECzBeCN1Io6v9NGuOAn6Ni4iUgH9qUab8Yo5g1pPHhyjNTZa');
 
 -- --------------------------------------------------------
 
@@ -438,6 +439,27 @@ CREATE TABLE `estiloxcliente` (
   `ec_hexadecimal` varchar(100) NOT NULL,
   `usu_codigo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estiloxusuario`
+--
+
+CREATE TABLE `estiloxusuario` (
+  `usu_codigo` int(11) NOT NULL,
+  `est_usu_menu` varchar(30) NOT NULL,
+  `est_usu_navigator` varchar(30) NOT NULL,
+  `est_usu_menu_top` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estiloxusuario`
+--
+
+INSERT INTO `estiloxusuario` (`usu_codigo`, `est_usu_menu`, `est_usu_navigator`, `est_usu_menu_top`) VALUES
+(1, 'h', 'jjh', ''),
+(2, 'main--navdark ', 'navigatordark', 'menu--toposcuro');
 
 -- --------------------------------------------------------
 
@@ -648,7 +670,11 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`pro_codigo`, `mar_codigo`, `tip_pro_codigo`, `pro_referencia`, `pro_descripcion`, `pro_imagen`, `pro_estado`) VALUES
 (1, 1, 1, 'hfg', 'fgjf', 'fgj', 0),
-(2, 1, 1, 'dfs', 'sdf', '1512413244.png', 1);
+(2, 1, 1, 'dfs', 'sdf', '1512413244.png', 1),
+(3, 1, 1, '234', '32324', 'icn-maxi.png', 1),
+(4, 1, 1, '234', '32324', 'icn-maxi.png', 1),
+(5, 1, 1, '3254325', '324', 'icn-maxi.png', 1),
+(6, 1, 1, '234546', '435', 'icn-maxi.png', 1);
 
 -- --------------------------------------------------------
 
@@ -757,7 +783,11 @@ INSERT INTO `servicioxproducto` (`tip_ser_cod`, `pro_codigo`) VALUES
 (4, 0),
 (4, 0),
 (4, 0),
-(4, 2);
+(4, 2),
+(4, 3),
+(4, 3),
+(4, 5),
+(4, 6);
 
 -- --------------------------------------------------------
 
@@ -779,7 +809,8 @@ CREATE TABLE `stock` (
 
 INSERT INTO `stock` (`sto_codigo`, `pro_codigo`, `sto_cantidad`, `sto_valor_compra`, `sto_valor_venta`) VALUES
 (1, 1, 4, 5445, 546),
-(2, 2, 5, 54645, 56456);
+(2, 2, 5, 54645, 56456),
+(3, 6, 1, 1000, 1200);
 
 -- --------------------------------------------------------
 
@@ -922,7 +953,8 @@ INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `
 (2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'dssd', 6596, '2017-11-01', 'femenino', 2, 1, 'default.jpg', '2017-11-02', '0000-00-00'),
 (3, 1, 111, 'quien', '', 'esta', 'Isaza', 'aqui', 587458, 1, '21323', 213213, '2000-05-02', 'no se sabe', 2, 2, 'kojada', '2017-11-02', '2017-11-01'),
 (4, 1, 32423, '34234', '', '32423', '', 'yonos', 32423, 1, '', 0, '2017-12-04', 'null', 3, 1, 'defaul.jpg', '2017-12-04', '2017-12-04'),
-(6, 1, 8888, 'sdsad', '', 'asdsa', '', 'yonosoybond@gmail.com', 324324, 1, '', 0, '2004-12-31', 'femenino', 6, 1, 'default.jpg', '2017-12-04', '2017-12-04');
+(9, 1, 98787, '897', '', '89798', '', 'cristian1020011@gmail.com', 786, 1, '', 0, '2004-12-30', 'femenino', 1, 2, 'default.jpg', '2017-12-10', '2017-12-10'),
+(10, 1, 4354, '345', '', '43534', '', 'sdjkashdhsabdkjsgfkgdsjgfdshgfdsh@gmail.com', 4554, 1, '', 0, '2004-12-31', 'femenino', 1, 2, 'default.jpg', '2017-12-10', '2017-12-10');
 
 -- --------------------------------------------------------
 
@@ -1036,6 +1068,12 @@ ALTER TABLE `estado`
 --
 ALTER TABLE `estiloxcliente`
   ADD PRIMARY KEY (`ec_codigo`),
+  ADD KEY `usu_codigo` (`usu_codigo`);
+
+--
+-- Indices de la tabla `estiloxusuario`
+--
+ALTER TABLE `estiloxusuario`
   ADD KEY `usu_codigo` (`usu_codigo`);
 
 --
@@ -1283,7 +1321,7 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `prodxcot`
 --
@@ -1308,7 +1346,7 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
@@ -1338,7 +1376,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
@@ -1385,6 +1423,12 @@ ALTER TABLE `departamento`
 --
 ALTER TABLE `estiloxcliente`
   ADD CONSTRAINT `estiloxcliente_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `estiloxusuario`
+--
+ALTER TABLE `estiloxusuario`
+  ADD CONSTRAINT `estiloxusuario_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `gestion_web`

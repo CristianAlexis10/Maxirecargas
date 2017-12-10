@@ -26,7 +26,7 @@
 		 <?php if ($crud[0]==true) {?>
 		  <div id="regis-user" >
 					<form id="frmNewUser">
-						
+
 						<div class="form-group type--user">
 								<label for="tipo_usu" class="select" >Tipo de Usuario:</label>
 								<select class="dataCl dataEmp input"  id="tipo_usu" required>
@@ -35,12 +35,12 @@
 									<option value="maxi">Maxirecaragas</option>
 								</select>
 						</div>
-						
+
 						<div class="customers--normal">
 							<div class="form-group type--user employe-rol">
 								<label for="type_user" class="select" >Rol:</label>
 								<select class=" input "  id="type_user" required>
-									
+
 								</select>
 							</div>
 							<div class="form-group">
@@ -95,7 +95,7 @@
 								<input type="password"  id="rep_contra" class="input dataCl" required disabled>
 							</div>
 							</div>
-							
+
 							<!-- <div class="form-group">
 								<label for="image" class="laber">Foto de perfil:</label>
 								<input type="file" name="file" id="imageupload">

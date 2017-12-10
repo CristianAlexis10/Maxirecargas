@@ -282,9 +282,9 @@ if (document.getElementById('closeNewCt')) {
 
  closeModalCt.onclick= function() {
    modalCategory.style.display= "none";
-  
+
  }
-  
+
 }
 
 
@@ -543,6 +543,7 @@ var typeUser= $('#tipo_usu').val();
                    data: ({data: dataJson, services:servicios}),
                    success: function(result){
                     if (result==true) {
+                      location.href = "crear-inventario";
                       $("#frmNerProduct").after("<div class='message'>Registrado Exitosamente</div>");
                     }else{
                       $("#frmNerProduct").after("<div class='message'>"+result+"</div>");

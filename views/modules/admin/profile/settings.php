@@ -106,16 +106,29 @@
           </div>
       </div>
       <div id="general">
-          <div class="modo--color">
+        <?php
+          if ($_SESSION['CUSTOMER']['STYLE']['est_usu_menu']!=' ') {?>
+            <div class="modo--color">
               <label>color
-                  <input type="checkbox" name="checkcolor" class="swich green"  >
+                <input type="checkbox" name="checkcolor" id="styleButton" checked class="swich green"  >
+                <div>
                   <div>
-                      <div>
-                      </div>
                   </div>
+                </div>
               </label>
-          </div>
-          <button type="submit" name="button">guardar cambios</button>
+            </div>
+          <?PHP }else{?>
+            <div class="modo--color">
+              <label>color
+                <input type="checkbox" name="checkcolor" id="styleButton"  class="swich green"  >
+                <div>
+                  <div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          <?php }  ?>
+          <input type="button" id="saveStyle" value="Guardar Cambios">
       </div>
 
       </form>

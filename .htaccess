@@ -7,6 +7,8 @@ RewriteRule ^activarCuenta-(\w+)$ index.php?controller=customers&a=activateAccou
 RewriteRule ^eliminar-usuario$ index.php?controller=customers&a=delete
 RewriteRule ^inactivar-usuario$ index.php?controller=customers&a=offUser
 
+RewriteRule ^cambiar-estilo$ index.php?controller=customers&a=chageStyle
+
 #COTIZACION
 RewriteRule ^cotizacion$ index.php?controller=quotation
 
@@ -99,4 +101,3 @@ RewriteRule ^rutas$ index.php?controller=routes
 
 #ROLES
 RewriteRule ^nuevo-rol$ index.php?controller=role&a=newRegister
-

@@ -126,6 +126,7 @@
 									$result = $this->master->consultaSede($data[4]);
 									$result = $this->master->clienteEmpresarial(array($usu_code,$result['sed_codigo'],$data[14]));
 									if ($result == true) {
+										$this->master->insert('estiloxusuario',array($usu_code,' ', ' ', ' '));
 										echo json_encode('Registrado correctamente, revisa tu correo para activar tu cuenta');
 									}else{
 										$result = $this->doizer->knowError($result);

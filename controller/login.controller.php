@@ -31,6 +31,7 @@
 								$_SESSION['CUSTOMER']['MAIL']=$result['usu_correo'];
 								$_SESSION['CUSTOMER']['PHOTO']=$result['usu_foto'];
 								$_SESSION['CUSTOMER']['PERMITS'] = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+								$_SESSION['CUSTOMER']['STYLE'] = $this->master->selectBy('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
 								$fecha = date('Y-m-d');
 								// $this->master->updateMin('usuario',array('usu_ult_inicio_sesion'),array('usu_codigo',$result['usu_codigo']),$fecha);
 								if ($_SESSION['CUSTOMER']['ROL']==3) {

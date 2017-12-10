@@ -1,5 +1,5 @@
 <?php
-	require_once "controller/files.controller.php";
+	require_once "controller/doizer.controller.php";
 	class StockController{
 		private $master;
 		private $tableName;
@@ -8,10 +8,10 @@
 		private $file;
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
-	 		$this->file = new FilesController;
+	 		$this->file = new DoizerController;
 	 		$this->tableName="stock";
-	 		$this->insertException=array('id_stock','cantidad_actual');
-	 		$this->updateException = array('id_stock');
+	 		$this->insertException=array('sto_codigo');
+	 		$this->updateException = array('sto_codigo');
 	 	}
 		function main(){
 			require_once "views/include/scope.header.php";
@@ -30,18 +30,18 @@
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-			$id = $this->master->selectBy('producto',array('referencia',$_SESSION['new_stock']));
-			$data[]=$id['id_producto'];
+			$id = $this->master->selectBy('producto',array('pro_referencia',$_SESSION['new_stock']));
+			$data[]=$id['pro_codigo'];
 			unset($_SESSION['new_stock']);
-			 $data[]=date('Y-m-d');
-			$result = $this->master->insert($this->tableName,$data,$this->insertException);
+			 // $data[]=date('Y-m-d');
+			$result = $this->master->insert($this->tableName,array($data[3],$data[0],$data[1],$data[2]),$this->insertException);
 			if ($result==1) {
 				$_SESSION['message']="Registrado Exitosamente";
 			}else{
 				$_SESSION['message_error']=$result;
 			}
 			header("Location: productos");
-			
+
 		}
 		function readAll(){
 			$result = $this->master->selectAll($this->tableName);
