@@ -2,14 +2,19 @@ var quotation = new Object();
 var indice = 0;
 var indice_actual = 0;
 var indice_total = 0;
+var nuevo_pro = true;
 $("#next").click(function(){
-  
-  quotation[indice]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
-  indice ++;
-  indice_actual = indice;
-  indice_total++;
-  console.log(quotation);
-  $("#quotationUser")[0].reset();
+  if (nuevo_pro==true) {
+    quotation[indice]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
+    indice ++;
+    indice_actual = indice;
+    indice_total++;
+    console.log(quotation);
+    $("#quotationUser")[0].reset();
+  }else{
+    $("#quotationUser")[0].reset();
+    indice_actual=indice_total;
+  }
   showButtons();
 });
 $("#before").click(function(){
@@ -34,14 +39,19 @@ showButtons();
 function showButtons(){
   if (indice_actual==0) {
       $("#before").hide();
+      nuevo_pro = false;
   }else{
     $("#before").show();
+    nuevo_pro = false;
   }
-  if (indice_actual>=(indice_total-1)) {
+  if (indice_actual>=(indice_total)) {
     $("#nextExis").hide();
+    nuevo_pro = true;
   }else{
       $("#nextExis").show();
+      nuevo_pro = false;
   }
+
 }
 
 
