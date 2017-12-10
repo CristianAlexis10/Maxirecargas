@@ -172,8 +172,9 @@
   align-items: center;
   font-family: 'lato';
   margin-top: 10px;
+
 }
-.input--login, .input{
+.input--login{
   position: relative;
   background: transparent;
   border: none;
@@ -183,6 +184,16 @@
   width: 100%;
 
 }
+ .input{
+   position: relative;
+   background: transparent;
+   border: none;
+   outline: none;
+   padding: 8px 0;
+   font-size: 16px;
+   width: 100%;
+   color: #9e9e9e;
+ }
 .label-login, .label{
   font-size: 16px;
   color: #9e9e9e;
@@ -742,20 +753,21 @@ transform: translateY(-5px);
 }
 
 .runform--contenido{
-  width: 400px;
-  margin: 0 auto;
-  position: absolute;
+  width: 80%;
+}
+.superior{
+  margin-bottom: 30px;
 }
 .runform--contenido h1{
   font-weight: 300;
   color: #35a4dd;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .runform--contenido p{
   color: #757575;
   font-size: 18px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   line-height: 22px;
 }
 .fondoimagenes{
@@ -780,23 +792,23 @@ transform: translateY(-5px);
     background-size: cover;
     background-position: 50% 50%;
   }
-#customers--normal--part2{
-  transform: translateX(-5000px);
-  transition: all .5s ease;
+.customers--business{
   width: 100%;
+}
+#customers--normal--part2, #customers--normal--part3{
+  display: none;
+  transition: all .5s ease;
+  box-sizing: border-box;
 }
 #customers--normal--part1{
-  position: absolute;
-  transition: all .5s ease;
   width: 100%;
+  box-sizing: border-box;
 
 }
- #business--parte3, #business--parte2{
-   position: absolute;
-   transform: translateX(-5000px);
+ #business--parte3, #business--parte2, #business--parte4{
+   display: none;
    transition: all .5s ease;
    width: 100%;
-
  }
 
 #business--parte1{
