@@ -7,7 +7,7 @@
 
 				<div class="num--users">
 					<h2>usuarios registrados</h2>
-					<p id="userRegistrado"></p>
+					<p id="userRegistrado" clientesRegistrados()></p>
 				</div>
 				<div class="num--orders">
 					<h2>pedidos solicitados</h2>

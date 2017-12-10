@@ -80,6 +80,7 @@ var linerGraphy= new Chart(liner,{
       }
 });
  $("#dataGrid").DataTable();
+
  function clientesRegistrados(){
      // if (document.getElementById('marca')) {
          $.ajax({
@@ -87,8 +88,9 @@ var linerGraphy= new Chart(liner,{
              type: "POST",
              dataType:'json',
              success: function(result){
-                 $("#userRegistrado").html(result);
+                 $("#userRegistrado").html();
                  console.log(result[0]);
+
              }
          });
      // }
