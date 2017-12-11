@@ -16,10 +16,9 @@
       <div class="imagenes--rigth"></div>
     </div>
     <div id="formularios--run">
+      <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i>
       <div class="contenido--run">
         <div class="runform--left">
-          <!-- <span><i class="fa fa-home" aria-hidden="true"></i>
-</span> -->
         <div class="runform--contenido">
           <div class="superior">
             <h1>Crea tu cuenta</h1>
@@ -66,11 +65,7 @@
                     <label for="cuidad" class="required select">Ciudad:</label>
                     <select class="dataCl input"  id="cuidad" required> </select>
                   </div>
-                  <div class="form-group">
 
-                    <label for="fecha_naci" class="required select">Fecha de Nacimiento:</label>
-                    <input type="date" name="data"  id="fecha_naci" class="input dataCl" max="2005-01-01" min="1950-01-01" required>
-                  </div>
                   <div class="form-group">
                     <label for="dir" class="required label">Dirección:</label>
                     <input type="text" name="data"  id="dir" class="input dataCl"  required>
@@ -90,7 +85,7 @@
                   </div>
                   <div class="customers--password">
                   <div class="form-group">
-                      <label for="contra" class="label">Contraseñasda:</label>
+                      <label for="contra" class="label">Contraseña:</label>
                       <input type="password" name="data" id="contra" class="input dataCl" required>
                   </div>
                   <div class="form-group">
