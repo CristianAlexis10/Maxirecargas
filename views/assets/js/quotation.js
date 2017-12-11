@@ -3,6 +3,7 @@ var indice = 0;
 var indice_actual = 0;
 var indice_total = 0;
 var nuevo_pro = true;
+$("#solicitud").empty();
 $("#next").click(function(){
   if ($("#dataprod").val() != '' && $("#solicitud").val() != '' && $("#cantidad").val() > 0 ) {
       $("#solicitud").empty();
@@ -28,6 +29,7 @@ $("#next").click(function(){
   showButtons();
 });
 $("#before").click(function(){
+  $("#solicitud").empty();
   indice_actual = indice_actual-1;
   $("#dataprod").val(quotation[indice_actual].referencia);
   services($("#dataprod").val());
@@ -37,6 +39,7 @@ $("#before").click(function(){
 
 });
 $("#nextExis").click(function(){
+  $("#solicitud").empty();
   indice_actual = indice_actual+1;
   $("#dataprod").val(quotation[indice_actual].referencia);
   $("#solicitud").val(quotation[indice_actual].servicio);
@@ -44,10 +47,20 @@ $("#nextExis").click(function(){
   showButtons();
 
 });
-
+$("#cantidad").keyup(function(){
+  showButtons();
+});
+$("#dataprod").keyup(function(){
+  showButtons();
+});
 //mostrar botonoes
 showButtons();
 function showButtons(){
+  if (indice_total==0 && $("#dataprod").val() == '' &&  $("#cantidad").val() == ''  ) {
+    $("#openModal").attr("disabled",true);
+  }else{
+    $("#openModal").attr("disabled",false);
+  }
   if (indice_actual==0) {
       $("#before").hide();
       nuevo_pro = false;
