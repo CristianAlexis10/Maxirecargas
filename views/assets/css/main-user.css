@@ -798,6 +798,12 @@ transform: translateY(-5px);
 .customers--business{
   width: 100%;
 }
+.formularios--run span{
+  position: absolute;
+  left: 10px;
+  top: 1px;
+  z-index: 999999px;
+}
 #customers--normal--part2, #customers--normal--part3{
   display: none;
   transition: all .5s ease;
