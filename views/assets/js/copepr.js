@@ -36,10 +36,10 @@ if (document.getElementById('closeConfir')) {
   var openModal = document.getElementById('openModal');
   openModal.onclick = function(){
     modal.style.display = "flex";
-      if (localStorage.cotizacion==0) {
+    var final = new Object;
+      if (localStorage.indice== 0) {
         final[0]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
       }else{
-        var final = new Object;
         final[0]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
         console.log(final);
         console.log(localStorage.cotizacion);
