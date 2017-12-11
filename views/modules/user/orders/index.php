@@ -11,7 +11,42 @@
   <body>
     <div class="order--fondo">
       <div id="order--formone">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="orderSuperior">
+          <h1>datos de product</h1>
+          <p>ingresa el producto y servicio que deseas solicitar.</p>
+        </div>
+        <div class="container--form">
+          <form>
+            <div class="form-groupuser2">
+              <label for="servicio">servicio</label>
+              <select class="selectuser2" id="servicio">
+                <option>cosa</option>
+                <option>cosa2</option>
+              </select>
+            </div>
+            <div class="form-groupuser2">
+              <label for="producto">producto</label>
+              <select class="selectuser2" id="producto">
+                <option>cosapr</option>
+                <option>cosapr2</option>
+              </select>
+            </div>
+            <div class="juntos">
+              <div class="form-groupuser2">
+                <label for="referencia" class="labeluser3">referencia</label>
+                <input id="referencia" class="inputuser3">
+              </div>
+              <div class="form-groupuser2">
+                <label for="cant" class="labeluser3">cantidad</label>
+                <input id="cant" class="inputuser3">
+              </div>
+            </div>
+            <div class="form-groupuser2">
+              <label for="observ">observaciones</label>
+              <textarea name="name" rows="8" cols="80" id="observ" class="inputuser3"></textarea>
+            </div>
+          </form>
+        </div>
         <button type="button" id="orderSiguiente">siguiente</button>
       </div>
       <div id="order--formtwo">
