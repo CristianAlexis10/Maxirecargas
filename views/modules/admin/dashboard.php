@@ -7,15 +7,15 @@
 
 				<div class="num--users">
 					<h2>usuarios registrados</h2>
-					<p id="userRegistrado" clientesRegistrados()></p>
+					<p id="userRegistrado"></p>
 				</div>
 				<div class="num--orders">
 					<h2>pedidos solicitados</h2>
-					<p>2342352</p>
+					<p>no</p>
 				</div>
 				<div class="num--quotation">
 					<h2>cotizaciones solicitadas</h2>
-					<p>14352435</p>
+					<p>no</p>
 				</div>
 
 			<div class="liner">
@@ -23,15 +23,15 @@
 			</div>
 			<div class="ventasDia">
 				<h2>ventas del dia</h2>
-				<p>23343</p>
+				<p id="ventaDiaria"></p>
 			</div>
 			<div class="ventasMes">
 				<h2>ventas del mes</h2>
-				<p>23343</p>
+				<p id="ventaMes"></p>
 			</div>
 			<div class="visitas">
 				<h2>numero de vistas</h2>
-				<p>23343</p>
+				<p>no</p>
 			</div>
 		</div>
 		<div class="wrap--pie">
