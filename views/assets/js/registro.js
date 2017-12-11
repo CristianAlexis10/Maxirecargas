@@ -151,13 +151,13 @@ $("#frmNewUser").submit(function(e) {
                                structure = $(this).val();
                                dataJson.push(structure);
                            });
-             captcha =  grecaptcha.getResponse();
+             // captcha =  grecaptcha.getResponse();
              // console.log(dataJson);
                $.ajax({
                        url: "guardar-cliente",
                        type: "POST",
                         dataType:'json',
-                        data: ({data: dataJson , get_captcha : captcha}),
+                        data: ({data: dataJson }),
                         success: function(result){
                          if (result==true) {
                            $("#frmNewUser").after("<div class='message'>Registrado Exitosamente</div>");
@@ -217,7 +217,8 @@ $("#frmNewUser").submit(function(e) {
  }
 
  //segundo
-
+ $("#normalIrParte3").attr("disabled",true);
+var usu_correo = false;
  function validarEmail( email ) {
      expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
      if ( expr.test(email) ){
@@ -227,10 +228,32 @@ $("#frmNewUser").submit(function(e) {
      }
  }
 
+$("#correo").keyup(function(){
+     var value = $('#correo').val();
+     $.ajax({
+       url: 'validar_correo',
+       type:'post',
+       data:'data='+value,
+   }).done(function(response){
+     if (response=='true') {
+         $('#correo').after('<div class="no-usu">Correo no valido</div>');
+          usu_correo = false;
+          segundoPaso();
+      }else{
+           $('.no-usu').remove();
+         usu_correo = true;
+         segundoPaso();
+      }
+   });
+ });
+
  function segundoPaso(){
-   if (validarEmail($("#correo").val())==true) {
+   if (validarEmail($("#correo").val())==true && usu_correo==true && $("#tel").val() != '' && $("#dir").val() != '') {
+     $("#normalIrParte3").attr("disabled",false);
       console.log('pasa');
    }else{
+     $("#normalIrParte3").attr("disabled",true);
+
      console.log('no pasa');
    }
  }
@@ -363,12 +386,12 @@ $('#tipo_usu').change(function(){
                           dataJson.push(structure);
                 });
                 console.log(dataJson);
-                 captcha =  grecaptcha.getResponse();
+                 // captcha =  grecaptcha.getResponse();
                   $.ajax({
                           url: "guardar-cliente-empresarial",
                           type: "POST",
                            dataType:'json',
-                           data: ({data: dataJson , get_captcha : captcha}),
+                           data: ({data: dataJson}),
                            success: function(result){
                             if (result==true) {
                               $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente</div>");
@@ -403,32 +426,116 @@ $('#nit').keyup(function(){
     if (response=='true') {
         $('#nit').after('<div class="no-usu">Nit no valido</div>');
          num_nit = false;
+         primerpasoBusi();
      }else{
           $('.no-usu').remove();
           num_nit = true;
      }
+     primerpasoBusi();
        enableEmp(num_nit,contraEmp);
   });
 });
-//validar numero de documento
-$('#numDocEmp').keyup(function(){
-    var value = $('#numDocEmp').val();
-    $.ajax({
-      url: 'validar_documento',
-      type:'post',
-      data:'data='+value,
-  }).done(function(response){
-    console.log(response);
-    if (response=='true') {
-        $('#numDocEmp').after('<div class="no-usu">Usuario no valido</div>');
-         num_doc_emp = false;
-     }else{
-          $('.no-usu').remove();
-          num_doc_emp = true;
-     }
-       // enableEmp(num_nit,contraEmp);
-  });
+
+
+//pirmer paso
+$("#businessIrParte2").attr("disabled",true);
+$("#namebus").keyup(function(){
+  primerpasoBusi();
 });
+
+function primerpasoBusi(){
+  if (num_nit==true && $("#social").val() != '' && $().val("#namebus") != '' ) {
+    $("#businessIrParte2").attr("disabled",false);
+  }else{
+    $("#businessIrParte2").attr("disabled",true);
+  }
+}
+//segundo paso
+$("#businessIrParte3").attr("disabled",true);
+$("#sede-tel").keyup(function(){
+  segundoPasoBusi();
+});
+
+function segundoPasoBusi(){
+  if ($("#sed-nom").val() != '' && $().val("#sede-dir") != ''  && $().val("#sede-tel") != '') {
+    $("#businessIrParte3").attr("disabled",false);
+  }else{
+    $("#businessIrParte3").attr("disabled",true);
+  }
+ }
+
+ //tercer paso
+ //validar numero de documento
+ $('#numDocEmp').keyup(function(){
+   var value = $('#numDocEmp').val();
+   $.ajax({
+     url: 'validar_documento',
+     type:'post',
+     data:'data='+value,
+   }).done(function(response){
+     console.log(response);
+     if (response=='true') {
+       $('#numDocEmp').after('<div class="no-usu">Usuario no valido</div>');
+       num_doc_emp = false;
+       tercerPasoBusi();
+     }else{
+       $('.no-usu').remove();
+       num_doc_emp = true;
+       tercerPasoBusi();
+     }
+     // enableEmp(num_nit,contraEmp);
+   });
+ });
+
+ $("#businessIrParte4").attr("disabled",true);
+
+ $("#esta_joda").keyup(function(){
+   tercerPasoBusi();
+   console.log('nada');
+ });
+
+ function tercerPasoBusi(){
+   if (num_doc_emp == true && $("#sede-enc").val() != '' && $("#sede-ape").val() != '') {
+     $("#businessIrParte4").attr("disabled",false);
+   }else{
+     $("#businessIrParte4").attr("disabled",true);
+   }
+  }
+//cuarto paso
+var usu_correoEmp = false;
+$("#sede-correo").keyup(function(){
+     var value = $('#sede-correo').val();
+     $.ajax({
+       url: 'validar_correo',
+       type:'post',
+       data:'data='+value,
+   }).done(function(response){
+     if (response=='true') {
+         $('#sede-correo').after('<div class="no-usu">Correo no valido</div>');
+          usu_correoEmp = false;
+          cuartoPaso();
+      }else{
+           $('.no-usu').remove();
+         usu_correoEmp = true;
+         cuartoPaso();
+      }
+   });
+ });
+
+ function cuartoPaso(){
+   if (validarEmail($("#sede-correo").val())==true && usu_correoEmp==true && $("sede-ext").val() != '' && $("#cargo").val() != '') {
+      $('#registrarEmp').attr('disabled',false);
+      console.log('pasa');
+   }else{
+     $("#registrarEmp").attr("disabled",true);
+     console.log('no pasa');
+   }
+ }
+
+ $("#rep_contraEmp").keyup(function(){
+   cuartoPaso();
+ });
+
 //contraseña empresarial
  $('#rep_contraEmp').attr('disabled',true);
 $('#contraEmp').keyup(function(){
@@ -471,7 +578,7 @@ $('#contraEmp').keyup(function(){
    return ;
   }
   $('#rep_contraEmp').attr('disabled',false);
-    enableEmp(num_nit,contraEmp);
+    cuartoPaso(num_nit,contraEmp);
 
 });
 
@@ -486,7 +593,7 @@ $('#rep_contraEmp').keyup(function(){
     contraEmp=false;
     $('#rep_contraEmp').after('<div class="rep_contrasena">las contraseñas no coinciden</div>');
   }
-    enableEmp(num_nit,contraEmp);
+    cuartoPaso(num_nit,contraEmp);
 
 });
 

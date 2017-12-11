@@ -67,7 +67,7 @@
                     <select class="dataCl input"  id="cuidad" required> </select>
                   </div>
                   <div class="form-group">
-                    <label for="dir" class="required">Fecha de Nacimiento:</label>
+                    <label for="dir" class="required">Dirección:</label>
                     <input type="text" name="data"  id="dir" class="input dataCl"  required>
                   </div>
                   <button type="button"  id="irAtras">atras</button>
@@ -144,16 +144,16 @@
                     </select>
                   </div>
                   <div class="form-group">
-                                  <label for="numDoc" class="label">Numero de documento</label>
+                                  <label for="numDocEmp" class="label">Numero de documento</label>
                                   <input type="text" class="dataEmp input"  id="numDocEmp" required>
                               </div>
                   <div class="form-group">
                                   <label for="sede-enc" class="label">Nombre del contacto</label>
-                                  <input type="text" class="dataEmp input"  id="sede-enc"required>
+                                  <input type="text" class="dataEmp input"  id="sede-enc" required>
                               </div>
                   <div class="form-group">
-                                  <label for="sede-enca" class="label">Apellido del contacto</label>
-                                  <input type="text" class="dataEmp input"  id="sede-enca"required>
+                                  <label for="sede-enc-ape" class="label">Apellido del contacto</label>
+                                  <input type="text" class="dataEmp input"  id="esta_joda" required>
                               </div>
                   <div class="form-group">
                                   <label for="cuidad" >Ciudad</label>
