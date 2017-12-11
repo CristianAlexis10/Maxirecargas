@@ -8,30 +8,30 @@
             <div class="quotation--form">
           <form  id="quotationUser">
             <p class="subtitle quo">Ingresa los datos de los Producto o Servicios que desea cotizar y espera nuetra respuesta. </p>
-            <div class="form-group">
-              <label for="dataprod" class="label">Referencia del producto</label>
-              <input type="text" name="data[]" class="input" id="dataprod">
+            <div class="form-groupuser">
+              <label for="dataprod" class="labeluser">Referencia del producto</label>
+              <input type="text" name="data[]" class="inputuser" id="dataprod">
             </div>
-            <div class="form-group">
-              <label for="cantidad" class="label">Cantidad</label>
-              <input type="number" name="data[]" class="input" id="cantidad" required>
+            <div class="form-groupuser">
+              <label for="cantidad" class="labeluser">Cantidad</label>
+              <input type="number" name="data[]" class="inputuser" id="cantidad" required>
             </div>
-          <div class="form-group">
-              <label for="solicitud" class="label">Tipo de Servicio</label>
-              <select name="data[]" class="input" id="solicitud" required>
+          <div class="form-groupuser">
+              <label for="solicitud" class="labeluser">Tipo de Servicio</label>
+              <select name="data[]" class="inputuser" id="solicitud" required>
 
               </select>
             </div>
 
-            <div class="form-group btn">
+            <div class="form-groupuser btn">
               <input type="button" id="before" value="Anterior">
                 <input type="button" id="nextExis" value="Siguiente">
             </div>
-            <div class="form-group btn">
+            <div class="form-groupuser btn">
               <input type="button" id="next" value="Otro Producto">
             </div>
-            <div class="form-group btn">
-              <input type="button"  value="Confirmar">
+            <div class="form-groupuser btn">
+              <input type="submit" name="data[]" value="ENVIAR">
             </div>
           </form>
         </div>
@@ -44,40 +44,34 @@
 </div>
 
 <!-- ACA ESTA EL MODAL QUE TE TOCA -->
-<div class="modal--quotation">
-    <div class="quotation--left">
-      <form>
-        <div class="form-group">
-          <label for="nameC" class="label">Nombre Completo</label>
-          <input type="text" name="data[]" class="input" id="nameC" required>
-        </div>
-        <div class="form-group">
-          <label for="Correoquo" class="label">Correo</label>
-          <input type="text" name="data[]" class="input" id="Correoquo" required>
-        </div>
-        <div class="form-group">
-          <label for="rf" class="label">Descripcion del proyecto</label>
-          <textarea name="data[]" rows="2" cols="80" class="input"></textarea>
-        </div>
-        <div class="form-group">
-          <input type="button" id="viewAll" value="Ver Productos a cotizar">
-        </div>
-        <div class="form-group btn">
-          <input type="button" id="confirmQuotation" value="Realizar Cotización">
-          <input type="button" id="cancelar" value="Cancelar">
-        </div>
-      </form>
-    </div>
-</div>
+<div class="modal" id="modalConfir">
+  <div class="modal--container">
+    <div class="detalle">
 
-<!-- SEGUNDA modal -->
-<div class="modal--detail">
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <div class="quotation--form">
+      <span id="closeConfir">&times;</span>
+      <form>
+      <h2>ingresa tus datos</h2>
+    <div class="form-groupuser2">
+      <label for="nameC" class="labeluser2">Nombre Completo</label>
+      <input type="text" name="data[]" class="inputuser2" id="nameC" required>
+    </div>
+    <div class="form-groupuser2">
+      <label for="Correoquo" class="labeluser2">Correo</label>
+      <input type="text" name="data[]" class="inputuser2" id="Correoquo" required>
+    </div>
+    <div class="form-groupuser2">
+      <label for="rf" class="labeluser2">Descripcion del proyecto</label>
+      <textarea name="data[]" rows="2" cols="80" class="inputuser2"></textarea>
+    </div>
+    <div class="form-groupuserbtn">
+      <input type="submit" id="confirmQuotation" value="realizar cotizacion">
+      <input type="submit" id="cancelar" value="cancelar">
+    </div>
+  </form>
+    </div>
+  </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="views/assets/js/copepr.js"></script>

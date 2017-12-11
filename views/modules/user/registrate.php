@@ -25,7 +25,7 @@
             <h1>Crea tu cuenta</h1>
             <p id="parralert">Registrate y conoce los beneficios que tenemos para ti</p>
             <div class="form-group type--user">
-              <label for="tipo_usu" class="select " >Tipo de Usuario:</label>
+              <label for="tipo_usu" class="select" >Tipo de Usuario:</label>
               <select class="input"  id="tipo_usu" required></select>
             </div>
           </div>
@@ -63,11 +63,16 @@
                     <input type="number" class="input dataCl" id="tel" name="data" required>
                   </div>
                   <div class="form-group">
-                    <label for="cuidad" class="required">Ciudad:</label>
+                    <label for="cuidad" class="required select">Ciudad:</label>
                     <select class="dataCl input"  id="cuidad" required> </select>
                   </div>
                   <div class="form-group">
-                    <label for="dir" class="required">Dirección:</label>
+
+                    <label for="fecha_naci" class="required select">Fecha de Nacimiento:</label>
+                    <input type="date" name="data"  id="fecha_naci" class="input dataCl" max="2005-01-01" min="1950-01-01" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="dir" class="required label">Dirección:</label>
                     <input type="text" name="data"  id="dir" class="input dataCl"  required>
                   </div>
                   <button type="button"  id="irAtras">atras</button>
@@ -77,7 +82,7 @@
                 <div id="customers--normal--part3">
 
                   <div class="form-group">
-                    <label for="sexo" class="required ">Sexo:</label>
+                    <label for="sexo" class="required select">Sexo:</label>
                     <select class="dataCl input"  id="sexo" required>
                       <option value="femenino">Femenino</option>
                       <option value="masculino">Masculino</option>
@@ -138,7 +143,7 @@
                 <div id="business--parte3">
                   <h1>datos del contacto</h1>
                   <div class="form-group">
-                    <label for="tip_doc">Tipo de documento</label>
+                    <label for="tip_doc" class="select">Tipo de documento</label>
                     <select class="dataEmp input" id="tip_doc">
                       <option value="1">Cedula</option>
                     </select>
@@ -156,7 +161,7 @@
                                   <input type="text" class="dataEmp input"  id="esta_joda" required>
                               </div>
                   <div class="form-group">
-                                  <label for="cuidad" >Ciudad</label>
+                                  <label for="cuidad" class="select" >Ciudad</label>
                                   <select class="dataEmp input" id="cuidad">
                                       <option value="1">Medellin</option>
                                   </select>
@@ -218,7 +223,7 @@
             <button type="submit" name="button" id="btn--login">iniciar sesion</button>
         </form>
         <button id="moveleft">Registrate</button>
-        </div>
+      </div>
       </div>
       </div>
     </div>

@@ -201,6 +201,9 @@
   transform: translateY(16px);
   position: absolute;
 }
+.select{
+  color: #9e9e9e;
+}
 
 .wrap--login, .form-group{
   display: flex;
@@ -819,6 +822,10 @@ transform: translateY(-5px);
 #frmNewBusi{
   width: 100%;
   display: flex;
+}
+
+#moveright{
+  float:right;
 }
 
 
