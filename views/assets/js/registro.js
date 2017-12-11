@@ -177,10 +177,13 @@ $("#frmNewUser").submit(function(e) {
  });
 
 
-
-
+//validaciones
+ $("#normalIrParte2").attr("disabled",true);
  var num_doc = false;
  var contra = false;
+
+
+
  $('#rep_contra').attr('disabled',true);
  // numero de documento
  $('#numDoc').keyup(function(){
@@ -192,14 +195,52 @@ $("#frmNewUser").submit(function(e) {
    }).done(function(response){
      if (response=='true') {
          $('#numDoc').after('<div class="no-usu">usuario no valido</div>');
+
           num_doc = false;
       }else{
            $('.no-usu').remove();
          num_doc = true;
       }
        enable(num_doc,contra);
+       primerpaso(num_doc);
    });
  });
+ $('#priApe').keyup(function(){
+   primerpaso(num_doc);
+ });
+ function primerpaso(doc){
+   if (doc==true && $("#priNom").val() !='' && $('#priApe').val() != '') {
+      $('#normalIrParte2').attr('disabled',false);
+   }else{
+      $('#normalIrParte2').attr('disabled',true);
+   }
+ }
+
+ //segundo
+
+ function validarEmail( email ) {
+     expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+     if ( expr.test(email) ){
+       return true;
+     }else{
+       return false;
+     }
+ }
+
+ function segundoPaso(){
+   if (validarEmail($("#correo").val())==true) {
+      console.log('pasa');
+   }else{
+     console.log('no pasa');
+   }
+ }
+
+ $("#dir").keyup(function(){
+   segundoPaso();
+ });
+
+
+
  //contraseñas
  $('#contra').keyup(function(){
    var contra_ingresada = $('#contra').val().length;
