@@ -211,6 +211,10 @@
             <label for="password" class="label-login">Contraseña</label>
             <input type="password" name="data-login" id="pass" class="input--login" required>
           </div>
+          <!-- <div class="wrap--login">
+            <label for="password" class="label-login">repita</label>
+            <input type="password" name="data-login" data-parsley-equalto="#pass"  required>
+          </div> -->
             <button type="submit" name="button" id="btn--login">iniciar sesion</button>
         </form>
         <button id="moveleft">Registrate</button>
@@ -222,10 +226,12 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- <script type="text/javascript" src="views/assets/js/config.js"></script> -->
+    <script src="views/assets/lib/parsley/parsley.min.js"></script>
+    <script src="views/assets/lib/parsley/es.js"></script>
+    <script type="text/javascript" src="views/assets/js/auth.js"></script>
     <script type="text/javascript" src="views/assets/js/registro.js"></script>
-      <script type="text/javascript" src="views/assets/js/auth.js"></script>
     <!-- <script type="text/javascript" src="views/assets/js/menu.js"></script> -->
 
   </body>

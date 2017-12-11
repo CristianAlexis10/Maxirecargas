@@ -29,7 +29,7 @@ $('#pass').focus(function(){
 //capturar el evento submit
 $("#form--login").submit(function(e) {
     e.preventDefault();
-    if ($(this).parsley().isValid()) {
+    if ($('#document').val() != '' || $('#pass').val() != '' ) {
             dataJson = [];
             $("input[name=data-login]").each(function(){
                 structure = {};
@@ -59,6 +59,11 @@ $("#form--login").submit(function(e) {
                   console.log(result);
                }
             });
+  }else{
+    $('#form--login').after('<div class="message-red">Valores Requeridos</div>');
+    setTimeout(function(){
+        $('div.message-red').remove();
+    }, 2000);
   }
 });
 
