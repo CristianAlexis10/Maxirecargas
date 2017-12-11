@@ -1,4 +1,6 @@
 var quotation = new Object();
+localStorage.setItem("cotizacion", '');
+localStorage.setItem("indice", 0);
 var indice = 0;
 var indice_actual = 0;
 var indice_total = 0;
@@ -9,10 +11,12 @@ $("#next").click(function(){
       $("#solicitud").empty();
     if (nuevo_pro==true) {
       quotation[indice]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
+      localStorage.setItem("cotizacion", JSON.stringify(quotation));
       indice ++;
+      localStorage.setItem("indice", indice);
       indice_actual = indice;
       indice_total++;
-      console.log(quotation);
+      // console.log(quotation);
       $("#quotationUser")[0].reset();
     }else{
       $("#quotationUser")[0].reset();
