@@ -47,7 +47,6 @@
 <div class="modal" id="modalConfir">
   <div class="modal--container">
     <div class="detalle">
-
     </div>
     <div class="quotation--form">
       <span id="closeConfir">&times;</span>
@@ -62,7 +61,15 @@
       <input type="text" name="data[]" class="inputuser2" id="Correoquo" required>
     </div>
     <div class="form-groupuser2">
-      <label for="rf" class="labeluser2">Descripcion del proyecto</label>
+      <label for="tel" class="labeluser2">Telefono</label>
+      <input type="number" name="data[]" class="inputuser2" id="tel" required>
+    </div>
+    <div class="form-groupuser2">
+      <label for="dir" class="labeluser2">Dirección</label>
+      <input type="text" name="data[]" class="inputuser2" id="dir" required>
+    </div>
+    <div class="form-groupuser2">
+      <label for="rf" class="labeluser2">Observaciones</label>
       <textarea name="data[]" rows="2" cols="80" class="inputuser2"></textarea>
     </div>
     <div class="form-groupuserbtn">

@@ -17,7 +17,7 @@
 			               		<?php
 			               		}else{?>
 			               			<option value="<?php echo $row['id_tipo_doc']?>"><?php echo $row['nombre']?></option>
-			               		<?php 
+			               		<?php
 			               		} } ?>
 			               </select>
 			           </div>
@@ -51,7 +51,7 @@
 			               		<?php
 			               		}else{?>
 			               			<option value="<?php echo $row['id_ciudad']?>"><?php echo $row['ciu_nombre']?></option>
-			               		<?php 
+			               		<?php
 			               		} } ?>
 			               </select>
 			            </div>
@@ -69,11 +69,11 @@
 			               	<<?php
 			               	 foreach ($this->master->selectAll('tipo_usuario') as $row) {
 			               		if ($row['tip_usu_codigo']==$result['tip_usu_codigo']) {?>
-			               		<option value="<?php echo $row['tip_usu_codigo']?>" selected><?php echo $row['rol']?></option>
+			               		<option value="<?php echo $row['tip_usu_codigo']?>" selected><?php echo $row['tip_usu_rol']?></option>
 			               		<?php
 			               		}else{?>
-			               			<option value="<?php echo $row['tip_usu_codigo']?>"><?php echo $row['rol']?></option>
-			               		<?php 
+			               			<option value="<?php echo $row['tip_usu_codigo']?>"><?php echo $row['tip_usu_rol']?></option>
+			               		<?php
 			               		} } ?>
 			               </select>
 			            </div>
@@ -87,7 +87,7 @@
 			               		<?php
 			               		}else{?>
 			               			<option value="<?php echo $row['id_estado']?>"><?php echo $row['est_estado']?></option>
-			               		<?php 
+			               		<?php
 			               		} } ?>
 			               </select>
 			            </div>
