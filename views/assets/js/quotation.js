@@ -18,7 +18,12 @@ $("#next").click(function(){
       indice_actual=indice_total;
     }
   }else{
-    console.log('Campos Vacios');
+    $("#quotationUser").after('<div class="message"> Campos Vacios</div>');
+    setTimeout(function(){
+       $('div.message').remove();
+     }, 2000);
+
+
   }
   showButtons();
 });
