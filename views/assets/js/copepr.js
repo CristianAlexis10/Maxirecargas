@@ -22,7 +22,10 @@ if (document.getElementById('closeConfir')) {
   CloseModal.onclick= function(){
     modal.style.display = "none";
   };
-
+  var openModal = document.getElementById('openModal');
+  openModal.onclick = function(){
+    modal.style.display = "flex";
+  }
 }
 
 
@@ -32,6 +35,7 @@ $('#orderSiguiente').click(function() {
     $('#order--container').animate({
     'marginLeft':"0"
     });
+    $('#order--formtwo').animate({});
 
     $('.order--contenido').animate({
     'marginLeft' : "100%"
