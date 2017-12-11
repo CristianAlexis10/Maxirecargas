@@ -99,13 +99,59 @@
 
 /*views orders*/
 .order--fondo{
-  position: absolute;
-  z-index: -9999px;
-  width: 100%;
-  height: 100%;
-  background: red;
+  background: #35a4dd url(../image/pedido.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  z-index: -9999;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+#order--formone{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+}
+#order--formtwo{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+}
+#order--container{
+  width: 50%;
+  height: 100%;
+  max-height: 100%;
+  margin-left: 50%;
+  position: absolute;
+  overflow: hidden;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.order--contenido{
+  width: 200%;
+  position: relative;
+  height: 100%;
+  left: 0;
+  left: -100%;
+}
+.order--left, .order--rigth{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order--left{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background: rgba(53, 164, 221, .5)
+}
+.order--rigth{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  background: rgba(255, 0, 255, 0.5);
 }
 
 /*inputs*/
@@ -124,7 +170,7 @@
   padding: 0 0 0 5px;
 
 }
-.form-groupuser .inputuser, .inputuser2  {
+.form-groupuser .inputuser {
   padding:8px 2px;
   border-radius: 8px;
   outline: none;
@@ -133,6 +179,16 @@
   font-size: 16px;
   background: transparent;
   color:white;
+}
+.inputuser2 {
+  padding:8px 2px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #9e9e9e;
+  position: relative;
+  font-size: 16px;
+  background: transparent;
+
 }
  .inputuser:after, .inputuser:before,.inputuser2:after, .inputuser2:before {
    content: "";
@@ -209,6 +265,7 @@
   background: transparent;
   font-size: 16px;
   transition: all .4s ease;
+  color: black;
 }
 .form-groupuserbtn input:hover{
   background: #35a4dd;

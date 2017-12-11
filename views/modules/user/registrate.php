@@ -16,7 +16,6 @@
       <div class="imagenes--rigth"></div>
     </div>
     <div id="formularios--run">
-      <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i>
       <div class="contenido--run">
         <div class="runform--left">
         <div class="runform--contenido">
@@ -211,10 +210,6 @@
             <label for="password" class="label-login">Contraseña</label>
             <input type="password" name="data-login" id="pass" class="input--login" required>
           </div>
-          <!-- <div class="wrap--login">
-            <label for="password" class="label-login">repita</label>
-            <input type="password" name="data-login" data-parsley-equalto="#pass"  required>
-          </div> -->
             <button type="submit" name="button" id="btn--login">iniciar sesion</button>
         </form>
         <button id="moveleft">Registrate</button>
@@ -222,6 +217,7 @@
       </div>
       </div>
     </div>
+    <span class="menu--registrar"><i class="fa fa-bars" aria-hidden="true" id="menu"></i>
 
 
 
