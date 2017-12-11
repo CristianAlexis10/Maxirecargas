@@ -34,7 +34,7 @@
 								$_SESSION['CUSTOMER']['STYLE'] = $this->master->selectBy('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
 								$fecha = date('Y-m-d');
 								// $this->master->updateMin('usuario',array('usu_ult_inicio_sesion'),array('usu_codigo',$result['usu_codigo']),$fecha);
-								if ($_SESSION['CUSTOMER']['ROL']==3) {
+								if ($_SESSION['CUSTOMER']['ROL']==3 OR $_SESSION['CUSTOMER']['ROL']==1 ) {
 									$_SESSION['CUSTOMER']['CLIENT'] = true;
 									echo json_encode('customer');
 								}else{

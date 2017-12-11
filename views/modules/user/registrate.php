@@ -67,8 +67,13 @@
                     <select class="dataCl input"  id="cuidad" required> </select>
                   </div>
                   <div class="form-group">
+<<<<<<< HEAD
                     <label for="fecha_naci" class="required select">Fecha de Nacimiento:</label>
                     <input type="date" name="data"  id="fecha_naci" class="input dataCl" max="2005-01-01" min="1950-01-01" required>
+=======
+                    <label for="dir" class="required">Dirección:</label>
+                    <input type="text" name="data"  id="dir" class="input dataCl"  required>
+>>>>>>> 6376187954053180af514a8860da991147a6a1f1
                   </div>
                   <button type="button"  id="irAtras">atras</button>
                   <button type="button" id="normalIrParte3">siguiente</button>
@@ -144,16 +149,16 @@
                     </select>
                   </div>
                   <div class="form-group">
-                                  <label for="numDoc" class="label">Numero de documento</label>
+                                  <label for="numDocEmp" class="label">Numero de documento</label>
                                   <input type="text" class="dataEmp input"  id="numDocEmp" required>
                               </div>
                   <div class="form-group">
                                   <label for="sede-enc" class="label">Nombre del contacto</label>
-                                  <input type="text" class="dataEmp input"  id="sede-enc"required>
+                                  <input type="text" class="dataEmp input"  id="sede-enc" required>
                               </div>
                   <div class="form-group">
-                                  <label for="sede-enca" class="label">Apellido del contacto</label>
-                                  <input type="text" class="dataEmp input"  id="sede-enca"required>
+                                  <label for="sede-enc-ape" class="label">Apellido del contacto</label>
+                                  <input type="text" class="dataEmp input"  id="esta_joda" required>
                               </div>
                   <div class="form-group">
                                   <label for="cuidad" class="select" >Ciudad</label>
