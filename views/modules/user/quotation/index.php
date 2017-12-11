@@ -31,7 +31,7 @@
               <input type="button" id="next" value="Otro Producto">
             </div>
             <div class="form-groupuser btn">
-              <input type="submit" name="data[]" value="ENVIAR">
+              <input type="button" id="openModal" value="ENVIAR">
             </div>
           </form>
         </div>
