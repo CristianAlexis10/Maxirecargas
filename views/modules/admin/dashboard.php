@@ -10,12 +10,12 @@
 					<p id="userRegistrado"></p>
 				</div>
 				<div class="num--orders">
-					<h2>pedidos solicitados</h2>
-					<p>no</p>
+					<h2>total pedidos solicitados</h2>
+					<p id="totalPed"></p>
 				</div>
 				<div class="num--quotation">
 					<h2>cotizaciones solicitadas</h2>
-					<p>no</p>
+					<p id="totalCot"></p>
 				</div>
 
 			<div class="liner">
@@ -30,8 +30,8 @@
 				<p id="ventaMes"></p>
 			</div>
 			<div class="visitas">
-				<h2>numero de vistas</h2>
-				<p>no</p>
+				<h2>Pedidos del dia</h2>
+				<p id="pedDay"></p>
 			</div>
 		</div>
 		<div class="wrap--pie">

@@ -41,6 +41,11 @@ class ConfigController{
             $result = $this->master->clientesEstrellas();
             echo json_encode($result);
         }
+        function graficaTotalUser(){
+            $naturales = $this->master->totalPersonasNaturales();
+            $juridicas = $this->master->totalPersonasJuridicas();
+            echo json_encode(array($naturales[0],$juridicas[0] ));
+        }
         function ventaDiaria(){
             $result = $this->master->ventaDiaria(date('Y-m-d'));
             echo json_encode($result);
@@ -51,6 +56,18 @@ class ConfigController{
         }
         function productosAgotarse(){
             $result = $this->master->productosAgotarse();
+            echo json_encode($result);
+        }
+        function totalPedidos(){
+            $result = $this->master->totalPedidos();
+            echo json_encode($result);
+        }
+        function totalCotizaciones(){
+            $result = $this->master->totalCotizaciones();
+            echo json_encode($result);
+        }
+        function pedDay(){
+            $result = $this->master->pedDay(date('Y-m-d'));
             echo json_encode($result);
         }
         function listaVisitas(){
