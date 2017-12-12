@@ -1,5 +1,4 @@
 var quotation = new Object();
-localStorage.setItem("cotizacion", '');
 localStorage.setItem("indice", 0);
 var indice = 0;
 var indice_actual = 0;
@@ -13,6 +12,7 @@ $("#next").click(function(){
       quotation[indice]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
       localStorage.setItem("cotizacion", JSON.stringify(quotation));
       localStorage.setItem("indice", (indice+1));
+      localStorage.setItem("indice_total", indice_total);
       indice ++;
       indice_actual = indice;
       indice_total++;
@@ -115,3 +115,53 @@ function services(pro){
       }
   });
 }
+
+
+if (document.getElementById('closeConfir')) {
+  var CloseModal = document.getElementById('closeConfir');
+  var modal = document.getElementById('modalConfir');
+  CloseModal.onclick= function(){
+    modal.style.display = "none";
+  };
+  var openModal = document.getElementById('openModal');
+  openModal.onclick = function(){
+    $('#detalles').empty();
+    modal.style.display = "flex";
+      if (localStorage.indice== 0) {
+        quotation[0]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
+        // for (var i = 0; i <= quotation.length; i++) {
+        // }
+        var i = 0;
+        while (quotation[i]!=undefined) {
+          $('#detalles').append('<p> Servicio: '+quotation[i].servicio+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+          // console.log(i);
+          i++;
+        }
+        // console.log(  quotation[3]);
+      }else{
+        quotation[(indice_total)]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
+        var i = 0;
+        while (quotation[i]!=undefined) {
+          $('#detalles').append('<p> Servicio: '+quotation[i].servicio+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+          // console.log(i);
+          i++;
+        }
+        // console.log(quotation);
+      }
+
+  }
+}
+
+
+
+
+var todos_servicios;
+  $.ajax({
+    url: "index.php?controller=config&a=selectAllServices",
+    type: "POST",
+    dataType:'json',
+    success: function(result){
+      todos_servicios = result;
+      console.log(todos_servicios);
+    }
+  });

@@ -71,8 +71,10 @@ class ConfigController{
 				 }else{
 					 $result = "No existe Este producto";
 				 }
-
-				 echo json_encode($result);
+			 }
+			 function selectAllServices(){
+				 	$result = $this->master->selectAll('tipo_servicio');
+					echo json_encode($result);
 			 }
 }
 ?>

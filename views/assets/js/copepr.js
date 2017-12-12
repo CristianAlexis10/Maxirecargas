@@ -27,26 +27,6 @@ $(".inputuser3").focusout(function(){
     $(this).parent().removeClass("color-labeluser3");
 });
 
-if (document.getElementById('closeConfir')) {
-  var CloseModal = document.getElementById('closeConfir');
-  var modal = document.getElementById('modalConfir');
-  CloseModal.onclick= function(){
-    modal.style.display = "none";
-  };
-  var openModal = document.getElementById('openModal');
-  openModal.onclick = function(){
-    modal.style.display = "flex";
-    var final = new Object;
-      if (localStorage.indice== 0) {
-        final[0]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
-      }else{
-        final[0]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
-        console.log(final);
-        console.log(localStorage.cotizacion);
-      }
-
-  }
-}
 
 
 //views order mover

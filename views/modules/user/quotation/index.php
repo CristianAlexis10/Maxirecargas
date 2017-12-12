@@ -47,6 +47,9 @@
 <div class="modal" id="modalConfir">
   <div class="modal--container">
     <div class="detalle">
+        <div id="detalles">
+
+        </div>
     </div>
     <div class="quotation--form">
       <span id="closeConfir">&times;</span>
