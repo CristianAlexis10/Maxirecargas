@@ -65,34 +65,49 @@
 }
 
 /*views product*/
-.container--products{
-  display: flex;
-  background: red;
-}
-.container--products span{
-  margin: 20px;
-  font-size: 25px;
-}
+
 .products{
   width: 100%;
   height: 200px;
+  border-bottom: 1px solid black;
   display: flex;
   justify-content:space-around;
   align-items: center;
 }
-.toner img{
-  width: 150px;
-  height: 100px;
-  margin-top: 12px;
+.products .item{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
-.toner img:hover{
+.item.toner img, .item.impresora img, .item.computadores img{
   width: 180px;
-  height: 130px;
-  transition: all .2s ease-in;
 }
-.cartucho img, .impresora img, .computadores img{
-  width: 150px;
-  height: 120px;
+.item.cartucho img{
+  width: 120px;
+  transition: all .5s ease;
+}
+
+.item.cartucho h3, .item.toner h3, .item.impresora h3, .item.computadores h3{
+  font-family: 'lato';
+  text-transform: capitalize;
+  color: #9e9e9e;
+  position: absolute;
+  bottom: 10px;
+
+}
+.menuProduct{
+  position: absolute;
+  padding: 10px;
+  font-size: 25px;
+}
+
+.container--marcas{
+  width: 100%;
+  height: 50px;
+  background: #e345e3;
 }
 
 

@@ -11,27 +11,36 @@
   <body>
 
   <div class="container--products">
-    <span ><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
+    <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
     <div class="products">
-      <div class="toner">
+      <div class="item toner">
         <img src="views/assets/image/toner.png">
         <h3>toner</h3>
       </div>
-      <div class="cartucho">
+      <div class="item cartucho">
         <img src="views/assets/image/cartuchos.png" >
         <h3>cartuchos</h3>
       </div>
-      <div class="impresora">
+      <div class="item impresora">
         <img src="views/assets/image/impresora.png">
         <h3>impresoras</h3>
       </div>
-      <div class="computadores">
+      <div class="item computadores">
         <img src="views/assets/image/computador.png">
         <h3>computadores</h3>
       </div>
     </div>
-    <div class="products--marcas">
+    <div class="container--marcas">
+      <div class="marcas toner">
+      </div>
+      <div class="marcas cartucho">
+      </div>
+      <div class="marcas impresora">
+      </div>
+      <div class="marcas computadores">
+      </div>
     </div>
+
   </div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

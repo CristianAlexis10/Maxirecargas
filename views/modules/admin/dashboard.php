@@ -43,6 +43,7 @@
 			</div>
 		</div>
 		<div class="graphyData">
+			<h1>Clientes Premium </h1>
 				<table id="dataGrid">
 					<thead>
 						<tr>
@@ -64,17 +65,9 @@
 					</tbody>
 				</table>
 			</div>
-
 			<div class="container--map">
-				 <div id="map"></div>
-				 <style >
-					  #map{
-					  width: 100%;
-					  height: 350px;
-					  margin: 0 auto;
-
-					}
-				</style>
+				<h1>mapa de Cliente</h1>
+				<div id="map"></div>
 			</div>
 
 </article>
