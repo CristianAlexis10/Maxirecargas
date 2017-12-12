@@ -110,7 +110,7 @@ function services(pro){
         $("#solicitud").empty();
           var selector = document.getElementById('solicitud');
           for (var i = 0; i < result.length; i++) {
-              selector.options[i] = new Option(result[i].tip_ser_cod,result[i].tip_ser_cod);
+              selector.options[i] = new Option(result[i].tip_ser_nombre,result[i].tip_ser_cod);
           }
       }
   });

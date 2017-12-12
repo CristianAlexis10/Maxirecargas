@@ -592,6 +592,19 @@ class MasterModel{
 
        return $result;
    }
+    //servicio por producto
+    public function servicioInner($code){
+       try {
+           $this->sql="call servicioInner(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($code));
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
     //USUARIOS EXISTENTES
     public function clientesRegistrados(){
        try {

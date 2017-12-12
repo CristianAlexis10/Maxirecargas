@@ -67,7 +67,7 @@ class ConfigController{
 				 $data=$_POST['data'];
 				 $result = $this->master->selectBy('producto',array('pro_referencia',$data));
 				 if ($result!=array()) {
-					 $result = $this->master->selectAllBy('servicioxproducto',array('pro_codigo',$data));
+					 $result = $this->master->servicioInner($data);
 				 }else{
 					 $result = "No existe Este producto";
 				 }
