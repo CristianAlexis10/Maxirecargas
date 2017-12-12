@@ -61,8 +61,10 @@ var map;
         type: "POST",
         dataType:'json',
         success: function(result){
+          console.log(result);
           for (var i = 0; i < result.length; i++) {
-            var dir = "calle 9"+i+" medellin";
+            var dir =  result[i].ciu_nombre +" "+result[i].pai_nombre+" "+ result[i].usu_direccion ;
+            // console.log(dir);
             getLat(dir);
           }
         }

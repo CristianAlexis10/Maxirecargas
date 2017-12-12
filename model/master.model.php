@@ -709,6 +709,19 @@ class MasterModel{
 
        return $result;
    }
+    //direcciones
+    public function innerJoinDireccion(){
+       try {
+           $this->sql="call innerJoinDireccion()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
 
 }
 

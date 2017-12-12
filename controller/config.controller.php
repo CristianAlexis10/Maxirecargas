@@ -60,7 +60,7 @@ class ConfigController{
             echo json_encode($result);
         }
 			 function directions(){
-				 $result = $this->master->selectAllBy('usuario',array('tip_usu_codigo',1));
+				 $result = $this->master->innerJoinDireccion();
 				 echo json_encode($result);
 			 }
 			 function selectServices(){

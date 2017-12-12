@@ -44,26 +44,8 @@
 		</div>
 		<div class="graphyData">
 			<h1>Clientes Premium </h1>
-				<table id="dataGrid">
-					<thead>
-						<tr>
-							<th>Cliente</th>
-							<th>Nro. Pedidos</th>
-							<th>Nron. prpductos</th>
-							<th>ultimo pedido</th>
-							<th>ver mas</th>
-						</tr>
-					</thead>
-					<tbody>
-							<tr>
-									<td>maxirecagas</td>
-									<td>34</td>
-									<td>99</td>
-									<td>12/07/2017</td>
-									<td><i class="fa fa-external-link" aria-hidden="true"></i></td>
-							</tr>
-					</tbody>
-				</table>
+			<?php require_once "views/modules/config/datatables/datatable-client-star.php"; ?>
+
 			</div>
 			<div class="container--map">
 				<h1>mapa de Cliente</h1>
