@@ -12,9 +12,10 @@
                          <td><?php echo $row['tip_ser_nombre'];?></td>
                             <td><?php echo $row['tip_ser_descripcion'];?></td>
                            <td>
-                             <?php 
+                             <?php
                              $modulo = 'productos';
-                            $crud = permisos($modulo,$permit);      
+                               $permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+                            $crud = permisos($modulo,$permit);
                             if ($crud[2]==true) {?>
                             <a href="modificar-servicio-<?php echo rtrim(strtr(base64_encode($row['Tip_ser_cod']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
                             <?php }   if ($crud[3]==true) {?>
