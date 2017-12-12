@@ -123,6 +123,16 @@ if (document.getElementById('closeConfir')) {
   CloseModal.onclick= function(){
     modal.style.display = "none";
   };
+  function vvv(value){
+    $.ajax({
+      url: "index.php?controller=config&a=selectServiceBy",
+      type: "POST",
+      dataType:'json',
+      data: ({data:value})
+    }).done(function(result){
+      localStorage.setItem("ser", result.tip_ser_nombre);
+    });
+  }
   var openModal = document.getElementById('openModal');
   openModal.onclick = function(){
     $('#detalles').empty();
@@ -133,7 +143,9 @@ if (document.getElementById('closeConfir')) {
         // }
         var i = 0;
         while (quotation[i]!=undefined) {
-          $('#detalles').append('<p> Servicio: '+quotation[i].servicio+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+                vvv(quotation[i].servicio);
+              $('#detalles').append('<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+
           // console.log(i);
           i++;
         }
@@ -142,7 +154,8 @@ if (document.getElementById('closeConfir')) {
         quotation[(indice_total)]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
         var i = 0;
         while (quotation[i]!=undefined) {
-          $('#detalles').append('<p> Servicio: '+quotation[i].servicio+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+          vvv(quotation[i].servicio);
+          $('#detalles').append('<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
           // console.log(i);
           i++;
         }
@@ -151,17 +164,3 @@ if (document.getElementById('closeConfir')) {
 
   }
 }
-
-
-
-
-var todos_servicios;
-  $.ajax({
-    url: "index.php?controller=config&a=selectAllServices",
-    type: "POST",
-    dataType:'json',
-    success: function(result){
-      todos_servicios = result;
-      console.log(todos_servicios);
-    }
-  });
