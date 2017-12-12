@@ -20,10 +20,23 @@
 			}
 		}
 
+		function saveSession(){
+			if ($_POST['data']=='borrar') {
+					$_SESSION['save_quotation'] = ' ';
+			}else{
+				if (isset($_SESSION['save_quotation'])) {
+					$data= $_POST['data'];
+					$_SESSION['save_quotation'] .= $data;
+				}else{
+					$_SESSION['save_quotation'] = '';
+				}
+			}
+			echo json_encode($_SESSION['save_quotation']);
+		}
 		function newQuotationUser(){
-			// $message = $_POST['message'];
-			$message = $_POST['data'];
-			echo json_encode($message);
+			$data= $_POST['data'];
+			$data_services =' ';
+			echo json_encode($_SESSION['save_quotation']);
 		}
 	}
 ?>

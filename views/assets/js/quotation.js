@@ -121,6 +121,7 @@ if (document.getElementById('closeConfir')) {
   var modal = document.getElementById('modalConfir');
   CloseModal.onclick= function(){
     modal.style.display = "none";
+
   };
   function vvv(value){
     $.ajax({
@@ -134,6 +135,18 @@ if (document.getElementById('closeConfir')) {
   }
   var openModal = document.getElementById('openModal');
   openModal.onclick = function(){
+    $.ajax({
+        url: "guardar-cotizacion-session",
+        type: "POST",
+        dataType:'json',
+        data: ({data : 'borrar'}),
+        success: function(result){
+             // console.log(result);
+        },
+        error: function(result){
+             // console.log(result);
+        }
+    });
     $('#detalles').empty();
     modal.style.display = "flex";
       if (localStorage.indice== 0) {
@@ -144,7 +157,19 @@ if (document.getElementById('closeConfir')) {
         while (quotation[i]!=undefined) {
                 vvv(quotation[i].servicio);
               $('#detalles').append('<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
-
+                    var nada = '<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>';
+                    $.ajax({
+                        url: "guardar-cotizacion-session",
+                        type: "POST",
+                        dataType:'json',
+                        data: ({data : nada}),
+                        success: function(result){
+                             // console.log(result);
+                        },
+                        error: function(result){
+                             console.log(result);
+                        }
+                    });
           // console.log(i);
           i++;
         }
@@ -155,11 +180,26 @@ if (document.getElementById('closeConfir')) {
         while (quotation[i]!=undefined) {
           vvv(quotation[i].servicio);
           $('#detalles').append('<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+          var nada = '<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>';
+          $.ajax({
+              url: "guardar-cotizacion-session",
+              type: "POST",
+              dataType:'json',
+              data: ({data : nada}),
+              success: function(result){
+                   // console.log(result);
+              },
+              error: function(result){
+                   console.log(result);
+              }
+          });
           // console.log(i);
           i++;
         }
         // console.log(quotation);
       }
+
+
   }
 }
 
@@ -175,15 +215,15 @@ $("#sendQuotation").submit(function(e) {
                 dataJson.push(structure);
             });
             dataJson.push($("#obser").val());
-            var mensaje = $('#detalles')[0];
-            console.log($('#detalles')[0]);
-            console.log(dataJson);
             $.ajax({
                 url: "realizar-cotizacion-usuario",
                 type: "POST",
                 dataType:'json',
-                data: ({data : dataJson, mns : mensaje}),
+                data: ({data : dataJson}),
                 success: function(result){
+                     console.log(result);
+                },
+                error: function(result){
                      console.log(result);
                 }
             });
