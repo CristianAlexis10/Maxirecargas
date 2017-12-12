@@ -53,31 +53,31 @@
     </div>
     <div class="quotation--form">
       <span id="closeConfir">&times;</span>
-      <form>
+      <form id="sendQuotation">
       <h2>ingresa tus datos</h2>
     <div class="form-groupuser2">
       <label for="nameC" class="labeluser2">Nombre Completo</label>
-      <input type="text" name="data[]" class="inputuser2" id="nameC" required>
+      <input type="text" name="data_user" class="inputuser2" id="nameC" required>
     </div>
     <div class="form-groupuser2">
       <label for="Correoquo" class="labeluser2">Correo</label>
-      <input type="text" name="data[]" class="inputuser2" id="Correoquo" required>
+      <input type="email" name="data_user" class="inputuser2" id="Correoquo" required>
     </div>
     <div class="form-groupuser2">
       <label for="tel" class="labeluser2">Telefono</label>
-      <input type="number" name="data[]" class="inputuser2" id="tel" required>
+      <input type="number" name="data_user" class="inputuser2" id="tel" required>
     </div>
     <div class="form-groupuser2">
       <label for="dir" class="labeluser2">Dirección</label>
-      <input type="text" name="data[]" class="inputuser2" id="dir" required>
+      <input type="text" name="data_user" class="inputuser2" id="dir" required>
     </div>
     <div class="form-groupuser2">
       <label for="rf" class="labeluser2">Observaciones</label>
-      <textarea name="data[]" rows="2" cols="80" class="inputuser2"></textarea>
+      <textarea id="obser" rows="2" cols="80" class="inputuser2"></textarea>
     </div>
     <div class="form-groupuserbtn">
       <input type="submit" id="confirmQuotation" value="realizar cotizacion">
-      <input type="submit" id="cancelar" value="cancelar">
+      <input type="button" id="cancelar" value="cancelar">
     </div>
   </form>
     </div>

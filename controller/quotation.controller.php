@@ -19,5 +19,11 @@
 				require_once "views/include/user/scope.footer.php";
 			}
 		}
+
+		function newQuotationUser(){
+			// $message = $_POST['message'];
+			$message = $_POST['data'];
+			echo json_encode($message);
+		}
 	}
 ?>

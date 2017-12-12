@@ -106,7 +106,6 @@ function services(pro){
       dataType:'json',
       data: ({data: pro}),
       success: function(result){
-        console.log(result);
         $("#solicitud").empty();
           var selector = document.getElementById('solicitud');
           for (var i = 0; i < result.length; i++) {
@@ -161,6 +160,33 @@ if (document.getElementById('closeConfir')) {
         }
         // console.log(quotation);
       }
-
   }
 }
+
+
+
+
+$("#sendQuotation").submit(function(e) {
+    e.preventDefault();
+            dataJson = [];
+            $("input[name=data_user]").each(function(){
+                structure = {};
+                structure = $(this).val();
+                dataJson.push(structure);
+            });
+            dataJson.push($("#obser").val());
+            var mensaje = $('#detalles')[0];
+            console.log($('#detalles')[0]);
+            console.log(dataJson);
+            $.ajax({
+                url: "realizar-cotizacion-usuario",
+                type: "POST",
+                dataType:'json',
+                data: ({data : dataJson, mns : mensaje}),
+                success: function(result){
+                     console.log(result);
+                }
+            });
+
+
+});
