@@ -833,10 +833,43 @@ transform: translateY(-5px);
   width: 100%;
   display: flex;
 }
+#frmNewUser button, #frmNewBusi button{
+  padding: 15px 20px;
+  border: none;
+  background: #35a4dd;
+  color: white;
+  padding: 15px 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 30px;
+}
 
 #moveright{
+  margin-top: 20px;
+  outline: none;
   float:right;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #35a4dd;
+  cursor: pointer;
+
 }
+
+#moveleft{
+  outline: none;
+  cursor: pointer;
+  margin-top: 100px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #35a4dd;
+
+}
+
+
 
 
 .triangle{

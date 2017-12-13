@@ -8,10 +8,11 @@
     <link rel="shortcut icon" href="views/assets/image/logo.png">
     <link rel="stylesheet" href="views/assets/css/copepr.css">
   </head>
-  <body>
-
+  <body class="product--fondo">
+  <div class="banner">
+    <h1>categorias</h1>
+  </div>
   <div class="container--products">
-    <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
     <div class="products">
       <div class="item toner">
         <img src="views/assets/image/toner.png">
@@ -30,17 +31,7 @@
         <h3>computadores</h3>
       </div>
     </div>
-    <div class="container--marcas">
-      <div class="marcas toner">
-      </div>
-      <div class="marcas cartucho">
-      </div>
-      <div class="marcas impresora">
-      </div>
-      <div class="marcas computadores">
-      </div>
-    </div>
-
+    <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
   </div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
