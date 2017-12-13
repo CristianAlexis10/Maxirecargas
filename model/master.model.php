@@ -592,6 +592,19 @@ class MasterModel{
 
        return $result;
    }
+    //servicio por producto
+    public function servicioInner($code){
+       try {
+           $this->sql="call servicioInner(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($code));
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
     //USUARIOS EXISTENTES
     public function clientesRegistrados(){
        try {
@@ -687,6 +700,82 @@ class MasterModel{
     public function productosAgotarse(){
        try {
            $this->sql="call productosAgotarse()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //Pedidos totales
+    public function totalPedidos(){
+       try {
+           $this->sql="call totalPedidos()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //Pedidos cotizaciones
+    public function totalCotizaciones(){
+       try {
+           $this->sql="call totalCotizaciones()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //Pedidos cotizaciones
+    public function pedDay($date){
+       try {
+           $this->sql="call pedidosDelDia(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($date));
+           $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    public function totalPersonasNaturales(){
+       try {
+           $this->sql="call totalPersonasNaturales()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    public function totalPersonasJuridicas(){
+       try {
+           $this->sql="call totalPersonasJuridicas()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetch(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
+    //direcciones
+    public function innerJoinDireccion(){
+       try {
+           $this->sql="call innerJoinDireccion()";
            $query=$this->pdo->prepare($this->sql);
            $query->execute();
            $result = $query->fetchAll(PDO::FETCH_BOTH);

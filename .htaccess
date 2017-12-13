@@ -11,6 +11,8 @@ RewriteRule ^cambiar-estilo$ index.php?controller=customers&a=chageStyle
 
 #COTIZACION
 RewriteRule ^cotizacion$ index.php?controller=quotation
+RewriteRule ^realizar-cotizacion-usuario$ index.php?controller=quotation&a=newQuotationUser
+RewriteRule ^guardar-cotizacion-session$ index.php?controller=quotation&a=saveSession
 
 #EMPRESA
 RewriteRule ^guardar-cliente-empresarial$ index.php?controller=business&a=newBusiness

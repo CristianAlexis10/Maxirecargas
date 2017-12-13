@@ -42,7 +42,7 @@ var map;
   // });
 
   //latitud y longitud segun la direccion
-    function getLat(dir) {
+    function getLat(dir,nombre) {
             GMaps.geocode({
               address: dir,
               callback: function(results, status){
@@ -50,7 +50,7 @@ var map;
                 if(status=='OK'){
                   var latlng = results[0].geometry.location;
                   map.setCenter(latlng.lat(), latlng.lng());
-                  mapUser(latlng.lat(), latlng.lng() , results[0].formatted_address);
+                  mapUser(latlng.lat(), latlng.lng() , nombre+": "+results[0].formatted_address);
                 }
               }
             });
@@ -61,9 +61,11 @@ var map;
         type: "POST",
         dataType:'json',
         success: function(result){
+          console.log(result);
           for (var i = 0; i < result.length; i++) {
-            var dir = "calle 9"+i+" medellin";
-            getLat(dir);
+            var dir =  result[i].ciu_nombre +" "+result[i].pai_nombre+" "+ result[i].usu_direccion ;
+            // console.log(dir);
+            getLat(dir,result[i].usu_primer_nombre);
           }
         }
     });

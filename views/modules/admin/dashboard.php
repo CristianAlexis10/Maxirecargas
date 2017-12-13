@@ -10,12 +10,12 @@
 					<p id="userRegistrado"></p>
 				</div>
 				<div class="num--orders">
-					<h2>pedidos solicitados</h2>
-					<p>no</p>
+					<h2>total pedidos solicitados</h2>
+					<p id="totalPed"></p>
 				</div>
 				<div class="num--quotation">
 					<h2>cotizaciones solicitadas</h2>
-					<p>no</p>
+					<p id="totalCot"></p>
 				</div>
 
 			<div class="liner">
@@ -30,8 +30,8 @@
 				<p id="ventaMes"></p>
 			</div>
 			<div class="visitas">
-				<h2>numero de vistas</h2>
-				<p>no</p>
+				<h2>Pedidos del dia</h2>
+				<p id="pedDay"></p>
 			</div>
 		</div>
 		<div class="wrap--pie">
@@ -44,26 +44,8 @@
 		</div>
 		<div class="graphyData">
 			<h1>Clientes Premium </h1>
-				<table id="dataGrid">
-					<thead>
-						<tr>
-							<th>Cliente</th>
-							<th>Nro. Pedidos</th>
-							<th>Nron. prpductos</th>
-							<th>ultimo pedido</th>
-							<th>ver mas</th>
-						</tr>
-					</thead>
-					<tbody>
-							<tr>
-									<td>maxirecagas</td>
-									<td>34</td>
-									<td>99</td>
-									<td>12/07/2017</td>
-									<td><i class="fa fa-external-link" aria-hidden="true"></i></td>
-							</tr>
-					</tbody>
-				</table>
+			<?php require_once "views/modules/config/datatables/datatable-client-star.php"; ?>
+
 			</div>
 			<div class="container--map">
 				<h1>mapa de Cliente</h1>

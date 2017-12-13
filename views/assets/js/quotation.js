@@ -96,7 +96,7 @@ function showButtons(){
 
 
 $("#dataprod").blur(function(){
-        services($("#dataprod").val());
+  services($("#dataprod").val());
 });
 
 function services(pro){
@@ -106,11 +106,21 @@ function services(pro){
       dataType:'json',
       data: ({data: pro}),
       success: function(result){
-        console.log(result);
+        if (result=='No existe Este producto') {
+                  $("#openModal").attr("disabled",true);
+                  $("#dataprod").after('<div class="message">Este producto no existe</div>');
+                  setTimeout(function(){
+                    $("div.message").remove();
+                  },3000);
+
+              return ;
+        }else{
+            $("#openModal").attr("disabled",false);
+        }
         $("#solicitud").empty();
           var selector = document.getElementById('solicitud');
           for (var i = 0; i < result.length; i++) {
-              selector.options[i] = new Option(result[i].tip_ser_cod,result[i].tip_ser_cod);
+              selector.options[i] = new Option(result[i].tip_ser_nombre,result[i].tip_ser_cod);
           }
       }
   });
@@ -122,9 +132,32 @@ if (document.getElementById('closeConfir')) {
   var modal = document.getElementById('modalConfir');
   CloseModal.onclick= function(){
     modal.style.display = "none";
+
   };
+  function vvv(value){
+    $.ajax({
+      url: "index.php?controller=config&a=selectServiceBy",
+      type: "POST",
+      dataType:'json',
+      data: ({data:value})
+    }).done(function(result){
+      localStorage.setItem("ser", result.tip_ser_nombre);
+    });
+  }
   var openModal = document.getElementById('openModal');
   openModal.onclick = function(){
+    $.ajax({
+        url: "guardar-cotizacion-session",
+        type: "POST",
+        dataType:'json',
+        data: ({data : 'borrar'}),
+        success: function(result){
+             // console.log(result);
+        },
+        error: function(result){
+             // console.log(result);
+        }
+    });
     $('#detalles').empty();
     modal.style.display = "flex";
       if (localStorage.indice== 0) {
@@ -133,7 +166,21 @@ if (document.getElementById('closeConfir')) {
         // }
         var i = 0;
         while (quotation[i]!=undefined) {
-          $('#detalles').append('<p> Servicio: '+quotation[i].servicio+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+                vvv(quotation[i].servicio);
+              $('#detalles').append('<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+                    var nada = '<p> <b>Servicio:</b> '+localStorage.getItem("ser")+'<b> Referencia:</b> '+quotation[i].referencia+' <b>Cantidad:</b> '+quotation[i].cantidad+'</p>';
+                    $.ajax({
+                        url: "guardar-cotizacion-session",
+                        type: "POST",
+                        dataType:'json',
+                        data: ({data : nada}),
+                        success: function(result){
+                             // console.log(result);
+                        },
+                        error: function(result){
+                             console.log(result);
+                        }
+                    });
           // console.log(i);
           i++;
         }
@@ -142,12 +189,27 @@ if (document.getElementById('closeConfir')) {
         quotation[(indice_total)]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
         var i = 0;
         while (quotation[i]!=undefined) {
-          $('#detalles').append('<p> Servicio: '+quotation[i].servicio+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+          vvv(quotation[i].servicio);
+          $('#detalles').append('<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
+          var nada = '<p><b> Servicio:</b> '+localStorage.getItem("ser")+'<b> Referencia:</b> '+quotation[i].referencia+' <b>Cantidad: </b>'+quotation[i].cantidad+'</p>';
+          $.ajax({
+              url: "guardar-cotizacion-session",
+              type: "POST",
+              dataType:'json',
+              data: ({data : nada}),
+              success: function(result){
+                   // console.log(result);
+              },
+              error: function(result){
+                   console.log(result);
+              }
+          });
           // console.log(i);
           i++;
         }
         // console.log(quotation);
       }
+
 
   }
 }
@@ -155,13 +217,36 @@ if (document.getElementById('closeConfir')) {
 
 
 
-var todos_servicios;
-  $.ajax({
-    url: "index.php?controller=config&a=selectAllServices",
-    type: "POST",
-    dataType:'json',
-    success: function(result){
-      todos_servicios = result;
-      console.log(todos_servicios);
-    }
-  });
+$("#sendQuotation").submit(function(e) {
+    e.preventDefault();
+            dataJson = [];
+            $("input[name=data_user]").each(function(){
+                structure = {};
+                structure = $(this).val();
+                dataJson.push(structure);
+            });
+            dataJson.push($("#obser").val());
+            $.ajax({
+                url: "realizar-cotizacion-usuario",
+                type: "POST",
+                dataType:'json',
+                data: ({data : dataJson}),
+                success: function(result){
+                    modal.style.display = "none";
+                    if (result==true) {
+                        $("#openModal").after('<div class="message">Tu cotización ha sido enviada</div>');
+                    }else{
+                        $("#openModal").after('<div class="message">'+result+'</div>');
+                    }
+                    setTimeout(function(){
+                      $("div.message").remove();
+                    },6000);
+                     // console.log(result);
+                },
+                error: function(result){
+                     console.log(result);
+                }
+            });
+
+
+});

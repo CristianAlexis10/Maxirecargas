@@ -41,6 +41,11 @@ class ConfigController{
             $result = $this->master->clientesEstrellas();
             echo json_encode($result);
         }
+        function graficaTotalUser(){
+            $naturales = $this->master->totalPersonasNaturales();
+            $juridicas = $this->master->totalPersonasJuridicas();
+            echo json_encode(array($naturales[0],$juridicas[0] ));
+        }
         function ventaDiaria(){
             $result = $this->master->ventaDiaria(date('Y-m-d'));
             echo json_encode($result);
@@ -53,6 +58,18 @@ class ConfigController{
             $result = $this->master->productosAgotarse();
             echo json_encode($result);
         }
+        function totalPedidos(){
+            $result = $this->master->totalPedidos();
+            echo json_encode($result);
+        }
+        function totalCotizaciones(){
+            $result = $this->master->totalCotizaciones();
+            echo json_encode($result);
+        }
+        function pedDay(){
+            $result = $this->master->pedDay(date('Y-m-d'));
+            echo json_encode($result);
+        }
         function listaVisitas(){
 			// $user = $_GET['data'];
 						$user = 1;
@@ -60,20 +77,22 @@ class ConfigController{
             echo json_encode($result);
         }
 			 function directions(){
-				 $result = $this->master->selectAllBy('usuario',array('tip_usu_codigo',1));
+				 $result = $this->master->innerJoinDireccion();
 				 echo json_encode($result);
 			 }
 			 function selectServices(){
 				 $data=$_POST['data'];
 				 $result = $this->master->selectBy('producto',array('pro_referencia',$data));
 				 if ($result!=array()) {
-					 $result = $this->master->selectAllBy('servicioxproducto',array('pro_codigo',$data));
+					 $result = $this->master->servicioInner($data);
 				 }else{
 					 $result = "No existe Este producto";
 				 }
+				 echo json_encode($result);
 			 }
-			 function selectAllServices(){
-				 	$result = $this->master->selectAll('tipo_servicio');
+			 function selectServiceBy(){
+				 $data = $_POST['data'];
+				 	$result = $this->master->selectBy('tipo_servicio',array('Tip_ser_cod',$data));
 					echo json_encode($result);
 			 }
 }
