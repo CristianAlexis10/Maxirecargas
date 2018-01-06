@@ -138,7 +138,7 @@
                   <h1>datos del contacto</h1>
                   <div class="form-group">
                     <label for="tip_doc" class="select">Tipo de documento</label>
-                    <select class="dataEmp input" id="tip_doc">
+                    <select class="dataEmp input" id="tip_doc2">
                       <option value="1">Cedula</option>
                     </select>
                   </div>
@@ -156,7 +156,7 @@
                               </div>
                   <div class="form-group">
                                   <label for="cuidad" class="select" >Ciudad</label>
-                                  <select class="dataEmp input" id="cuidad">
+                                  <select class="dataEmp input" id="cuidad2">
                                       <option value="1">Medellin</option>
                                   </select>
                               </div>
