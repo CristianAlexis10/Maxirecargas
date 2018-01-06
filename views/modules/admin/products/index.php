@@ -1,51 +1,20 @@
 
 <link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="views/assets/css/multiple-select.css"  media="screen,projection"/>
+<style media="screen">
+	#modal--new,#modal--newCt{
+		display: none;
+	}
+</style>
 <div class="modules customers">
 	<div class="title">
 		<p>PRODUCTOS</p>
 	</div>
 	<?php
 		$modulo = 'productos';
-		$crud = permisos($modulo,$permit);			
+		$crud = permisos($modulo,$permit);
 		if ($crud[0]==true) {?>
-	<div class="newMark--modal" id="modal--new">
-		<div class="container--newMark">
-				<span id="closeNew">&times;</span>
-				<form id="frmNewMar">
-				<h1>crea una nueva marca</h1>
-				<div class="form-group">
-				   <label for="nombre" class="required label">Nombre:</label>
-				   <input type="text" name="dataNewMark" id="nombre" class="input" required>
-				</div>
-				<div class="form-group">
-				   <label for="des" class="required label">Descripción:</label>
-			   		<textarea  id="desMar" class="input"></textarea>
-				</div>
-				<div class="form-group">
-					<button class="btn">Registrar</button>
-				</div>
-			</form>
-			</div>
-		</div>
-	<div class="new--category" id="modal--newCt">
-		<div class="container--newcategory">
-				<span id="closeNewCt">&times;</span>
-				<h1>Registra una nueva categoria</h1>
-				<form class="form Services" id="frmNewCategorie">
-					<div class="form-group">
-						<label for="nombre" class="required label">Nombre:</label>
-						<input type="text" name="dataNewCate" id="nombre" class="input" required>
-					</div>
-					<div class="form-group">
-						<label for="des" class="required label">Descripción:</label>
-						<textarea  id="desCat" class="input"></textarea>
-					</div>
-					<div class="form-group">
-						<button class="btn">Registrar</button>
-					</div>
-				</form>
-			</div>
-		</div>
+
 	<div id="img-product">
 			<div class="newMark--img">
 				<span id="closeImg">&times;</span>
@@ -79,7 +48,7 @@
 			  		<?php require_once "views/modules/config/datatables/datatable-products.php"; ?>
 			  </div>
 		<?php }?>
-		  <?php if ($crud[0]==true) {?> 
+		  <?php if ($crud[0]==true) {?>
 		  <div id="tabs-1" class="new products">
 			<div class="form--left">
 
@@ -106,14 +75,13 @@
 			                <label for="rf" class="label">Referencia:</label>
 			                <input type="text" name="data[]" id="rf" class="input data-new-pro" required>
 			            </div>
-
+									Servicios: <select multiple="multiple" id="selectMul">
 			            <?php
 			            foreach ($this->master->selectAll("tipo_servicio") AS $row) {?>
-				      <label><?php echo $row['tip_ser_nombre'] ?>
-				        <input type="checkbox"  name="ch-tip-ser" value="<?php echo $row['Tip_ser_cod']?>"  >
-				      </label>
+										<option value="<?php echo $row['Tip_ser_cod']?>"><?php echo $row['tip_ser_nombre'] ?></option>
 
 			            <?php }  ?>
+								</select>
 			             <div class="form-group">
 			                <label for="caracteristica" class="label">Caracteristicas:</label>
 											<textarea name="data[]" id="caracteristica" class="input data-new-pro"></textarea>
@@ -153,7 +121,7 @@
 			  		<a href="nueva-categoria">Nueva Categoria</a>
 			  	</div>
 		  	<?php } if ($crud[1]==true) {
-		  	 require_once "views/modules/config/datatables/datatable-categories.php"; 
+		  	 require_once "views/modules/config/datatables/datatable-categories.php";
 		  	} ?>
 
 		  </div>
@@ -164,7 +132,7 @@
 			  		<a href="nueva-marca">Nueva Marca</a>
 			  	</div>
 			<?php }  if ($crud[1]==true) {
-				require_once "views/modules/config/datatables/datatable-trademark.php"; 
+				require_once "views/modules/config/datatables/datatable-trademark.php";
 			} ?>
 		  </div>
 		  <div id="tabs-5">
@@ -175,10 +143,48 @@
 		  	</div>
 
             	<?php }  if ($crud[1]==true) {
-            		require_once "views/modules/config/datatables/datatable-services.php"; 
+            		require_once "views/modules/config/datatables/datatable-services.php";
             	} ?>
 
 		  </div>
 
 	</div>
 </div>
+<div class="newMark--modal" id="modal--new">
+	<div class="container--newMark">
+			<span id="closeNew">&times;</span>
+			<form id="frmNewMar">
+			<h1>crea una nueva marca</h1>
+			<div class="form-group">
+				 <label for="nombre" class="required label">Nombre:</label>
+				 <input type="text" name="dataNewMark" id="nombre" class="input" required>
+			</div>
+			<div class="form-group">
+				 <label for="des" class="required label">Descripción:</label>
+					<textarea  id="desMar" class="input"></textarea>
+			</div>
+			<div class="form-group">
+				<button class="btn">Registrar</button>
+			</div>
+		</form>
+		</div>
+	</div>
+<div class="new--category" id="modal--newCt">
+	<div class="container--newcategory">
+			<span id="closeNewCt">&times;</span>
+			<h1>Registra una nueva categoria</h1>
+			<form class="form Services" id="frmNewCategorie">
+				<div class="form-group">
+					<label for="nombre" class="required label">Nombre:</label>
+					<input type="text" name="dataNewCate" id="nombre" class="input" required>
+				</div>
+				<div class="form-group">
+					<label for="des" class="required label">Descripción:</label>
+					<textarea  id="desCat" class="input"></textarea>
+				</div>
+				<div class="form-group">
+					<button class="btn">Registrar</button>
+				</div>
+			</form>
+		</div>
+	</div>

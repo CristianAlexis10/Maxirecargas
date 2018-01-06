@@ -523,12 +523,11 @@ var typeUser= $('#tipo_usu').val();
         e.preventDefault();
         dataJson = [];
         var servicios= [];
-        $("input[name=ch-tip-ser").each(function(){
-                if ($( this ).is( ":checked" )  ) {
-                   servicios.push($(this).val());
-                }
-        });
-
+        // $("input[name=ch-tip-ser").each(function(){
+        //         if ($( this ).is( ":checked" )  ) {
+                   servicios.push($("#selectMul").val());
+        //         }
+        // });
 
         $(".data-new-pro").each(function(){
                           structure = {}

@@ -7,7 +7,6 @@ var nuevo_pro = true;
 $("#solicitud").empty();
 $("#next").click(function(){
   if ($("#dataprod").val() != '' && $("#solicitud").val() != '' && $("#cantidad").val() > 0 ) {
-      $("#solicitud").empty();
     if (nuevo_pro==true) {
       quotation[indice]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
       localStorage.setItem("cotizacion", JSON.stringify(quotation));
@@ -30,6 +29,7 @@ $("#next").click(function(){
 
 
   }
+  $("#solicitud").empty();
   showButtons();
 });
 $("#before").click(function(){
@@ -134,16 +134,7 @@ if (document.getElementById('closeConfir')) {
     modal.style.display = "none";
 
   };
-  function vvv(value){
-    $.ajax({
-      url: "index.php?controller=config&a=selectServiceBy",
-      type: "POST",
-      dataType:'json',
-      data: ({data:value})
-    }).done(function(result){
-      localStorage.setItem("ser", result.tip_ser_nombre);
-    });
-  }
+
   var openModal = document.getElementById('openModal');
   openModal.onclick = function(){
     $.ajax({
@@ -166,21 +157,28 @@ if (document.getElementById('closeConfir')) {
         // }
         var i = 0;
         while (quotation[i]!=undefined) {
-                vvv(quotation[i].servicio);
-              $('#detalles').append('<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
-                    var nada = '<p> <b>Servicio:</b> '+localStorage.getItem("ser")+'<b> Referencia:</b> '+quotation[i].referencia+' <b>Cantidad:</b> '+quotation[i].cantidad+'</p>';
-                    $.ajax({
-                        url: "guardar-cotizacion-session",
-                        type: "POST",
-                        dataType:'json',
-                        data: ({data : nada}),
-                        success: function(result){
-                             // console.log(result);
-                        },
-                        error: function(result){
-                             console.log(result);
-                        }
-                    });
+                  $.ajax({
+                    url: "index.php?controller=config&a=selectServiceBy",
+                    type: "POST",
+                    dataType:'json',
+                    data: ({data:quotation[i].servicio})
+                  }).done(function(result){
+                    $('#detalles').append('<p> Servicio: '+result.tip_ser_nombre+' Referencia: '+quotation[0].referencia+' Cantidad: '+quotation[0].cantidad+'</p>');
+                          var nada = '<p> <b>Servicio:</b> '+result.tip_ser_nombre+'<b> Referencia:</b> '+quotation[0].referencia+' <b>Cantidad:</b> '+quotation[0].cantidad+'</p>';
+                          $.ajax({
+                              url: "guardar-cotizacion-session",
+                              type: "POST",
+                              dataType:'json',
+                              data: ({data : nada}),
+                              success: function(result){
+                                   // console.log(result);
+                              },
+                              error: function(result){
+                                   console.log(result);
+                              }
+                          });
+                  });
+
           // console.log(i);
           i++;
         }
@@ -189,9 +187,34 @@ if (document.getElementById('closeConfir')) {
         quotation[(indice_total)]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
         var i = 0;
         while (quotation[i]!=undefined) {
-          vvv(quotation[i].servicio);
-          $('#detalles').append('<p> Servicio: '+localStorage.getItem("ser")+' Referencia: '+quotation[i].referencia+' Cantidad: '+quotation[i].cantidad+'</p>');
-          var nada = '<p><b> Servicio:</b> '+localStorage.getItem("ser")+'<b> Referencia:</b> '+quotation[i].referencia+' <b>Cantidad: </b>'+quotation[i].cantidad+'</p>';
+          var referencia = quotation[i].referencia;
+          var can = quotation[i].cantidad;
+          console.log(quotation);
+          console.log(quotation[0].servicio);
+          console.log(quotation[1].servicio);
+            AddItem(quotation[i].servicio,referencia,can);
+          i++;
+        }
+      }
+
+
+  }
+}
+
+
+function AddItem(valor1,valor2,valor3){
+  $.ajax({
+    url: "index.php?controller=config&a=selectServiceBy",
+    type: "POST",
+    dataType:'json',
+    data: ({data:valor1})
+  }).done(function(result){
+    // console.log(valor1);
+    $('#detalles').append('<p> Servicio: '+result.tip_ser_nombre+' Referencia: '+valor2+' Cantidad: '+valor3+'</p>');
+          var nada = '<p> <b>Servicio:</b> '+result.tip_ser_nombre+'<b> Referencia:</b> '+valor2+' <b>Cantidad:</b> '+valor3+'</p>';
+          // console.log(referencia);
+          // console.log(can);
+          // console.log("---------");
           $.ajax({
               url: "guardar-cotizacion-session",
               type: "POST",
@@ -204,19 +227,8 @@ if (document.getElementById('closeConfir')) {
                    console.log(result);
               }
           });
-          // console.log(i);
-          i++;
-        }
-        // console.log(quotation);
-      }
-
-
-  }
+  });
 }
-
-
-
-
 $("#sendQuotation").submit(function(e) {
     e.preventDefault();
             dataJson = [];

@@ -42,18 +42,24 @@
 		function newRegister(){
 			$data = $_POST['data'];
 			$data[]=1;
-			if (isset($_POST['services'])) {
+			if (isset($_POST['services']) &&  $_POST['services'][0]!="") {
 				 $ser = $_POST['services'];
 				$result = $this->master->insert($this->tableName,$data,$this->insertException);
 				// die($result);
 				$data_pro = $this->master->selectBy('producto',array('pro_referencia',$data[2]));
+				$i= 0;
 				foreach ($ser as $key) {
-					$result = $this->master->insert('servicioxproducto',array($key,$data_pro['pro_codigo']));
+					foreach ($key as $value) {
+						$result = $this->master->insert('servicioxproducto',array($ser[0][$i],$data_pro['pro_codigo']));
+						$i++;
+					}
 				}
+			// echo json_encode($ser[0][$i]);
+			// die();
 			}else{
 				$result ='por favor seleccione un servicio';
 			}
-			$_SESSION['new_stock'] =	$data[2]; 
+			$_SESSION['new_stock'] =	$data[2];
 			echo json_encode($result);
 			//  $data[]=date('Y-m-d');
 			// header("Location: crear-inventario");
@@ -88,6 +94,7 @@
 			$data = $_POST['data'];
 			$result = $this->master->selectBy($this->tableName,array('pro_codigo',$data));
 			unlink("views/assets/image/products/".$result['pro_imagen']);
+			$result = $this->master->delete('servicioxproducto',array('pro_codigo',$data));
 			$result = $this->master->delete($this->tableName,array('pro_codigo',$data));
 			// echo json_encode($result);
 			if ($result==1) {

@@ -13,5 +13,14 @@
    <script src="views/assets/js/main.js"></script>
    <script src="views/assets/js/config.js"></script>
    <script src="views/assets/js/settings.js"></script>
+   <script src="views/assets/js/multiple-select.js"></script>
+   <script>
+   if (document.getElementById('selectMul')) {
+      $('#selectMul').multipleSelect({
+            placeholder: "Selecciona los servicios"
+        });
+   }
+    </script>
+
     </body>
 </html>

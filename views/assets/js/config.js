@@ -380,7 +380,7 @@ function clientesRegistrados(){
             dataType:'json',
             success: function(result){
                 $("#userRegistrado").html(result);
-                console.log(result[0]);
+                // console.log(result[0]);
             }
         });
     // }
@@ -395,7 +395,7 @@ function promedioComprasMesUsuario(){
             type: "POST",
             dataType:'json',
             success: function(result){
-                console.log(result);
+                // console.log(result);
             }
         });
 }
@@ -407,7 +407,7 @@ function productosMasSolicitados(){
             type: "POST",
             dataType:'json',
             success: function(result){
-                console.log(result);
+                // console.log(result);
             }
         });
 }
@@ -419,7 +419,7 @@ function clientesEstrellas(){
             type: "POST",
             dataType:'json',
             success: function(result){
-                console.log(result);
+                // console.log(result);
             }
         });
 }
@@ -431,7 +431,7 @@ function ventaDiaria(){
             type: "POST",
             dataType:'json',
             success: function(result){
-                console.log(result);
+                // console.log(result);
             }
         });
 }
@@ -443,7 +443,7 @@ function ventaMensual(){
             type: "POST",
             dataType:'json',
             success: function(result){
-                console.log(result);
+                // console.log(result);
             }
         });
 }
@@ -455,7 +455,7 @@ function listaVisitas(){
             type: "POST",
             dataType:'json',
             success: function(result){
-                console.log(result);
+                // console.log(result);
             }
         });
 }
@@ -467,7 +467,7 @@ function productosAgotarse(){
             type: "POST",
             dataType:'json',
             success: function(result){
-                console.log(result);
+                // console.log(result);
             }
         });
 }
