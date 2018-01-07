@@ -25,6 +25,7 @@ RewriteRule ^validar-ingreso$ index.php?controller=login&a=validateUserpass
 
 #PEDIDOS
 RewriteRule ^pedidos$ index.php?controller=orders
+RewriteRule ^realizar-pedido$ index.php?controller=orders&a=newRegister
 RewriteRule ^detalles-pedido-(\w+)$ index.php?controller=orders&a=viewDetail&data=$1
 
 #CLIENTES Registrados

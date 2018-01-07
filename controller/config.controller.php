@@ -9,6 +9,10 @@ class ConfigController{
             $result = $this->master->selectAll('ciudad');
             echo json_encode($result);
         }
+				function selectCityBy(){
+            $result = $this->master->selectBy('ciudad',array('id_ciudad',$_POST['id']));
+            echo json_encode($result);
+        }
         function selectRole(){
             $result = $this->master->selectAllBy('tipo_usuario',array('tip_usu_maxi','true'));
             echo json_encode($result);

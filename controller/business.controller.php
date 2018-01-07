@@ -86,7 +86,7 @@
 					}
 					$date = date('Y-m-d');
 					// insertar usuario
-					$result = $this->master->procedure14('crearUsuario',array($data[7],$data[8],$data[9],$data[10],$data[13],$data[12],$data[11],$date,'null',$data[0],2,$profile,$date,$date));
+					$result = $this->master->procedure14('crearUsuario',array($data[7],$data[8],$data[9],$data[10],$data[13],$data[12],$data[11],$data[5],'null',3,2,$profile,$date,$date));
 					if ($result==true) {
 						//crear acceso
 						$result  = $this->master->procedure("consultaExisteUsuario",$data[8]);

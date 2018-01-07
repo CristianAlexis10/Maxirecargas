@@ -21,6 +21,7 @@
               <label for="producto" class="labelselect3">referencia</label>
             <input type="text" id="producto" class="inputuser3" >
             </div>
+            <input type="button" id="searchPro" class="inputuser3" value="Buscar">
             <div class="form-groupuser3 hide--service ">
               <label for="servicio" class="labelselect3">servicio</label>
               <select class="selectuser3 " id="servicio">
@@ -50,7 +51,7 @@
         <div class="orderSuperior">
           <h1>confirmar direccion</h1>
           <p>¿Esta es la direccion donde se solicita el pedido?</p>
-          <h2>direccion</h2>
+          <h2 id="orderDir"><?php echo $_SESSION['CUSTOMER']['ADDRESS'];?></h2>
         </div>
         <div class="container--form">
           <form>
@@ -59,7 +60,7 @@
                 <input id="Direc" class="inputuser2">
               </div>
               <div class="Orderbtn2">
-                <button type="button">aceptar</button>
+                <button type="button" id="confirmOrder">Realizar Pedido</button>
                 <button type="button" id="btnOtraDir">otra direccion</button>
               </div>
           </form>
@@ -89,7 +90,18 @@
     <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
 
 
-
+<div class="modal--dir">
+  <div class="form-groupuser3  ">
+    <label for="ciudad" class="labelselect3">Ciudad</label>
+    <select class="selectuser3 " id="ciudad">
+    </select>
+  </div>
+  <div class="form-groupuser3">
+    <label for="dirSent" class="labeluser3">Dirección de envio</label>
+    <input id="dirSent" class="inputuser3">
+  </div>
+  <input type="button" id="newDir" value="Cambiar">
+</div>
 
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

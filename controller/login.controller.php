@@ -30,6 +30,7 @@
 								$_SESSION['CUSTOMER']['DOCUMENT']=$result['usu_num_documento'];
 								$_SESSION['CUSTOMER']['MAIL']=$result['usu_correo'];
 								$_SESSION['CUSTOMER']['PHOTO']=$result['usu_foto'];
+								$_SESSION['CUSTOMER']['ADDRESS']=$result['usu_direccion'];
 								$_SESSION['CUSTOMER']['PERMITS'] = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
 								$_SESSION['CUSTOMER']['STYLE'] = $this->master->selectBy('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
 								$fecha = date('Y-m-d');

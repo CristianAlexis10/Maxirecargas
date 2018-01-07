@@ -9,7 +9,7 @@ $("#back").hide();
 $("#otroProducto").hide();
 
 //VALIDAR SI EXISTE LA REFERENCIA
-$("#producto").keyup(function(){
+$("#searchPro").click(function(){
   $.ajax({
       url: "index.php?controller=config&a=selectServices",
       type: "POST",
@@ -55,20 +55,8 @@ var order = new Object();
 var indice = 0;
 var indice_actual = 0;
 $("#otroProducto").click(function(){
-  //guardar en el array
-  console.log(indice_actual);
-  if (order[indice_actual]==undefined) {
-        //si no existe
-        order[indice]={'producto':$("#producto").val(), 'servicio':$("#servicio").val(), 'cantidad':$("#cant").val() ,'obs':$("#observ").val()};
-        //Aumentar indice
-        indice++;
-        indice_actual++;
-  }else{
-    // si existe
-    order[indice_actual]={'producto':$("#producto").val(), 'servicio':$("#servicio").val(), 'cantidad':$("#cant").val() ,'obs':$("#observ").val()};
-    //igualar inidice
-    indice_actual=indice;
-  }
+  //funcion guardar
+  guardar();
   //borrar campos y ocultarlos
   $("#producto").val("");
   $("#servicio").val("");
@@ -133,3 +121,75 @@ function showNext(){
     $("#next").show();
   }
 }
+//BOTON TERMINAR
+$("#orderSiguiente").click(function(){
+  //validar si hay que guardar
+  if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cant").val()!="") {
+    guardar();
+  }
+  console.log(order);
+});
+//cuando le de orderAtras
+$("#orderAtras").click(function(){
+  indice_actual=indice_actual-1;
+});
+//guardar en el array
+function guardar() {
+  if (order[indice_actual]==undefined) {
+        //si no existe
+        order[indice]={'producto':$("#producto").val(), 'servicio':$("#servicio").val(), 'cantidad':$("#cant").val() ,'obs':$("#observ").val()};
+        //Aumentar indice
+        indice++;
+        indice_actual++;
+  }else{
+    // si existe
+    order[indice_actual]={'producto':$("#producto").val(), 'servicio':$("#servicio").val(), 'cantidad':$("#cant").val() ,'obs':$("#observ").val()};
+    //igualar inidice
+    indice_actual=indice;
+  }
+}
+//NUEVA direccion
+var direccion = "default";
+//llenar el select de Ciudad
+if (document.getElementById('ciudad')) {
+    $.ajax({
+        url: "index.php?controller=config&a=selectCity",
+        type: "POST",
+        dataType:'json',
+        success: function(result){
+            var selector = document.getElementById('ciudad');
+            for (var i = 0; i < result.length; i++) {
+                selector.options[i] = new Option(result[i].ciu_nombre,result[i].id_ciudad);
+            }
+        }
+    });
+}
+//consultar ciudad
+$("#newDir").click(function(){
+  direccion = $("#dirSent").val();
+  $.ajax({
+      url: "index.php?controller=config&a=selectCityBy",
+      type: "POST",
+      dataType:'json',
+      data : ({ id: $("#ciudad").val() }),
+      success: function(result){
+        $("#orderDir").html(result.ciu_nombre+', '+$("#dirSent").val());
+      }
+  });
+});
+//enviar los datos a PHP
+$("#confirmOrder").click(function(){
+  $.ajax({
+      url: "realizar-pedido",
+      type: "POST",
+      dataType:'json',
+      data: ({data: order, ciudad: $("#ciudad").val() ,dir : direccion}),
+      success: function(result){
+        if (result==true) {
+          location.href = "historial";
+        }else{
+          $("#orderAtras").after("<div class='message'>Ocurrio un error</div>");
+        }
+      }
+  });
+});
