@@ -968,6 +968,17 @@ class MasterModel{
 
     return $result;
   }
+  public function contestarCotizacion($quotation,$response,$status){
+    try {
+      $this->sql="call contestarCotizacion(?,?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($quotation,$response,$status));
+      $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
 
 }
 

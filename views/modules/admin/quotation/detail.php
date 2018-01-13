@@ -1,15 +1,16 @@
 <style>
-	#modal--detail--products{
+	#modal--detail--products,#modalStatus,#modalViewResp{
 		display: none;
 	}
 </style>
 <?php
  $_SESSION['cod_detail_id'] = base64_decode($_GET['data']);
+ $_SESSION['usu_cot'] = $data_quo[0]['usu_codigo'];
 ?>
 <div class="mudules orders detail" id="detail-reload">
 	<div class="wrap--info">
 		<div class="detail">
-			<p class="item--detail">Codigo del pedido:</p>
+			<p class="item--detail">Codigo de Cotización:</p>
 			<p class="data--detail"><?php echo $data_quo[0]['cot_token'];?> </p>
 		</div>
 		<div class="detail">
@@ -41,6 +42,13 @@
 	<div class="wrap--btns">
 		<ul>
 			<li class="opcins--order"><a href="#" id="viewAllProducts">ver articulos</a></li>
+			<?php
+				if ($data_quo[0]['cot_estado']=="En Recepcion") {?>
+					<a href="#" id="changeStatus" >Marcar como Terminado</a>
+				<?php }else{?>
+					<li><a href="#" id="viewResponse" >Ver Respuesta</a></li>
+					<li><a href="#" id="changeStatus" >Cambiar Respuesta</a></li>
+				<?php } ?>
 			<li class="opcins--order"><a href="#" class="contact--customer" id="<?php echo $data_quo[0]['usu_codigo']; ?>">Contactar  Cliente</a></li>
 		</ul>
 	</div>
@@ -53,7 +61,27 @@
 	?>
 </div>
 
-
+<!-- changeStatus -->
+<div id="modalStatus">
+	<div class="item-frm">
+		<label for="cotRes">Respuesta:</label>
+		<textarea id="cotRes" rows="8" cols="80"><?php if ($data_quo[0]['cot_estado']=="Terminado"){ echo $data_quo[0]['cot_respuesta']; }?></textarea>
+	</div>
+	<div class="item-frm">
+		<label for="sendCotMail">Enviar Respuesta al correo: </label>
+		<input type="checkbox" id="sendCotMail" value="1">
+	</div>
+	<div class="item-frm">
+		<input type="button" id="sendRes" value="Responder">
+	</div>
+</div>
+<?php
+if ($data_quo[0]['cot_estado']=="Terminado"){?>
+	 <!-- ver respuesta -->
+<div id="modalViewResp">
+		<p><?php echo $data_quo[0]['cot_respuesta'] ;?></p>
+</div>
+<?php } ?>
 <!-- contacto -->
 <div id="contact"></div>
 

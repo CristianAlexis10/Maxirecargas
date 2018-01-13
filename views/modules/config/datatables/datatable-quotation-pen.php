@@ -22,7 +22,6 @@
                                 $crud = permisos($modulo,$permit);
                                 if ($crud[1]==true) {?>
                             <a href="ver-cotizacion-<?php echo rtrim(strtr(base64_encode($row['cot_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
-                              <a href="#" id="changeStatus" onclick="changeStatus(<?php echo $row['cot_codigo']; ?>)"><i class="fa fa-refresh"></i></a>
                            </td>
                       </tr>
 

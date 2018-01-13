@@ -117,3 +117,42 @@ function sendMail(){
    }
   });
 }
+//cambiar Estado
+$("#changeStatus").click(function(){
+  $("#modalStatus").toggle();
+});
+//enviar cambio
+$("#sendRes").click(function(){
+  console.log("map-quotation.js");
+  var response = $("#cotRes").val();
+  var sendMail = false;
+  if ($("#sendCotMail").prop( "checked" )) {
+    sendMail = true;
+  }
+  $.ajax({
+    url:"reponder-cotizacion",
+    type:"post",
+    dataType:"json",
+    data:({res : response , email : sendMail}),
+    beforeSend:function(){
+      $("#sendRes").after("<div class='message'>Enviando...</div>");
+    },
+    success:function(response){
+      $('.message').remove();
+      $("#sendRes").after("<div class='message'>"+response+"</div>");
+      console.log(response);
+      setTimeout(function(){
+        $('.message').remove();
+        $("#modalStatus").hide();
+        location.reload();
+      },3000);
+    },
+    error:function(response){
+      $('.message').remove();
+      console.log(response);
+    }
+  });
+});
+$("#viewResponse").click(function(){
+  $("#modalViewResp").toggle();
+});
