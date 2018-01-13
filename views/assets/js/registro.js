@@ -185,6 +185,9 @@ $("#frmNewUser").submit(function(e) {
                        type: "POST",
                         dataType:'json',
                         data: ({data: dataJson }),
+                        beforeSend: function() {
+                            $("#frmNewBusi").after("<div id='message-load'>Validando...</div>");
+                        },
                         success: function(result){
                          if (result==true) {
                            $("#frmNewUser").after("<div class='message'>Registrado Exitosamente</div>");
@@ -197,7 +200,10 @@ $("#frmNewUser").submit(function(e) {
                         },
                         error: function(result){
                            console.log(result);
-                        }
+                        },
+                        complete: function() {
+                          $("#message-load").remove();
+                       }
                });
 
      }
@@ -419,6 +425,9 @@ $('#tipo_usu').change(function(){
                           type: "POST",
                            dataType:'json',
                            data: ({data: dataJson}),
+                           beforeSend: function() {
+                               $("#frmNewBusi").after("<div id='message-load'>Validando...</div>");
+                           },
                            success: function(result){
                             if (result==true) {
                               $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente</div>");
@@ -431,7 +440,10 @@ $('#tipo_usu').change(function(){
                            },
                            error: function(result){
                               console.log(result);
-                           }
+                           },
+                           complete: function() {
+                             $("#message-load").remove();
+                          }
                   });
 
         }

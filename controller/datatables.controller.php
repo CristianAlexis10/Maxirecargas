@@ -29,6 +29,27 @@ require_once "controller/doizer.controller.php";
         function dataTableProduct(){
             require_once "views/modules/config/datatables/datatable-products.php";
         }
+        function dataTableOrderPending(){
+            require_once "views/modules/config/datatables/datatable-pending.php";
+        }
+        function dataTableOrderAssing(){
+            require_once "views/modules/config/datatables/datatable-assign.php";
+        }
+        function dataTablePostpone(){
+            require_once "views/modules/config/datatables/datatable-postpone.php";
+        }
+        function dataTableFinished(){
+            require_once "views/modules/config/datatables/datatable-finished.php";
+        }
+        function dataTableCancelled(){
+            require_once "views/modules/config/datatables/datatable-cancelled.php";
+        }
+        function dataTableQuotationPen(){
+            require_once "views/modules/config/datatables/datatable-quotation-pen.php";
+        }
+        function dataTableQuotationEnd(){
+            require_once "views/modules/config/datatables/datatable-quotation-end.php";
+        }
 
 
 	}

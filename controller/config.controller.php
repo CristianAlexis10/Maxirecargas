@@ -84,6 +84,14 @@ class ConfigController{
 				 $result = $this->master->innerJoinDireccion();
 				 echo json_encode($result);
 			 }
+			 function directionOrder(){
+				 $result = $this->master->direccionDePedido($_SESSION['ped_detail_token']);
+				 echo json_encode($result);
+			 }
+			 function directionQuotation(){
+				 $result = $this->master->direccionDeCotizacion($_SESSION['cod_detail_id']);
+				 echo json_encode($result);
+			 }
 			 function selectServices(){
 				 $data=$_POST['data'];
 				 $result = $this->master->selectBy('producto',array('pro_referencia',$data));
@@ -98,6 +106,9 @@ class ConfigController{
 				 $data = $_POST['data'];
 				 	$result = $this->master->selectBy('tipo_servicio',array('Tip_ser_cod',$data));
 					echo json_encode($result);
+			 }
+			 function contact(){
+				 require_once "views/modules/config/contact/contact-info.php";
 			 }
 }
 ?>

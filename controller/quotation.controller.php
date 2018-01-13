@@ -89,5 +89,46 @@ require_once "controller/doizer.controller.php";
 			}
 
 		}
+		//cotizacion cliente
+		function newQuotationCustomer(){
+			$order = $_POST['data'];
+			$ciudad = $_POST['ciudad'];
+			$dir = $_POST['dir'];
+			$token = $this->randAlphanum(5)."-".$this->randAlphanum(5);
+			//registrar en cotizacion
+			if ($dir=="default") {
+				$result = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
+				$result = $this->master->insert('cotizacion',array($_SESSION['CUSTOMER']['ID'],$result['id_ciudad'],$result['usu_direccion'],$token,"En Recepcion",date('Y-m-d')),array('cot_codigo','cot_respuesta'));
+			}else{
+				$result = $this->master->insert('cotizacion',array($_SESSION['CUSTOMER']['ID'],$ciudad,$dir,$token,"En Recepcion",date('Y-m-d')),array('cot_codigo','cot_respuesta'));
+			}
+			// //guardar en prodxcot
+			if ($result==true) {
+				$data_order = $this->master->selectBy('cotizacion',array('cot_token',$token));
+				foreach ($order as $row) {
+					$data_pro = $this->master->selectBy('producto',array('pro_referencia',$row['producto']));
+					$this->master->insert('prodxcot',array($data_order['cot_codigo'],$data_pro['pro_codigo'],$row['cantidad'],$row['servicio'],$row['obs']));
+				}
+			}
+			if ($result==true) {
+					echo json_encode(true);
+			}else{
+				echo json_encode('Se ha generado un error: '.$this->doizer->knowError($result));
+			}
+		}
+		function viewQuotation(){
+			$data_quo = $this->master->verCotizacion(base64_decode($_GET['data']));
+			require_once "views/include/scope.header.php";
+			require_once "views/modules/admin/quotation/detail.php";
+		}
+		function randAlphanum($length){
+		  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		  $charactersLength = strlen($characters);
+		  $randomAlpha = '';
+		  for ($i = 0; $i < $length; $i++) {
+		       $randomAlpha .= $characters[rand(0, $charactersLength - 1)];
+		  }
+		  return $randomAlpha;
+		}
 	}
 ?>

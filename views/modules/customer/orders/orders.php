@@ -62,6 +62,7 @@
               <div class="Orderbtn2">
                 <button type="button" id="confirmOrder">Realizar Pedido</button>
                 <button type="button" id="btnOtraDir">otra direccion</button>
+                <button type="button" id="viewOrder">Ver Pedido</button>
               </div>
           </form>
         </div>
@@ -103,6 +104,9 @@
   <input type="button" id="newDir" value="Cambiar">
 </div>
 
+<div id="viewDetail">
+
+</div>
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="views/assets/js/copepr.js"></script>

@@ -45,10 +45,10 @@
 								echo json_encode('Usuario Inactivo');
 								}
 						}else{
-							echo json_encode('Numero de Documento Incorrecto');
+							echo json_encode('contraseña incorrecta');
 						}
 					}else{
-						echo json_encode('contraseña incorrecta');
+						echo json_encode('Numero de Documento Incorrecto');
 					}
 				}else{
 					echo json_encode('caracteres invalidos en el numero de documento');

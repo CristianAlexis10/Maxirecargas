@@ -180,7 +180,7 @@ $("#newDir").click(function(){
 //enviar los datos a PHP
 $("#confirmOrder").click(function(){
   $.ajax({
-      url: "realizar-pedido",
+      url: "realizar-cotizacion",
       type: "POST",
       dataType:'json',
       data: ({data: order, ciudad: $("#ciudad").val() ,dir : direccion}),

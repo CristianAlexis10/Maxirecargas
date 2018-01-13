@@ -735,6 +735,18 @@ class MasterModel{
 
        return $result;
    }
+    public function verCotizacion($id){
+       try {
+           $this->sql="call verCotizacion(?)";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute(array($id));
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
     //Pedidos cotizaciones
     public function pedDay($date){
        try {
@@ -785,6 +797,177 @@ class MasterModel{
 
        return $result;
    }
+   public function pedidosPendientes(){
+      try {
+          $this->sql="call pedidosPendientes()";
+          $query=$this->pdo->prepare($this->sql);
+          $query->execute();
+          $result = $query->fetchAll(PDO::FETCH_BOTH);
+      } catch (PDOException $e) {
+          $result = $query->errorInfo()[1];
+      }
+
+      return $result;
+  }
+   public function pedidosAsignados(){
+      try {
+          $this->sql="call pedidosAsignados()";
+          $query=$this->pdo->prepare($this->sql);
+          $query->execute();
+          $result = $query->fetchAll(PDO::FETCH_BOTH);
+      } catch (PDOException $e) {
+          $result = $query->errorInfo()[1];
+      }
+
+      return $result;
+  }
+   public function pedidosFinalizados(){
+      try {
+          $this->sql="call pedidosFinalizados()";
+          $query=$this->pdo->prepare($this->sql);
+          $query->execute();
+          $result = $query->fetchAll(PDO::FETCH_BOTH);
+      } catch (PDOException $e) {
+          $result = $query->errorInfo()[1];
+      }
+
+      return $result;
+  }
+   public function pedidosAplazados(){
+      try {
+          $this->sql="call pedidosAplazados()";
+          $query=$this->pdo->prepare($this->sql);
+          $query->execute();
+          $result = $query->fetchAll(PDO::FETCH_BOTH);
+      } catch (PDOException $e) {
+          $result = $query->errorInfo()[1];
+      }
+
+      return $result;
+  }
+   public function pedidosCancelados(){
+      try {
+          $this->sql="call pedidosCancelados()";
+          $query=$this->pdo->prepare($this->sql);
+          $query->execute();
+          $result = $query->fetchAll(PDO::FETCH_BOTH);
+      } catch (PDOException $e) {
+          $result = $query->errorInfo()[1];
+      }
+
+      return $result;
+  }
+   public function cotizacionesPendientes(){
+      try {
+          $this->sql="call cotizacionesPendientes()";
+          $query=$this->pdo->prepare($this->sql);
+          $query->execute();
+          $result = $query->fetchAll(PDO::FETCH_BOTH);
+      } catch (PDOException $e) {
+          $result = $query->errorInfo()[1];
+      }
+
+      return $result;
+  }
+   public function cotizacionesTerminadas(){
+      try {
+          $this->sql="call cotizacionesTerminadas()";
+          $query=$this->pdo->prepare($this->sql);
+          $query->execute();
+          $result = $query->fetchAll(PDO::FETCH_BOTH);
+      } catch (PDOException $e) {
+          $result = $query->errorInfo()[1];
+      }
+
+      return $result;
+  }
+  public function assign($value){
+    try {
+      $this->sql="call assign(?,?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute($value);
+      $result = $query->errorInfo()[1];
+      if ($result==null) {
+        $result = true;
+      }
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function verPedido($token){
+    try {
+      $this->sql="call verPedido(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($token));
+      $result = $query->fetchAll(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function direccionDePedido($token){
+    try {
+      $this->sql="call direccionDePedido(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($token));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function direccionDeCotizacion($token){
+    try {
+      $this->sql="call direccionDeCotizacion(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($token));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function cambiarEstado($order,$status){
+    try {
+      $this->sql="call cambiarEstado(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($order,$status));
+      $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function cambiarEstadoPagado($order,$status,$total){
+    try {
+      $this->sql="call cambiarEstadoPagado(?,?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($order,$status,$total));
+      $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function crearReporte($order,$estado,$obs){
+    try {
+      $this->sql="call crearReporte(?,?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($order,$estado,$obs));
+      $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
 
 }
 

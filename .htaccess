@@ -13,6 +13,8 @@ RewriteRule ^cambiar-estilo$ index.php?controller=customers&a=chageStyle
 RewriteRule ^cotizacion$ index.php?controller=quotation
 RewriteRule ^realizar-cotizacion-usuario$ index.php?controller=quotation&a=newQuotationUser
 RewriteRule ^guardar-cotizacion-session$ index.php?controller=quotation&a=saveSession
+RewriteRule ^realizar-cotizacion$ index.php?controller=quotation&a=newQuotationCustomer
+RewriteRule ^ver-cotizacion-(\w+)$ index.php?controller=quotation&a=viewQuotation&data=$1
 
 #EMPRESA
 RewriteRule ^guardar-cliente-empresarial$ index.php?controller=business&a=newBusiness
@@ -27,6 +29,10 @@ RewriteRule ^validar-ingreso$ index.php?controller=login&a=validateUserpass
 RewriteRule ^pedidos$ index.php?controller=orders
 RewriteRule ^realizar-pedido$ index.php?controller=orders&a=newRegister
 RewriteRule ^detalles-pedido-(\w+)$ index.php?controller=orders&a=viewDetail&data=$1
+RewriteRule ^asignar-pedido$ index.php?controller=orders&a=assign
+RewriteRule ^ver-pedido-(\w+)$ index.php?controller=orders&a=viewOrder&data=$1
+RewriteRule ^cambiar_estado$ index.php?controller=orders&a=changeStatus
+RewriteRule ^vista-previa$ index.php?controller=orders&a=preview
 
 #CLIENTES Registrados
 RewriteRule ^miperfil$ index.php?controller=customers&a=profile

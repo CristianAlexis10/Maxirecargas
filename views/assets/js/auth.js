@@ -11,11 +11,9 @@ $('#pass').focus(function(){
 	  }).done(function(response){
        if(response==true) {
 		    $(".message").remove();
-		    // $('#password').attr('disabled',false);
 	     }else{
 	     	$(".message").remove();
 		$("#document").after("<div class='message-red'>Documento no valido</div>");
-		// $('#password').attr('disabled',true);
 	     }
 
 	  });
@@ -49,7 +47,7 @@ $("#form--login").submit(function(e) {
                       location.href = 'dashboard';
                       return;
                   }else{
-                      $('#form--login').after('<div class="message-red">Contraseña Incorrecta</div>');
+                      $('#form--login').after('<div class="message-red">'+result+'</div>');
                       setTimeout(function(){
                           $('div.message-red').remove();
                       }, 2000);
