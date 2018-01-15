@@ -36,6 +36,7 @@ body{
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.5);
   color: #3d4756;
   position: fixed;
+  z-index: 100;
 }
 .main--navdark{
   max-width: 250px;

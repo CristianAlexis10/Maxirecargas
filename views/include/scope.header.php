@@ -15,6 +15,7 @@
     </head>
     <body>
         <section class="container">
+          
             <header class="main--nav <?php echo $_SESSION['CUSTOMER']['STYLE']['est_usu_menu'] ?>">
             <?php
                 require_once("views/include/scope.profile.php");
