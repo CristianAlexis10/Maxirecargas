@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2017 a las 19:28:31
+-- Tiempo de generación: 15-01-2018 a las 03:52:40
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -28,6 +28,22 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `activar` (IN `activar` VARCHAR(250)
 
 SELECT * FROM acceso INNER JOIN usuario ON(acceso.usu_codigo = usuario.usu_codigo) WHERE acceso.token = activar;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `assign` (IN `orders` INT, IN `usu` INT, IN `estado` VARCHAR(20))  NO SQL
+BEGIN 
+UPDATE pedido SET pedido.ped_encargado = usu , ped_estado = estado WHERE  pedido.ped_codigo = orders ;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiarEstado` (IN `orde` INT, IN `estado` VARCHAR(20))  NO SQL
+BEGIN 
+UPDATE pedido SET ped_estado = estado WHERE ped_codigo = orde ;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiarEstadoPagado` (IN `orde` INT, IN `estado` VARCHAR(20), IN `total` INT)  NO SQL
+BEGIN 
+UPDATE pedido SET ped_estado = estado WHERE ped_codigo = orde ;
+UPDATE ventas SET ventas.ven_total = total WHERE ventas.ped_codigo = orde ;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `clientesEstrellas` ()  NO SQL
@@ -76,6 +92,21 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaUsuariosRegistrados` ()  BE
   SELECT count(*) FROM usuario WHERE id_estado = 1;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `contestarCotizacion` (IN `quota` INT, IN `respon` LONGTEXT, IN `estado` VARCHAR(20))  NO SQL
+BEGIN 
+UPDATE cotizacion SET cotizacion.cot_estado = estado, cotizacion.cot_respuesta=respon WHERE cotizacion.cot_codigo = quota;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cotizacionesPendientes` ()  NO SQL
+BEGIN
+SELECT * FROM cotizacion INNER JOIN usuario ON cotizacion.usu_codigo = usuario.usu_codigo INNER JOIN ciudad ON cotizacion.cot_ciudad=ciudad.id_ciudad WHERE cotizacion.cot_estado = "En Recepcion";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cotizacionesTerminadas` ()  NO SQL
+BEGIN
+SELECT * FROM cotizacion INNER JOIN usuario ON cotizacion.usu_codigo = usuario.usu_codigo INNER JOIN ciudad ON cotizacion.cot_ciudad=ciudad.id_ciudad WHERE cotizacion.cot_estado = "Terminado";
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `crearAcceso` (IN `token` VARCHAR(250), IN `usu_codigo` INT(11), IN `acc_contra` VARCHAR(255))  BEGIN
 INSERT INTO acceso (token, usu_codigo, acc_contra) VALUES (token, usu_codigo, acc_contra);
 
@@ -93,6 +124,12 @@ INSERT INTO empresa (emp_nombre, emp_nit, emp_razon_social) VALUES (emp_nombre, 
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crearReporte` (IN `orde` INT, IN `estado` VARCHAR(20), IN `obs` MEDIUMTEXT)  NO SQL
+BEGIN 
+UPDATE pedido SET ped_estado = estado WHERE ped_codigo = orde;
+INSERT INTO reporte (ped_codigo,rep_observacion) VALUES (orde,obs);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `crearSede` (IN `emp_codigo` INT(11), IN `sed_nombre` VARCHAR(50), IN `sed_direccion` VARCHAR(200), IN `sed_telefono` INT(11))  BEGIN
 
 INSERT INTO sede (emp_codigo, sed_nombre, sed_direccion, sed_telefono) VALUES (emp_codigo, sed_nombre, sed_direccion, sed_telefono);
@@ -102,6 +139,16 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `crearUsuario` (IN `id_tipo_documento` INT(11), IN `usu_num_documento` INT(11), IN `usu_primer_nombre` VARCHAR(50), IN `usu_primer_apellido` VARCHAR(50), IN `usu_correo` VARCHAR(100), IN `usu_telefono` INT(10), IN `id_ciudad` INT(11), IN `dir` VARCHAR(200), IN `usu_sexo` VARCHAR(50), IN `tip_usu_codigo` INT(11), IN `id_estado` INT(11), IN `usu_foto` LONGTEXT, IN `usu_fechas_registro` DATE, IN `usu_ult_inicio_sesion` DATE)  BEGIN
 INSERT INTO usuario  (id_tipo_documento, usu_num_documento, usu_primer_nombre, usu_primer_apellido,  usu_correo,  usu_telefono, id_ciudad, usu_direccion,  usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion) VALUES (id_tipo_documento, usu_num_documento,  usu_primer_nombre, usu_primer_apellido, usu_correo, usu_telefono, id_ciudad, dir, usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion);
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `direccionDeCotizacion` (IN `id` INT)  NO SQL
+BEGIN 
+SELECT pais.pai_nombre,departamento.dep_nombre,ciudad.ciu_nombre,cotizacion.cot_dir FROM cotizacion INNER JOIN ciudad ON cotizacion.cot_ciudad=ciudad.id_ciudad INNER JOIN departamento ON ciudad.id_departamento=departamento.id_departamento INNER JOIN pais ON departamento.id_pais = pais.id_pais WHERE cotizacion.cot_codigo = id;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `direccionDePedido` (IN `token` VARCHAR(13))  NO SQL
+BEGIN 
+SELECT pais.pai_nombre,departamento.dep_nombre,ciudad.ciu_nombre,pedido.ped_direccion FROM pedido INNER JOIN ciudad ON pedido.ped_ciudad=ciudad.id_ciudad INNER JOIN departamento ON ciudad.id_departamento=departamento.id_departamento INNER JOIN pais ON departamento.id_pais = pais.id_pais WHERE pedido.ped_token = token;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarClienteEmpresarial` (IN `codigo` INT(11))  BEGIN
@@ -248,9 +295,34 @@ WHERE usu_codigo = codigo;
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosAplazados` ()  NO SQL
+BEGIN 
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token, T5.rep_observacion FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad INNER JOIN reporte T5 ON T1.ped_codigo = T5.ped_codigo WHERE T1.ped_estado ="Aplazado";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosAsignados` ()  NO SQL
+BEGIN 
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token, T1.ped_encargado FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_encargado is not null AND T1.ped_estado="En Proceso";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosCancelados` ()  NO SQL
+BEGIN 
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token, T5.rep_observacion FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad INNER JOIN reporte T5 ON T1.ped_codigo = T5.ped_codigo WHERE T1.ped_estado ="Cancelado";
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosDelDia` (IN `fecha` DATE)  NO SQL
 BEGIN
 SELECT COUNT(*) FROM pedido WHERE ped_fecha = fecha;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosFinalizados` ()  NO SQL
+BEGIN 
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_estado ="Terminado";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosPendientes` ()  NO SQL
+BEGIN 
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_estado="En Bodega";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `porcentajeMensual` (IN `Mes` INT)  NO SQL
@@ -311,6 +383,19 @@ BEGIN
 SELECT SUM(ventas.ven_total) FROM ventas WHERE MONTH(ven_fecha)= Mes;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verCotizacion` (IN `id` INT)  NO SQL
+BEGIN 
+SELECT * FROM cotizacion T1 INNER JOIN usuario T2 ON T1.usu_codigo = T2.usu_codigo  INNER JOIN ciudad T3 ON T1.cot_ciudad=T3.id_ciudad INNER JOIN prodxcot T4 ON T1.cot_codigo =T4.cot_codigo  INNER JOIN producto T6 ON T4.pro_codigo = T6.pro_codigo INNER JOIN tipo_producto T5 ON T6.tip_pro_codigo = T5.tip_pro_codigo INNER JOIN tipo_servicio T7 ON T4.tip_servicio = T7.Tip_ser_cod WHERE T1.cot_codigo = id ;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verPedido` (IN `token` VARCHAR(15))  NO SQL
+BEGIN 
+SELECT
+usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_telefono,pedido.ped_codigo,pedido.ped_encargado,ciudad.ciu_nombre,pedido.ped_direccion,pedido.ped_estado,pedido.ped_token,pedido.ped_fecha,tipo_producto.tip_pro_nombre,producto.pro_referencia,tipo_servicio.tip_ser_nombre,pedidoxproducto.pedxpro_cantidad,pedidoxproducto.pedxpro_observacion  
+FROM pedido INNER JOIN pedidoxproducto ON pedido.ped_codigo=pedidoxproducto.ped_codigo INNER JOIN producto ON pedidoxproducto.pro_codigo = producto.pro_codigo  INNER JOIN tipo_servicio ON tipo_servicio.Tip_ser_cod=pedidoxproducto.tip_ser_codigo
+INNER JOIN ciudad ON pedido.ped_ciudad=ciudad.id_ciudad INNER JOIN tipo_producto ON producto.tip_pro_codigo = tipo_producto.tip_pro_codigo INNER JOIN usuarioxpedido ON pedido.ped_codigo = usuarioxpedido.ped_codigo INNER JOIN usuario ON usuarioxpedido.usu_codigo=usuario.usu_codigo WHERE pedido.ped_token = token;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -330,14 +415,9 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
-('026b7268c97a8e4c1f76ca90762adbad', 26, '$2y$10$56zUAL6/.FczMEWTlbdCmOZKlw.zBoUrsCyx/VQzm1nkM1U.RRFMu'),
-('02a8dfc15866e556b97719a5d01988ed', 27, '$2y$10$9YtFF0rUcckeLISCZBF9/uYtXV6qDX0Jc1ZyTy9oJ1ivUp81E4YVu'),
-('1459', 2, '$2y$10$B0oW6VvOir/2csaOVnSKzOsPZU2qvMoS19l96ZXu4Xi3R7Ek4JLU6'),
-('1e3ca150b867bcdd2829cf7635b7028a', 4, '$2y$10$BmvFxqFFoLw2VFgUJOFDAOpWvENIWGalWjAJ/09tIMIxtdcrtRf1a'),
-('2545', 1, '$2y$10$wmvbdt6FIosmu7p5rVySbu02cetXQq.u/KroYXcskpAFHE96FbpWG'),
-('2546', 3, '$2y$10$N6XWbuyHfxyYfC1lRUMMD.L0FMTxzeoNGm4.3kXVCbO1kwBqPqGeW'),
-('4bc7730a427b92529ecd70f55bbe2675', 28, '$2y$10$Am/m7gotrBtB2UTWRGzQqO9pkXUvZYsNoaq3Cuxz/ETgW/lKGGX9e'),
-('d22b1812b2cefc014182671db5a41081', 25, '$2y$10$zMbuY3Va0QMRLaWSK293Z.WNVa/sDVQ3XAHG0fccBqi7G9/ENmpEi');
+('bd738f17da325a7fd25cfbfd9d378c1e', 1, '$2y$10$6wECK2ItNCoZZijFta7e3uVoqb0zDbz2nOiSLsG8GpMxdM21J1JzW'),
+('cfc3146525e6edeb020fed1428f29d36', 2, '$2y$10$71RniIRoncNKrE8TRZtFve5FZqF7op.vr9lEnQa/YxRgunLDTDNvy'),
+('fa82f50683e23221b609ff3445ec133c', 3, '$2y$10$ihq75QwdpNDOla.z74W97OC.uy/CKGcvQZxFBbbEPwr7kInr62aIm');
 
 -- --------------------------------------------------------
 
@@ -377,9 +457,7 @@ CREATE TABLE `cliente_empresarial` (
 --
 
 INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_codigo`, `cli_emp_cargo`) VALUES
-(7, 25, 7, '45678'),
-(8, 27, 8, '35467'),
-(9, 28, 9, 'aa');
+(1, 1, 10, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -390,10 +468,21 @@ INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_
 CREATE TABLE `cotizacion` (
   `cot_codigo` int(11) NOT NULL,
   `usu_codigo` int(11) NOT NULL,
-  `cot_telefono` int(11) NOT NULL,
-  `cot_correo` varchar(100) NOT NULL,
-  `cot_fecha` date NOT NULL
+  `cot_ciudad` int(11) NOT NULL,
+  `cot_dir` varchar(60) NOT NULL,
+  `cot_token` varchar(12) NOT NULL,
+  `cot_estado` varchar(20) NOT NULL,
+  `cot_fecha` date NOT NULL,
+  `cot_respuesta` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cotizacion`
+--
+
+INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `cot_ciudad`, `cot_dir`, `cot_token`, `cot_estado`, `cot_fecha`, `cot_respuesta`) VALUES
+(15, 1, 1, 'calle 95', 'tTNgX-Mprjx', 'Terminado', '2018-01-11', 'ya respondi'),
+(16, 1, 2, 'nad', 'ktiv2-s5vtX', 'En Recepcion', '2018-01-11', '');
 
 -- --------------------------------------------------------
 
@@ -433,12 +522,7 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`emp_codigo`, `emp_nombre`, `emp_nit`, `emp_razon_social`) VALUES
-(1, 'ACUATUBOS S.A', '800226360-1', 'ACUATUBOS S.A'),
-(2, 'AGENCIAUTO S.A', '890900016-9', 'AGENCIAUTO S.A'),
-(3, 'ANDINA DE MATERIALES INDUSTRIALES S.A', '811030946-2', 'ANDINA DE MATERIALES INDUSTRIALES S.A'),
-(10, '345678', '3456789', '456789'),
-(11, '4356', '3354678', '34567'),
-(12, '5467', '5678', '56');
+(13, 'SystemOn', '1234567', 'no se ');
 
 -- --------------------------------------------------------
 
@@ -497,7 +581,12 @@ INSERT INTO `estiloxusuario` (`usu_codigo`, `est_usu_menu`, `est_usu_navigator`,
 (25, ' ', ' ', ' '),
 (26, ' ', ' ', ' '),
 (27, ' ', ' ', ' '),
-(28, ' ', ' ', ' ');
+(28, ' ', ' ', ' '),
+(29, ' ', ' ', ' '),
+(1, ' ', ' ', ' '),
+(2, ' ', '  ', ' '),
+(3, ' ', ' ', ' '),
+(3, ' ', ' ', ' ');
 
 -- --------------------------------------------------------
 
@@ -537,11 +626,19 @@ CREATE TABLE `historial_productos` (
 --
 
 INSERT INTO `historial_productos` (`id_his_pro`, `pro_codigo`, `his_pro_fecha`, `his_pro_cantidad`) VALUES
-(1, 1, '2017-11-05', 2),
-(2, 1, '2017-12-07', 5),
-(3, 5, '2017-12-08', 9),
-(4, 2, '2017-12-14', 5),
-(5, 4, '2017-12-14', 6);
+(1, 1, '2018-01-07', 1),
+(2, 2, '2018-01-07', 3),
+(3, 1, '2018-01-07', 1),
+(4, 1, '2018-01-08', 1),
+(5, 1, '2018-01-08', 1),
+(6, 1, '2018-01-08', 1),
+(7, 1, '2018-01-08', 1),
+(8, 2, '2018-01-08', 2),
+(9, 1, '2018-01-09', 7),
+(10, 2, '2018-01-09', 9),
+(11, 1, '2018-01-09', 9),
+(12, 1, '2018-01-10', 1),
+(13, 1, '2018-01-10', 1);
 
 -- --------------------------------------------------------
 
@@ -561,7 +658,8 @@ CREATE TABLE `marca` (
 
 INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
 (1, 'HP', 'sad'),
-(2, 'Epson', 'epson des');
+(2, 'Epson', 'epson des'),
+(3, 'cosiaco', '435');
 
 -- --------------------------------------------------------
 
@@ -613,25 +711,24 @@ INSERT INTO `pais` (`id_pais`, `pai_nombre`) VALUES
 
 CREATE TABLE `pedido` (
   `ped_codigo` int(11) NOT NULL,
+  `ped_encargado` int(11) DEFAULT NULL,
+  `ped_ciudad` int(11) NOT NULL,
   `ped_direccion` varchar(200) NOT NULL,
-  `ped_correo` varchar(100) NOT NULL,
-  `ped_fecha` date NOT NULL,
-  `emp_codigo` int(11) DEFAULT NULL,
-  `tip_ped_codigo` int(11) DEFAULT NULL,
-  `rut_codigo` int(11) NOT NULL,
   `ped_estado` varchar(100) NOT NULL,
-  `ped_encargado` int(11) NOT NULL
+  `ped_token` varchar(13) NOT NULL,
+  `ped_fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`ped_codigo`, `ped_direccion`, `ped_correo`, `ped_fecha`, `emp_codigo`, `tip_ped_codigo`, `rut_codigo`, `ped_estado`, `ped_encargado`) VALUES
-(1, 'Calle 45', 'nada@gmail.com', '2017-12-12', 1, 1, 1, 'En camino', 1),
-(2, 'Carrera 56', 'hola@gmail.com', '2017-10-23', 2, 1, 2, 'En espera', 2),
-(3, '435', '45', '2017-12-09', 43, 45, 34, '43', 1),
-(88, '4354', '435', '2017-12-08', 435, 435, 453, '345', 1);
+INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccion`, `ped_estado`, `ped_token`, `ped_fecha`) VALUES
+(32, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'KKl8p-v3X2V', '2018-01-08'),
+(33, 3, 1, 'Calle 95 #44-35', 'Terminado', '7UWJh-jQAGV', '2018-01-08'),
+(34, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'kNEXi-zFwYC', '2018-01-10'),
+(35, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'eOCDt-tZsph', '2018-01-11'),
+(36, NULL, 1, 'Calle 95 #44-35', 'En Bodega', '2NfEP-94dKU', '2018-01-11');
 
 -- --------------------------------------------------------
 
@@ -642,16 +739,24 @@ INSERT INTO `pedido` (`ped_codigo`, `ped_direccion`, `ped_correo`, `ped_fecha`, 
 CREATE TABLE `pedidoxproducto` (
   `ped_codigo` int(11) NOT NULL,
   `pro_codigo` int(11) NOT NULL,
+  `tip_ser_codigo` int(11) NOT NULL,
   `pedxpro_cantidad` int(11) NOT NULL,
-  `pedxpro_valor_total` float NOT NULL
+  `pedxpro_observacion` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `pedidoxproducto`
 --
 
-INSERT INTO `pedidoxproducto` (`ped_codigo`, `pro_codigo`, `pedxpro_cantidad`, `pedxpro_valor_total`) VALUES
-(1, 1, 5, 500);
+INSERT INTO `pedidoxproducto` (`ped_codigo`, `pro_codigo`, `tip_ser_codigo`, `pedxpro_cantidad`, `pedxpro_observacion`) VALUES
+(32, 1, 5, 1, 'Ninguna'),
+(33, 1, 4, 1, 'Ninguna'),
+(33, 2, 9, 2, 'Ninguna'),
+(34, 1, 5, 7, 'ninguna'),
+(34, 2, 9, 9, 'nada'),
+(34, 1, 4, 9, 'nada'),
+(35, 1, 4, 1, '1'),
+(36, 1, 4, 1, '1');
 
 --
 -- Disparadores `pedidoxproducto`
@@ -710,12 +815,8 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`pro_codigo`, `mar_codigo`, `tip_pro_codigo`, `pro_referencia`, `pro_descripcion`, `pro_imagen`, `pro_estado`) VALUES
-(1, 1, 1, 'hfg', 'fgjf', 'fgj', 0),
-(2, 1, 1, 'dfs', 'sdf', '1512413244.png', 1),
-(3, 1, 1, '234', '32324', 'icn-maxi.png', 1),
-(4, 1, 1, '234', '32324', 'icn-maxi.png', 1),
-(5, 1, 1, '3254325', '324', 'icn-maxi.png', 1),
-(6, 1, 1, '234546', '435', 'icn-maxi.png', 1);
+(1, 1, 1, 'hola', 'carac', '1515355939.png', 1),
+(2, 1, 1, 'hola2', 'hoa', '1515356016.png', 1);
 
 -- --------------------------------------------------------
 
@@ -727,8 +828,18 @@ CREATE TABLE `prodxcot` (
   `cot_codigo` int(11) NOT NULL,
   `pro_codigo` int(11) NOT NULL,
   `proxcot_cantidad` int(11) NOT NULL,
-  `tip_servicio` int(11) NOT NULL
+  `tip_servicio` int(11) NOT NULL,
+  `proxcod_observacion` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `prodxcot`
+--
+
+INSERT INTO `prodxcot` (`cot_codigo`, `pro_codigo`, `proxcot_cantidad`, `tip_servicio`, `proxcod_observacion`) VALUES
+(15, 1, 11, 4, 'nada'),
+(16, 1, 11, 4, '1'),
+(16, 1, 2, 4, '2');
 
 -- --------------------------------------------------------
 
@@ -739,16 +850,8 @@ CREATE TABLE `prodxcot` (
 CREATE TABLE `reporte` (
   `rep_codigo` int(11) NOT NULL,
   `ped_codigo` int(11) NOT NULL,
-  `rep_observacion` varchar(500) NOT NULL
+  `rep_observacion` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `reporte`
---
-
-INSERT INTO `reporte` (`rep_codigo`, `ped_codigo`, `rep_observacion`) VALUES
-(1, 1, 'No han cumplido con lo pedido'),
-(2, 2, 'Se han tardado mucho');
 
 -- --------------------------------------------------------
 
@@ -792,9 +895,7 @@ CREATE TABLE `sede` (
 --
 
 INSERT INTO `sede` (`sed_codigo`, `emp_codigo`, `sed_nombre`, `sed_direccion`, `sed_telefono`) VALUES
-(7, 10, '345678', '2345678', 2345678),
-(8, 11, '4567', '4567', 546),
-(9, 12, '54678', '45678', 657);
+(10, 13, 'DECYE', 'calle 95 #33-35', 5212067);
 
 -- --------------------------------------------------------
 
@@ -812,18 +913,10 @@ CREATE TABLE `servicioxproducto` (
 --
 
 INSERT INTO `servicioxproducto` (`tip_ser_cod`, `pro_codigo`) VALUES
-(4, 0),
-(4, 0),
-(4, 0),
-(4, 0),
-(4, 0),
-(4, 0),
-(4, 2),
-(4, 3),
-(4, 3),
-(4, 5),
-(4, 6),
-(2, 234);
+(4, 1),
+(5, 1),
+(3, 2),
+(9, 2);
 
 -- --------------------------------------------------------
 
@@ -844,9 +937,8 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`sto_codigo`, `pro_codigo`, `sto_cantidad`, `sto_valor_compra`, `sto_valor_venta`) VALUES
-(1, 1, 4, 5445, 546),
-(2, 2, 5, 54645, 56456),
-(3, 6, 1, 1000, 1200);
+(1, 1, 21, 22, 22),
+(2, 2, 33, 3456, 456);
 
 -- --------------------------------------------------------
 
@@ -927,7 +1019,12 @@ CREATE TABLE `tipo_servicio` (
 
 INSERT INTO `tipo_servicio` (`Tip_ser_cod`, `tip_ser_nombre`, `tip_ser_descripcion`, `tip_ser_registro`) VALUES
 (3, '66', '66', '2017-12-01'),
-(4, 'recarga', 'sadsa', '2017-12-04');
+(4, 'recarga', 'sadsa', '2017-12-04'),
+(5, 'remanufactura', '', '2017-12-13'),
+(6, 'nadasdhjklghjklkdfsghfgdffdgfhjdsaghdkghasdhfas', '', '2017-12-13'),
+(7, 'Domicilio', '', '2017-12-13'),
+(8, 'Recargas', '', '2017-12-13'),
+(9, 'Domicilio4', '', '2017-12-13');
 
 -- --------------------------------------------------------
 
@@ -949,7 +1046,7 @@ INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`, `tip_usu_maxi`) VAL
 (1, 'Persona Natural', ''),
 (2, 'Administrador', ''),
 (3, 'Persona Juridica', ''),
-(5, 'Empleado', ''),
+(5, 'Mensajero', 'true'),
 (6, 'Secretaria', 'true');
 
 -- --------------------------------------------------------
@@ -985,12 +1082,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(1, 1, 1214, 'Cristian', 'Alexis', 'Lopera', 'Bedoya', 'sfsaf', 34324, 1, 'calle 95', 324324, '2017-11-22', 'masculino', 1, 1, 'default.jpg', '2017-11-05', '0000-00-00'),
-(2, 1, 1234, 'Yulieth ', 'Evelin', 'Zapata', 'Herrera', 'das', 659, 1, 'calle 94', 6596, '2017-11-01', 'femenino', 2, 1, 'default.jpg', '2017-11-02', '0000-00-00'),
-(25, 1, 546789, '345678', '', '45', '', 'yonosoybon', 567657, 1, 'calle 93', 0, '0000-00-00', 'null', 3, 1, 'defaul.jpg', '2017-12-10', '2017-12-10'),
-(26, 1, 123, 'nada', '', 'nada2', '', 'yonosoybond@gmail.', 223, 1, 'calle 92', 0, '0000-00-00', 'femenino', 1, 2, 'default.jpg', '2017-12-11', '2017-12-11'),
-(27, 1, 4567, '456', '', '45443354', '', 'yonosoybond@gmail.com', 4356, 1, 'calle 91', 0, '0000-00-00', 'null', 1, 2, 'defaul.jpg', '2017-12-11', '2017-12-11'),
-(28, 1, 345678, '5678', '', '45678', '', 'yonosoybond@gmail.com', 34567, 1, 'calle 90', 0, '0000-00-00', 'null', 1, 2, 'defaul.jpg', '2017-12-11', '2017-12-11');
+(1, 1, 1214, 'Cristian', '', 'Lopera', '', 'yonosoybond@gmail.com', 43, 1, 'Calle 95 #44-35', 0, '0000-00-00', 'null', 3, 1, 'defaul.jpg', '2018-01-07', '2018-01-07'),
+(2, 1, 9904, 'Cristian', '', 'Lopera', '', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 0, '0000-00-00', 'masculino', 2, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
+(3, 1, 123, 'Andres', '', 'Lopez', '', 'calopera18@misena.edu.co', 234567, 1, 'calle 90 ', 0, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-10', '2018-01-10');
 
 -- --------------------------------------------------------
 
@@ -1009,8 +1103,11 @@ CREATE TABLE `usuarioxpedido` (
 --
 
 INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`, `usuxped_total`) VALUES
-(1, 1, 500),
-(1, 3, 700);
+(1, 32, 0),
+(1, 33, 0),
+(1, 34, 0),
+(1, 35, 0),
+(1, 36, 0);
 
 --
 -- Disparadores `usuarioxpedido`
@@ -1039,12 +1136,11 @@ CREATE TABLE `ventas` (
 --
 
 INSERT INTO `ventas` (`usu_codigo`, `id_venta`, `ven_total`, `ped_codigo`, `ven_fecha`) VALUES
-(0, 2, 600, 1, '2017-12-08'),
-(2, 4, 400, 88, '2017-12-08'),
-(2, 6, 500, 1, '2017-12-07'),
-(0, 7, 100, 1, '2017-12-07'),
-(1, 9, 500, 1, '2017-12-07'),
-(1, 10, 700, 3, '2017-12-07');
+(1, 23, 0, 32, '2018-01-08'),
+(1, 24, 5678, 33, '2018-01-08'),
+(1, 25, 0, 34, '2018-01-09'),
+(1, 26, 0, 35, '2018-01-10'),
+(1, 27, 0, 36, '2018-01-10');
 
 --
 -- Índices para tablas volcadas
@@ -1077,7 +1173,8 @@ ALTER TABLE `cliente_empresarial`
 --
 ALTER TABLE `cotizacion`
   ADD PRIMARY KEY (`cot_codigo`),
-  ADD KEY `usu_id` (`usu_codigo`);
+  ADD KEY `usu_id` (`usu_codigo`),
+  ADD KEY `cot_ciudad` (`cot_ciudad`);
 
 --
 -- Indices de la tabla `departamento`
@@ -1149,11 +1246,8 @@ ALTER TABLE `pais`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`ped_codigo`),
-  ADD KEY `emp_id` (`emp_codigo`),
-  ADD KEY `tip_id` (`tip_ped_codigo`),
-  ADD KEY `tip_ped_codigo` (`tip_ped_codigo`),
-  ADD KEY `rut_codigo` (`rut_codigo`),
-  ADD KEY `ped_encargado` (`ped_encargado`);
+  ADD KEY `ped_encargado` (`ped_encargado`),
+  ADD KEY `ped_ciudad` (`ped_ciudad`);
 
 --
 -- Indices de la tabla `pedidoxproducto`
@@ -1162,7 +1256,8 @@ ALTER TABLE `pedidoxproducto`
   ADD KEY `pro_codigo` (`pro_codigo`),
   ADD KEY `pro_codigo_2` (`pro_codigo`),
   ADD KEY `ped_codigo` (`ped_codigo`),
-  ADD KEY `ped_codigo_2` (`ped_codigo`);
+  ADD KEY `ped_codigo_2` (`ped_codigo`),
+  ADD KEY `tip_ser_codigo` (`tip_ser_codigo`);
 
 --
 -- Indices de la tabla `permiso`
@@ -1292,12 +1387,12 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
-  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
@@ -1307,7 +1402,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
@@ -1327,12 +1422,12 @@ ALTER TABLE `gestion_web`
 -- AUTO_INCREMENT de la tabla `historial_productos`
 --
 ALTER TABLE `historial_productos`
-  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
@@ -1347,7 +1442,7 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
@@ -1357,17 +1452,12 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT de la tabla `prodxcot`
---
-ALTER TABLE `prodxcot`
-  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `ruta`
 --
@@ -1377,12 +1467,12 @@ ALTER TABLE `ruta`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
@@ -1402,7 +1492,7 @@ ALTER TABLE `tipo_producto`
 -- AUTO_INCREMENT de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
-  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
@@ -1412,12 +1502,12 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- Restricciones para tablas volcadas
 --
@@ -1432,44 +1522,27 @@ ALTER TABLE `acceso`
 -- Filtros para la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  ADD CONSTRAINT `fk_ciudad_departamento1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `ciudad_ibfk_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
-  ADD CONSTRAINT `fk_cliente_empresarial_sede1` FOREIGN KEY (`sed_codigo`) REFERENCES `sede` (`sed_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_cliente_empresarial_usuario1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `cliente_empresarial_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cliente_empresarial_ibfk_2` FOREIGN KEY (`sed_codigo`) REFERENCES `sede` (`sed_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  ADD CONSTRAINT `cotizacion_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `cotizacion_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `cotizacion_ibfk_2` FOREIGN KEY (`cot_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `departamento`
 --
 ALTER TABLE `departamento`
-  ADD CONSTRAINT `fk_departamento_pais1` FOREIGN KEY (`id_pais`) REFERENCES `pais` (`id_pais`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `estiloxcliente`
---
-ALTER TABLE `estiloxcliente`
-  ADD CONSTRAINT `estiloxcliente_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `estiloxusuario`
---
-ALTER TABLE `estiloxusuario`
-  ADD CONSTRAINT `estiloxusuario_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `gestion_web`
---
-ALTER TABLE `gestion_web`
-  ADD CONSTRAINT `gestion_web_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `departamento_ibfk_1` FOREIGN KEY (`id_pais`) REFERENCES `pais` (`id_pais`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `historial_productos`
@@ -1481,22 +1554,50 @@ ALTER TABLE `historial_productos`
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`ped_encargado`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`ped_encargado`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`ped_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pedidoxproducto`
 --
 ALTER TABLE `pedidoxproducto`
   ADD CONSTRAINT `pedidoxproducto_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pedidoxproducto_ibfk_2` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedidoxproducto_ibfk_2` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedidoxproducto_ibfk_3` FOREIGN KEY (`tip_ser_codigo`) REFERENCES `tipo_servicio` (`Tip_ser_cod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`tip_pro_codigo`) REFERENCES `tipo_producto` (`tip_pro_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`mar_codigo`) REFERENCES `marca` (`mar_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `prodxcot`
 --
 ALTER TABLE `prodxcot`
-  ADD CONSTRAINT `prodxcot_ibfk_1` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `prodxcot_ibfk_2` FOREIGN KEY (`tip_servicio`) REFERENCES `tipo_servicio` (`Tip_ser_cod`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `prodxcot_ibfk_3` FOREIGN KEY (`cot_codigo`) REFERENCES `cotizacion` (`cot_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `prodxcot_ibfk_3` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `prodxcot_ibfk_4` FOREIGN KEY (`cot_codigo`) REFERENCES `cotizacion` (`cot_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reporte`
+--
+ALTER TABLE `reporte`
+  ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `sede`
+--
+ALTER TABLE `sede`
+  ADD CONSTRAINT `sede_ibfk_1` FOREIGN KEY (`emp_codigo`) REFERENCES `empresa` (`emp_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `servicioxproducto`
+--
+ALTER TABLE `servicioxproducto`
+  ADD CONSTRAINT `servicioxproducto_ibfk_2` FOREIGN KEY (`tip_ser_cod`) REFERENCES `tipo_servicio` (`Tip_ser_cod`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `servicioxproducto_ibfk_3` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `stock`
@@ -1508,22 +1609,23 @@ ALTER TABLE `stock`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_ibfk_4` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_4` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarioxpedido`
 --
 ALTER TABLE `usuarioxpedido`
-  ADD CONSTRAINT `usuarioxpedido_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuarioxpedido_ibfk_2` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuarioxpedido_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarioxpedido_ibfk_2` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
+  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
