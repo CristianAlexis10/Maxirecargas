@@ -15,5 +15,11 @@
 			require_once "views/modules/admin/route/index.php";
 			require_once "views/include/scope.footer.php";
 		}
+		function routeToday(){
+			require_once "views/include/scope.header.php";
+			require_once "views/modules/admin/route/today.php";
+			require_once "views/include/scope.footer.php";
+		}
+
 	}
 ?>

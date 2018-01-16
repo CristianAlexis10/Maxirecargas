@@ -108,6 +108,7 @@ RewriteRule ^maxirecargas$ index.php?controller=views
 
 #RUTAS
 RewriteRule ^rutas$ index.php?controller=routes
+RewriteRule ^ver-ruta-dia-(\w+)$ index.php?controller=routes&a=routeToday&data=$1
 
 #ROLES
 RewriteRule ^nuevo-rol$ index.php?controller=role&a=newRegister

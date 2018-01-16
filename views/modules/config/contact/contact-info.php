@@ -4,7 +4,7 @@ $response = '
 <div class="modal--contact">
   <div class="info">
         <div class="item">
-            Numero Contacto: '.$data['usu_telefono'].'
+            Numero Contacto: '.$data['usu_celular'].'
         </div>
         <div class="item">
             Enviar Correo: '.$data['usu_correo'].'
