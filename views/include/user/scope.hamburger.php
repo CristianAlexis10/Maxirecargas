@@ -21,5 +21,3 @@
     <div class="menu--title"><a href="productos">Productos</a></div>
   </div>
 </div>
-
-<!-- <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span> -->

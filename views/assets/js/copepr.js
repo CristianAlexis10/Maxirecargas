@@ -60,3 +60,15 @@ $('#orderAtras').click(function() {
     'marginLeft': "0"
     });
 });
+
+// menu mobile
+var close_mobile = document.getElementById('close--mobile');
+var open_mobile = document.getElementById('menu-mobile');
+var modal_mobile = document.getElementById('wrap--menu--mobile');
+
+close_mobile.onclick = function(){
+  modal_mobile.style.display = "none"
+};
+open_mobile.onclick = function(){
+  modal_mobile.style.display = "flex"
+};

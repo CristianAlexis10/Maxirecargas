@@ -24,9 +24,12 @@
 @media (max-width: 768px) {
   .container .left img{min-width: 300px;
   max-width: 300px;
-  margin-top: 80px;}
+  margin-top: 80px;
+}
+
   .opcions, #menu{display: none !important; }
   #menu-mobile{display: block;}
+  
   #wrap--menu--mobile{
     position: fixed;
     z-index: 999;
