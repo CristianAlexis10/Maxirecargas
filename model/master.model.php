@@ -932,6 +932,42 @@ class MasterModel{
 
     return $result;
   }
+  public function verRutas(){
+    try {
+      $this->sql="call verRutas()";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute();
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function verDetalleRuta($date,$usu){
+    try {
+      $this->sql="call verDetalleRuta(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($usu,$date));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function ContarRutasParaHoyPorUsuario($usu,$date){
+    try {
+      $this->sql="call ContarRutasParaHoyPorUsuario(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($usu,$date));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
   public function cambiarEstado($order,$status){
     try {
       $this->sql="call cambiarEstado(?,?)";
