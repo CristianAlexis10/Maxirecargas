@@ -66,9 +66,9 @@
           <p class="title">bienvenido</p>
           <p class="subtitle">Para tus Recargas, Remanufactura y Venta de Toner y Cartuchos Genericos comunicate con Nosotros</p>
           <div class="subtitle-contc">
-            <p><i class="fa fa-phone" aria-hidden="true"></i>577 42 23</p>
-            <p><i class="fa fa-phone" aria-hidden="true"></i>255 78 78</p>
-            <p><i class="fa fa-whatsapp" aria-hidden="true"></i>311 708 91 24</p>
+            <p><i class="fa fa-phone" aria-hidden="true"></i><span id="tel1"><span></p>
+            <p><i class="fa fa-phone" aria-hidden="true"></i><span id="tel2"><span></p>
+            <p><i class="fa fa-whatsapp" aria-hidden="true"></i><span id="wpp"></span></p>
           </div>
         </div>
       </div>
@@ -124,44 +124,38 @@
     </section>
     <section class="container four">
       <div class="four--form">
-        <form>
+        <form id="frmContact">
             <div class="wrap--contact">
                 <label for="contact--name" class="label-contact">Nombre</label>
-                <input type="text" name="data" class="input-contact" >
+                <input type="text" id="name" class="input-contact" value="<?php echo $_SESSION['CUSTOMER']['NAME']?>" >
             </div>
             <div class="wrap--contact">
                 <label for="contact--email" class="label-contact">Correo</label>
-                <input type="email" name="data" class="input-contact">
+                <input type="email" id="email" class="input-contact" value="<?php echo $_SESSION['CUSTOMER']['MAIL']?>">
             </div>
             <div class="wrap--contact">
-                <label for="contact--objetive" class="label-contact">Objetivo</label>
-                <input type="text" name="data" class="input-contact" >
+                <label for="contact--objetive" class="label-contact">Asunto</label>
+                <input type="text" id="asunto" class="input-contact" >
             </div>
             <div class="wrap--contact">
                 <label for="contact--message" class="label-contact">Mensaje</label>
-                <textarea name="data" rows="1" cols="80"  class="input-contact"></textarea>
+                <textarea id="message" rows="1" cols="80"  class="input-contact"></textarea>
             </div>
-              <button type="button" name="button" class="btn--contact">ENVIAR</button>
+              <button type="submit" id="buttonContact" class="btn--contact">ENVIAR</button>
             </form>
       </div>
       <div class="four--contact">
         <h1>contactanos</h1>
         <ul>
-          <li><i class="fa fa-phone" aria-hidden="true"></i> 577 42 23 - 255 75 75</li>
-          <li><i class="fa fa-whatsapp" aria-hidden="true"></i>311 708 91 24</li>
-          <li><i class="fa fa-envelope-o" aria-hidden="true"></i>maxirecargas2009@hotmail.com</li>
-          <li><i class="fa fa-map-marker" aria-hidden="true"></i>Calle 6 c sur # 83a45</li>
+          <li><i class="fa fa-phone" aria-hidden="true"></i> <span id="telephone"></span> </li>
+          <li><i class="fa fa-whatsapp" aria-hidden="true"></i><span id="smartPhone"></span></li>
+          <li><i class="fa fa-envelope-o" aria-hidden="true"></i><span id="emailMaxi"></span></li>
+          <li><i class="fa fa-map-marker" aria-hidden="true"></i><span id="dirMaxi"></span></li>
         </ul>
       </div>
     </section>
-            <!-- <div class="wrap--contact">
-                <label for="contact--name" class="label-contact">Nombre</label>
-                <input type="text" name="data" class="input-contact" value="<?php echo $_SESSION['CUSTOMER']['NAME']?>">
-            </div>
-            <div class="wrap--contact">
-                <label for="contact--email" class="label-contact">Correo</label>
-                <input type="email" name="data" class="input-contact" value="<?php echo $_SESSION['CUSTOMER']['MAIL']?>">
-            </div> -->
+
+
 
 
 
@@ -172,6 +166,7 @@
   <script type="text/javascript" src="views/assets/js/main-user.js"></script>
   <script type="text/javascript" src="views/assets/js/user-customer.js"></script>
   <script type="text/javascript" src="views/assets/js/menu.js"></script>
+    <script type="text/javascript" src="views/assets/js/contact.js"></script>
 
 
 

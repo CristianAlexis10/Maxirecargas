@@ -112,3 +112,7 @@ RewriteRule ^ver-ruta-dia-(\w+)$ index.php?controller=routes&a=routeToday&data=$
 
 #ROLES
 RewriteRule ^nuevo-rol$ index.php?controller=role&a=newRegister
+
+#CONTACTO
+RewriteRule ^enviar-correo$ index.php?controller=contact&a=landing
+RewriteRule ^datos-contacto$ index.php?controller=contact&a=knowData
