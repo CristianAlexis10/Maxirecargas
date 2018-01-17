@@ -14,16 +14,19 @@
    #services-servicio{
      margin: 170px 0 0 0;
    }
+   .container.mediafour h2{
+     padding: 10px 300px 0 30px;
+
+   }
 }
 
+
 @media (max-width: 768px) {
-  .opcions, #menu{
-    display: none !important; }
-
-  #menu-mobile{
-    display: block;
-  }
-
+  .container .left img{min-width: 300px;
+  max-width: 300px;
+  margin-top: 80px;}
+  .opcions, #menu{display: none !important; }
+  #menu-mobile{display: block;}
   #wrap--menu--mobile{
     position: fixed;
     z-index: 999;
@@ -66,21 +69,20 @@
   #services-domicilio,#services-servicio,  #services-asistencia{
     margin: 0;
   }
-  .container.four .four--contact li{
-    font-size: 16px;
-  }
-  .container .rigth .welcome .title{
-  font-size: 50px
-}
+  .container.four .four--contact li{font-size: 16px;}
+  .container .rigth .welcome .title{font-size: 50px}
+  .container.three .three--left button{margin-top: 50px;}
+  .container.mediafour h2{padding: 10px 200px 10px 30px;}
+  .container.mediafour img{padding-top: 50px;}
   }
 @media (max-width: 658px ){
   .container.two .section--one{
     justify-content: center;
     margin: 0
   }
-  .two--image{
-    display: none;
-  }
+  .two--image{display: none;}
+  .container.three .three--left button{margin-top: 30px;}
+  .container.mediafour h2{padding: 0 160px 10px 30px;}
 }
 @media (max-width: 575px ){
   .container .left img{
@@ -90,7 +92,6 @@
   .container .rigth .welcome .subtitle-contc{
     font-size: 20px;
   }
-
   .container.two .section--two .section-left p, .section-rigth p{
   padding: 0;
   }
@@ -116,10 +117,15 @@
 @media (max-width:510px){
   .container.one{
     flex-direction: column;
+    height: auto;
   }
+
   .container.one .left {
     width: 100%;
-    height: 50vh;
+    height: auto;
+  }
+  .container.two{
+    height: auto;
   }
   .container.one .rigth{
     width: 100%;
@@ -167,13 +173,14 @@
   }
   .container.three{
     flex-direction: column;
-
+    height: auto;
   }
   .container.three .three--left{
     width: 100%;
-    height: 60vh;
+    height: 80vh;
     box-sizing: border-box;
   }
+
   .container.three .three--left h1{
     text-align: center;
   }
@@ -182,7 +189,7 @@
   }
   .container.three .three--rigth{
     width: 100%;
-    height: 40vh;
+    height: 60vh;
     background: #efefef;
     flex-direction: row;
     justify-content: space-around;
@@ -198,6 +205,11 @@
   }
   .container.mediafour{
     flex-direction: column;
+    height: 90vh;
+  }
+  .container.mediafour h2{
+    padding: 20px 30px 0 30px;
+    text-align: center;
   }
 
   .container.mediafour h1{
@@ -211,7 +223,7 @@
   }
   .container.four{
     flex-direction:column-reverse;
-    height: 100vh;
+    height: auto;
   }
   .container.four .four--contact{
     width: 100%;
@@ -223,7 +235,7 @@
   }
   .container.four .four--form{
     width: 100%;
-    height: 50vh;
+    height: 70vh;
   }
   .container.four .four--contact h1{
     font-size: 50px;

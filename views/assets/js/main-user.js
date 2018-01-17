@@ -16,25 +16,6 @@ $("#contc").click(function() {
   });
 });
 
-var close = document.getElementById("close");
-var start = document.getElementById("session");
-var modal = document.getElementById('modal--session');
-var starMobile = document.getElementById('session_mobile')
-
-start.onclick  = function(){
-  modal.style.display = "block";
-};
-starMobile.onclick = function(){
-  modal.style.display = "block";
-}
-close.onclick =function(){
-  modal.style.display = "none"
-};
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    };
-};
 
 var close_mobile = document.getElementById('close--mobile');
 var open_mobile = document.getElementById('menu-mobile');
@@ -68,3 +49,25 @@ $(".input--login").focusout(function(){
     $(this).parent().removeClass("mov-label-login");
     $(this).parent().removeClass("clr-label-login");
 });
+// inputs form_mobile
+$(".wrap_input_mobile").focus(function(){
+  $(this).parent().addClass("clr-label-login mov-label-login");
+});
+
+$(".wrap_input_mobile").focusout(function(){
+  if($(this).val() === "")
+    $(this).parent().removeClass("mov-label-login");
+    $(this).parent().removeClass("clr-label-login");
+});
+// abrir y cerra modal mobile_pass
+
+var modalMobile = document.getElementById('modal_mobile');
+var closeMobile= document.getElementById('modal_close_mobile');
+var openMobile= document.getElementById('session_mobile')
+
+openMobile.onclick= function(){
+  modalMobile.style.display = "block";
+};
+closeMobile.onclick = function(){
+  modalMobile.style.display = "none"
+};
