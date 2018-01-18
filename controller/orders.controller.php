@@ -44,9 +44,9 @@
 			//registrar en pedido
 			if ($dir=="default") {
 				$result = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
-				$result = $this->master->insert('pedido',array($result['id_ciudad'],$result['usu_direccion'],'En Bodega',$token,date('Y-m-d')),array('ped_codigo','ped_encargado'));
+				$result = $this->master->insert('pedido',array($result['id_ciudad'],$result['usu_direccion'],'En Bodega',$token,date('Y-m-d'),$_POST['dia'],$_POST['hora']),array('ped_codigo','ped_encargado'));
 			}else{
-				$result = $this->master->insert('pedido',array($ciudad,$dir,'recepcion',$token,date('Y-m-d')),array('ped_codigo','ped_encargado'));
+				$result = $this->master->insert('pedido',array($ciudad,$dir,'recepcion',$token,date('Y-m-d'),$_POST['dia'],$_POST['hora']),array('ped_codigo','ped_encargado'));
 			}
 			if ($result==true) {
 				$data_order = $this->master->selectBy('pedido',array('ped_token',$token));

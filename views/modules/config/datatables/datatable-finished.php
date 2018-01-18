@@ -13,7 +13,7 @@
                      <tr>
                          <td><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ;?></td>
                             <td><?php echo $row['ciu_nombre']." ".$row['ped_direccion'];?></td>
-                            <td><?php echo $row['ped_fecha'];?></td>
+                            <td><?php echo $row['ped_fecha_entrega'];?></td>
                             <td><?php echo $row['ped_token'];?></td>
                            <td>
                             <?php

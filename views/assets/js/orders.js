@@ -183,8 +183,9 @@ $("#confirmOrder").click(function(){
       url: "realizar-pedido",
       type: "POST",
       dataType:'json',
-      data: ({data: order, ciudad: $("#ciudad").val() ,dir : direccion}),
+      data: ({data: order, ciudad: $("#ciudad").val() ,dir : direccion , dia : $("#fechaEntrega").val() , hora : $("#horaEntrega").val()}),
       success: function(result){
+        console.log(result);
         if (result==true) {
           location.href = "historial";
         }else{
@@ -213,3 +214,20 @@ $("#viewOrder").click(function() {
     }
   });
 });
+
+if (document.getElementById('typeProduct')) {
+  $.ajax({
+      url: "index.php?controller=config&a=selectAllServices",
+      type: "POST",
+      dataType:'json',
+      success: function(result){
+          var selector = document.getElementById('typeProduct');
+          for (var i = 0; i < result.length; i++) {
+              selector.options[i] = new Option(result[i].tip_pro_nombre,result[i].tip_pro_codigo);
+          }
+      },
+      error:function(result){
+        console.log(result);
+      }
+  });
+}

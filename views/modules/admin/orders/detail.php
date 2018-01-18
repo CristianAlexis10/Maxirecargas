@@ -28,6 +28,14 @@
 			<p class="item--detail">Telefono:</p>
 			<p class="data--detail"><?php echo $data_order[0]['usu_telefono'];?> </p>
 		</div>
+		<div class="detail">
+			<p class="item--detail">Fecha  de entrega:</p>
+			<p class="data--detail"><?php echo $data_order[0]['ped_fecha_entrega'];?> </p>
+		</div>
+		<div class="detail">
+			<p class="item--detail">Hora Aproximada  de entrega:</p>
+			<p class="data--detail"><?php echo $data_order[0]['ped_hora_entrega'];?> </p>
+		</div>
 		<?php if ($data_order[0]['ped_encargado']!=null) {
 			$data_employe = $this->master->selectBy('usuario',array('usu_codigo',$data_order[0]['ped_encargado']))
 			?>

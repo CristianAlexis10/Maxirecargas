@@ -8,6 +8,12 @@
         <div class="container--form">
           <form id="frmNewOrder">
             <div class="form-groupuser3">
+              <label for="typeProduct" class="labelselect3">Tipo de producto</label>
+              <select id="typeProduct">
+
+              </select>
+            </div>
+            <div class="form-groupuser3">
               <label for="producto" class="labelselect3">referencia</label>
             <input type="text" id="producto" class="inputuser3" >
             </div>
@@ -39,9 +45,25 @@
       </div>
       <div id="order--formtwo">
         <div class="orderSuperior">
-          <h1>confirmar direccion</h1>
+          <h1>Datos de entrega</h1>
           <p>¿Esta es la direccion donde se solicita el pedido?</p>
           <h2 id="orderDir"><?php echo $_SESSION['CUSTOMER']['ADDRESS'];?></h2>
+          <label for="fechaEntrega">Fecha de Entrega:</label>
+          <input type="date" id="fechaEntrega" min="<?php
+          $fecha = date('Y-m-d');
+          $nuevafecha = strtotime ( '-1 day' , strtotime ( $fecha ) ) ;
+          $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
+          echo $nuevafecha;
+           ?>">
+
+           <div>
+             <label for="horaEntrega">Hora Aproximada de  Entrega:</label>
+             <input type="time" id="horaEntrega" >
+           </div>
+
+
+
         </div>
         <div class="container--form">
           <form>

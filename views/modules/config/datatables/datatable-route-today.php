@@ -10,7 +10,7 @@
          </thead>
             <tbody>
                 <?php foreach ($this->master->verRutas() as $row) {
-                  $count = $this->master->ContarRutasParaHoyPorUsuario(date('Y-m-d'),$row['usu_codigo']);
+                  $count = $this->master->ContarRutasParaHoyPorUsuario($row['usu_codigo'],date('Y-m-d'));
                   ?>
                      <tr>
                          <td><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ;?></td>

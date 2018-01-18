@@ -102,6 +102,10 @@ class ConfigController{
 				 }
 				 echo json_encode($result);
 			 }
+			 function selectAllServices(){
+				 $result = $this->master->selectAll('tipo_producto');
+				 echo json_encode($result);
+			 }
 			 function selectServiceBy(){
 				 $data = $_POST['data'];
 				 	$result = $this->master->selectBy('tipo_servicio',array('Tip_ser_cod',$data));
