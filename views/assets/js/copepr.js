@@ -62,13 +62,23 @@ $('#orderAtras').click(function() {
 });
 
 // menu mobile
-var close_mobile = document.getElementById('close--mobile');
-var open_mobile = document.getElementById('menu-mobile');
-var modal_mobile = document.getElementById('wrap--menu--mobile');
+// var close_mobile = document.getElementById('close--mobile');
+// var open_mobile = document.getElementById('menu-mobile');
+// var modal_mobile = document.getElementById('wrap--menu--mobile');
+//
+// close_mobile.onclick = function(){
+//   modal_mobile.style.display = "none"
+// };
+// open_mobile.onclick = function(){
+//   modal_mobile.style.display = "flex"
+// };
 
-close_mobile.onclick = function(){
-  modal_mobile.style.display = "none"
-};
-open_mobile.onclick = function(){
-  modal_mobile.style.display = "flex"
-};
+// views product
+var toner = document.getElementById('itemToner');
+
+toner.onclick = function(){
+  $(".banner").addClass("animationbanner");
+  $(".title_banner").addClass("animationtitlebanner");
+  $(".product").addClass("animationitem");
+
+}

@@ -10,11 +10,23 @@
   </head>
   <body class="product--fondo">
   <div class="banner">
-    <h1>categorias</h1>
+    <h1 class="title_banner">categorias</h1>
+  </div>
+  <div class="banneritem Btoner">
+    <h1 class="titleitem_banner">toner</h1>
+  </div>
+  <div class="banneritem Bcartucho">
+    <h1 class="titleitem_banner">cartuchos</h1>
+  </div>
+  <div class="banneritem Bimpresora">
+    <h1 class="titleitem_banner">impresoras</h1>
+  </div>
+  <div class="banneritem Bcomputador">
+    <h1 class="titleitem_banner">computadores</h1>
   </div>
   <div class="container--products">
     <div class="products">
-      <div class="item toner">
+      <div class="item toner" id="itemToner">
         <img src="views/assets/image/toner.png">
         <h3>toner</h3>
       </div>
