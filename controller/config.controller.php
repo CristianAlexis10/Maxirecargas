@@ -114,5 +114,13 @@ class ConfigController{
 			 function contact(){
 				 require_once "views/modules/config/contact/contact-info.php";
 			 }
+			 function mapRouteToday(){
+				 $result = array();
+				 foreach ($_SESSION['mapRouteToday'] as $row) {
+					 $loca = $this->master->innerJoinLocalizacion($row['ped_ciudad']);
+					 $result[] = array('localizacion'=>$loca['pai_nombre']." ".$loca['dep_nombre']." ".$loca['ciu_nombre'],'dir' => $row['ped_direccion']);
+				 }
+				 echo json_encode($result);
+			 }
 }
 ?>

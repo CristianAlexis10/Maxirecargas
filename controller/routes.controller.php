@@ -20,6 +20,11 @@
 			require_once "views/modules/admin/route/today.php";
 			require_once "views/include/scope.footer.php";
 		}
+		function routeAll(){
+			require_once "views/include/scope.header.php";
+			require_once "views/modules/admin/route/all.php";
+			require_once "views/include/scope.footer.php";
+		}
 
 	}
 ?>

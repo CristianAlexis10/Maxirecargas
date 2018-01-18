@@ -4,13 +4,13 @@
                         <th>Encargado</th>
                         <th>Correo</th>
                         <th>Celular</th>
-                        <th>N° visitas del dia</th>
+                        <th>N° visitas Totales</th>
                         <th>Ver</th>
                     </tr>
          </thead>
             <tbody>
                 <?php foreach ($this->master->verRutas() as $row) {
-                  $count = $this->master->ContarRutasParaHoyPorUsuario(date('Y-m-d'),$row['usu_codigo']);
+                  $count = $this->master->ContarRutasPorUsuario($row['usu_codigo']);
                   ?>
                      <tr>
                          <td><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ;?></td>
@@ -23,7 +23,7 @@
                                 $permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
                                 $crud = permisos($modulo,$permit);
                                 if ($crud[1]==true) {?>
-                            <a href="ver-ruta-dia-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
+                            <a href="ver-toda-ruta-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
 
                            </td>
                       </tr>

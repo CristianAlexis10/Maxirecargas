@@ -956,12 +956,108 @@ class MasterModel{
 
     return $result;
   }
+  public function verDetalleRutaAplazada($date,$usu){
+    try {
+      $this->sql="call verDetalleRutaAplazada(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($usu,$date));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function verDetalleRutaFutura($date,$usu){
+    try {
+      $this->sql="call verDetalleRutaFutura(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($usu,$date));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function contarPedidosTerminadosBy($usu){
+    try {
+      $this->sql="call contarPedidosTerminadosBy(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($usu));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function contarPedidosPendientesBy($usu,$date){
+    try {
+      $this->sql="call contarPedidosPendientesBy(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($usu,$date));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function contarPedidosCanceladasBy($usu){
+    try {
+      $this->sql="call contarPedidosCanceladasBy(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($usu));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  function verDetalleRutaFinalizadaBy($usu){
+   try {
+     $this->sql="call verDetalleRutaFinalizadaBy(?)";
+     $query=$this->pdo->prepare($this->sql);
+     $query->execute(array($usu));
+     $result = $query->fetchAll(PDO::FETCH_BOTH);
+   } catch (PDOException $e) {
+     $result = $query->errorInfo()[1];
+   }
+
+   return $result;
+ }
   public function ContarRutasParaHoyPorUsuario($usu,$date){
     try {
       $this->sql="call ContarRutasParaHoyPorUsuario(?,?)";
       $query=$this->pdo->prepare($this->sql);
       $query->execute(array($usu,$date));
       $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function ContarRutasPorUsuario($usu){
+    try {
+      $this->sql="call ContarRutasPorUsuario(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($usu));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
+  public function verDetalleRutaCancelada($usu){
+    try {
+      $this->sql="call verDetalleRutaCancelada(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($usu));
+      $result = $query->fetchAll(PDO::FETCH_BOTH);
     } catch (PDOException $e) {
       $result = $query->errorInfo()[1];
     }
@@ -1010,6 +1106,18 @@ class MasterModel{
       $query=$this->pdo->prepare($this->sql);
       $query->execute(array($quotation,$response,$status));
       $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
+
+  function 	innerJoinLocalizacion($ciudad){
+    try {
+      $this->sql="call innerJoinLocalizacion(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($ciudad));
+      $result = $query->fetch(PDO::FETCH_BOTH);
     } catch (PDOException $e) {
       $result = $query->errorInfo()[1];
     }
