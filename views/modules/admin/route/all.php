@@ -1,4 +1,5 @@
 <?php
+if ($crud[1]==true) {
 $count = $this->master->ContarRutasPorUsuario(base64_decode($_GET['data']),date('Y-m-d'));
 $data = $this->master->verDetalleRuta(date('Y-m-d'),base64_decode($_GET['data']));
 $_SESSION['mapRouteToday']= $data;
@@ -166,3 +167,6 @@ if($data!=array()){
 		</script>
     </body>
 </html>
+<?php }else{
+	echo "No Tienes permiso patra acceder a este  modulo";
+}?>

@@ -1,3 +1,5 @@
+<?php
+	if ($_SESSION['CUSTOMER']['ROL']==2) {?>
 		<div class="modules">
 			<div class="title">
 				<p>ESTADISITICAS</p>
@@ -51,7 +53,14 @@
 				<h1>mapa de Cliente</h1>
 				<div id="map"></div>
 			</div>
+		<?php }else{?>
+			<div class="modules">
+				<div class="title">
+					<p>Bienvenido <?php echo $_SESSION['CUSTOMER']['NAME'];?></p>
+				</div>
+			</div>
 
+		<?php } ?>
 </article>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>

@@ -15,14 +15,30 @@
 	 	}
 		function main(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])&& !isset($_SESSION['CUSTOMER']['CLIENT'])) {
-				require_once "views/include/scope.header.php";
-				require_once "views/modules/admin/products/index.php";
-				require_once "views/include/scope.footer.php";
+				if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				//saber si puede acceder a este modulo
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+					if ($row['enlace']=='productos') {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					//saber persimos crud de este modulo
+					$modulo = 'productos';
+					$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+					$crud = permisos($modulo,$permit);
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/products/index.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
 			}elseif(isset($_SESSION['CUSTOMER']['ROL'])){
 				echo "Calma que no hemos hecho la vista";
-				// require_once "views/include/scope.header.php";
-				// require_once "views/modules/admin/products/index.php";
-				// require_once "views/include/scope.footer.php";
 			}else{
 				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/user/products/index.php";
@@ -30,14 +46,52 @@
 			}
 		}
 		function newCategory(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/products/category/new.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+			//saber si puede acceder a este modulo
+			foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+				if ($row['enlace']=='productos') {
+					$access = true;
+				}
+			}
+			if (isset($access)) {
+				//saber persimos crud de este modulo
+				$modulo = 'productos';
+				$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+				$crud = permisos($modulo,$permit);
+				require_once "views/include/scope.header.php";
+				require_once "views/modules/admin/products/category/new.php";
+				require_once "views/include/scope.footer.php";
+			}else{
+				session_destroy();
+				require_once "views/modules/landing.html";
+			}
+		}else{
+			require_once "views/modules/landing.html";
+		}
 		}
 		function viewUpdate(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/products/update.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+			//saber si puede acceder a este modulo
+			foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+				if ($row['enlace']=='productos') {
+					$access = true;
+				}
+			}
+			if (isset($access)) {
+				//saber persimos crud de este modulo
+				$modulo = 'productos';
+				$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+				$crud = permisos($modulo,$permit);
+				require_once "views/include/scope.header.php";
+				require_once "views/modules/admin/products/update.php";
+				require_once "views/include/scope.footer.php";
+			}else{
+				session_destroy();
+				require_once "views/modules/landing.html";
+			}
+		}else{
+			require_once "views/modules/landing.html";
+		}
 		}
 		function newRegister(){
 			$data = $_POST['data'];

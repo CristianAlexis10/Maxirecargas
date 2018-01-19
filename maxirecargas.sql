@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-01-2018 a las 19:58:59
+-- Tiempo de generación: 19-01-2018 a las 13:03:12
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -448,6 +448,11 @@ BEGIN
 SELECT usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_celular,ciudad.ciu_nombre,usuario.usu_direccion,usuario.usu_correo FROM usuario INNER JOIN ciudad ON usuario.id_ciudad=ciudad.id_ciudad  WHERE usuario.tip_usu_codigo = 5 ;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verRutasBy` (IN `usu` INT)  NO SQL
+BEGIN
+SELECT usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_celular,ciudad.ciu_nombre,usuario.usu_direccion,usuario.usu_correo FROM usuario INNER JOIN ciudad ON usuario.id_ciudad=ciudad.id_ciudad  WHERE usuario.usu_codigo = usu ;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verPedido` (IN `token` VARCHAR(15))  NO SQL
 BEGIN 
 SELECT
@@ -636,7 +641,7 @@ CREATE TABLE `estiloxusuario` (
 
 INSERT INTO `estiloxusuario` (`usu_codigo`, `est_usu_menu`, `est_usu_navigator`, `est_usu_menu_top`) VALUES
 (1, 'h', 'jjh', ''),
-(2, ' ', '  ', ' '),
+(2, 'main--navdark ', 'navigatordark', 'menu--toposcuro'),
 (21, ' ', ' ', ' '),
 (22, ' ', ' ', ' '),
 (25, ' ', ' ', ' '),
@@ -645,10 +650,14 @@ INSERT INTO `estiloxusuario` (`usu_codigo`, `est_usu_menu`, `est_usu_navigator`,
 (28, ' ', ' ', ' '),
 (29, ' ', ' ', ' '),
 (1, ' ', ' ', ' '),
-(2, ' ', '  ', ' '),
+(2, 'main--navdark ', 'navigatordark', 'menu--toposcuro'),
 (3, ' ', ' ', ' '),
 (3, ' ', ' ', ' '),
-(4, ' ', ' ', ' ');
+(4, ' ', ' ', ' '),
+(5, ' ', ' ', ' '),
+(6, ' ', ' ', ' '),
+(7, ' ', ' ', ' '),
+(8, ' ', ' ', ' ');
 
 -- --------------------------------------------------------
 
@@ -867,7 +876,8 @@ INSERT INTO `permiso` (`id_permiso`, `id_modulo`, `tip_usu_codigo`, `per_crear`,
 (3, 3, 2, 1, 1, 1, 1),
 (4, 4, 2, 1, 1, 1, 1),
 (6, 5, 2, 1, 1, 1, 1),
-(7, 1, 6, 0, 1, 1, 0);
+(7, 1, 6, 0, 1, 1, 0),
+(8, 5, 5, 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1524,7 +1534,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
@@ -1579,7 +1589,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
@@ -1641,6 +1651,13 @@ ALTER TABLE `pedidoxproducto`
   ADD CONSTRAINT `pedidoxproducto_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `pedidoxproducto_ibfk_2` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `pedidoxproducto_ibfk_3` FOREIGN KEY (`tip_ser_codigo`) REFERENCES `tipo_servicio` (`Tip_ser_cod`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `permiso`
+--
+ALTER TABLE `permiso`
+  ADD CONSTRAINT `permiso_ibfk_1` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `permiso_ibfk_2` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`

@@ -4,6 +4,7 @@
 	}
 </style>
 <?php
+if($crud[1]==true){
  $_SESSION['cod_detail_id'] = base64_decode($_GET['data']);
  $_SESSION['usu_cot'] = $data_quo[0]['usu_codigo'];
 ?>
@@ -99,3 +100,8 @@ if ($data_quo[0]['cot_estado']=="Terminado"){?>
     <script type="text/javascript" src="views/assets/js/map-quotation.js"></script>
     </body>
 </html>
+<?php
+}else{
+	echo "No tienes permiso a este modulo";
+}
+?>

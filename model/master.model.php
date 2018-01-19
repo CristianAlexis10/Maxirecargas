@@ -944,6 +944,18 @@ class MasterModel{
 
     return $result;
   }
+  public function verRutasBy($id){
+    try {
+      $this->sql="call verRutasBy(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($id));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
   public function verDetalleRuta($date,$usu){
     try {
       $this->sql="call verDetalleRuta(?,?)";

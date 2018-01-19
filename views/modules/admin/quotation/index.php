@@ -2,6 +2,7 @@
 	<div class="title">
 		<p>COTIZACIONES</p>
 	</div>
+	<?php if ($crud[1]==true) {?>
 	<div id="tabs">
 		  <ul>
 		    <li><a href="#tabs-2">Pendientes</a></li>
@@ -15,3 +16,4 @@
 		  </div>
 	</div>
 </div>
+<?php }?>

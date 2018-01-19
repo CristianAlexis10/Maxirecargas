@@ -4,6 +4,7 @@
 	}
 </style>
 <?php
+if ($crud[1]==true) {
  $_SESSION['ped_detail_token'] = $data_order[0]['ped_token'];
 ?>
 <div class="mudules orders detail" id="detail-reload">
@@ -62,15 +63,15 @@
 						<li class="opcins--order"><a href=""> <a href="#" onclick="assign(<?php echo $data_order[0]['ped_codigo']; ?>)" >Asignar encargado</a></li>
 					<?php }else{ ?>
 						<li class="opcins--order"><a href="#"  class="contact--customer" id="<?php echo $data_order[0]['ped_encargado']; ?>">Contactar encargado</a></li>
-						<?php } ?>
-
 						<?php
 						if ($data_order[0]['ped_estado']=='Terminado') {?>
 
 						<?php }else{?>
 							<li class="opcins--order"> <a href="#" onclick="assign(<?php echo $data_order[0]['ped_codigo']; ?>)" >Cambiar encargado</a></li>
 						<?php } ?>
-			<li class="opcins--order"><a href="#" class="contact--customer" id="<?php echo $data_order[0]['usu_codigo']; ?>">Contactar  Cliente</a></li>
+						<?php } ?>
+
+						<li class="opcins--order"><a href="#" class="contact--customer" id="<?php echo $data_order[0]['usu_codigo']; ?>">Contactar  Cliente</a></li>
 		</ul>
 	</div>
 </div>
@@ -111,3 +112,4 @@
     <script type="text/javascript" src="views/assets/js/moment-spanish.js"></script>
     </body>
 </html>
+<?php } ?>

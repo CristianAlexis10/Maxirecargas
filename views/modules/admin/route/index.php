@@ -2,6 +2,8 @@
 	<div class="title">
 		<p>Rutas</p>
 	</div>
+<!-- permisos	 -->
+<?php if ($crud[1]==true) {?>
 	<div id="tabs">
 		  <ul>
 		    <li><a href="#tabs-2">Del Día</a></li>
@@ -14,4 +16,5 @@
 				<?php require_once "views/modules/config/datatables/datatable-route-all.php"; ?>
 		  </div>
 	</div>
+<?php }?>
 </div>

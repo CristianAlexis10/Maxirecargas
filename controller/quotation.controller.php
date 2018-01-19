@@ -9,13 +9,30 @@ require_once "controller/doizer.controller.php";
 	 	}
 		function main(){
 			if (isset($_SESSION['CUSTOMER']['CLIENT'])) {
-				// require_once "views/include/user/scope.header.php";
 				require_once "views/modules/customer/quotation/index.php";
-				// require_once "views/include/user/scope.footer.php";
 			}elseif (isset($_SESSION['CUSTOMER']['ROL']) ) {
-				require_once "views/include/scope.header.php";
-				require_once "views/modules/admin/quotation/index.php";
-				require_once "views/include/scope.footer.php";
+				if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				//saber si puede acceder a este modulo
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+					if ($row['enlace']=='cotizacion') {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					//saber persimos crud de este modulo
+					$modulo = 'cotizacion';
+					$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+					$crud = permisos($modulo,$permit);
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/quotation/index.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					session_destroy();
+					require_once "views/modules/landing.html";
+				}
+			}else{
+				require_once "views/modules/landing.html";
+			}
 			}else{
 				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/user/quotation/index.php";
@@ -117,9 +134,28 @@ require_once "controller/doizer.controller.php";
 			}
 		}
 		function viewQuotation(){
-			$data_quo = $this->master->verCotizacion(base64_decode($_GET['data']));
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/quotation/detail.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+			//saber si puede acceder a este modulo
+			foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+				if ($row['enlace']=='cotizacion') {
+					$access = true;
+				}
+			}
+			if (isset($access)) {
+				//saber persimos crud de este modulo
+				$modulo = 'cotizacion';
+				$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+				$crud = permisos($modulo,$permit);
+				$data_quo = $this->master->verCotizacion(base64_decode($_GET['data']));
+				require_once "views/include/scope.header.php";
+				require_once "views/modules/admin/quotation/detail.php";
+			}else{
+				session_destroy();
+				require_once "views/modules/landing.html";
+			}
+		}else{
+			require_once "views/modules/landing.html";
+		}
 		}
 		function response(){
 			$response = $_POST['res'];

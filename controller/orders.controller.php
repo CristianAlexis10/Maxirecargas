@@ -15,6 +15,9 @@
 					}
 				}
 				if (isset($access)) {
+					$modulo = 'Pedidos';
+					$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+					$crud = permisos($modulo,$permit);
 					require_once "views/include/scope.header.php";
 					require_once "views/modules/admin/orders/index.php";
 					require_once "views/include/scope.footer.php";
@@ -32,9 +35,29 @@
 			}
 		}
 		function viewDetail(){
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/orders/detail.php";
-			require_once "views/include/scope.footer.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+					if ($row['enlace']=='pedidos') {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					$modulo = 'Pedidos';
+					$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+					$crud = permisos($modulo,$permit);
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/orders/detail.php";
+					require_once "views/include/scope.footer.php";
+				}else{
+					require_once "views/include/user/scope.header.php";
+					require_once "views/modules/user/orders/index.php";
+					require_once "views/include/user/scope.footer.php";
+				}
+			}else{
+				require_once "views/include/user/scope.header.php";
+				require_once "views/modules/user/orders/index.php";
+				require_once "views/include/user/scope.footer.php";
+			}
 		}
 		function newRegister(){
 			$order = $_POST['data'];
@@ -80,10 +103,31 @@
 			}
 		}
 		function viewOrder(){
-			$order = base64_decode($_GET['data']);
-			$data_order = $this->master->verPedido($order);
-			require_once "views/include/scope.header.php";
-			require_once "views/modules/admin/orders/detail.php";
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
+					if ($row['enlace']=='pedidos') {
+						$access = true;
+					}
+				}
+				if (isset($access)) {
+					$modulo = 'Pedidos';
+					$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+					$crud = permisos($modulo,$permit);
+					$order = base64_decode($_GET['data']);
+					$data_order = $this->master->verPedido($order);
+					require_once "views/include/scope.header.php";
+					require_once "views/modules/admin/orders/detail.php";
+				}else{
+					require_once "views/include/user/scope.header.php";
+					require_once "views/modules/user/orders/index.php";
+					require_once "views/include/user/scope.footer.php";
+				}
+			}else{
+				require_once "views/include/user/scope.header.php";
+				require_once "views/modules/user/orders/index.php";
+				require_once "views/include/user/scope.footer.php";
+			}
+
 		}
 		function changeStatus(){
 			$data= $_POST['data'];

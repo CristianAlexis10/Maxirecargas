@@ -7,6 +7,8 @@
 	<div class="title">
 		<p>PEDIDOS</p>
 	</div>
+
+<?php if ($crud[1]==true) {?>
 	<div id="tabs">
 		  <ul>
 				<li><a href="#tabs-1">Pendientes</a></li>
@@ -63,3 +65,6 @@
 <div id="modal-total">
 	Total Pagado: <input type="text" id="total">
 </div>
+<?php }else{
+	echo "No tienes permiso para este modulo";
+}?>

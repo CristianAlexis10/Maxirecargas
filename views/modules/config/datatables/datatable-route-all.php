@@ -9,7 +9,13 @@
                     </tr>
          </thead>
             <tbody>
-                <?php foreach ($this->master->verRutas() as $row) {
+                <?php
+                if ($_SESSION['CUSTOMER']['ROL']==5) {
+                  $query =$this->master->verRutasBy($_SESSION['CUSTOMER']['ID']);
+                }else{
+                  $query  = $this->master->verRutas();
+                }
+                 foreach ($query as $row) {
                   $count = $this->master->ContarRutasPorUsuario($row['usu_codigo']);
                   ?>
                      <tr>
@@ -19,9 +25,6 @@
                             <td><?php echo $count['total']; ?></td>
                            <td>
                             <?php
-                                $modulo = 'Pedidos';
-                                $permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
-                                $crud = permisos($modulo,$permit);
                                 if ($crud[1]==true) {?>
                             <a href="ver-toda-ruta-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
 

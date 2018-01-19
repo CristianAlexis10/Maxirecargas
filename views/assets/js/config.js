@@ -165,16 +165,22 @@ if(document.getElementById('sexo')){
                            dataType:'json',
                            data: ({data: dataJson}),
                            // data: ({data: dataJson , get_captcha : captcha}),
+                           beforeSend: function() {
+                               $("#registrar").after("<div class='message'>Validando..</div>");
+                           },
                            success: function(result){
+                             $('div.message').remove();
                             if (result==true) {
-                              $("#frmNewUser").after("<div class='message'>Registrado Exitosamente</div>");
+                              $("#frmNewUser").after("<div class='message'>Registrado Exitosamente, se ha enviado un correo para activar tu cuenta. </div>");
+                              $("#frmNewUser")[0].reset();
                                $('#datatableUser').load('index.php?controller=datatables&a=dataTableUser');
                             }else{
+                               $('div.message').remove();
                               $("#frmNewUser").after("<div class='message'>"+result+"</div>");
                             }
                              setTimeout(function(){
                                 $('div.message').remove();
-                              }, 2000);
+                              }, 4500);
                            },
                            error: function(result){
                               console.log(result);
@@ -202,15 +208,21 @@ if(document.getElementById('sexo')){
                           type: "POST",
                            dataType:'json',
                            data: ({data: dataJson}),
+                           beforeSend: function() {
+                               $("#registrarEmp").after("<div class='message'>Validando...</div>");
+                           },
                            success: function(result){
+                             $('div.message').remove();
                             if (result==true) {
-                              $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente</div>");
+                              $("#frmNewBusi")[0].reset();
+                              $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente, se ha enviado un correo para activar tu cuenta.  </div>");
                             }else{
+                               $('div.message').remove();
                               $("#frmNewBusi").after("<div class='message'>"+result+"</div>");
                             }
                              setTimeout(function(){
                                 $('div.message').remove();
-                              }, 2000);
+                              }, 4500);
                            },
                            error: function(result){
                               console.log(result);
