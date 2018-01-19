@@ -1,14 +1,9 @@
 <?php
 $result =$this->readBy(base64_decode($_GET['data']));
-$services = $this->master->selectAllBy("servicioxproducto",array("pro_codigo",base64_decode($_GET['data'])));
+$services = $this->master->selectAll("servicioxproducto",array("pro_codigo",base64_decode($_GET['data'])));
 // print_r($services);
 $_SESSION['product_update']=base64_decode($_GET['data']);
-$servies_real;
-foreach ($services as $key => $value) {
-	$servies_real[] = $value['tip_ser_cod'];
-}
 ?>
-<link type="text/css" rel="stylesheet" href="views/assets/css/multiple-select.css"  media="screen,projection"/>
 <div class="modules services">
 	<div class="title">
 		<p>MODIFICAR PRODUCTO</p>
@@ -24,7 +19,6 @@ foreach ($services as $key => $value) {
 					<?php }else{?>
 						<option value="<?php echo $row['mar_codigo']?>"><?php echo $row['mar_nombre'] ?></option>
 					<?php }  }?>
-<<<<<<< HEAD
 				</select>
 		</div>
 		<div class="form-group">
@@ -58,44 +52,6 @@ foreach ($services as $key => $value) {
 									<input type="checkbox"  name="ch-tip-ser" value="<?php echo $row['Tip_ser_cod']?>"   >
 								</label>
 				<?php
-=======
-			   </select>
-			</div>
-			<div class="form-group">
-				<label for="categoria" class="required">Categoria:</label>
-			   <select  id="categoria" class="data-new-pro input " required>
-				<?php foreach($this->master->selectAll("tipo_producto") AS $row) {
-					if ($result['tip_pro_codigo']==$row['tip_pro_codigo']) { ?>
-						<option value="<?php echo $row['tip_pro_codigo']?> " selected><?php echo $row['tip_pro_nombre'] ?></option>
-					<?php }else{?>
-						<option value="<?php echo $row['tip_pro_codigo']?>"><?php echo $row['tip_pro_nombre'] ?></option>
-
-					<?php } } ?>
-			   </select>
-			</div>
-		 <div class="form-group">
-				<label for="rf" class="label">Referencia:</label>
-				<input type="text" name="data[]" id="rf" class="input data-new-pro" required value="<?php echo $result['pro_referencia']?>">
-			</div>
-			<div class="form-group">
-				Servicios: <select multiple="multiple" id="selectMul">
-				<?php
-				$i = 0;
-				foreach ($this->master->selectAll("tipo_servicio") AS $row) {
-					if (in_array($row['Tip_ser_cod'],$servies_real)) {?>
-								<option value="<?php echo $row['Tip_ser_cod']?>" selected><?php echo $row['tip_ser_nombre'] ?></option>
-						<?php }else{?>
-							<option value="<?php echo $row['Tip_ser_cod']?>"  ><?php echo $row['tip_ser_nombre'] ?></option>
-				<?php  }
-						$i++;
-					 }  ?>
-				</select>
-			</div>
-			 <div class="form-group">
-				<label for="caracteristica" class="label">Caracteristicas:</label>
-					<textarea name="data[]" id="caracteristica" class="input data-new-pro"><?php echo $result['pro_descripcion']?>
-					</textarea>
->>>>>>> 12846fc94366face4d5709843029c13320a3ca99
 
 				}
 			}else{?>
@@ -128,10 +84,6 @@ foreach ($services as $key => $value) {
 					<option value="1">Activo</option>
 					<option value="2" selected>Inactivo</option>
 					<?php } ?>
-<<<<<<< HEAD
-=======
-
->>>>>>> 12846fc94366face4d5709843029c13320a3ca99
 				</select>
 			</div>
 					<div class="form--rigth rigth--product">
