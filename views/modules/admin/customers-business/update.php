@@ -12,42 +12,44 @@
 	<div class="title">
 		<p>CLIENTES</p>
 	</div>
+		<form id="frmUpdaDataEmp" >
+			<div class="wrap_two_formgroup">
+				<div class="form-group">
+					<label class="label">Nombre Empresa:</label>
+					<input type="text" class="dataEmp input" value="<?php echo  $empresa['emp_nombre'];?>">
+				</div>
+				<div class="form-group">
+					<label class="label">Nit:</label>
+					<input type="text" class="dataEmp input" value="<?php echo  $empresa['emp_nit'];?>">
+				</div>
+			</div>
+			<div class="wrap_two_formgroup">
+				<div class="form-group">
+					<label class="label">Razón social:</label>
+					<input type="text" class="dataEmp input" value="<?php echo  $empresa['emp_razon_social'];?>">
+				</div>
+				<div class="form-group">
+					<label class="label">Nombre Sede:</label>
+					<input type="text" class="dataEmp input" value="<?php echo  $sede['sed_nombre'];?>">
+				</div>
+			</div>
+			<div class="wrap_two_formgroup">
+				<div class="form-group">
+					<label class="label">Dirección Sede:</label>
+					<input type="text" class="dataEmp input" value="<?php echo  $sede['sed_direccion'];?>">
+				</div>
+				<div class="form-group">
+					<label class="label">Telefono sede:</label>
+					<input type="text" class="dataEmp input" value="<?php echo  $sede['sed_telefono'];?>">
+				</div>
+			</div>
+						<div class="form-group">
+							<label class="label">Cargo :</label>
+							<input type="text" class="dataEmp input grande" value="<?php echo  $result['cli_emp_cargo'];?>">
+						</div>
+						<div class="form-group">
+							<input type="submit" name="" value="Modificar" class="btn">
+						</div>
 
-
-		    	<form id="frmUpdaDataEmp" >
-					<div class="user--info">
-						<div class="detail">
-							<p class="item--detail">Nombre Empresa:</p>
-							<input type="text" class="dataEmp" value="<?php echo  $empresa['emp_nombre'];?>">
-						</div>
-						<div class="detail">
-							<p class="item--detail">Nit:</p>
-							<input type="text" class="dataEmp" value="<?php echo  $empresa['emp_nit'];?>">
-						</div>
-						<div class="detail">
-							<p class="item--detail">Razón social:</p>
-							<input type="text" class="dataEmp" value="<?php echo  $empresa['emp_razon_social'];?>">
-						</div>
-						<div class="detail">
-							<p class="item--detail">Nombre Sede:</p>
-							<input type="text" class="dataEmp" value="<?php echo  $sede['sed_nombre'];?>">
-						</div>
-						<div class="detail">
-							<p class="item--detail">Dirección Sede:</p>
-							<input type="text" class="dataEmp" value="<?php echo  $sede['sed_direccion'];?>">
-						</div>
-						<div class="detail">
-							<p class="item--detail">Telefono sede:</p>
-							<input type="text" class="dataEmp" value="<?php echo  $sede['sed_telefono'];?>">
-						</div>
-						<div class="detail">
-							<p class="item--detail">Cargo :</p>
-							<input type="text" class="dataEmp" value="<?php echo  $result['cli_emp_cargo'];?>">
-						</div>
-						<div class="detail">
-
-							<input type="submit" name="" value="Modificar">
-						</div>
-					</div>
-		    	</form>
+		  </form>
 </div>

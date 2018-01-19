@@ -51,10 +51,9 @@
 		  <?php if ($crud[0]==true) {?>
 		  <div id="tabs-1" class="new products">
 			<div class="form--left">
-
 		    	<form  id="frmNerProduct">
 		    		  <div class="form-group">
-			                <label for="marca" class="required ">Marca:</label>
+			                <label for="marca" class="select">Marca:</label>
 			               <select name="data[]" id="marca" class="data-new-pro input" required >
 			               	<?php foreach($this->master->selectAll("marca") AS $row) {?>
 			               		<option value="<?php echo $row['mar_codigo']?>"><?php echo $row['mar_nombre'] ?></option>
@@ -63,25 +62,27 @@
 			               </select>
 			            </div>
 			            <div class="form-group">
-			                <label for="categoria" class="required">Categoria:</label>
+			                <label for="categoria" class="select">Categoria:</label>
 			               <select  id="categoria" class="data-new-pro input " required>
 			               	<?php foreach($this->master->selectAll("tipo_producto") AS $row) {?>
 			               		<option value="<?php echo $row['tip_pro_codigo']?>"><?php echo $row['tip_pro_nombre'] ?></option>
 			               	<?php } ?>
-							<option value="newCategory">Otra</option>
+											<option value="newCategory">Otra</option>
 			               </select>
 			            </div>
 		    		 <div class="form-group">
-			                <label for="rf" class="label">Referencia:</label>
-			                <input type="text" name="data[]" id="rf" class="input data-new-pro" required>
-			            </div>
-									Servicios: <select multiple="multiple" id="selectMul">
-			            <?php
-			            foreach ($this->master->selectAll("tipo_servicio") AS $row) {?>
+			          <label for="rf" class="label">Referencia:</label>
+			          <input type="text" name="data[]" id="rf" class="input data-new-pro" required>
+			        </div>
+							<div class="form-group">
+								<label for="selectMul" class="select">Servicios:</label>
+								<select multiple="multiple" id="selectMul">
+									<?php
+									foreach ($this->master->selectAll("tipo_servicio") AS $row) {?>
 										<option value="<?php echo $row['Tip_ser_cod']?>"><?php echo $row['tip_ser_nombre'] ?></option>
-
-			            <?php }  ?>
+									<?php }  ?>
 								</select>
+							</div>
 			             <div class="form-group">
 			                <label for="caracteristica" class="label">Caracteristicas:</label>
 											<textarea name="data[]" id="caracteristica" class="input data-new-pro"></textarea>
@@ -90,14 +91,6 @@
 						<div class="form-group">
 							<input type="hidden" id="img" class="data-new-pro" value="icn-maxi.png">
 						</div>
-
-
-
-
-			           <!--  <div class="form-group">
-			                <label for="img" class="required">Logo:</label>
-			                <input type="file" name="file" id="img-new-pro"  required>
-			            </div> -->
 					</div>
 								<div class="form--rigth rigth--product">
 									<div class="form-group Cambiar--img">

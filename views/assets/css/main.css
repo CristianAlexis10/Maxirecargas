@@ -256,14 +256,8 @@ table.dataTable tbody th, table.dataTable tbody td{
 #tabs-1{
   display: flex;
 }
-#frmNewUser{width: 50%;}
-}
+#frmNewUser{}
 
-.customers--business, .customers--normal{
-  position: absolute;
-  width: 50%;
-
-}
 .form--left{
   width: 50%;
 }
@@ -305,34 +299,48 @@ table.dataTable tbody th, table.dataTable tbody td{
   padding: 15px 30px;
   cursor: pointer;
   color: white;
+  width: 200px;
+  margin: 0 auto;
 }
-.form-group .btn:hover{
-  box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.5);
+#selectMul{
+  width: 28%
 }
-
+.form-group .input{
+  padding:10px 2px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid #afafaf;
+  position: relative;
+  font-size: 16px;
+  background: transparent;
+  width: 80%;
+}
+.input.grande{
+  width: 90%;
+}
+.customers--business h1{
+  color: #35a4dd;
+  text-align: center;
+  font-weight: 300;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+.wrap_two_formgroup, .customers--password{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
 .form-group{
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 30px;
 }
-
-
-.form-group .label{
+.form-group .label, .select{
   transition: all 0.5s;
-  transform: translateY(12px);
-  position: absolute;
-  padding: 0 0 0 5px;
-
-}
-.form-group .input  {
-  padding:8px 2px;
-  border-radius: 8px;
-  outline: none;
-  border: 1px solid #9e9e9e;
-  position: relative;
-  font-size: 16px;
-  background: transparent;
+  padding: 0 0 10px 0;
+  color: #9e9e9e;
 }
  .input:after, .input:before {
    content: "";
@@ -341,24 +349,16 @@ table.dataTable tbody th, table.dataTable tbody td{
    border: 1px solid #9e9e9e;
    transition: all 0.5s;
 }
-
 .color-label .input{
   border: 1px solid #35a4dd;
 }
 .color-label .label{
   color: #35a4dd;
-}
-.mover-label .label{
-  transform: translateY(-15px);
-  font-size: 12px;
-}
 
-.form-group .btn{
-  width: 200px;
 }
 
 .customers--business{display: none;}
- .normaldes{display: none;}
+.normaldes{display: none;}
 .businessaparece{display: block;}
 
 /*LOGIN*/
@@ -413,6 +413,21 @@ table.dataTable tbody th, table.dataTable tbody td{
 }
 
 /*vistas detalles*/
+/* customer detail info */
+.user--info{
+  width: 80%;
+  margin-top: 30px;
+}
+.user--info div:nth-child(odd){
+  background:#e6f6ff;
+}
+.btn_empr{
+  color: #35a4dd;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 40px;
+
+}
 .detail{
   display: flex;
   padding: 8px 6px;
@@ -455,6 +470,10 @@ align-items: center;
 }
 .mudules.orders.detail .wrap--btns li:hover{
   color: #35a4dd;
+}
+#frmUpdtateUser, #frmUpdaDataEmp{
+  width: 100%;
+  margin-left: 70px;
 }
 /*settings*/
 
@@ -682,5 +701,58 @@ align-items: center;
 width: 100%;
 height: 350px;
 margin: 0 auto;
+}
 
+/*modal order*/
+#modal-motive,.modal-status,#modal-total,.modalPedido{
+	display: none;
+}
+.modalPedido{
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+}
+.modalContent{
+  margin: 0 auto;
+  background: white;
+  width: 40%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  font-family: 'lato';
+}
+.close_modal_pedido{
+  font-size: 20px;
+  text-align: right;
+  padding: 10px;
+}
+.elegir{
+  text-transform: capitalize;
+  color: #9e9e9e;
+  margin: 0 auto;
+  margin-bottom:50px;
+}
+.infomodal{
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.infomodal input, .infomodal textarea, .infomodal select{
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 50px;
+}
+.infomodal input[type="button"]{
+  padding: 20px 30px;
+  background: #35a4dd;
+  color: white;
+  font-size: 20px;
 }

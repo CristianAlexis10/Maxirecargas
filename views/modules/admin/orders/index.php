@@ -1,8 +1,4 @@
-<style>
-#modal-motive,.modal-status,#modal-total{
-	display: none;
-}
-</style>
+
 <div class="modules orders">
 	<div class="title">
 		<p>PEDIDOS</p>
@@ -37,33 +33,52 @@
 
 	</div>
 </div>
-<div id="modal-assign">
-	Elige el encargado:
-	<select id="addOrder">
-		<option value="null">Pendiente</option>
-		<?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',5)) as $row) {?>
-		<option value="<?php echo $row['usu_codigo'] ?>"><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ?></option>
-		<?php }?>
-	</select>
-	<input type="button" id="confirmAssign" value="Seleccionar">
+<div id="modal-assign" class="modalPedido">
+	<div class="modalContent">
+		<span id="clAssig" class="close_modal_pedido">&times;</span>
+		<h2 class="elegir">Elige el encargado:</h2>
+		<div class="infomodal">
+			<select id="addOrder">
+				<option value="null">Pendiente</option>
+				<?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',5)) as $row) {?>
+					<option value="<?php echo $row['usu_codigo'] ?>"><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ?></option>
+				<?php }?>
+			</select>
+			<input type="button" id="confirmAssign" value="Seleccionar">
+		</div>
+	</div>
 </div>
 
-<div class="modal-status">
-	Estado :<select id="newStatus">
-		<option value="1">En Recepción</option>
-		<option value="2">En Proceso</option>
-		<option value="3">Aplazado</option>
-		<option value="4">Terminado</option>
-		<option value="5">Cancelado</option>
-	</select>
-	<input type="button" id="saveStarus" value="Guardar">
+<div class="modal-status modalPedido">
+	<div class="modalContent">
+		<span>&times;</span>
+		<h2 class="elegir">Estado:</h2>
+		<div class="infomodal">
+			<select id="newStatus">
+				<option value="1">En Recepción</option>
+				<option value="2">En Proceso</option>
+				<option value="3">Aplazado</option>
+				<option value="4">Terminado</option>
+				<option value="5">Cancelado</option>
+			</select>
+			<input type="button" id="saveStarus" value="Guardar">
+		</div>
+	</div>
 </div>
-<div id="modal-motive">
-	Motivo: <textarea id="motive" rows="8" cols="80"></textarea>
+
+<div id="modal-motive" class="modalPedido">
+	<div class="modalContent">
+		<span>&times;</span>
+		<h2 class="elegir">Motivo:</h2>
+		<div class="infomodal">
+			<textarea id="motive" rows="8" cols="80"></textarea>
+		</div>
+	</div>
 </div>
 
 <div id="modal-total">
-	Total Pagado: <input type="text" id="total">
+	<h2 class="elegir">Total Pagado: </h2>
+	<input type="text" id="total">
 </div>
 <?php }else{
 	echo "No tienes permiso para este modulo";

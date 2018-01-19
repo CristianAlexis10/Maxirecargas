@@ -3,7 +3,10 @@ var assignVar;
 $("#modal-assign").hide();
 function assign(order){
   assignVar=order;
-  $("#modal-assign").toggle();
+  $("#modal-assign").show();
+  $("#clAssig").click(function() {
+    $("#modal-assign").hide();
+  })
 }
 $("#confirmAssign").click(function(){
   var employe = $("#addOrder").val();

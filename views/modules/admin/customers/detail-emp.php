@@ -10,6 +10,15 @@
 	<div class="title">
 		<p>INFORMACIÓN</p>
 	</div>
+	<div class="wrap--btns">
+		<?php
+			$modulo = 'usuarios';
+			$crud = permisos($modulo,$permit);
+			 if($crud[2]==1){?>
+			<a href="datos-empresariales-<?php echo $_GET['data']?>" class="btn_empr">Datos Empresariales</a>
+			<a href="modificar-cliente-<?php echo $_GET['data']?>" class="btn_empr">Modificar</a>
+		<?php }?>
+	</div>
 	<div class="user--info">
 		<div class="detail">
 			<p class="item--detail">Nombre Completo:</p>
@@ -72,13 +81,5 @@
 			<p class="data--detail"> <img src="views/assets/image/profile/<?php echo  $result['foto'];?>" alt="Foto de perfil no Disponible"></p>
 		</div>
 	</div>
-	<div class="wrap--btns">
-		<?php
-			$modulo = 'usuarios';
-			$crud = permisos($modulo,$permit);
-			 if($crud[2]==1){?>
-			<a href="datos-empresariales-<?php echo $_GET['data']?>">Datos Empresariales</a>
-			<a href="modificar-cliente-<?php echo $_GET['data']?>">Modificar</a>
-		<?php }?>
-	</div>
+
 </div>
