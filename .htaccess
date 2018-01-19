@@ -117,3 +117,6 @@ RewriteRule ^nuevo-rol$ index.php?controller=role&a=newRegister
 #CONTACTO
 RewriteRule ^enviar-correo$ index.php?controller=contact&a=landing
 RewriteRule ^datos-contacto$ index.php?controller=contact&a=knowData
+
+#COFIGURACIONES
+RewriteRule ^nuevo_dato_contacto$ index.php?controller=setting&a=contact

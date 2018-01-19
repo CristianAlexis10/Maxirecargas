@@ -5,6 +5,7 @@
   <ul>
     <li><a href="#config-permisos">Permisos</a></li>
     <li><a href="#general">General</a></li>
+    <li><a href="#contacto">Datos de contacto</a></li>
   </ul>
   <div id="config-permisos">
       <form id="frmNewRol">
@@ -130,6 +131,32 @@
           <?php }  ?>
           <input type="button" id="saveStyle" value="Guardar Cambios">
       </div>
-
       </form>
+      <div id="contacto">
+        <form id="form_contacto">
+          <div class="coso">
+            <label for="numer1">numero de telefono</label>
+            <input type="number" id="numer1">
+          </div>
+          <div class="coso">
+            <label for="numer2">numero de telefono 2</label>
+            <input type="number" id="numer2">
+          </div>
+          <div class="coso">
+            <label for="wpp">whatsapp</label>
+            <input type="number" id="wpp">
+          </div>
+          <div class="coso">
+            <label for="correocos">correo</label>
+            <input type="email" id="correocos">
+          </div>
+          <div class="coso">
+            <label for="direccion">direccion</label>
+            <input type="number" id="direccion">
+          </div>
+          <div class="btn-coso">
+            <input type="submit" id="btn-coso">
+          </div>
+        </form>
+      </div>
 </div>
