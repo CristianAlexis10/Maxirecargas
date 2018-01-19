@@ -355,6 +355,21 @@ class MasterModel{
 
         return $result;
     }
+    public function cambiarDatosContacto($values){
+        try {
+            $this->sql="call cambiarDatosContacto(?,?,?,?,?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute($values);
+            $result = $query->errorInfo()[1];
+            if ($result==null) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            $result = $query->errorInfo()[1];
+        }
+
+        return $result;
+    }
     public function procedure14($name,$value){
         try {
             $this->sql="call $name(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

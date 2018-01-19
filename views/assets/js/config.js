@@ -96,33 +96,28 @@ if(document.getElementById('sexo')){
         e.preventDefault();
         if(confirm('modificar este registro?')){
           dataJson = [];
-          var servicios= [];
+          var servicios= $("#selectMul").val();
           var ser = false;
            $(".data-new-pro").each(function(){
                           structure = {}
                           structure = $(this).val();
                           dataJson.push(structure);
                 });
-           $("input[name=ch-tip-ser").each(function(){
-                  if ($( this ).is( ":checked" )  ) {
-                     servicios.push($(this).val());
-                     ser = true;
-                  }
-          });
-          // console.log(servicios);
-          if (ser==true) {
+
+
                   $.ajax({
                   url: 'guardar-modificacion-producto',
                   type:'post',
                   dataType:'json',
                   data:({data : dataJson ,services : servicios}),
-              }).done(function(response){
-                    console.log(response);
-                    $("#frmUpdateProduct").after("<div class='message'>"+response+"</div>");
+                  success:function(response){
+                        console.log(response);
+                        $("#frmUpdateProduct").after("<div class='message'>"+response+"</div>");
+                      },
+                  error:function(response){
+                        console.log(response);
+                      }
               });
-          }else{
-             $("#frmUpdateProduct").after("<div class='message'>Seleccione al menos un servicio</div>");
-          }
             setTimeout(function(){
                        $('div.message').remove();
                      }, 2000);
