@@ -107,5 +107,7 @@
 	 <script type="text/javascript" src="views/assets/js/gmaps.js"></script>
 	  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYIb-jxF2zZivhG13bGeEKI9gJthF4Ovg&libraries=adsense&sensor=false&language=es"></script>
     <script type="text/javascript" src="views/assets/js/map-order.js"></script>
+    <script type="text/javascript" src="views/assets/js/moment.js"></script>
+    <script type="text/javascript" src="views/assets/js/moment-spanish.js"></script>
     </body>
 </html>

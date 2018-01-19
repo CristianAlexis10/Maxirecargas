@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-01-2018 a las 03:52:40
+-- Tiempo de generación: 18-01-2018 a las 19:58:59
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -92,6 +92,31 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaUsuariosRegistrados` ()  BE
   SELECT count(*) FROM usuario WHERE id_estado = 1;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `contarPedidosCanceladasBy` (IN `usu` INT)  NO SQL
+BEGIN 
+SELECT COUNT(*) AS 'total' FROM  pedido WHERE ped_encargado = usu AND ped_estado="Cancelado" ;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `contarPedidosPendientesBy` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN 
+SELECT COUNT(*) AS 'total' FROM  pedido WHERE ped_encargado = usu AND ped_estado="Aplazado" OR dat > ped_fecha_entrega;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `contarPedidosTerminadosBy` (IN `usu` INT)  NO SQL
+BEGIN 
+SELECT COUNT(*) AS 'total' FROM  pedido WHERE ped_encargado = usu AND ped_estado="Terminado";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ContarRutasParaHoyPorUsuario` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN 
+SELECT COUNT(*) AS total FROM pedido WHERE pedido.ped_fecha_entrega = dat AND ped_encargado = usu;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ContarRutasPorUsuario` (IN `usu` INT)  NO SQL
+BEGIN 
+SELECT COUNT(*) AS total FROM pedido WHERE ped_encargado = usu;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `contestarCotizacion` (IN `quota` INT, IN `respon` LONGTEXT, IN `estado` VARCHAR(20))  NO SQL
 BEGIN 
 UPDATE cotizacion SET cotizacion.cot_estado = estado, cotizacion.cot_respuesta=respon WHERE cotizacion.cot_codigo = quota;
@@ -137,7 +162,7 @@ INSERT INTO sede (emp_codigo, sed_nombre, sed_direccion, sed_telefono) VALUES (e
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `crearUsuario` (IN `id_tipo_documento` INT(11), IN `usu_num_documento` INT(11), IN `usu_primer_nombre` VARCHAR(50), IN `usu_primer_apellido` VARCHAR(50), IN `usu_correo` VARCHAR(100), IN `usu_telefono` INT(10), IN `id_ciudad` INT(11), IN `dir` VARCHAR(200), IN `usu_sexo` VARCHAR(50), IN `tip_usu_codigo` INT(11), IN `id_estado` INT(11), IN `usu_foto` LONGTEXT, IN `usu_fechas_registro` DATE, IN `usu_ult_inicio_sesion` DATE)  BEGIN
-INSERT INTO usuario  (id_tipo_documento, usu_num_documento, usu_primer_nombre, usu_primer_apellido,  usu_correo,  usu_telefono, id_ciudad, usu_direccion,  usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion) VALUES (id_tipo_documento, usu_num_documento,  usu_primer_nombre, usu_primer_apellido, usu_correo, usu_telefono, id_ciudad, dir, usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion);
+INSERT INTO usuario  (id_tipo_documento, usu_num_documento, usu_primer_nombre, usu_primer_apellido,  usu_correo,  usu_celular, id_ciudad, usu_direccion,  usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion) VALUES (id_tipo_documento, usu_num_documento,  usu_primer_nombre, usu_primer_apellido, usu_correo, usu_telefono, id_ciudad, dir, usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion);
 
 END$$
 
@@ -220,6 +245,11 @@ WHERE t1.tip_usu_codigo=1 OR t1.tip_usu_codigo=3 LIMIT 20;
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinLocalizacion` (IN `ciu` INT)  NO SQL
+BEGIN 
+SELECT ciudad.ciu_nombre,departamento.dep_nombre,pais.pai_nombre FROM ciudad INNER JOIN departamento on ciudad.id_departamento=departamento.id_departamento INNER JOIN pais ON departamento.id_pais = pais.id_pais WHERE ciudad.id_ciudad = ciu;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinProducto` (IN `codigo` INT(11))  BEGIN
 SELECT * FROM producto t1
 INNER JOIN tipo_producto t2 on t1.tip_pro_codigo=t2.tip_pro_codigo
@@ -297,17 +327,17 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosAplazados` ()  NO SQL
 BEGIN 
-SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token, T5.rep_observacion FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad INNER JOIN reporte T5 ON T1.ped_codigo = T5.ped_codigo WHERE T1.ped_estado ="Aplazado";
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_fecha_entrega,T1.ped_hora_entrega,T1.ped_token, T5.rep_observacion FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad INNER JOIN reporte T5 ON T1.ped_codigo = T5.ped_codigo WHERE T1.ped_estado ="Aplazado";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosAsignados` ()  NO SQL
 BEGIN 
-SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token, T1.ped_encargado FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_encargado is not null AND T1.ped_estado="En Proceso";
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_fecha_entrega,T1.ped_hora_entrega,T1.ped_token, T1.ped_encargado FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_encargado is not null AND T1.ped_estado="En Proceso";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosCancelados` ()  NO SQL
 BEGIN 
-SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token, T5.rep_observacion FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad INNER JOIN reporte T5 ON T1.ped_codigo = T5.ped_codigo WHERE T1.ped_estado ="Cancelado";
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token,T1.ped_fecha_entrega,T1.ped_hora_entrega, T5.rep_observacion FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad INNER JOIN reporte T5 ON T1.ped_codigo = T5.ped_codigo WHERE T1.ped_estado ="Cancelado";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosDelDia` (IN `fecha` DATE)  NO SQL
@@ -317,12 +347,12 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosFinalizados` ()  NO SQL
 BEGIN 
-SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_estado ="Terminado";
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_fecha_entrega,T1.ped_hora_entrega,T1.ped_token FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_estado ="Terminado";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosPendientes` ()  NO SQL
 BEGIN 
-SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_estado="En Bodega";
+SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_fecha_entrega,T1.ped_hora_entrega,T1.ped_token FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_estado="En Bodega";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `porcentajeMensual` (IN `Mes` INT)  NO SQL
@@ -388,10 +418,40 @@ BEGIN
 SELECT * FROM cotizacion T1 INNER JOIN usuario T2 ON T1.usu_codigo = T2.usu_codigo  INNER JOIN ciudad T3 ON T1.cot_ciudad=T3.id_ciudad INNER JOIN prodxcot T4 ON T1.cot_codigo =T4.cot_codigo  INNER JOIN producto T6 ON T4.pro_codigo = T6.pro_codigo INNER JOIN tipo_producto T5 ON T6.tip_pro_codigo = T5.tip_pro_codigo INNER JOIN tipo_servicio T7 ON T4.tip_servicio = T7.Tip_ser_cod WHERE T1.cot_codigo = id ;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRuta` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN 
+SELECT * FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado != "Terminado"  AND t2.ped_fecha_entrega = dat;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaAplazada` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN 
+SELECT t2.ped_token FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Aplazado" or t2.ped_estado ="En Proceso" AND t2.ped_fecha_entrega < dat;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaCancelada` (IN `usu` INT)  NO SQL
+BEGIN 
+SELECT t2.ped_token FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Cancelado";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaFinalizadaBy` (IN `usu` INT)  NO SQL
+BEGIN 
+SELECT t2.ped_token FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Terminado";
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaFutura` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN 
+SELECT * FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado != "Terminado"  AND t2.ped_estado != "Cancelado" AND t2.ped_fecha_entrega > dat;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verRutas` ()  NO SQL
+BEGIN
+SELECT usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_celular,ciudad.ciu_nombre,usuario.usu_direccion,usuario.usu_correo FROM usuario INNER JOIN ciudad ON usuario.id_ciudad=ciudad.id_ciudad  WHERE usuario.tip_usu_codigo = 5 ;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verPedido` (IN `token` VARCHAR(15))  NO SQL
 BEGIN 
 SELECT
-usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_telefono,pedido.ped_codigo,pedido.ped_encargado,ciudad.ciu_nombre,pedido.ped_direccion,pedido.ped_estado,pedido.ped_token,pedido.ped_fecha,tipo_producto.tip_pro_nombre,producto.pro_referencia,tipo_servicio.tip_ser_nombre,pedidoxproducto.pedxpro_cantidad,pedidoxproducto.pedxpro_observacion  
+usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_telefono,pedido.ped_codigo,pedido.ped_encargado,ciudad.ciu_nombre,pedido.ped_direccion,pedido.ped_estado,pedido.ped_token,pedido.ped_fecha,tipo_producto.tip_pro_nombre,producto.pro_referencia,tipo_servicio.tip_ser_nombre,pedidoxproducto.pedxpro_cantidad,pedidoxproducto.pedxpro_observacion,pedido.ped_fecha_entrega,pedido.ped_hora_entrega  
 FROM pedido INNER JOIN pedidoxproducto ON pedido.ped_codigo=pedidoxproducto.ped_codigo INNER JOIN producto ON pedidoxproducto.pro_codigo = producto.pro_codigo  INNER JOIN tipo_servicio ON tipo_servicio.Tip_ser_cod=pedidoxproducto.tip_ser_codigo
 INNER JOIN ciudad ON pedido.ped_ciudad=ciudad.id_ciudad INNER JOIN tipo_producto ON producto.tip_pro_codigo = tipo_producto.tip_pro_codigo INNER JOIN usuarioxpedido ON pedido.ped_codigo = usuarioxpedido.ped_codigo INNER JOIN usuario ON usuarioxpedido.usu_codigo=usuario.usu_codigo WHERE pedido.ped_token = token;
 END$$
@@ -415,6 +475,7 @@ CREATE TABLE `acceso` (
 --
 
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
+('6ca9e3d254f89dd36920fff1d379e39d', 4, '$2y$10$5noEbhHlhUrLlxso33tKxOyySfuWy8D3n2UwXebmfyZXtJtnCxDXW'),
 ('bd738f17da325a7fd25cfbfd9d378c1e', 1, '$2y$10$6wECK2ItNCoZZijFta7e3uVoqb0zDbz2nOiSLsG8GpMxdM21J1JzW'),
 ('cfc3146525e6edeb020fed1428f29d36', 2, '$2y$10$71RniIRoncNKrE8TRZtFve5FZqF7op.vr9lEnQa/YxRgunLDTDNvy'),
 ('fa82f50683e23221b609ff3445ec133c', 3, '$2y$10$ihq75QwdpNDOla.z74W97OC.uy/CKGcvQZxFBbbEPwr7kInr62aIm');
@@ -586,7 +647,8 @@ INSERT INTO `estiloxusuario` (`usu_codigo`, `est_usu_menu`, `est_usu_navigator`,
 (1, ' ', ' ', ' '),
 (2, ' ', '  ', ' '),
 (3, ' ', ' ', ' '),
-(3, ' ', ' ', ' ');
+(3, ' ', ' ', ' '),
+(4, ' ', ' ', ' ');
 
 -- --------------------------------------------------------
 
@@ -601,12 +663,20 @@ CREATE TABLE `gestion_web` (
   `gw_tl_section2` varchar(100) NOT NULL,
   `gw_st_section2-1` varchar(100) NOT NULL,
   `gw_st_section2-2` varchar(100) NOT NULL,
-  `gw_ct_telefono` int(7) NOT NULL,
-  `gw_ct_whatsapp` int(10) NOT NULL,
+  `gw_ct_telefono` varchar(20) NOT NULL,
+  `gw_ct_telefono_2` varchar(14) NOT NULL,
+  `gw_ct_whatsapp` varchar(20) NOT NULL,
   `gw_ct_correo` varchar(255) NOT NULL,
   `gw_ct_direccion` varchar(200) NOT NULL,
   `usu_codigo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `gestion_web`
+--
+
+INSERT INTO `gestion_web` (`gw_codigo`, `gw_tl_section1`, `gw_st_section1`, `gw_tl_section2`, `gw_st_section2-1`, `gw_st_section2-2`, `gw_ct_telefono`, `gw_ct_telefono_2`, `gw_ct_whatsapp`, `gw_ct_correo`, `gw_ct_direccion`, `usu_codigo`) VALUES
+(1, '', '', '', '', '', '577 42 23 ', '255 75 75', '311 708 91 24', 'maxirecargas2009@hotmail.com', 'Calle 6 c sur # 83a45', NULL);
 
 -- --------------------------------------------------------
 
@@ -638,7 +708,8 @@ INSERT INTO `historial_productos` (`id_his_pro`, `pro_codigo`, `his_pro_fecha`, 
 (10, 2, '2018-01-09', 9),
 (11, 1, '2018-01-09', 9),
 (12, 1, '2018-01-10', 1),
-(13, 1, '2018-01-10', 1);
+(13, 1, '2018-01-10', 1),
+(14, 1, '2018-01-17', 856);
 
 -- --------------------------------------------------------
 
@@ -716,19 +787,22 @@ CREATE TABLE `pedido` (
   `ped_direccion` varchar(200) NOT NULL,
   `ped_estado` varchar(100) NOT NULL,
   `ped_token` varchar(13) NOT NULL,
-  `ped_fecha` date NOT NULL
+  `ped_fecha` date NOT NULL,
+  `ped_fecha_entrega` date NOT NULL,
+  `ped_hora_entrega` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccion`, `ped_estado`, `ped_token`, `ped_fecha`) VALUES
-(32, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'KKl8p-v3X2V', '2018-01-08'),
-(33, 3, 1, 'Calle 95 #44-35', 'Terminado', '7UWJh-jQAGV', '2018-01-08'),
-(34, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'kNEXi-zFwYC', '2018-01-10'),
-(35, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'eOCDt-tZsph', '2018-01-11'),
-(36, NULL, 1, 'Calle 95 #44-35', 'En Bodega', '2NfEP-94dKU', '2018-01-11');
+INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccion`, `ped_estado`, `ped_token`, `ped_fecha`, `ped_fecha_entrega`, `ped_hora_entrega`) VALUES
+(32, 3, 1, 'Calle 95 #40-35', 'En Proceso', 'KKl8p-v3X2V', '2018-01-17', '2018-01-17', '13:00:00'),
+(33, 3, 1, 'Calle 95 #44-35', 'Terminado', '7UWJh-jQAGV', '2018-01-08', '0000-00-00', '00:00:00'),
+(34, 3, 1, 'Calle 95 #47-35', 'En Proceso', 'kNEXi-zFwYC', '2018-01-10', '2018-01-18', '00:00:00'),
+(35, 3, 1, 'Calle 95 #44-35', 'En Proceso', 'eOCDt-tZsph', '2018-01-15', '2018-01-18', '00:00:00'),
+(36, NULL, 1, 'Calle 95 #44-35', 'En Bodega', '2NfEP-94dKU', '2018-01-15', '0000-00-00', '00:00:00'),
+(37, 4, 1, 'Calle 95 #44-35', 'En Proceso', 'H2pL4-54RFU', '2018-01-18', '2018-01-23', '00:00:00');
 
 -- --------------------------------------------------------
 
@@ -756,7 +830,8 @@ INSERT INTO `pedidoxproducto` (`ped_codigo`, `pro_codigo`, `tip_ser_codigo`, `pe
 (34, 2, 9, 9, 'nada'),
 (34, 1, 4, 9, 'nada'),
 (35, 1, 4, 1, '1'),
-(36, 1, 4, 1, '1');
+(36, 1, 4, 1, '1'),
+(37, 1, 4, 856, '56757');
 
 --
 -- Disparadores `pedidoxproducto`
@@ -1021,7 +1096,6 @@ INSERT INTO `tipo_servicio` (`Tip_ser_cod`, `tip_ser_nombre`, `tip_ser_descripci
 (3, '66', '66', '2017-12-01'),
 (4, 'recarga', 'sadsa', '2017-12-04'),
 (5, 'remanufactura', '', '2017-12-13'),
-(6, 'nadasdhjklghjklkdfsghfgdffdgfhjdsaghdkghasdhfas', '', '2017-12-13'),
 (7, 'Domicilio', '', '2017-12-13'),
 (8, 'Recargas', '', '2017-12-13'),
 (9, 'Domicilio4', '', '2017-12-13');
@@ -1082,9 +1156,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(1, 1, 1214, 'Cristian', '', 'Lopera', '', 'yonosoybond@gmail.com', 43, 1, 'Calle 95 #44-35', 0, '0000-00-00', 'null', 3, 1, 'defaul.jpg', '2018-01-07', '2018-01-07'),
-(2, 1, 9904, 'Cristian', '', 'Lopera', '', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 0, '0000-00-00', 'masculino', 2, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
-(3, 1, 123, 'Andres', '', 'Lopez', '', 'calopera18@misena.edu.co', 234567, 1, 'calle 90 ', 0, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-10', '2018-01-10');
+(1, 1, 1214, 'Cristian', '', 'Lopera', '', 'yonosoybond@gmail.com', 43, 1, 'Calle 95 #44-35', 32356789, '0000-00-00', 'null', 3, 1, 'defaul.jpg', '2018-01-07', '2018-01-07'),
+(2, 1, 9904, 'Cristian', '', 'Lopera', '', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 3157890, '0000-00-00', 'masculino', 2, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
+(3, 1, 123, 'Andres', '', 'Lopez', '', 'calopera18@misena.edu.co', 234567, 1, 'calle 90 ', 32256789, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-10', '2018-01-10'),
+(4, 1, 1234, 'Carlos', '', 'gaviria', '', 'calopera18@misena.edu.co', 0, 2, 'calle 6 sur', 323355, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-15', '2018-01-15');
 
 -- --------------------------------------------------------
 
@@ -1107,7 +1182,8 @@ INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`, `usuxped_total`) VALUE
 (1, 33, 0),
 (1, 34, 0),
 (1, 35, 0),
-(1, 36, 0);
+(1, 36, 0),
+(1, 37, 0);
 
 --
 -- Disparadores `usuarioxpedido`
@@ -1140,7 +1216,8 @@ INSERT INTO `ventas` (`usu_codigo`, `id_venta`, `ven_total`, `ped_codigo`, `ven_
 (1, 24, 5678, 33, '2018-01-08'),
 (1, 25, 0, 34, '2018-01-09'),
 (1, 26, 0, 35, '2018-01-10'),
-(1, 27, 0, 36, '2018-01-10');
+(1, 27, 0, 36, '2018-01-10'),
+(1, 28, 0, 37, '2018-01-17');
 
 --
 -- Índices para tablas volcadas
@@ -1417,12 +1494,12 @@ ALTER TABLE `estiloxcliente`
 -- AUTO_INCREMENT de la tabla `gestion_web`
 --
 ALTER TABLE `gestion_web`
-  MODIFY `gw_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gw_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `historial_productos`
 --
 ALTER TABLE `historial_productos`
-  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
@@ -1442,7 +1519,7 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
@@ -1502,12 +1579,12 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- Restricciones para tablas volcadas
 --
