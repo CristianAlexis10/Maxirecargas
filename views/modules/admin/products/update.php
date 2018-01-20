@@ -1,9 +1,14 @@
 <?php
 $result =$this->readBy(base64_decode($_GET['data']));
-$services = $this->master->selectAll("servicioxproducto",array("pro_codigo",base64_decode($_GET['data'])));
+$services = $this->master->selectAllBy("servicioxproducto",array("pro_codigo",base64_decode($_GET['data'])));
 // print_r($services);
 $_SESSION['product_update']=base64_decode($_GET['data']);
+$servies_real;
+foreach ($services as $key => $value) {
+	$servies_real[] = $value['tip_ser_cod'];
+}
 ?>
+<link type="text/css" rel="stylesheet" href="views/assets/css/multiple-select.css"  media="screen,projection"/>
 <div class="modules services">
 	<div class="title">
 		<p>MODIFICAR PRODUCTO</p>
@@ -39,29 +44,20 @@ $_SESSION['product_update']=base64_decode($_GET['data']);
 			<label for="rf" class="label">Referencia:</label>
 			<input type="text" name="data[]" id="rf" class="input data-new-pro" required value="<?php echo $result['pro_referencia']?>">
 		</div>
-		<?php
-		$i = 0;
-		foreach ($this->master->selectAll("tipo_servicio") AS $row) {
-			if (isset($services[$i]['tip_ser_cod'])) {
-				if ($row['Tip_ser_cod']==$services[$i]['tip_ser_cod']) {?>
-					<label><?php echo $row['tip_ser_nombre'] ?>
-									<input type="checkbox"  name="ch-tip-ser" value="<?php echo $row['Tip_ser_cod']?>"  checked >
-								</label>
-				<?php }else{ ?>
-					<label><?php echo $row['tip_ser_nombre'] ?>
-									<input type="checkbox"  name="ch-tip-ser" value="<?php echo $row['Tip_ser_cod']?>"   >
-								</label>
-				<?php
-
-				}
-			}else{?>
-				<label><?php echo $row['tip_ser_nombre'] ?>
-									<input type="checkbox"  name="ch-tip-ser" value="<?php echo $row['Tip_ser_cod']?>"   >
-								</label>
-			<?php }
-			$i++;
-		}
-		?>
+		<div class="form-group">
+			Servicios: <select multiple="multiple" id="selectMul">
+			<?php
+			$i = 0;
+			foreach ($this->master->selectAll("tipo_servicio") AS $row) {
+				if (in_array($row['Tip_ser_cod'],$servies_real)) {?>
+							<option value="<?php echo $row['Tip_ser_cod']?>" selected><?php echo $row['tip_ser_nombre'] ?></option>
+					<?php }else{?>
+						<option value="<?php echo $row['Tip_ser_cod']?>"  ><?php echo $row['tip_ser_nombre'] ?></option>
+			<?php  }
+					$i++;
+				 }  ?>
+			</select>
+		</div>
 	</div>
 	<div class="wrap_two_formgroup">
 		<div class="form-group">
