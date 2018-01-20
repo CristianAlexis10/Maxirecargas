@@ -80,7 +80,8 @@ if (document.getElementById('itemToner')) {
     toner.onclick = function(){
       $(".banner").addClass("animationbanner");
       $(".title_banner").addClass("animationtitlebanner");
-      $(".product").addClass("animationitem");
+      $(".products").addClass("animationitem");
+      $(".Btoner").addClass("animationBI");
 
     }
 

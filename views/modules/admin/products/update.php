@@ -27,7 +27,7 @@ foreach ($services as $key => $value) {
 				</select>
 		</div>
 		<div class="form-group">
-			<label for="categoria" class="required">Categoria:</label>
+			<label for="categoria" class="select">Categoria:</label>
 			<select  id="categoria" class="data-new-pro input " required>
 					<?php foreach($this->master->selectAll("tipo_producto") AS $row) {
 						if ($result['tip_pro_codigo']==$row['tip_pro_codigo']) { ?>
@@ -42,10 +42,12 @@ foreach ($services as $key => $value) {
 	<div class="wrap_two_formgroup">
 		<div class="form-group">
 			<label for="rf" class="label">Referencia:</label>
-			<input type="text" name="data[]" id="rf" class="input data-new-pro" required value="<?php echo $result['pro_referencia']?>">
+			<input type="text" name="data[]" id="rf" class="input data-new-pro grande" required value="<?php echo $result['pro_referencia']?>">
 		</div>
-		<div class="form-group">
-			Servicios: <select multiple="multiple" id="selectMul">
+	</div>
+	<div class="form-group">
+			<label for="selectMul" class="select">Servicios: </label>
+			<select multiple="multiple" id="selectMul">
 			<?php
 			$i = 0;
 			foreach ($this->master->selectAll("tipo_servicio") AS $row) {
@@ -58,11 +60,10 @@ foreach ($services as $key => $value) {
 				 }  ?>
 			</select>
 		</div>
-	</div>
 	<div class="wrap_two_formgroup">
 		<div class="form-group">
 			<label for="caracteristica" class="label">Caracteristicas:</label>
-			<textarea name="data[]" id="caracteristica" class="input data-new-pro"><?php echo $result['pro_descripcion']?>
+			<textarea name="data[]" id="caracteristica" class="input data-new-pro "><?php echo $result['pro_descripcion']?>
 			</textarea>
 		</div>
 		<div class="form-group">
@@ -71,7 +72,7 @@ foreach ($services as $key => $value) {
 	</div>
 			<div class="form-group">
 				<label class="select">Estado</label>
-				<select class="data-new-pro input">
+				<select class="data-new-pro input grande">
 					<?php
 					if ($result['pro_estado']==1) {?>
 					<option value="1" selected>Activo</option>

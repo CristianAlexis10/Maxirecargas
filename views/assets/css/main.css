@@ -253,10 +253,6 @@ table.dataTable tbody th, table.dataTable tbody td{
 
 }
 /*FORM*/
-#tabs-1{
-  display: flex;
-}
-#frmNewUser{}
 
 .form--left{
   width: 50%;
@@ -471,9 +467,14 @@ align-items: center;
 .mudules.orders.detail .wrap--btns li:hover{
   color: #35a4dd;
 }
-#frmUpdtateUser, #frmUpdaDataEmp{
+#frmUpdtateUser, #frmUpdaDataEmp, #frmUpdateProduct, #frmNewCategorie, .frmServices, #frmNewMar{
   width: 100%;
   margin-left: 70px;
+}
+.textarea{
+  width: 90%;
+  font-family:'lato';
+  font-size: 16px;
 }
 /*settings*/
 

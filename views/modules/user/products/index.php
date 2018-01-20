@@ -24,6 +24,7 @@
   <div class="banneritem Bcomputador">
     <h1 class="titleitem_banner">computadores</h1>
   </div>
+
   <div class="container--products">
     <div class="products">
       <div class="item toner" id="itemToner">

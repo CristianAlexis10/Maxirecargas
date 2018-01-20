@@ -81,10 +81,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 1s ease;
+  transition: .5s ease;
+  position: absolute;
+  transform: translateY(9999px);
 }
 .titleitem_banner{
-  
+
 }
 .title_banner{
   font-size: 150px;
@@ -169,9 +171,11 @@
   color: white;
 }
 .animationitem{
-  opacity: 0;
+  display: none;
 }
-
+.animationBI{
+  transform: translateY(0);
+}
 
 
 
