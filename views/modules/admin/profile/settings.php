@@ -152,7 +152,7 @@
           </div>
           <div class="coso">
             <label for="direccion">direccion</label>
-            <input type="number" id="direccion">
+            <input type="text" id="direccion">
           </div>
           <div class="btn-coso">
             <input type="submit" id="btn-coso">

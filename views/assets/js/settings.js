@@ -157,7 +157,10 @@ $("#form_contacto").submit(function(e){
       dataType : "json",
       data: ({num1:primerNumero, num2:secundoNumero, wpp:whatsapp, correo:correo, dirc:direccion, }),
       success: function(result){
-        console.log(result);
+        if (result==true) {
+          $("#form_contacto")[0].reset();
+        }
+          $("#btn-coso").after("<div class='message'>"+result+"</div>");
       },
       error: function(result) {
         console.log(result);
@@ -172,5 +175,20 @@ $("#form_contacto").submit(function(e){
 });
 //llenar datos
 if (document.getElementById('numer1')) {
-
+  $.ajax({
+    url:"index.php?controller=config&a=dataContact",
+    type:"post",
+    dataType:"json",
+    data:({}),
+    success:function(response) {
+      $("#numer1").val(response[0].gw_ct_telefono);
+      $("#numer2").val(response[0].gw_ct_telefono_2);
+      $("#wpp").val(response[0].gw_ct_whatsapp);
+      $("#correocos").val(response[0].gw_ct_correo);
+      $("#direccion").val(response[0].gw_ct_direccion);
+    },
+    error:function(response) {
+      console.log(response);
+    }
+  });
 }

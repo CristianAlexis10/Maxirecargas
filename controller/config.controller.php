@@ -122,5 +122,9 @@ class ConfigController{
 				 }
 				 echo json_encode($result);
 			 }
+			 function dataContact(){
+				 $result = $this->master->selectAll("gestion_web");
+				 echo json_encode($result);
+			 }
 }
 ?>
