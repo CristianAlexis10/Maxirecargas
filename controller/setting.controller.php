@@ -8,7 +8,12 @@
 	 		$this->file = new DoizerController;
 	 	}
 		function contact(){
-			echo json_encode($_POST["num1"]);
+			$result = $this->master->cambiarDatosContacto(array($_POST["num1"],$_POST["num2"],$_POST["wpp"],$_POST["correo"],$_POST["dirc"]));
+			if ($result==true) {
+				echo json_encode("Modificado Exitosamente.");
+			}else{
+				echo json_encode($this->doizer->knowError($result));
+			}
 		}
 
 	}

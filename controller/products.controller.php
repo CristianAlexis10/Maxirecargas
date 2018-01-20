@@ -129,18 +129,23 @@
 		function update(){
 			$data=$_POST['data'];
 			$services = $_POST['services'];
-			$result = $this->master->selectBy($this->tableName,array('pro_codigo',$_SESSION['product_update']));
-			unlink("views/assets/image/products/".$result['pro_imagen']);
-			$result = $this->master->update($this->tableName,array('pro_codigo',$_SESSION['product_update']),$data,$this->updateException);
-
-			$result = $this->master->delete('servicioxproducto',array('pro_codigo',$_SESSION['product_update']));
-			foreach ($services as $service) {
-				$result = $this->master->insert("servicioxproducto",array($service,$_SESSION['product_update']));
-			}
-			if ($result==true) {
-				echo json_encode("Modificado Exitosamente");
+			if ($services!="") {
+				$result = $this->master->selectBy($this->tableName,array('pro_codigo',$_SESSION['product_update']));
+				if ($data[4]!=$result['pro_imagen']) {
+					unlink("views/assets/image/products/".$result['pro_imagen']);
+				}
+				$result = $this->master->update($this->tableName,array('pro_codigo',$_SESSION['product_update']),$data,$this->updateException);
+				$result = $this->master->delete('servicioxproducto',array('pro_codigo',$_SESSION['product_update']));
+				foreach ($services as $service) {
+					$result = $this->master->insert("servicioxproducto",array($service,$_SESSION['product_update']));
+				}
+				if ($result==true) {
+					echo json_encode("Modificado Exitosamente");
+				}else{
+					echo  json_encode($this->doizer->knowError($result));
+				}
 			}else{
-				echo  json_encode($this->doizer->knowError($result));
+				echo json_encode("Seleccione minimo un servicio");
 			}
 
 		}
