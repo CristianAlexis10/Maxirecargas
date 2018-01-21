@@ -11,7 +11,7 @@
 	 		$this->updateException = array('');
 	 	}
 		function main(){
-			// require_once "views/include/scope.header.php";
+			require_once "views/include/user/scope.header.php"; 
 			require_once "views/modules/customer/profile/record.php";
 			// require_once "views/include/scope.footer.php";
 		}

@@ -258,9 +258,18 @@ $("#sendQuotation").submit(function(e) {
                 type: "POST",
                 dataType:'json',
                 data: ({data : dataJson}),
+                beforeSend:function() {
+                  $("#modalConfir").hide();
+                  $("#openModal").after('<div class="message">Validando...</div>');
+                },
                 success: function(result){
                     modal.style.display = "none";
+                    $("div.message").remove();
                     if (result==true) {
+                        $("#sendQuotation")[0].reset();
+                        $("#quotationUser")[0].reset();
+                        showButtons();
+                        delete quotation;
                         $("#openModal").after('<div class="message">Tu cotización ha sido enviada</div>');
                     }else{
                         $("#openModal").after('<div class="message">'+result+'</div>');
