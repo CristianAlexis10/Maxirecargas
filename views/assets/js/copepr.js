@@ -74,11 +74,14 @@ $('#orderAtras').click(function() {
 // };
 
 // views product
-var toner = document.getElementById('itemToner');
+if (document.getElementById('itemToner')) {
+    var toner = document.getElementById('itemToner');
 
-toner.onclick = function(){
-  $(".banner").addClass("animationbanner");
-  $(".title_banner").addClass("animationtitlebanner");
-  $(".product").addClass("animationitem");
+    toner.onclick = function(){
+      $(".banner").addClass("animationbanner");
+      $(".title_banner").addClass("animationtitlebanner");
+      $(".product").addClass("animationitem");
+
+    }
 
 }

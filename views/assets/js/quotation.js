@@ -4,10 +4,83 @@ var indice = 0;
 var indice_actual = 0;
 var indice_total = 0;
 var nuevo_pro = true;
+
+//validar si existe el producto
+var pro_exist = false;
+$("#dataprod").blur(function(){
+  services($("#dataprod").val());
+});
+function services(pro){
+  $.ajax({
+      url: "index.php?controller=config&a=selectServices",
+      type: "POST",
+      dataType:'json',
+      data: ({data: pro}),
+      success: function(result){
+        if (result=='No existe Este producto') {
+                  $("#solicitud").empty();
+                  pro_exist = false;
+                  $("#dataprod").after('<div class="message">Este producto no existe</div>');
+                  setTimeout(function(){
+                    $("div.message").remove();
+                  },3000);
+
+              return ;
+        }else{
+          pro_exist = true;
+          $("#solicitud").empty();
+          var selector = document.getElementById('solicitud');
+          for (var i = 0; i < result.length; i++) {
+            selector.options[i] = new Option(result[i].tip_ser_nombre,result[i].tip_ser_cod);
+          }
+        }
+      }
+  });
+}
+//mostrar botonoes
+showButtons();
+function showButtons(){
+  //boton de enviar y otro producto
+  if ( $("#dataprod").val()!='' &&  $("#cantidad").val() != '' && $("#solicitud").val() != "" && pro_exist == true) {
+    $("#openModal").show();
+    $("#next").show();
+  }else{
+    $("#openModal").hide();
+    $("#next").hide();
+  }
+//boton de anterior
+  if (indice_actual==0) {
+      $("#before").hide();
+  }else{
+    $("#before").show();
+  }
+
+  if (indice_actual>=(indice_total) || indice_total==1 || indice_actual==0) {
+    $("#nextExis").hide();
+  }else{
+      $("#nextExis").show();
+  }
+  if (indice_actual==0 && indice_total>0) {
+    $("#nextExis").show();
+  }
+  if (indice_actual==(indice_total-1)) {
+    $("#nextExis").hide();
+  }
+  if (indice_actual==0) {
+    if (quotation[0]==undefined) {
+          nuevo_pro = true;
+    }else{
+      nuevo_pro = false;
+    }
+  }
+
+}
+
 $("#solicitud").empty();
+//guardar
 $("#next").click(function(){
   if ($("#dataprod").val() != '' && $("#solicitud").val() != '' && $("#cantidad").val() > 0 ) {
-    if (nuevo_pro==true) {
+    if (quotation[indice_actual]==undefined) {
       quotation[indice]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
       localStorage.setItem("cotizacion", JSON.stringify(quotation));
       localStorage.setItem("indice", (indice+1));
@@ -15,12 +88,13 @@ $("#next").click(function(){
       indice ++;
       indice_actual = indice;
       indice_total++;
-      // console.log(quotation);
-      $("#quotationUser")[0].reset();
     }else{
-      $("#quotationUser")[0].reset();
+      quotation[indice_actual]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
+      //igualar inidice
       indice_actual=indice_total;
     }
+    $("#quotationUser")[0].reset();
+    console.log(quotation);
   }else{
     $("#quotationUser").after('<div class="message"> Campos Vacios</div>');
     setTimeout(function(){
@@ -57,74 +131,9 @@ $("#cantidad").keyup(function(){
 $("#dataprod").keyup(function(){
   showButtons();
 });
-//mostrar botonoes
-showButtons();
-function showButtons(){
-  if (indice_total==0 && $("#dataprod").val() == '' &&  $("#cantidad").val() == ''  ) {
-    $("#openModal").attr("disabled",true);
-  }else{
-    $("#openModal").attr("disabled",false);
-  }
-  if (indice_actual==0) {
-      $("#before").hide();
-      nuevo_pro = false;
-  }else{
-    $("#before").show();
-    nuevo_pro = false;
-  }
-  if (indice_actual>=(indice_total) || indice_total==1 || indice_actual==0) {
-    $("#nextExis").hide();
-    // if ( indice_actual==0 && quotation[0]==undefined ) {
-    //     nuevo_pro = true;
-    // }else{
-    //   console.log('a');
-      nuevo_pro = true;
-    // }
-  }else{
-      $("#nextExis").show();
-      nuevo_pro = false;
-  }
-  if (indice_actual==0) {
-    if (quotation[0]==undefined) {
-          nuevo_pro = true;
-    }else{
-      nuevo_pro = false;
-    }
-  }
-
-}
 
 
-$("#dataprod").blur(function(){
-  services($("#dataprod").val());
-});
 
-function services(pro){
-  $.ajax({
-      url: "index.php?controller=config&a=selectServices",
-      type: "POST",
-      dataType:'json',
-      data: ({data: pro}),
-      success: function(result){
-        if (result=='No existe Este producto') {
-                  $("#openModal").attr("disabled",true);
-                  $("#dataprod").after('<div class="message">Este producto no existe</div>');
-                  setTimeout(function(){
-                    $("div.message").remove();
-                  },3000);
-
-              return ;
-        }else{
-            $("#openModal").attr("disabled",false);
-        }
-        $("#solicitud").empty();
-          var selector = document.getElementById('solicitud');
-          for (var i = 0; i < result.length; i++) {
-              selector.options[i] = new Option(result[i].tip_ser_nombre,result[i].tip_ser_cod);
-          }
-      }
-  });
-}
 
 
 if (document.getElementById('closeConfir')) {
@@ -184,17 +193,23 @@ if (document.getElementById('closeConfir')) {
         }
         // console.log(  quotation[3]);
       }else{
+          if (quotation[(indice_actual)]==undefined) {
         quotation[(indice_total)]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
-        var i = 0;
+
+        indice_total++;
+      }else{
+        quotation[indice_actual]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
+        indice_actual=indice_total;
+      }
+      var i = 0;
+        console.log(quotation);
         while (quotation[i]!=undefined) {
           var referencia = quotation[i].referencia;
           var can = quotation[i].cantidad;
-          console.log(quotation);
-          console.log(quotation[0].servicio);
-          console.log(quotation[1].servicio);
             AddItem(quotation[i].servicio,referencia,can);
           i++;
         }
+        // AddItem($("#solicitud").val(),$("#dataprod").val(),$("#cantidad").val());
       }
 
 

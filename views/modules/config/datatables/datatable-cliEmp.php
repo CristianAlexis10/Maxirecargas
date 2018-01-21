@@ -3,7 +3,7 @@
       <tr>
         <th>Nombre</th>
         <th>Dirección</th>
-        <th>Telefono</th>
+        <th>Celular</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -12,16 +12,17 @@
           <tr>
             <td><?php echo $row['usu_primer_nombre']?></td>
             <td><?php echo $row['usu_direccion']?></td>
-            <td><?php echo $row['usu_telefono']?></td>
+            <td><?php echo $row['usu_celular']?></td>
             <td><a href="ver-cliente-empresarial-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i></a>
             <!-- eliminar  -->
+            <?php if($crud[3]==true){ ?>
             <a href="#" onclick="return confirmDeleteCliEmp(
             <?php
          echo $row['usu_codigo'];
             ?>)"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
             <!-- inactivar -->
-            <?php if ($row['id_estado']==1){?>
+          <?php } if ($row['id_estado']==1){?>
                 <a href="#" onclick="return confirmOffUserEmp(2,
                 <?php
                 echo $row['usu_codigo'];

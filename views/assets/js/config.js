@@ -165,7 +165,7 @@ if(document.getElementById('sexo')){
                            },
                            success: function(result){
                              $('div.message').remove();
-                            if (result==true) {
+                            if (result=="Revisa tu correo para activar tu cuenta") {
                               $("#frmNewUser").after("<div class='message'>Registrado Exitosamente, se ha enviado un correo para activar tu cuenta. </div>");
                               $("#frmNewUser")[0].reset();
                                $('#datatableUser').load('index.php?controller=datatables&a=dataTableUser');
@@ -208,7 +208,7 @@ if(document.getElementById('sexo')){
                            },
                            success: function(result){
                              $('div.message').remove();
-                            if (result==true) {
+                            if (result=="Revisa tu correo para activar tu cuenta") {
                               $("#frmNewBusi")[0].reset();
                               $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente, se ha enviado un correo para activar tu cuenta.  </div>");
                             }else{

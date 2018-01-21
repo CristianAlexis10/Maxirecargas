@@ -36,7 +36,7 @@ require_once "controller/doizer.controller.php";
 			}else{
 				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/user/quotation/index.php";
-				require_once "views/include/user/scope.footer.php";
+				// require_once "views/include/user/scope.footer.php";
 			}
 		}
 

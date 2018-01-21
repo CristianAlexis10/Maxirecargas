@@ -12,11 +12,11 @@
               <label for="dataprod" class="labeluser">Referencia del producto</label>
               <input type="text" name="data[]" class="inputuser" id="dataprod">
             </div>
-            <div class="form-groupuser">
+            <div class="form-groupuser cantidad--hide">
               <label for="cantidad" class="labeluser">Cantidad</label>
               <input type="number" name="data[]" class="inputuser" id="cantidad" required>
             </div>
-          <div class="form-groupuser">
+          <div class="form-groupuser tip_ser--hide">
               <label for="solicitud" class="labeluser">Tipo de Servicio</label>
               <select name="data[]" class="inputuser" id="solicitud" required>
 

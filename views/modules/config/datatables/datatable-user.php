@@ -3,7 +3,7 @@
       <tr>
         <th>Nombre</th>
         <th>Dirección</th>
-        <th>Telefono</th>
+        <th>Celular</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -12,12 +12,10 @@
           <tr>
             <td><?php echo $row['usu_primer_nombre']?></td>
             <td><?php echo $row['usu_direccion']?></td>
-            <td><?php echo $row['usu_telefono']?></td>
+            <td><?php echo $row['usu_celular']?></td>
             <td><a href="ver-cliente-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i></a>
             <!-- eliminar  -->
             <?php
-            $modulo = 'usuarios';
-            $crud = permisos($modulo,$permit);
              if($crud[3]==true){?>
             <a href="#" onclick="return confirmDeleteUser(
             <?php
@@ -26,7 +24,7 @@
 
             <!-- inactivar -->
             <?php
-            } 
+            }
             if ($row['id_estado']==1){?>
                 <a href="#" onclick="return confirmOffUser(2,
                 <?php
