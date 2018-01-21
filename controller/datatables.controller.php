@@ -50,6 +50,12 @@ require_once "controller/doizer.controller.php";
         function dataTableQuotationEnd(){
             require_once "views/modules/config/datatables/datatable-quotation-end.php";
         }
+        function dataTableOrdersUsers(){
+            require_once "views/modules/config/datatables/datatable-orders-users.php";
+        }
+        function dataTableQuotation(){
+            require_once "views/modules/config/datatables/datatable-quotation-users.php";
+        }
 
 
 	}

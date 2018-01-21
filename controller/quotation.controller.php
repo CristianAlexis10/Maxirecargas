@@ -157,6 +157,15 @@ require_once "controller/doizer.controller.php";
 			require_once "views/modules/landing.html";
 		}
 		}
+		function viewQuotationBy(){
+			if (isset($_SESSION['CUSTOMER']['ID'])) {
+				$data_quo = $this->master->verCotizacion(base64_decode($_GET['data']));
+				require_once "views/include/user/scope.header.php";
+				require_once "views/modules/customer/quotation/detail.php";
+			}else{
+				header("Location: maxirecargas");
+			}
+		}
 		function response(){
 			$response = $_POST['res'];
 			$mail = $_POST['email'];
@@ -195,6 +204,14 @@ require_once "controller/doizer.controller.php";
 		       $randomAlpha .= $characters[rand(0, $charactersLength - 1)];
 		  }
 		  return $randomAlpha;
+		}
+		function delete(){
+			$result = $this->master->delete('cotizacion',array('cot_codigo',$_POST['data']));
+			if ($result==true) {
+				 echo json_encode('Cotización Eliminada');
+			}else{
+				echo json_encode($this->doizer->knowError($result));
+			}
 		}
 	}
 ?>

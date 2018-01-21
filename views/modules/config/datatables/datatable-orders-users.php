@@ -1,8 +1,8 @@
-<table class="datatable" id="dataAssign">
+<table class="datatable" id="dataOrdenUser">
             <thead>
                     <tr>
                         <th>Encargado</th>
-                        <th>Token</th>
+                        <th>Codigo del Pedido</th>
                         <th>Estado</th>
                         <th>Dirección</th>
                         <th>Fecha Entrega</th>
@@ -11,7 +11,8 @@
          </thead>
             <tbody>
                 <?php foreach ($this->master->pedidosRealizadosBy($_SESSION['CUSTOMER']['ID']) as $row) {
-                  $data_employe = $this->master->selectBy('usuario',array('usu_codigo',$row['ped_encargado']));
+                  if ($row['ped_estado']!="Cancelado") {
+                    $data_employe = $this->master->selectBy('usuario',array('usu_codigo',$row['ped_encargado']));
                 ?>
                      <tr>
                          <td><?php
@@ -27,10 +28,12 @@
                             <td><?php echo $row['ped_fecha_entrega'];?></td>
                            <td>
                              <a href="mi-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
-                             <a href="mi-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" ><i class="fa fa-times"></i></a>
+                             <?php if ($row['ped_estado']=="En Bodega"){ ?>
+                               <a href="#" alt="Cancelar Pedido" onclick="viewCancelOrder(<?php echo $row['ped_codigo']; ?>)" ><i class="fa fa-times"></i></a>
+                             <?php } ?>
                             </td>
                       </tr>
 
-                <?php	 } ?>
+                <?php	} } ?>
             </tbody>
       </table>

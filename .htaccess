@@ -15,7 +15,9 @@ RewriteRule ^realizar-cotizacion-usuario$ index.php?controller=quotation&a=newQu
 RewriteRule ^guardar-cotizacion-session$ index.php?controller=quotation&a=saveSession
 RewriteRule ^realizar-cotizacion$ index.php?controller=quotation&a=newQuotationCustomer
 RewriteRule ^ver-cotizacion-(\w+)$ index.php?controller=quotation&a=viewQuotation&data=$1
+RewriteRule ^mi-cotizacion-(\w+)$ index.php?controller=quotation&a=viewQuotationBy&data=$1
 RewriteRule ^reponder-cotizacion$ index.php?controller=quotation&a=response
+RewriteRule ^eliminar-cotizacion$ index.php?controller=quotation&a=delete
 
 #EMPRESA
 RewriteRule ^guardar-cliente-empresarial$ index.php?controller=business&a=newBusiness
