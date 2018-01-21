@@ -757,3 +757,14 @@ margin: 0 auto;
   color: white;
   font-size: 20px;
 }
+/* views profile */
+.maxContainer_profile{
+  width: 100%;
+  display: flex;
+}
+.frmprofile{
+  width: 70%;
+}
+.imgprofile{
+  width: 30%
+}

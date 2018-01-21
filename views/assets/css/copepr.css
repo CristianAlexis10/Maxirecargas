@@ -171,7 +171,8 @@
   color: white;
 }
 .animationitem{
-  display: none;
+  transform: translateX(9999px);
+  position: absolute;
 }
 .animationBI{
   transform: translateY(0);

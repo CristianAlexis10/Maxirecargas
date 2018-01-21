@@ -1,4 +1,4 @@
-/*modo oscuro*/ 
+/*modo oscuro*/
 .main--navdark{
   max-width: 250px;
   min-width: 250px;
@@ -22,4 +22,8 @@
   padding-left: 50px;
   font-size: 20px;
   color: black;
+}
+
+.navigatorblueligth{
+  background: #C0D1C2
 }
