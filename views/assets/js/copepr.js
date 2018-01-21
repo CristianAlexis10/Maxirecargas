@@ -26,6 +26,12 @@ $(".inputuser3").focusout(function(){
     $(this).parent().removeClass("mover-labeluser3");
     $(this).parent().removeClass("color-labeluser3");
 });
+// modals
+
+var openModal_dir = document.getElementById('btnOtraDir');
+var closeModal_dir = document.getElementById('id');
+
+
 
 
 
