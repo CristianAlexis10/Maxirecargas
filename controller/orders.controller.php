@@ -129,6 +129,13 @@
 			}
 
 		}
+		function viewOrderBy(){
+			$order = base64_decode($_GET['data']);
+			$data_order = $this->master->verPedido($order);
+			require_once "views/include/user/scope.header.php";
+			require_once "views/modules/customer/orders/detail.php";
+			// require_once "views/include/user/scope.footer.php";
+		}
 		function changeStatus(){
 			$data= $_POST['data'];
 			$order= $_POST['order'];

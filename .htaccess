@@ -32,6 +32,7 @@ RewriteRule ^realizar-pedido$ index.php?controller=orders&a=newRegister
 RewriteRule ^detalles-pedido-(\w+)$ index.php?controller=orders&a=viewDetail&data=$1
 RewriteRule ^asignar-pedido$ index.php?controller=orders&a=assign
 RewriteRule ^ver-pedido-(\w+)$ index.php?controller=orders&a=viewOrder&data=$1
+RewriteRule ^mi-pedido-(\w+)$ index.php?controller=orders&a=viewOrderBy&data=$1
 RewriteRule ^cambiar_estado$ index.php?controller=orders&a=changeStatus
 RewriteRule ^vista-previa$ index.php?controller=orders&a=preview
 
