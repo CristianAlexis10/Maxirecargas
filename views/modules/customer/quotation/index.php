@@ -1,118 +1,90 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title> Maxirecargas</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="views/assets/image/logo.png">
-    <link rel="stylesheet" href="views/assets/css/copepr.css">
-    <link rel="stylesheet" href="views/assets/css/main-user.css">
-  </head>
-  <body>
-    <?php require_once "views/include/user/scope.hamburger.php";?>
-    <div class="order--fondo">
-      <div id="order--formone">
-        <div class="orderSuperior">
-          <h1>datos del producto</h1>
-          <p>Ingresa el Producto y Servicio que deseas Cotizar.</p>
+<title> Maxirecargas</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon" href="views/assets/image/logo.png">
+ <link rel="stylesheet" href="views/assets/css/copepr.css">
+     <div class="container--quotation">
+  <div class="quotation--left">
+      <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
+        <div class="quotation--form">
+      <form  id="quotationUser">
+        <p class="subtitle quo">Ingresa los datos de los Producto o Servicios que desea cotizar y espera nuetra respuesta. </p>
+        <div class="form-groupuser">
+          <label for="dataprod" class="labeluser">Referencia del producto</label>
+          <input type="text" name="data[]" class="inputuser" id="dataprod">
         </div>
-        <div class="container--form">
-          <form id="frmNewOrder">
-            <div class="form-groupuser3">
-              <label for="producto" class="labelselect3">referencia</label>
-            <input type="text" id="producto" class="inputuser3" >
-            </div>
-            <input type="button" id="searchPro" class="inputuser3" value="Buscar">
-            <div class="form-groupuser3 hide--service ">
-              <label for="servicio" class="labelselect3">servicio</label>
-              <select class="selectuser3 " id="servicio">
-                <option>cosa</option>
-                <option>cosa2</option>
-              </select>
-            </div>
-            <div class="juntos hide--cantidad">
-              <div class="form-groupuser3">
-                <label for="cant" class="labeluser3">cantidad</label>
-                <input id="cant" class="inputuser3">
-              </div>
-            </div>
-            <div class="form-groupuser3 hide--obs">
-              <label for="observ" class="labeluser3">observaciones</label>
-              <textarea name="name" rows="2" cols="100" id="observ" class="inputuser3"></textarea>
-            </div>
-          </form>
+        <div class="form-groupuser cantidad--hide">
+          <label for="cantidad" class="labeluser">Cantidad</label>
+          <input type="number" name="data[]" class="inputuser" id="cantidad" required>
         </div>
-        <!--  lpera te dejo aca el espacio para que ponga esos botones mas abajo estara el otro espacio-->
-        <button type="button" id="back">Anterior</button>
-        <button type="button" id="next">siguiente</button>
-        <button type="button" id="otroProducto">Otro producto</button>
-        <button type="button" id="orderSiguiente">Terminar</button>
-      </div>
-      <div id="order--formtwo">
-        <div class="orderSuperior">
-          <h1>confirmar direccion</h1>
-          <p>¿Esta es la direccion donde se solicita la cotización?</p>
-          <h2 id="orderDir"><?php echo $_SESSION['CUSTOMER']['ADDRESS'];?></h2>
-        </div>
-        <div class="container--form">
-          <form>
-              <div class="form-groupuser2 " id="otraDir">
-                <label for="Direc" class="labeluser2">referencia</label>
-                <input id="Direc" class="inputuser2">
-              </div>
-              <div class="Orderbtn2">
-                <button type="button" id="confirmOrder">Realizar Cotizacion</button>
-                <button type="button" id="btnOtraDir">otra direccion</button>
-                <button type="button" id="viewOrder">Ver Cotizacion</button>
-              </div>
-          </form>
-        </div>
-        <!-- AQUIIIIIII -->
-        <button type="button" id="orderAtras">atras</button>
-      </div>
-    </div>
-    <div id="order--container">
-      <div class="order--contenido">
-        <div class="order--left">
-          <div class="left--superior">
-            <h1>haz</h1>
-            <h1>tu</h1>
-            <h1>Cotizacion</h1>
-          </div>
-        </div>
-        <div class="order--rigth">
-          <div class="right--superior">
-            <h1>haz</h1>
-            <h1>tu</h1>
-            <h1>Cotizacion</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-    <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
+      <div class="form-groupuser tip_ser--hide">
+          <label for="solicitud" class="labeluser">Tipo de Servicio</label>
+          <select name="data[]" class="inputuser" id="solicitud" required>
 
+          </select>
+        </div>
 
-<div class="modal--dir">
-  <div class="form-groupuser3  ">
-    <label for="ciudad" class="labelselect3">Ciudad</label>
-    <select class="selectuser3 " id="ciudad">
-    </select>
+        <div class="form-groupuser btn">
+          <input type="button" id="before" value="Anterior">
+            <input type="button" id="nextExis" value="Siguiente">
+        </div>
+        <div class="form-groupuser btn">
+          <input type="button" id="next" value="Otro Producto">
+        </div>
+        <div class="form-groupuser btn">
+          <input type="button" id="openModal" value="ENVIAR">
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="form-groupuser3">
-    <label for="dirSent" class="labeluser3">Dirección de envio</label>
-    <input id="dirSent" class="inputuser3">
+  <div class="quotation--rigth">
+    <h1 class="title--quo">crea</h1>
+    <h1 class="title--quo">tu</h1>
+    <h1 class="title--quo">cotizacion</h1>
   </div>
-  <input type="button" id="newDir" value="Cambiar">
 </div>
 
-<div id="viewDetail">
+<!-- ACA ESTA EL MODAL QUE TE TOCA -->
+<div class="modal" id="modalConfir">
+<div class="modal--container">
+<div class="detalle">
+    <div id="detalles">
 
+    </div>
 </div>
-
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="views/assets/js/copepr.js"></script>
-    <script type="text/javascript" src="views/assets/js/quotation-customer.js"></script>
-    <script type="text/javascript" src="views/assets/js/menu.js"></script>
-  </body>
-</html>
+<div class="quotation--form">
+  <span id="closeConfir">&times;</span>
+  <form id="sendQuotation">
+  <h2>ingresa tus datos</h2>
+<div class="form-groupuser2">
+  <label for="nameC" class="labeluser2">Nombre Completo</label>
+  <input type="text" name="data_user" class="inputuser2" id="nameC" required>
+</div>
+<div class="form-groupuser2">
+  <label for="Correoquo" class="labeluser2">Correo</label>
+  <input type="email" name="data_user" class="inputuser2" id="Correoquo" required>
+</div>
+<div class="form-groupuser2">
+  <label for="tel" class="labeluser2">Telefono</label>
+  <input type="number" name="data_user" class="inputuser2" id="tel" required>
+</div>
+<div class="form-groupuser2">
+  <label for="dir" class="labeluser2">Dirección</label>
+  <input type="text" name="data_user" class="inputuser2" id="dir" required>
+</div>
+<div class="form-groupuser2">
+  <label for="rf" class="labeluser2">Observaciones</label>
+  <textarea id="obser" rows="2" cols="80" class="inputuser2"></textarea>
+</div>
+<div class="form-groupuserbtn">
+  <input type="submit" id="confirmQuotation" value="realizar cotizacion">
+  <input type="button" id="cancelar" value="cancelar">
+</div>
+</form>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="views/assets/js/copepr.js"></script>
+<script type="text/javascript" src="views/assets/js/auth.js"></script>
+<script type="text/javascript" src="views/assets/js/menu.js"></script>
+<script type="text/javascript" src="views/assets/js/quotation.js"></script>

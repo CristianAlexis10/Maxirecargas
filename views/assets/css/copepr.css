@@ -295,6 +295,7 @@
 #otraDir{
   display: none;
 }
+
 .modal--dir{
   background: rgba(0,0,0,0.5);
   width: 100%;
@@ -302,13 +303,51 @@
   position: absolute;
   position: fixed;
   z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.content_modal_dir{
+  width: 50%;
+  background: white;
+}
+
+
+
 .menuorder{
   padding: 20px;
   z-index: 9;
   font-size: 25px;
   color: white;
   position: absolute;
+}
+.user_fondo_order{
+  margin: 0 auto;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 120px;
+  padding: 100px;
+}
+.user_fondo_order h1{
+  font-size: 80px;
+  color: white;
+  font-family: 'oswald';
+  font-weight: 200;
+}
+.user_fondo_order b{
+  color: #35a4dd;
+}
+.user_fondo_order button{
+  margin-top: 40px;
+  padding: 15px 20px;
+  background: #35a4dd;
+  color: white;
+  border: none;
+  outline: none;
+  transition: .5s ease;
+}
+.user_fondo_order button:hover{
+  box-shadow: -5px 10px 10px 0px rgba(0,0,0,0.5)
 }
 
 /*inputs*/

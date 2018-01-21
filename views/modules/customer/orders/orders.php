@@ -100,22 +100,26 @@
         </div>
       </div>
     </div>
-    <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
-
+<span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
 
 <div class="modal--dir">
-  <div class="form-groupuser3">
-    <label for="ciudad" class="labelselect3">Ciudad</label>
-    <select class="selectuser3 " id="ciudad">
-    </select>
+  <div class="content_modal_dir">
+    <span>&times;</span>
+    <img src="views/assets/image/logo.png" class="image_modal">
+    <div class="modal_form">
+      <div class="form-groupuser3">
+        <label for="ciudad" class="labelselect3">Ciudad</label>
+        <select class="selectuser3" id="ciudad"></select>
+      </div>
+      <div class="form-groupuser3">
+        <label for="dirSent" class="labeluser3">Dirección de envio</label>
+        <input id="dirSent" class="inputuser3">
+      </div>
+      <div class="form-groupuser3">
+          <input type="button" id="newDir" value="Cambiar">
+      </div>
+    </div>
   </div>
-  <div class="form-groupuser3">
-    <label for="dirSent" class="labeluser3">Dirección de envio</label>
-    <input id="dirSent" class="inputuser3">
-  </div>
-  <input type="button" id="newDir" value="Cambiar">
 </div>
 
-<div id="viewDetail">
-
-</div>
+<div id="viewDetail"></div>
