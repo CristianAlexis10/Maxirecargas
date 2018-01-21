@@ -104,7 +104,7 @@
 
 
 <div class="modal--dir">
-  <div class="form-groupuser3  ">
+  <div class="form-groupuser3">
     <label for="ciudad" class="labelselect3">Ciudad</label>
     <select class="selectuser3 " id="ciudad">
     </select>
