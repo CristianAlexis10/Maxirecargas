@@ -40,7 +40,7 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
         </div>
         <div class="wrap_two_formgroup">
           <div class="form-group">
-            <label for="cuidad" class="select dataCl">Ciudad:</label>
+            <label for="cuidad" class="select">Ciudad:</label>
             <select class="dataCl input"  id="newCuidad" required>
               <?php foreach ($this->master->selectAll("ciudad") as $row) {
                 if ($data['id_ciudad']==$row['id_ciudad']) {
@@ -67,7 +67,7 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
           </div>
         </div>
           <div class="form-group">
-            <label for="sexo" class="select dataCl">Sexo:</label>
+            <label for="sexo" class="select">Sexo:</label>
             <select class="dataCl input grande"  id="sexo" required>
               <?php if ($data['usu_sexo']=="masculino") {?>
                   <option value="femenino">Femenino</option>

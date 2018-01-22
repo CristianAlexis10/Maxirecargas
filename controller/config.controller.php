@@ -74,6 +74,18 @@ class ConfigController{
             $result = $this->master->pedDay(date('Y-m-d'));
             echo json_encode($result);
         }
+        function pedidosPendientes(){
+            $result = $this->master->selectCount("pedido","ped_estado","En Bodega");
+            echo json_encode($result);
+        }
+        function pedidosEnProceso(){
+            $result = $this->master->selectCount("pedido","ped_estado","En Proceso");
+            echo json_encode($result);
+        }
+        function pedidosTerminados(){
+            $result = $this->master->selectCount("pedido","ped_estado","Terminado");
+            echo json_encode($result);
+        }
         function listaVisitas(){
 			// $user = $_GET['data'];
 						$user = 1;

@@ -84,6 +84,7 @@
 				}
 			}
 			if ($result==true) {
+					$_SESSION['user_new_order']=$token;
 					echo json_encode(true);
 			}else{
 				echo json_encode('Se ha generado un error');

@@ -4,6 +4,12 @@
   }
 </style>
 <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
+<?php
+if (isset($_SESSION['user_new_order'])) {
+  echo "<div class='new_order_token'>Tu Order se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de orden: <b>".$_SESSION['user_new_order']."</b></div>";
+  unset($_SESSION['user_new_order']);
+}
+?>
     <div id="tabs">
         <ul>
           <li><a href="#tabs-2">Pedidos</a></li>

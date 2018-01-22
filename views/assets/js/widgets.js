@@ -223,6 +223,64 @@ var ctx2 = document.getElementById("second--pie");
  }
  pedDay();
 
+ function pedidosPendientes(){
+         $.ajax({
+             url: "index.php?controller=config&a=pedidosPendientes",
+             type: "POST",
+             dataType:'json',
+             success: function(result){
+               // console.log(result);
+               if (result[0][0]==null) {
+                 $('#pedidosPendientes').html('0');
+               }else{
+                 $('#pedidosPendientes').html(result[0][0]);
+               }
+             },
+             error:function(result) {
+               console.log(result);
+             }
+         });
+ }
+ pedidosPendientes();
+ function pedidosTerminados(){
+         $.ajax({
+             url: "index.php?controller=config&a=pedidosTerminados",
+             type: "POST",
+             dataType:'json',
+             success: function(result){
+               // console.log(result);
+               if (result[0][0]==null) {
+                 $('#pedidosTerminados').html('0');
+               }else{
+                 $('#pedidosTerminados').html(result[0][0]);
+               }
+             },
+             error:function(result) {
+               console.log(result);
+             }
+         });
+ }
+ pedidosTerminados();
+ function pedidosEnProceso(){
+         $.ajax({
+             url: "index.php?controller=config&a=pedidosEnProceso",
+             type: "POST",
+             dataType:'json',
+             success: function(result){
+               // console.log(result);
+               if (result[0][0]==null) {
+                 $('#pedidosEnProceso').html('0');
+               }else{
+                 $('#pedidosEnProceso').html(result[0][0]);
+               }
+             },
+             error:function(result) {
+               console.log(result);
+             }
+         });
+ }
+ pedidosEnProceso();
+
 
  function promedioComprasMesUsuario(){
          $.ajax({

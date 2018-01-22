@@ -35,15 +35,15 @@
 			</div>
 			<div class="pedidopend">
 				<h2>pedidos pendientes</h2>
-				<p id="pedidoPend"></p>
+				<p id="pedidosPendientes"></p>
 			</div>
 			<div class="pedidoterm">
 				<h2>pedidos terminados</h2>
-				<p id="pedidoTerm"></p>
+				<p id="pedidosTerminados"></p>
 			</div>
 			<div class="pedidoapla">
-				<h2>Pedidos aplazados</h2>
-				<p id="pedidoApla"></p>
+				<h2>Pedidos En Proceso</h2>
+				<p id="pedidosEnProceso"></p>
 			</div>
 		</div>
 		<div class="wrap--pie">

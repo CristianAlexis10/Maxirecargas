@@ -76,7 +76,12 @@ $("#frmUpdateProfile").submit(function(e) {
       dataType:"json",
       data:({data:data}),
       success:function(result) {
-        console.log(result);
+        if (result==true) {
+            $("#frmUpdateProfile").after("<div class='message'>Midificación Exitosa.</div>");
+        }else{
+          $("#frmUpdateProfile").after("<div class='message'>"+result+"</div>");
+        }
+        setTimeout(function(){$("div.message").remove()},3000);
       },
       error:function(result) {
         console.log(result);
