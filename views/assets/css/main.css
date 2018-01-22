@@ -1,3 +1,4 @@
+
 /*
 author:
 license: apache 2.0
@@ -625,6 +626,7 @@ align-items: center;
   grid-template-areas:
   "number1 number2 number3"
   "ventadia ventames visitas"
+  "pedido1 pedido2 pedido3"
   "liner liner liner ";
   justify-content: stretch;
   grid-gap: 10px;
@@ -650,13 +652,16 @@ align-items: center;
 .num--users{grid-area:number1;}
 .num--orders{grid-area:number2;}
 .num--quotation{grid-area: number3;}
-.num--users,.num--orders, .num--quotation, .ventasDia, .ventasMes, .visitas {
+.pedidopend{grid-area: pedido1;}
+.pedidoterm{grid-area: pedido2;}
+.pedidoapla{grid-area: pedido3;}
+.num--users,.num--orders, .num--quotation, .ventasDia, .ventasMes, .visitas, .pedidopend, .pedidoterm, .pedidoapla  {
   background: #ededed;
   padding: 10px 20px 20px 20px;
   font-family: 'Oswald';
   font-weight: 200;
 }
-.num--users h2,.num--orders h2, .num--quotation h2, .ventasDia h2, .ventasMes h2, .visitas h2 {
+.num--users h2,.num--orders h2, .num--quotation h2, .ventasDia h2, .ventasMes h2, .visitas h2,.pedidopend h2, .pedidoterm h2, .pedidoapla  h2 {
   font-size: 16px;
   color: #484848;
   text-transform: uppercase;

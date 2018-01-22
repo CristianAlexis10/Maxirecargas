@@ -6,20 +6,18 @@
 			</div>
 		</div>
 		<div class="container--charts">
-
-				<div class="num--users">
+			<div class="num--users">
 					<h2>usuarios registrados</h2>
 					<p id="userRegistrado"></p>
 				</div>
-				<div class="num--orders">
+			<div class="num--orders">
 					<h2>total pedidos solicitados</h2>
 					<p id="totalPed"></p>
 				</div>
-				<div class="num--quotation">
+			<div class="num--quotation">
 					<h2>cotizaciones solicitadas</h2>
 					<p id="totalCot"></p>
 				</div>
-
 			<div class="liner">
 				<canvas id="linerGraphy"></canvas>
 			</div>
@@ -34,6 +32,18 @@
 			<div class="visitas">
 				<h2>Pedidos del dia</h2>
 				<p id="pedDay"></p>
+			</div>
+			<div class="pedidopend">
+				<h2>pedidos pendientes</h2>
+				<p id="pedidoPend"></p>
+			</div>
+			<div class="pedidoterm">
+				<h2>pedidos terminados</h2>
+				<p id="pedidoTerm"></p>
+			</div>
+			<div class="pedidoapla">
+				<h2>Pedidos aplazados</h2>
+				<p id="pedidoApla"></p>
 			</div>
 		</div>
 		<div class="wrap--pie">
