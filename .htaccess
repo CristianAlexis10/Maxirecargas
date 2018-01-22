@@ -46,6 +46,7 @@ RewriteRule ^historial$ index.php?controller=record
 RewriteRule ^iniciar$ index.php?controller=views&a=newUser
 RewriteRule ^dashboard$ index.php?controller=admin
 RewriteRule ^perfil$ index.php?controller=admin&a=profile
+RewriteRule ^modificar-mi-perfil$ index.php?controller=customers&a=updateAllProfile
 RewriteRule ^perfil-empresarial$ index.php?controller=business&a=profile
 RewriteRule ^configuraciones$ index.php?controller=admin&a=settings
 RewriteRule ^estadisticas$ index.php?controller=admin&a=statistics

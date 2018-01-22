@@ -420,5 +420,21 @@
 			}
 			echo json_encode($result);
 		}
+		function updateAllProfile(){
+			$result = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
+			$data  = $_POST['data'];
+			//imagen
+			if (isset($_SESSION['new_cropp_image'])) {
+				$data[] = $_SESSION['new_cropp_image'];
+				unset($_SESSION['new_cropp_image']);
+				if ($result['usu_foto']!="default.jpg") {
+					unlink("views/assets/image/profile/".$result['usu_foto']);
+				}
+			}else{
+				$data[] = $result['usu_foto'];
+			}
+			$result = $this->master->update("usuario",array("usu_codigo",$_SESSION['CUSTOMER']['ID']),$data,array('usu_codigo','id_tipo_documento','usu_num_documento','tip_usu_codigo','id_estado','usu_fechas_registro','usu_ult_inicio_sesion'));
+			echo json_encode($data);
+		}
 	}
 ?>
