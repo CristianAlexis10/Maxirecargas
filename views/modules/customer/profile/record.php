@@ -9,6 +9,10 @@ if (isset($_SESSION['user_new_order'])) {
   echo "<div class='new_order_token'>Tu Order se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de orden: <b>".$_SESSION['user_new_order']."</b></div>";
   unset($_SESSION['user_new_order']);
 }
+if (isset($_SESSION['user_quotation_new'])) {
+  echo "<div class='new_order_token'>Tu Cotización se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de tu cotización: <b>".$_SESSION['user_quotation_new']."</b></div>";
+  unset($_SESSION['user_quotation_new']);
+}
 ?>
     <div id="tabs">
         <ul>

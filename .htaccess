@@ -124,3 +124,6 @@ RewriteRule ^datos-contacto$ index.php?controller=contact&a=knowData
 
 #COFIGURACIONES
 RewriteRule ^nuevo_dato_contacto$ index.php?controller=setting&a=contact
+
+#ERRORES
+ErrorDocument 404 /maxirecargas/views/modules/config/errors/error404.php
