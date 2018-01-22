@@ -104,7 +104,7 @@
   margin-top: 40px;
   justify-content:space-around;
   align-items: center;
-  transition: all 1s ease-out;
+  transition: all 2s ease-out;
 }
 .products .item{
   background: #d4d4d4;
@@ -116,7 +116,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  transition: all .4s ease;
+  transition: all 1s ease-out;
   border-radius: 100px 0 20px 0;
 }
 .products .item:hover{
@@ -171,8 +171,15 @@
   color: white;
 }
 .animationitem{
-  transform: translateX(9999px);
-  position: absolute;
+  animation: 1s cosa;
+}
+@keyframes cosa {
+  to{
+    opacity: 0;
+  }
+  from{
+    display: none
+  }
 }
 .animationBI{
   transform: translateY(0);
@@ -303,15 +310,26 @@
   position: absolute;
   position: fixed;
   z-index: 99;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
 .content_modal_dir{
   width: 50%;
   background: white;
+  display: flex;
+  flex-direction: column;
 }
-
+.image_modal{
+  width: 170px;
+  margin: 0 auto;
+}
+#closemodal_dir{
+  text-align: right;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
 
 
 .menuorder{

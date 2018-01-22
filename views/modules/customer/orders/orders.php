@@ -102,18 +102,18 @@
     </div>
 <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
 
-<div class="modal--dir">
+<div class="modal--dir" id="modal_dir">
   <div class="content_modal_dir">
-    <span>&times;</span>
+    <span id="closemodal_dir">&times;</span>
     <img src="views/assets/image/logo.png" class="image_modal">
     <div class="modal_form">
       <div class="form-groupuser3">
-        <label for="ciudad" class="labelselect3">Ciudad</label>
-        <select class="selectuser3" id="ciudad"></select>
+        <label for="ciudad" class="">Ciudad</label>
+        <select class="" id="ciudad"></select>
       </div>
       <div class="form-groupuser3">
-        <label for="dirSent" class="labeluser3">Dirección de envio</label>
-        <input id="dirSent" class="inputuser3">
+        <label for="dirSent" class="">Dirección de envio</label>
+        <input id="dirSent" class="">
       </div>
       <div class="form-groupuser3">
           <input type="button" id="newDir" value="Cambiar">

@@ -29,7 +29,15 @@ $(".inputuser3").focusout(function(){
 // modals
 
 var openModal_dir = document.getElementById('btnOtraDir');
-var closeModal_dir = document.getElementById('id');
+var closeModal_dir = document.getElementById('closemodal_dir');
+var modal_dir = document.getElementById('modal_dir');
+
+openModal_dir.onclick = function() {
+  modal_dir.style.display = "flex";
+}
+closeModal_dir.onclick = function() {
+  modal_dir.style.display= "none";
+}
 
 
 
@@ -82,11 +90,12 @@ $('#orderAtras').click(function() {
 // views product
 if (document.getElementById('itemToner')) {
     var toner = document.getElementById('itemToner');
-
     toner.onclick = function(){
       $(".banner").addClass("animationbanner");
       $(".title_banner").addClass("animationtitlebanner");
-      $(".products").addClass("animationitem");
+      $(".products").animate({
+        "display":"none"
+      });
       $(".Btoner").addClass("animationBI");
 
     }
