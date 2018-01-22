@@ -20,9 +20,9 @@ function services(pro){
         if (result=='No existe Este producto') {
                   $("#solicitud").empty();
                   pro_exist = false;
-                  $("#dataprod").after('<div class="message">Este producto no existe</div>');
+                  $("#dataprod").after('<div class="message-quotation">Este producto no existe</div>');
                   setTimeout(function(){
-                    $("div.message").remove();
+                    $("div.message-quotation").remove();
                   },3000);
 
               return ;
@@ -45,7 +45,7 @@ function showButtons(){
     $("#openModal").show();
     $("#next").show();
   }else{
-    $("#openModal").hide();
+    // $("#openModal").hide();
     $("#next").hide();
   }
 //boton de anterior
@@ -96,9 +96,9 @@ $("#next").click(function(){
     $("#quotationUser")[0].reset();
     console.log(quotation);
   }else{
-    $("#quotationUser").after('<div class="message"> Campos Vacios</div>');
+    $("#quotationUser").after('<div class="message-quotation"> Campos Vacios</div>');
     setTimeout(function(){
-       $('div.message').remove();
+       $('div.message-quotation').remove();
      }, 2000);
 
 
@@ -146,6 +146,8 @@ if (document.getElementById('closeConfir')) {
 
   var openModal = document.getElementById('openModal');
   openModal.onclick = function(){
+    if (indice_total==0 && $("#dataprod").val()!="" && $("#solicitud").val() !="" && $("#cantidad").val()!="") {
+
     $.ajax({
         url: "guardar-cotizacion-session",
         type: "POST",
@@ -212,7 +214,10 @@ if (document.getElementById('closeConfir')) {
         // AddItem($("#solicitud").val(),$("#dataprod").val(),$("#cantidad").val());
       }
 
-
+    }else{
+      $("#openModal").after("<div class='message-quotation'>por favor llena los campos</div>");
+      setTimeout(function(){$("div.message-quotation").remove()},3000);
+    }
   }
 }
 
@@ -260,22 +265,22 @@ $("#sendQuotation").submit(function(e) {
                 data: ({data : dataJson}),
                 beforeSend:function() {
                   $("#modalConfir").hide();
-                  $("#openModal").after('<div class="message">Validando...</div>');
+                  $("#openModal").after('<div class="message-quotation">Validando...</div>');
                 },
                 success: function(result){
                     modal.style.display = "none";
-                    $("div.message").remove();
+                    $("div.message-quotation").remove();
                     if (result==true) {
                         $("#sendQuotation")[0].reset();
                         $("#quotationUser")[0].reset();
                         showButtons();
                         delete quotation;
-                        $("#openModal").after('<div class="message">Tu cotización ha sido enviada</div>');
+                        $("#openModal").after('<div class="message-quotation">Tu cotización ha sido enviada</div>');
                     }else{
-                        $("#openModal").after('<div class="message">'+result+'</div>');
+                        $("#openModal").after('<div class="message-quotation">'+result+'</div>');
                     }
                     setTimeout(function(){
-                      $("div.message").remove();
+                      $("div.message-quotation").remove();
                     },6000);
                      // console.log(result);
                 },

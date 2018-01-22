@@ -9,6 +9,7 @@ require_once "controller/doizer.controller.php";
 	 	}
 		function main(){
 			if (isset($_SESSION['CUSTOMER']['CLIENT'])) {
+				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/customer/quotation/index.php";
 			}elseif (isset($_SESSION['CUSTOMER']['ROL']) ) {
 				if (isset($_SESSION['CUSTOMER']['ROL'])) {
