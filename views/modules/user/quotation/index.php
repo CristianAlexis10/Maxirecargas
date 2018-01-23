@@ -9,19 +9,24 @@
           <form  id="quotationUser">
             <p class="subtitle quo">Ingresa los datos de los Producto o Servicios que desea cotizar y espera nuetra respuesta. </p>
             <div class="form-groupuser">
-              <label for="dataprod" class="labeluser">Referencia del producto</label>
-              <input type="text" name="data[]" class="inputuser" id="dataprod">
+              <label for="dataprod" class="labelyellow">Referencia del producto</label>
+              <input type="text" name="data[]" class="inputYellow" id="dataprod">
             </div>
             <div class="form-groupuser cantidad--hide">
-              <label for="cantidad" class="labeluser">Cantidad</label>
-              <input type="number" name="data[]" class="inputuser" id="cantidad" required>
+              <label for="cantidad" class="labelyellow">Cantidad</label>
+              <input type="number" name="data[]" class="inputYellow" id="cantidad" required>
             </div>
-          <div class="form-groupuser tip_ser--hide">
-              <label for="solicitud" class="labeluser">Tipo de Servicio</label>
-              <select name="data[]" class="inputuser" id="solicitud" required>
-
+            <div class="form-groupuser tip_ser--hide">
+              <label for="solicitud" class="labelyellow">Tipo de Servicio</label>
+              <select name="data[]" class="inputYellow" id="solicitud" required>
               </select>
             </div>
+            <div class="form-groupuser">
+              <label for="solicitud" class="labelyellow">Detalla la solicitud</label>
+              <textarea name="data[]" rows="1" cols="50" class="inputYellow"></textarea>
+
+            </div>
+
 
             <div class="form-groupuser btn">
               <input type="button" id="before" value="Anterior">

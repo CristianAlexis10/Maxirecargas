@@ -369,38 +369,51 @@
 }
 
 /*inputs*/
-.form-groupuser, .form-groupuser2, .form-groupuser3{
+.form-groupuser{
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 30px;
   font-family: 'lato';
 }
-
-
-.form-groupuser .labeluser, .labeluser2, .labeluser3 {
-  transition: all 0.5s;
-  transform: translateY(12px);
-  position: absolute;
-  padding: 0 0 0 5px;
-  color: #e9e9e9;
-
+.inputYellow{
+ padding:10px 2px;
+ border-radius: 3px;
+ outline: none;
+ border: 1px solid #9e9e9e;
+ position: relative;
+ font-size: 16px;
+ background: transparent;
+ color: #9e9e9e;
 }
+.labelyellow {
+  transition: all 0.5s;
+  padding: 0 0 0 5px;
+  margin-bottom: 8px;
+}
+.inputuser:after, .inputuser:before{
+/* .inputuser2:after, .inputuser2:before , .inputuser3:after, .inputuser3:before,.selectuser3:after, .selectuser3:before */
+  content: "";
+  background: #9e9e9e;
+  box-sizing: border-box;
+  border: 1px solid #9e9e9e;
+  transition: all 0.5s;
+}
+.color-labeluser .inputYellow{
+  border: 1px solid #f8f400;
+}
+.color-labeluser .labelyellow{
+  color: #f8f400;
+}
+/*
+
+
 .labelselect3{
   transition: all 0.5s;
   padding: 0 0 0 5px;
   color: #e9e9e9;
 }
-.form-groupuser .inputuser {
-  padding:8px 2px;
-  border-radius: 8px;
-  outline: none;
-  border: 1px solid #9e9e9e;
-  position: relative;
-  font-size: 16px;
-  background: transparent;
-  color:white;
-}
+
 .selectuser3{
   padding:8px 2px;
   border-radius: 8px;
@@ -430,13 +443,7 @@
   background: transparent;
   color:white;
 }
- .inputuser:after, .inputuser:before,.inputuser2:after, .inputuser2:before , .inputuser3:after, .inputuser3:before,.selectuser3:after, .selectuser3:before {
-   content: "";
-   background: #9e9e9e;
-   box-sizing: border-box;
-   border: 1px solid #9e9e9e;
-   transition: all 0.5s;
-}
+
 
 .color-labeluser .inputuser {
   border: 1px solid #f8f400;
@@ -459,7 +466,7 @@
 .mover-labeluser .labeluser, .mover-labeluser2 .labeluser2, .mover-labeluser3 .labeluser3{
   transform: translateY(-15px);
   font-size: 12px;
-}
+} */
 /*modal*/
 .modal{
   display: none;

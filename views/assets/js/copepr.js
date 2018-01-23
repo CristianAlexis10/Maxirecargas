@@ -1,8 +1,8 @@
-$(".inputuser").focus(function(){
-  $(this).parent().addClass("color-labeluser mover-labeluser");
+$(".inputYellow").focus(function(){
+  $(this).parent().addClass("color-labeluser");
 });
 
-$(".inputuser").focusout(function(){
+$(".inputYellow").focusout(function(){
   if($(this).val() === "")
     $(this).parent().removeClass("mover-labeluser");
     $(this).parent().removeClass("color-labeluser");
