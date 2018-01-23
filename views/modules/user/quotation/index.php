@@ -24,19 +24,18 @@
             <div class="form-groupuser">
               <label for="solicitud" class="labelyellow">Detalla la solicitud</label>
               <textarea name="data[]" rows="1" cols="50" class="inputYellow"></textarea>
-
             </div>
-
-
-            <div class="form-groupuser btn">
-              <input type="button" id="before" value="Anterior">
+            <div class="container_orderbtn">
+              <div class=orderbtn>
+                <input type="button" id="before" value="Anterior">
                 <input type="button" id="nextExis" value="Siguiente">
+              </div>
+              <div class="orderbtn">
+                <input type="button" id="next" value="Otro Producto">
+              </div>
+              <div class="orderbtn">
+              <input type="button" id="openModal" value="Enviar">
             </div>
-            <div class="form-groupuser btn">
-              <input type="button" id="next" value="Otro Producto">
-            </div>
-            <div class="form-groupuser btn">
-              <input type="button" id="openModal" value="ENVIAR">
             </div>
           </form>
         </div>
@@ -52,34 +51,34 @@
 <div class="modal" id="modalConfir">
   <div class="modal--container">
     <div class="detalle">
+      <h2>detalles de la cotizacion</h2>
         <div id="detalles">
-
         </div>
     </div>
     <div class="quotation--form">
       <span id="closeConfir">&times;</span>
       <form id="sendQuotation">
       <h2>ingresa tus datos</h2>
-    <div class="form-groupuser2">
-      <label for="nameC" class="labeluser2">Nombre Completo</label>
-      <input type="text" name="data_user" class="inputuser2" id="nameC" required>
+    <div class="form-groupuser">
+      <label for="nameC" class="labelblue">Nombre Completo</label>
+      <input type="text" name="data_user" class="inputblue" id="nameC" required>
     </div>
-    <div class="form-groupuser2">
-      <label for="Correoquo" class="labeluser2">Correo</label>
-      <input type="email" name="data_user" class="inputuser2" id="Correoquo" required>
+    <div class="form-groupuser">
+      <label for="Correoquo" class="labelblue">Correo</label>
+      <input type="email" name="data_user" class="inputblue" id="Correoquo" required>
     </div>
-    <div class="form-groupuser2">
-      <label for="tel" class="labeluser2">Telefono</label>
-      <input type="number" name="data_user" class="inputuser2" id="tel" required>
+    <div class="form-groupuser">
+      <label for="tel" class="labelblue">Telefono</label>
+      <input type="number" name="data_user" class="inputblue" id="tel" required>
     </div>
-    <div class="form-groupuser2">
-      <label for="dir" class="labeluser2">Dirección</label>
-      <input type="text" name="data_user" class="inputuser2" id="dir" required>
+    <div class="form-groupuser">
+      <label for="dir" class="labelblue">Dirección</label>
+      <input type="text" name="data_user" class="inputblue" id="dir" required>
     </div>
-    <div class="form-groupuser2">
-      <label for="rf" class="labeluser2">Observaciones</label>
-      <textarea id="obser" rows="2" cols="80" class="inputuser2"></textarea>
-    </div>
+    <!-- <div class="form-groupuser">
+      <label for="rf" class="labelblue">Observaciones</label>
+      <textarea id="obser" rows="2" cols="80" class="inputblue"></textarea>
+    </div> -->
     <div class="form-groupuserbtn">
       <input type="submit" id="confirmQuotation" value="realizar cotizacion">
       <input type="button" id="cancelar" value="cancelar">

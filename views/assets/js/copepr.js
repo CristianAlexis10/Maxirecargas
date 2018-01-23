@@ -7,14 +7,15 @@ $(".inputYellow").focusout(function(){
     $(this).parent().removeClass("mover-labeluser");
     $(this).parent().removeClass("color-labeluser");
 });
-$(".inputuser2").focus(function(){
-  $(this).parent().addClass("color-labeluser2 mover-labeluser2");
+
+$(".inputblue").focus(function(){
+  $(this).parent().addClass("color-labelblue mover-labelblue");
 });
 
-$(".inputuser2").focusout(function(){
+$(".inputblue").focusout(function(){
   if($(this).val() === "")
-    $(this).parent().removeClass("mover-labeluser2");
-    $(this).parent().removeClass("color-labeluser2");
+    $(this).parent().removeClass("mover-labelblue");
+    $(this).parent().removeClass("color-labelblue");
 });
 
 $(".inputuser3").focus(function(){
@@ -28,19 +29,16 @@ $(".inputuser3").focusout(function(){
 });
 // modals
 
-var openModal_dir = document.getElementById('btnOtraDir');
-var closeModal_dir = document.getElementById('closemodal_dir');
-var modal_dir = document.getElementById('modal_dir');
-
-openModal_dir.onclick = function() {
-  modal_dir.style.display = "flex";
-}
-closeModal_dir.onclick = function() {
-  modal_dir.style.display= "none";
-}
-
-
-
+// var openModal_dir = document.getElementById('btnOtraDir');
+// var closeModal_dir = document.getElementById('closemodal_dir');
+// var modal_dir = document.getElementById('modal_dir');
+//
+// openModal_dir.onclick = function() {
+//   modal_dir.style.display = "flex";
+// }
+// closeModal_dir.onclick = function() {
+//   modal_dir.style.display= "none";
+// }
 
 
 //views order mover

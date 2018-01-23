@@ -33,23 +33,24 @@
   font-size: 20px;
   margin-bottom: 40px;
 }
-.form-groupuser.btn input{
-  background: transparent;
-  border: 1px solid #f8f400;
+.container_orderbtn{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+ .orderbtn input{
+  background: #f8f400;
+  border: none;
   outline: none;
-  padding: 15px 30px;
-  color: white;
+  padding: 10px 30px;
   font-size: 18px;
   transition: all .3s ease;
 }
-.form-groupuser.btn input:hover{
-  background: #f8f400;
-  color: black;
-  box-shadow: 5px 5px 20px 10px rgba(0, 0, 0, 0.8);
+.orderbtn input:hover{
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.8);
 }
 .quotation--rigth{
   background: rgba(248, 244, 0, .3);
-  /*mix-blend-mode: multiply;*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,18 +76,25 @@
   transition: 1s ease;
 }
 .banneritem{
-  background: url(../image/categoria.jpg);
+  background: #35a4dd;
   width: 100%;
-  height: 300px;
+  height: 100px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   transition: .5s ease;
   position: absolute;
-  transform: translateY(9999px);
+  padding: 0px 40px;
+}
+.banneritem span{
+  width: 10%;
+  font-size: 40px;
+  color: white;
 }
 .titleitem_banner{
-
+  color: white;
+  font-family: 'lato';
+  font-weight: lighter;
+  text-transform: uppercase;
+  width: 30%;
 }
 .title_banner{
   font-size: 150px;
@@ -95,7 +103,29 @@
   color: #35a4dd;
   text-transform: uppercase;
   font-weight: 300;
+}
+.container_search{
+  font-family: 'lato';
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.search_input input{
+  width: 80%;
+  padding: 8px;
+  border: none;
+  background: white;
 
+}
+.search_options{
+  display: flex;
+  align-items: flex-end;
+
+
+}
+.search_options ul{
+  display: flex;
+  justify-content: space-around;
 }
 .products{
   width: 100%;
@@ -105,6 +135,7 @@
   justify-content:space-around;
   align-items: center;
   transition: all 2s ease-out;
+  display: none;
 }
 .products .item{
   background: #d4d4d4;
@@ -116,7 +147,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  transition: all 1s ease-out;
+  transition: all .5s ease-out;
   border-radius: 100px 0 20px 0;
 }
 .products .item:hover{
@@ -154,36 +185,6 @@
 }
 /* animacion para vista de producto  */
 
-.animationbanner{
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  background: #35a4dd;
-  width: 500px;
-  height: 80px;
-  font-size: 20px;
-  color: white;
-  border-radius: 0 0 0 50px;
-}
-.animationtitlebanner{
-  font-size: 50px;
-  color: white;
-}
-.animationitem{
-  animation: 1s cosa;
-}
-@keyframes cosa {
-  to{
-    opacity: 0;
-  }
-  from{
-    display: none
-  }
-}
-.animationBI{
-  transform: translateY(0);
-}
 
 
 
@@ -376,7 +377,7 @@
   margin-bottom: 30px;
   font-family: 'lato';
 }
-.inputYellow{
+.inputYellow, .inputblue{
  padding:10px 2px;
  border-radius: 3px;
  outline: none;
@@ -385,14 +386,22 @@
  font-size: 16px;
  background: transparent;
  color: #9e9e9e;
+ width: 100%;
 }
-.labelyellow {
+.labelyellow{
   transition: all 0.5s;
   padding: 0 0 0 5px;
   margin-bottom: 8px;
 }
-.inputuser:after, .inputuser:before{
-/* .inputuser2:after, .inputuser2:before , .inputuser3:after, .inputuser3:before,.selectuser3:after, .selectuser3:before */
+.labelblue{
+  transition: all 0.5s;
+  position: absolute;
+  transform: translateY(12px);
+  padding: 0 0 0 5px;
+  margin-bottom: 8px;
+}
+.inputuser:after, .inputuser:before,.inputblue:after, .inputblue:before{
+ /* .inputuser3:after, .inputuser3:before,.selectuser3:after, .selectuser3:before */
   content: "";
   background: #9e9e9e;
   box-sizing: border-box;
@@ -404,6 +413,16 @@
 }
 .color-labeluser .labelyellow{
   color: #f8f400;
+}
+.color-labelblue .inputblue{
+    border: 1px solid #35a4dd;
+}
+.color-labelblue .labelblue{
+  color: #35a4dd;
+}
+.mover-labelblue .labelblue{
+  transform: translateY(-12px);
+  font-size: 12px;
 }
 /*
 
@@ -448,9 +467,7 @@
 .color-labeluser .inputuser {
   border: 1px solid #f8f400;
 }
-.color-labeluser2 .inputuser2{
-    border: 1px solid #35a4dd;
-}
+
 .color-labeluser3 .inputuser3,.color-labeluser3 .selectuser3{
     border: 1px solid rgb(255,0,255);
 }
@@ -490,25 +507,26 @@
   width: 60%;
   padding: 20px;
   max-height: 500px;
+  border-right: 2px solid #9e9e9e
+}
+.detalle h2, .quotation--form h2{
+  font-family: 'oswald';
+  text-transform: capitalize;
+  text-align: center;
+  color:#35a4dd;
+  margin-bottom: 30px;
 }
 .modal--container .quotation--form{
   width: 40%;
+  padding: 20px;
 }
 .modal--container .quotation--form form{
-  width: 80%;
-  padding: 30px 30px 30px 0;
+  width: 90%;
   font-family: 'lato';
+}
 
-}
-.modal--container .quotation--form h2{
-  margin-bottom: 20px;
-  font-family: 'lato';
-  color: #9e9e9e;
-  text-transform: uppercase;
-}
 .modal--container .quotation--form span{
   float: right;
-  padding: 20px;
   font-size: 25px;
   cursor: pointer;
 }

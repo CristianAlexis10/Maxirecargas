@@ -1,28 +1,84 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title> Maxirecargas</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="views/assets/image/logo.png">
-    <link rel="stylesheet" href="views/assets/css/copepr.css">
-  </head>
-  <body class="product--fondo">
+
   <div class="banner">
     <h1 class="title_banner">categorias</h1>
   </div>
   <div class="banneritem Btoner">
+    <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
     <h1 class="titleitem_banner">toner</h1>
+    <div class="container_search">
+      <div class="search_input">
+        <input type="search" placeholder="buscar...">
+        <button type="button" name="button"><i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="search_options">
+        <ul>
+          <li>Referencia</li>
+          <li>Marcas</li>
+          <li>Genericos</li>
+          <li>impresora</li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="banneritem Bcartucho">
+    <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
     <h1 class="titleitem_banner">cartuchos</h1>
+    <div class="container_search">
+      <div class="search_input">
+        <input type="search" placeholder="buscar...">
+        <button type="button" name="button"><i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="search_options">
+        <ul>
+          <li>Referencia</li>
+          <li>Marcas</li>
+          <li>Genericos</li>
+          <li>impresora</li>
+        </ul>
+      </div>
+    </div>
+</button>
   </div>
   <div class="banneritem Bimpresora">
+    <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+
     <h1 class="titleitem_banner">impresoras</h1>
+    <div class="container_search">
+      <div class="search_input">
+        <input type="search" placeholder="buscar...">
+        <button type="button" name="button"><i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="search_options">
+        <ul>
+          <li>Referencia</li>
+          <li>Marcas</li>
+          <li>Genericos</li>
+          <li>impresora</li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="banneritem Bcomputador">
+    <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
     <h1 class="titleitem_banner">computadores</h1>
+    <div class="container_search">
+      <div class="search_input">
+        <input type="search" placeholder="buscar...">
+        <button type="button" name="button"><i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="search_options">
+        <ul>
+          <li>Referencia</li>
+          <li>Marcas</li>
+          <li>Genericos</li>
+          <li>impresora</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="container--products">
@@ -46,14 +102,3 @@
     </div>
     <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
   </div>
-
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="views/assets/lib/animate/animatescroll.js"> </script>
-    <script src="views/assets/lib/parsley/parsley.min.js"></script>
-    <script src="views/assets/lib/parsley/es.js"></script>
-    <script type="text/javascript" src="views/assets/js/copepr.js"></script>
-    <script type="text/javascript" src="views/assets/js/auth.js"></script>
-    <script type="text/javascript" src="views/assets/js/menu.js"></script>
-
-  </body>
-</html>
