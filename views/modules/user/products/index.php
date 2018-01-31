@@ -42,8 +42,7 @@
 </button>
   </div>
   <div class="banneritem Bimpresora">
-    <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
-
+    <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
     <h1 class="titleitem_banner">impresoras</h1>
     <div class="container_search">
       <div class="search_input">

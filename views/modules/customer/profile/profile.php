@@ -10,22 +10,11 @@
   </head>
   <body>
     <div class="container--profile">
-      <div class="">
+      <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
         <div class="title--profile">
           <p>editar informacion personal</p>
         </div>
-      </div>
-      <div class="data--profile">
-        <div class="photo--profile">
-          
-        </div>
-        <div class="pers">
 
-        </div>
-        <div class="">
-
-        </div>
-      </div>
     </div>
 
 

@@ -80,20 +80,26 @@
   width: 100%;
   height: 100px;
   display: flex;
-  transition: .5s ease;
+  transition:.5s ease;
   position: absolute;
-  padding: 0px 40px;
+  transform: translateX(-9999px);
 }
 .banneritem span{
   width: 10%;
   font-size: 40px;
   color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 40px;
 }
+.banneritem span i{cursor: pointer;}
 .titleitem_banner{
   color: white;
   font-family: 'lato';
   font-weight: lighter;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
   width: 30%;
 }
 .title_banner{
@@ -110,23 +116,31 @@
   flex-direction: column;
   width: 60%;
 }
+.search_input{
+  height: 80%;
+  display: flex;
+  align-items: center;
+}
 .search_input input{
-  width: 80%;
-  padding: 8px;
-  border: none;
-  background: white;
-
+  padding: 10px 1px;
+  width: 70%;
+}
+.search_input button{
+  padding: 10px;
 }
 .search_options{
+  height: 20%;
   display: flex;
-  align-items: flex-end;
-
-
+  padding-bottom: 10px;
+  color: white;
 }
 .search_options ul{
+  width: 70%;
   display: flex;
   justify-content: space-around;
 }
+.search_options ul li{transition: all .5s ease-out;}
+.search_options ul li:hover{border-bottom: 2px solid white;}
 .products{
   width: 100%;
   height: 200px;
@@ -135,7 +149,6 @@
   justify-content:space-around;
   align-items: center;
   transition: all 2s ease-out;
-  display: none;
 }
 .products .item{
   background: #d4d4d4;
@@ -184,6 +197,14 @@
   color: white;
 }
 /* animacion para vista de producto  */
+
+.moverproduct{
+  transform: translateX(-9999px);
+}
+
+.aparecer{
+  transform: translateX(0);
+}
 
 
 

@@ -89,13 +89,13 @@ $('#orderAtras').click(function() {
 if (document.getElementById('itemToner')) {
     var toner = document.getElementById('itemToner');
     toner.onclick = function(){
-      $(".banner").addClass("animationbanner");
-      $(".title_banner").addClass("animationtitlebanner");
-      $(".products").animate({
-        "display":"none"
-      });
-      $(".Btoner").addClass("animationBI");
-
+      $(".products").addClass("moverproduct");
+      $(".Btoner").addClass("aparecer");
     }
-
-}
+    var bntAtras = document.getElementById('pedAtras');
+    bntAtras.onclick = function(){
+      console.log("computad");
+      $(".product").addClass("moverproduct");
+      $(".Btoner").addClass("aparecer");
+    }
+  }
