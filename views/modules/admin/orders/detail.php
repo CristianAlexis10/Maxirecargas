@@ -76,11 +76,15 @@ if ($crud[1]==true) {
 	</div>
 </div>
 <div id="modal--detail--products">
-	<?php
-	foreach ($data_order as $row) {
-	 echo "<b>Producto:</b> ".$row['tip_pro_nombre']." ".$row['pro_referencia']." <b>Servicio</b>: ".$row['tip_ser_nombre']." <b>Cantidad: </b>".$row['pedxpro_cantidad']." <b>Observación: </b>".$row['pedxpro_observacion']."<br>";
-	}
-	?>
+	<div class="container--products">
+		<span id="close_modal_producto">&times;</span>
+		<h1>detalles de productos</h1>
+		<?php
+		foreach ($data_order as $row) {
+		 echo "<b>Producto:</b> ".$row['tip_pro_nombre']." ".$row['pro_referencia']." <b>Servicio</b>: ".$row['tip_ser_nombre']." <b>Cantidad: </b>".$row['pedxpro_cantidad']." <b>Observación: </b>".$row['pedxpro_observacion']."<br>";
+		}
+		?>
+	</div>
 </div>
 
 <div id="modal-assign">
