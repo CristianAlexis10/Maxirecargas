@@ -71,9 +71,17 @@ var map;
             });
     }
 //mostrar productos
-$("#viewAllProducts").click(function(){
-  $("#modal--detail--products").toggle();
-});
+
+var abrirProduct = document.getElementById('viewAllProducts');
+var modalProduct = document.getElementById('modal--detail--products');
+var cerrarProduct = document.getElementById('close_modal_producto')
+abrirProduct.onclick = function() {
+  modalProduct.style.display = "flex";
+};
+cerrarProduct.onclick = function() {
+  modalProduct.style.display = "none";
+}
+
 //contacto
 $(".contact--customer").click(function(){
   var user = this.id;
