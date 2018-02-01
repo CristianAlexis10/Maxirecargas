@@ -555,7 +555,7 @@ align-items: center;
 }
 
 /*modal newMark and newCategory*/
-.newMark--modal, .new--category{
+.newMark--modal, .new--category, #modal--detail--products{
   background: rgba(0, 0, 0, 0.7);
   position: absolute;
   position: fixed;
@@ -569,7 +569,7 @@ align-items: center;
   align-items: center;
 }
 
-.container--newMark, .container--newcategory{
+.container--newMark, .container--newcategory, .container--products{
   width: 40%;
   min-height: 400px;
   max-height: 400px;

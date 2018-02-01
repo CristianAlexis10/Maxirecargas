@@ -74,6 +74,7 @@ var map;
 $("#viewAllProducts").click(function(){
   $("#modal--detail--products").toggle();
 });
+
 //contacto
 $(".contact--customer").click(function(){
   var user = this.id;

@@ -62,13 +62,7 @@
   		</ul>
   	</div>
   </div>
-  <div id="modal--detail--products">
-  	<?php
-  	foreach ($data_order as $row) {
-  	 echo "<b>Producto:</b> ".$row['tip_pro_nombre']." ".$row['pro_referencia']." <b>Servicio</b>: ".$row['tip_ser_nombre']." <b>Cantidad: </b>".$row['pedxpro_cantidad']." <b>Observación: </b>".$row['pedxpro_observacion']."<br>";
-  	}
-  	?>
-  </div>
+
 
 
   <!-- contacto -->
