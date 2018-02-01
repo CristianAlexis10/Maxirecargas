@@ -72,6 +72,7 @@ var map;
     }
 //mostrar productos
 
+
 var abrirProduct = document.getElementById('viewAllProducts');
 var modalProduct = document.getElementById('modal--detail--products');
 var cerrarProduct = document.getElementById('close_modal_producto')
@@ -81,7 +82,7 @@ abrirProduct.onclick = function() {
 cerrarProduct.onclick = function() {
   modalProduct.style.display = "none";
 }
->>>>>>> 1845761b8a39f0e0afaead4785cd6204f89c2db9
+
 
 //contacto
 $(".contact--customer").click(function(){
