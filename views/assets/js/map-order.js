@@ -71,11 +71,6 @@ var map;
             });
     }
 //mostrar productos
-<<<<<<< HEAD
-$("#viewAllProducts").click(function(){
-  $("#modal--detail--products").toggle();
-});
-=======
 
 var abrirProduct = document.getElementById('viewAllProducts');
 var modalProduct = document.getElementById('modal--detail--products');
