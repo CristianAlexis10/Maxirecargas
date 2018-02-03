@@ -24,8 +24,16 @@
 @nameMethod: onlyNumbersDelete(string)
 @description:validateDate($dato)valida si en una cadena hay solo numeros si es asi retorna true si no retorna un  int  eliminado los otros caracteres
 
+@nameMethod: validateDate(string,string,string)
+@description:validateDate("year/month/day")valida si la fecha esta en un formato valido, retorna true en caso de que sea valida
+@description:validateDate("year/month/day","past")valida si la fecha ya paso, retorna true si la fecha ya paso
+@description:validateDate("year/month/day","difference")retorna un int con la diferencia que hay entre la fecha actual y la ingresada
+@description:validateDate("year/month/day","compare","year/month/day"9:38 p. m. 2/02/2018)retorna un int con la diferencia que hay entre la primer fecha y la segunda
+
+
 @nameMethod: deleteSpaces(string)
 @description:deleteSpaces($dato)valida si existen espacios en blaco en una cadena retorna true si no tiene espacios y false si tiene
+
 */
 class DoizerController{
 //CONTRASEÑAS
@@ -106,8 +114,8 @@ class DoizerController{
 	        }
             }
 //FECHAS
-	function validateDate($date,$acction = 'no',$date2 = '0000/00/00'){
-		$valores = explode('/', $date);
+	function validateDate($date,$acction = 'no',$date2 = '0000-00-00'){
+		$valores = explode('-', $date);
 		if(count($valores) == 3 && checkdate($valores[1], $valores[2], $valores[0])){
 			if ($acction=='past') {
 				$date=$valores[1]."/".($valores[2]+1)."/".$valores[0];
@@ -123,7 +131,7 @@ class DoizerController{
 				}
 			}
 			if ($acction=='difference') {
-				$date=$valores[1]."/".($valores[2]+1)."/".$valores[0];
+				$date=$valores[1]."/".($valores[2])."/".$valores[0];
 				$current_date=new DateTime( date('Y/m/d'));
 				$date_born = new DateTime($date);
 				$interval = $current_date->diff($date_born);
@@ -141,8 +149,9 @@ class DoizerController{
 				}
 			}
 			return true;
-	   	 }
-		return false;
+		}else{
+			return "fecha no valida";
+		}
 	}
 	//RETORNAR FECHAS EN UN RANGO
 	public function DateInRange($date1,$date2){
@@ -242,25 +251,4 @@ class DoizerController{
 
 }
 
-
-// //pass
-// $pass = 'asaasa5A';
-// $real_pass = '$2y$10$zbj9d7MYBWXH.k4SlR4KDOevRV56sVoGxlgHXvv31fZRh3UfcjWmG';
-
-// if (password_verify($pass , $real_pass)) {
-//     echo '¡La contraseña es válida!';
-// } else {
-//     echo 'La contraseña no es válida.';
-// }
-
-
-
-// $doizer = new DoizerController;
-// $2y$10$BRvvYPs./RIJrCd2ymoOWOqmSLaqQAUXStB2oNknTYGfTAB77n6Wu
-// print_r($doizer->DateInRange('2017-05-20','2017-05-21'));
-// echo $doizer->onlyNumbersDelete('25555');
-// echo $doizer->validateSecurityPassword("Dompi123");
-// $fecha = '2017/10/18';
-// echo $doizer->validateDate($fecha,'difference');
-// echo $doizer->deleteSpaces("d ");
 ?>

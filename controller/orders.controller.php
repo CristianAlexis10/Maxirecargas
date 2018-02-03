@@ -64,6 +64,18 @@
 			$ciudad = $_POST['ciudad'];
 			$dir = $_POST['dir'];
 			$token = $this->randAlphanum(5)."-".$this->randAlphanum(5);
+			//validar fecha de entrega
+			if ($this->doizer->validateDate($_POST['dia'],"past")==true) {
+				echo json_encode("Selecciona una fecha valida");
+				return ;
+			}
+			//validar cantidades
+			foreach ($order as $row) {
+				if ($row['cantidad']<1) {
+					echo json_encode("Ingresa una cantidad valida");
+					return;
+				}
+			}
 			//registrar en pedido
 			if ($dir=="default") {
 				$result = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
