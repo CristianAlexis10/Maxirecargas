@@ -127,7 +127,6 @@ $("#orderSiguiente").click(function(){
   if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cant").val()!="") {
     guardar();
   }
-  console.log(order);
 });
 //cuando le de orderAtras
 $("#orderAtras").click(function(){
@@ -187,9 +186,10 @@ $("#confirmOrder").click(function(){
       success: function(result){
         console.log(result);
         if (result==true) {
-          location.href = "historial";
+          location.href = "historial" ;
         }else{
-          $("#orderAtras").after("<div class='message'>Ocurrio un error</div>");
+          $("#orderAtras").after("<div class='message'>"+result+"</div>");
+          setTimeout(function(){$("div.message").remove()},3000);
         }
       },
       error:function(result) {
