@@ -255,6 +255,9 @@ table.dataTable tbody th, table.dataTable tbody td{
 }
 /*FORM*/
 
+.new.products{
+  display: flex;
+}
 .form--left{
   width: 50%;
 }
@@ -468,7 +471,7 @@ align-items: center;
 .mudules.orders.detail .wrap--btns li:hover{
   color: #35a4dd;
 }
-#frmUpdtateUser, #frmUpdaDataEmp, #frmUpdateProduct, #frmNewCategorie, .frmServices, #frmNewMar{
+#frmUpdtateUser, #frmUpdaDataEmp, #frmUpdateProduct, .frmServices{
   width: 100%;
   margin-left: 70px;
 }
@@ -553,9 +556,8 @@ align-items: center;
   background: #2196F3;
   color: white;
 }
-
-/*modal newMark and newCategory*/
-.newMark--modal, .new--category, #modal--detail--products{
+/* modales  */
+.modales{
   background: rgba(0, 0, 0, 0.7);
   position: absolute;
   position: fixed;
@@ -564,47 +566,40 @@ align-items: center;
   z-index: 9999;
   width: 100%;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-
-.container--newMark, .container--newcategory, .container--products{
-  width: 40%;
-  min-height: 400px;
-  max-height: 400px;
+.container--modales{
+  margin: 0 auto;
   background: white;
+  width: 40%;
+  height: 400px;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  margin-top: 100px;
+  font-family: 'lato';
 }
-.container--newcategory form{
-  width: 80%;
-}
-.container--newMark h1, .container--newcategory h1{
+.container--modales h1{
   font-weight: 300;
   text-transform: capitalize;
   color: #35a4dd;
-  margin-bottom: 30px;
   font-size: 30px;
   text-align: center;
 }
-.container--newMark .btn, .container--newcategory .btn{
+.container--modales .btn{
   padding: 15px 20px;
   border: none;
   background: #35a4dd;
   color: white;
 }
 #closeNew, #closeNewCt{
-  float: left;
-  padding: 10px 0 10px 10px;
+  float: right;
+  padding-right: 10px;
   font-size: 30px;
   cursor: pointer;
 }
 
 
 /*recorta img*/
-#frmNewMar{
+#frmNewMar, #frmNewCategorie{
   width: 80%;
 }
 #uploadImage{
@@ -661,13 +656,13 @@ align-items: center;
   font-family: 'Oswald';
   font-weight: 200;
 }
-.num--users h2,.num--orders h2, .num--quotation h2, .ventasDia h2, .ventasMes h2, .visitas h2,.pedidopend h2, .pedidoterm h2, .pedidoapla  h2 {
+.num--users h2,.num--orders h2, .num--quotation h2, .ventasDia h2, .ventasMes h2, .visitas h2,.pedidopend h2, .pedidoterm h2, .pedidoapla  h2{
   font-size: 16px;
   color: #484848;
   text-transform: uppercase;
   margin-bottom: 15px;
 }
-.num--users p,.num--orders p, .num--quotation p, .ventasDia p, .ventasMes p, .visitas p{
+.num--users p,.num--orders p, .num--quotation p, .ventasDia p, .ventasMes p, .visitas p, .pedidopend p, .pedidoterm p, .pedidoapla p {
   font-size: 30px;
 }
 .liner{
@@ -710,34 +705,10 @@ margin: 0 auto;
 }
 
 /*modal order*/
-#modal-motive,.modal-status,#modal-total,.modalPedido{
+#modal-motive,.modal-status,#modal-total, #modal--detail--products, #modal-assign, #modal--new,#modal--newCt{
 	display: none;
 }
-.modalPedido{
-  background: rgba(0, 0, 0, 0.8);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 99999;
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-}
-.modalContent{
-  margin: 0 auto;
-  background: white;
-  width: 40%;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 100px;
-  font-family: 'lato';
-}
-.close_modal_pedido{
-  font-size: 20px;
-  text-align: right;
-  padding: 10px;
-}
+
 .elegir{
   text-transform: capitalize;
   color: #9e9e9e;

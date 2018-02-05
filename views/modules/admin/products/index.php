@@ -1,11 +1,6 @@
 
 <link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="views/assets/css/multiple-select.css"  media="screen,projection"/>
-<style media="screen">
-	#modal--new,#modal--newCt{
-		display: none;
-	}
-</style>
 <div class="modules customers">
 	<div class="title">
 		<p>PRODUCTOS</p>
@@ -143,11 +138,11 @@
 
 	</div>
 </div>
-<div class="newMark--modal" id="modal--new">
-	<div class="container--newMark">
+<div class="newMark--modal modales " id="modal--new">
+	<div class="container--modales">
 			<span id="closeNew">&times;</span>
-			<form id="frmNewMar">
 			<h1>crea una nueva marca</h1>
+			<form id="frmNewMar">
 			<div class="form-group">
 				 <label for="nombre" class="required label">Nombre:</label>
 				 <input type="text" name="dataNewMark" id="nombre" class="input" required>
@@ -162,8 +157,8 @@
 		</form>
 		</div>
 	</div>
-<div class="new--category" id="modal--newCt">
-	<div class="container--newcategory">
+<div class="new--category modales" id="modal--newCt">
+	<div class="container--modales">
 			<span id="closeNewCt">&times;</span>
 			<h1>Registra una nueva categoria</h1>
 			<form class="form Services" id="frmNewCategorie">

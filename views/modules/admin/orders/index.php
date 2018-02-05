@@ -33,10 +33,10 @@
 
 	</div>
 </div>
-<div id="modal-assign" class="modalPedido">
-	<div class="modalContent">
+<div id="modal-assign" class="modales">
+	<div class="container--modales">
 		<span id="clAssig" class="close_modal_pedido">&times;</span>
-		<h2 class="elegir">Elige el encargado:</h2>
+		<h1>Elige el encargado:</h1>
 		<div class="infomodal">
 			<select id="addOrder">
 				<option value="null">Pendiente</option>
@@ -69,10 +69,11 @@
 <div id="modal-motive" class="modalPedido">
 	<div class="modalContent">
 		<span>&times;</span>
-		<h2 class="elegir">Motivo:</h2>
+		<h1 class="elegir">Motivo:</h1>
 		<div class="infomodal">
 			<textarea id="motive" rows="8" cols="80"></textarea>
 		</div>
+		<input type="submit" class="btn" value="enviar">
 	</div>
 </div>
 

@@ -1,8 +1,4 @@
-	<style>
-	#modal--detail--products{
-		display: none;
-	}
-</style>
+
 <?php
 if ($crud[1]==true) {
  $_SESSION['ped_detail_token'] = $data_order[0]['ped_token'];
@@ -30,11 +26,11 @@ if ($crud[1]==true) {
 			<p class="data--detail"><?php echo $data_order[0]['usu_telefono'];?> </p>
 		</div>
 		<div class="detail">
-			<p class="item--detail">Fecha  de entrega:</p>
+			<p class="item--detail">Fecha de entrega:</p>
 			<p class="data--detail"><?php echo $data_order[0]['ped_fecha_entrega'];?> </p>
 		</div>
 		<div class="detail">
-			<p class="item--detail">Hora Aproximada  de entrega:</p>
+			<p class="item--detail">Hora Aproximada de entrega:</p>
 			<p class="data--detail"><?php echo $data_order[0]['ped_hora_entrega'];?> </p>
 		</div>
 		<?php if ($data_order[0]['ped_encargado']!=null) {
@@ -57,17 +53,17 @@ if ($crud[1]==true) {
 	</div>
 	<div class="wrap--btns">
 		<ul>
-			<li class="opcins--order"><a href="#" id="viewAllProducts">ver articulos</a></li>
+			<li class="opcins--order"><a id="viewAllProducts">ver articulos</a></li>
 			<?php
 				if ($data_order[0]['ped_encargado']==null) {?>
-						<li class="opcins--order"><a href=""> <a href="#" onclick="assign(<?php echo $data_order[0]['ped_codigo']; ?>)" >Asignar encargado</a></li>
+						<li class="opcins--order"><a id="assigEncargado" onclick="assign(<?php echo $data_order[0]['ped_codigo']; ?>)" >Asignar encargado</a></li>
 					<?php }else{ ?>
 						<li class="opcins--order"><a href="#"  class="contact--customer" id="<?php echo $data_order[0]['ped_encargado']; ?>">Contactar encargado</a></li>
 						<?php
 						if ($data_order[0]['ped_estado']=='Terminado') {?>
 
 						<?php }else{?>
-							<li class="opcins--order"> <a href="#" onclick="assign(<?php echo $data_order[0]['ped_codigo']; ?>)" >Cambiar encargado</a></li>
+							<li class="opcins--order"> <a href="#" onclick="assign(<?php echo $data_order[0]['ped_codigo']; ?>)"> Cambiar encargado</a></li>
 						<?php } ?>
 						<?php } ?>
 
@@ -75,8 +71,8 @@ if ($crud[1]==true) {
 		</ul>
 	</div>
 </div>
-<div id="modal--detail--products">
-	<div class="container--products">
+<div id="modal--detail--products" class="modales">
+	<div class="container--modales">
 		<span id="close_modal_producto">&times;</span>
 		<h1>detalles de productos</h1>
 		<?php
@@ -87,22 +83,25 @@ if ($crud[1]==true) {
 	</div>
 </div>
 
-<div id="modal-assign">
-	Elige el encargado:
-	<select id="addOrder">
-		<option value="null">Pendiente</option>
-		<?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',5)) as $row) {?>
-		<option value="<?php echo $row['usu_codigo'] ?>"><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ?></option>
-		<?php }?>
-	</select>
-	<input type="button" id="confirmAssign" value="Seleccionar">
+<div id="modal-assign" class="modales">
+	<div class="container--modales">
+		<span id="closeAssig">&times;</span>
+		<h1>Elegir encargado</h1>
+		<select id="addOrder">
+			<option value="null">Pendiente</option>
+			<?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',5)) as $row) {?>
+			<option value="<?php echo $row['usu_codigo'] ?>"><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ?></option>
+			<?php }?>
+		</select>
+		<input type="button" id="confirmAssign" value="Seleccionar">
+	</div>
 </div>
 <!-- contacto -->
 <div id="contact"></div>
 
-                </article>
-        	</div>
-        </section>
+      </article>
+    </div>
+  </section>
  	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -112,8 +111,6 @@ if ($crud[1]==true) {
 	 <script type="text/javascript" src="views/assets/js/gmaps.js"></script>
 	  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYIb-jxF2zZivhG13bGeEKI9gJthF4Ovg&libraries=adsense&sensor=false&language=es"></script>
     <script type="text/javascript" src="views/assets/js/map-order.js"></script>
-    <script type="text/javascript" src="views/assets/js/moment.js"></script>
-    <script type="text/javascript" src="views/assets/js/moment-spanish.js"></script>
     </body>
 </html>
 <?php } ?>
