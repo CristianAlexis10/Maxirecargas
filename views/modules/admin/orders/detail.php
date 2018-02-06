@@ -72,42 +72,50 @@ if ($crud[1]==true) {
 	</div>
 </div>
 <div id="modal--detail--products" class="modales">
-	<div class="container--modales">
-		<span id="close_modal_producto">&times;</span>
+	<div class="container--modales order">
+		<span id="close_modal_producto" class="closemodales">&times;</span>
 		<h1>detalles de productos</h1>
-    <table>
+    <div class="container_table">
+      <table>
       <tr>
         <th>producto</th>
+        <th>referencia</th>
         <th>Servicio</th>
-        <th>cantidad</th>
+        <th>cant</th>
         <th>Observación</th>
       </tr>
-      <tr><?php
+    <?php
   		foreach ($data_order as $row) {
+      echo "<tr>";
   		 echo "<td>".$row['tip_pro_nombre']."</td>";
        echo "<td>".$row['pro_referencia']."</td>";
        echo "<td>".$row['tip_ser_nombre']."</tb>";
        echo "<td>".$row['pedxpro_cantidad']."</tb>";
        echo "<td>".$row['pedxpro_observacion']."</tb>";
+       echo "</tr>";
   		}
   		?>
-      </tr>
-    </table>
 
+    </table>
+    </div>
 	</div>
 </div>
 
 <div id="modal-assign" class="modales">
 	<div class="container--modales">
-		<span id="closeAssig">&times;</span>
+		<span id="closeAssig" class="closemodales">&times;</span>
 		<h1>Elegir encargado</h1>
-		<select id="addOrder">
-			<option value="null">Pendiente</option>
-			<?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',5)) as $row) {?>
-			<option value="<?php echo $row['usu_codigo'] ?>"><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ?></option>
-			<?php }?>
-		</select>
-		<input type="button" id="confirmAssign" value="Seleccionar">
+    <div class="container_select">
+    <div class="form-group">
+      <select id="addOrder" class="input normal">
+  			<option value="null">Pendiente</option>
+  			<?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',5)) as $row) {?>
+  			<option value="<?php echo $row['usu_codigo'] ?>"><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ?></option>
+  			<?php }?>
+  		</select>
+    </div>
+    <input type="button" id="confirmAssign" class="btn" value="Seleccionar">
+    </div>
 	</div>
 </div>
 <!-- contacto -->

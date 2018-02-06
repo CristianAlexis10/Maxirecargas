@@ -101,7 +101,7 @@ $(".contact--customer").click(function(){
     dataType:"json",
     data:({id : user}),
     success:function(result){
-      $("#contact").html(result);
+        $("#contact").after(result);
     },
     error:function(result) {
       console.log(result);

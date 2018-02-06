@@ -1,4 +1,9 @@
 //forulario de contacto
+var closecontactar = document.getElementById('closeModal');
+var modal = document.getElementById('modalcontactar');
+closecontactar.onclick = function(){
+  modal.style.display = "none";
+}
 $("#frmContact").submit(function(e) {
   e.preventDefault();
   if ($("#name").val() != "" && $("#email").val() != "" && $("#asunto").val() != "" && $("#message").val()!="") {

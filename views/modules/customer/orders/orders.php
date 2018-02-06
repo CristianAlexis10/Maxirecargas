@@ -7,33 +7,33 @@
         </div>
         <div class="container--form">
           <form id="frmNewOrder">
-            <div class="form-groupuser3">
-              <label for="typeProduct" class="labelselect3">Tipo de producto</label>
-              <select id="typeProduct">
+            <div class="form-groupuser">
+              <label for="typeProduct" class="labelmagenta">Tipo de producto</label>
+              <select id="typeProduct" class="inputmagenta">
 
               </select>
             </div>
-            <div class="form-groupuser3">
-              <label for="producto" class="labelselect3">referencia</label>
-            <input type="text" id="producto" class="inputuser3" >
+            <div class="form-groupuser">
+              <label for="producto" class="labelmagenta">referencia</label>
+            <input type="text" id="producto" class="inputmagenta" >
             </div>
-            <input type="button" id="searchPro" class="inputuser3" value="Buscar">
+            <input type="button" id="searchPro" class="labelmagenta" value="Buscar">
             <div class="form-groupuser3 hide--service ">
-              <label for="servicio" class="labelselect3">servicio</label>
-              <select class="selectuser3 " id="servicio">
+              <label for="servicio" class="labelmagenta">servicio</label>
+              <select class="inputmagenta" id="servicio">
                 <option>cosa</option>
                 <option>cosa2</option>
               </select>
             </div>
             <div class="juntos hide--cantidad">
-              <div class="form-groupuser3">
-                <label for="cant" class="labeluser3">cantidad</label>
-                <input id="cant" class="inputuser3">
+              <div class="form-groupuser">
+                <label for="cant" class="labelmagenta">cantidad</label>
+                <input id="cant" class="inputmagenta">
               </div>
             </div>
-            <div class="form-groupuser3 hide--obs">
-              <label for="observ" class="labeluser3">observaciones</label>
-              <textarea name="name" rows="2" cols="100" id="observ" class="inputuser3"></textarea>
+            <div class="form-groupuser hide--obs">
+              <label for="observ" class="labelmagenta">observaciones</label>
+              <textarea name="name" rows="2" cols="100" id="observ" class="inputmagenta"></textarea>
             </div>
           </form>
         </div>
@@ -48,8 +48,8 @@
           <h1>Datos de entrega</h1>
           <p>¿Esta es la direccion donde se solicita el pedido?</p>
           <h2 id="orderDir"><?php echo $_SESSION['CUSTOMER']['ADDRESS'];?></h2>
-          <label for="fechaEntrega">Fecha de Entrega:</label>
-          <input type="date" id="fechaEntrega" min="<?php
+          <label for="fechaEntrega" class="labelmagenta">Fecha de Entrega:</label>
+          <input type="date" id="fechaEntrega" class="inputmagenta" min="<?php
           $fecha = date('Y-m-d');
           $nuevafecha = strtotime ( '-1 day' , strtotime ( $fecha ) ) ;
           $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
@@ -58,11 +58,9 @@
            ?>">
 
            <div>
-             <label for="horaEntrega">Hora Aproximada de  Entrega:</label>
-             <input type="time" id="horaEntrega" >
+             <label for="horaEntrega" class="labelmagenta">Hora Aproximada de  Entrega:</label>
+             <input type="time" id="horaEntrega" class="inputmagenta" >
            </div>
-
-
 
         </div>
         <div class="container--form">

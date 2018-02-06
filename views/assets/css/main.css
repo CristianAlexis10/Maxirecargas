@@ -315,6 +315,9 @@ table.dataTable tbody th, table.dataTable tbody td{
   background: transparent;
   width: 80%;
 }
+.input.normal{
+  width: 100%;
+}
 .input.grande{
   width: 90%;
 }
@@ -480,6 +483,34 @@ align-items: center;
   font-family:'lato';
   font-size: 16px;
 }
+
+/* tabla de detalle de modales */
+.container_table{
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.container_table table{
+  text-align: center;
+  margin-top: 20px;
+}
+.container_table table tr th{
+  padding: 15px;
+  text-transform: capitalize;
+  border-bottom: 1px solid;
+}
+.container_table table tr td{
+  padding: 15px;
+
+}
+.container_table table tr:nth-child(even){
+  background: #e9e9e9;
+
+}
+
 /*settings*/
 
 .config--form .wrap--chmodule input[type="checkbox"],.modo--color input[type="checkbox"] {
@@ -577,6 +608,13 @@ align-items: center;
   margin-top: 100px;
   font-family: 'lato';
 }
+.container--modales.order{width: 60%;}
+.closemodales{
+  text-align: right;
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
 .container--modales h1{
   font-weight: 300;
   text-transform: capitalize;
@@ -597,7 +635,11 @@ align-items: center;
   cursor: pointer;
 }
 
-
+.container_select{
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 30px;
+}
 /*recorta img*/
 #frmNewMar, #frmNewCategorie{
   width: 80%;
@@ -744,3 +786,13 @@ margin: 0 auto;
 .imgprofile{
   width: 30%
 }
+/* contact-info */
+.container_item{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+/* views quotation */

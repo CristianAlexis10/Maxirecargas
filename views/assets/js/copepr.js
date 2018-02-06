@@ -18,15 +18,18 @@ $(".inputblue").focusout(function(){
     $(this).parent().removeClass("color-labelblue");
 });
 
-$(".inputuser3").focus(function(){
-  $(this).parent().addClass("color-labeluser3 mover-labeluser3");
+$(".inputmagenta").focus(function(){
+  $(this).parent().addClass("color-labelmagent");
 });
 
-$(".inputuser3").focusout(function(){
+$(".inputblue").focusout(function(){
   if($(this).val() === "")
-    $(this).parent().removeClass("mover-labeluser3");
-    $(this).parent().removeClass("color-labeluser3");
+    $(this).parent().removeClass("color-labelmagent");
+    
 });
+
+
+
 // modals
 
 // var openModal_dir = document.getElementById('btnOtraDir');
