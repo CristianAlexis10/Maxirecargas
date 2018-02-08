@@ -3,7 +3,7 @@
     <h1 class="title_banner">categorias</h1>
   </div>
   <div class="banneritem Btoner">
-    <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+    <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
     <h1 class="titleitem_banner">toner</h1>
     <div class="container_search">
       <div class="search_input">
@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="banneritem Bcartucho">
-    <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+    <span><i class="fa fa-arrow-left" aria-hidden="true" id="cartAtras"></i></span>
     <h1 class="titleitem_banner">cartuchos</h1>
     <div class="container_search">
       <div class="search_input">
@@ -39,10 +39,9 @@
         </ul>
       </div>
     </div>
-</button>
   </div>
   <div class="banneritem Bimpresora">
-    <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
+    <span><i class="fa fa-arrow-left" aria-hidden="true" id="atrasImpres" ></i></span>
     <h1 class="titleitem_banner">impresoras</h1>
     <div class="container_search">
       <div class="search_input">
@@ -61,7 +60,7 @@
     </div>
   </div>
   <div class="banneritem Bcomputador">
-    <span><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+    <span><i class="fa fa-arrow-left" aria-hidden="true" id="atrasCompu"></i></span>
     <h1 class="titleitem_banner">computadores</h1>
     <div class="container_search">
       <div class="search_input">
@@ -86,18 +85,46 @@
         <img src="views/assets/image/toner.png">
         <h3>toner</h3>
       </div>
-      <div class="item cartucho">
+      <div class="item cartucho" id="itemCartucho">
         <img src="views/assets/image/cartuchos.png" >
         <h3>cartuchos</h3>
       </div>
-      <div class="item impresora">
+      <div class="item impresora" id="itemImpre">
         <img src="views/assets/image/impresora.png">
         <h3>impresoras</h3>
       </div>
-      <div class="item computadores">
+      <div class="item computadores" id="itemComp">
         <img src="views/assets/image/computador.png">
         <h3>computadores</h3>
       </div>
     </div>
     <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
+  </div>
+
+  <div class="container--grid">
+    <figure>
+      <img src="views/assets/image/toner.png" alt="">
+      <figcaption>HP CE283a</figcaption>
+    </figure>
+    <figure>
+      <img src="views/assets/image/toner.png" alt="">
+      <figcaption>HP CE283a</figcaption>
+    </figure>
+    <figure>
+      <img src="views/assets/image/toner.png" alt="">
+      <figcaption>HP CE283a</figcaption>
+    </figure>
+    <figure>
+      <img src="views/assets/image/toner.png" alt="">
+      <figcaption>HP CE283a</figcaption>
+    </figure>
+    <figure>
+      <img src="views/assets/image/toner.png" alt="">
+      <figcaption>HP CE283a</figcaption>
+    </figure>
+    <figure>
+      <img src="views/assets/image/toner.png" alt="">
+      <figcaption>HP CE283a</figcaption>
+    </figure>
+
   </div>

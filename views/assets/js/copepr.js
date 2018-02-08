@@ -25,23 +25,23 @@ $(".inputmagenta").focus(function(){
 $(".inputblue").focusout(function(){
   if($(this).val() === "")
     $(this).parent().removeClass("color-labelmagent");
-    
+
 });
 
 
 
 // modals
-
-// var openModal_dir = document.getElementById('btnOtraDir');
-// var closeModal_dir = document.getElementById('closemodal_dir');
-// var modal_dir = document.getElementById('modal_dir');
-//
-// openModal_dir.onclick = function() {
-//   modal_dir.style.display = "flex";
-// }
-// closeModal_dir.onclick = function() {
-//   modal_dir.style.display= "none";
-// }
+if (document.getElementById("modal_dir")) {
+var openModal_dir = document.getElementById('btnOtraDir');
+var closeModal_dir = document.getElementById('closemodal_dir');
+var modal_dir = document.getElementById('modal_dir');
+openModal_dir.onclick = function() {
+  modal_dir.style.display = "flex";
+}
+closeModal_dir.onclick = function() {
+  modal_dir.style.display= "none";
+}
+}
 
 
 //views order mover
@@ -96,9 +96,38 @@ if (document.getElementById('itemToner')) {
       $(".Btoner").addClass("aparecer");
     }
     var bntAtras = document.getElementById('pedAtras');
-    bntAtras.onclick = function(){
-      console.log("computad");
-      $(".product").addClass("moverproduct");
-      $(".Btoner").addClass("aparecer");
+      bntAtras.onclick = function(){
+      $(".products").removeClass("moverproduct");
+      $(".Btoner").removeClass("aparecer");
+    }
+    var cartucho = document.getElementById('itemCartucho');
+    cartucho.onclick = function() {
+      $(".products").addClass("moverproduct");
+      $(".Bcartucho").addClass("aparecer");
+    }
+    var bntAtrasCar = document.getElementById('cartAtras');
+    bntAtrasCar.onclick = function() {
+      $(".products").removeClass("moverproduct");
+      $(".Bcartucho").removeClass("aparecer");
+    }
+    var impresora = document.getElementById('itemImpre');
+    impresora.onclick = function() {
+      $(".products").addClass("moverproduct");
+      $(".Bimpresora").addClass("aparecer");
+    }
+    var bntAtrasImp = document.getElementById('atrasImpres');
+    bntAtrasImp.onclick = function() {
+      $(".products").removeClass("moverproduct");
+      $(".Bimpresora").removeClass("aparecer");
+    }
+    var computador = document.getElementById('itemComp');
+    computador.onclick = function() {
+      $(".products").addClass("moverproduct");
+      $(".Bcomputador").addClass("aparecer");
+    }
+    var bntAtrasCom = document.getElementById('atrasCompu');
+    bntAtrasCom.onclick = function() {
+      $(".products").removeClass("moverproduct");
+      $(".Bcomputador").removeClass("aparecer");
     }
   }
