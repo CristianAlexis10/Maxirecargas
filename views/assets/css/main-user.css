@@ -133,7 +133,7 @@
 #modal_close_mobile {
     color: black;
     margin-top: 10px;
-    margin-left: 350px;
+    margin-left: 280px;
     font-size: 30px;
     cursor: pointer;
     padding-right: 10px;
@@ -888,13 +888,8 @@ transform: translateY(-12px);
   text-transform: uppercase;
 }
 
-/* no se que mierda es esto */
-
-#menu{
-  display: block;}
-
-#wrap--menu--mobile, #menu-mobile{
-  display: none;}
+#menu{display: block;}
+#wrap--menu--mobile, #menu-mobile{display: none;}
 
 /*alert*/
 .message-red{

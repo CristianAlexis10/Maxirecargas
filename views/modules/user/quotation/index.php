@@ -1,26 +1,28 @@
-    <title> Maxirecargas</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="views/assets/image/logo.png">
-     <link rel="stylesheet" href="views/assets/css/copepr.css">
+
          <div class="container--quotation">
       <div class="quotation--left">
-          <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
+        <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
+          <h1 class="title--movil">crea tu cotizacion</h1>
             <div class="quotation--form">
-          <form  id="quotationUser">
+            <form  id="quotationUser">
             <p class="subtitle quo">Ingresa los datos de los Producto o Servicios que desea cotizar y espera nuetra respuesta. </p>
             <div class="form-groupuser">
               <label for="dataprod" class="labelyellow">Referencia del producto</label>
               <input type="text" name="data[]" class="inputYellow" id="dataprod">
             </div>
-            <div class="form-groupuser cantidad--hide">
-              <label for="cantidad" class="labelyellow">Cantidad</label>
-              <input type="number" name="data[]" class="inputYellow" id="cantidad" required>
+            <div class="containerFormg">
+              <div class="form-groupuser cantidad--hide">
+                <label for="cantidad" class="labelyellow">Cantidad</label>
+                <input type="number" name="data[]" class="inputYellow" id="cantidad" required>
+              </div>
+              <div class="form-groupuser tip_ser--hide">
+                <label for="solicitud" class="labelyellow">Tipo de Servicio</label>
+                <select name="data[]" class="inputYellow" id="solicitud" required>
+                </select>
+              </div>
             </div>
-            <div class="form-groupuser tip_ser--hide">
-              <label for="solicitud" class="labelyellow">Tipo de Servicio</label>
-              <select name="data[]" class="inputYellow" id="solicitud" required>
-              </select>
-            </div>
+
+
             <div class="form-groupuser">
               <label for="solicitud" class="labelyellow">Detalla la solicitud</label>
               <textarea name="data[]" rows="1" cols="50" class="inputYellow"></textarea>
@@ -89,6 +91,8 @@
 </div>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="views/assets/js/copepr.js"></script>
-    <script type="text/javascript" src="views/assets/js/auth.js"></script>
-    <script type="text/javascript" src="views/assets/js/menu.js"></script>
-    <script type="text/javascript" src="views/assets/js/quotation.js"></script>
+<script type="text/javascript" src="views/assets/js/main-user.js"></script>
+<script type="text/javascript" src="views/assets/js/auth.js"></script>
+<script type="text/javascript" src="views/assets/js/menu.js"></script>
+<script type="text/javascript" src="views/assets/js/quotation.js"></script>
+</html>

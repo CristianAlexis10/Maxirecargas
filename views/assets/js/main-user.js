@@ -16,7 +16,7 @@ $("#contc").click(function() {
   });
 });
 
-
+if (document.getElementById('wrap--menu--mobile')) {
 var close_mobile = document.getElementById('close--mobile');
 var open_mobile = document.getElementById('menu-mobile');
 var modal_mobile = document.getElementById('wrap--menu--mobile');
@@ -27,7 +27,7 @@ close_mobile.onclick = function(){
 open_mobile.onclick = function(){
   modal_mobile.style.display = "flex"
 };
-
+}
 
 // animacion de los inputs
 $(".input-contact").focus(function(){
@@ -60,14 +60,14 @@ $(".wrap_input_mobile").focusout(function(){
     $(this).parent().removeClass("clr-label-login");
 });
 // abrir y cerra modal mobile_pass
-
+if (document.getElementById("modal_mobile")) {
 var modalMobile = document.getElementById('modal_mobile');
 var closeMobile= document.getElementById('modal_close_mobile');
 var openMobile= document.getElementById('session_mobile')
-
 openMobile.onclick= function(){
   modalMobile.style.display = "block";
 };
 closeMobile.onclick = function(){
   modalMobile.style.display = "none"
 };
+}

@@ -21,3 +21,16 @@
     <div class="menu--title"><a href="productos">Productos</a></div>
   </div>
 </div>
+
+<div id="wrap--menu--mobile">
+  <div id="close--mobile">
+  &times;
+  </div>
+  <ul>
+    <li><a href="maxirecargas">Inicio</a></li>
+    <li><a href="pedidos">Pedidos</a></li>
+    <li><a href="cotizacion">Cotizaciones</a></li>
+    <li><a href="productos">Productos</a></li>
+    <li><a id="session_mobile">iniciar sesion</a></li>
+  </ul>
+</div>

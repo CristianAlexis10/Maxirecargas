@@ -129,7 +129,7 @@ require_once "controller/doizer.controller.php";
 				}
 			}
 			if ($result==true) {
-					$_SESSION['user_quotation_new']=$token;	
+					$_SESSION['user_quotation_new']=$token;
 					echo json_encode(true);
 			}else{
 				echo json_encode('Se ha generado un error: '.$this->doizer->knowError($result));
