@@ -203,28 +203,40 @@
   height: 500px;
   max-width: 1100px;
   margin: 0 auto;
+  display: none;
+  transition: all 2s ease;
 }
 .container--grid figure{
-  background: #efefef;
   border: 5px solid #fcfcfc;
 	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
 	margin: 0 2px 15px;
 	padding: 15px;
 	padding-bottom: 10px;
   display: inline-block;
-  border-radius: 8px;
-
+  font-family: 'lato';
+  text-align: center;
+  transition: all .5s ease;
+  cursor: pointer;
 }
+
 .container--grid figure img{
   width: 100%;
   height: auto;
-  border-bottom: 1px solid #ccc;
 	padding-bottom: 15px;
 	margin-bottom: 5px;
 }
+.container--grid figcaption{
+  color: #444;
+  font-size: 22px;
+}
+.container--grid:hover figure:not(:hover) {
+	opacity: 0.4;
+}
+
 /* animacion para vista de producto  */
 .moverproduct{transform: translateX(-9999px);}
 .aparecer{transform: translateX(0);}
+.gridaparecer{display: block;}
 
 
 

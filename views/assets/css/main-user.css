@@ -569,18 +569,15 @@ transform: translateY(-12px);
 /*MENU HAMBURGUESA*/
 .wrap--menu{
   display: flex;
-  z-index: 100;
+  z-index: 10;
   position: fixed;
   width: 100%;
   transition: all 1s ease-in
-
 }
- .menu--registrar{
+ /* .menu--registrar{
   position: absolute;
   left: 10px;
-}
-
-
+} */
 .menu--home{
   display: flex;
   align-items: center;
@@ -588,7 +585,9 @@ transform: translateY(-12px);
   width: 25%;
   height: 100vh;
   color: white;
-  background: rgb(0, 255, 255);
+  background: grey;
+  background-size: cover;
+
 }
 
 .menu--order{
@@ -635,7 +634,6 @@ transform: translateY(-12px);
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  /*width: 27.5%;*/
   background: none;
   color: black;
   font-size: 40%;

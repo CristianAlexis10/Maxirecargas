@@ -102,29 +102,29 @@
   </div>
 
   <div class="container--grid">
-    <figure>
-      <img src="views/assets/image/toner.png" alt="">
+    <figure class="vermas">
       <figcaption>HP CE283a</figcaption>
+      <img src="views/assets/image/toner.png" alt="">
     </figure>
-    <figure>
-      <img src="views/assets/image/toner.png" alt="">
+    <figure class="vermas">
       <figcaption>HP CE283a</figcaption>
+      <img src="views/assets/image/toner.png" alt="">
     </figure>
-    <figure>
-      <img src="views/assets/image/toner.png" alt="">
+    <figure class="vermas">
       <figcaption>HP CE283a</figcaption>
+      <img src="views/assets/image/toner.png" alt="">
     </figure>
-    <figure>
-      <img src="views/assets/image/toner.png" alt="">
+    <figure class="vermas">
       <figcaption>HP CE283a</figcaption>
+      <img src="views/assets/image/toner.png" alt="">
     </figure>
-    <figure>
-      <img src="views/assets/image/toner.png" alt="">
+    <figure class="vermas">
       <figcaption>HP CE283a</figcaption>
+      <img src="views/assets/image/toner.png" alt="">
     </figure>
-    <figure>
-      <img src="views/assets/image/toner.png" alt="">
+    <figure class="vermas">
       <figcaption>HP CE283a</figcaption>
+      <img src="views/assets/image/toner.png" alt="">
     </figure>
 
   </div>

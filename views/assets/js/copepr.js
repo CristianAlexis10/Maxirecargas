@@ -94,40 +94,51 @@ if (document.getElementById('itemToner')) {
     toner.onclick = function(){
       $(".products").addClass("moverproduct");
       $(".Btoner").addClass("aparecer");
+      $(".container--grid").addClass("gridaparecer");
     }
     var bntAtras = document.getElementById('pedAtras');
       bntAtras.onclick = function(){
       $(".products").removeClass("moverproduct");
       $(".Btoner").removeClass("aparecer");
+      $(".container--grid").removeClass("gridaparecer");
     }
     var cartucho = document.getElementById('itemCartucho');
     cartucho.onclick = function() {
       $(".products").addClass("moverproduct");
       $(".Bcartucho").addClass("aparecer");
+      $(".container--grid").addClass("gridaparecer");
     }
     var bntAtrasCar = document.getElementById('cartAtras');
     bntAtrasCar.onclick = function() {
       $(".products").removeClass("moverproduct");
       $(".Bcartucho").removeClass("aparecer");
+      $(".container--grid").removeClass("gridaparecer");
+
     }
     var impresora = document.getElementById('itemImpre');
     impresora.onclick = function() {
       $(".products").addClass("moverproduct");
       $(".Bimpresora").addClass("aparecer");
+      $(".container--grid").addClass("gridaparecer");
     }
     var bntAtrasImp = document.getElementById('atrasImpres');
     bntAtrasImp.onclick = function() {
       $(".products").removeClass("moverproduct");
       $(".Bimpresora").removeClass("aparecer");
+      $(".container--grid").removeClass("gridaparecer");
+
     }
     var computador = document.getElementById('itemComp');
     computador.onclick = function() {
       $(".products").addClass("moverproduct");
       $(".Bcomputador").addClass("aparecer");
+      $(".container--grid").addClass("gridaparecer");
     }
     var bntAtrasCom = document.getElementById('atrasCompu');
     bntAtrasCom.onclick = function() {
       $(".products").removeClass("moverproduct");
       $(".Bcomputador").removeClass("aparecer");
+      $(".container--grid").removeClass("gridaparecer");
+
     }
   }
