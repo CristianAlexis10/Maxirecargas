@@ -4,64 +4,7 @@
   </div>
   <div class="banneritem Btoner">
     <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
-    <h1 class="titleitem_banner">toner</h1>
-    <div class="container_search">
-      <div class="search_input">
-        <input type="search" placeholder="buscar...">
-        <button type="button" name="button"><i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="search_options">
-        <ul>
-          <li>Referencia</li>
-          <li>Marcas</li>
-          <li>Genericos</li>
-          <li>impresora</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="banneritem Bcartucho">
-    <span><i class="fa fa-arrow-left" aria-hidden="true" id="cartAtras"></i></span>
-    <h1 class="titleitem_banner">cartuchos</h1>
-    <div class="container_search">
-      <div class="search_input">
-        <input type="search" placeholder="buscar...">
-        <button type="button" name="button"><i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="search_options">
-        <ul>
-          <li>Referencia</li>
-          <li>Marcas</li>
-          <li>Genericos</li>
-          <li>impresora</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="banneritem Bimpresora">
-    <span><i class="fa fa-arrow-left" aria-hidden="true" id="atrasImpres" ></i></span>
-    <h1 class="titleitem_banner">impresoras</h1>
-    <div class="container_search">
-      <div class="search_input">
-        <input type="search" placeholder="buscar...">
-        <button type="button" name="button"><i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="search_options">
-        <ul>
-          <li>Referencia</li>
-          <li>Marcas</li>
-          <li>Genericos</li>
-          <li>impresora</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="banneritem Bcomputador">
-    <span><i class="fa fa-arrow-left" aria-hidden="true" id="atrasCompu"></i></span>
-    <h1 class="titleitem_banner">computadores</h1>
+    <h1 class="titleitem_banner" id="categoryName">toner</h1>
     <div class="container_search">
       <div class="search_input">
         <input type="search" placeholder="buscar...">
@@ -81,19 +24,19 @@
 
   <div class="container--products">
     <div class="products">
-      <div class="item toner" id="itemToner">
+      <div class="item toner Btncategoria" id="Toner">
         <img src="views/assets/image/toner.png">
-        <h3>toner</h3>
+        <h3 >toner</h3>
       </div>
-      <div class="item cartucho" id="itemCartucho">
+      <div class="item cartucho Btncategoria" id="Cartuchos">
         <img src="views/assets/image/cartuchos.png" >
         <h3>cartuchos</h3>
       </div>
-      <div class="item impresora" id="itemImpre">
+      <div class="item impresora Btncategoria" id="Impresoras">
         <img src="views/assets/image/impresora.png">
         <h3>impresoras</h3>
       </div>
-      <div class="item computadores" id="itemComp">
+      <div class="item computadores Btncategoria" id="Computador">
         <img src="views/assets/image/computador.png">
         <h3>computadores</h3>
       </div>
@@ -102,29 +45,5 @@
   </div>
 
   <div class="container--grid">
-    <figure class="vermas">
-      <figcaption>HP CE283a</figcaption>
-      <img src="views/assets/image/toner.png" alt="">
-    </figure>
-    <figure class="vermas">
-      <figcaption>HP CE283a</figcaption>
-      <img src="views/assets/image/toner.png" alt="">
-    </figure>
-    <figure class="vermas">
-      <figcaption>HP CE283a</figcaption>
-      <img src="views/assets/image/toner.png" alt="">
-    </figure>
-    <figure class="vermas">
-      <figcaption>HP CE283a</figcaption>
-      <img src="views/assets/image/toner.png" alt="">
-    </figure>
-    <figure class="vermas">
-      <figcaption>HP CE283a</figcaption>
-      <img src="views/assets/image/toner.png" alt="">
-    </figure>
-    <figure class="vermas">
-      <figcaption>HP CE283a</figcaption>
-      <img src="views/assets/image/toner.png" alt="">
-    </figure>
 
   </div>

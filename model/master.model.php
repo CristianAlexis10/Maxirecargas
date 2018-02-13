@@ -1174,6 +1174,28 @@ class MasterModel{
     }
     return $result;
   }
+  function 	readByCategory($name){
+    try {
+      $this->sql="call readByCategory(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute($name);
+      $result = $query->fetchAll(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
+  function 	readBycategoryPagination($name){
+    try {
+      $this->sql="call readBycategoryPagination(?,?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute($name);
+      $result = $query->fetchAll(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
 
 }
 

@@ -93,6 +93,9 @@ RewriteRule ^guardar-producto$ index.php?controller=products&a=newRegister
 RewriteRule ^eliminar-producto$ index.php?controller=products&a=delete
 RewriteRule ^modificar-producto-(\w+)$ index.php?controller=products&a=viewUpdate&data=$1
 RewriteRule ^guardar-modificacion-producto$ index.php?controller=products&a=update
+RewriteRule ^contar-registros$ index.php?controller=products&a=countBycategory
+RewriteRule ^consular-por-categoria-paginacion$ index.php?controller=products&a=readBycategoryPagination
+
 
 
 

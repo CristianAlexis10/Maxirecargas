@@ -87,58 +87,79 @@ $('#orderAtras').click(function() {
 // open_mobile.onclick = function(){
 //   modal_mobile.style.display = "flex"
 // };
-
+var categoryAll ;
 // views product
-if (document.getElementById('itemToner')) {
-    var toner = document.getElementById('itemToner');
-    toner.onclick = function(){
+if (document.getElementsByClassName('Btncategoria')) {
+  //nombre de categoria
+    $(".Btncategoria").click(function(){
+        $(".container--grid").empty();
+      var nameCategory = this.id;
+       categoryAll = this.id;
+      $("#categoryName").html(nameCategory);
+      //consultar productos
+      $(".container--grid").css({"display":"flex","flex-wrap":"wrap"});
+      $.ajax({
+        url:"contar-registros",
+        type:"post",
+        dataType:"json",
+        data:({name:nameCategory}),
+        success:function(result){
+          cambiarPagina(1,result);
+        },
+        error:function(result){
+          console.log(result);
+        }
+      });
+      //mostrar productos
       $(".products").addClass("moverproduct");
       $(".Btoner").addClass("aparecer");
       $(".container--grid").addClass("gridaparecer");
-    }
+    });
     var bntAtras = document.getElementById('pedAtras');
       bntAtras.onclick = function(){
       $(".products").removeClass("moverproduct");
       $(".Btoner").removeClass("aparecer");
       $(".container--grid").removeClass("gridaparecer");
+      $(".container--grid").hide();
     }
-    var cartucho = document.getElementById('itemCartucho');
-    cartucho.onclick = function() {
-      $(".products").addClass("moverproduct");
-      $(".Bcartucho").addClass("aparecer");
-      $(".container--grid").addClass("gridaparecer");
-    }
-    var bntAtrasCar = document.getElementById('cartAtras');
-    bntAtrasCar.onclick = function() {
-      $(".products").removeClass("moverproduct");
-      $(".Bcartucho").removeClass("aparecer");
-      $(".container--grid").removeClass("gridaparecer");
 
-    }
-    var impresora = document.getElementById('itemImpre');
-    impresora.onclick = function() {
-      $(".products").addClass("moverproduct");
-      $(".Bimpresora").addClass("aparecer");
-      $(".container--grid").addClass("gridaparecer");
-    }
-    var bntAtrasImp = document.getElementById('atrasImpres');
-    bntAtrasImp.onclick = function() {
-      $(".products").removeClass("moverproduct");
-      $(".Bimpresora").removeClass("aparecer");
-      $(".container--grid").removeClass("gridaparecer");
-
-    }
-    var computador = document.getElementById('itemComp');
-    computador.onclick = function() {
-      $(".products").addClass("moverproduct");
-      $(".Bcomputador").addClass("aparecer");
-      $(".container--grid").addClass("gridaparecer");
-    }
-    var bntAtrasCom = document.getElementById('atrasCompu');
-    bntAtrasCom.onclick = function() {
-      $(".products").removeClass("moverproduct");
-      $(".Bcomputador").removeClass("aparecer");
-      $(".container--grid").removeClass("gridaparecer");
-
-    }
   }
+
+function cambiarPagina(pagina,numeroRegistros){
+  var elementosPagina  = 12;
+  var inicio = (pagina-1)*elementosPagina;
+    $(".container--grid").empty();
+    $.ajax({
+      url:"consular-por-categoria-paginacion",
+      type:"post",
+      dataType:"json",
+      data:({name:categoryAll,ini:inicio,totalElePag:elementosPagina}),
+      success:function(result){
+        if (result.length==0) {
+            $(".container--grid").append("<div class='query-result'><h1>No hay productos disponibles.</h1></div>");
+        }else{
+          for (var i = 0; i < result.length; i++) {
+            if (result[i].pro_imagen=="icn-maxi.png") {
+              $(".container--grid").append('<figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/'+result[i].pro_imagen+'" alt=""></figure>');
+            }else{
+              $(".container--grid").append('<figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/products/'+result[i].pro_imagen+'" alt=""></figure>');
+            }
+          }
+          //paginacion
+          var totalPaginas = Math.ceil((numeroRegistros/elementosPagina));
+          $(".container--grid").append("<div class='pagination'></div>");
+          $(".pagination").css({"display":"flex","flex-direction":"row-reverse"});
+          while (totalPaginas!=0) {
+            console.log(totalPaginas);
+            $(".pagination").append('<h1 onclick="cambiarPagina('+totalPaginas+','+numeroRegistros+')">'+totalPaginas+'</h1>');
+            totalPaginas=totalPaginas-1;
+          }
+          // if (result.length>12) {
+          // }
+        }
+      },
+      error:function(result){
+        console.log(result);
+      }
+    });
+}

@@ -162,5 +162,14 @@
 				echo json_encode($this->doizer->knowError($result));
 			}
 		}
+
+		function countBycategory(){
+			$result=$this->master->readByCategory(array($_POST['name']));
+			echo json_encode($result[0][0]);
+		}
+		function readBycategoryPagination(){
+			$result=$this->master->readBycategoryPagination(array($_POST['name'],$_POST['ini'],$_POST['totalElePag']));
+			echo json_encode($result);
+		}
 	}
 ?>

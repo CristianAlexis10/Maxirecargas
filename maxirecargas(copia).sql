@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-02-2018 a las 16:49:58
+-- Tiempo de generación: 21-01-2018 a las 17:16:16
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -393,16 +393,6 @@ BEGIN
 SELECT * FROM stock WHERE stock.sto_cantidad <= 5;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readByCategory` (IN `nombre` VARCHAR(20))  NO SQL
-BEGIN
-SELECT count(*) FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readBycategoryPagination` (IN `nombre` VARCHAR(20), IN `ini` INT, IN `ele` INT)  NO SQL
-BEGIN
-SELECT * FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre LIMIT ini,ele;
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `servicioInner` (IN `cod` INT)  NO SQL
 BEGIN 
 SELECT * FROM servicioxproducto INNER JOIN tipo_servicio ON servicioxproducto.tip_ser_cod = tipo_servicio.Tip_ser_cod WHERE servicioxproducto.pro_codigo = cod;
@@ -574,9 +564,7 @@ CREATE TABLE `cotizacion` (
 --
 
 INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `cot_ciudad`, `cot_dir`, `cot_token`, `cot_estado`, `cot_fecha`, `cot_respuesta`) VALUES
-(15, 1, 1, 'calle 95', 'tTNgX-Mprjx', 'Terminado', '2018-01-11', 'ya respondi'),
-(16, 1, 1, 'Calle 95 #44-35', 'zt1yE-VhGPd', 'En Recepcion', '2018-01-22', ''),
-(17, 1, 1, 'Calle 95 #44-35', 'rjD5Z-qHl44', 'En Recepcion', '2018-02-01', '');
+(15, 1, 1, 'calle 95', 'tTNgX-Mprjx', 'Terminado', '2018-01-11', 'ya respondi');
 
 -- --------------------------------------------------------
 
@@ -748,10 +736,7 @@ INSERT INTO `historial_productos` (`id_his_pro`, `pro_codigo`, `his_pro_fecha`, 
 (11, 1, '2018-01-09', 9),
 (12, 1, '2018-01-10', 1),
 (13, 1, '2018-01-10', 1),
-(14, 1, '2018-01-17', 856),
-(15, 1, '2018-01-22', 1),
-(16, 1, '2018-01-22', 1),
-(17, 1, '2018-02-02', 2);
+(14, 1, '2018-01-17', 856);
 
 -- --------------------------------------------------------
 
@@ -839,15 +824,12 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccion`, `ped_estado`, `ped_token`, `ped_fecha`, `ped_fecha_entrega`, `ped_hora_entrega`) VALUES
-(32, 3, 1, 'Calle 95 #40-35', 'En Bodega', 'KKl8p-v3X2V', '2018-01-17', '2018-01-17', '13:00:00'),
+(32, 3, 1, 'Calle 95 #40-35', 'En Proceso', 'KKl8p-v3X2V', '2018-01-17', '2018-01-17', '13:00:00'),
 (33, 3, 1, 'Calle 95 #44-35', 'Terminado', '7UWJh-jQAGV', '2018-01-08', '0000-00-00', '00:00:00'),
 (34, 3, 1, 'Calle 95 #47-35', 'En Proceso', 'kNEXi-zFwYC', '2018-01-10', '2018-01-18', '00:00:00'),
 (35, 3, 1, 'Calle 95 #44-35', 'En Proceso', 'eOCDt-tZsph', '2018-01-15', '2018-01-18', '00:00:00'),
 (36, NULL, 1, 'Calle 95 #44-35', 'En Bodega', '2NfEP-94dKU', '2018-01-15', '0000-00-00', '00:00:00'),
-(37, 4, 1, 'Calle 95 #44-35', 'En Proceso', 'H2pL4-54RFU', '2018-01-18', '2018-01-23', '00:00:00'),
-(38, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'effWZ-Imgs2', '2018-01-22', '2018-01-26', '12:01:00'),
-(39, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'LPRec-1sHp0', '2018-01-22', '2018-01-26', '12:01:00'),
-(40, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'FhXLB-yD1fN', '2018-02-02', '2018-02-02', '00:00:00');
+(37, 4, 1, 'Calle 95 #44-35', 'En Proceso', 'H2pL4-54RFU', '2018-01-18', '2018-01-23', '00:00:00');
 
 -- --------------------------------------------------------
 
@@ -876,10 +858,7 @@ INSERT INTO `pedidoxproducto` (`ped_codigo`, `pro_codigo`, `tip_ser_codigo`, `pe
 (34, 1, 4, 9, 'nada'),
 (35, 1, 4, 1, '1'),
 (36, 1, 4, 1, '1'),
-(37, 1, 4, 856, '56757'),
-(38, 1, 4, 1, 'lkhkk'),
-(39, 1, 4, 1, 'lkhkk'),
-(40, 1, 4, 2, '');
+(37, 1, 4, 856, '56757');
 
 --
 -- Disparadores `pedidoxproducto`
@@ -939,25 +918,8 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`pro_codigo`, `mar_codigo`, `tip_pro_codigo`, `pro_referencia`, `pro_descripcion`, `pro_imagen`, `pro_estado`) VALUES
-(1, 1, 1, 'hola', 'carac															', '1518554159.png', 1),
-(2, 1, 1, 'hola2', 'hoa', '1518554159.png', 1),
-(3, 1, 1, 'We-gs62', '', '1518554159.png', 1),
-(4, 1, 1, 'QW-34se', '', '1518554159.png', 1),
-(5, 1, 1, 'RR2-ds4', '', '1518554159.png', 1),
-(6, 1, 1, 'PAQ-034', '', '1518554159.png', 1),
-(7, 1, 1, 'MAS-mier32', '', '1518554159.png', 1),
-(8, 1, 1, 'COM-3p4', '', '1518554159.png', 1),
-(9, 1, 1, 'XEM-w4w5', '', '1518554159.png', 1),
-(10, 1, 1, 'VEN-p4c4', '', '1518554159.png', 1),
-(11, 1, 1, 'DEF-30j', '', '1518554159.png', 1),
-(12, 1, 1, 'ESE-3254s', '', '1518554159.png', 1),
-(13, 1, 1, 'POI-234', '', '1518554159.png', 1),
-(14, 1, 1, 'HIK-2s2', '', '1518554159.png', 1),
-(15, 1, 1, 'LOL-32wq', '', '1518554159.png', 1),
-(16, 1, 1, 'ASW-12rd', '			', '1518554159.png', 1),
-(17, 1, 1, 'QWP-xi3', '', '1518554159.png', 1),
-(18, 1, 1, 'PAE-23m', '', '1518554159.png', 1),
-(19, 1, 1, 'AABBNN', 'klvjh', '1518556491.png', 1);
+(1, 1, 1, 'hola', 'carac															', '1516413055.png', 1),
+(2, 1, 1, 'hola2', 'hoa', '1515356016.png', 1);
 
 -- --------------------------------------------------------
 
@@ -978,9 +940,7 @@ CREATE TABLE `prodxcot` (
 --
 
 INSERT INTO `prodxcot` (`cot_codigo`, `pro_codigo`, `proxcot_cantidad`, `tip_servicio`, `proxcod_observacion`) VALUES
-(15, 1, 11, 4, 'nada'),
-(16, 1, 9878, 4, '8789'),
-(17, 1, 2, 4, '22');
+(15, 1, 11, 4, 'nada');
 
 -- --------------------------------------------------------
 
@@ -1057,26 +1017,7 @@ INSERT INTO `servicioxproducto` (`tip_ser_cod`, `pro_codigo`) VALUES
 (3, 2),
 (9, 2),
 (4, 1),
-(5, 1),
-(7, 3),
-(7, 4),
-(7, 5),
-(7, 6),
-(7, 7),
-(9, 8),
-(7, 9),
-(7, 10),
-(9, 10),
-(7, 11),
-(7, 12),
-(3, 13),
-(9, 14),
-(7, 15),
-(7, 17),
-(3, 18),
-(9, 16),
-(4, 19),
-(5, 19);
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -1098,24 +1039,7 @@ CREATE TABLE `stock` (
 
 INSERT INTO `stock` (`sto_codigo`, `pro_codigo`, `sto_cantidad`, `sto_valor_compra`, `sto_valor_venta`) VALUES
 (1, 1, 21, 22, 22),
-(2, 2, 33, 3456, 456),
-(3, 3, 4, 750000, 920000),
-(4, 4, 9, 430000, 830000),
-(5, 5, 32, 250000, 400000),
-(6, 6, 15, 320000, 601000),
-(7, 7, 12, 120000, 210000),
-(8, 8, 32, 540000, 700000),
-(9, 9, 20, 200000, 300000),
-(10, 10, 13, 123000, 321000),
-(11, 11, 5, 430000, 540000),
-(12, 12, 3, 20000, 100000),
-(13, 13, 23, 550000, 1200000),
-(14, 14, 16, 280000, 430000),
-(15, 15, 4, 320000, 540000),
-(16, 16, 3, 244000, 500000),
-(17, 17, 1, 432000, 532000),
-(18, 18, 2, 800000, 980000),
-(19, 19, 32, 2300, 3242);
+(2, 2, 33, 3456, 456);
 
 -- --------------------------------------------------------
 
@@ -1258,11 +1182,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(1, 1, 1214, 'Cristian', '', 'Lopera', '', 'yonosoybond@gmail.com', 43, 1, 'Calle 95 #44-35', 32356789, '2018-01-17', 'null', 3, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
-(2, 1, 9904, 'Cristian', 'Lopera', 'Lopera', 'Bedoya', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 3157890, '2018-01-12', 'masculino', 2, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
+(1, 1, 1214, 'Cristian', '', 'Lopera', '', 'yonosoybond@gmail.com', 43, 1, 'Calle 95 #44-35', 32356789, '0000-00-00', 'null', 3, 1, 'defaul.jpg', '2018-01-07', '2018-01-07'),
+(2, 1, 9904, 'Cristian', '', 'Lopera', '', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 3157890, '0000-00-00', 'masculino', 2, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
 (3, 1, 123, 'Andres', '', 'Lopez', '', 'calopera18@misena.edu.co', 234567, 1, 'calle 90 ', 32256789, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-10', '2018-01-10'),
 (4, 1, 1234, 'Carlos', '', 'gaviria', '', 'calopera18@misena.edu.co', 0, 2, 'calle 6 sur', 323355, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-15', '2018-01-15'),
-(5, 1, 8888, 'evelin', '', 'herrera', '', 'yonosoybond@gmail.com', 77, 1, 'calle 6 sur ', 521, '2018-01-20', 'femenino', 1, 1, 'default.jpg', '2018-01-20', '2018-01-20'),
+(5, 1, 8888, 'evelin', '', 'herrera', '', 'yonosoybond@gmail.com', 77, 1, 'calle 6 sur ', 521, '2018-01-20', 'femenino', 1, 1, 'defaul.jpg', '2018-01-20', '2018-01-20'),
 (6, 1, 1214746, 'Javier', '', 'nose', '', 'yonosoybond@gmail.com', 0, 1, 'calle 7 sur', 2147483647, '0000-00-00', 'masculino', 5, 2, 'default.jpg', '2018-01-20', '2018-01-20');
 
 -- --------------------------------------------------------
@@ -1287,10 +1211,7 @@ INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`, `usuxped_total`) VALUE
 (1, 34, 0),
 (1, 35, 0),
 (1, 36, 0),
-(1, 37, 0),
-(1, 38, 0),
-(1, 39, 0),
-(1, 40, 0);
+(1, 37, 0);
 
 --
 -- Disparadores `usuarioxpedido`
@@ -1324,10 +1245,7 @@ INSERT INTO `ventas` (`usu_codigo`, `id_venta`, `ven_total`, `ped_codigo`, `ven_
 (1, 25, 0, 34, '2018-01-09'),
 (1, 26, 0, 35, '2018-01-10'),
 (1, 27, 0, 36, '2018-01-10'),
-(1, 28, 0, 37, '2018-01-17'),
-(1, 29, 0, 38, '2018-01-22'),
-(1, 30, 0, 39, '2018-01-22'),
-(1, 31, 0, 40, '2018-02-02');
+(1, 28, 0, 37, '2018-01-17');
 
 --
 -- Índices para tablas volcadas
@@ -1579,7 +1497,7 @@ ALTER TABLE `cliente_empresarial`
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
@@ -1609,7 +1527,7 @@ ALTER TABLE `gestion_web`
 -- AUTO_INCREMENT de la tabla `historial_productos`
 --
 ALTER TABLE `historial_productos`
-  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
@@ -1629,7 +1547,7 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
@@ -1639,12 +1557,12 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `ruta`
 --
@@ -1659,7 +1577,7 @@ ALTER TABLE `sede`
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
@@ -1694,7 +1612,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- Restricciones para tablas volcadas
 --
