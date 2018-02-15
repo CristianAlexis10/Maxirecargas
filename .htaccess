@@ -130,3 +130,4 @@ RewriteRule ^nuevo_dato_contacto$ index.php?controller=setting&a=contact
 
 #ERRORES
 ErrorDocument 404 /maxirecargas/views/modules/config/errors/error404.php
+ErrorDocument 404 /github/maxirecargas/views/modules/config/errors/error404.php
