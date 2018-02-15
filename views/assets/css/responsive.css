@@ -21,13 +21,11 @@
    .title--quo{font-size: 70px}
    .quotation--left .quotation--form{width: 80%}
 }
-
-
 @media (max-width: 768px) {
   .container .left img{min-width: 300px;
   max-width: 300px;
   margin-top: 80px;
-}
+  }
   .opcions, #menu{display: none !important; }
   #menu-mobile{display: block;}
 
@@ -43,35 +41,26 @@
     font-weight: lighter;
     justify-content: center;
     align-items: center;
-  }
+    }
   #wrap--menu--mobile ul li{
     margin-bottom: 20px;
     text-transform: uppercase;
-
-  }
-
+    }
   #close--mobile{
     position: absolute;
     right: 20px;
     top: 20px;
     font-size: 40px
-  }
-  #iconPc{
-    width: 120px;
-  }
-   #iconPrinter{
-     width: 180px;
-     margin-left: 100px;
-   }
+    }
+   #iconPc{width: 120px;}
+   #iconPrinter{width: 180px; margin-left: 100px;}
   .container.three .three--rigth{
     background-size: 400px 600px;
     align-items: center;
     flex-direction: column;
     margin-top: -36px;
   }
-  #services-domicilio,#services-servicio,  #services-asistencia{
-    margin: 0;
-  }
+  #services-domicilio,#services-servicio,  #services-asistencia{margin: 0;}
   .container.four .four--contact li{font-size: 16px;}
   .container .rigth .welcome .title{font-size: 50px}
   .container.three .three--left button{margin-top: 50px;}
@@ -83,10 +72,7 @@
   .quotation--rigth{display: none}
   .quotation--left{width: 100%}
   .subtitle.quo{text-align: center;}
-  .containerFormg{
-    display: flex;
-    justify-content: space-around;
-  }
+  .containerFormg{display: flex; justify-content: space-around;}
   #cantidad,#solicitud{width: 90%;}
   #quotationUser .form-groupuser{margin-bottom: 20px}
   .orderbtn input{padding: 8px 30px; margin-top: 10px; font-size: 14px}
@@ -295,6 +281,7 @@
   .container.four .four--form{height: 60vh;}
   .user_fondo_order h1{font-size: 40px}
   .user_fondo_order button{padding: 10px 10px}
+  .user_fondo_order{padding: 200px 40px 0 40px}
   /* quotation */
   .quotation--left .quotation--form{width: 80%}
   .title--movil{font-size: 30px}

@@ -59,6 +59,7 @@ $(".wrap_input_mobile").focusout(function(){
     $(this).parent().removeClass("mov-label-login");
     $(this).parent().removeClass("clr-label-login");
 });
+
 // abrir y cerra modal mobile_pass
 if (document.getElementById("modal_mobile")) {
 var modalMobile = document.getElementById('modal_mobile');

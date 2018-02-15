@@ -331,8 +331,6 @@
   width: 70%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .orderSuperior, #order--formtwo .orderSuperior{
@@ -438,7 +436,7 @@
   margin-bottom: 30px;
   font-family: 'lato';
 }
-.inputYellow, .inputblue, .inputmagenta{
+.inputYellow, .inputblue{
  padding:10px 2px;
  border-radius: 3px;
  outline: none;
@@ -449,6 +447,17 @@
  color: #9e9e9e;
  width: 100%;
 }
+.inputmagenta{
+  padding:10px 2px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid #9e9e9e;
+  position: relative;
+  font-size: 16px;
+  background: transparent;
+  color: white;
+  width: 100%;
+}
 .labelyellow{
   transition: all 0.5s;
   padding: 0 0 0 5px;
@@ -456,7 +465,9 @@
 }
 .labelmagenta{
   transition: all 0.5s;
-
+  padding: 0 0 0 5px;
+  margin-bottom: 8px;
+  color: white;
 }
 .labelblue{
   transition: all 0.5s;

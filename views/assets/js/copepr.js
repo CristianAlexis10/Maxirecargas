@@ -21,9 +21,9 @@ $(".inputblue").focusout(function(){
 $(".inputmagenta").focus(function(){
   $(this).parent().addClass("color-labelmagent");
 });
-
 $(".inputblue").focusout(function(){
   if($(this).val() === "")
+    $(this).parent().removeClass("mover-labelmagent");
     $(this).parent().removeClass("color-labelmagent");
 
 });
@@ -115,12 +115,14 @@ if (document.getElementsByClassName('Btncategoria')) {
       $(".Btoner").addClass("aparecer");
       $(".container--grid").addClass("gridaparecer");
     });
+    if (document.getElementById('categoryName')) {
     var bntAtras = document.getElementById('pedAtras');
       bntAtras.onclick = function(){
       $(".products").removeClass("moverproduct");
       $(".Btoner").removeClass("aparecer");
       $(".container--grid").removeClass("gridaparecer");
       $(".container--grid").hide();
+    }
     }
 
   }

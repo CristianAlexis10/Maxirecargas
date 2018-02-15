@@ -1,4 +1,3 @@
-
     <div class="order--fondo">
       <div id="order--formone">
         <div class="orderSuperior">
@@ -8,14 +7,12 @@
         <div class="container--form">
           <form id="frmNewOrder">
             <div class="form-groupuser">
-              <label for="typeProduct" class="labelmagenta">Tipo de producto</label>
-              <select id="typeProduct" class="inputmagenta">
-
-              </select>
+              <label for="typeProduct" class="labelmagenta">Tipo de Producto</label>
+              <select id="typeProduct" class="inputmagenta"></select>
             </div>
             <div class="form-groupuser">
-              <label for="producto" class="labelmagenta">referencia</label>
-            <input type="text" id="producto" class="inputmagenta" >
+              <label for="producto" class="labelmagenta">Referencia</label>
+            <input type="text" id="producto" class="inputmagenta">
             </div>
             <input type="button" id="searchPro" class="labelmagenta" value="Buscar">
             <div class="form-groupuser3 hide--service ">
