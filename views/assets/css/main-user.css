@@ -574,10 +574,7 @@ transform: translateY(-12px);
   width: 100%;
   transition: all 1s ease-in
 }
- /* .menu--registrar{
-  position: absolute;
-  left: 10px;
-} */
+
 .menu--home{
   display: flex;
   align-items: center;
@@ -587,6 +584,7 @@ transform: translateY(-12px);
   color: white;
   background: grey;
   background-size: cover;
+  border-right:3px solid red;
 
 }
 

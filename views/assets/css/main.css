@@ -258,6 +258,10 @@ table.dataTable tbody th, table.dataTable tbody td{
 .new.products{
   display: flex;
 }
+.update{
+  display: flex;
+  width: 100%;
+}
 .form--left{
   width: 50%;
 }
@@ -275,10 +279,11 @@ table.dataTable tbody th, table.dataTable tbody td{
 }
 #wrap-result{
   background: #eee;
+  border: 1px solid #c5c5c5;
+  border-radius: 5px;
   width: 200px;
   height: 200px;
   display: flex;
-  border-radius: 50%;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
@@ -469,7 +474,8 @@ align-items: center;
 }
 .mudules.orders.detail .wrap--btns li {
   padding: 10px 0px;
-  transition:all 0.5s easy;
+  transition:all 0.5s ease;
+  cursor: pointer;
 }
 .mudules.orders.detail .wrap--btns li:hover{
   color: #35a4dd;
@@ -607,6 +613,13 @@ align-items: center;
   flex-direction: column;
   margin-top: 100px;
   font-family: 'lato';
+}
+.modalOn{
+  background: white;
+  width: 40%;
+  z-index: 10;
+  position: absolute;
+
 }
 .container--modales.order{width: 60%;}
 .closemodales{
@@ -770,9 +783,10 @@ margin: 0 auto;
   margin-bottom: 50px;
 }
 .infomodal input[type="button"]{
-  padding: 20px 30px;
+  border: none;
   background: #35a4dd;
   color: white;
+  width: 50%;
   font-size: 20px;
 }
 /* views profile */

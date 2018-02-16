@@ -78,9 +78,20 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
             <?php } ?>
             </select>
           </div>
-
+          <form>
+            <div class="wrap_two_formgroup">
+              <div class="form-group">
+                <label for="contra" class="label">Contraseña:</label>
+                <input type="password"  id="contra" class="input" required>
+              </div>
+              <div class="form-group">
+                <label for="rep_contra" class="label">Repetir Contraseña:</label>
+                <input type="password"  id="rep_contra" class="input" required disabled>
+              </div>
+            </div>
+          </form>
     </div>
-    <div class="imgprofile">
+  <div class="imgprofile">
       <div class="form-group Cambiar--img">
         <div id="wrap-result">
               <img src="views/assets/image/profile/<?php echo $data['usu_foto']; ?>" >
@@ -93,18 +104,7 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
     </div>
   </form>
   </div>
-  <form >
-    <div class="wrap_two_formgroup">
-        <div class="form-group">
-          <label for="contra" class="label">Contraseña:</label>
-          <input type="password"  id="contra" class="input " required>
-        </div>
-        <div class="form-group">
-          <label for="rep_contra" class="label">Repetir Contraseña:</label>
-          <input type="password"  id="rep_contra" class="input " required disabled>
-        </div>
-  </div>
-  </form>
+
   <div id="img-product">
 			<div class="newMark--img">
 				<span id="closeImg">&times;</span>
@@ -117,16 +117,16 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
 		</div>
 </div>
 
-                </article>
-        	</div>
-        </section>
- 	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-     <script src="views/assets/js/croppie.js"></script>
-     <script src="views/assets/js/cropp-profile.js"></script>
-   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <script src="views/assets/js/config.js"></script>
-   <script src="views/assets/js/settings.js"></script>
-
-    </body>
+    </article>
+  </div>
+</section>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+<script src="views/assets/js/croppie.js"></script>
+<script src="views/assets/js/cropp-profile.js"></script>
+<script src="views/assets/js/main.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="views/assets/js/config.js"></script>
+<script src="views/assets/js/settings.js"></script>
+</body>
 </html>

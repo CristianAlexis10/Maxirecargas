@@ -49,10 +49,10 @@
 	</div>
 </div>
 
-<div class="modal-status modalPedido">
-	<div class="modalContent">
-		<span>&times;</span>
-		<h2 class="elegir">Estado:</h2>
+<div class="modal-status modales">
+	<div class="container--modales">
+		<span class="closemodales" id="closeStatus">&times;</span>
+		<h2 class="elegir">Verifica el estado de los pedidos</h2>
 		<div class="infomodal">
 			<select id="newStatus">
 				<option value="1">En Recepción</option>
@@ -66,8 +66,8 @@
 	</div>
 </div>
 
-<div id="modal-motive" class="modalPedido">
-	<div class="modalContent">
+<div id="modal-motive" >
+	<div class="modalOn">
 		<span>&times;</span>
 		<h1 class="elegir">Motivo:</h1>
 		<div class="infomodal">

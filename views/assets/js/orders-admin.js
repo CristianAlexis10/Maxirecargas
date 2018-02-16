@@ -34,7 +34,10 @@ $("#confirmAssign").click(function(){
 });
 //cambiar estado
 $("#changeStatus").click(function(){
-  $(".modal-status").toggle();
+  $(".modal-status").show();
+});
+$("#closeStatus").click(function(){
+  $(".modal-status").hide();
 });
 var pedCod ;
 function changeStatus(token){
