@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>preloader</title>
+    <style>
+      *{margin: 0; padding: 0;}
+      .container{
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        overflow: hidden;
+        background: #c7c7c7;
+      }
+      .preloader{
+        width: 150px;
+        position: relative;
+        height: 150px;
+        border: 3px solid transparent;
+        border-top-color: #35a4dd;
+        border-radius: 50%;
+        margin: auto;
+        top: 50%;
+        animation: girar 2s linear infinite;
+        }
+        .preloader:before{
+          content: "";
+          position: absolute;
+          top: 5px; left: 5px; bottom: 5px; right: 5px;
+          border: 3px solid transparent;
+          border-radius: 50%;
+          border-top-color: #f8f400;
+          animation: girar 3s linear infinite;
+        }
+        .preloader:after{
+          content: "";
+          position: absolute;
+          top: 15px; left: 15px; bottom: 15px; right: 15px;
+          border: 3px solid transparent;
+          border-radius: 50%;
+          border-top-color: #ff00ff;
+          animation: girar 1.5s linear infinite;
+        }
+        @keyframes girar {
+          0% {transform: rotate(0deg);}
+          100% {transform: rotate(360deg);}
+      }
+      .figura{
+        font-family: 'lato', sans-serif;
+        font-size: 200px;
+        position: absolute;
+        right: 0;
+        top: 5%;
+        color: #afafaf;
+      }
+      .figura.ocultar{opacity: 0}
+      .container.open{transform: translateX(-99999px;);}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="figura">100</div>
+    </div>
+    <div class="coso">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script>
+  var figura = $('.figura');
+figura.each(function () {
+  $(this).prop('Counter',0).animate({
+      Counter: $(this).text()
+  }, {
+      duration: 5000,
+      easing: 'swing',
+      step: function (now) {
+          $(this).text(Math.ceil(now) +  "%");
+          if($(this).text().trim() == "100%"){
+            setTimeout( function(){
+              $('.figura').addClass('ocultar');
+            }, 800);
+
+            setTimeout( function(){
+              $('.container').addClass('open');
+            }, 1200)
+          }
+      }
+  });
+});
+  </script>
+</html>
