@@ -113,7 +113,7 @@
 
 						  $cabeceras= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 						  if(mail($data[13], $título, $mensaje, $cabeceras)){
-							  $result = "Revisa tu correo para activar tu cuenta";
+							  $result = true;
 						  }else{
 							  $result = "error al enviar correo";
 						  }

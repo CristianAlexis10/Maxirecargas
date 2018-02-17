@@ -182,7 +182,7 @@
 						if(	$this->doizer->onlyNumbers($data[2])==true){
 							// validar contraseñas
 							if ($this->doizer->validateEmail($data[5])==true) {
-								if ($this->doizer->validateDate($data[8],'past')==false) {
+								if ($this->doizer->validateDate($data[8],'past')==true) {
 									if ($data[10]===$data[11]) {
 										$password =  $this->doizer->validateSecurityPassword($data[10]);
 										if (is_array($password)) {
@@ -222,7 +222,7 @@
 
 													$cabeceras= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 													if(mail($data[5], $título, $mensaje, $cabeceras)){
-													    $result = "Revisa tu correo para activar tu cuenta";
+													    $result = true;
 															$this->master->insert('estiloxusuario',array($code,' ', ' ', ' '));
 													}else{
 													    $result = "error al enviar correo";

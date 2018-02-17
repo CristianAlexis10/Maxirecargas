@@ -48,18 +48,12 @@ var irAtras = document.getElementById('irAtras');
 var irAtras2 = document.getElementById('irAtras2');
 
 
-irParte2.onclick = function(){
-  customerPart1.style.display= "none"
-  customerPart2.style.display= "block";
-}
+
 irAtras.onclick = function(){
   customerPart2.style.display= "none"
   customerPart1.style.display= "block";
 }
-irParte3.onclick = function(){
-  customerPart2.style.display= "none"
-  customerPart3.style.display= "block";
-}
+
 irAtras2.onclick = function(){
   customerPart3.style.display= "none"
   customerPart2.style.display= "block";
@@ -80,25 +74,15 @@ var irParte4busi = document.getElementById('businessIrParte4');
 var irAtras4busi = document.getElementById('irAtras4busi');
 
 
-irParte2busi.onclick = function(){
-  businessPart1.style.display= "none"
-  businessPart2.style.display= "block";
-}
+
 irAtras2busi.onclick = function(){
   businessPart2.style.display= "none"
   businessPart1.style.display= "block";
 }
-irParte3busi.onclick = function(){
-  businessPart2.style.display= "none";
-  businessPart3.style.display= "block"
-}
+
 irAtras3busi.onclick = function(){
   businessPart3.style.display= "none"
   businessPart2.style.display= "block";
-}
-irParte4busi.onclick = function(){
-  businessPart3.style.display= "none";
-  businessPart4.style.display= "block"
 }
 irAtras4busi.onclick = function(){
   businessPart4.style.display= "none";
@@ -190,13 +174,14 @@ $("#frmNewUser").submit(function(e) {
                         },
                         success: function(result){
                          if (result==true) {
-                           $("#frmNewUser").after("<div class='message'>Registrado Exitosamente</div>");
+                           $("#frmNewUser").after("<div class='message'>Revisa tu correo para activar tu cuenta.</div>");
+                           $("#frmNewUser")[0].reset();
                          }else{
                            $("#frmNewUser").after("<div class='message'>"+result+"</div>");
                          }
                           setTimeout(function(){
                              $('div.message').remove();
-                           }, 2000);
+                           }, 3000);
                         },
                         error: function(result){
                            console.log(result);
@@ -211,12 +196,9 @@ $("#frmNewUser").submit(function(e) {
 
 
 //validaciones
- $("#normalIrParte2").attr("disabled",true);
+ // $("#normalIrParte2").attr("disabled",true);
  var num_doc = false;
  var contra = false;
-
-
-
  $('#rep_contra').attr('disabled',true);
  // numero de documento
  $('#numDoc').keyup(function(){
@@ -228,29 +210,30 @@ $("#frmNewUser").submit(function(e) {
    }).done(function(response){
      if (response=='true') {
          $('#numDoc').after('<div class="no-usu">usuario no valido</div>');
-
           num_doc = false;
       }else{
            $('.no-usu').remove();
          num_doc = true;
       }
-       enable(num_doc,contra);
-       primerpaso(num_doc);
    });
  });
- $('#priApe').keyup(function(){
+irParte2.onclick = function(){
    primerpaso(num_doc);
- });
+}
  function primerpaso(doc){
    if (doc==true && $("#priNom").val() !='' && $('#priApe').val() != '') {
-      $('#normalIrParte2').attr('disabled',false);
+        customerPart1.style.display= "none"
+        customerPart2.style.display= "block";
    }else{
-      $('#normalIrParte2').attr('disabled',true);
+     $("#normalIrParte2").after("<div class='message'>Todos los campos son requeridos</div>");
+     setTimeout(function(){
+       $("div.message").remove();
+     },3000);
    }
  }
 
  //segundo
- $("#normalIrParte3").attr("disabled",true);
+ // $("#normalIrParte3").attr("disabled",true);
 var usu_correo = false;
  function validarEmail( email ) {
      expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -271,29 +254,28 @@ $("#correo").keyup(function(){
      if (response=='true') {
          $('#correo').after('<div class="no-usu">Correo no valido</div>');
           usu_correo = false;
-          segundoPaso();
       }else{
            $('.no-usu').remove();
          usu_correo = true;
-         segundoPaso();
       }
    });
  });
-
+ irParte3.onclick = function(){
+   segundoPaso();
+ }
  function segundoPaso(){
    if (validarEmail($("#correo").val())==true && usu_correo==true && $("#tel").val() != '' && $("#dir").val() != '') {
-     $("#normalIrParte3").attr("disabled",false);
-      console.log('pasa');
+     customerPart2.style.display= "none"
+     customerPart3.style.display= "block";
+   }else if(validarEmail($("#correo").val())==false){
+     $("#normalIrParte3").after("<div class='message'>Correo no valido</div>");
    }else{
-     $("#normalIrParte3").attr("disabled",true);
-
-     console.log('no pasa');
+     $("#normalIrParte3").after("<div class='message'>Todos los campos son requeridos</div>");
    }
+   setTimeout(function(){
+     $("div.message").remove();
+   },3000);
  }
-
- $("#dir").keyup(function(){
-   segundoPaso();
- });
 
 
 
@@ -430,7 +412,8 @@ $('#tipo_usu').change(function(){
                            },
                            success: function(result){
                             if (result==true) {
-                              $("#frmNewBusi").after("<div class='message'>Registrado Exitosamente</div>");
+                              $("#frmNewBusi").after("<div class='message'>Revisa tu correo para activar tu cuenta.</div>");
+                              $("#frmNewBusi")[0].reset();
                             }else{
                               $("#frmNewBusi").after("<div class='message'>"+result+"</div>");
                             }
@@ -465,45 +448,41 @@ $('#nit').keyup(function(){
     if (response=='true') {
         $('#nit').after('<div class="no-usu">Nit no valido</div>');
          num_nit = false;
-         primerpasoBusi();
      }else{
           $('.no-usu').remove();
           num_nit = true;
      }
-     primerpasoBusi();
-       enableEmp(num_nit,contraEmp);
   });
 });
-
-
 //pirmer paso
-$("#businessIrParte2").attr("disabled",true);
-$("#namebus").keyup(function(){
+irParte2busi.onclick = function(){
   primerpasoBusi();
-});
-
+}
 function primerpasoBusi(){
-  if (num_nit==true && $("#social").val() != '' && $().val("#namebus") != '' ) {
-    $("#businessIrParte2").attr("disabled",false);
+  if (num_nit==true && $("#social").val() != '' && $("#namebus").val() != '' ) {
+    businessPart1.style.display= "none"
+    businessPart2.style.display= "block";
   }else{
-    $("#businessIrParte2").attr("disabled",true);
+    $("#businessIrParte2").after("<div class='message'>Todos los campos son requeridos</div>");
+    setTimeout(function(){$("div.message").remove()},3000);
   }
 }
 //segundo paso
-$("#businessIrParte3").attr("disabled",true);
-$("#sede-tel").keyup(function(){
+irParte3busi.onclick = function(){
   segundoPasoBusi();
-});
-
+}
 function segundoPasoBusi(){
-  if ($("#sed-nom").val() != '' && $().val("#sede-dir") != ''  && $().val("#sede-tel") != '') {
-    $("#businessIrParte3").attr("disabled",false);
+  if ($("#sed-nom").val() != '' && $("#sede-dir").val() != ''  && $("#sede-tel").val() != '') {
+    businessPart2.style.display= "none";
+    businessPart3.style.display= "block"
   }else{
-    $("#businessIrParte3").attr("disabled",true);
+    $("#businessIrParte3").after("<div class='message'>Todos los campos son requeridos</div>");
+    setTimeout(function(){$("div.message").remove()},3000);
   }
  }
 
  //tercer paso
+ var num_doc_emp = false;
  //validar numero de documento
  $('#numDocEmp').keyup(function(){
    var value = $('#numDocEmp').val();
@@ -516,28 +495,23 @@ function segundoPasoBusi(){
      if (response=='true') {
        $('#numDocEmp').after('<div class="no-usu">Usuario no valido</div>');
        num_doc_emp = false;
-       tercerPasoBusi();
      }else{
        $('.no-usu').remove();
        num_doc_emp = true;
-       tercerPasoBusi();
      }
-     // enableEmp(num_nit,contraEmp);
    });
  });
 
- $("#businessIrParte4").attr("disabled",true);
-
- $("#esta_joda").keyup(function(){
-   tercerPasoBusi();
-   console.log('nada');
- });
-
+ irParte4busi.onclick = function(){
+  tercerPasoBusi();
+ }
  function tercerPasoBusi(){
    if (num_doc_emp == true && $("#sede-enc").val() != '' && $("#sede-ape").val() != '') {
-     $("#businessIrParte4").attr("disabled",false);
+     businessPart3.style.display= "none";
+     businessPart4.style.display= "block"
    }else{
-     $("#businessIrParte4").attr("disabled",true);
+     $("#businessIrParte4").after("<div class='message'>Todos los campos son requeridos</div>");
+     setTimeout(function(){$("div.message").remove()},3000);
    }
   }
 //cuarto paso
@@ -565,6 +539,11 @@ $("#sede-correo").keyup(function(){
    if (validarEmail($("#sede-correo").val())==true && usu_correoEmp==true && $("sede-ext").val() != '' && $("#cargo").val() != '') {
       $('#registrarEmp').attr('disabled',false);
       console.log('pasa');
+   }else if(validarEmail($("#sede-correo").val())==false){
+     $("div.message").remove();
+     $("#registrarEmp").attr("disabled",true);
+      $("#sede-correo").after("<div class='message'>Formato del correo no valido</div>");
+      setTimeout(function(){$("div.message").remove();},3000);
    }else{
      $("#registrarEmp").attr("disabled",true);
      console.log('no pasa');

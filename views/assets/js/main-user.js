@@ -16,7 +16,7 @@ $("#contc").click(function() {
   });
 });
 
-if (document.getElementById('wrap--menu--mobile')) {
+if (document.getElementById('wrap--menu--mobile') && document.getElementById('menu-mobile')) {
 var close_mobile = document.getElementById('close--mobile');
 var open_mobile = document.getElementById('menu-mobile');
 var modal_mobile = document.getElementById('wrap--menu--mobile');

@@ -1,8 +1,10 @@
 //forulario de contacto
-var closecontactar = document.getElementById('closeModal');
-var modal = document.getElementById('modalcontactar');
-closecontactar.onclick = function(){
-  modal.style.display = "none";
+if (document.getElementById('closeModal')) {
+  var closecontactar = document.getElementById('closeModal');
+  var modal = document.getElementById('modalcontactar');
+  closecontactar.onclick = function(){
+    modal.style.display = "none";
+  }
 }
 $("#frmContact").submit(function(e) {
   e.preventDefault();
