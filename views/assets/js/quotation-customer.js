@@ -127,11 +127,26 @@ $("#orderSiguiente").click(function(){
   if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cant").val()!="") {
     guardar();
   }
-  console.log(order);
+  $("#modalConfir").toggle();
+  $.ajax({
+    url:"vista-previa",
+    type:"post",
+    dataType:"json",
+    data:({data:order}),
+    success: function(result){
+      console.log(result);
+      $("#detalles").empty();
+      $("#detalles").append(result);
+    },
+    error: function(result){
+      console.log(result);
+    }
+  });
 });
 //cuando le de orderAtras
 $("#orderAtras").click(function(){
   indice_actual=indice_actual-1;
+  $("#modalConfir").hide();
 });
 //guardar en el array
 function guardar() {
@@ -174,6 +189,8 @@ $("#newDir").click(function(){
       data : ({ id: $("#ciudad").val() }),
       success: function(result){
         $("#orderDir").html(result.ciu_nombre+', '+$("#dirSent").val());
+        $("#modal_dir").toggle();
+          $("#modalConfir").toggle();
       }
   });
 });
@@ -213,3 +230,21 @@ $("#viewOrder").click(function() {
     }
   });
 });
+
+// modals
+if (document.getElementById("modal_dir")) {
+var openModal_dir = document.getElementById('btnOtraDir');
+var closeModal_dir = document.getElementById('closemodal_dir');
+var modal_dir = document.getElementById('modal_dir');
+openModal_dir.onclick = function() {
+  modal_dir.style.display = "flex";
+  console.log('sad');
+  $(".modal--dir").toggle();
+    $("#modalConfir").toggle();
+}
+closeModal_dir.onclick = function() {
+  modal_dir.style.display= "none";
+  $("#modal--dir").toggle();
+    $("#modalConfir").toggle();
+}
+}
