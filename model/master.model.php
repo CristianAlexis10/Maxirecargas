@@ -1196,6 +1196,28 @@ class MasterModel{
     }
     return $result;
   }
+  function 	filter($cate,$val,$ini,$fin){
+    try {
+      $this->sql="call filterProducts(?,?,?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($cate,$val,$ini,$fin));
+      $result = $query->fetchAll(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
+  function 	filterCount($cate,$val){
+    try {
+      $this->sql="call filterCount(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($cate,$val));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
 
 }
 

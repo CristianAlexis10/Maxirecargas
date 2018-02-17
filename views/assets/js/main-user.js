@@ -72,3 +72,84 @@ closeMobile.onclick = function(){
   modalMobile.style.display = "none"
 };
 }
+//productos
+if (document.getElementById('buscar')) {
+  $("#buscar").click(function(){
+    var category = $("#categoryName")[0].innerHTML;
+    var data = $("#readBy").val();
+    $.ajax({
+      url:"filterProductsCount",
+      // url:"filter-products",
+      type:"post",
+      dataType:"json",
+      data:({cat:category,value:data}),
+      success:function(result){
+          $(".container--grid").empty();
+            cambiarPaginaFilter(1,result,category,data);
+    },
+      error:function(result){console.log(result);}
+    });
+    //paginacion
+    // $.ajax({
+    //   url:"filterProductsCount",
+    //   type:"post",
+    //   dataType:"json",
+    //   data:({cat:category,value:data}),
+    //   success:function(result){
+    //     numeroRegistros = result;
+    //     var totalPaginas = Math.ceil((numeroRegistros/12));
+    //     $(".container--grid").append("<div class='pagination'></div>");
+    //     $(".pagination").css({"display":"flex","flex-direction":"row-reverse"});
+    //     while (totalPaginas!=0) {
+    //       console.log(totalPaginas);
+    //       $(".pagination").append('<h1 onclick="cambiarPagina('+totalPaginas+','+numeroRegistros+')">'+totalPaginas+'</h1>');
+    //       totalPaginas=totalPaginas-1;
+    //     }
+    //   },
+    //   error:function(result) {
+    //     console.log(result);
+    //   }
+    // });
+  });
+}
+
+function cambiarPaginaFilter(pagina,numeroRegistros,category,condition){
+  var elementosPagina  = 12;
+  var inicio = (pagina-1)*elementosPagina;
+    $(".container--grid").empty();
+    $.ajax({
+      url:"filter-products",
+      type:"post",
+      dataType:"json",
+      data:({cat:category,ini:inicio,totalElePag:elementosPagina,value:condition}),
+      success:function(result){
+        if (result.length==0) {
+            $(".container--grid").append("<div class='query-result'><h1>No hay productos disponibles.</h1></div>");
+        }else{
+          for (var i = 0; i < result.length; i++) {
+            if (result[i].pro_imagen=="icn-maxi.png") {
+              $(".container--grid").append('<figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/'+result[i].pro_imagen+'" alt=""></figure>');
+            }else{
+              $(".container--grid").append('<figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/products/'+result[i].pro_imagen+'" alt=""></figure>');
+            }
+          }
+          //paginacion
+          var totalPaginas = Math.ceil((numeroRegistros/elementosPagina));
+          $(".container--grid").append("<div class='pagination'></div>");
+          $(".pagination").css({"display":"flex","flex-direction":"row-reverse"});
+          while (totalPaginas!=0) {
+            $(".pagination").append('<h1 onclick="invocar('+totalPaginas+','+numeroRegistros+','+category+')">'+totalPaginas+'</h1>');
+            totalPaginas=totalPaginas-1;
+          }
+          // if (result.length>12) {
+          // }
+        }
+      },
+      error:function(result){
+        console.log(result);
+      }
+    });
+}
+function invocar(totalPaginas,numeroRegistros,category){
+  cambiarPaginaFilter(totalPaginas,numeroRegistros,category.id,$("#readBy").val());
+}

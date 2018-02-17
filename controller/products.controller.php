@@ -123,8 +123,16 @@
 			return $result;
 		}
 		function readBy($data){
-			$result = $this->master->selectBy($this->tableName,array('pro_codigo',$data));
+			$result = $this->master->filter($this->tableName,array('pro_codigo',$data));
 			return $result;
+		}
+		function filter(){
+			$result = $this->master->filter($_POST['cat'],$_POST['value'],$_POST['ini'],$_POST['totalElePag']);
+			echo json_encode($result);
+		}
+		function filterCount(){
+			$resultCount = $this->master->filterCount($_POST['cat'],$_POST['value'])[0];
+			echo json_encode($resultCount);
 		}
 		function update(){
 			$data=$_POST['data'];

@@ -7,18 +7,18 @@
     <h1 class="titleitem_banner" id="categoryName">toner</h1>
     <div class="container_search">
       <div class="search_input">
-        <input type="search" placeholder="buscar...">
-        <button type="button" name="button"><i class="fa fa-search" aria-hidden="true"></i>
+        <input type="search" id="readBy" placeholder="buscar por referencia,marca">
+        <button type="button" name="button"  id="buscar" ><i class="fa fa-search" aria-hidden="true"></i>
         </button>
       </div>
-      <div class="search_options">
+      <!-- <div class="search_options">
         <ul>
           <li>Referencia</li>
           <li>Marcas</li>
           <li>Genericos</li>
           <li>impresora</li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 

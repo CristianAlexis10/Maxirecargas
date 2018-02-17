@@ -152,7 +152,7 @@ function cambiarPagina(pagina,numeroRegistros){
           $(".container--grid").append("<div class='pagination'></div>");
           $(".pagination").css({"display":"flex","flex-direction":"row-reverse"});
           while (totalPaginas!=0) {
-            console.log(totalPaginas);
+            // console.log(totalPaginas);
             $(".pagination").append('<h1 onclick="cambiarPagina('+totalPaginas+','+numeroRegistros+')">'+totalPaginas+'</h1>');
             totalPaginas=totalPaginas-1;
           }
