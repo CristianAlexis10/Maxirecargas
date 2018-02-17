@@ -108,8 +108,8 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
   <div id="img-product">
 			<div class="newMark--img">
 				<span id="closeImg">&times;</span>
-				<div id="uploadImage">
-					<div id="wrap-upload" style="width:300px"></div>
+				<div id="uploadImage" class="modal">
+					<div id="wrap-upload" style="width:350px"></div>
 					<input type="file" id="upload">
 					<button class="btn btn-success upload-result">Recortar Imagen</button>
 				</div>
