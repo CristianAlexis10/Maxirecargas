@@ -1,3 +1,6 @@
+<?php
+$data = $this->master->selectAll("gestion_web");
+?>
 <div class="modules profile">
   <div class="title">
     <p>MAXIRECARGAS</p>
@@ -5,64 +8,29 @@
   <div class="maxContainer_profile">
     <div class="frmprofile">
       <form>
+          <div class="form-group">
+            <label for="micro_des" class="select">Micro Descripción:</label>
+            <textarea class="input" id="micro_des"   required><?php echo utf8_encode($data[0]['gw_micro_des'])?></textarea>
+          </div>
+          <div class="form-group">
+            <label for="mision" class="select">Misión:</label>
+            <textarea class="input" id="mision"   required><?php echo utf8_encode($data[0]['gw_mision'])?></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="vision" class="select">Visión:</label>
+            <textarea class="input" id="vision"   required><?php echo utf8_encode($data[0]['gw_vision'])?></textarea>
+          </div>
+          <div class="form-group">
+            <label for="pma" class="select">Politica de medio ambiente:</label>
+            <textarea class="input" id="pma"   required><?php echo utf8_encode($data[0]['gw_politicas'])?></textarea>
+          </div>
+
         <div class="wrap_two_formgroup">
-          <div class="form-group">
-            <label for="tip_doc" class="select">Tipo de Documento:</label>
-            <select class="dataCl input" id="tip_doc"   required></select>
-          </div>
-          <div class="form-group">
-            <label for="numDoc" class="label">Numero de Documento:</label>
-            <input type="number"  id="numDoc" class="input dataCl" required>
-          </div>
-        </div>
-        <div class="wrap_two_formgroup">
-          <div class="form-group">
-            <label for="priNom" class="label">Primer Nombre:</label>
-            <input type="text"  id="priNom" class="input dataCl"  required>
-          </div>
-          <div class="form-group">
-            <label for="priApe" class="label">Primer Apellido:</label>
-            <input type="text" id="priApe" class="input dataCl" required>
-          </div>
-        </div>
-        <div class="wrap_two_formgroup">
-          <div class="form-group">
-            <label for="correo" class="label">Correo:</label>
-            <input type="email" class=" input dataCl" id="correo" required>
-          </div>
-          <div class="form-group">
-            <label for="tel" class="label">Telefono:</label>
-            <input type="number" class="input dataCl" id="tel"  required>
-          </div>
-        </div>
-        <div class="wrap_two_formgroup">
-          <div class="form-group">
-            <label for="cuidad" class="select">Ciudad:</label>
-            <select class="dataCl input"  id="cuidad" required> </select>
-          </div>
-          <div class="form-group">
-            <label for="dir" class="label">Direccion:</label>
-            <input type="text" class="input dataCl" id="dir"  required>
-          </div>
-        </div>
-          <div class="form-group">
-            <label for="sexo" class="select">Sexo:</label>
-            <select class="dataCl input grande"  id="sexo" required>
-              <option value="femenino">Femenino</option>
-              <option value="masculino">Masculino</option>
-            </select>
-          </div>
-        <div class="wrap_two_formgroup">
-          <div class="customers--password">
             <div class="form-group">
-              <label for="contra" class="label">Contraseña:</label>
-              <input type="password"  id="contra" class="input dataCl" required>
+            <a href="configuraciones#contacto">Actualizar datos de contacto</a>
             </div>
-            <div class="form-group">
-              <label for="rep_contra" class="label">Repetir Contraseña:</label>
-              <input type="password"  id="rep_contra" class="input dataCl" required disabled>
-            </div>
-          </div>
+
       </div>
       </form>
     </div>
