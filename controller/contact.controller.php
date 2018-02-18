@@ -81,7 +81,12 @@ require_once "controller/doizer.controller.php";
 	 }
 	 function knowData(){
 		 $result = $this->master->selectAll("gestion_web");
-		 echo json_encode($result);
+		 $result[0]['gw_vision']=utf8_encode($result[0]['gw_vision']);
+		 $result[0]['gw_micro_des']=utf8_encode($result[0]['gw_micro_des']);
+		 $result[0]['gw_mision']=utf8_encode($result[0]['gw_mision']);
+		 $result[0]['gw_politicas']=utf8_encode($result[0]['gw_politicas']);
+		 $data=array(array("desc"=>$result[0]['gw_micro_des'],"mision"=>$result[0]['gw_mision'],"vision"=>$result[0]['gw_vision'],"politicas"=>$result[0]['gw_politicas'],"gw_ct_telefono"=>$result[0]['gw_ct_telefono'],"gw_ct_telefono_2"=>$result[0]['gw_ct_telefono_2'],"gw_ct_whatsapp"=>$result[0]['gw_ct_whatsapp'],"gw_ct_correo"=>$result[0]['gw_ct_correo'],"gw_ct_direccion"=>$result[0]['gw_ct_direccion']));
+			echo json_encode($data);
 	 }
 	}
 ?>

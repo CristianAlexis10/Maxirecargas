@@ -1,6 +1,5 @@
 <?php
 $data = $this->master->selectAll("gestion_web");
-print_r($data);
 ?>
 <div class="modules profile">
   <div class="title">

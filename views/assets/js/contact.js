@@ -41,6 +41,7 @@ if(document.getElementById('telephone')){
   $.ajax({
     url:"datos-contacto",
     type:"post",
+     contentType: "application/json; charset=utf-8",
     dataType:"json",
     success:function(result){
       // console.log(result);
@@ -52,6 +53,12 @@ if(document.getElementById('telephone')){
       document.getElementById('tel1').innerHTML = result[0].gw_ct_telefono;
       document.getElementById('tel2').innerHTML = result[0].gw_ct_telefono_2;
       document.getElementById('wpp').innerHTML = result[0].gw_ct_whatsapp;
+
+      //sections
+      document.getElementById('desMaxi').innerHTML = result[0].desc;
+      document.getElementById('mision').innerHTML = result[0].mision;
+      document.getElementById('vision').innerHTML = result[0].vision;
+      document.getElementById('politicas').innerHTML = result[0].politicas;
 
     },
     error:function(result){
