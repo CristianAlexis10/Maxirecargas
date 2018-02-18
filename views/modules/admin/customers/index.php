@@ -29,8 +29,10 @@
 						<div class="form-group type--user">
 							<label for="tipo_usu" class="select" >Tipo de Usuario:</label>
 							<select class="dataCl dataEmp input grande"  id="tipo_usu" required>
-									<option value="1">Persona Natural</option>
-									<option value="3">Persona Juridica</option>
+								<?php
+									foreach ($this->master->selectAllBy('tipo_usuario',array('tip_usu_maxi','false')) as $row) {?>
+										<option value="<?php echo $row['tip_usu_codigo']; ?>"><?php echo $row['tip_usu_rol']; ?></option>
+									<?php } ?>
 									<option value="maxi">Maxirecaragas</option>
 							</select>
 						</div>
