@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="views/assets/css/setting.css">
 <div class="title">
   <p>CONFIGURACIONES</p>
 </div>
@@ -11,21 +12,28 @@
       <form id="frmNewRol">
           <div class="wrap--config">
               <div class="config--rol">
-                  <p class="">crear un nuevo rol</p>
+                  <h1>Crear un nuevo Rol</h1>
                   <div class="config--form">
-                      <label for="">pertenece a Maxirecargas</label>
-                      <input type="checkbox" name="data-rol-maxi" >
+                    <div class="wrap--chmodule">
+                        <label>Este Rol pertenece a Maxirecargas
+                            <input type="checkbox" name="data-rol-maxi" class="swich green">
+                            <div>
+                                <div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
                   </div>
-                  <div class="config--form">
-                      <label for="">nombre del rol</label>
-                      <input type="text" name="data-rol-name" class="" required>
+                  <div class="form-group">
+                      <label for="namerol" class="label">nombre del rol</label>
+                      <input type="text" name="data-rol-name" class="input" id="namerol"required>
                   </div>
-                  <p>asirnar permisos</p>
-                  <p>el rol tendra permisos para los siguientes modulos</p>
+                  <h1>Asirnar Permisos</h1>
+                  <p>Este rol tendra permisos para los siguientes modulos:</p>
                   <div class="config--form" id="module-cliente">
                       <div class="wrap--chmodule">
                           <label>usuarios
-                              <input type="checkbox" name="checkcliente" class="swich green"  >
+                              <input type="checkbox" name="checkcliente" class="swich green">
                               <div>
                                   <div>
                                   </div>
@@ -102,12 +110,12 @@
                           Eliminar <input type="checkbox" name="data-rol-routes" disabled value="1">
                       </div>
                   </div>
-                  <button type="submit" name="button">Guargar</button>
+                  <button type="submit" name="button" class="saverol">Guargar</button>
               </div>
           </div>
       </div>
       <div id="general">
-        <?php
+        <!-- <?php
           if ($_SESSION['CUSTOMER']['STYLE']['est_usu_menu']!=' ') {?>
             <div class="modo--color">
               <label>color
@@ -129,7 +137,18 @@
               </label>
             </div>
           <?php }  ?>
-          <input type="button" id="saveStyle" value="Guardar Cambios">
+          <input type="button" id="saveStyle" value="Guardar Cambios"> -->
+          <h1>Elige tu estilo</h1>
+          <div class="colors">
+            <form class="" action="index.html" method="post">
+
+            <input type="radio" name="colors" value=""><label for=""><span></span></label>
+            <input type="radio" name="colors" value=""><label for=""><span></span></label>
+            <input type="radio" name="colors" value=""><label for=""><span></span></label>
+            <input type="radio" name="colors" value=""><label for=""><span></span></label>
+            <input type="radio" name="colors" value=""><label for=""><span></span></label>
+          </form>
+          </div>
       </div>
       </form>
       <div id="contacto">
