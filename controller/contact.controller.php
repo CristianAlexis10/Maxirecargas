@@ -36,18 +36,41 @@ require_once "controller/doizer.controller.php";
 		 $name = $_POST['name'];
 		 $email = $_POST['email'];
 		 $título = $_POST['asunto'];
-			$mensaje = '
-			<html>
-			<head>
-			<title>Maxirecargas </title>
-			</head>
-			<body>
-			<p>'.$_POST['message'].'</p>
-			<p>Nombre:'.$name.'</p>
-			<p>Correo:'.$email.'</p>
-			</body>
-			</html>
-			';
+		 $mensaje = '<!DOCTYPE html>
+		 <html>
+		   <head>
+		     <meta charset="utf-8">
+		     <title>contactanos</title>
+
+		   </head>
+		   <body style="margin: 0; padding: 0">
+		     <div class="container" style="background: #ddd;width: 100%;height: 100vh;">
+		       <div class="content" style="width: 80%;position: absolute;top: 0; left: 0; right: 0; bottom: 0;margin: auto;background: white;box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.2);text-align: center;font-family: lato, sans-serif;">
+		         <img src="https://maxirecargas.com.co/views/assets/image/logo.png">
+		         <h1 style="font-size: 40px;color: #35a4dd;text-transform: uppercase;">¡urgente!</h1>
+		         <p style="font-size: 22px;letter-spacing: 5px;color:#717171;">Un usuario desea ponerse en contacto con nosotros.</p>
+		         <ul style="list-style: none;text-align: left;padding: 15px 120px;text-transform: capitalize;color: #717171;">
+		           <li>nombre:'.$name.'</li>
+		           <li>correo:'.$email.'</li>
+		           <li>mensaje:'.$_POST['message'].'</li>
+		         </ul>
+
+		       </div>
+		     </div>
+		   </body>
+		 </html>';
+			// $mensaje = '
+			// <html>
+			// <head>
+			// <title>Maxirecargas </title>
+			// </head>
+			// <body>
+			// <p>'.$_POST['message'].'</p>
+			// <p>Nombre:'.$name.'</p>
+			// <p>Correo:'.$email.'</p>
+			// </body>
+			// </html>
+			// ';
 			$cabeceras= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 			if(mail('yonosoybond@gmail.com', $título, $mensaje, $cabeceras)){
 				$result = "Envio Exitoso";
@@ -57,7 +80,7 @@ require_once "controller/doizer.controller.php";
 			echo json_encode($result);
 	 }
 	 function knowData(){
-		 $result = $this->master->selectAll('gestion_web');
+		 $result = $this->master->selectAll("gestion_web");
 		 echo json_encode($result);
 	 }
 	}

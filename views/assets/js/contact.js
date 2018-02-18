@@ -43,7 +43,7 @@ if(document.getElementById('telephone')){
     type:"post",
     dataType:"json",
     success:function(result){
-      // console.log(result[0]);
+      // console.log(result);
       document.getElementById('telephone').innerHTML = result[0].gw_ct_telefono+"-"+result[0].gw_ct_telefono_2;
       document.getElementById('smartPhone').innerHTML = result[0].gw_ct_whatsapp;
       document.getElementById('emailMaxi').innerHTML = result[0].gw_ct_correo;
