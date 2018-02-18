@@ -27,6 +27,8 @@
 #wrap-result img{
 	width: 150px;
 	height: 150px;
+	position: absolute;
+
 }
 #upload{
 	display: block;
@@ -68,7 +70,7 @@
 	bottom: 0;
 	right: 0;
 	left: 0;
-    box-shadow: 0 0 2000px 2000px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 2000px 2000px rgba(0, 0, 0, 0.5);
 	z-index: 0;
 }
 .croppie-container .cr-vp-circle {
@@ -102,11 +104,7 @@
   transform: translateZ(0);
 }
 
-/*************************************/
-/***** STYLING RANGE INPUT ***********/
-/*************************************/
-/*http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.html */
-/*************************************/
+
 
 .cr-slider {
     -webkit-appearance: none;/*removes default webkit styles*/
