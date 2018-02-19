@@ -133,3 +133,38 @@ RewriteRule ^nuevo_dato_contacto$ index.php?controller=setting&a=contact
 #ERRORES
 ErrorDocument 404 /maxirecargas/views/modules/config/errors/error404.php
 ErrorDocument 404 /github/maxirecargas/views/modules/config/errors/error404.php
+
+#SPEED
+# Especificar caché de navegador
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType text/javascript "access plus 1 month"
+ExpiresByType text/html "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+ExpiresByType application/x-javascript "access plus 1 month"
+ExpiresByType application/xhtml-xml "access plus 600 seconds"
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 month"
+</IfModule>
+<ifmodule mod_headers.c>
+<filesmatch "\.(ico|jpe?g|png|gif|swf)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesmatch>
+<filesmatch "\.(css)$">
+Header set Cache-Control "max-age=604800, public"
+</filesmatch>
+<filesmatch "\.(js)$">
+Header set Cache-Control "max-age=216000, private"
+</filesmatch>
+<filesmatch "\.(x?html?|php)$">
+Header set Cache-Control "max-age=600, private, must-revalidate"
+</filesmatch>
+</ifmodule>
+
+#JS
+<FilesMatch "\.(js|css|ico|pdf|jpg|jpeg|png|gif|php)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
