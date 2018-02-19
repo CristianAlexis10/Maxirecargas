@@ -205,9 +205,10 @@
   width: 30px;
   color: white;
 }
+.container--grid.gridaparecer{justify-content: space-around;}
 .container--grid{
   columns:320px 3;
-  column-gap: 15px;
+  column-gap: 60px;
   width: 90%;
   height: 500px;
   max-width: 1100px;
@@ -247,7 +248,9 @@
 .aparecer{transform: translateX(0);}
 .gridaparecer{display: block;}
 
-
+.pagination{
+  position: relative;
+}
 
 /*views orders*/
 .order--fondo{

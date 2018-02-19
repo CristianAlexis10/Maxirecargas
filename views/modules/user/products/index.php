@@ -11,14 +11,7 @@
         <button type="button" name="button"  id="buscar" ><i class="fa fa-search" aria-hidden="true"></i>
         </button>
       </div>
-      <!-- <div class="search_options">
-        <ul>
-          <li>Referencia</li>
-          <li>Marcas</li>
-          <li>Genericos</li>
-          <li>impresora</li>
-        </ul>
-      </div> -->
+
     </div>
   </div>
 
