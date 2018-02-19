@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-02-2018 a las 16:03:41
--- Versión del servidor: 10.1.8-MariaDB
--- Versión de PHP: 5.6.14
+-- Tiempo de generación: 19-02-2018 a las 21:41:07
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -303,6 +303,11 @@ SET
      
 WHERE id_cliente_empresarial = codigo;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarDatosMaxi` (IN `micro` LONGTEXT, IN `mision` LONGTEXT, IN `vision` LONGTEXT, IN `poli` LONGTEXT)  NO SQL
+BEGIN 
+UPDATE gestion_web  SET gw_micro_des =  micro , gw_mision = mision , 	gw_vision = vision , gw_politicas = poli  ;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarEmpresa` (IN `codigo` INT(11), IN `nombre` VARCHAR(50), IN `nit` INT(11), IN `razon_social` VARCHAR(100))  BEGIN
@@ -731,6 +736,7 @@ CREATE TABLE `gestion_web` (
   `gw_ct_whatsapp` int(20) NOT NULL,
   `gw_ct_correo` varchar(150) NOT NULL,
   `gw_ct_direccion` varchar(200) NOT NULL,
+  `gw_logo` varchar(150) NOT NULL,
   `usu_codigo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -738,8 +744,8 @@ CREATE TABLE `gestion_web` (
 -- Volcado de datos para la tabla `gestion_web`
 --
 
-INSERT INTO `gestion_web` (`gw_codigo`, `gw_micro_des`, `gw_mision`, `gw_vision`, `gw_politicas`, `gw_st_section2-2`, `gw_ct_telefono`, `gw_ct_telefono_2`, `gw_ct_whatsapp`, `gw_ct_correo`, `gw_ct_direccion`, `usu_codigo`) VALUES
-(1, 'Para tus Recargas, Remanufactura y Venta de Toner y Cartuchos Genericos comunicate con Nosotros', 'Nuestra empresa brinda los más altos estándares de calidad y agilidad, con personal idóneo en cada área de trabajo, para optimizar los resultados de nuestros clientes, quienes son nuestra razón de ser, estamos comprometidos con nuestro servicio al crecimiento del empresario antioqueño.', 'En el año 2020 Maxirecargas S.A.S Tóner y Cartuchos, será la compañía líder de la región del valle del aburra en la prestación del servicio y distribución de insumos de impresión a pequeñas y medianas empresas tanto del sector público como privado. Estableceremos relaciones internacionales para tener productos únicos de importación.', 'maxirecargas s.a.s coprometido con el medio ambiente trabaja de la mano de empresas con el conocimiento en el manejo de los desechos que se producen dia a dia en su labor para general menos contaminantes en nuestro planeta.', '', 5774223, 2557575, 2147483647, 'maxirecargas2009@hotmail.com', 'Calle 6 c sur # 83a45', NULL);
+INSERT INTO `gestion_web` (`gw_codigo`, `gw_micro_des`, `gw_mision`, `gw_vision`, `gw_politicas`, `gw_st_section2-2`, `gw_ct_telefono`, `gw_ct_telefono_2`, `gw_ct_whatsapp`, `gw_ct_correo`, `gw_ct_direccion`, `gw_logo`, `usu_codigo`) VALUES
+(1, 'dfs', 'bdsf', 'cdsf', 'maxirecargas s.a.s coprometido con el medio ambiente trabaja de la mano de empresas con el conocimiento en el manejo de los desechos que se producen dia a dia en su labor para general menos contaminantes en nuestro planeta.', '', 5774223, 2557575, 2147483647, 'yonosoybond@gmail.com', 'Calle 6 c sur # 83a45', 'logo.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -1270,7 +1276,7 @@ CREATE TABLE `usuario` (
   `usu_primer_apellido` varchar(50) NOT NULL,
   `usu_segundo_apellido` varchar(50) NOT NULL,
   `usu_correo` varchar(100) NOT NULL,
-  `usu_telefono` int(10) NOT NULL,
+  `usu_telefono` bigint(10) NOT NULL,
   `id_ciudad` int(11) NOT NULL,
   `usu_direccion` varchar(200) NOT NULL,
   `usu_celular` int(20) NOT NULL,
