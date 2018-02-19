@@ -1151,6 +1151,18 @@ class MasterModel{
 
     return $result;
   }
+  public function modificarDatosMaxi($data){
+    try {
+      $this->sql="call modificarDatosMaxi(?,?,?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute($data);
+      $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+
+    return $result;
+  }
   public function contestarCotizacion($quotation,$response,$status){
     try {
       $this->sql="call contestarCotizacion(?,?,?)";

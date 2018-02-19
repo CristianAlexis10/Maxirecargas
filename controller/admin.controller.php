@@ -44,5 +44,13 @@ require_once "controller/doizer.controller.php";
 				require_once "views/modules/landing.html";
 			}
 		}
+		function UpdateBusi(){
+			$result = $this->master->modificarDatosMaxi($_POST['data']);
+			if ($result==true) {
+				echo json_encode("Modificación Exitosa.");
+			}else{
+				echo json_encode($this->doizer->knowError($result));
+			}
+		}
 	}
 ?>

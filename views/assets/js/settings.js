@@ -192,3 +192,27 @@ if (document.getElementById('numer1')) {
     }
   });
 }
+
+//Update Bussines
+$("#frmProfileBusi").submit(function(e){
+    e.preventDefault();
+    var data = [];
+    $(".dataUptadeBusi").each(function(){
+        data.push($(this).val());
+    });
+    if (confirm("¿Realizar Cambios?")) {
+        $.ajax({
+            url:"actualizar-datos-empresa",
+            type:"post",
+            dataType:"json",
+            data:({data:data}),
+            success:function(result){
+                $("#frmProfileBusi").after("<div class='message'>"+result+"</div>");
+                setTimeout(function(){
+                    $("div.message").remove();
+                },3000);
+            },
+            error:function(result){console.log(result);}
+        });
+    }
+});
