@@ -36,7 +36,7 @@
     </div>
     <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
   </div>
+<div class="supercontainer">
+  <div class="container--grid"></div>
 
-  <div class="container--grid">
-
-  </div>
+</div>

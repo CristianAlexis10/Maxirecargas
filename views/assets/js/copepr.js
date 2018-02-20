@@ -148,8 +148,9 @@ function cambiarPagina(pagina,numeroRegistros){
             }
           }
           //paginacion
+          $(".pagination").remove();
           var totalPaginas = Math.ceil((numeroRegistros/elementosPagina));
-          $(".container--grid").append("<div class='pagination'></div>");
+          $(".container--grid").after("<div class='pagination'></div>");
           $(".pagination").css({"display":"flex","flex-direction":"row-reverse"});
           while (totalPaginas!=0) {
             // console.log(totalPaginas);
