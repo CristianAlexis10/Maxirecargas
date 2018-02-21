@@ -12,14 +12,9 @@ CONTENT RYLES CSS
 3- modules-orders
 */
 
-
-
-
 @import "reset.css";
 @import "colors.css";
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700|Oswald:200,400,700');
-
-
 
 body{
   background: white;
@@ -48,22 +43,9 @@ body{
   background: #354052;
   color: #8f9aac;
 }
- .userProfile--img{
-  width: 80%;
-  margin:20px;
-}
-
- .userProfile--img img{
-  box-sizing: border-box;
-
-}
-
- .navigator {
- width: 100%;
- margin: auto;
-
-}
-
+ .userProfile--img{width: 80%;margin:20px;}
+ .userProfile--img img{box-sizing: border-box;}
+ .navigator {width: 100%;margin: auto;}
  .navigator li {
   display: flex;
   flex-direction: column;
@@ -72,7 +54,6 @@ body{
   transition: all 0.3s ease;
   padding: 20px;
   text-transform: capitalize;
-
 }
  .navigator li a:hover{
   background: white;
@@ -741,4 +722,25 @@ margin: 0 auto;
   justify-content: center;
   box-sizing: border-box;
 }
-/* views quotation */
+/* views route */
+.route h1{
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 5px;
+}
+.route p{
+  text-align: center;
+}
+
+.visit table{
+  width: 80%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+.visit table th,.visit table td{
+  text-align: center;padding: 10px;
+}
+.visit table tr:nth-child(even){
+  background: #ededed;
+}
+.visit table th{background: #35a4dd;}

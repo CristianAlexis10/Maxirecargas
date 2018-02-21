@@ -5,20 +5,27 @@ $data = $this->master->verDetalleRuta(date('Y-m-d'),base64_decode($_GET['data'])
 $_SESSION['mapRouteToday']= $data;
 if($data!=array()){
 ?>
-<div class="mudules orders detail" id="detail-reload">
+<div class="route">
+	<h1><?php echo $data[0]['usu_primer_nombre']." ".$data[0]['usu_primer_apellido'];?> </h1>
+	<p><?php echo $data[0]['usu_correo']?></p>
+	<p><?php echo $data[0]['usu_celular'];?></p>
+</div>
+<div class="visit today">
+	<h1>visitas para hoy <?php echo $count['total'];?></h1>
+	<table>
+		<tr>
+			<th>cliente</th>
+			<th>direccion</th>
+		</tr>
+		<tr>
+			<td>tales s.a.s</td>
+			<td>carrera 45 aa nro. 86b-123</td>
+		</tr>
+	</table>
+
+</div>
+<!-- <div class="mudules orders detail" id="detail-reload">
 	<div class="wrap--info">
-		<div class="detail">
-			<p class="item--detail">Nombre Encargado:</p>
-			<p class="data--detail"><?php echo $data[0]['usu_primer_nombre']." ".$data[0]['usu_primer_apellido'];?>  </p>
-		</div>
-		<div class="detail">
-			<p class="item--detail">Correo:</p>
-			<p class="data--detail"><?php echo $data[0]['usu_correo']?></p>
-		</div>
-		<div class="detail">
-			<p class="item--detail">Numero de Celular:</p>
-			<p class="data--detail"><?php echo $data[0]['usu_celular'];?> </p>
-		</div>
 		<div class="detail">
 			<p class="item--detail">Numero de visitas para hoy:</p>
 			<p class="data--detail"><?php echo $count['total'];?> </p>
@@ -26,23 +33,24 @@ if($data!=array()){
 		<div class="detail">
 			<a href="#"  class="contact--customer" id="<?php echo $data[0]['usu_codigo']; ?>">Contactar encargado</a>
 		</div>
+		<ul>
 			<li class="item mapa">
 				 <div id="map"></div>
 				 <div id="directions"></div>
-			 </li>
+			</li>
 		</ul>
 	</div>
 	<div class="wrap--btns">
 		<h2>Visitas para hoy</h2>
 		<ul>
 			<?php
-			foreach($data as $row){?>
-					<li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
+				foreach($data as $row){?>
+				<li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
 
-				<?php } ?>
+			<?php } ?>
 			</ul>
 	</div>
-</div>
+</div> -->
 <!-- contacto -->
 <div id="contact"></div>
 <?php }else{
@@ -91,5 +99,5 @@ if($data!=array()){
     </body>
 </html>
 <?php }else{
-	echo "No Tienes permiso patra acceder a este  modulo";
+	echo "No Tienes permiso para acceder a este  modulo";
 }?>
