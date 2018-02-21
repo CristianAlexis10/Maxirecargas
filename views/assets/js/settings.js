@@ -145,34 +145,36 @@ $("#frmNewRol").submit(function(e) {
 //que cuando lo envie se cree la variable e tine todos los metodos de form
 $("#form_contacto").submit(function(e){
   e.preventDefault();
-  var primerNumero = $("#numer1").val();
-  var secundoNumero = $("#numer2").val();
-  var whatsapp = $("#wpp").val();
-  var correo = $("#correocos").val();
-  var direccion = $("#direccion").val();
-  if (primerNumero!=""&& secundoNumero!=""&&  whatsapp!=""&&  correo!=""&&  direccion!="") {
-    $.ajax({
-      url: "nuevo_dato_contacto",
-      type: "POST",
-      dataType : "json",
-      data: ({num1:primerNumero, num2:secundoNumero, wpp:whatsapp, correo:correo, dirc:direccion, }),
-      success: function(result){
-        if (result==true) {
-          $("#form_contacto")[0].reset();
-        }
-          $("#btn-coso").after("<div class='message'>"+result+"</div>");
-      },
-      error: function(result) {
-        console.log(result);
+  if (confirm("¿Modificar datos de contacto?")) {
+      var primerNumero = $("#numer1").val();
+      var secundoNumero = $("#numer2").val();
+      var whatsapp = $("#wpp").val();
+      var correo = $("#correocos").val();
+      var direccion = $("#direccion").val();
+      if (primerNumero!=""&& secundoNumero!=""&&  whatsapp!=""&&  correo!=""&&  direccion!="") {
+        $.ajax({
+          url: "nuevo_dato_contacto",
+          type: "POST",
+          dataType : "json",
+          data: ({num1:primerNumero, num2:secundoNumero, wpp:whatsapp, correo:correo, dirc:direccion, }),
+          success: function(result){
+            if (result==true) {
+              $("#form_contacto")[0].reset();
+            }
+              $("#btn-coso").after("<div class='message'>"+result+"</div>");
+          },
+          error: function(result) {
+            console.log(result);
+          }
+        });
+      }else {
+        $("#btn-coso").after("<div class='message'>todos los campos son requeridos</div>");
       }
+    }
+      setTimeout(function(){
+        $(".message").remove();
+      },3000);
     });
-  }else {
-    $("#btn-coso").after("<div class='message'>todos los campos son requeridos</div>");
-  }
-  setTimeout(function(){
-    $(".message").remove();
-  },3000);
-});
 //llenar datos
 if (document.getElementById('numer1')) {
   $.ajax({
