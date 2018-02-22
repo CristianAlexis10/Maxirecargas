@@ -79,7 +79,6 @@ require_once "controller/doizer.controller.php";
 						  <body>
 							<p><b>'.$data[0].'</b> ha solicitado una cotización con los siguientes datos : </p>
 							<p>'.$_SESSION['save_quotation'].'</p>
-							<p><b>Observaciones: </b>'.$data[4].'</p>
 							<h1>Datos de contacto</h1>
 							<p><b>Nombre:</b>'.$data[0].'</p>
 							<p><b>Correo:</b>'.$data[1].'</p>

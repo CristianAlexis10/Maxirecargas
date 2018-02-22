@@ -41,7 +41,7 @@ function services(pro){
 showButtons();
 function showButtons(){
   //boton de enviar y otro producto
-  if ( $("#dataprod").val()!='' &&  $("#cantidad").val() != '' && $("#solicitud").val() != "" && pro_exist == true) {
+  if ( $("#dataprod").val()!='' &&  $("#cantidad").val() &&  $("#cantidad").val()>0 != '' && $("#solicitud").val() != "" && pro_exist == true) {
     $("#openModal").show();
     $("#next").show();
   }else{
@@ -146,6 +146,10 @@ if (document.getElementById('closeConfir')) {
 
   var openModal = document.getElementById('openModal');
   openModal.onclick = function(){
+    if ($("#cantidad").val()<=0) {
+      alert("Ingresa una cantidad valida");
+      return;
+    }
     if (indice_total==0 && $("#dataprod").val()!="" && $("#solicitud").val() !="" && $("#cantidad").val()!="") {
 
     $.ajax({
@@ -264,8 +268,7 @@ $("#sendQuotation").submit(function(e) {
                 dataType:'json',
                 data: ({data : dataJson}),
                 beforeSend:function() {
-                  $("#modalConfir").hide();
-                  $("#openModal").after('<div class="message-quotation">Validando...</div>');
+                  $("#sendQuotation").after('<div class="message-quotation">Validando...</div>');
                 },
                 success: function(result){
                     modal.style.display = "none";
@@ -276,6 +279,7 @@ $("#sendQuotation").submit(function(e) {
                         showButtons();
                         delete quotation;
                         $("#openModal").after('<div class="message-quotation">Tu cotización ha sido enviada</div>');
+                        setTimeout(function(){$("#modalConfir").hide();},3000);
                     }else{
                         $("#openModal").after('<div class="message-quotation">'+result+'</div>');
                     }
