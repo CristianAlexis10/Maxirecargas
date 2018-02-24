@@ -201,7 +201,7 @@
         <div class="runform--contenido">
         <h1>iniciar sesion</h1>
         <p>Agrega tu documento de identidad y contraseña para ingresar a maxirecargas</p>
-        <form id="form--login" data-parsley-validate>
+        <form id="form--login" >
           <div class="wrap--login">
             <label for="document" class="label-login">Documento de identidad</label>
             <input type="text" name="data-login" class="input--login" id="document" required>

@@ -99,46 +99,50 @@ $("#frmNewRol").submit(function(e) {
     dataReal = new Object();
     dataReal['rol_name']=rolName;
     dataReal['rol_maxi']=rol_maxi;
-
+if (modUser==true || modProducts==true || modOrder==true || modQuation==true || modRoute==true) {
     if (modUser==true) {
-        dataReal["mod_user"]={"ver": 1 , "crear":dataUser[0],"modificar":dataUser[1] , "eliminar":dataUser[2]};
+      dataReal["mod_user"]={"ver": 1 , "crear":dataUser[0],"modificar":dataUser[1] , "eliminar":dataUser[2]};
     }
     if (modProducts==true) {
-         dataReal["mod_products"]={"ver": 1 , "crear":dataProducts[0],"modificar":dataProducts[1] , "eliminar":dataProducts[2]};
+      dataReal["mod_products"]={"ver": 1 , "crear":dataProducts[0],"modificar":dataProducts[1] , "eliminar":dataProducts[2]};
     }
     if (modOrder==true) {
-        dataReal["mod_orders"]={"ver": 1 , "crear":dataOrder[0],"modificar":dataOrder[1] , "eliminar":dataOrder[2]};
+      dataReal["mod_orders"]={"ver": 1 , "crear":dataOrder[0],"modificar":dataOrder[1] , "eliminar":dataOrder[2]};
     }
     if (modQuation==true) {
-        dataReal["mod_quoation"]={"ver": 1 , "crear":dataQuation[0],"modificar":dataQuation[1] , "eliminar":dataQuation[2]};
+      dataReal["mod_quoation"]={"ver": 1 , "crear":dataQuation[0],"modificar":dataQuation[1] , "eliminar":dataQuation[2]};
     }
     if (modRoute==true) {
-        dataReal["mod_routes"]={"ver": 1 , "crear":dataRoutes[0],"modificar":dataRoutes[1] , "eliminar":dataRoutes[2]};
+      dataReal["mod_routes"]={"ver": 1 , "crear":dataRoutes[0],"modificar":dataRoutes[1] , "eliminar":dataRoutes[2]};
     }
-    // dataReal.push(rol_maxi);
-    // console.log(dataReal);
-    // dataReal = {"e":"sa"};
-            $.ajax({
-              url: "nuevo-rol",
-              type: "POST",
-               dataType:'json',
-               data: ({data: dataReal}),
-               success: function(result){
-                  console.log(result);
-                  if (result==true) {
-                    $('#frmNewRol').after('<div class="message">Registrado Exitosamente</div>');
-                    // $('#frmNewRol')[0].reset();
-                  }else{
-                    $('#frmNewRol').after('<div class="message">'+result+'</div>');
-                  }
-                  setTimeout(function(){
-                     $('div.message').remove();
-                   }, 2000);
-               },
-               error: function(result){
-                  console.log(result);
-               }
-            });
+    $.ajax({
+      url: "nuevo-rol",
+      type: "POST",
+      dataType:'json',
+      data: ({data: dataReal}),
+      success: function(result){
+        console.log(result);
+        if (result==true) {
+          $('#frmNewRol').after('<div class="message">Registrado Exitosamente</div>');
+          $('#frmNewRol')[0].reset();
+        }else{
+          $('#frmNewRol').after('<div class="message">'+result+'</div>');
+        }
+        setTimeout(function(){
+          $('div.message').remove();
+        }, 2000);
+      },
+      error: function(result){
+        console.log(result);
+      }
+    });
+
+}else{
+  $('#frmNewRol').after('<div class="message">Selecciona minimo un módulo </div>');
+  setTimeout(function(){
+    $('div.message').remove();
+  }, 2000);
+}
 
 });
 // cambiar datos de contacto

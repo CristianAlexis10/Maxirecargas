@@ -95,26 +95,30 @@
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-			$data[]=1;
-			if (isset($_POST['services']) &&  $_POST['services'][0]!="") {
-				 $ser = $_POST['services'];
-				$result = $this->master->insert($this->tableName,$data,$this->insertException);
-				// die($result);
-				$data_pro = $this->master->selectBy('producto',array('pro_referencia',$data[2]));
-				$i= 0;
-				foreach ($ser as $key) {
-					foreach ($key as $value) {
-						$result = $this->master->insert('servicioxproducto',array($ser[0][$i],$data_pro['pro_codigo']));
-						$i++;
-					}
-				}
-			// echo json_encode($ser[0][$i]);
-			// die();
+			if ($data[4]=="icn-maxi.png") {
+				 echo json_encode("Selecciona una Imagen");
 			}else{
-				$result ='por favor seleccione un servicio';
+				$data[]=1;
+				if (isset($_POST['services']) &&  $_POST['services'][0]!="") {
+					$ser = $_POST['services'];
+					$result = $this->master->insert($this->tableName,$data,$this->insertException);
+					// die($result);
+					$data_pro = $this->master->selectBy('producto',array('pro_referencia',$data[2]));
+					$i= 0;
+					foreach ($ser as $key) {
+						foreach ($key as $value) {
+							$result = $this->master->insert('servicioxproducto',array($ser[0][$i],$data_pro['pro_codigo']));
+							$i++;
+						}
+					}
+					// echo json_encode($ser[0][$i]);
+					// die();
+				}else{
+					$result ='por favor seleccione un servicio';
+				}
+				$_SESSION['new_stock'] =	$data[2];
+				echo json_encode($result);
 			}
-			$_SESSION['new_stock'] =	$data[2];
-			echo json_encode($result);
 			//  $data[]=date('Y-m-d');
 			// header("Location: crear-inventario");
 		}

@@ -1,11 +1,14 @@
 <?php
+require_once "controller/doizer.controller.php";
 	class CategoryController{
 		private $master;
+		private $doizer;
 		private $tableName;
 		private $insertException;
 		private $updateException;
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
+	 		$this->doizer = new DoizerController;
 	 		$this->tableName="tipo_producto";
 	 		$this->insertException=array('tip_pro_codigo');
 	 		$this->updateException = array('tip_pro_codigo');
@@ -30,8 +33,8 @@
 				require_once "views/modules/landing.html";
 			}
 
-			
-			
+
+
 		}
 		function viewUpdate(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
@@ -52,15 +55,15 @@
 			}else{
 				require_once "views/modules/landing.html";
 			}
-			
+
 		}
 		function newRegister(){
 			$data = $_POST['data'];
 			$result = $this->master->insert($this->tableName,$data,$this->insertException);
 			if ($result==1) {
-				echo json_encode("Registrado Exitosamente");
+				echo json_encode(true);
 			}else{
-				echo json_encode($result);
+				echo json_encode($this->doizer->knowError($result));
 			}
 		}
 		function readAll(){
@@ -88,7 +91,7 @@
 			if ($result==1) {
 				echo json_encode("Eliminado Exitosamente");
 			}else{
-				echo json_encode($result);
+				echo json_encode($this->doizer->knowError($result));
 			}
 		}
 	}

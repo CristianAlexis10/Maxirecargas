@@ -1174,6 +1174,17 @@ class MasterModel{
     }
     return $result;
   }
+  public function crearMarca($data){
+    try {
+      $this->sql="call crearMarca(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute($data);
+      $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
 
   function 	innerJoinLocalizacion($ciudad){
     try {

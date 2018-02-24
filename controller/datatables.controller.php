@@ -27,6 +27,9 @@ require_once "controller/doizer.controller.php";
             require_once "views/modules/config/datatables/datatable-cliEmp.php";
         }
         function dataTableProduct(){
+					$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+					$modulo = 'productos';
+					$crud = permisos($modulo,$permit);
             require_once "views/modules/config/datatables/datatable-products.php";
         }
         function dataTableOrderPending(){
