@@ -268,3 +268,53 @@ $("#sendQuotation").submit(function(e) {
       }
     });
 });
+//search opction
+
+$("#close_modal_search").click(function(){
+  $("#modalSearch").css({"display":"none"});
+});
+$("#openSearch").click(function(){
+  $("#modalSearch").css({"display":"flex"});
+});
+$("#frmOptionSearch").submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url:"opciones-busqueda-referencia",
+    type:"post",
+    dataType:"json",
+    data:({data:$("#optionSearch").val()}),
+    success:function(result){
+      $(".itemResult").remove();
+    //añadir tds
+    var i = 0;
+    $.each(result,function(){
+            var tds=$("#tabla tr:first td").length;
+            var trs=$("#tabla tr").length;
+            var nuevaFila="<tr class='itemResult'>";
+            nuevaFila+="<td>"+result[i].pro_referencia+"</td>";
+            nuevaFila+="<td>"+result[i].tip_pro_nombre+"</td>";
+            nuevaFila+="<td>"+result[i].mar_nombre+"</td>";
+            nuevaFila+="<td>"+result[i].pro_descripcion+"</td>";
+            nuevaFila+="<td>"+result[i].opc_bus_tags+"</td>";
+            nuevaFila+='<td> <a href="#" id="'+result[i].pro_referencia+'" onclick="seleccionarProducto(this)">Agregar</a></td>';
+            nuevaFila+="</tr>";
+            $("#tabla").append(nuevaFila);
+            i++;
+    });
+      $("#tableResult").remove();
+      $(".result").append(result);
+      console.log(result);
+      },
+    error:function(result){
+      console.log(result);
+    }
+  });
+});
+function seleccionarProducto(ele){
+  $("#optionSearch").val(" ");
+  $("#producto").val(ele.id);
+  $("#modalSearch").css({"display":"none"});
+  $(".hide--service").hide();
+  $(".hide--cantidad").hide();
+  $(".hide--obs").hide();
+}

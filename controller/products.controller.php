@@ -193,5 +193,10 @@
 			}
 			echo json_encode($data);
 		}
+		function readOptionSearch(){
+			$data=$_POST['data'];
+			$result = $this->master->readOptionSearch($data);
+			echo json_encode($result);
+		}
 	}
 ?>

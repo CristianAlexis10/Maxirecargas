@@ -98,6 +98,7 @@ RewriteRule ^consular-por-categoria-paginacion$ index.php?controller=products&a=
 RewriteRule ^filter-products$ index.php?controller=products&a=filter
 RewriteRule ^filterProductsCount$ index.php?controller=products&a=filterCount
 RewriteRule ^todas-referencias$ index.php?controller=products&a=readRefer
+RewriteRule ^opciones-busqueda-referencia$ index.php?controller=products&a=readOptionSearch
 
 
 

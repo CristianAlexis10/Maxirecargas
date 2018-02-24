@@ -593,6 +593,21 @@ class MasterModel{
 
         return $result;
     }
+    public function opcionesBusqueda($value){
+        try {
+            $this->sql="call opcionesBusqueda(?,?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute($value);
+            $result = $query->errorInfo()[1];
+            if ($result==null) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            $result = $query->errorInfo()[1];
+        }
+
+        return $result;
+    }
 
     //INNER JOIN PRODUCTOS
     public function innerJoinUsuario($code){
@@ -1246,6 +1261,17 @@ class MasterModel{
       $this->sql="call readRefer()";
       $query=$this->pdo->prepare($this->sql);
       $query->execute();
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
+  function 	readOptionSearch($data){
+    try {
+      $this->sql="call readOptionSearch(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($data));
       $result = $query->fetchALL(PDO::FETCH_BOTH);
     } catch (PDOException $e) {
       $result = $query->errorInfo()[1];

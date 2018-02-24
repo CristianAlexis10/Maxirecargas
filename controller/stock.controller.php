@@ -29,8 +29,11 @@
 			require_once "views/include/scope.footer.php";
 		}
 		function newRegister(){
+			$opciones = $_POST['opciones_busqueda'];
 			$data = $_POST['data'];
 			$id = $this->master->selectBy('producto',array('pro_referencia',$_SESSION['new_stock']));
+			//opciones de busqueda
+			$result = $this->master->opcionesBusqueda(array($id['pro_codigo'],$opciones));
 			$data[]=$id['pro_codigo'];
 			unset($_SESSION['new_stock']);
 			 // $data[]=date('Y-m-d');
