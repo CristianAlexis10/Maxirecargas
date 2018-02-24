@@ -1241,6 +1241,17 @@ class MasterModel{
     }
     return $result;
   }
+  function 	readRefer(){
+    try {
+      $this->sql="call readRefer()";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute();
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
 
 }
 

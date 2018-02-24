@@ -220,6 +220,7 @@ $("#frmNewUser").submit(function(e) {
 irParte2.onclick = function(){
    primerpaso(num_doc);
 }
+
  function primerpaso(doc){
    if (doc==true && $("#priNom").val() !='' && $('#priApe').val() != '') {
         customerPart1.style.display= "none"
@@ -231,7 +232,17 @@ irParte2.onclick = function(){
      },3000);
    }
  }
-
+ function valida(e){
+     tecla = (document.all) ? e.keyCode : e.which;
+     //Tecla de retroceso para borrar, siempre la permite
+     if (tecla==8){
+         return true;
+     }
+     // Patron de entrada, en este caso solo acepta numeros
+     patron =/[0-9]/;
+     tecla_final = String.fromCharCode(tecla);
+     return patron.test(tecla_final);
+ }
  //segundo
  // $("#normalIrParte3").attr("disabled",true);
 var usu_correo = false;

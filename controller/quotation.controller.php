@@ -41,19 +41,6 @@ require_once "controller/doizer.controller.php";
 			}
 		}
 
-		function saveSession(){
-			if ($_POST['data']=='borrar') {
-					$_SESSION['save_quotation'] = ' ';
-			}else{
-				if (isset($_SESSION['save_quotation'])) {
-					$data= $_POST['data'];
-					$_SESSION['save_quotation'] .= $data;
-				}else{
-					$_SESSION['save_quotation'] = '';
-				}
-			}
-			echo json_encode($_SESSION['save_quotation']);
-		}
 		function newQuotationUser(){
 			$data= $_POST['data'];
 			if ($data[0] != '' && $data[1] != '' && $data[2]!='' && $data[3]!='' ) {
@@ -78,7 +65,7 @@ require_once "controller/doizer.controller.php";
 						  </head>
 						  <body>
 							<p><b>'.$data[0].'</b> ha solicitado una cotización con los siguientes datos : </p>
-							<p>'.$_SESSION['save_quotation'].'</p>
+							<p>'.$_POST['all'].'</p>
 							<h1>Datos de contacto</h1>
 							<p><b>Nombre:</b>'.$data[0].'</p>
 							<p><b>Correo:</b>'.$data[1].'</p>

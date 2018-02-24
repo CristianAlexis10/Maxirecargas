@@ -1,297 +1,270 @@
-var quotation = new Object();
-localStorage.setItem("indice", 0);
-var indice = 0;
-var indice_actual = 0;
-var indice_total = 0;
-var nuevo_pro = true;
-
-//validar si existe el producto
-var pro_exist = false;
-$("#dataprod").blur(function(){
-  services($("#dataprod").val());
+//autocomplete
+$.ajax({
+  url:"todas-referencias",
+  type:"post",
+  dataType:"json",
+  success:function(result){
+    $( "#producto" ).autocomplete({
+      source: result
+    });
+  },
+  error:function(result){console.log(result);}
 });
-function services(pro){
+//quotation
+//ocultar inputs
+$(".hide--service").hide();
+$(".hide--cantidad").hide();
+$(".hide--obs").hide();
+$("#orderSiguiente").hide();
+//OCULTAR BOTONES DE NAVEGACION
+$("#next").hide();
+$("#back").hide();
+$("#otroProducto").hide();
+
+//VALIDAR SI EXISTE LA REFERENCIA
+$("#searchPro").click(function(){
   $.ajax({
       url: "index.php?controller=config&a=selectServices",
       type: "POST",
       dataType:'json',
-      data: ({data: pro}),
+      data: ({data: $("#producto").val()}),
       success: function(result){
         if (result=='No existe Este producto') {
-                  $("#solicitud").empty();
-                  pro_exist = false;
-                  $("#dataprod").after('<div class="message-quotation">Este producto no existe</div>');
+                  $("#frmNewOrder").after('<div class="message">Este producto no existe</div>');
                   setTimeout(function(){
-                    $("div.message-quotation").remove();
+                    $("div.message").remove();
                   },3000);
-
-              return ;
+                  $(".hide--service").hide();
+                  $(".hide--cantidad").hide();
+                  $(".hide--obs").hide();
+                  $("#orderSiguiente").hide();
         }else{
-          pro_exist = true;
-          $("#solicitud").empty();
-          var selector = document.getElementById('solicitud');
-          for (var i = 0; i < result.length; i++) {
-            selector.options[i] = new Option(result[i].tip_ser_nombre,result[i].tip_ser_cod);
-          }
+          //mostrar y llenar el select de servicios
+          $(".hide--service").show();
+          $(".hide--cantidad").show();
+          $(".hide--obs").show();
+          $("#servicio").empty();
+            var selector = document.getElementById('servicio');
+            for (var i = 0; i < result.length; i++) {
+                selector.options[i] = new Option(result[i].tip_ser_nombre,result[i].tip_ser_cod);
+            }
         }
       }
   });
-}
-//mostrar botonoes
-showButtons();
-function showButtons(){
-  //boton de enviar y otro producto
-  if ( $("#dataprod").val()!='' &&  $("#cantidad").val() &&  $("#cantidad").val()>0 != '' && $("#solicitud").val() != "" && pro_exist == true) {
-    $("#openModal").show();
-    $("#next").show();
+});
+//VALIDAR SI LOS CAMPOS ESTAN LLENOS
+$("#cant").keyup(function(){
+  if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cant").val()!="" && $("#cant").val()>0) {
+      $("#orderSiguiente").show();
+      $("#otroProducto").show();
   }else{
-    // $("#openModal").hide();
-    $("#next").hide();
+    $("#orderSiguiente").hide();
+    $("#otroProducto").hide();
   }
-//boton de anterior
-  if (indice_actual==0) {
-      $("#before").hide();
+});
+
+//GUARDAR
+var order = new Object();
+var indice = 0;
+var indice_actual = 0;
+$("#otroProducto").click(function(){
+  //funcion guardar
+  guardar();
+  //borrar campos y ocultarlos
+  $("#producto").val("");
+  $("#servicio").val("");
+  $("#cant").val("");
+  $("#observ").val("");
+  $(".hide--service").hide();
+  $(".hide--cantidad").hide();
+  $(".hide--obs").hide();
+  $("#otroProducto").hide();
+  //mostrar boton "back"
+  $("#back").show();
+  //ocultar next
+  $("#next").hide();
+  console.log(order);
+});
+//MOSTRAR ANTERIOR
+$("#back").click(function(){
+  //validar pagina
+  if (indice_actual==1) {
+    indice_actual = (indice_actual-1);
+    $("#back").hide();
   }else{
-    $("#before").show();
+    indice_actual = (indice_actual-1);
+    $("#back").show();
   }
-
-  if (indice_actual>=(indice_total) || indice_total==1 || indice_actual==0) {
-    $("#nextExis").hide();
-  }else{
-      $("#nextExis").show();
-  }
-  if (indice_actual==0 && indice_total>0) {
-    $("#nextExis").show();
-  }
-  if (indice_actual==(indice_total-1)) {
-    $("#nextExis").hide();
-  }
-  if (indice_actual==0) {
-    if (quotation[0]==undefined) {
-          nuevo_pro = true;
-    }else{
-      nuevo_pro = false;
-    }
-  }
-
-}
-
-$("#solicitud").empty();
-//guardar
+  $("#producto").val(order[indice_actual].producto);
+  $("#servicio").val(order[indice_actual].servicio);
+  $("#cant").val(order[indice_actual].cantidad);
+  $("#observ").val(order[indice_actual].obs);
+  $(".hide--service").show();
+  $(".hide--cantidad").show();
+  $(".hide--obs").show();
+  $("#otroProducto").show();
+  //boton next
+  showNext();
+});
+//MOSTRAR SIGUIENTE
 $("#next").click(function(){
-  if ($("#dataprod").val() != '' && $("#solicitud").val() != '' && $("#cantidad").val() > 0 ) {
-    if (quotation[indice_actual]==undefined) {
-      quotation[indice]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
-      localStorage.setItem("cotizacion", JSON.stringify(quotation));
-      localStorage.setItem("indice", (indice+1));
-      localStorage.setItem("indice_total", indice_total);
-      indice ++;
-      indice_actual = indice;
-      indice_total++;
-    }else{
-      quotation[indice_actual]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
-      //igualar inidice
-      indice_actual=indice_total;
-    }
-    $("#quotationUser")[0].reset();
-    console.log(quotation);
+  //validar pagina
+    indice_actual = indice_actual+1;
+    $("#producto").val(order[indice_actual].producto);
+    $("#servicio").val(order[indice_actual].servicio);
+    $("#cant").val(order[indice_actual].cantidad);
+    $("#observ").val(order[indice_actual].obs);
+    $(".hide--service").show();
+    $(".hide--cantidad").show();
+    $(".hide--obs").show();
+    $("#otroProducto").show();
+    showNext();
+  //mostrar boton back
+  if (indice_actual==0) {
+    $("#back").hide();
   }else{
-    $("#quotationUser").after('<div class="message-quotation"> Campos Vacios</div>');
-    setTimeout(function(){
-       $('div.message-quotation').remove();
-     }, 2000);
-
-
+    $("#back").show();
   }
-  $("#solicitud").empty();
-  showButtons();
 });
-$("#before").click(function(){
-  $("#solicitud").empty();
-  indice_actual = indice_actual-1;
-  $("#dataprod").val(quotation[indice_actual].referencia);
-  services($("#dataprod").val());
-  $("#solicitud").val(quotation[indice_actual].servicio);
-  $("#cantidad").val(quotation[indice_actual].cantidad);
-  showButtons();
-
-});
-$("#nextExis").click(function(){
-  $("#solicitud").empty();
-  indice_actual = indice_actual+1;
-  $("#dataprod").val(quotation[indice_actual].referencia);
-  $("#solicitud").val(quotation[indice_actual].servicio);
-  $("#cantidad").val(quotation[indice_actual].cantidad);
-  showButtons();
-
-});
-$("#cantidad").keyup(function(){
-  showButtons();
-});
-$("#dataprod").keyup(function(){
-  showButtons();
-});
-
-
-
-
-
-if (document.getElementById('closeConfir')) {
-  var CloseModal = document.getElementById('closeConfir');
-  var modal = document.getElementById('modalConfir');
-  CloseModal.onclick= function(){
-    modal.style.display = "none";
-
-  };
-
-  var openModal = document.getElementById('openModal');
-  openModal.onclick = function(){
-    if ($("#cantidad").val()<=0) {
-      alert("Ingresa una cantidad valida");
-      return;
+//MOSTRAR BOTON NEXT
+function showNext(){
+  if (indice_actual==(indice-1)) {
+    $("#next").hide();
+  }else{
+    $("#next").show();
+  }
+}
+//BOTON TERMINAR
+$("#orderSiguiente").click(function(){
+  //validar si hay que guardar
+  if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cant").val()!="") {
+    guardar();
+  }
+  $("#modalConfir").toggle();
+  $.ajax({
+    url:"vista-previa",
+    type:"post",
+    dataType:"json",
+    data:({data:order}),
+    success: function(result){
+      console.log(result);
+      $("#detalles").empty();
+      $("#detalles").append(result);
+    },
+    error: function(result){
+      console.log(result);
     }
-    if (indice_total==0 && $("#dataprod").val()!="" && $("#solicitud").val() !="" && $("#cantidad").val()!="") {
-
+  });
+});
+//cuando le de orderAtras
+$("#orderAtras").click(function(){
+  indice_actual=indice_actual-1;
+  $("#modalConfir").hide();
+});
+//guardar en el array
+function guardar() {
+  if (order[indice_actual]==undefined) {
+        //si no existe
+        order[indice]={'producto':$("#producto").val(), 'servicio':$("#servicio").val(), 'cantidad':$("#cant").val() ,'obs':$("#observ").val()};
+        //Aumentar indice
+        indice++;
+        indice_actual++;
+  }else{
+    // si existe
+    order[indice_actual]={'producto':$("#producto").val(), 'servicio':$("#servicio").val(), 'cantidad':$("#cant").val() ,'obs':$("#observ").val()};
+    //igualar inidice
+    indice_actual=indice;
+  }
+}
+//NUEVA direccion
+var direccion = "default";
+//llenar el select de Ciudad
+if (document.getElementById('ciudad')) {
     $.ajax({
-        url: "guardar-cotizacion-session",
+        url: "index.php?controller=config&a=selectCity",
         type: "POST",
         dataType:'json',
-        data: ({data : 'borrar'}),
         success: function(result){
-             // console.log(result);
-        },
-        error: function(result){
-             // console.log(result);
+            var selector = document.getElementById('ciudad');
+            for (var i = 0; i < result.length; i++) {
+                selector.options[i] = new Option(result[i].ciu_nombre,result[i].id_ciudad);
+            }
         }
     });
-    $('#detalles').empty();
-    modal.style.display = "flex";
-      if (localStorage.indice== 0) {
-        quotation[0]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
-        // for (var i = 0; i <= quotation.length; i++) {
-        // }
-        var i = 0;
-        while (quotation[i]!=undefined) {
-                  $.ajax({
-                    url: "index.php?controller=config&a=selectServiceBy",
-                    type: "POST",
-                    dataType:'json',
-                    data: ({data:quotation[i].servicio})
-                  }).done(function(result){
-                    $('#detalles').append('<p> Servicio: '+result.tip_ser_nombre+' Referencia: '+quotation[0].referencia+' Cantidad: '+quotation[0].cantidad+'</p>');
-                          var nada = '<p> <b>Servicio:</b> '+result.tip_ser_nombre+'<b> Referencia:</b> '+quotation[0].referencia+' <b>Cantidad:</b> '+quotation[0].cantidad+'</p>';
-                          $.ajax({
-                              url: "guardar-cotizacion-session",
-                              type: "POST",
-                              dataType:'json',
-                              data: ({data : nada}),
-                              success: function(result){
-                                   // console.log(result);
-                              },
-                              error: function(result){
-                                   console.log(result);
-                              }
-                          });
-                  });
-
-          // console.log(i);
-          i++;
-        }
-        // console.log(  quotation[3]);
-      }else{
-          if (quotation[(indice_actual)]==undefined) {
-        quotation[(indice_total)]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
-
-        indice_total++;
-      }else{
-        quotation[indice_actual]={"referencia" : $("#dataprod").val() , "servicio"  : $("#solicitud").val() , "cantidad" :  $("#cantidad").val() };
-        indice_actual=indice_total;
-      }
-      var i = 0;
-        console.log(quotation);
-        while (quotation[i]!=undefined) {
-          var referencia = quotation[i].referencia;
-          var can = quotation[i].cantidad;
-            AddItem(quotation[i].servicio,referencia,can);
-          i++;
-        }
-        // AddItem($("#solicitud").val(),$("#dataprod").val(),$("#cantidad").val());
-      }
-
-    }else{
-      $("#openModal").after("<div class='message-quotation'>por favor llena los campos</div>");
-      setTimeout(function(){$("div.message-quotation").remove()},3000);
-    }
-  }
 }
-
-
-function AddItem(valor1,valor2,valor3){
+//consultar ciudad
+$("#newDir").click(function(){
+  direccion = $("#dirSent").val();
   $.ajax({
-    url: "index.php?controller=config&a=selectServiceBy",
-    type: "POST",
-    dataType:'json',
-    data: ({data:valor1})
-  }).done(function(result){
-    // console.log(valor1);
-    $('#detalles').append('<p> Servicio: '+result.tip_ser_nombre+' Referencia: '+valor2+' Cantidad: '+valor3+'</p>');
-          var nada = '<p> <b>Servicio:</b> '+result.tip_ser_nombre+'<b> Referencia:</b> '+valor2+' <b>Cantidad:</b> '+valor3+'</p>';
-          // console.log(referencia);
-          // console.log(can);
-          // console.log("---------");
-          $.ajax({
-              url: "guardar-cotizacion-session",
-              type: "POST",
-              dataType:'json',
-              data: ({data : nada}),
-              success: function(result){
-                   // console.log(result);
-              },
-              error: function(result){
-                   console.log(result);
-              }
-          });
+      url: "index.php?controller=config&a=selectCityBy",
+      type: "POST",
+      dataType:'json',
+      data : ({ id: $("#ciudad").val() }),
+      success: function(result){
+        $("#orderDir").html(result.ciu_nombre+', '+$("#dirSent").val());
+        $("#modal_dir").toggle();
+          $("#modalConfir").toggle();
+      }
   });
-}
+});
+//enviar los datos a PHP
 $("#sendQuotation").submit(function(e) {
     e.preventDefault();
-            dataJson = [];
-            $("input[name=data_user]").each(function(){
-                structure = {};
-                structure = $(this).val();
-                dataJson.push(structure);
-            });
-            dataJson.push($("#obser").val());
-            $.ajax({
-                url: "realizar-cotizacion-usuario",
-                type: "POST",
-                dataType:'json',
-                data: ({data : dataJson}),
-                beforeSend:function() {
-                  $("#sendQuotation").after('<div class="message-quotation">Validando...</div>');
-                },
-                success: function(result){
-                    modal.style.display = "none";
-                    $("div.message-quotation").remove();
-                    if (result==true) {
-                        $("#sendQuotation")[0].reset();
-                        $("#quotationUser")[0].reset();
-                        showButtons();
-                        delete quotation;
-                        $("#openModal").after('<div class="message-quotation">Tu cotización ha sido enviada</div>');
-                        setTimeout(function(){$("#modalConfir").hide();},3000);
-                    }else{
-                        $("#openModal").after('<div class="message-quotation">'+result+'</div>');
-                    }
-                    setTimeout(function(){
-                      $("div.message-quotation").remove();
-                    },6000);
-                     // console.log(result);
-                },
-                error: function(result){
-                     console.log(result);
+    $.ajax({
+      url:"vista-previa",
+      type:"post",
+      dataType:"json",
+      data:({data:order}),
+      success: function(result){
+        dataJson = [];
+        $("input[name=data_user]").each(function(){
+            structure = {};
+            structure = $(this).val();
+            dataJson.push(structure);
+        });
+        dataJson.push($("#obser").val());
+        $.ajax({
+            url: "realizar-cotizacion-usuario",
+            type: "POST",
+            dataType:'json',
+            data: ({data : dataJson ,all : result}),
+            beforeSend:function() {
+              $("#sendQuotation").after('<div class="message-quotation">Validando...</div>');
+            },
+            success: function(result){
+                // modal.style.display = "none";
+                $("div.message-quotation").remove();
+                if (result==true) {
+                    $("#sendQuotation")[0].reset();
+                    $("#frmNewOrder")[0].reset();
+                    delete quotation;
+                    $("#sendQuotation").after('<div class="message-quotation">Tu cotización ha sido enviada</div>');
+                    //ocultar inputs
+                    $(".hide--service").hide();
+                    $(".hide--cantidad").hide();
+                    $(".hide--obs").hide();
+                    $("#orderSiguiente").hide();
+                    //OCULTAR BOTONES DE NAVEGACION
+                    $("#next").hide();
+                    $("#back").hide();
+                    $("#otroProducto").hide();
+
+                    setTimeout(function(){$("#modalConfir").hide();},3000);
+                }else{
+                    $("#openModal").after('<div class="message-quotation">'+result+'</div>');
                 }
-            });
-
-
+                setTimeout(function(){
+                  $("div.message-quotation").remove();
+                },6000);
+                 // console.log(result);
+            },
+            error: function(result){
+                 console.log(result);
+            }
+        });
+      },
+      error: function(result){
+        console.log(result);
+      }
+    });
 });
