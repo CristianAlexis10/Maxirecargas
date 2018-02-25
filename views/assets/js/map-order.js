@@ -82,16 +82,18 @@ abrirProduct.onclick = function() {
 cerrarProduct.onclick = function() {
   modalProduct.style.display = "none";
 }
+if (document.getElementById('assigEncargado')) {
+  var abrirAsignar = document.getElementById('assigEncargado');
+  var modalAsignar = document.getElementById('modal-assign');
+  var closeAsignar = document.getElementById('closeAssig');
+  abrirAsignar.onclick = function(){
+    modalAsignar.style.display = "flex";
+  };
+  closeAssig.onclick = function () {
+    modalAsignar.style.display = "none";
+  };
+}
 
-var abrirAsignar = document.getElementById('assigEncargado');
-var modalAsignar = document.getElementById('modal-assign');
-var closeAsignar = document.getElementById('closeAssig');
-abrirAsignar.onclick = function(){
-  modalAsignar.style.display = "flex";
-};
-closeAssig.onclick = function () {
-  modalAsignar.style.display = "none";
-};
 //contacto
 $(".contact--customer").click(function(){
   var user = this.id;

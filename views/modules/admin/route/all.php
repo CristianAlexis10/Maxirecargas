@@ -1,4 +1,4 @@
-<!-- <?php
+ <?php
 if ($crud[1]==true) {
 $count = $this->master->ContarRutasPorUsuario(base64_decode($_GET['data']),date('Y-m-d'));
 $data = $this->master->verDetalleRuta(date('Y-m-d'),base64_decode($_GET['data']));
@@ -109,8 +109,8 @@ if($data!=array()){
 			echo "<h1>No hay visitas Canceladas</h1>";
 		}
 			?>
-	</div> -->
-	
+	</div> 
+
   </article>
   </div>
   </section>

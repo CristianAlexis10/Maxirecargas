@@ -11,6 +11,7 @@
                 <input type="text" id="producto" class="inputYellow" >
                 </div>
                 <input type="button" id="searchPro" class="inputuser3" value="Buscar">
+                <a href="#" id="openSearch">No sabes cual es tu referencia?</a>
                 <div class="form-groupuser3 hide--service ">
                   <label for="servicio" class="labelyellow">servicio</label>
                   <select class="inputYellow " id="servicio">
@@ -21,7 +22,7 @@
                 <div class="juntos hide--cantidad">
                   <div class="form-groupuser3">
                     <label for="cant" class="labelyellow">cantidad</label>
-                    <input type="number" id="cant" class="inputYellow">
+                    <input type="number" id="cant" onkeypress="return eliminarLetras(event)" class="inputYellow">
                   </div>
                 </div>
                 <div class="form-groupuser3 hide--obs">
@@ -43,7 +44,7 @@
 
       <div class="modal" id="modal_dir">
         <div class="content_modal_dir">
-          <!-- <span id="closemodal_dir">&times;</span> -->
+          <span id="closemodal_dir">&times;</span>
           <img src="views/assets/image/logo.png" class="image_modal">
           <div class="modal_form">
             <div class="form-groupuser3">
@@ -70,7 +71,7 @@
         </div>
     </div>
     <div class="quotation--form">
-      <span id="closeConfir">&times;</span>
+      <!-- <span id="closeConfir">&times;</span> -->
       <form id="sendQuotation">
       <h2>ingresa tus datos</h2>
       <h1>Datos de entrega</h1>
@@ -85,7 +86,37 @@
     </div>
   </div>
 </div>
+
+<!-- opciones de busqueda -->
+<div class="modal" id="modalSearch">
+  <div class="modal--container" >
+      <span id="close_modal_search">&times;</span>
+      <form id="frmOptionSearch">
+        <h2>Opciones de Busqueda</h2>
+        <p>Puedes buscar por marca, palabras claves, tipo de producto,caracteristicas, etc.</p>
+        <div class="frm-group">
+            <input type="text" id="optionSearch" >
+            <input type="submit"  value="Buscar">
+        </div>
+        <!-- resultado -->
+        <div class="result">
+          <h1 id="message"></h1>
+          <table id="tabla" border=1>
+              <tr>
+                  <td>Referencia</td>
+                  <td>Categoria</td>
+                  <td>Marca</td>
+                  <td>Descripción</td>
+                  <td>Palabras Clave</td>
+                  <td>Si</td>
+              </tr>
+          </table>
+        </div>
+      </form>
+  </div>
+</div>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="views/assets/js/quotation-customer.js"></script>
 <script type="text/javascript" src="views/assets/js/menu.js"></script>
 

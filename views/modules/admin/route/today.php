@@ -3,8 +3,7 @@ if ($crud[1]==true) {
 $count = $this->master->ContarRutasParaHoyPorUsuario(base64_decode($_GET['data']),date('Y-m-d'));
 $data = $this->master->verDetalleRuta(date('Y-m-d'),base64_decode($_GET['data']));
 $_SESSION['mapRouteToday']= $data;
-if($data!=array()){
-?>
+if($data!=array()){ ?>
 <div class="route">
 	<h1><?php echo $data[0]['usu_primer_nombre']." ".$data[0]['usu_primer_apellido'];?> </h1>
 	<p><?php echo $data[0]['usu_correo']?></p>
@@ -15,42 +14,28 @@ if($data!=array()){
 	<table>
 		<tr>
 			<th>cliente</th>
+			<th>Codigo</th>
 			<th>direccion</th>
+			<th>Hora Aprox.</th>
 		</tr>
-		<tr>
-			<td>tales s.a.s</td>
-			<td>carrera 45 aa nro. 86b-123</td>
-		</tr>
+		<?php
+			foreach($data as $row){
+				$user = $this->master->selectBy("usuario",array('usu_codigo',$row['usu_codigo']));
+				?>
+				<tr>
+					<td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $user['usu_primer_nombre']." ".$user['usu_primer_apellido']; ?></a></td>
+					<td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></td>
+					<td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_direccion']?></a></td>
+					<td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_hora_entrega']?></a></td>
+
+				</tr>
+
+		<?php } ?>
 	</table>
 
 </div>
-<!-- <div class="mudules orders detail" id="detail-reload">
-	<div class="wrap--info">
-		<div class="detail">
-			<p class="item--detail">Numero de visitas para hoy:</p>
-			<p class="data--detail"><?php echo $count['total'];?> </p>
-		</div>
-		<div class="detail">
-			<a href="#"  class="contact--customer" id="<?php echo $data[0]['usu_codigo']; ?>">Contactar encargado</a>
-		</div>
-		<ul>
-			<li class="item mapa">
-				 <div id="map"></div>
-				 <div id="directions"></div>
-			</li>
-		</ul>
-	</div>
-	<div class="wrap--btns">
-		<h2>Visitas para hoy</h2>
-		<ul>
-			<?php
-				foreach($data as $row){?>
-				<li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
+<!-- <a href="#"  class="contact--customer" id="<?php echo $data[0]['usu_codigo']; ?>">Contactar encargado</a> -->
 
-			<?php } ?>
-			</ul>
-	</div>
-</div> -->
 <!-- contacto -->
 <div id="contact"></div>
 <?php }else{

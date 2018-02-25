@@ -155,12 +155,14 @@ $("#form_contacto").submit(function(e){
       var whatsapp = $("#wpp").val();
       var correo = $("#correocos").val();
       var direccion = $("#direccion").val();
-      if (primerNumero!=""&& secundoNumero!=""&&  whatsapp!=""&&  correo!=""&&  direccion!="") {
+      var ini = $("#inicio").val();
+      var fin = $("#fin").val();
+      if (primerNumero!=""&& secundoNumero!=""&&  whatsapp!=""&&  correo!=""&&  direccion!="" && ini!="" && fin !="") {
         $.ajax({
           url: "nuevo_dato_contacto",
           type: "POST",
           dataType : "json",
-          data: ({num1:primerNumero, num2:secundoNumero, wpp:whatsapp, correo:correo, dirc:direccion, }),
+          data: ({num1:primerNumero, num2:secundoNumero, wpp:whatsapp, correo:correo, dirc:direccion,inicio : ini , fi:fin }),
           success: function(result){
             if (result==true) {
               $("#form_contacto")[0].reset();
@@ -192,6 +194,8 @@ if (document.getElementById('numer1')) {
       $("#wpp").val(response[0].gw_ct_whatsapp);
       $("#correocos").val(response[0].gw_ct_correo);
       $("#direccion").val(response[0].gw_ct_direccion);
+      $("#inicio").val(response[0].gw_hora_inicio);
+      $("#fin").val(response[0].gw_hora_fin);
     },
     error:function(response) {
       console.log(response);
