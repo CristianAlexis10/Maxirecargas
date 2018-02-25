@@ -276,6 +276,9 @@ $("#close_modal_search").click(function(){
 $("#openSearch").click(function(){
   $("#modalSearch").css({"display":"flex"});
 });
+//ocultar elemento
+$(".result").hide();
+$("#tabla").hide();
 $("#frmOptionSearch").submit(function(e){
   e.preventDefault();
   $.ajax({
@@ -285,25 +288,35 @@ $("#frmOptionSearch").submit(function(e){
     data:({data:$("#optionSearch").val()}),
     success:function(result){
       $(".itemResult").remove();
-    //añadir tds
-    var i = 0;
-    $.each(result,function(){
-            var tds=$("#tabla tr:first td").length;
-            var trs=$("#tabla tr").length;
-            var nuevaFila="<tr class='itemResult'>";
-            nuevaFila+="<td>"+result[i].pro_referencia+"</td>";
-            nuevaFila+="<td>"+result[i].tip_pro_nombre+"</td>";
-            nuevaFila+="<td>"+result[i].mar_nombre+"</td>";
-            nuevaFila+="<td>"+result[i].pro_descripcion+"</td>";
-            nuevaFila+="<td>"+result[i].opc_bus_tags+"</td>";
-            nuevaFila+='<td> <a href="#" id="'+result[i].pro_referencia+'" onclick="seleccionarProducto(this)">Agregar</a></td>';
-            nuevaFila+="</tr>";
-            $("#tabla").append(nuevaFila);
-            i++;
-    });
-      $("#tableResult").remove();
-      $(".result").append(result);
-      console.log(result);
+      if (result.length>0) {
+            //añadir tds
+            var i = 0;
+            $.each(result,function(){
+              var tds=$("#tabla tr:first td").length;
+              var trs=$("#tabla tr").length;
+              var nuevaFila="<tr class='itemResult'>";
+              nuevaFila+="<td>"+result[i].pro_referencia+"</td>";
+              nuevaFila+="<td>"+result[i].tip_pro_nombre+"</td>";
+              nuevaFila+="<td>"+result[i].mar_nombre+"</td>";
+              nuevaFila+="<td>"+result[i].pro_descripcion+"</td>";
+              nuevaFila+="<td>"+result[i].opc_bus_tags+"</td>";
+              nuevaFila+='<td> <a href="#" id="'+result[i].pro_referencia+'" onclick="seleccionarProducto(this)">Agregar</a></td>';
+              nuevaFila+="</tr>";
+              $("#tabla").append(nuevaFila);
+              i++;
+            });
+            $("#tableResult").remove();
+            $(".result").append(result);
+            console.log(result);
+            $("#tabla").show();
+            $("#message").html("Cual es tu Producto?");
+            $(".result").show();
+      }else{
+          $("#tabla").hide();
+          $("#message").html("No se encontrarón resultados.");
+          $(".result").show();
+
+      }
       },
     error:function(result){
       console.log(result);

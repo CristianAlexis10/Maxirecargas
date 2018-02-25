@@ -142,9 +142,9 @@ function cambiarPagina(pagina,numeroRegistros){
         }else{
           for (var i = 0; i < result.length; i++) {
             if (result[i].pro_imagen=="icn-maxi.png") {
-              $(".container--grid").append('<figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/'+result[i].pro_imagen+'" alt=""></figure>');
+              $(".container--grid").append('<a href="detalles-producto-'+result[i].pro_referencia+'"><figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/'+result[i].pro_imagen+'" alt=""></figure></a>');
             }else{
-              $(".container--grid").append('<figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/products/'+result[i].pro_imagen+'" alt=""></figure>');
+              $(".container--grid").append('<a href="detalles-producto-'+result[i].pro_referencia+'"><figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/products/'+result[i].pro_imagen+'" alt=""></figure></a>');
             }
           }
           //paginacion

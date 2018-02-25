@@ -60,6 +60,7 @@
 			}
 		}
 		function newRegister(){
+			$dataMaxi = $this->master->selectAll('gestion_web');
 			$order = $_POST['data'];
 			$ciudad = $_POST['ciudad'];
 			$dir = $_POST['dir'];
@@ -68,6 +69,47 @@
 			if ($this->doizer->validateDate($_POST['dia'],"past")==true) {
 				echo json_encode("Selecciona una fecha valida");
 				return ;
+			}else{
+				if ($_POST['dia']==date("Y-m-d")) {
+					$hoy = true;
+				}
+			}
+			if ($_POST['hora']=="") {
+				echo json_encode("Hora no valida");
+				return ;
+			}else{
+				//si es para hoy
+				if (isset($hoy)) {
+					$hora = explode(":",$_POST['hora']);
+					$horaActual = date('G');
+					$horaPedido = $horaActual+4;
+					if ($hora[0]<$horaPedido) {
+						echo json_encode("Debes realizar tu  pedido con 4 Horas de anticipación");
+						return;
+					}else{
+						$hora[0]=$horaPedido;
+						//horario de atencion
+						$horaInicioMaxi = explode(":",$dataMaxi[0]['gw_hora_inicio']);
+						$horaFinMaxi = explode(":",$dataMaxi[0]['gw_hora_fin']);
+						$horaInicio = date("g:i a",strtotime($dataMaxi[0]['gw_hora_inicio']));
+						$horaFin = date("g:i a",strtotime($dataMaxi[0]['gw_hora_fin']));
+						if ($hora[0]>$horaFinMaxi[0] || ($hora[0]>=$horaFinMaxi[0] && $hora[1]>$horaFinMaxi[1]) || ($hora[0]<=$horaInicioMaxi[0] && $hora[1]<$horaInicioMaxi[1])) {
+							echo json_encode("El horario de  atención de Maxirecargas Es de ".$horaInicio." hasta las ".$horaFin." Agenda Tu Pedido para mañana." );
+							return ;
+						}
+					}
+				}else{
+					//horario de atencion
+					$hora = explode(":",$_POST['hora']);
+					$horaInicioMaxi = explode(":",$dataMaxi[0]['gw_hora_inicio']);
+					$horaFinMaxi = explode(":",$dataMaxi[0]['gw_hora_fin']);
+					$horaInicio = date("g:i a",strtotime($dataMaxi[0]['gw_hora_inicio']));
+					$horaFin = date("g:i a",strtotime($dataMaxi[0]['gw_hora_fin']));
+					if (($hora[0]<=$horaInicioMaxi[0] && $hora[1]<$horaInicioMaxi[1]) || $hora[0]>$horaFinMaxi[0] || ($hora[0]>=$horaFinMaxi[0] && $hora[1]>$horaFinMaxi[1])) {
+						echo json_encode("El horario de  atención de Maxirecargas Es de ".$horaInicio." hasta las ".$horaFin );
+						return ;
+					}
+				}
 			}
 			//validar cantidades
 			foreach ($order as $row) {

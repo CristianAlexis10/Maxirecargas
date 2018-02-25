@@ -111,7 +111,7 @@
         </div>
         <!-- resultado -->
         <div class="result">
-          <h1>Cual es tu Producto?</h1>
+          <h1 id="message"></h1>
           <table id="tabla" border=1>
               <tr>
                   <td>Referencia</td>
