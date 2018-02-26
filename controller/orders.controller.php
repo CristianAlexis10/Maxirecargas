@@ -87,7 +87,10 @@
 						echo json_encode("Debes realizar tu  pedido con 4 Horas de anticipación");
 						return;
 					}else{
-						$hora[0]=$horaPedido;
+						$nada = $hora[0];
+						if (!$hora[0]>19) {
+							$hora[0]=$horaPedido;
+						}
 						//horario de atencion
 						$horaInicioMaxi = explode(":",$dataMaxi[0]['gw_hora_inicio']);
 						$horaFinMaxi = explode(":",$dataMaxi[0]['gw_hora_fin']);
