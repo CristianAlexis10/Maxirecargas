@@ -1,5 +1,4 @@
-
-         <div class="container--quotation">
+   <div class="container--quotation">
       <div class="quotation--left">
         <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
           <h1 class="title--movil">crea tu cotizacion</h1>
@@ -66,13 +65,13 @@
 <div class="modal" id="modalConfir">
   <div class="modal--container">
     <div class="detalle">
-      <h2>detalles de la cotizacion</h2>
+      <h2 class="title--modal">detalles de la cotizacion</h2>
         <div id="detalles">
         </div>
     </div>
     <div class="quotation--form">
       <form id="sendQuotation">
-        <h2>ingresa tus datos</h2>
+        <h2 class="title--modal">ingresa tus datos</h2>
       <div class="form-groupuser">
         <label for="nameC" class="labelblue">Nombre Completo</label>
         <input type="text" name="data_user" class="inputblue" id="nameC" required>
@@ -100,30 +99,30 @@
 
 <!-- opciones de busqueda -->
 <div class="modal" id="modalSearch">
-  <div class="modal--container" >
-      <span id="close_modal_search">&times;</span>
+  <div class="modal--container busqueda">
+      <span id="close_modal_search" class="close--modal">&times;</span>
+      <h2 class="title--modal">Opciones de Busqueda</h2>
+      <p class="subtitle--modal">Puedes buscar por marca, palabras claves, tipo de producto,caracteristicas, etc.</p>
       <form id="frmOptionSearch">
-        <h2>Opciones de Busqueda</h2>
-        <p>Puedes buscar por marca, palabras claves, tipo de producto,caracteristicas, etc.</p>
-        <div class="frm-group">
-            <input type="text" id="optionSearch" >
-            <input type="submit"  value="Buscar">
+        <div class="frm-groupuser">
+            <input type="text" id="optionSearch" class="inputblue" placeholder="buscar...">
+            <input type="submit"  value="Buscar" id="searchCot">
         </div>
         <!-- resultado -->
-        <div class="result">
-          <h1 id="message"></h1>
-          <table id="tabla" border=1>
-              <tr>
-                  <td>Referencia</td>
-                  <td>Categoria</td>
-                  <td>Marca</td>
-                  <td>Descripción</td>
-                  <td>Palabras Clave</td>
-                  <td>Si</td>
-              </tr>
-          </table>
-        </div>
       </form>
+      <div class="result">
+        <h2 id="message" class="title--modal"></h2>
+        <table id="tabla" class="tables">
+            <tr>
+                <th>Referencia</th>
+                <th>Categoria</th>
+                <th>Marca</th>
+                <th>Descripción</th>
+                <th>Palabras Clave</th>
+                <th>Seleccionar</th>
+            </tr>
+        </table>
+      </div>
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

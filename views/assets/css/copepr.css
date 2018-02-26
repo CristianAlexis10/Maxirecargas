@@ -73,6 +73,19 @@
   font-size: 40px;
   margin: -20px 0 20px 0;
 }
+#frmOptionSearch{
+  width: 60%;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+.frm-groupuser{
+  display: flex;
+}
+#searchCot{
+border: none;
+outline: none;
+background: #35a4dd;
+color:white}
 
 /*views product*/
 .banner{
@@ -368,35 +381,6 @@
   display: none;
 }
 
-.modal--dir{
-  background: rgba(0,0,0,0.5);
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  position: fixed;
-  z-index: 99;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-.content_modal_dir{
-  width: 50%;
-  background: white;
-  display: flex;
-  flex-direction: column;
-}
-.image_modal{
-  width: 170px;
-  margin: 0 auto;
-}
-#closemodal_dir{
-  text-align: right;
-  padding: 10px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-
 .menuorder{
   padding: 20px;
   z-index: 9;
@@ -571,6 +555,33 @@
   font-size: 12px;
 } */
 /*modal*/
+.modal--dir{
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  position: fixed;
+  z-index: 99;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.content_modal_dir{
+  width: 50%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+.image_modal{
+  width: 170px;
+  margin: 0 auto;
+}
+#closemodal_dir{
+  text-align: right;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
 .modal{
   display: none;
   position: absolute;
@@ -589,22 +600,38 @@
   margin-top: 100px;
   display: flex;
 }
+.modal--container.busqueda{
+  width: 80%;
+  display: block;
+  overflow: scroll;
+}
 .modal--container .detalle{
   width: 60%;
   padding: 20px;
   max-height: 500px;
   border-right: 2px solid #9e9e9e
 }
-.detalle h2, .quotation--form h2{
+.modal--container .quotation--form{
+  width: 40%;
+  padding: 20px;
+}
+.title--modal{
   font-family: 'oswald';
   text-transform: capitalize;
   text-align: center;
   color:#35a4dd;
-  margin-bottom: 30px;
+
 }
-.modal--container .quotation--form{
-  width: 40%;
-  padding: 20px;
+.subtitle--modal{
+  font-family: 'lato';
+  text-align: center;
+  margin: 10px 0 30px 0;
+}
+.close--modal{
+  text-align: right;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px 0 10px 10px;
 }
 .modal--container .quotation--form form{
   width: 90%;
@@ -634,4 +661,23 @@
 .form-groupuserbtn{
   display: flex;
   justify-content: space-between;
+}
+/* tables */
+.tables{
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  font-family: 'lato';
+  margin-top: 30px;
+}
+.tables th{
+  background: #35a4dd;
+  padding: 12px;
+  color: white;
+}
+.tables td{
+  padding: 8px;
+}
+.tables tr:nth-child(even){
+  background: #eee;
 }
