@@ -76,6 +76,7 @@
 #frmOptionSearch{
   width: 60%;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 .frm-groupuser{
   display: flex;
@@ -85,6 +86,7 @@ border: none;
 outline: none;
 background: #35a4dd;
 color:white}
+
 /*views product*/
 .banner{
   background: url(../image/categoria.jpg);
@@ -599,7 +601,9 @@ color:white}
   display: flex;
 }
 .modal--container.busqueda{
+  width: 80%;
   display: block;
+  overflow: scroll;
 }
 .modal--container .detalle{
   width: 60%;
@@ -657,4 +661,23 @@ color:white}
 .form-groupuserbtn{
   display: flex;
   justify-content: space-between;
+}
+/* tables */
+.tables{
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  font-family: 'lato';
+  margin-top: 30px;
+}
+.tables th{
+  background: #35a4dd;
+  padding: 12px;
+  color: white;
+}
+.tables td{
+  padding: 8px;
+}
+.tables tr:nth-child(even){
+  background: #eee;
 }

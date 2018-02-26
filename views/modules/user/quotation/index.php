@@ -109,20 +109,20 @@
             <input type="submit"  value="Buscar" id="searchCot">
         </div>
         <!-- resultado -->
-        <div class="result">
-          <h1 id="message"></h1>
-          <table id="tabla" border=1>
-              <tr>
-                  <td>Referencia</td>
-                  <td>Categoria</td>
-                  <td>Marca</td>
-                  <td>Descripción</td>
-                  <td>Palabras Clave</td>
-                  <td>Si</td>
-              </tr>
-          </table>
-        </div>
       </form>
+      <div class="result">
+        <h2 id="message" class="title--modal"></h2>
+        <table id="tabla" class="tables">
+            <tr>
+                <th>Referencia</th>
+                <th>Categoria</th>
+                <th>Marca</th>
+                <th>Descripción</th>
+                <th>Palabras Clave</th>
+                <th>Seleccionar</th>
+            </tr>
+        </table>
+      </div>
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
