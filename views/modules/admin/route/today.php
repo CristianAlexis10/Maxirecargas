@@ -43,32 +43,8 @@ if($data!=array()){ ?>
 	echo "<b>".$result['usu_primer_nombre']." ".$result['usu_primer_apellido']."</b> no tiene ninguna visita programada para hoy. <a href='pedidos'>Programar Visita</a>";
 }
 ?>
-<div class="orders-future">
-	<?php
-	$data_future = $this->master->verDetalleRutaFutura(date('Y-m-d'),base64_decode($_GET['data']));
-	if ($data_future!=array()) { ?>
-		<h1>Visitas Futuras</h1>
-		<?php foreach($data_future as $row){?>
-			<li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
-		<?php }
-	}else{
-		echo "<h1>No hay visitas Futuras</h1>";
-	}
-		?>
-</div>
-<div class="orders-pending">
-	<?php
-	$data_future = $this->master->verDetalleRutaAplazada(date('Y-m-d'),base64_decode($_GET['data']));
-	if ($data_future!=array()) { ?>
-		<h1>Visitas Pendientes</h1>
-		<?php foreach($data_future as $row){?>
-			<li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
-		<?php }
-	}else{
-		echo "<h1>No hay visitas Pendientes</h1>";
-	}
-		?>
-</div>
+
+
                 </article>
         	</div>
         </section>

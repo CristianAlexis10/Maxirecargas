@@ -3,9 +3,7 @@ var assignVar;
 $("#modal-assign").hide();
 function assign(order){
   assignVar=order;
-  // $("#clAssig").click(function() {
     $("#modal-assign").show();
-  // })
 }
 $("#clAssig").click(function() {
 $("#modal-assign").hide();
@@ -36,14 +34,12 @@ $("#confirmAssign").click(function(){
   });
 });
 //cambiar estado
-$("#changeStatus").click(function(){
-  $(".modal-status").show();
-});
 $("#closeStatus").click(function(){
   $(".modal-status").hide();
 });
 var pedCod ;
 function changeStatus(token){
+  $(".modal-status").show();
     pedCod= token;
 }
 $("#newStatus").change(function() {
@@ -80,18 +76,23 @@ $("#saveStarus").click(function(){
      });
   }else if(status == 4){
     var all = $("#total").val();
-    $.ajax({
-      url:"cambiar_estado",
-      type:"POST",
-      data:({ data : status , order : pedCod , total : all}),
-      dataType:"json",
-      success:function(result){
-        loadDataTables();
-      },
-      error:function(result){
-        console.log(result);
-      }
-    });
+    if (confirm("¿Registrar Producto terminado con un total de "+all+"?")) {
+          $.ajax({
+            url:"cambiar_estado",
+            type:"POST",
+            data:({ data : status , order : pedCod , total : all}),
+            dataType:"json",
+            success:function(result){
+              loadDataTables();
+              $("#total").val("")
+              $("#modal-total").hide();
+              $(".modal-status").hide();
+            },
+            error:function(result){
+              console.log(result);
+            }
+          });
+    }
   }else{
     $.ajax({
       url:"cambiar_estado",

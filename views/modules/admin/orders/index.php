@@ -61,26 +61,19 @@
 				<option value="4">Terminado</option>
 				<option value="5">Cancelado</option>
 			</select>
+			<div  id="modal-motive" >
+						<label for="motive">Motivo:</label>
+						<textarea id="motive" rows="3" cols="80"></textarea>
+			</div>
+			<div id="modal-total">
+				<label for="total"> Total Pagado: </label>
+				<input type="number" onkeypress="return eliminarLetras(event)" id="total">
+			</div>
 			<input type="button" id="saveStarus" value="Guardar">
 		</div>
 	</div>
 </div>
 
-<div id="modal-motive" >
-	<div class="modalOn">
-		<span>&times;</span>
-		<h1 class="elegir">Motivo:</h1>
-		<div class="infomodal">
-			<textarea id="motive" rows="8" cols="80"></textarea>
-		</div>
-		<input type="submit" class="btn" value="enviar">
-	</div>
-</div>
-
-<div id="modal-total">
-	<h2 class="elegir">Total Pagado: </h2>
-	<input type="text" id="total">
-</div>
 <?php }else{
 	echo "No tienes permiso para este modulo";
 }?>

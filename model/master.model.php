@@ -1142,11 +1142,11 @@ class MasterModel{
 
     return $result;
   }
-  public function cambiarEstadoPagado($order,$status,$total){
+  public function cambiarEstadoPagado($order,$status,$total,$fecha){
     try {
-      $this->sql="call cambiarEstadoPagado(?,?,?)";
+      $this->sql="call cambiarEstadoPagado(?,?,?,?)";
       $query=$this->pdo->prepare($this->sql);
-      $query->execute(array($order,$status,$total));
+      $query->execute(array($order,$status,$total,$fecha));
       $result = true;
     } catch (PDOException $e) {
       $result = $query->errorInfo()[1];

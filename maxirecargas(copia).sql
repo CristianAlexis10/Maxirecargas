@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-01-2018 a las 17:16:16
+-- Tiempo de generación: 23-02-2018 a las 23:50:12
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -35,7 +35,7 @@ BEGIN
 UPDATE pedido SET pedido.ped_encargado = usu , ped_estado = estado WHERE  pedido.ped_codigo = orders ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiarDatosContacto` (IN `num1` INT(15), IN `num2` INT(15), IN `wpp` INT(20), IN `correo` VARCHAR(150), IN `dir` VARCHAR(200))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiarDatosContacto` (IN `num1` INT(15), IN `num2` INT(15), IN `wpp` BIGINT(20), IN `correo` VARCHAR(150), IN `dir` VARCHAR(200))  NO SQL
 BEGIN 
 UPDATE gestion_web SET gw_ct_telefono = num1 ,gw_ct_telefono_2 = num2,gw_ct_whatsapp=wpp ,gw_ct_correo=correo,gw_ct_direccion=dir;
 END$$
@@ -159,6 +159,11 @@ INSERT INTO empresa (emp_nombre, emp_nit, emp_razon_social) VALUES (emp_nombre, 
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crearMarca` (IN `nombre` VARCHAR(50), IN `des` VARCHAR(200))  NO SQL
+BEGIN 
+INSERT INTO marca (mar_nombre,mar_descripcion) VALUES (nombre,des);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `crearReporte` (IN `orde` INT, IN `estado` VARCHAR(20), IN `obs` MEDIUMTEXT)  NO SQL
 BEGIN 
 UPDATE pedido SET ped_estado = estado WHERE ped_codigo = orde;
@@ -218,6 +223,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarUsuarioyClienteEmpresarial`
 DELETE FROM cliente_empresarial WHERE usu_codigo = codigo;
 DELETE FROM usuario WHERE usu_codigo = codigo;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `filterCount` (IN `cat` VARCHAR(30), IN `vall` VARCHAR(60))  NO SQL
+BEGIN 
+SELECT COUNT(*) FROM producto INNER JOIN tipo_producto ON  tipo_producto.tip_pro_codigo=producto.tip_pro_codigo WHERE (producto.pro_referencia LIKE CONCAT("%",vall,"%") OR producto.mar_codigo LIKE CONCAT("%",vall,"%") OR producto.pro_descripcion LIKE CONCAT("%",vall,"%")) AND tipo_producto.tip_pro_nombre=cat;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `filterProducts` (IN `cat` VARCHAR(30), IN `vall` VARCHAR(60), IN `ini` INT, IN `fin` INT)  NO SQL
+BEGIN 
+SELECT * FROM producto INNER JOIN tipo_producto ON  tipo_producto.tip_pro_codigo=producto.tip_pro_codigo WHERE (producto.pro_referencia LIKE CONCAT("%",vall,"%") OR producto.mar_codigo LIKE CONCAT("%",vall,"%") OR producto.pro_descripcion LIKE CONCAT("%",vall,"%")) AND tipo_producto.tip_pro_nombre=cat LIMIT ini,fin ;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `inactivar` (IN `estado` INT(11), IN `codigo` INT(11))  BEGIN
@@ -293,6 +308,11 @@ SET
      
 WHERE id_cliente_empresarial = codigo;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarDatosMaxi` (IN `micro` LONGTEXT, IN `mision` LONGTEXT, IN `vision` LONGTEXT, IN `poli` LONGTEXT)  NO SQL
+BEGIN 
+UPDATE gestion_web  SET gw_micro_des =  micro , gw_mision = mision , 	gw_vision = vision , gw_politicas = poli  ;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarEmpresa` (IN `codigo` INT(11), IN `nombre` VARCHAR(50), IN `nit` INT(11), IN `razon_social` VARCHAR(100))  BEGIN
@@ -391,6 +411,16 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `productosAgotarse` ()  NO SQL
 BEGIN 
 SELECT * FROM stock WHERE stock.sto_cantidad <= 5;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readByCategory` (IN `nombre` VARCHAR(20))  NO SQL
+BEGIN
+SELECT count(*) FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readBycategoryPagination` (IN `nombre` VARCHAR(20), IN `ini` INT, IN `ele` INT)  NO SQL
+BEGIN
+SELECT * FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre LIMIT ini,ele;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `servicioInner` (IN `cod` INT)  NO SQL
@@ -496,10 +526,18 @@ CREATE TABLE `acceso` (
 
 INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
 ('112daaf62d419900664134a51308b48c', 5, '$2y$10$ig2pPXL49V6HmRG7PPiEm.bWBMr4cqyv/BXhJAak5PzygxZ.uIP9q'),
+('1a1d9827a5468699bafe57cf8e3e29e2', 7, '$2y$10$5jUw2IRVxmC0yMuQq9GQPOXkBCsHzSAR5Htaq8Ko/Ab3u7JERzOTK'),
+('3bb060334773bb9a89803208a9091693', 18, '$2y$10$rslsAaqe5gUGOZv187yeM.xhHECgh3SGNjeJqkNT/FzwfY9LUwEgy'),
 ('6ca9e3d254f89dd36920fff1d379e39d', 4, '$2y$10$5noEbhHlhUrLlxso33tKxOyySfuWy8D3n2UwXebmfyZXtJtnCxDXW'),
+('9cb6f2ab037f686b1290f338df594e48', 17, '$2y$10$z//aMlpEPHKjhmX0TLgWVuZypM0s6jC8jgIKmE9rHtHM5SpoTpD9a'),
+('9f3b14f9802b4ec320ed073772174897', 14, '$2y$10$U0zbZ.ulre/3vtvpHLxdMuwZwJ.4/VyIMjFwVczFXIanwHzFiFCee'),
 ('a37eeba50c06a5a44cc399ade0ebe013', 6, '$2y$10$sHmxI46syWozaM2xr15NY..ixWEkud/IHycU2X6sIG.BZaTtkvFou'),
 ('bd738f17da325a7fd25cfbfd9d378c1e', 1, '$2y$10$6wECK2ItNCoZZijFta7e3uVoqb0zDbz2nOiSLsG8GpMxdM21J1JzW'),
 ('cfc3146525e6edeb020fed1428f29d36', 2, '$2y$10$71RniIRoncNKrE8TRZtFve5FZqF7op.vr9lEnQa/YxRgunLDTDNvy'),
+('d0e464aeeac88074ed0359480ac15595', 16, '$2y$10$7iRTbO7loL9GQ32X5.yqh.Ors.kSMr9XtabUk940Pf8NWaPnByg7m'),
+('e0be50fd63de47c2670d053d248bb216', 19, '$2y$10$KDTym4KRYn9DBUqoCcUFEOTXF293umZXIOdMaeseUkPRiTfjn.Ba.'),
+('e83bf9f73eb3ca120fbbebfa5b7dfbd4', 15, '$2y$10$2Dvz9sLu2OvSpOr1OyUZ5ete/vliGPyKsmyVUH.KORtYczQHFiWPu'),
+('f4e617ba3a7314bdd8f618b8f63e07d5', 12, '$2y$10$D07aE1bek1eqjjTArYfxQuidC4EIWgTKrdvf17eVYbyc1pP5lFI4e'),
 ('fa82f50683e23221b609ff3445ec133c', 3, '$2y$10$ihq75QwdpNDOla.z74W97OC.uy/CKGcvQZxFBbbEPwr7kInr62aIm');
 
 -- --------------------------------------------------------
@@ -540,7 +578,9 @@ CREATE TABLE `cliente_empresarial` (
 --
 
 INSERT INTO `cliente_empresarial` (`id_cliente_empresarial`, `usu_codigo`, `sed_codigo`, `cli_emp_cargo`) VALUES
-(1, 1, 10, 'Admin');
+(1, 1, 10, 'Admin'),
+(2, 15, 11, '8908908'),
+(3, 16, 12, '908');
 
 -- --------------------------------------------------------
 
@@ -564,7 +604,10 @@ CREATE TABLE `cotizacion` (
 --
 
 INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `cot_ciudad`, `cot_dir`, `cot_token`, `cot_estado`, `cot_fecha`, `cot_respuesta`) VALUES
-(15, 1, 1, 'calle 95', 'tTNgX-Mprjx', 'Terminado', '2018-01-11', 'ya respondi');
+(15, 1, 1, 'calle 95', 'tTNgX-Mprjx', 'Terminado', '2018-01-11', 'ya respondi'),
+(16, 1, 1, 'Calle 95 #44-35', 'zt1yE-VhGPd', 'En Recepcion', '2018-01-22', ''),
+(17, 1, 1, 'Calle 95 #44-35', 'rjD5Z-qHl44', 'En Recepcion', '2018-02-01', ''),
+(18, 1, 1, 'Calle 95 #44-35', 'XQJ9f-umOxM', 'En Recepcion', '2018-02-17', '');
 
 -- --------------------------------------------------------
 
@@ -604,7 +647,9 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`emp_codigo`, `emp_nombre`, `emp_nit`, `emp_razon_social`) VALUES
-(13, 'SystemOn', '1234567', 'no se ');
+(13, 'SystemOn', '1234567', 'no se '),
+(14, '8908', '989', '0890890'),
+(15, '89890', '989899', '8989');
 
 -- --------------------------------------------------------
 
@@ -675,7 +720,12 @@ INSERT INTO `estiloxusuario` (`usu_codigo`, `est_usu_menu`, `est_usu_navigator`,
 (7, ' ', ' ', ' '),
 (8, ' ', ' ', ' '),
 (5, ' ', ' ', ' '),
-(6, ' ', ' ', ' ');
+(6, ' ', ' ', ' '),
+(13, ' ', ' ', ' '),
+(14, ' ', ' ', ' '),
+(15, ' ', ' ', ' '),
+(16, ' ', ' ', ' '),
+(19, ' ', ' ', ' ');
 
 -- --------------------------------------------------------
 
@@ -685,16 +735,17 @@ INSERT INTO `estiloxusuario` (`usu_codigo`, `est_usu_menu`, `est_usu_navigator`,
 
 CREATE TABLE `gestion_web` (
   `gw_codigo` int(11) NOT NULL,
-  `gw_tl_section1` varchar(100) NOT NULL,
-  `gw_st_section1` varchar(100) NOT NULL,
-  `gw_tl_section2` varchar(100) NOT NULL,
-  `gw_st_section2-1` varchar(100) NOT NULL,
+  `gw_micro_des` varchar(100) NOT NULL,
+  `gw_mision` longtext NOT NULL,
+  `gw_vision` longtext CHARACTER SET utf8 NOT NULL,
+  `gw_politicas` longtext NOT NULL,
   `gw_st_section2-2` varchar(100) NOT NULL,
   `gw_ct_telefono` int(15) NOT NULL,
   `gw_ct_telefono_2` int(15) NOT NULL,
-  `gw_ct_whatsapp` int(20) NOT NULL,
+  `gw_ct_whatsapp` bigint(20) NOT NULL,
   `gw_ct_correo` varchar(150) NOT NULL,
   `gw_ct_direccion` varchar(200) NOT NULL,
+  `gw_logo` varchar(150) NOT NULL,
   `usu_codigo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -702,8 +753,8 @@ CREATE TABLE `gestion_web` (
 -- Volcado de datos para la tabla `gestion_web`
 --
 
-INSERT INTO `gestion_web` (`gw_codigo`, `gw_tl_section1`, `gw_st_section1`, `gw_tl_section2`, `gw_st_section2-1`, `gw_st_section2-2`, `gw_ct_telefono`, `gw_ct_telefono_2`, `gw_ct_whatsapp`, `gw_ct_correo`, `gw_ct_direccion`, `usu_codigo`) VALUES
-(1, '', '', '', '', '', 5774223, 2557575, 2147483647, 'maxirecargas2009@hotmail.com', 'Calle 6 c sur # 83a45', NULL);
+INSERT INTO `gestion_web` (`gw_codigo`, `gw_micro_des`, `gw_mision`, `gw_vision`, `gw_politicas`, `gw_st_section2-2`, `gw_ct_telefono`, `gw_ct_telefono_2`, `gw_ct_whatsapp`, `gw_ct_correo`, `gw_ct_direccion`, `gw_logo`, `usu_codigo`) VALUES
+(1, 'Para tus Recargas, Remanuractura y Venta de Toner y Cartuchos comunicate con Nosotros', 'Nuestra empresa brinda los mÃ¡s altos estÃ¡ndares de calidad y agilidad, con personal idÃ³neo en cada Ã¡rea de trabajo, para optimizar los resultados de nuestros clientes, quienes son nuestra razÃ³n de ser, estamos comprometidos con nuestro servicio al crecimiento del empresario antioqueÃ±o.\n', 'En el aÃ±o 2020 Maxirecargas S.A.S TÃ³ner y Cartuchos, serÃ¡ la compaÃ±Ã­a lÃ­der de la regiÃ³n del valle del aburra en la prestaciÃ³n del servicio y distribuciÃ³n de insumos de impresiÃ³n a pequeÃ±as y medianas empresas tanto del sector pÃºblico como privado. Estableceremos relaciones internacionales para tener productos Ãºnicos de importaciÃ³n.\n', 'maxirecargas s.a.s coprometido con el medio ambiente trabaja de la mano de empresas con el conocimiento en el manejo de los desechos que se producen dia a dia en su labor para general menos contaminantes en nuestro planeta.', '', 5774223, 2557575, 3233557660, 'yonosoybond@gmail.com', 'Calle 6 c sur # 83a45', 'logo.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -736,7 +787,11 @@ INSERT INTO `historial_productos` (`id_his_pro`, `pro_codigo`, `his_pro_fecha`, 
 (11, 1, '2018-01-09', 9),
 (12, 1, '2018-01-10', 1),
 (13, 1, '2018-01-10', 1),
-(14, 1, '2018-01-17', 856);
+(14, 1, '2018-01-17', 856),
+(15, 1, '2018-01-22', 1),
+(16, 1, '2018-01-22', 1),
+(17, 1, '2018-02-02', 2),
+(18, 1, '2018-02-17', 8978977);
 
 -- --------------------------------------------------------
 
@@ -755,9 +810,7 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
-(1, 'HP', 'sad'),
-(2, 'Epson', 'epson des'),
-(3, 'cosiaco', '435');
+(51, 'j', '');
 
 -- --------------------------------------------------------
 
@@ -824,12 +877,16 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccion`, `ped_estado`, `ped_token`, `ped_fecha`, `ped_fecha_entrega`, `ped_hora_entrega`) VALUES
-(32, 3, 1, 'Calle 95 #40-35', 'En Proceso', 'KKl8p-v3X2V', '2018-01-17', '2018-01-17', '13:00:00'),
+(32, 3, 1, 'Calle 95 #40-35', 'En Bodega', 'KKl8p-v3X2V', '2018-01-17', '2018-01-17', '13:00:00'),
 (33, 3, 1, 'Calle 95 #44-35', 'Terminado', '7UWJh-jQAGV', '2018-01-08', '0000-00-00', '00:00:00'),
 (34, 3, 1, 'Calle 95 #47-35', 'En Proceso', 'kNEXi-zFwYC', '2018-01-10', '2018-01-18', '00:00:00'),
 (35, 3, 1, 'Calle 95 #44-35', 'En Proceso', 'eOCDt-tZsph', '2018-01-15', '2018-01-18', '00:00:00'),
 (36, NULL, 1, 'Calle 95 #44-35', 'En Bodega', '2NfEP-94dKU', '2018-01-15', '0000-00-00', '00:00:00'),
-(37, 4, 1, 'Calle 95 #44-35', 'En Proceso', 'H2pL4-54RFU', '2018-01-18', '2018-01-23', '00:00:00');
+(37, 4, 1, 'Calle 95 #44-35', 'En Proceso', 'H2pL4-54RFU', '2018-01-18', '2018-01-23', '00:00:00'),
+(38, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'effWZ-Imgs2', '2018-01-22', '2018-01-26', '12:01:00'),
+(39, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'LPRec-1sHp0', '2018-01-22', '2018-01-26', '12:01:00'),
+(40, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'FhXLB-yD1fN', '2018-02-02', '2018-02-02', '00:00:00'),
+(41, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'tsuUH-T9qHr', '2018-02-17', '2018-02-17', '15:23:00');
 
 -- --------------------------------------------------------
 
@@ -858,7 +915,11 @@ INSERT INTO `pedidoxproducto` (`ped_codigo`, `pro_codigo`, `tip_ser_codigo`, `pe
 (34, 1, 4, 9, 'nada'),
 (35, 1, 4, 1, '1'),
 (36, 1, 4, 1, '1'),
-(37, 1, 4, 856, '56757');
+(37, 1, 4, 856, '56757'),
+(38, 1, 4, 1, 'lkhkk'),
+(39, 1, 4, 1, 'lkhkk'),
+(40, 1, 4, 2, ''),
+(41, 1, 4, 8978977, '98798');
 
 --
 -- Disparadores `pedidoxproducto`
@@ -918,8 +979,8 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`pro_codigo`, `mar_codigo`, `tip_pro_codigo`, `pro_referencia`, `pro_descripcion`, `pro_imagen`, `pro_estado`) VALUES
-(1, 1, 1, 'hola', 'carac															', '1516413055.png', 1),
-(2, 1, 1, 'hola2', 'hoa', '1515356016.png', 1);
+(1, 1, 1, 'hola', 'carac															', '1518554159.png', 1),
+(2, 1, 1, 'hola2', 'hoa', '1518554159.png', 1);
 
 -- --------------------------------------------------------
 
@@ -940,7 +1001,10 @@ CREATE TABLE `prodxcot` (
 --
 
 INSERT INTO `prodxcot` (`cot_codigo`, `pro_codigo`, `proxcot_cantidad`, `tip_servicio`, `proxcod_observacion`) VALUES
-(15, 1, 11, 4, 'nada');
+(15, 1, 11, 4, 'nada'),
+(16, 1, 9878, 4, '8789'),
+(17, 1, 2, 4, '22'),
+(18, 1, 98, 4, '8978');
 
 -- --------------------------------------------------------
 
@@ -996,7 +1060,9 @@ CREATE TABLE `sede` (
 --
 
 INSERT INTO `sede` (`sed_codigo`, `emp_codigo`, `sed_nombre`, `sed_direccion`, `sed_telefono`) VALUES
-(10, 13, 'DECYE', 'calle 95 #33-35', 5212067);
+(10, 13, 'DECYE', 'calle 95 #33-35', 5212067),
+(11, 14, '908', '089890890', 890),
+(12, 15, '908908', '908', 90890);
 
 -- --------------------------------------------------------
 
@@ -1008,16 +1074,6 @@ CREATE TABLE `servicioxproducto` (
   `tip_ser_cod` int(11) NOT NULL,
   `pro_codigo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `servicioxproducto`
---
-
-INSERT INTO `servicioxproducto` (`tip_ser_cod`, `pro_codigo`) VALUES
-(3, 2),
-(9, 2),
-(4, 1),
-(5, 1);
 
 -- --------------------------------------------------------
 
@@ -1143,9 +1199,9 @@ CREATE TABLE `tipo_usuario` (
 --
 
 INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`, `tip_usu_maxi`) VALUES
-(1, 'Persona Natural', ''),
-(2, 'Administrador', ''),
-(3, 'Persona Juridica', ''),
+(1, 'Persona Natural', 'false'),
+(2, 'Administrador', 'true'),
+(3, 'Persona Juridica', 'false'),
 (5, 'Mensajero', 'true'),
 (6, 'Secretaria', 'true');
 
@@ -1164,7 +1220,7 @@ CREATE TABLE `usuario` (
   `usu_primer_apellido` varchar(50) NOT NULL,
   `usu_segundo_apellido` varchar(50) NOT NULL,
   `usu_correo` varchar(100) NOT NULL,
-  `usu_telefono` int(10) NOT NULL,
+  `usu_telefono` bigint(10) NOT NULL,
   `id_ciudad` int(11) NOT NULL,
   `usu_direccion` varchar(200) NOT NULL,
   `usu_celular` int(20) NOT NULL,
@@ -1182,12 +1238,20 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(1, 1, 1214, 'Cristian', '', 'Lopera', '', 'yonosoybond@gmail.com', 43, 1, 'Calle 95 #44-35', 32356789, '0000-00-00', 'null', 3, 1, 'defaul.jpg', '2018-01-07', '2018-01-07'),
-(2, 1, 9904, 'Cristian', '', 'Lopera', '', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 3157890, '0000-00-00', 'masculino', 2, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
-(3, 1, 123, 'Andres', '', 'Lopez', '', 'calopera18@misena.edu.co', 234567, 1, 'calle 90 ', 32256789, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-10', '2018-01-10'),
-(4, 1, 1234, 'Carlos', '', 'gaviria', '', 'calopera18@misena.edu.co', 0, 2, 'calle 6 sur', 323355, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-15', '2018-01-15'),
-(5, 1, 8888, 'evelin', '', 'herrera', '', 'yonosoybond@gmail.com', 77, 1, 'calle 6 sur ', 521, '2018-01-20', 'femenino', 1, 1, 'defaul.jpg', '2018-01-20', '2018-01-20'),
-(6, 1, 1214746, 'Javier', '', 'nose', '', 'yonosoybond@gmail.com', 0, 1, 'calle 7 sur', 2147483647, '0000-00-00', 'masculino', 5, 2, 'default.jpg', '2018-01-20', '2018-01-20');
+(1, 1, 1214, 'Cristian', '', 'Lopera', '', 'yonosoygmail.com', 43, 1, 'Calle 95 #44-35', 32356789, '2018-01-17', 'null', 3, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
+(2, 1, 9904, 'Cristian', 'Lopera', 'Lopera', 'Bedoya', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 3157890, '2018-01-12', 'masculino', 2, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
+(3, 1, 123, 'Andres', '', 'Lopez', '', 'calopera1@misena.edu.co', 234567, 1, 'calle 90 ', 32256789, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-10', '2018-01-10'),
+(4, 1, 1234, 'Carlos', '', 'gaviria', '', 'caloper18@misena.', 0, 2, 'calle 6 sur', 323355, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-15', '2018-01-15'),
+(5, 1, 8888, 'evelin', '', 'herrera', '', 'yonosoybond', 77, 1, 'calle 6 sur ', 521, '2018-01-20', 'femenino', 1, 1, 'default.jpg', '2018-01-20', '2018-01-20'),
+(6, 1, 1214746, 'Javier', '', 'nose', '', 'yonosoybond@gmail.co', 0, 1, 'calle 7 sur', 2147483647, '0000-00-00', 'masculino', 5, 2, 'default.jpg', '2018-01-20', '2018-01-20'),
+(7, 1, 7777, 'Brayan', '', 'Soto', '', 'calope@misena.edu.co', 0, 1, 'oreja', 345678, '0000-00-00', 'masculino', 1, 2, 'default.jpg', '2018-02-15', '2018-02-15'),
+(12, 1, 777798, 'Brayan', '', 'Soto', '', 'calopermisena.edu.co', 0, 1, 'oreja', 345678, '0000-00-00', 'masculino', 1, 2, 'default.jpg', '2018-02-15', '2018-02-15'),
+(14, 1, 888, '897978', '', '789798', '', 'alexis__10@hotmail.com', 0, 1, '789798', 89789, '0000-00-00', 'masculino', 1, 2, 'default.jpg', '2018-02-17', '2018-02-17'),
+(15, 1, 9089, '8908', '', '9089080', '', 'aa@a.com', 0, 1, '089890890', 989089, '0000-00-00', 'null', 3, 2, 'defaul.jpg', '2018-02-17', '2018-02-17'),
+(16, 1, 989, '890989', '', '89089080', '', '89809898@hha.com', 0, 1, '908', 98989, '0000-00-00', 'null', 3, 2, 'defaul.jpg', '2018-02-17', '2018-02-17'),
+(17, 1, 987, '87', '', '7', '', 'yadad@dadasa.asd', 0, 2, '67676', 778, '0000-00-00', 'femenino', 1, 2, 'default.jpg', '2018-02-21', '2018-02-21'),
+(18, 1, 3243, '5435', '', '345', '', 'yonosoybond@gmail', 0, 1, '54654', 5456, '0000-00-00', 'masculino', 1, 2, 'default.jpg', '2018-02-21', '2018-02-21'),
+(19, 1, 324324, '324324', '', '32432', '', 'yonosoybond@gmail.com', 0, 1, '342', 32432, '0000-00-00', 'masculino', 1, 2, 'default.jpg', '2018-02-22', '2018-02-22');
 
 -- --------------------------------------------------------
 
@@ -1211,7 +1275,11 @@ INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`, `usuxped_total`) VALUE
 (1, 34, 0),
 (1, 35, 0),
 (1, 36, 0),
-(1, 37, 0);
+(1, 37, 0),
+(1, 38, 0),
+(1, 39, 0),
+(1, 40, 0),
+(1, 41, 0);
 
 --
 -- Disparadores `usuarioxpedido`
@@ -1245,7 +1313,11 @@ INSERT INTO `ventas` (`usu_codigo`, `id_venta`, `ven_total`, `ped_codigo`, `ven_
 (1, 25, 0, 34, '2018-01-09'),
 (1, 26, 0, 35, '2018-01-10'),
 (1, 27, 0, 36, '2018-01-10'),
-(1, 28, 0, 37, '2018-01-17');
+(1, 28, 0, 37, '2018-01-17'),
+(1, 29, 0, 38, '2018-01-22'),
+(1, 30, 0, 39, '2018-01-22'),
+(1, 31, 0, 40, '2018-02-02'),
+(1, 32, 0, 41, '2018-02-17');
 
 --
 -- Índices para tablas volcadas
@@ -1332,7 +1404,8 @@ ALTER TABLE `historial_productos`
 -- Indices de la tabla `marca`
 --
 ALTER TABLE `marca`
-  ADD PRIMARY KEY (`mar_codigo`);
+  ADD PRIMARY KEY (`mar_codigo`),
+  ADD UNIQUE KEY `mar_nombre` (`mar_nombre`);
 
 --
 -- Indices de la tabla `modulos`
@@ -1439,19 +1512,22 @@ ALTER TABLE `tipo_pedido`
 -- Indices de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
-  ADD PRIMARY KEY (`tip_pro_codigo`);
+  ADD PRIMARY KEY (`tip_pro_codigo`),
+  ADD UNIQUE KEY `tip_pro_nombre` (`tip_pro_nombre`);
 
 --
 -- Indices de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
-  ADD PRIMARY KEY (`Tip_ser_cod`);
+  ADD PRIMARY KEY (`Tip_ser_cod`),
+  ADD UNIQUE KEY `tip_ser_nombre` (`tip_ser_nombre`);
 
 --
 -- Indices de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  ADD PRIMARY KEY (`tip_usu_codigo`);
+  ADD PRIMARY KEY (`tip_usu_codigo`),
+  ADD UNIQUE KEY `tip_usu_rol` (`tip_usu_rol`);
 
 --
 -- Indices de la tabla `usuario`
@@ -1492,12 +1568,12 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
-  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
@@ -1507,7 +1583,7 @@ ALTER TABLE `departamento`
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
@@ -1527,12 +1603,12 @@ ALTER TABLE `gestion_web`
 -- AUTO_INCREMENT de la tabla `historial_productos`
 --
 ALTER TABLE `historial_productos`
-  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
@@ -1547,7 +1623,7 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
@@ -1557,12 +1633,12 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `ruta`
 --
@@ -1572,12 +1648,12 @@ ALTER TABLE `ruta`
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
@@ -1592,12 +1668,12 @@ ALTER TABLE `tipo_pedido`
 -- AUTO_INCREMENT de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
-  MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
-  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
@@ -1607,12 +1683,12 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- Restricciones para tablas volcadas
 --

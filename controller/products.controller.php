@@ -128,7 +128,7 @@
 			return $result;
 		}
 		function readBy($data){
-			$result = $this->master->filter($this->tableName,array('pro_codigo',$data));
+			$result = $this->master->selectBy($this->tableName,array('pro_codigo',$data));
 			return $result;
 		}
 		function filter(){

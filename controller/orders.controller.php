@@ -230,7 +230,7 @@
 				$result = $this->master->crearReporte($order,$estado,$obs);
 
 			}else if(isset($total)){
-					$result = $this->master->cambiarEstadoPagado($order,$estado,$total);
+					$result = $this->master->cambiarEstadoPagado($order,$estado,$total,date("Y-m-d"));
 			}else{
 				$result = $this->master->cambiarEstado($order,$estado);
 			}
