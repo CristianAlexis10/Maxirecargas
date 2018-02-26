@@ -88,8 +88,10 @@
 						</div>
 					</div>
 								<div class="form--rigth rigth--product">
-									<div class="form-group Cambiar--img">
-			 						 <div id="wrap-result"><img src="views/assets/image/icn-maxi.png" ></div>
+									<div class="Cambiar--img">
+			 						 <div id="wrap-result">
+										 <img class="imagen--croppie"src="views/assets/image/icn-maxi.png">
+									 </div>
 			 						 <span class="" id="cropp-img">Cambiar foto</span>
 			 					 </div>
 				            <div class="form-group">

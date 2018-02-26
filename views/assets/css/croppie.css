@@ -1,4 +1,23 @@
 /*modal modificar imagen*/
+#wrap-result{
+  background: #eee;
+  border: 1px solid #c5c5c5;
+  border-radius: 5px;
+  width: 290px;
+  height: 290px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0 30px 0;
+}
+#cropp-img{
+  cursor: pointer;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: all .2s ease;
+}
+#cropp-img:hover{color: #35a4dd;}
+#wrap-result img{width: 250px}
 #img-product{
 	display: none;
 	width: 100%;
@@ -9,7 +28,6 @@
 	top: 0;
 	position: fixed;
 	z-index: 9999;
-
 }
 .newMark--img{
 	margin: auto;
@@ -24,11 +42,16 @@
 	font-size: 25px;
 	cursor: pointer;
 }
-#wrap-result img{
-	width: 150px;
-	height: 150px;
-	position: absolute;
+#uploadImage{
+  width: 100%;
+  box-sizing: border-box;
+}
+.croppie-container{
+  width: 100% !important;
+}
 
+.thumb .active, .value{
+  display: none;
 }
 #upload{
 	display: block;

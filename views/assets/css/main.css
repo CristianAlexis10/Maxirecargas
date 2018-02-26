@@ -44,7 +44,7 @@ body{
   color: #8f9aac;
 }
  .userProfile--img{width: 80%;margin:20px;}
- .userProfile--img img{box-sizing: border-box;}
+ .userProfile--img img{box-sizing: border-box; width: 100%;}
  .navigator {width: 100%;margin: auto;}
  .navigator li {
   display: flex;
@@ -253,32 +253,12 @@ table.dataTable tbody th, table.dataTable tbody td{
   width: 50%;
 }
 
-.form-group.Cambiar--img, .form-group.product{
+.form-group.product{
   width: 100%;
   display: flex;
   align-items: center;
 }
-#wrap-result{
-  background: #eee;
-  border: 1px solid #c5c5c5;
-  border-radius: 5px;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-#cropp-img{
-  cursor: pointer;
-  font-size: 18px;
-  text-transform: uppercase;
-  transition: all .2s ease;
-}
-#cropp-img:hover{
-  color: #35a4dd;
 
-}
 .form-group .btn{
   border: none;
   background: #35a4dd;
@@ -570,17 +550,7 @@ align-items: center;
 #frmNewMar, #frmNewCategorie{
   width: 80%;
 }
-#uploadImage{
-  width: 100%;
-  box-sizing: border-box;
-}
-.croppie-container{
-  width: 100% !important;
-}
 
-.thumb .active, .value{
-  display: none;
-}
 
 
 /*dasboar graphi*/
