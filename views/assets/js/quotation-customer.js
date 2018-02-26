@@ -1,3 +1,15 @@
+//autocomplete
+$.ajax({
+  url:"todas-referencias",
+  type:"post",
+  dataType:"json",
+  success:function(result){
+    $( "#producto" ).autocomplete({
+      source: result
+    });
+  },
+  error:function(result){console.log(result);}
+});
 //ocultar inputs
 $(".hide--service").hide();
 $(".hide--cantidad").hide();
@@ -41,7 +53,7 @@ $("#searchPro").click(function(){
 });
 //VALIDAR SI LOS CAMPOS ESTAN LLENOS
 $("#cant").keyup(function(){
-  if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cant").val()!="") {
+  if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cant").val()!="" && $("#cant").val()>0) {
       $("#orderSiguiente").show();
       $("#otroProducto").show();
   }else{
@@ -124,7 +136,7 @@ function showNext(){
 //BOTON TERMINAR
 $("#orderSiguiente").click(function(){
   //validar si hay que guardar
-  if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cant").val()!="") {
+  if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cant").val()!="" && $("#cant").val()>0) {
     guardar();
   }
   $("#modalConfir").toggle();
@@ -203,6 +215,8 @@ $("#confirmOrder").click(function(){
       data: ({data: order, ciudad: $("#ciudad").val() ,dir : direccion}),
       success: function(result){
         if (result==true) {
+          $("#frmNewOrder")[0].reset();
+          delete order;
           location.href = "historial";
         }else{
           $("#orderAtras").after("<div class='message'>Ocurrio un error</div>");
@@ -247,4 +261,79 @@ closeModal_dir.onclick = function() {
   $("#modal--dir").toggle();
     $("#modalConfir").toggle();
 }
+}
+//search opction
+
+$("#close_modal_search").click(function(){
+  $("#modalSearch").css({"display":"none"});
+});
+$("#openSearch").click(function(){
+  $("#modalSearch").css({"display":"flex"});
+});
+//ocultar elemento
+$(".result").hide();
+$("#tabla").hide();
+$("#frmOptionSearch").submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url:"opciones-busqueda-referencia",
+    type:"post",
+    dataType:"json",
+    data:({data:$("#optionSearch").val()}),
+    success:function(result){
+      $(".itemResult").remove();
+      if (result.length>0) {
+            //añadir tds
+            var i = 0;
+            $.each(result,function(){
+              var tds=$("#tabla tr:first td").length;
+              var trs=$("#tabla tr").length;
+              var nuevaFila="<tr class='itemResult'>";
+              nuevaFila+="<td>"+result[i].pro_referencia+"</td>";
+              nuevaFila+="<td>"+result[i].tip_pro_nombre+"</td>";
+              nuevaFila+="<td>"+result[i].mar_nombre+"</td>";
+              nuevaFila+="<td>"+result[i].pro_descripcion+"</td>";
+              nuevaFila+="<td>"+result[i].opc_bus_tags+"</td>";
+              nuevaFila+='<td> <a href="#" id="'+result[i].pro_referencia+'" onclick="seleccionarProducto(this)">Agregar</a></td>';
+              nuevaFila+="</tr>";
+              $("#tabla").append(nuevaFila);
+              i++;
+            });
+            $("#tableResult").remove();
+            $(".result").append(result);
+            console.log(result);
+            $("#tabla").show();
+            $("#message").html("Cual es tu Producto?");
+            $(".result").show();
+      }else{
+          $("#tabla").hide();
+          $("#message").html("No se encontrarón resultados.");
+          $(".result").show();
+
+      }
+      },
+    error:function(result){
+      console.log(result);
+    }
+  });
+});
+function seleccionarProducto(ele){
+  $("#optionSearch").val(" ");
+  $("#producto").val(ele.id);
+  $("#modalSearch").css({"display":"none"});
+  $(".hide--service").hide();
+  $(".hide--cantidad").hide();
+  $(".hide--obs").hide();
+}
+//campos numericos
+function eliminarLetras(e){
+    tecla = (document.all) ? e.keyCode : e.which;
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+    // Patron de entrada, en este caso solo acepta numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
 }

@@ -3,10 +3,13 @@ var assignVar;
 $("#modal-assign").hide();
 function assign(order){
   assignVar=order;
-  $("#clAssig").click(function() {
-    $("#modal-assign").hide();
-  })
+  // $("#clAssig").click(function() {
+    $("#modal-assign").show();
+  // })
 }
+$("#clAssig").click(function() {
+$("#modal-assign").hide();
+})
 $("#confirmAssign").click(function(){
   var employe = $("#addOrder").val();
   $.ajax({

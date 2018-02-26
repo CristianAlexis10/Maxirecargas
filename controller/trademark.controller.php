@@ -1,13 +1,15 @@
 <?php
-
+require_once "controller/doizer.controller.php";
 	class TrademarkController{
 		private $master;
+		private $doizer;
 		private $tableName;
 		private $insertException;
 		private $updateException;
 
 	 	function __CONSTRUCT(){
 	 		$this->master = new MasterModel;
+	 		$this->doizer = new DoizerController;
 
 	 		$this->tableName="marca";
 	 		$this->insertException=array('mar_codigo');
@@ -17,7 +19,7 @@
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
 				$modulo = 'productos';
 				$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
-				$crud = permisos($modulo,$permit);			
+				$crud = permisos($modulo,$permit);
 				if ($crud[2]==true) {
 					require_once "views/include/scope.header.php";
 					require_once "views/modules/admin/products/trademark/new.php";
@@ -29,13 +31,13 @@
 			}else{
 				require_once "views/modules/landing.html";
 			}
-			
+
 		}
 		function viewUpdate(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
 				$modulo = 'productos';
 				$permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
-				$crud = permisos($modulo,$permit);			
+				$crud = permisos($modulo,$permit);
 				if ($crud[2]==true) {
 					require_once "views/include/scope.header.php";
 					require_once "views/modules/admin/products/trademark/update.php";
@@ -47,15 +49,15 @@
 			}else{
 				require_once "views/modules/landing.html";
 			}
-			
+
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-			$result = $this->master->insert($this->tableName,$data,$this->insertException);
+			$result = $this->master->crearMarca($data);
 			if ($result==1) {
-				echo json_encode("Registrado Exitosamente");
+				echo json_encode(true);
 			}else{
-				echo json_encode($result);
+				echo json_encode($this->doizer->knowError($result));
 			}
 		}
 		function readAll(){
@@ -82,7 +84,7 @@
 			if ($result==1) {
 				echo json_encode("Eliminado Exitosamente");
 			}else{
-				echo json_encode($result);
+				echo json_encode($this->doizer->knowError($result));
 			}
 		}
 	}

@@ -38,7 +38,7 @@
                   </div>
                   <div class="form-group">
                     <label for="numDoc" class="label">Numero de Documento:</label>
-                    <input type="number"  id="numDoc" class="input dataCl" name="data" required>
+                    <input type="number"  id="numDoc" onkeypress="return valida(event)" class="input dataCl" name="data" required>
                   </div>
                   <div class="form-group">
                     <label for="priNom" class="label">Nombre:</label>
@@ -58,7 +58,7 @@
                   </div>
                   <div class="form-group">
                     <label for="tel" class="label">Telefono:</label>
-                    <input type="number" class="input dataCl" id="tel" name="data" required>
+                    <input type="number" class="input dataCl" id="tel" onkeypress="return valida(event)" name="data" required>
                   </div>
                   <div class="form-group">
                     <label for="cuidad" class="required select">Ciudad:</label>
@@ -129,7 +129,7 @@
                             </div>
                             <div class="form-group">
                               <label for="sede-tel" class="label">Telefono</label>
-                              <input type="number" class="dataEmp input" id="sede-tel" required>
+                              <input type="number" class="dataEmp input" onkeypress="return valida(event)" id="sede-tel" required>
                             </div>
                             <button type="button" id="irAtrasbusi">atras</button>
                             <button type="button" id="businessIrParte3">siguiente</button>
@@ -144,7 +144,7 @@
                   </div>
                   <div class="form-group">
                                   <label for="numDocEmp" class="label">Numero de documento</label>
-                                  <input type="text" class="dataEmp input"  id="numDocEmp" required>
+                                  <input type="text" class="dataEmp input" onkeypress="return valida(event)" id="numDocEmp" required>
                               </div>
                   <div class="form-group">
                                   <label for="sede-enc" class="label">Nombre del contacto</label>
@@ -201,10 +201,10 @@
         <div class="runform--contenido">
         <h1>iniciar sesion</h1>
         <p>Agrega tu documento de identidad y contraseña para ingresar a maxirecargas</p>
-        <form id="form--login" data-parsley-validate>
+        <form id="form--login" >
           <div class="wrap--login">
             <label for="document" class="label-login">Documento de identidad</label>
-            <input type="text" name="data-login" class="input--login" id="document" required>
+            <input type="text" name="data-login" class="input--login" onkeypress="return valida(event)" id="document" required>
           </div>
           <div class="wrap--login">
             <label for="password" class="label-login">Contraseña</label>

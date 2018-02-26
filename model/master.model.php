@@ -357,7 +357,7 @@ class MasterModel{
     }
     public function cambiarDatosContacto($values){
         try {
-            $this->sql="call cambiarDatosContacto(?,?,?,?,?)";
+            $this->sql="call cambiarDatosContacto(?,?,?,?,?,?,?)";
             $query=$this->pdo->prepare($this->sql);
             $query->execute($values);
             $result = $query->errorInfo()[1];
@@ -581,6 +581,21 @@ class MasterModel{
     public function modificarClienteEmpresarial($value){
         try {
             $this->sql="call modificarClienteEmpresarial(?,?)";
+            $query=$this->pdo->prepare($this->sql);
+            $query->execute($value);
+            $result = $query->errorInfo()[1];
+            if ($result==null) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            $result = $query->errorInfo()[1];
+        }
+
+        return $result;
+    }
+    public function opcionesBusqueda($value){
+        try {
+            $this->sql="call opcionesBusqueda(?,?)";
             $query=$this->pdo->prepare($this->sql);
             $query->execute($value);
             $result = $query->errorInfo()[1];
@@ -1174,6 +1189,17 @@ class MasterModel{
     }
     return $result;
   }
+  public function crearMarca($data){
+    try {
+      $this->sql="call crearMarca(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute($data);
+      $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
 
   function 	innerJoinLocalizacion($ciudad){
     try {
@@ -1225,6 +1251,28 @@ class MasterModel{
       $query=$this->pdo->prepare($this->sql);
       $query->execute(array($cate,$val));
       $result = $query->fetch(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
+  function 	readRefer(){
+    try {
+      $this->sql="call readRefer()";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute();
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
+  function 	readOptionSearch($data){
+    try {
+      $this->sql="call readOptionSearch(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($data));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
     } catch (PDOException $e) {
       $result = $query->errorInfo()[1];
     }

@@ -20,12 +20,18 @@ $("#frmContact").submit(function(e) {
         success:function(response){
             $(".message").remove();
           $("#buttonContact").after("<div class='message'>"+response+"</div>");
+          $("#frmContact")[0].reset();
           setTimeout(function() {
             $(".message").remove();
           },3000);
         },
         error:function(response){
           console.log(response);
+          $(".message").remove();
+        $("#buttonContact").after("<div class='message'>"+response+"</div>");
+        setTimeout(function() {
+          $(".message").remove();
+        },3000);
         }
       });
   }else{

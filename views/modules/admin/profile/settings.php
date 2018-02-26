@@ -173,6 +173,14 @@
             <label for="direccion">direccion</label>
             <input type="text" id="direccion">
           </div>
+          <div class="coso">
+            <label for="inicio">Hora Inicio Jornada laboral</label>
+            <input type="time" id="inicio">
+          </div>
+          <div class="coso">
+            <label for="fin">Hora Fin Jornada laboral</label>
+            <input type="time" id="fin">
+          </div>
           <div class="btn-coso">
             <input type="submit" id="btn-coso">
           </div>

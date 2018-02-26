@@ -7,14 +7,11 @@
         <div class="container--form">
           <form id="frmNewOrder">
             <div class="form-groupuser">
-              <label for="typeProduct" class="labelmagenta">Tipo de Producto</label>
-              <select id="typeProduct" class="inputmagenta"></select>
-            </div>
-            <div class="form-groupuser">
               <label for="producto" class="labelmagenta">Referencia</label>
             <input type="text" id="producto" class="inputmagenta">
             </div>
             <input type="button" id="searchPro" class="labelmagenta" value="Buscar">
+            <a href="#" id="openSearch">No sabes cual es tu referencia?</a>
             <div class="form-groupuser3 hide--service ">
               <label for="servicio" class="labelmagenta">servicio</label>
               <select class="inputmagenta" id="servicio">
@@ -25,7 +22,7 @@
             <div class="juntos hide--cantidad">
               <div class="form-groupuser">
                 <label for="cant" class="labelmagenta">cantidad</label>
-                <input id="cant" class="inputmagenta">
+                <input id="cant" class="inputmagenta" onkeypress="return eliminarLetras(event)">
               </div>
             </div>
             <div class="form-groupuser hide--obs">
@@ -48,7 +45,7 @@
           <label for="fechaEntrega" class="labelmagenta">Fecha de Entrega:</label>
           <input type="date" id="fechaEntrega" class="inputmagenta" min="<?php
           $fecha = date('Y-m-d');
-          $nuevafecha = strtotime ( '-1 day' , strtotime ( $fecha ) ) ;
+          $nuevafecha = strtotime ( '+0 day' , strtotime ( $fecha ) ) ;
           $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
           echo $nuevafecha;
@@ -56,7 +53,7 @@
 
            <div>
              <label for="horaEntrega" class="labelmagenta">Hora Aproximada de  Entrega:</label>
-             <input type="time" id="horaEntrega" class="inputmagenta" >
+             <input type="time" id="horaEntrega" class="inputmagenta" required>
            </div>
 
         </div>
@@ -118,3 +115,33 @@
 </div>
 
 <div id="viewDetail"></div>
+
+
+<!-- opciones de busqueda -->
+<div class="modal" id="modalSearch">
+  <div class="modal--container" >
+      <span id="close_modal_search">&times;</span>
+      <form id="frmOptionSearch">
+        <h2>Opciones de Busqueda</h2>
+        <p>Puedes buscar por marca, palabras claves, tipo de producto,caracteristicas, etc.</p>
+        <div class="frm-group">
+            <input type="text" id="optionSearch" >
+            <input type="submit"  value="Buscar">
+        </div>
+        <!-- resultado -->
+        <div class="result">
+          <h1 id="message"></h1>
+          <table id="tabla" border=1>
+              <tr>
+                  <td>Referencia</td>
+                  <td>Categoria</td>
+                  <td>Marca</td>
+                  <td>Descripción</td>
+                  <td>Palabras Clave</td>
+                  <td>Si</td>
+              </tr>
+          </table>
+        </div>
+      </form>
+  </div>
+</div>

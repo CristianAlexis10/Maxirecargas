@@ -95,26 +95,31 @@
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-			$data[]=1;
-			if (isset($_POST['services']) &&  $_POST['services'][0]!="") {
-				 $ser = $_POST['services'];
-				$result = $this->master->insert($this->tableName,$data,$this->insertException);
-				// die($result);
-				$data_pro = $this->master->selectBy('producto',array('pro_referencia',$data[2]));
-				$i= 0;
-				foreach ($ser as $key) {
-					foreach ($key as $value) {
-						$result = $this->master->insert('servicioxproducto',array($ser[0][$i],$data_pro['pro_codigo']));
-						$i++;
-					}
-				}
-			// echo json_encode($ser[0][$i]);
-			// die();
+			if ($data[4]=="icn-maxi.png") {
+				 echo json_encode("Selecciona una Imagen");
 			}else{
-				$result ='por favor seleccione un servicio';
+				$data[]=1;
+				if (isset($_POST['services']) &&  $_POST['services'][0]!="") {
+					$ser = $_POST['services'];
+					$result = $this->master->insert($this->tableName,$data,$this->insertException);
+					if ($result==1) {
+						$data_pro = $this->master->selectBy('producto',array('pro_referencia',$data[2]));
+						$i= 0;
+						foreach ($ser as $key) {
+							foreach ($key as $value) {
+								$result = $this->master->insert('servicioxproducto',array($ser[0][$i],$data_pro['pro_codigo']));
+								$i++;
+							}
+						}
+					}else{
+						$result=$this->doizer->knowError($result);
+					}
+				}else{
+					$result ='por favor seleccione un servicio';
+				}
+				$_SESSION['new_stock'] =	$data[2];
+				echo json_encode($result);
 			}
-			$_SESSION['new_stock'] =	$data[2];
-			echo json_encode($result);
 			//  $data[]=date('Y-m-d');
 			// header("Location: crear-inventario");
 		}
@@ -178,6 +183,31 @@
 		function readBycategoryPagination(){
 			$result=$this->master->readBycategoryPagination(array($_POST['name'],$_POST['ini'],$_POST['totalElePag']));
 			echo json_encode($result);
+		}
+
+		function readRefer(){
+			$result = $this->master->readRefer();
+			$data = [];
+			foreach ($result as $row) {
+				$data[]=$row['pro_referencia'];
+			}
+			echo json_encode($data);
+		}
+		function readOptionSearch(){
+			$data=$_POST['data'];
+			$result = $this->master->readOptionSearch($data);
+			echo json_encode($result);
+		}
+		function viewDetail(){
+			if (isset($_SESSION['CUSTOMER']['ROL'])) {
+				require_once "views/include/customer/scope.header.php";
+				require_once "views/modules/customer/products/detail.php";
+				require_once "views/include/customer/scope.footer.php";
+			}else{
+				require_once "views/include/user/scope.header.php";
+				require_once "views/modules/user/products/detail.php";
+				require_once "views/include/user/scope.footer.php";
+			}
 		}
 	}
 ?>

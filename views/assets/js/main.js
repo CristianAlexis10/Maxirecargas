@@ -27,10 +27,11 @@ $(".input").focusout(function(){
                    dataType:'json',
                    data: ({data: dataJson}),
                    success: function(result){
-                    if (result) {
+                    if (result==true) {
                       $("#frmNewService").after("<div class='message'>Registrado Exitosamente</div>");
+                      $("#frmNewService")[0].reset();
                     }else{
-                      $("#frmNewService").after("<div class='message'>Ocurrio un error</div>");
+                      $("#frmNewService").after("<div class='message'>"+result+"</div>");
                     }
                      setTimeout(function(){
                         $('div.message').remove();
@@ -117,16 +118,21 @@ $(".input").focusout(function(){
                        dataType:'json',
                        data: ({data: dataJson}),
                        success: function(result){
-                        if (result) {
+                         console.log(result);
+                        if (result==true) {
                           $("#frmNewMar").after("<div class='message'>Registrado Exitosamente</div>");
                           $("input[name=dataNewMark]").each(function(){
                               $(this).val(" ");
                               $('#desMar').val(" ");
                               // $("#wrap-upload").hide();
                            });
+                           setTimeout(function(){
+                              $('div.message').remove();
+                            }, 3000);
+
                           selectMark();
                         }else{
-                          $("#frmNewMar").after("<div class='message'>Ocurrio un error</div>");
+                          $("#frmNewMar").after("<div class='message'>"+result+"</div>");
                         }
                          setTimeout(function(){
                             $('div.message').remove();
@@ -210,8 +216,9 @@ $(".input").focusout(function(){
                            dataType:'json',
                            data: ({data: dataJson}),
                            success: function(result){
-                            if (result) {
-                              $("#frmNewCategorie").after("<div class='message'>"+result+"</div>");
+                            if (result==true) {
+                              $("#frmNewCategorie").after("<div class='message'>Registrado Exitosamente.</div>");
+                              $("#frmNewCategorie")[0].reset();
                               selectCategory();
                             }else{
                               $("#frmNewCategorie").after("<div class='message'>"+result+"</div>");
@@ -541,6 +548,7 @@ var typeUser= $('#tipo_usu').val();
                    dataType:'json',
                    data: ({data: dataJson, services:servicios}),
                    success: function(result){
+                     console.log(result);
                     if (result==true) {
                       location.href = "crear-inventario";
                       $("#frmNerProduct").after("<div class='message'>Registrado Exitosamente</div>");
@@ -567,17 +575,18 @@ var typeUser= $('#tipo_usu').val();
     	      url: 'eliminar-producto',
     	      type:'post',
     	      dataType:'json',
-    	      data:'data='+value,
-    	  }).done(function(response){
+    	      data:({data:value}),
+            success:function(response){
               console.log(response);
               $('#datableProduct').load('index.php?controller=datatables&a=dataTableProduct');
               $("#datableProduct").after("<div class='message'>"+response+"</div>");
               setTimeout(function(){
                  $('div.message').remove();
-               }, 2000);
-    	  });
-    		return true;
-
+               }, 3000);
+          },
+          error:function(response){console.log(response);}
+        });
+          return true;
     	}else{
     		return false;
     	}
