@@ -49,7 +49,7 @@
 							</div>
 							<div class="form-group">
 								<label for="numDoc" class="label">Numero de Documento:</label>
-								<input type="number"  id="numDoc" class="input dataCl" required>
+								<input type="number"  id="numDoc"  onkeypress="return eliminarLetras(event)" class="input dataCl" required>
 							</div>
 						</div>
 						<div class="wrap_two_formgroup">
@@ -69,7 +69,7 @@
 							</div>
 							<div class="form-group">
 								<label for="tel" class="label">Telefono:</label>
-								<input type="number" class="input dataCl" id="tel"  required>
+								<input type="number" class="input dataCl" onkeypress="return eliminarLetras(event)" id="tel"  required>
 							</div>
 						</div>
 						<div class="wrap_two_formgroup">
@@ -136,7 +136,7 @@
 								</div>
 								<div class="form-group">
 									<label for="sede-tel" class="label">Telefono</label>
-									<input type="number" class="dataEmp input" id="sede-tel" required>
+									<input type="number" class="dataEmp input" onkeypress="return eliminarLetras(event)"  id="sede-tel" required>
 								</div>
 							</div>
 							<h1>datos del contacto</h1>
@@ -149,7 +149,7 @@
 							</div>
 								<div class="form-group">
 								<label for="numDoc" class="label">Numero de documento</label>
-								<input type="text" class="dataEmp input"  id="numDocEmp" required>
+								<input type="text" class="dataEmp input" onkeypress="return eliminarLetras(event)"  id="numDocEmp" required>
 							</div>
 							</div>
 							<div class="wrap_two_formgroup">
@@ -171,7 +171,7 @@
 							</div>
 							<div class="form-group">
 								<label for="sede-enc" class="label">Ext</label>
-								<input type="number" class="dataEmp input"  id="sede-ext" required>
+								<input type="number" class="dataEmp input" onkeypress="return eliminarLetras(event)" id="sede-ext" required>
 							</div>
 						</div>
 						<div class="wrap_two_formgroup">

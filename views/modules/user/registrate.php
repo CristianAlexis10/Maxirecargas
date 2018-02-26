@@ -62,7 +62,12 @@
                   </div>
                   <div class="form-group">
                     <label for="cuidad" class="required select">Ciudad:</label>
-                    <select class="dataCl input"  id="cuidad" required> </select>
+                    <select class="dataCl input"  id="cuidad" required>
+                      <!-- <?php
+                      //  foreach ($this->master->selectAll("ciudad") as $row) {?>
+                          <option value="<?php //  echo $row['id_ciudad']; ?>"><?php // echo $row['ciu_nombre'] ?></option>
+                      <?php   // } ?> -->
+                    </select>
                   </div>
 
                   <div class="form-group">
@@ -157,7 +162,10 @@
                   <div class="form-group">
                                   <label for="cuidad" class="select" >Ciudad</label>
                                   <select class="dataEmp input" id="cuidad2">
-                                      <option value="1">Medellin</option>
+                                    <?php
+                                      //foreach ($this->master->selectAll("ciudad") as $row) {?>
+                                        <!-- <option value="<?php // echo $row['id_ciudad']; ?>"><?php //echo $row['ciu_nombre'] ?></option> -->
+                                    <?php   // } ?>
                                   </select>
                               </div>
                   <button type="button" id="irAtras3busi">atras</button>
@@ -224,3 +232,8 @@
     <script src="views/assets/lib/parsley/es.js"></script>
     <script type="text/javascript" src="views/assets/js/auth.js"></script>
     <script type="text/javascript" src="views/assets/js/registro.js"></script>
+    <!-- <script src="views/assets/js/select.js"></script> -->
+    <script>
+      // $('#cuidad').zelect({ placeholder:'Ciudad' });
+      // $('#cuidad2').zelect({ placeholder:'Ciudad' });
+    </script>

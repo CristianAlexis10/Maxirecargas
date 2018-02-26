@@ -13,6 +13,7 @@
    <script src="views/assets/js/main.js"></script>
    <script src="views/assets/js/config.js"></script>
    <script src="views/assets/js/settings.js"></script>
+   <!-- <script src="views/assets/js/select.js"></script> -->
    <script src="views/assets/js/multiple-select.js"></script>
    <script src="views/assets/js/orders-admin.js"></script>
    <script>
@@ -21,6 +22,7 @@
             placeholder: "Selecciona los servicios"
         });
    }
+     // $('#cuidad').zelect({ placeholder:'Selecciona una ciudad' })
     </script>
 
     </body>

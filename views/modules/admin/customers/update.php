@@ -51,7 +51,7 @@
 				 </div>
 				 <div class="form-group">
 					 <label for="tel" class="label">Telefono:</label>
-					 <input type="number" name="data[]" id="tel" class="userUpdate input" value="<?php echo $result['usu_telefono']?>" required>
+					 <input type="number" name="data[]" id="tel" onkeypress="return eliminarLetras(event)" class="userUpdate input" value="<?php echo $result['usu_telefono']?>" required>
 				 </div>
 
 

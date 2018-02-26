@@ -2,7 +2,7 @@
 	if ($_SESSION['CUSTOMER']['ROL']==2) {?>
 		<div class="modules">
 			<div class="title">
-				<p>ESTADISITICAS</p>
+				<p>ESTADISTICAS</p>
 			</div>
 		</div>
 		<div class="container--charts">
