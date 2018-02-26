@@ -179,11 +179,11 @@ var ctx2 = document.getElementById("second--pie");
              type: "POST",
              dataType:'json',
              success: function(result){
-               // console.log(result);
+               console.log(result);
                if (result[0][0]==null) {
                  $('#totalPed').html('0');
                }else{
-                 $('#totalPed').html(result[0][0]);
+                 $('#totalPed').html(result[0]);
                }
              }
          });
