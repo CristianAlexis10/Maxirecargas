@@ -62,21 +62,26 @@ $("#saveStarus").click(function(){
   var status = $("#newStatus").val();
   if (status==3 || status == 5) {
      var obser = $("#motive").val();
-     $.ajax({
-       url:"cambiar_estado",
-       type:"POST",
-       data:({ data : status , order : pedCod , obs : obser}),
-       dataType:"json",
-       success:function(result){
-         loadDataTables();
-       },
-       error:function(result){
-         console.log(result);
-       }
-     });
+     if (confirm("¿Guardar Cambios?")) {
+       $.ajax({
+         url:"cambiar_estado",
+         type:"POST",
+         data:({ data : status , order : pedCod , obs : obser}),
+         dataType:"json",
+         success:function(result){
+           loadDataTables();
+           $("#motive").val("")
+           // $("#modal-motive").hide();
+           $(".modal-status").hide();
+         },
+         error:function(result){
+           console.log(result);
+         }
+       });
+     }
   }else if(status == 4){
     var all = $("#total").val();
-    if (confirm("¿Registrar Producto terminado con un total de "+all+"?")) {
+    if (confirm("¿Registrar Pedido terminado con un total de "+all+"?")) {
           $.ajax({
             url:"cambiar_estado",
             type:"POST",
@@ -85,7 +90,7 @@ $("#saveStarus").click(function(){
             success:function(result){
               loadDataTables();
               $("#total").val("")
-              $("#modal-total").hide();
+              // $("#modal-total").hide();
               $(".modal-status").hide();
             },
             error:function(result){

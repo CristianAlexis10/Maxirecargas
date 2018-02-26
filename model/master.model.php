@@ -1278,6 +1278,17 @@ class MasterModel{
     }
     return $result;
   }
+  function 	datosCotizacion($data){
+    try {
+      $this->sql="call datosCotizacion(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($data));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
 
 }
 
