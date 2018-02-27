@@ -24,7 +24,7 @@ require_once "controller/doizer.controller.php";
 				if (isset($access)) {
 					require_once "views/include/scope.header.php";
 					require_once "views/modules/admin/products/category/new.php";
-					require_once "views/include/scope.footer.php";
+					// require_once "views/include/scope.footer.php";
 				}else{
 					session_destroy();
 					require_once "views/modules/landing.html";
@@ -59,7 +59,11 @@ require_once "controller/doizer.controller.php";
 		}
 		function newRegister(){
 			$data = $_POST['data'];
-			$result = $this->master->insert($this->tableName,$data,$this->insertException);
+			if ($data[1]=="icn-maxi.png") {
+				echo json_encode("Por favor seleccione una imagen");
+				return ;
+			}
+			$result = $this->master->insert($this->tableName,array($data[0],$data[2],$data[1]),$this->insertException);
 			if ($result==1) {
 				echo json_encode(true);
 			}else{

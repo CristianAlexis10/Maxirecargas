@@ -49,7 +49,7 @@ $('.upload-result').on('click', function (ev) {
   }).then(function (resp) {
 
     $.ajax({
-      url: "cropp-products",
+      url: "cropp-category",
       type: "POST",
       data: {"image":resp},
       success: function (data) {

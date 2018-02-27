@@ -62,7 +62,7 @@
 			               	<?php foreach($this->master->selectAll("tipo_producto") AS $row) {?>
 			               		<option value="<?php echo $row['tip_pro_codigo']?>"><?php echo $row['tip_pro_nombre'] ?></option>
 			               	<?php } ?>
-											<option value="newCategory">Otra</option>
+											<!-- <option value="newCategory">Otra</option> -->
 			               </select>
 			            </div>
 		    		 <div class="form-group">
@@ -159,7 +159,7 @@
 		</form>
 		</div>
 	</div>
-<div class="new--category modales" id="modal--newCt">
+<!-- <div class="new--category modales" id="modal--newCt">
 	<div class="container--modales">
 			<span id="closeNewCt">&times;</span>
 			<h1>Registra una nueva categoria</h1>
@@ -177,4 +177,4 @@
 				</div>
 			</form>
 		</div>
-	</div>
+	</div> -->

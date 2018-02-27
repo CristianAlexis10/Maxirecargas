@@ -16,7 +16,7 @@
     <div class="container--products">
       <div class="products">
         <div class="item toner Btncategoria" id="Toner">
-          <img src="views/assets/image/toner.png">
+          <img src="views/assets/image/category/toner.png">
           <h3 >toner</h3>
         </div>
         <div class="item cartucho Btncategoria" id="Cartuchos">
@@ -33,5 +33,5 @@
         </div>
       </div>
       <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
-    </div>  
+    </div>
     <div class="container--grid"></div>

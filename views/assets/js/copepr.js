@@ -114,10 +114,12 @@ if (document.getElementsByClassName('Btncategoria')) {
       $(".products").addClass("moverproduct");
       $(".Btoner").addClass("aparecer");
       $(".container--grid").addClass("gridaparecer");
+        // $(".pagination").show();
     });
     if (document.getElementById('categoryName')) {
     var bntAtras = document.getElementById('pedAtras');
       bntAtras.onclick = function(){
+        $(".pagination").empty();
       $(".products").removeClass("moverproduct");
       $(".Btoner").removeClass("aparecer");
       $(".container--grid").removeClass("gridaparecer");

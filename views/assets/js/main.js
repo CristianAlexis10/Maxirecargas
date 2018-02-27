@@ -219,6 +219,8 @@ $(".input").focusout(function(){
                             if (result==true) {
                               $("#frmNewCategorie").after("<div class='message'>Registrado Exitosamente.</div>");
                               $("#frmNewCategorie")[0].reset();
+                              html = '<img src="views/assets/image/icn-maxi.png" />';
+                              $("#wrap-result").html(html);
                               selectCategory();
                             }else{
                               $("#frmNewCategorie").after("<div class='message'>"+result+"</div>");
@@ -273,26 +275,26 @@ function selectCategory(){
     }
 }
 
-if (document.getElementById('categoria')) {
-    $(".new--category").hide();
-    $('#categoria').change(function(){
-        var value = $('#categoria').val();
-        if (value == 'newCategory') {
-            $(".new--category").show();
-            console.log('otro');
-        }
-    });
-}
-if (document.getElementById('closeNewCt')) {
- var closeModalCt = document.getElementById('closeNewCt');
- var modalCategory = document.getElementById('modal--newCt');
-
- closeModalCt.onclick= function() {
-   modalCategory.style.display= "none";
-
- }
-
-}
+// if (document.getElementById('categoria')) {
+//     $(".new--category").hide();
+//     $('#categoria').change(function(){
+//         var value = $('#categoria').val();
+//         if (value == 'newCategory') {
+//             $(".new--category").show();
+//             console.log('otro');
+//         }
+//     });
+// }
+// if (document.getElementById('closeNewCt')) {
+//  var closeModalCt = document.getElementById('closeNewCt');
+//  var modalCategory = document.getElementById('modal--newCt');
+//
+//  closeModalCt.onclick= function() {
+//    modalCategory.style.display= "none";
+//
+//  }
+//
+// }
 
 
 // tabs
