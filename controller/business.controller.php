@@ -19,9 +19,13 @@
 			require_once "views/include/scope.footer.php";
 		}
 		function profile(){
+		if (isset($_SESSION['CUSTOMER']['ROL']) && !isset($_SESSION['CUSTOMER']['CLIENT'])) {
 			require_once "views/include/scope.header.php";
 			require_once "views/modules/admin/profile/business/index.php";
 			require_once "views/include/scope.footer.php";
+		}else{
+			header("Location:maxirecargas");
+		}
 		}
 		function readByNit(){
 			$data=$_POST['data'];
