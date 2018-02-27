@@ -227,7 +227,6 @@ color:white}
   columns:320px 3;
   column-gap: 60px;
   width: 90%;
-  height: 500px;
   max-width: 1100px;
   margin: 0 auto;
   display: none;
@@ -259,6 +258,22 @@ color:white}
 }
 .container--grid:hover figure:not(:hover) {
 	opacity: 0.4;
+}
+.pagination{
+  font-family: 'lato';
+  color: #9e9e9e;
+  justify-content: center;
+  border-top: 1px solid #ededed;
+}
+.pagination h1{
+  font-size: 20px;
+  padding: 8px 16px;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+.pagination h1:hover{
+  color: #35a4dd;
+  border-bottom: 1px solid #35a4dd;
 }
 
 /* animacion para vista de producto  */
