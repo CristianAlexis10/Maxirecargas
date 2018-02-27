@@ -210,14 +210,7 @@ margin-bottom: 30px;
 .dataTables_wrapper .dataTables_filter{
 margin-bottom: 30px;
 }
-/*informacion sobre la cantidad*/
-.dataTables_wrapper .dataTables_info{
 
-}
-/*paginacion*/
-.dataTables_wrapper .dataTables_paginate{
-
-}
 table.dataTable.no-footer{
   border: 1px solid #111;
 }
