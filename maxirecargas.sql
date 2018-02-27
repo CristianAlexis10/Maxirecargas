@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-02-2018 a las 14:49:24
+-- Tiempo de generación: 27-02-2018 a las 17:13:03
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -950,8 +950,8 @@ INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccio
 (41, 4, 1, 'Calle 95 #44-35', 'Cancelado', 'tsuUH-T9qHr', '2018-02-17', '2018-02-17', '15:23:00'),
 (42, 4, 1, 'Calle 95 #44-35', 'Terminado', 'f8AMF-SKEZj', '2018-02-25', '2018-02-25', '00:00:00'),
 (43, 6, 1, 'Calle 95 #44-35', 'En Proceso', 's45GL-bESn9', '2018-02-25', '2018-02-26', '00:00:00'),
-(44, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'NMIiP-oi3px', '2018-02-25', '2018-02-26', '19:15:00'),
-(45, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'aBhoH-sCtZx', '2018-02-26', '2018-02-26', '20:49:00'),
+(44, 4, 1, 'Calle 95 #44-35', 'En Proceso', 'NMIiP-oi3px', '2018-02-25', '2018-02-27', '19:15:00'),
+(45, 3, 1, 'Calle 95 #44-35', 'En Proceso', 'aBhoH-sCtZx', '2018-02-26', '2018-02-27', '20:49:00'),
 (46, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'F9H2w-7TrMR', '2018-02-26', '2018-02-26', '20:49:00'),
 (47, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'I4q2C-9xWGL', '2018-02-26', '2018-02-26', '22:49:00'),
 (48, NULL, 1, 'Calle 95 #44-35', 'En Bodega', '9BAXf-2eYja', '2018-02-26', '2018-02-26', '19:20:00');
@@ -1274,18 +1274,20 @@ INSERT INTO `tipo_pedido` (`tip_ped_codigo`, `tip_ped_nombre`) VALUES
 CREATE TABLE `tipo_producto` (
   `tip_pro_codigo` int(11) NOT NULL,
   `tip_pro_nombre` varchar(20) NOT NULL,
-  `tip_pro_descripcion` varchar(200) NOT NULL
+  `tip_pro_descripcion` varchar(200) NOT NULL,
+  `tip_pro_imagen` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tipo_producto`
 --
 
-INSERT INTO `tipo_producto` (`tip_pro_codigo`, `tip_pro_nombre`, `tip_pro_descripcion`) VALUES
-(1, 'Computador', 'desp\r\n'),
-(2, 'Impresora', ''),
-(3, 'toner', ''),
-(4, 'cartucho', '');
+INSERT INTO `tipo_producto` (`tip_pro_codigo`, `tip_pro_nombre`, `tip_pro_descripcion`, `tip_pro_imagen`) VALUES
+(1, 'Computador', 'desp\r\n', 'computador.png'),
+(2, 'Impresora', '', 'impresora.png'),
+(3, 'toner', '', 'toner.png'),
+(4, 'cartucho', '', 'cartuchos.png'),
+(23, 'NN', 'aa', '1519769490.png');
 
 -- --------------------------------------------------------
 
@@ -1825,7 +1827,7 @@ ALTER TABLE `tipo_pedido`
 -- AUTO_INCREMENT de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
-  MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `tipo_servicio`
 --

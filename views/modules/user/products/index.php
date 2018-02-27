@@ -15,22 +15,13 @@
     </div>
     <div class="container--products">
       <div class="products">
-        <div class="item toner Btncategoria" id="Toner">
-          <img src="views/assets/image/category/toner.png">
-          <h3 >toner</h3>
-        </div>
-        <div class="item cartucho Btncategoria" id="Cartuchos">
-          <img src="views/assets/image/cartuchos.png" >
-          <h3>cartuchos</h3>
-        </div>
-        <div class="item impresora Btncategoria" id="Impresoras">
-          <img src="views/assets/image/impresora.png">
-          <h3>impresoras</h3>
-        </div>
-        <div class="item computadores Btncategoria" id="Computador">
-          <img src="views/assets/image/computador.png">
-          <h3>computadores</h3>
-        </div>
+      <?php
+        foreach ($this->master->selectAll("tipo_producto") as $row) {?>
+          <div class="item toner Btncategoria" id="<?php echo $row['tip_pro_nombre'] ?>">
+            <img src="views/assets/image/category/<?php echo $row['tip_pro_imagen'] ?>">
+            <h3 ><?php echo $row['tip_pro_nombre'] ?></h3>
+          </div>
+        <?php } ?>
       </div>
       <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
     </div>
