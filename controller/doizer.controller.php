@@ -240,6 +240,9 @@ class DoizerController{
 			case '1452':
 				return 'No se puede modificar debido a que  existen otros registros relacionados con este';
 				break;
+			case '1054':
+				return 'No se puede Ejecutar la consulta';
+				break;
 			case 'HY093':
 				return 'los parametos a modificar no coinciden';
 				break;

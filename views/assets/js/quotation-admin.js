@@ -8,9 +8,14 @@ $("#saveResponse").click(function(){
       url:"reponder-cotizacion",
       type:"post",
       dataType:"json",
-      data:({quotation:dataResponse}),
+      data:({quotation:dataResponse, obs : $("#aditionalObs").val()}),
       success:function(result){
-        console.log(result);
+        if (result==true) {
+          location.reload();
+        }else{
+          $("#saveResponse").after("<div class='message'>"+result+"</div>");
+        }
+        setTimeout(function(){$("div.message").remove()},3000);
       },
       error:function(error){console.log(error);}
     });
