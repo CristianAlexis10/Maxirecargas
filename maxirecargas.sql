@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2018 a las 16:23:49
+-- Tiempo de generación: 27-02-2018 a las 14:49:24
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -125,7 +125,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `contestarCotizacion` (IN `quota` INT, IN `respon` LONGTEXT, IN `estado` VARCHAR(20))  NO SQL
 BEGIN 
-UPDATE cotizacion SET cotizacion.cot_estado = estado, cotizacion.cot_respuesta=respon WHERE cotizacion.cot_codigo = quota;
+UPDATE cotizacion SET cotizacion.cot_estado = estado, cotizacion.cot_observacion = respon WHERE cotizacion.cot_codigo = quota;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `cotizacionesPendientes` ()  NO SQL
@@ -180,6 +180,11 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `crearUsuario` (IN `id_tipo_documento` INT(11), IN `usu_num_documento` INT(11), IN `usu_primer_nombre` VARCHAR(50), IN `usu_primer_apellido` VARCHAR(50), IN `usu_correo` VARCHAR(100), IN `usu_telefono` INT(10), IN `id_ciudad` INT(11), IN `dir` VARCHAR(200), IN `usu_sexo` VARCHAR(50), IN `tip_usu_codigo` INT(11), IN `id_estado` INT(11), IN `usu_foto` LONGTEXT, IN `usu_fechas_registro` DATE, IN `usu_ult_inicio_sesion` DATE)  BEGIN
 INSERT INTO usuario  (id_tipo_documento, usu_num_documento, usu_primer_nombre, usu_primer_apellido,  usu_correo,  usu_celular, id_ciudad, usu_direccion,  usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion) VALUES (id_tipo_documento, usu_num_documento,  usu_primer_nombre, usu_primer_apellido, usu_correo, usu_telefono, id_ciudad, dir, usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion);
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `datosCotizacion` (IN `cod` INT)  NO SQL
+BEGIN 
+SELECT cot.cot_codigo,cot.cot_token,cot.cot_estado,usu.usu_primer_nombre,usu.usu_primer_apellido,proco.proxcot_cantidad,pro.pro_referencia,ser.tip_ser_nombre,ser.Tip_ser_cod,proco.proxcod_observacion, proco.proxcod_res,cot.cot_observacion FROM cotizacion cot INNER JOIN usuario usu ON usu.usu_codigo=cot.usu_codigo INNER JOIN prodxcot  proco ON proco.cot_codigo = cot.cot_codigo INNER JOIN producto pro ON proco.pro_codigo=pro.pro_codigo INNER JOIN tipo_servicio ser ON proco.tip_servicio = ser.Tip_ser_cod WHERE cot.cot_codigo = cod;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `direccionDeCotizacion` (IN `id` INT)  NO SQL
@@ -309,6 +314,11 @@ SET
      
 WHERE id_cliente_empresarial = codigo;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ModificarCotxPro` (IN `pro` INT, IN `cantidad` INT, IN `servicio` INT, IN `cot` INT, IN `total` INT)  NO SQL
+BEGIN 
+UPDATE prodxcot SET prodxcot.proxcod_res = total WHERE prodxcot.cot_codigo = cot AND prodxcot.pro_codigo = pro AND prodxcot.proxcot_cantidad = cantidad AND prodxcot.tip_servicio = servicio;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarDatosMaxi` (IN `micro` LONGTEXT, IN `mision` LONGTEXT, IN `vision` LONGTEXT, IN `poli` LONGTEXT)  NO SQL
@@ -612,16 +622,15 @@ CREATE TABLE `cotizacion` (
   `cot_token` varchar(12) NOT NULL,
   `cot_estado` varchar(20) NOT NULL,
   `cot_fecha` date NOT NULL,
-  `cot_respuesta` longtext NOT NULL
+  `cot_observacion` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `cotizacion`
 --
 
-INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `cot_ciudad`, `cot_dir`, `cot_token`, `cot_estado`, `cot_fecha`, `cot_respuesta`) VALUES
-(15, 1, 1, 'calle 95', 'tTNgX-Mprjx', 'Terminado', '2018-01-11', 'ya respondi'),
-(16, 1, 1, 'Calle 95 #44-35', 'zt1yE-VhGPd', 'En Recepcion', '2018-01-22', ''),
+INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `cot_ciudad`, `cot_dir`, `cot_token`, `cot_estado`, `cot_fecha`, `cot_observacion`) VALUES
+(15, 1, 1, 'calle 95', 'tTNgX-Mprjx', 'Terminado', '2018-01-11', 'a'),
 (17, 1, 1, 'Calle 95 #44-35', 'rjD5Z-qHl44', 'En Recepcion', '2018-02-01', ''),
 (18, 1, 1, 'Calle 95 #44-35', 'XQJ9f-umOxM', 'En Recepcion', '2018-02-17', ''),
 (19, 1, 1, 'Calle 95 #44-35', 'LrLme-ryfCq', 'En Recepcion', '2018-02-25', ''),
@@ -935,12 +944,12 @@ INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccio
 (35, 3, 1, 'Calle 95 #44-32', 'Terminado', 'eOCDt-tZsph', '2018-02-25', '2018-02-25', '00:00:00'),
 (36, 6, 1, 'Calle 95 #44-35', 'Terminado', '2NfEP-94dKU', '2018-01-15', '0000-00-00', '00:00:00'),
 (37, 4, 1, 'Calle 95 #44-35', 'Terminado', 'H2pL4-54RFU', '2018-01-18', '2018-01-23', '00:00:00'),
-(38, 6, 1, 'Calle 95 #44-35', 'En Proceso', 'effWZ-Imgs2', '2018-01-22', '2018-01-26', '12:01:00'),
+(38, 6, 1, 'Calle 95 #44-35', 'Aplazado', 'effWZ-Imgs2', '2018-01-22', '2018-01-26', '12:01:00'),
 (39, 3, 1, 'Calle 95 #44-35', 'Terminado', 'LPRec-1sHp0', '2018-01-22', '2018-01-26', '12:01:00'),
-(40, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'FhXLB-yD1fN', '2018-02-02', '2018-02-02', '00:00:00'),
-(41, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'tsuUH-T9qHr', '2018-02-17', '2018-02-17', '15:23:00'),
-(42, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'f8AMF-SKEZj', '2018-02-25', '2018-02-25', '00:00:00'),
-(43, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 's45GL-bESn9', '2018-02-25', '2018-02-26', '00:00:00'),
+(40, 4, 1, 'Calle 95 #44-35', 'Aplazado', 'FhXLB-yD1fN', '2018-02-02', '2018-02-02', '00:00:00'),
+(41, 4, 1, 'Calle 95 #44-35', 'Cancelado', 'tsuUH-T9qHr', '2018-02-17', '2018-02-17', '15:23:00'),
+(42, 4, 1, 'Calle 95 #44-35', 'Terminado', 'f8AMF-SKEZj', '2018-02-25', '2018-02-25', '00:00:00'),
+(43, 6, 1, 'Calle 95 #44-35', 'En Proceso', 's45GL-bESn9', '2018-02-25', '2018-02-26', '00:00:00'),
 (44, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'NMIiP-oi3px', '2018-02-25', '2018-02-26', '19:15:00'),
 (45, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'aBhoH-sCtZx', '2018-02-26', '2018-02-26', '20:49:00'),
 (46, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'F9H2w-7TrMR', '2018-02-26', '2018-02-26', '20:49:00'),
@@ -1071,21 +1080,22 @@ CREATE TABLE `prodxcot` (
   `pro_codigo` int(11) NOT NULL,
   `proxcot_cantidad` int(11) NOT NULL,
   `tip_servicio` int(11) NOT NULL,
-  `proxcod_observacion` longtext NOT NULL
+  `proxcod_observacion` longtext NOT NULL,
+  `proxcod_res` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `prodxcot`
 --
 
-INSERT INTO `prodxcot` (`cot_codigo`, `pro_codigo`, `proxcot_cantidad`, `tip_servicio`, `proxcod_observacion`) VALUES
-(15, 1, 11, 4, 'nada'),
-(16, 1, 9878, 4, '8789'),
-(17, 1, 2, 4, '22'),
-(18, 1, 98, 4, '8978'),
-(19, 19, 8, 7, '88'),
-(20, 19, 9, 7, '88'),
-(21, 2, 8978, 3, '7879');
+INSERT INTO `prodxcot` (`cot_codigo`, `pro_codigo`, `proxcot_cantidad`, `tip_servicio`, `proxcod_observacion`, `proxcod_res`) VALUES
+(15, 1, 11, 4, 'nada', 2000),
+(15, 1, 9878, 4, '8789', 3000),
+(17, 1, 2, 4, '22', 0),
+(18, 1, 98, 4, '8978', 0),
+(19, 19, 8, 7, '88', 0),
+(20, 19, 9, 7, '88', 0),
+(21, 2, 8978, 3, '7879', 0);
 
 -- --------------------------------------------------------
 
@@ -1104,7 +1114,10 @@ CREATE TABLE `reporte` (
 --
 
 INSERT INTO `reporte` (`rep_codigo`, `ped_codigo`, `rep_observacion`) VALUES
-(1, 32, '');
+(1, 32, ''),
+(2, 38, 'por que estoy ensayando'),
+(3, 40, 'nada'),
+(4, 41, 'sad');
 
 -- --------------------------------------------------------
 
@@ -1359,16 +1372,16 @@ INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `
 (2, 1, 9904, 'Cristian', 'Lopera', 'Lopera', 'Bedoya', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 3157890, '2018-01-12', 'masculino', 2, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
 (3, 1, 123, 'Andres', '', 'Lopez', '', 'calopera1@misena.edu.co', 234567, 1, 'calle 90 ', 32256789, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-10', '2018-01-10'),
 (4, 1, 1234, 'Carlos', '', 'gaviria', '', 'caloper18@misena.', 0, 2, 'calle 6 sur', 323355, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-15', '2018-01-15'),
-(5, 1, 8888, 'evelin', '', 'herrera', '', 'yonosoybond', 77, 1, 'calle 6 sur ', 521, '2018-01-20', 'femenino', 1, 1, 'default.jpg', '2018-01-20', '2018-01-20'),
+(5, 1, 8888, 'evelin', '', 'herrera', '', 'yonosoybond', 77, 1, 'calle 6 sur ', 521, '2018-01-20', 'femenino', 1, 2, 'default.jpg', '2018-01-20', '2018-01-20'),
 (6, 1, 1214746, 'Javier', '', 'nose', '', 'yonosoybond@gmail.co', 0, 1, 'calle 7 sur', 2147483647, '0000-00-00', 'masculino', 5, 2, 'default.jpg', '2018-01-20', '2018-01-20'),
 (7, 1, 7777, 'Brayan', '', 'Soto', '', 'calope@misena.edu.co', 0, 1, 'oreja', 345678, '0000-00-00', 'masculino', 1, 2, 'default.jpg', '2018-02-15', '2018-02-15'),
 (12, 1, 777798, 'Brayan', '', 'Soto', '', 'calopermisena.edu.co', 0, 1, 'oreja', 345678, '0000-00-00', 'masculino', 1, 2, 'default.jpg', '2018-02-15', '2018-02-15'),
 (14, 1, 888, '897978', '', '789798', '', 'alexis__10@hotmail.com', 0, 1, '789798', 89789, '0000-00-00', 'masculino', 1, 2, 'default.jpg', '2018-02-17', '2018-02-17'),
 (15, 1, 9089, '8908', '', '9089080', '', 'aa@a.com', 0, 1, '089890890', 989089, '0000-00-00', 'null', 3, 2, 'defaul.jpg', '2018-02-17', '2018-02-17'),
-(16, 1, 989, '890989', '', '89089080', '', '89809898@hha.com', 0, 1, '908', 98989, '0000-00-00', 'null', 3, 2, 'defaul.jpg', '2018-02-17', '2018-02-17'),
-(17, 1, 987, '87', '', '7', '', 'yadad@dadasa.asd', 0, 2, '67676', 778, '0000-00-00', 'femenino', 1, 2, 'default.jpg', '2018-02-21', '2018-02-21'),
-(18, 1, 3243, '5435', '', '345', '', 'yonosoybond@gmail', 0, 1, '54654', 5456, '0000-00-00', 'masculino', 1, 2, 'default.jpg', '2018-02-21', '2018-02-21'),
-(19, 1, 324324, '324324', '', '32432', '', 'yonosoybond@gmail.com', 1, 1, '342', 32432, '2018-02-15', 'masculino', 1, 2, 'defaul.jpg', '2018-02-22', '2018-02-22');
+(16, 1, 989, '890989', '', '89089080', '', '89809898@hha.com', 0, 1, '908', 98989, '0000-00-00', 'null', 3, 1, 'defaul.jpg', '2018-02-17', '2018-02-17'),
+(17, 1, 987, '87', '', '7', '', 'yadad@dadasa.asd', 0, 2, '67676', 778, '0000-00-00', 'femenino', 1, 1, 'default.jpg', '2018-02-21', '2018-02-21'),
+(18, 1, 3243, '5435', '', '345', '', 'yonosoybond@gmail', 0, 1, '54654', 5456, '0000-00-00', 'masculino', 1, 1, 'default.jpg', '2018-02-21', '2018-02-21'),
+(19, 1, 324324, '324324', '', '32432', '', 'yonosoybond@gmail.com', 1, 1, '342', 32432, '2018-02-15', 'masculino', 1, 1, 'defaul.jpg', '2018-02-22', '2018-02-22');
 
 -- --------------------------------------------------------
 
@@ -1397,7 +1410,7 @@ INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`, `usuxped_total`) VALUE
 (1, 39, 8000),
 (1, 40, 0),
 (1, 41, 0),
-(1, 42, 0),
+(1, 42, 324324),
 (1, 43, 0),
 (1, 44, 0),
 (1, 45, 0),
@@ -1442,7 +1455,7 @@ INSERT INTO `ventas` (`usu_codigo`, `id_venta`, `ven_total`, `ped_codigo`, `ven_
 (1, 30, 8000, 39, '2018-02-26'),
 (1, 31, 0, 40, '2018-02-02'),
 (1, 32, 0, 41, '2018-02-17'),
-(1, 33, 0, 42, '2018-02-25'),
+(1, 33, 324324, 42, '2018-02-26'),
 (1, 34, 0, 43, '2018-02-25'),
 (1, 35, 0, 44, '2018-02-25'),
 (1, 36, 0, 45, '2018-02-26'),
@@ -1782,7 +1795,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `ruta`
 --

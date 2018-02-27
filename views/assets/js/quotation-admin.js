@@ -11,11 +11,15 @@ $("#saveResponse").click(function(){
       data:({quotation:dataResponse, obs : $("#aditionalObs").val()}),
       success:function(result){
         if (result==true) {
+          $("#saveResponse").after("<div class='message'>Proceso exitoso.</div>");
+          setTimeout(function(){
+          $("div.message").remove();
           location.reload();
+        },1000);
         }else{
           $("#saveResponse").after("<div class='message'>"+result+"</div>");
+          setTimeout(function(){$("div.message").remove()},3000);
         }
-        setTimeout(function(){$("div.message").remove()},3000);
       },
       error:function(error){console.log(error);}
     });

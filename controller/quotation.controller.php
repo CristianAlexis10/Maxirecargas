@@ -169,7 +169,11 @@ require_once "controller/doizer.controller.php";
 			//insertar
 			$result = $this->master->contestarCotizacion($_SESSION['cod_detail_id'],$_POST['obs'],'Terminado');
 			if ($result==1) {
-				echo json_encode(true);
+				foreach ($quotation as $item) {
+					$dataPro=$this->master->selectBy("producto",array("pro_referencia",$item['referencia']));
+					$result = $this->master->ModificarCotxPro(array($dataPro['pro_codigo'],$item['cantidad'],$item['servicio'],$_SESSION['cod_detail_id'],$item['valor']));
+				}
+				echo json_encode($result);
 			}else{
 				echo json_encode($this->doizer->knowError($result));
 			}

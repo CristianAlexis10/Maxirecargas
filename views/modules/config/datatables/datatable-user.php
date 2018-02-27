@@ -1,3 +1,7 @@
+<?php
+$modulo = 'usuarios';
+$crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
+?>
 <table id="datatableUser" class="datatable">
     <thead>
       <tr>

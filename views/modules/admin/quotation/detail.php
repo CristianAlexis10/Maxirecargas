@@ -20,6 +20,9 @@
 									<td><?php echo $dataQuo[0]['cot_estado']?></td>
 								</tr>
 					</table>
+					<?php if ($dataQuo[0]['cot_estado']=="Terminado"){ ?>
+						<a href="#">Ver formato</a>
+					<?php }?>
 					<!-- datos -->
 					<div class="title">
 							<p>Responder Cotización</p>
@@ -43,7 +46,11 @@
 								<td><?php echo $item['proxcot_cantidad'] ;?></td>
 								<td><?php echo $item['tip_ser_nombre']; ?></td>
 								<td><?php echo $item['proxcod_observacion']; ?></td>
-								<td><input type="number" onkeypress="return eliminarLetras(event)" name="dataQuotation" id="<?php echo $i ;?>" class="<?php echo $item['pro_referencia']; ?> <?php echo $item['proxcot_cantidad'] ;?> <?php echo $item['Tip_ser_cod'];?> EvelinAcaTuClase" placeholder="Ingresa la respuesta"></td>
+								<?php if ($dataQuo[0]['cot_estado']=="Terminado"){ ?>
+									<td><input type="number" onkeypress="return eliminarLetras(event)" name="dataQuotation" id="<?php echo $i ;?>" class="<?php echo $item['pro_referencia']; ?> <?php echo $item['proxcot_cantidad'] ;?> <?php echo $item['Tip_ser_cod'];?> EvelinAcaTuClase" placeholder="Ingresa la respuesta" value="<?php echo $item['proxcod_res'] ?>" ></td>
+								<?php }else{ ?>
+									<td><input type="number" onkeypress="return eliminarLetras(event)" name="dataQuotation" id="<?php echo $i ;?>" class="<?php echo $item['pro_referencia']; ?> <?php echo $item['proxcot_cantidad'] ;?> <?php echo $item['Tip_ser_cod'];?> EvelinAcaTuClase" placeholder="Ingresa la respuesta"></td>
+								<?php } ?>
 						</tr>
 					<?php
 					  $i++;
@@ -52,9 +59,15 @@
 				</table>
 				<div class="frm-group">
 					<label for="aditionalObs">Nota Adicional:</label>
-					<textarea id="aditionalObs" rows="8" cols="80"></textarea>
-				</div>
-					<input type="button" name="" id="saveResponse" value="Responder">
+					<?php if ($dataQuo[0]['cot_estado']=="Terminado"){ ?>
+						<textarea id="aditionalObs" rows="8" cols="80"><?php echo $dataQuo[0]['cot_observacion'] ?></textarea>
+					</div>
+						<input type="button" name="" id="saveResponse" value="Modificar">
+						<?php }else{ ?>
+						<textarea id="aditionalObs" rows="8" cols="80"></textarea>
+						</div>
+						<input type="button" name="" id="saveResponse" value="Responder">
+						<?php } ?>
 			</div>
 	</div>
 </div>
