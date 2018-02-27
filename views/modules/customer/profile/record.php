@@ -1,7 +1,5 @@
 <style>
-  #modalCancel{
-    display: none;
-  }
+  #modalCancel{display: none;}
 </style>
 <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
 <?php
@@ -14,18 +12,27 @@ if (isset($_SESSION['user_quotation_new'])) {
   unset($_SESSION['user_quotation_new']);
 }
 ?>
-    <div id="tabs">
-        <ul>
-          <li><a href="#tabs-2">Pedidos</a></li>
-          <li><a href="#tabs-3">Cotizaciones</a></li>
-        </ul>
+<div class="record--container">
+  <div class="banner">
+    <h1 class="title_banner">historial</h1>
+  </div>
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-2">Pedidos</a></li>
+      <li><a href="#tabs-3">Cotizaciones</a></li>
+    </ul>
         <div id="tabs-2">
+          <h2 class="record--title">Pedidos Realizados</h2>
+          <p class="record--subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
           <?php require_once "views/modules/config/datatables/datatable-orders-users.php"; ?>
         </div>
         <div id="tabs-3">
+          <h2 class="record--title">Cotizaciones Realizadas</h2>
+          <p class="record--subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
           <?php require_once "views/modules/config/datatables/datatable-quotation-users.php"; ?>
         </div>
     </div>
+</div>
     <div id="modalCancel">
       <form id="frmCancelOrder">
         <div class="frm-group">

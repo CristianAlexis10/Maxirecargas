@@ -90,6 +90,8 @@ color:white}
 /*views product*/
 .banner{
   background: url(../image/categoria.jpg);
+  background-repeat: no-repeat;
+  background-size:cover;
   width: 100%;
   height: 300px;
   display: flex;
