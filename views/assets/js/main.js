@@ -306,9 +306,15 @@ function selectCategory(){
      $( "#tabsConf li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
    } );
 // datagrid
- $("#dataGrid").DataTable();
- $("#dataGrid1").DataTable();
- $(".datatable").DataTable();
+if (document.getElementById('dataGrid')) {
+  $("#dataGrid").DataTable();
+}
+if (document.getElementById('dataGrid1')) {
+  $("#dataGrid1").DataTable();
+}
+$(".datatable").DataTable();
+
+
 
 
 $(".frm-bussiness").hide();

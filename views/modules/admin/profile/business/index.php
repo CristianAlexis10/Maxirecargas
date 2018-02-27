@@ -6,6 +6,7 @@ $data = $this->master->selectAll("gestion_web");
     <p>MAXIRECARGAS</p>
   </div>
   <div class="maxContainer_profile">
+    <?php if($_SESSION['CUSTOMER']['ROL']==2){?>
     <div class="frmprofile">
       <form id="frmProfileBusi">
           <div class="form-group">
@@ -36,6 +37,14 @@ $data = $this->master->selectAll("gestion_web");
           <button type="submit" class="btn">hacer cambios</button>
       </div>
     </div>
+  <?php }else{?>
+        <h1>Misión</h1>
+        <p><?php echo $data[0]['gw_mision']?></p>
+        <h1>Visión</h1>
+        <p><?php echo $data[0]['gw_vision']?></p>
+        <h1>Politica de medio ambiente</h1>
+        <p><?php echo $data[0]['gw_politicas']?></p>
+  <?php  } ?>
   </div>
 </form>
 

@@ -62,7 +62,6 @@ $('.upload-result').on('click', function (ev) {
     });
   });
 });
-
 //modificar usuario
 $("#frmUpdateProfile").submit(function(e) {
     e.preventDefault();
