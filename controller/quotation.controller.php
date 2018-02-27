@@ -137,6 +137,7 @@ require_once "controller/doizer.controller.php";
 				$data_quo = $this->master->verCotizacion(base64_decode($_GET['data']));
 				require_once "views/include/scope.header.php";
 				require_once "views/modules/admin/quotation/detail.php";
+				require_once "views/include/scope.footer.php";
 			}else{
 				session_destroy();
 				require_once "views/modules/landing.html";
@@ -155,34 +156,36 @@ require_once "controller/doizer.controller.php";
 			}
 		}
 		function response(){
-			$response = $_POST['res'];
-			$mail = $_POST['email'];
-			$result = $this->master->contestarCotizacion($_SESSION['cod_detail_id'],$response,'Terminado');
-			if ($result==true) {
-				if ($mail=='true') {
-					$email = $this->master->selectBy('usuario',array('usu_codigo',$_SESSION['usu_cot']));
-					$mensaje = '
-					<html>
-					<head>
-					<title>Maxirecargas- Repuesta a tu Cotización </title>
-					</head>
-					<body>
-					<p><b>'.$response.'</b></p>
-					</body>
-					</html>
-					';
-					$cabeceras= 'Content-type: text/html; charset=utf-8' . "\r\n";
-					if(mail($email['usu_correo'] ,"Maxirecargas-Respuesta a tu cotización", $mensaje, $cabeceras)){
-						echo json_encode('Exitoso.');
-					}else{
-						echo json_encode('se ha generado un error al enviar el correo.');
-					}
-				}else{
-					echo json_encode("Exitoso");
-				}
-			}else{
-				echo json_encode($this->doizer->knowError($result));
-			}
+			$quotation = $_POST['quotation'];
+			echo json_encode("si");
+			// $response = $_POST['res'];
+			// $mail = $_POST['email'];
+			// $result = $this->master->contestarCotizacion($_SESSION['cod_detail_id'],$response,'Terminado');
+			// if ($result==true) {
+			// 	if ($mail=='true') {
+			// 		$email = $this->master->selectBy('usuario',array('usu_codigo',$_SESSION['usu_cot']));
+			// 		$mensaje = '
+			// 		<html>
+			// 		<head>
+			// 		<title>Maxirecargas- Repuesta a tu Cotización </title>
+			// 		</head>
+			// 		<body>
+			// 		<p><b>'.$response.'</b></p>
+			// 		</body>
+			// 		</html>
+			// 		';
+			// 		$cabeceras= 'Content-type: text/html; charset=utf-8' . "\r\n";
+			// 		if(mail($email['usu_correo'] ,"Maxirecargas-Respuesta a tu cotización", $mensaje, $cabeceras)){
+			// 			echo json_encode('Exitoso.');
+			// 		}else{
+			// 			echo json_encode('se ha generado un error al enviar el correo.');
+			// 		}
+			// 	}else{
+			// 		echo json_encode("Exitoso");
+			// 	}
+			// }else{
+			// 	echo json_encode($this->doizer->knowError($result));
+			// }
 		}
 		function randAlphanum($length){
 		  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

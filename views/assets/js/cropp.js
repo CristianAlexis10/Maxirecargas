@@ -2,17 +2,18 @@
 // $("#cropp-img").click(function(){
 //     $("#uploadImage").toggle();
 // });
+if (document.getElementById('img-product')) {
+  var modalimg= document.getElementById('img-product');
+  var startmodal = document.getElementById('cropp-img');
+  var closeImg = document.getElementById('closeImg');
 
-var modalimg= document.getElementById('img-product');
-var startmodal = document.getElementById('cropp-img');
-var closeImg = document.getElementById('closeImg');
-
-startmodal.onclick = function() {
-  modalimg.style.display = "flex"
-}
-closeImg.onclick = function(){
-  modalimg.style.display="none"
-  console.log("puto cierra");
+  startmodal.onclick = function() {
+    modalimg.style.display = "flex"
+  }
+  closeImg.onclick = function(){
+    modalimg.style.display="none"
+    console.log("puto cierra");
+  }
 }
 
 $uploadCrop = $('#wrap-upload').croppie({

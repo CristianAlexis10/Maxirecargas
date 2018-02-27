@@ -16,6 +16,7 @@
    <!-- <script src="views/assets/js/select.js"></script> -->
    <script src="views/assets/js/multiple-select.js"></script>
    <script src="views/assets/js/orders-admin.js"></script>
+   <script src="views/assets/js/quotation-admin.js"></script>
    <script>
    if (document.getElementById('selectMul')) {
       $('#selectMul').multipleSelect({
