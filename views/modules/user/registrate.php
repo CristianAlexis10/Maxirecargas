@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="views/assets/image/logo.png">
     <link rel="stylesheet" href="views/assets/css/main-user.css">
-
+  <link rel="stylesheet" href="views/assets/css/selectAutocomplete.css">
   </head>
 
   <body>
@@ -60,14 +60,14 @@
                     <label for="tel" class="label">Telefono:</label>
                     <input type="number" class="input dataCl" id="tel" onkeypress="return valida(event)" name="data" required>
                   </div>
-                  <div class="form-group">
-                    <label for="cuidad" class="required select">Ciudad:</label>
-                    <select class="dataCl input"  id="cuidad" required>
-                      <!-- <?php
-                      //  foreach ($this->master->selectAll("ciudad") as $row) {?>
-                          <option value="<?php //  echo $row['id_ciudad']; ?>"><?php // echo $row['ciu_nombre'] ?></option>
-                      <?php   // } ?> -->
-                    </select>
+
+                  <div id="selectAutocomplete">
+                          <select class="dataCl input"  id="cuidad" required>
+                            <?php
+                              foreach ($this->master->selectAll("ciudad") as $row) {?>
+                                <option value="<?php   echo $row['id_ciudad']; ?>"><?php  echo $row['ciu_nombre'] ?></option>
+                            <?php    } ?>
+                          </select>
                   </div>
 
                   <div class="form-group">
@@ -159,15 +159,15 @@
                                   <label for="sede-enc-ape" class="label">Apellido del contacto</label>
                                   <input type="text" class="dataEmp input"  id="esta_joda" required>
                               </div>
-                  <div class="form-group">
-                                  <label for="cuidad" class="select" >Ciudad</label>
-                                  <select class="dataEmp input" id="cuidad2">
-                                    <?php
-                                      //foreach ($this->master->selectAll("ciudad") as $row) {?>
-                                        <!-- <option value="<?php // echo $row['id_ciudad']; ?>"><?php //echo $row['ciu_nombre'] ?></option> -->
-                                    <?php   // } ?>
-                                  </select>
-                              </div>
+
+                    <div id="selectAutocomplete">
+                      <select class="dataEmp input" id="cuidad2">
+                        <?php
+                        foreach ($this->master->selectAll("ciudad") as $row) {?>
+                        <option value="<?php  echo $row['id_ciudad']; ?>"><?php //echo $row['ciu_nombre'] ?></option>
+                        <?php    } ?>
+                      </select>
+                    </div>
                   <button type="button" id="irAtras3busi">atras</button>
                   <button type="button" id="businessIrParte4">siguiente</button>
 
@@ -230,10 +230,12 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="views/assets/lib/parsley/parsley.min.js"></script>
     <script src="views/assets/lib/parsley/es.js"></script>
+    <script src="views/assets/js/select.js"></script>
     <script type="text/javascript" src="views/assets/js/auth.js"></script>
     <script type="text/javascript" src="views/assets/js/registro.js"></script>
-    <!-- <script src="views/assets/js/select.js"></script> -->
     <script>
-      // $('#cuidad').zelect({ placeholder:'Ciudad' });
-      // $('#cuidad2').zelect({ placeholder:'Ciudad' });
+        $('#selectAutocomplete select').zelect({ placeholder:'Ciudad' });
+         // window.location.hash=" ";
+         // window.location.hash="Again-No-back-button" //chrome
+         // window.onhashchange=function(){window.location.hash=" ";}
     </script>

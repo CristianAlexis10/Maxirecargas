@@ -90,33 +90,33 @@ irAtras4busi.onclick = function(){
 }
 
 
-if (document.getElementById('cuidad')) {
-    $.ajax({
-        url: "index.php?controller=config&a=selectCity",
-        type: "POST",
-        dataType:'json',
-        success: function(result){
-            var selector = document.getElementById('cuidad');
-            for (var i = 0; i < result.length; i++) {
-                selector.options[i] = new Option(result[i].ciu_nombre,result[i].id_ciudad);
-            }
-        }
-    });
-}
-
-if (document.getElementById('cuidad2')) {
-    $.ajax({
-        url: "index.php?controller=config&a=selectCity",
-        type: "POST",
-        dataType:'json',
-        success: function(result){
-            var selector = document.getElementById('cuidad');
-            for (var i = 0; i < result.length; i++) {
-                selector.options[i] = new Option(result[i].ciu_nombre,result[i].id_ciudad);
-            }
-        }
-    });
-}
+// if (document.getElementById('cuidad')) {
+//     $.ajax({
+//         url: "index.php?controller=config&a=selectCity",
+//         type: "POST",
+//         dataType:'json',
+//         success: function(result){
+//             var selector = document.getElementById('cuidad');
+//             for (var i = 0; i < result.length; i++) {
+//                 selector.options[i] = new Option(result[i].ciu_nombre,result[i].id_ciudad);
+//             }
+//         }
+//     });
+// }
+//
+// if (document.getElementById('cuidad2')) {
+//     $.ajax({
+//         url: "index.php?controller=config&a=selectCity",
+//         type: "POST",
+//         dataType:'json',
+//         success: function(result){
+//             var selector = document.getElementById('cuidad');
+//             for (var i = 0; i < result.length; i++) {
+//                 selector.options[i] = new Option(result[i].ciu_nombre,result[i].id_ciudad);
+//             }
+//         }
+//     });
+// }
 
 if (document.getElementById('tipo_usu')) {
             var selector = document.getElementById('tipo_usu');

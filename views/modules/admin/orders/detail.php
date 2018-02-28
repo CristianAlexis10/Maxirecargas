@@ -1,6 +1,9 @@
 
 <?php
 if ($crud[1]==true) {
+  if ($data_order==array()) {
+      die("No existe este pedido");
+  }
  $_SESSION['ped_detail_token'] = $data_order[0]['ped_token'];
 ?>
 <div class="mudules orders detail" id="detail-reload">

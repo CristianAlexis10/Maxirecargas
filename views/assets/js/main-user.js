@@ -133,12 +133,13 @@ function cambiarPaginaFilter(pagina,numeroRegistros,category,condition){
               $(".container--grid").append('<figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/products/'+result[i].pro_imagen+'" alt=""></figure>');
             }
           }
-          //paginacion
+          $(".pagination").remove();
           var totalPaginas = Math.ceil((numeroRegistros/elementosPagina));
-          $(".container--grid").append("<div class='pagination'></div>");
+          $(".container--grid").after("<div class='pagination'></div>");
           $(".pagination").css({"display":"flex","flex-direction":"row-reverse"});
           while (totalPaginas!=0) {
-            $(".pagination").append('<h1 onclick="invocar('+totalPaginas+','+numeroRegistros+','+category+')">'+totalPaginas+'</h1>');
+            // console.log(totalPaginas);
+            $(".pagination").append('<h1 onclick="cambiarPagina('+totalPaginas+','+numeroRegistros+')">'+totalPaginas+'</h1>');
             totalPaginas=totalPaginas-1;
           }
           // if (result.length>12) {
