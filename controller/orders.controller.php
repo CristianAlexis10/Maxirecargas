@@ -161,6 +161,18 @@
 			}
 		}
 		function viewOrder(){
+			if ($_SESSION['CUSTOMER']['ROL']==5) {
+				$order = base64_decode($_GET['data']);
+				$crud=array(1,1,1,1);
+				$data_order = $this->master->verPedido($order);
+				require_once "views/include/scope.header.php";
+				if ($data_order[0]['ped_encargado']==$_SESSION['CUSTOMER']['ID']) {
+					require_once "views/modules/employe/orders/detail.php";
+				}else{
+					echo "No Tienes Acceso a este pedido";
+				}
+				return ;
+			}
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
 				foreach ($_SESSION['CUSTOMER']['PERMITS'] as $row) {
 					if ($row['enlace']=='pedidos') {

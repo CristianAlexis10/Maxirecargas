@@ -72,6 +72,9 @@ $("#saveStarus").click(function(){
            loadDataTables();
            $("#motive").val("")
            // $("#modal-motive").hide();
+           if (document.getElementById("chan")) {
+             location.reload();
+           }
            $(".modal-status").hide();
          },
          error:function(result){
@@ -80,23 +83,31 @@ $("#saveStarus").click(function(){
        });
      }
   }else if(status == 4){
-    var all = $("#total").val();
-    if (confirm("¿Registrar Pedido terminado con un total de "+all+"?")) {
-          $.ajax({
-            url:"cambiar_estado",
-            type:"POST",
-            data:({ data : status , order : pedCod , total : all}),
-            dataType:"json",
-            success:function(result){
-              loadDataTables();
-              $("#total").val("")
-              // $("#modal-total").hide();
-              $(".modal-status").hide();
-            },
-            error:function(result){
-              console.log(result);
+    var all = parseInt($("#total").val());
+    if (all>0) {
+      if (confirm("¿Registrar Pedido terminado con un total de "+all+"?")) {
+        $.ajax({
+          url:"cambiar_estado",
+          type:"POST",
+          data:({ data : status , order : pedCod , total : all}),
+          dataType:"json",
+          success:function(result){
+            loadDataTables();
+            $("#total").val("");
+            if (document.getElementById("chan")) {
+              location.reload();
             }
-          });
+            $(".modal-status").hide();
+            console.log(result);
+          },
+          error:function(result){
+            console.log(result);
+          }
+        });
+      }
+    }else{
+      $("#saveStarus").after("<div class='message'>Cantidad no valida</div>");
+      setTimeout(function(){$("div.message").remove()},3000);
     }
   }else{
     $.ajax({
@@ -106,6 +117,9 @@ $("#saveStarus").click(function(){
       dataType:"json",
       success:function(result){
           loadDataTables();
+          if (document.getElementById("chan")) {
+            location.reload();
+          }
       },
       error:function(result){
         console.log(result);

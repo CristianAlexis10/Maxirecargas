@@ -2,6 +2,7 @@
 <?php
 if ($crud[1]==true) {
  $_SESSION['ped_detail_token'] = $data_order[0]['ped_token'];
+ $data_employe = $this->master->selectBy('usuario',array('usu_codigo',$data_order[0]['ped_encargado']))
 ?>
 <div class="mudules orders detail" id="detail-reload">
 	<div class="wrap--info">
@@ -33,15 +34,11 @@ if ($crud[1]==true) {
 			<p class="item--detail">Hora Aproximada de entrega:</p>
 			<p class="data--detail"><?php echo $data_order[0]['ped_hora_entrega'];?> </p>
 		</div>
-		<?php if ($data_order[0]['ped_encargado']!=null) {
-			$data_employe = $this->master->selectBy('usuario',array('usu_codigo',$data_order[0]['ped_encargado']))
-			?>
-				<div class="detail">
-					<p class="item--detail">Encargado:</p>
-					<p class="data--detail"><?php echo $data_employe['usu_primer_nombre']." ".$data_employe['usu_primer_apellido'] ?> </p>
-				</div>
-		<?php } ?>
 		<div class="detail">
+			<p class="item--detail">Encargado:</p>
+			<p class="data--detail"><?php echo $data_employe['usu_primer_nombre']." ".$data_employe['usu_primer_apellido'] ?> </p>
+		</div>
+    <div class="detail">
 			<p class="item--detail">Estado:</p>
 			<p class="data--detail"><?php echo $data_order[0]['ped_estado'];?> </p>
 		</div>
@@ -72,21 +69,12 @@ if ($crud[1]==true) {
 	<div class="wrap--btns">
 		<ul>
 			<li class="opcins--order"><a id="viewAllProducts">ver articulos</a></li>
-			<?php
-				if ($data_order[0]['ped_encargado']==null) {?>
-						<li class="opcins--order"><a id="assigEncargado" onclick="assign(<?php echo $data_order[0]['ped_codigo']; ?>)" >Asignar encargado</a></li>
-					<?php }else{ ?>
-						<li class="opcins--order"><a href="#"  class="contact--customer" id="<?php echo $data_order[0]['ped_encargado']; ?>">Contactar encargado</a></li>
-						<?php
-						if ($data_order[0]['ped_estado']=='Terminado') {?>
-
-						<?php }else{?>
-							<li class="opcins--order"> <a href="#" onclick="assign(<?php echo $data_order[0]['ped_codigo']; ?>)"> Cambiar encargado</a></li>
-						<?php } ?>
-						<?php } ?>
-
-						<li class="opcins--order"><a href="#" class="contact--customer" id="<?php echo $data_order[0]['usu_codigo']; ?>">Contactar  Cliente</a></li>
-		</ul>
+		   <li class="opcins--order"><a href="#" class="contact--customer" id="<?php echo $data_order[0]['usu_codigo']; ?>">Contactar  Cliente</a></li>
+       <?php
+        if ($data_order[0]['ped_estado']=="Aplazado" || $data_order[0]['ped_estado']=="En Proceso") {?>
+          <li><a href="#" id="chan" onclick="changeStatus(<?php echo $data_order[0]['ped_codigo']; ?>)"><i class="fa fa-refresh"></i></a></li>
+      <?php   } ?>
+    </ul>
 	</div>
 </div>
 <div id="modal--detail--products" class="modales">
@@ -119,26 +107,48 @@ if ($crud[1]==true) {
 	</div>
 </div>
 
-<div id="modal-assign" class="modales">
-	<div class="container--modales">
-		<span id="closeAssig" class="closemodales">&times;</span>
-		<h1>Elegir encargado</h1>
-    <div class="container_select">
-    <div class="form-group">
-      <select id="addOrder" class="input normal">
-  			<option value="null">Pendiente</option>
-  			<?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',5)) as $row) {?>
-  			<option value="<?php echo $row['usu_codigo'] ?>"><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ?></option>
-  			<?php }?>
-  		</select>
-    </div>
-    <input type="button" id="confirmAssign" class="btn" value="Seleccionar">
-    </div>
-	</div>
-</div>
 <!-- contacto -->
 <div id="contact"></div>
 
+<!-- modales -->
+<div class="modal-status modales">
+	<div class="container--modales">
+		<span class="closemodales" id="closeStatus">&times;</span>
+		<h2 class="elegir">Verifica el estado de los pedidos</h2>
+		<div class="infomodal">
+			<select id="newStatus">
+        <!-- en proceso -->
+        <?php  if ($data_order[0]['ped_estado']=="En Proceso") {?>
+            <option value="2" selected>En Proceso</option>
+          <?php }else{ ?>
+            <option value="2">En Proceso</option>
+          <?php } ?>
+          <!-- Aplazado -->
+          <?php  if ($data_order[0]['ped_estado']=="Aplazado") {?>
+            <option value="3" selected>Aplazado</option>
+          <?php }else{ ?>
+            <option value="3">Aplazado</option>
+          <?php } ?>
+          <!-- Aplazado -->
+          <?php  if ($data_order[0]['ped_estado']=="Cancelado") {?>
+            <option value="5" selected>Cancelado</option>
+          <?php }else{ ?>
+            <option value="5">Cancelado</option>
+          <?php } ?>
+				<option value="4">Terminado</option>
+			</select>
+			<div  id="modal-motive" >
+						<label for="motive">Motivo:</label>
+						<textarea id="motive" rows="3" cols="80"></textarea>
+			</div>
+			<div id="modal-total">
+				<label for="total"> Total Pagado: </label>
+				<input type="number" onkeypress="return eliminarLetras(event)" id="total">
+			</div>
+			<input type="button" id="saveStarus" value="Guardar">
+		</div>
+	</div>
+</div>
       </article>
     </div>
   </section>

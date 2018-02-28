@@ -17,6 +17,7 @@ if($data!=array()){ ?>
 			<th>Codigo</th>
 			<th>direccion</th>
 			<th>Hora Aprox.</th>
+			<th>Estado</th>
 		</tr>
 		<?php
 			foreach($data as $row){
@@ -25,8 +26,9 @@ if($data!=array()){ ?>
 				<tr>
 					<td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $user['usu_primer_nombre']." ".$user['usu_primer_apellido']; ?></a></td>
 					<td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></td>
-					<td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_direccion']?></a></td>
-					<td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_hora_entrega']?></a></td>
+					<td><?php echo $row['ped_direccion']?></td>
+					<td><?php echo $row['ped_hora_entrega']?></td>
+					<td><?php echo $row['ped_estado']?></td>
 
 				</tr>
 
