@@ -934,35 +934,18 @@ transform: translateY(-12px);
   margin-bottom: 20px;
   background: white;
 }
-#tabs .ui-widget-header li{
-  margin-left: 20px;
-  border: 1px solid #9e9e9e;
-
-}
+#tabs .ui-widget-header li{margin-left: 20px; border: 1px solid #9e9e9e;}
 #tabs .ui-widget-header li a{
   text-align: center;
   width: 300px;
   padding: 15px;
 }
-
 /*DATAGRID*/
 /*entries*/
-
-.dataTables_wrapper .dataTables_length{
-margin-bottom: 30px;
-}
+.dataTables_wrapper .dataTables_length{margin-bottom: 30px;}
 /*buscar*/
 .dataTables_wrapper .dataTables_filter{margin-bottom: 30px;}
 table.dataTable.no-footer{border: 1px solid #111;}
-table.dataTable.no-footer thead {
-  background:grey;
-  color: white;
-}
-table.dataTable tbody tr:nth-child(even){
-background: #dedede;
-border: 1px solid #ccc
-}
-table.dataTable tbody th, table.dataTable tbody td{
-  text-align: center;
-
-}
+table.dataTable.no-footer thead {background:grey;color: white;}
+table.dataTable tbody tr:nth-child(even){background: #dedede;border: 1px solid #ccc}
+table.dataTable tbody th, table.dataTable tbody td{text-align: center;}
