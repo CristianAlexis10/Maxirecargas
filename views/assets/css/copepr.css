@@ -699,6 +699,9 @@ color:white}
   background: #eee;
 }
 /*views detail quotation and orders  */
+#modal--detail--products, #modal--detail--products,#modalStatus,#modalViewResp{
+  display: none;
+}
 .container--detail{
   overflow: hidden;
   width: 100%;
@@ -706,6 +709,7 @@ color:white}
   position: absolute;
   background: #e5e5e5;
   display: flex;
+  font-family: 'lato';
 
 }
 .detail--figure{
@@ -724,14 +728,12 @@ color:white}
   padding: 30px 30px 30px 120px;
 }
 .content--detail h1{
-  font-family: 'oswald';
   text-align: center;
   margin-bottom: 70px;
-  color: #6d8a98;
+  color: #315e73;
 }
 .content--detail .detail{
   display: flex;
-  font-family: 'lato';
   font-size: 20px;
   padding: 15px 15px 15px 0;
 }
@@ -758,3 +760,6 @@ color:white}
 }
 .content--detailRight h2 {color:  #6d8a98}
 .content--detailRight h1 {color:  #315e73}
+.detail--contbtn{display: flex; width: 50%; justify-content: space-between;}
+.detail--btn{border: 1px solid #315e73; padding: 15px 20px; transition: all .5s ease; }
+.detail--btn:hover{background: #315e73; color: #ededed; box-shadow: 4px 6px 10px 0px grey;}

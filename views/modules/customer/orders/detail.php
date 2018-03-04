@@ -1,13 +1,7 @@
   <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
-  <style>
-  	#modal--detail--products{
-  		display: none;
-  	}
-  </style>
   <?php
    $_SESSION['ped_detail_token'] = $data_order[0]['ped_token'];
   ?>
-
   <div class="container--detail">
     <div class="content--detail">
       <h1>Detalles De Pedidos</h1>
@@ -48,11 +42,11 @@
            <p class="data--detail"><?php echo $data_order[0]['ped_estado'];?> </p>
          </div>
          <div class="wrap--btns">
-         <ul>
-           <li class="opcins--order"><a href="#" id="viewAllProducts">ver articulos</a></li>
+         <ul class="detail--contbtn">
+           <li class="opcins--order"><a href="#" id="viewAllProducts"  class="detail--btn">ver articulos</a></li>
            <?php
              if ($data_order[0]['ped_encargado']!=null) {?>
-            <li class="opcins--order"><a href="#"  class="contact--customer" id="<?php echo $data_order[0]['ped_encargado']; ?>">Contactar encargado</a></li>
+            <li class="opcins--order"><a href="#"  class="contact--customer detail--btn" id="<?php echo $data_order[0]['ped_encargado']; ?>">Contactar encargado</a></li>
            <?php } ?>
          </ul>
        </div>
