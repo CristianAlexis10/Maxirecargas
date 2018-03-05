@@ -81,7 +81,6 @@
 			             <div class="form-group">
 			                <label for="caracteristica" class="label">Caracteristicas:</label>
 											<textarea name="data[]" id="caracteristica" class="input data-new-pro"></textarea>
-
 			            </div>
 						<div class="form-group">
 							<input type="hidden" id="img" class="data-new-pro" value="icn-maxi.png">

@@ -81,41 +81,35 @@ body{
   background: rgba(187,187,187,0.5);
 }
 .menu--toposcuro{
-  width: 100%;
+  /* width: 100%;
   height: 60px;
-  display: flex;
+  display: flex; */
   background: transparent;
   border:none;
   border-bottom: 3px solid #c1c1c1;
 }
-.menu--top .profile{
-  width: 80%;
+
+.container--menumobile{
+  width: 70%;
   display: flex;
   align-items: center;
-}
-.menu--top .profile a{
   padding-left: 20px;
+  font-size: 24px;
 }
+.menu--top .items{
+  width: 30%;
+  display: flex;
+  justify-content: space-around ;
+  align-items: center;}
 .menu--top .profile img{
   width: 40px;
   height: 40px;
   border-radius: 50px;
-  margin-left: 10px;
 }
-.menu--top .items{
-  width: 20%;
-}
-
-.menu--top .items ul{
-  display: flex;
-  margin: 20px;
-  justify-content: space-around;
-}
-.menu--top .items ul a{
-  transition: all 0.2s ease;
-}
-.menu--top .items ul a:hover{color:#35a4dd;}
-
+.menutop--icon{transition: all 0.2s ease;}
+.menutop--icon:hover{color:#35a4dd;}
+/* menu desplegable */
+#menu--mobile{cursor: pointer; display: none;}
 .modules #tabs{
 	width: 100%;
 }
@@ -125,7 +119,6 @@ body{
   width: 90%;
   box-sizing: border-box;
   margin:40px auto;
-  box-sizing: border-box;
 }
 
 /*3.modules orders*/
@@ -229,16 +222,10 @@ table.dataTable tbody th, table.dataTable tbody td{
 }
 /*FORM*/
 
-.new.products{
-  display: flex;
-}
-.update{
-  display: flex;
-  width: 100%;
-}
-.form--left{
-  width: 50%;
-}
+.new.products{display: flex;}
+.Cambiar--img{text-align: center;}
+.update{display: flex;width: 100%;}
+.form--left{width: 50%;}
 .form--rigth{
   display: flex;
   flex-direction: column;
@@ -700,6 +687,7 @@ margin: 0 auto;
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto;
+  margin-bottom: 60px;
 }
 .visit table th,.visit table td{
   text-align: center;padding: 10px;
@@ -708,3 +696,15 @@ margin: 0 auto;
   background: #ededed;
 }
 .visit table th{background: #35a4dd;}
+
+.container--cotizacion{width: 90%}
+.title--customer--detail{
+  text-transform: uppercase;
+  color:#35a4dd;
+  font-size: 20px;
+}
+.title--customer--detail.other{
+  margin: 60px 0 20px 0}
+.data--customer--detail{display: flex; margin-top: 20px;}
+.firthP{ font-weight: bold; padding-right: 10px}
+.inputRespuesta{padding: 8px 10px; outline-color: #35a4dd}

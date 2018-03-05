@@ -80,7 +80,7 @@ foreach ($services as $key => $value) {
 					</div>
 		</div>
 	<div class="form--rigth rigth--product">
-			<div class="form-group Cambiar--img">
+			<div class="Cambiar--img">
 				<div id="wrap-result"><img src="views/assets/image/products/<?php echo $result['pro_imagen']; ?>" ></div>
 				<span class="" id="cropp-img">Cambiar foto</span>
 			</div>

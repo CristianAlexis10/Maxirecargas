@@ -25,12 +25,6 @@
 						 <input type="number" name="data[]" id="numDoc" class="userUpdate input" value="<?php echo $result['usu_num_documento']?>" required>
 					 </div>
 
-
-
-
-
-
-
 			 </div>
 			 <div class="wrap_two_formgroup">
 				 <div class="form-group">
@@ -78,28 +72,23 @@
 			 </div>
 			 <div class="wrap_two_formgroup">
 				 <div class="form-group">
-					 <label for="sexo" class="label">Sexo:</label>
-					 <input type="text" name="data[]" idi="sexo" class="userUpdate input" value="<?php echo $result['usu_sexo']?>">
-				 </div>
+					 <label for="direccion" class="label">direccion:</label>
+					 <!-- lopera aca es donde tiene que funcionar GRACIAS -->
+					 <input type="text" name="data[]" id="direccion" class="userUpdate input">
+					</div>
 				 <div class="form-group">
-					 <label for="tipo_usu" class="label">Tipo de Usuario:</label>
-					 <select name="data[]"  id="tipo_usu" class="userUpdate input" required>
-						 <<?php
-						 foreach ($this->master->selectAll('tipo_usuario') as $row) {
-							 if ($row['tip_usu_codigo']==$result['tip_usu_codigo']) {?>
-								 <option value="<?php echo $row['tip_usu_codigo']?>" selected><?php echo $row['tip_usu_rol']?></option>
-								 <?php
-							 }else{?>
-								 <option value="<?php echo $row['tip_usu_codigo']?>"><?php echo $row['tip_usu_rol']?></option>
-								 <?php
-							 } } ?>
-						 </select>
-					 </div>
-
+					 <label for="sexo" class="label">Sexo:</label>
+					 <input type="text" name="data[]" id="sexo" class="userUpdate input" value="<?php echo $result['usu_sexo']?>">
+				 </div>
 			 </div>
-			            <div class="form-group">
-			                <label for="estado" class="label">Estado:</label>
-			               <select name="data[]"  id="estado" class="userUpdate input grande" required>
+			 <div class="wrap_two_formgroup">
+			 	<div class="form-group">
+			 		<label for="celphone" class="label">Celular</label>
+					<input type="number" class="userUpdate input" id="celphone">
+			 	</div>
+				 <div class="form-group">
+			     <label for="estado" class="label">Estado:</label>
+			     <select name="data[]"  id="estado" class="userUpdate input" required>
 			               	<<?php
 			               	 foreach ($this->master->selectAll('estado') as $row) {
 			               		if ($row['id_estado']==$result['id_estado']) {?>
@@ -111,8 +100,9 @@
 			               		} } ?>
 			               </select>
 			            </div>
-			            <div class="form-group">
-			                <button class="btn" id="updateUser">Actualizar Cliente</button>
-			            </div>
-		    	</form>
+			 </div>
+			 <div class="form-group">
+			     <button class="btn" id="updateUser">Actualizar Cliente</button>
+			 </div>
+		 </form>
 </div>
