@@ -566,57 +566,29 @@ transform: translateY(-12px);
 }
 
 
+
 /*MENU HAMBURGUESA*/
+
 .wrap--menu{
   display: flex;
   z-index: 10;
   position: fixed;
   width: 100%;
-  transition: all 1s ease-in
+  transition: all 1s ease-in;
+  background: linear-gradient(135deg, #35a4dd 20%, #f903ab 80%);
 }
 
-.menu--home{
+.menu--home, .menu--order, .menu--product, .menu--quotation{
   display: flex;
   align-items: center;
   justify-content: center;
   width: 25%;
   height: 100vh;
   color: white;
-  background: grey;
-  background-size: cover;
-  border-right:3px solid red;
+  border-right: 1px solid rgba(255,255,255,.07);
 
 }
 
-.menu--order{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
-  height: 100vh;
-  color: white;
-  background: rgb(255, 0, 255);
-}
-
-.menu--product{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
-  height: 100vh;
-  color: white;
-  background: rgb(128, 128, 128);
-}
-
-.menu--quotation{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
-  height: 100vh;
-  color: white;
-  background: rgb(255, 255, 0);
-}
 
 .menu--title{
   position: absolute;
@@ -625,7 +597,7 @@ transform: translateY(-12px);
   font-weight: bold;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-left: 30px;
+
 }
 .menu--home:hover,.menu--order:hover,.menu--product:hover,.menu--quotation:hover{
   transition: all 0.5s ease;
