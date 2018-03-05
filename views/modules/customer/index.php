@@ -7,24 +7,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="views/assets/image/icn-maxi.png">
     <link rel="stylesheet" href="views/assets/css/main-user.css">
+    <link rel="stylesheet" href="views/assets/css/ensayo.css">
     <link rel="stylesheet" href="views/assets/css/responsive.css">
   </head>
   <body>
       <div class="wrap--menu" id="wrap--menu">
         <div class="menu--home">
-          <img src="views/assets/image/iniciomenu.jpg">
+          <!-- <img src="views/assets/image/iniciomenu.jpg"> -->
           <div class="menu--title"><a href="maxirecargas">Inicio</a></div>
         </div>
         <div class="menu--order">
-          <img src="views/assets/image/pedidosmenu.jpg" alt="">
+          <!-- <img src="views/assets/image/pedidosmenu.jpg" alt=""> -->
           <div class="menu--title"><a href="pedidos">Pedidos</a></div>
         </div>
         <div class="menu--quotation">
-          <img src="views/assets/image/cotizaciones.jpg" alt="">
+          <!-- <img src="views/assets/image/cotizaciones.jpg" alt=""> -->
           <div class="menu--title"><a href="cotizacion">Cotizaciones</a></div>
         </div>
         <div class="menu--product">
-          <img src="views/assets/image/producto.jpg" alt="">
+          <!-- <img src="views/assets/image/producto.jpg" alt=""> -->|
           <span id="close-menu">&times;</span>
           <div class="menu--title"><a href="productos">Productos</a></div>
         </div>
