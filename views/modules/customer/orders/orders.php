@@ -2,7 +2,7 @@
       <div id="order--formone">
         <div class="orderSuperior">
           <h1>datos del producto</h1>
-          <p>Ingresa el Producto y Servicio que deseas Solicitar.</p>
+          <p>Ingresa el Producto y/o Servicio que deseas Solicitar.</p>
         </div>
         <div class="container--form">
           <form id="frmNewOrder">
@@ -11,7 +11,7 @@
             <input type="text" id="producto" class="inputmagenta">
             </div>
             <input type="button" id="searchPro" class="labelmagenta" value="Buscar">
-            <a href="#" id="openSearch">No sabes cual es tu referencia?</a>
+            <a href="#" id="openSearch">¿No sabes cuál es tu referencia?</a>
             <div class="form-groupuser3 hide--service ">
               <label for="servicio" class="labelmagenta">servicio</label>
               <select class="inputmagenta" id="servicio">
@@ -33,14 +33,14 @@
         </div>
         <!--  lpera te dejo aca el espacio para que ponga esos botones mas abajo estara el otro espacio-->
         <button type="button" id="back">Anterior</button>
-        <button type="button" id="next">siguiente</button>
+        <button type="button" id="next">Siguiente</button>
         <button type="button" id="otroProducto">Otro producto</button>
         <button type="button" id="orderSiguiente">Terminar</button>
       </div>
       <div id="order--formtwo">
         <div class="orderSuperior">
           <h1>Datos de entrega</h1>
-          <p>¿Esta es la direccion donde se solicita el pedido?</p>
+          <p>¿Esta es la Dirección donde se solicita el pedido?</p>
           <h2 id="orderDir"><?php echo $_SESSION['CUSTOMER']['ADDRESS'];?></h2>
           <label for="fechaEntrega" class="labelmagenta">Fecha de Entrega:</label>
           <input type="date" id="fechaEntrega" class="inputmagenta" min="<?php
@@ -65,13 +65,13 @@
               </div>
               <div class="Orderbtn2">
                 <button type="button" id="confirmOrder">Realizar Pedido</button>
-                <button type="button" id="btnOtraDir">otra direccion</button>
+                <button type="button" id="btnOtraDir">otra dirección</button>
                 <button type="button" id="viewOrder">Ver Pedido</button>
               </div>
           </form>
         </div>
         <!-- AQUIIIIIII -->
-        <button type="button" id="orderAtras">atras</button>
+        <button type="button" id="orderAtras">atrás</button>
       </div>
     </div>
     <div id="order--container">
@@ -104,7 +104,7 @@
         <select class="" id="ciudad"></select>
       </div>
       <div class="form-groupuser3">
-        <label for="dirSent" class="">Dirección de envio</label>
+        <label for="dirSent" class="">Dirección de envío</label>
         <input id="dirSent" class="">
       </div>
       <div class="form-groupuser3">
@@ -122,8 +122,8 @@
   <div class="modal--container" >
       <span id="close_modal_search">&times;</span>
       <form id="frmOptionSearch">
-        <h2>Opciones de Busqueda</h2>
-        <p>Puedes buscar por marca, palabras claves, tipo de producto,caracteristicas, etc.</p>
+        <h2>Opciones de Búsqueda</h2>
+        <p>Puedes buscar por marca, palabras claves, tipo de producto,características, etc.</p>
         <div class="frm-group">
             <input type="text" id="optionSearch" >
             <input type="submit"  value="Buscar">
@@ -134,7 +134,7 @@
           <table id="tabla" border=1>
               <tr>
                   <td>Referencia</td>
-                  <td>Categoria</td>
+                  <td>Categoría</td>
                   <td>Marca</td>
                   <td>Descripción</td>
                   <td>Palabras Clave</td>

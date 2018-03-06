@@ -575,7 +575,6 @@ transform: translateY(-12px);
   position: fixed;
   width: 100%;
   transition: all 1s ease-in;
-  background: linear-gradient(135deg, #35a4dd 20%, #f903ab 80%);
 }
 
 .menu--home, .menu--order, .menu--product, .menu--quotation{
@@ -585,9 +584,18 @@ transform: translateY(-12px);
   width: 25%;
   height: 100vh;
   color: white;
-  border-right: 1px solid rgba(255,255,255,.07);
-
+  transition-property: opacity;
+  transition-duration: .5s;
+  background-color: rgba(0, 0, 0, .5);
 }
+
+
+
+/* .menu--order, .menu--product{
+  transition-property: opacity;
+           transition-duration: .5s;
+           background-color: rgba(0, 0, 0, .3);
+} */
 
 
 .menu--title{
@@ -605,16 +613,19 @@ transform: translateY(-12px);
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   background: none;
-  color: black;
-  font-size: 40%;
   cursor: pointer;
 }
+.menu--home a,.menu--order a,.menu--product a,.menu--quotation a{
+  padding: 400px 50px 400px 50px;
+}
+
 
 .menu--home,.menu--order,.menu--product,.menu--quotation{
   transform: scale(2);
   -moz-transform : scale(2);
   -webkit-transform : scale(2);
   -o-transform : scale(2);
+
 }
 .menu--home img,.menu--order img,.menu--product img,.menu--quotation img{
   mix-blend-mode: multiply;

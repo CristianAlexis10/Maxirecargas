@@ -13,19 +13,19 @@
   <body>
       <div class="wrap--menu" id="wrap--menu">
         <div class="menu--home">
-          <!-- <img src="views/assets/image/iniciomenu.jpg"> -->
+          <img src="views/assets/image/iniciomenu.jpg">
           <div class="menu--title"><a href="maxirecargas">Inicio</a></div>
         </div>
         <div class="menu--order">
-          <!-- <img src="views/assets/image/pedidosmenu.jpg" alt=""> -->
+          <img src="views/assets/image/pedidosmenu.jpg">
           <div class="menu--title"><a href="pedidos">Pedidos</a></div>
         </div>
         <div class="menu--quotation">
-          <!-- <img src="views/assets/image/cotizaciones.jpg" alt=""> -->
+          <img src="views/assets/image/cotizaciones.jpg">
           <div class="menu--title"><a href="cotizacion">Cotizaciones</a></div>
         </div>
         <div class="menu--product">
-          <!-- <img src="views/assets/image/producto.jpg" alt=""> -->|
+          <img src="views/assets/image/producto.jpg">
           <span id="close-menu">&times;</span>
           <div class="menu--title"><a href="productos">Productos</a></div>
         </div>
@@ -41,7 +41,7 @@
           <li><a href="productos">Productos</a></li>
           <li><a href="miperfil">perfil</a></li>
           <li><a href="historial">historial</a></li>
-          <li><a href="finalizar">cerrar sesion</a></li>
+          <li><a href="finalizar">cerrar sesión</a></li>
         </ul>
       </div>
     <section class="container one">
@@ -51,9 +51,9 @@
       </div>
       <div class="rigth">
         <ul class="opcions">
-          <li><a id="who">¿quienes somos?</a></li>
+          <li><a id="who">¿quiénes somos?</a></li>
           <li><a id="our">nuestros servicios</a></li>
-          <li><a id="contc">contactanos</a></li>
+          <li><a id="contc">contáctanos</a></li>
           <li id="puto"><a id="opc--user"><i class="fa fa-user-o" aria-hidden="true"></i><p>
               <?php echo $_SESSION['CUSTOMER']['NAME'] ?>
         </p></a></li>
@@ -65,7 +65,7 @@
         </div>
         <div class="welcome">
           <p class="title">bienvenido</p>
-          <p class="subtitle">Para tus Recargas, Remanufactura y Venta de Toner y Cartuchos Genericos comunicate con Nosotros</p>
+          <p class="subtitle">Para tus Recargas, Remanufactura y Venta de Toner y Cartuchos Genéricos comunícate con Nosotros</p>
           <div class="subtitle-contc">
             <p><i class="fa fa-phone" aria-hidden="true"></i><span id="tel1"><span></p>
             <p><i class="fa fa-phone" aria-hidden="true"></i><span id="tel2"><span></p>
@@ -76,12 +76,12 @@
     </section>
     <section class="container two">
       <div class="section--one">
-        <p>¿quienes somos?</p>
+        <p>¿quiénes somos?</p>
       </div>
       <div class="section--two">
         <div class="section-left">
         <div class="two--text">
-          <h1>mision</h1>
+          <h1>misión</h1>
           <p>Nuestra empresa brinda los más altos estándares de calidad y agilidad, con personal idóneo en cada área de trabajo, para optimizar los resultados de nuestros clientes, quienes son nuestra razón de ser, estamos comprometidos con nuestro servicio al crecimiento del empresario antioqueño.</p>
         </div>
         <div class="two--image">
@@ -93,8 +93,8 @@
             <img src="views/assets/image/iconPrinter.png" id="iconPrinter">
           </div>
           <div class="two--text">
-            <h1>vision</h1>
-            <p>En el año 2020 Maxirecargas S.A.S Tóner y Cartuchos, será la compañía líder de la región del valle del aburra en la prestación del servicio y distribución de insumos de impresión a pequeñas y medianas empresas tanto del sector público como privado. Estableceremos relaciones internacionales para tener productos únicos de importación.</p>
+            <h1>visión</h1>
+            <p>En el año 2020 Maxirecargas S.A.S Toner y Cartuchos, será la compañía líder de la región del Valle de Aburrá en la prestación del servicio y distribución de insumos de impresión a pequeñas y medianas empresas tanto del sector público como privado. Estableceremos relaciones internacionales para tener productos únicos de importación.</p>
           </div>
       </div>
       </div>
@@ -103,8 +103,8 @@
       <div class="three--left">
         <h1>nuestros servicios</h1>
         <p><i class="fa fa-check" aria-hidden="true"></i>Recarga y Remanufactura de Toner y Cartuchos.</p>
-        <p><i class="fa fa-check" aria-hidden="true"></i>Venta de Toner y Cartuchos, Genericos y  Originales.</p>
-        <p><i class="fa fa-check" aria-hidden="true"></i>Matenimiento y Reparacion de Impresoras, Computadores y Fotocopiadoras.</p>
+        <p><i class="fa fa-check" aria-hidden="true"></i>Venta de Toner y Cartuchos, Genéricos y  Originales.</p>
+        <p><i class="fa fa-check" aria-hidden="true"></i>Matenimiento y Reparación de Impresoras, Computadores y Fotocopiadoras.</p>
         <p><i class="fa fa-check" aria-hidden="true"></i>Venta de insumos para oficinas.</p>
         <button type="submit" name="button">hacer pedido</button>
       </div>
@@ -116,8 +116,8 @@
     </section>
     <section class="container mediafour">
       <div class="title">
-        <h1>politicas de medio ambiente</h1>
-        <h2>maxirecargas s.a.s coprometido con el medio ambiente trabaja de la mano de empresas con el conocimiento en el manejo de los desechos que se producen dia a dia en su labor para general menos contaminantes en nuestro planeta. </h2>
+        <h1>políticas de medio ambiente</h1>
+        <h2>maxirecargas s.a.s coprometido con el medio ambiente trabaja de la mano de empresas con el conocimiento en el manejo de los desechos que se producen día a día en su labor para generar menos contaminantes en nuestro planeta. </h2>
       </div>
       <div class="img--ambiente">
         <img src="views/assets/image/ambiente.png">
@@ -146,7 +146,7 @@
             </form>
       </div>
       <div class="four--contact">
-        <h1>contactanos</h1>
+        <h1>contáctanos</h1>
         <ul>
           <li><i class="fa fa-phone" aria-hidden="true"></i> <span id="telephone"></span> </li>
           <li><i class="fa fa-whatsapp" aria-hidden="true"></i><span id="smartPhone"></span></li>

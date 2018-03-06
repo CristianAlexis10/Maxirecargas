@@ -6,9 +6,9 @@
 <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
 <div class="container--detail">
 	<div class="content--detail">
-		<h1>Detalles de la Cotizacion</h1>
+		<h1>Detalles de la Cotización</h1>
 		<div class="detail">
-			<p class="item--detail">Codigo de Cotización:</p>
+			<p class="item--detail">Código de Cotización:</p>
 			<p class="data--detail"><?php echo $data_quo[0]['cot_token'];?> </p>
 		</div>
 		<div class="detail">
@@ -34,7 +34,7 @@
 			</div>
 		<?php } ?>
 		<div class="wrap--btns">
-				<a href="#" id="viewAllProducts" class="detail--btn">ver articulos</a>
+				<a href="#" id="viewAllProducts" class="detail--btn">Ver artículos</a>
 		</div>
 	 </div>
 	 <div class="content--detailRight">

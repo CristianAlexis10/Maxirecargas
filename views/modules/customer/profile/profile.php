@@ -14,7 +14,7 @@
       <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
       <div class="content--profile">
         <div class="profile--left">
-          <p>editar informacion personal</p>
+          <p>editar información personal</p>
           <form class="" action="index.html" method="post">
           <div class="wrap_two_formgroup">
             <div class="form-profile">
@@ -42,7 +42,7 @@
               <input type="email" class="input--profile" id="email">
             </div>
             <div class="form-profile">
-              <label for="telphone" class="label--profile">telefono:</label>
+              <label for="telphone" class="label--profile">teléfono:</label>
               <input type="text" class="input--profile" id="telphone">
             </div>
           </div>
@@ -52,7 +52,7 @@
               <select class="input--profile" id="country"></select>
             </div>
             <div class="form-profile">
-              <label for="address" class="label--profile">direccion:</label>
+              <label for="address" class="label--profile">dirección:</label>
               <input type="text" class="input--profile" id="address">
             </div>
           </div>

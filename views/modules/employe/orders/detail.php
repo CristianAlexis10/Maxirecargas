@@ -7,7 +7,7 @@ if ($crud[1]==true) {
 <div class="mudules orders detail" id="detail-reload">
 	<div class="wrap--info">
 		<div class="detail">
-			<p class="item--detail">Codigo del pedido:</p>
+			<p class="item--detail">Código del pedido:</p>
 			<p class="data--detail"><?php echo $data_order[0]['ped_token'];?> </p>
 		</div>
 		<div class="detail">
@@ -23,7 +23,7 @@ if ($crud[1]==true) {
 			<p class="data--detail"><?php echo $data_order[0]['ciu_nombre'].", ".$data_order[0]['ped_direccion'];?>  </p>
 		</div>
 		<div class="detail">
-			<p class="item--detail">Telefono:</p>
+			<p class="item--detail">Teléfono:</p>
 			<p class="data--detail"><?php echo $data_order[0]['usu_telefono'];?> </p>
 		</div>
 		<div class="detail">
@@ -68,7 +68,7 @@ if ($crud[1]==true) {
 	</div>
 	<div class="wrap--btns">
 		<ul>
-			<li class="opcins--order"><a id="viewAllProducts">ver articulos</a></li>
+			<li class="opcins--order"><a id="viewAllProducts">Ver artículos</a></li>
 		   <li class="opcins--order"><a href="#" class="contact--customer" id="<?php echo $data_order[0]['usu_codigo']; ?>">Contactar  Cliente</a></li>
        <?php
         if ($data_order[0]['ped_estado']=="Aplazado" || $data_order[0]['ped_estado']=="En Proceso") {?>

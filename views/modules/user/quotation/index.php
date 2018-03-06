@@ -4,13 +4,13 @@
           <h1 class="title--movil">crea tu cotizacion</h1>
             <div class="quotation--form">
               <form id="frmNewOrder">
-                <p class="subtitle quo">Ingresa los datos de los Producto o Servicios que desea cotizar y espera nuetra respuesta. </p>
+                <p class="subtitle quo">Ingresa los datos de los Productos o Servicios que desea cotizar y espera nuestra respuesta. </p>
                 <div class="form-groupuser3">
                   <label for="producto" class="labelyellow">Referencia del producto</label>
                 <input type="text" id="producto" class="inputYellow" >
                 </div>
                 <input type="button" id="searchPro" class="inputuser3" value="Buscar">
-                <a href="#" id="openSearch">No sabes cual es tu referencia?</a>
+                <a href="#" id="openSearch">¿No sabes cual es tu referencia?</a>
                 <div class="form-groupuser3 hide--service ">
                   <label for="servicio" class="labelyellow">servicio</label>
                   <select class="inputYellow " id="servicio">
@@ -30,7 +30,7 @@
                 </div>
               </form>
               <button type="button" id="back">Anterior</button>
-              <button type="button" id="next">siguiente</button>
+              <button type="button" id="next">Siguiente</button>
               <button type="button" id="otroProducto">Otro producto</button>
               <button type="button" id="orderSiguiente">Terminar</button>
         </div>
@@ -38,7 +38,7 @@
       <div class="quotation--rigth">
         <h1 class="title--quo">crea</h1>
         <h1 class="title--quo">tu</h1>
-        <h1 class="title--quo">cotizacion</h1>
+        <h1 class="title--quo">cotización</h1>
       </div>
 
       <div class="modal" id="modal_dir">
@@ -51,7 +51,7 @@
               <select class="" id="ciudad"></select>
             </div>
             <div class="form-groupuser3">
-              <label for="dirSent" class="">Dirección de envio</label>
+              <label for="dirSent" class="">Dirección de envío</label>
               <input id="dirSent" class="">
             </div>
             <div class="form-groupuser3">
@@ -65,7 +65,7 @@
 <div class="modal" id="modalConfir">
   <div class="modal--container">
     <div class="detalle">
-      <h2 class="title--modal">detalles de la cotizacion</h2>
+      <h2 class="title--modal">detalles de la cotización</h2>
         <div id="detalles">
         </div>
     </div>
@@ -81,7 +81,7 @@
         <input type="email" name="data_user" class="inputblue" id="Correoquo" required>
       </div>
       <div class="form-groupuser">
-        <label for="tel" class="labelblue">Telefono</label>
+        <label for="tel" class="labelblue">Teléfono</label>
         <input type="number" name="data_user" class="inputblue" onkeypress="return eliminarLetras(event)" id="tel" required>
       </div>
       <div class="form-groupuser">
@@ -102,7 +102,7 @@
   <div class="modal--container busqueda">
       <span id="close_modal_search" class="close--modal">&times;</span>
       <h2 class="title--modal">Opciones de Busqueda</h2>
-      <p class="subtitle--modal">Puedes buscar por marca, palabras claves, tipo de producto,caracteristicas, etc.</p>
+      <p class="subtitle--modal">Puedes buscar por marca, palabras claves, tipo de producto,características, etc.</p>
       <form id="frmOptionSearch">
         <div class="frm-groupuser">
             <input type="text" id="optionSearch" class="inputblue" placeholder="buscar...">
@@ -115,7 +115,7 @@
         <table id="tabla" class="tables">
             <tr>
                 <th>Referencia</th>
-                <th>Categoria</th>
+                <th>Categoría</th>
                 <th>Marca</th>
                 <th>Descripción</th>
                 <th>Palabras Clave</th>

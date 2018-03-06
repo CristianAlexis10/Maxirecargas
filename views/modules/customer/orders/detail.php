@@ -6,7 +6,7 @@
     <div class="content--detail">
       <h1>Detalles De Pedidos</h1>
          <div class="detail">
-           <p class="item--detail">Codigo del pedido:</p>
+           <p class="item--detail">Código del pedido:</p>
            <p class="data--detail"><?php echo $data_order[0]['ped_token'];?> </p>
          </div>
          <div class="detail">
@@ -43,7 +43,7 @@
          </div>
          <div class="wrap--btns">
          <ul class="detail--contbtn">
-           <li class="opcins--order"><a href="#" id="viewAllProducts"  class="detail--btn">ver articulos</a></li>
+           <li class="opcins--order"><a href="#" id="viewAllProducts"  class="detail--btn">Ver artículos</a></li>
            <?php
              if ($data_order[0]['ped_encargado']!=null) {?>
             <li class="opcins--order"><a href="#"  class="contact--customer detail--btn" id="<?php echo $data_order[0]['ped_encargado']; ?>">Contactar encargado</a></li>
