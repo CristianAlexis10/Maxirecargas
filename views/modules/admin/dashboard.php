@@ -72,6 +72,16 @@
 
 		<?php } ?>
 </article>
+<script>
+var menuMobile =document.getElementById('menu--mobile');
+var nav = document.getElementById('navigator') ;
+menuMobile.onclick = function() {
+	nav.style.transform = "translateX(0px)";
+	
+
+}
+
+</script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>

@@ -15,8 +15,8 @@
     </head>
     <body>
         <section class="container">
-          
-            <header class="main--nav <?php echo $_SESSION['CUSTOMER']['STYLE']['est_usu_menu'] ?>">
+
+            <header id="navigator" class="main--nav <?php echo $_SESSION['CUSTOMER']['STYLE']['est_usu_menu'] ?>">
             <?php
                 require_once("views/include/scope.profile.php");
                 require_once("views/include/scope.navigator.php");
@@ -25,3 +25,4 @@
             <div class="wrap--content">
                 <?php require_once("views/include/scope.menutop.php"); ?>
                 <article>
+                  <div id="fondOscuro"></div>

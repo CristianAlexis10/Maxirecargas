@@ -115,7 +115,7 @@
           </div>
       </div>
       <div id="general">
-        <!-- <?php
+        <?php
           if ($_SESSION['CUSTOMER']['STYLE']['est_usu_menu']!=' ') {?>
             <div class="modo--color">
               <label>color
@@ -137,7 +137,7 @@
               </label>
             </div>
           <?php }  ?>
-          <input type="button" id="saveStyle" value="Guardar Cambios"> -->
+          <input type="button" id="saveStyle" value="Guardar Cambios">
           <h1>Elige tu estilo</h1>
           <div class="colors">
             <form class="" action="index.html" method="post">

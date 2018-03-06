@@ -5,7 +5,8 @@
 
 }
 @media (max-width: 767px){
-  .main--navdark{transform: translateX(-999px);}
+  #navigator{transform: translateX(-999px);}
   .wrap--content{margin: 0}
   #menu--mobile{display: block;}
+  #arrowLeft{display: block;}
 }
