@@ -767,11 +767,39 @@ color:white}
 
 /* views detail productos */
 .container--product--detail{
-  width: 100%; height: 100vh; overflow: hidden; position: absolute;
+  width: 100%; height: 100vh; overflow: hidden; position: absolute; font-family: 'lato';
 }
-.content--product--detail{width: 100%; display: flex;}
-.container--image--detail{width: 50%}
-.container--caracteristicas{width: 50%}
+.content--product--detail{width: 100%; display: flex; align-items: center;}
+.container--image--detail{width: 50%; text-align: center;}
+.container--image--detail h1{
+  margin-top: 80px;
+  color: #53a4dd;
+  font-weight: lighter;
+  text-transform: uppercase;
+}
+.container--image--detail img {
+  border: 1px solid #9e9e9e;
+  margin-top: 30px;
+}
+.container--caracteristicas{width: 50%; padding-right: 160px; color: #717171;}
+.container--caracteristicas h2{margin-bottom: 30px;}
+.container--caracteristicas p{
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.container--caracteristicas input{
+  border: none;
+  outline: none;
+  background: #35a4dd;
+  color: white;
+  padding: 15px 30px;
+  margin: 30px 30px 0 0;
+  transition: all .5s ease
+}
+.container--caracteristicas input:hover{
+  box-shadow: 7px 6px 14px 0 rgba(0, 0, 0, 0.5);
+}
 .figure--product1{
   position: absolute;
   width: 300px;
@@ -779,7 +807,8 @@ color:white}
   background: #35a4dd;
   box-shadow: 0px 0px  60px  20px  rgba(137,100,222,0.5);
   transform: rotate(20deg);
-  right: -170px;
+  right: -140px;
+  top: 60px;
 }
 .figure--product2{
   width: 100%;
@@ -788,7 +817,7 @@ color:white}
   position: absolute;
   background: #35a4dd;
   right:-10%;
-  bottom:-301px;
+  bottom:-270px;
   box-shadow: 0px 0px 60px 10px rgba(131, 95, 214, 0.5),0px 0px  20px  0px  rgba(0,0,0,0.1);
   transform: rotate(-20deg);
 }
