@@ -10,21 +10,21 @@ $data = $this->master->selectAll("gestion_web");
     <div class="frmprofile">
       <form id="frmProfileBusi">
           <div class="form-group">
-            <label for="micro_des" class="select">Micro Descripción:</label>
-            <textarea class="input dataUptadeBusi" id="micro_des"   required><?php echo $data[0]['gw_micro_des']?></textarea>
+            <label for="micro_des" class="select label">Micro Descripción:</label>
+            <textarea class="input dataUptadeBusi textarea" id="micro_des"   required><?php echo $data[0]['gw_micro_des']?></textarea>
           </div>
           <div class="form-group">
-            <label for="mision" class="select">Misión:</label>
-            <textarea class="input dataUptadeBusi" id="mision"   required><?php echo $data[0]['gw_mision']?></textarea>
+            <label for="mision" class="select label">Misión:</label>
+            <textarea class="input dataUptadeBusi textarea" id="mision" required><?php echo $data[0]['gw_mision']?></textarea>
           </div>
 
           <div class="form-group">
-            <label for="vision" class="select">Visión:</label>
-            <textarea class="input dataUptadeBusi" id="vision"   required><?php echo $data[0]['gw_vision']?></textarea>
+            <label for="vision" class="select label">Visión:</label>
+            <textarea class="input dataUptadeBusi textarea" id="vision"   required><?php echo $data[0]['gw_vision']?></textarea>
           </div>
           <div class="form-group">
-            <label for="pma" class="select">Politica de medio ambiente:</label>
-            <textarea class="input dataUptadeBusi" id="pma"   required><?php echo $data[0]['gw_politicas']?></textarea>
+            <label for="pma" class="select label">Politica de medio ambiente:</label>
+            <textarea class="input dataUptadeBusi textarea" id="pma" required><?php echo $data[0]['gw_politicas']?></textarea>
           </div>
 
         <div class="wrap_two_formgroup">

@@ -7,7 +7,7 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
       <tr>
         <th>Nombre</th>
         <th>Dirección</th>
-        <th>Celular</th>
+        <th class="table-Celular">Celular</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -16,7 +16,7 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
           <tr>
             <td><?php echo $row['usu_primer_nombre']?></td>
             <td><?php echo $row['usu_direccion']?></td>
-            <td><?php echo $row['usu_celular']?></td>
+            <td class="table-Celular"><?php echo $row['usu_celular']?></td>
             <td><a href="ver-cliente-empresarial-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i></a>
             <!-- eliminar  -->
             <?php if($crud[3]==true){ ?>

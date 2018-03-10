@@ -9,4 +9,17 @@
   .wrap--content{margin: 0}
   #menu--mobile{display: block;}
   #arrowLeft{display: block;}
+  #wrap-result{width: 200px !important;}
+  #wrap-result img{width: 200px}
+     /* datagrid eliminar columns */
+  .table-Celular, .table-direction, .table-token{display: none}
+  /* modales */
+  .container--modales{width: 70%}
+}
+@media (max-width:576px) {
+  .wrap--pie{
+    grid-template-areas:
+    "pie1"
+    "pi2"
+  }
 }

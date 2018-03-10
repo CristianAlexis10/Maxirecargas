@@ -4,7 +4,7 @@
                         <th>Cliente</th>
                         <th>Dirección</th>
                         <th>Fecha</th>
-                        <th>Token</th>
+                        <th class="table-token">Token</th>
                         <th>Acciones</th>
                     </tr>
          </thead>
@@ -14,7 +14,7 @@
                          <td><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ;?></td>
                             <td><?php echo $row['ciu_nombre'].",".$row['cot_dir'];?></td>
                             <td><?php echo $row['cot_fecha'];?></td>
-                            <td><?php echo $row['cot_token'];?></td>
+                            <td class="table-token"><?php echo $row['cot_token'];?></td>
                            <td>
                             <?php
                                 $modulo = 'cotizacion';

@@ -34,8 +34,8 @@
 	</div>
 </div>
 <div id="modal-assign" class="modales">
-	<div class="container--modales">
-		<span id="clAssig" class="close_modal_pedido">&times;</span>
+	<div class="container--modales ">
+		<span id="clAssig" class="closemodales">&times;</span>
 		<h1>Elige el encargado:</h1>
 		<div class="infomodal">
 			<select id="addOrder">

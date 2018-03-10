@@ -141,7 +141,7 @@
 </div>
 <div class="newMark--modal modales " id="modal--new">
 	<div class="container--modales">
-			<span id="closeNew">&times;</span>
+			<span id="closeNew" class="closemodales">&times;</span>
 			<h1>crea una nueva marca</h1>
 			<form id="frmNewMar">
 			<div class="form-group">
