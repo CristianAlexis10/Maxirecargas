@@ -101,9 +101,6 @@ RewriteRule ^todas-referencias$ index.php?controller=products&a=readRefer
 RewriteRule ^opciones-busqueda-referencia$ index.php?controller=products&a=readOptionSearch
 RewriteRule ^detalles-producto-(\w+)$ index.php?controller=products&a=viewDetail&data=$1
 
-
-
-
 #STOCK
 RewriteRule ^crear-inventario$ index.php?controller=stock&a=viewNewRegister
 RewriteRule ^guardar-inventario$ index.php?controller=stock&a=newRegister
