@@ -14,10 +14,12 @@
 				<div>
 					<?php
 						if ($_SESSION['CUSTOMER']['ROL']==2) {?>
-						<div><a href="configuraciones"  class="menutop--icon" ><i class="fa fa-cogs" aria-hidden="true"></i></a></div>
+						<div class="menutop-config"><a href="configuraciones"  class="menutop--icon" ><i class="fa fa-cogs" aria-hidden="true"></i></a>
+						<span class="tooltiptext">Configuración</span></div>
 						<?php }	?>
 			</div>
-			<div><a href="finalizar" class="menutop--icon"><i class="fa fa-power-off" aria-hidden="true"></i></a></div>
+			<div class="menutop-finalizar"><a href="finalizar" class="menutop--icon"><i class="fa fa-power-off" aria-hidden="true"></i></a>
+			<span class="tooltiptext">Finalizar</span></div>
 			</div>
 		</div>
 <?php } ?>

@@ -116,6 +116,44 @@ body{
   height: 40px;
   border-radius: 50px;
 }
+.menutop-config .tooltiptext{
+  visibility: hidden;
+  width: 7,5%;
+  background-color: #e2e2e2;
+  color: #9e9e9e;
+  text-align: center;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  z-index: 1;
+  top: 3%;
+  right: 9.5%;
+  transition: opacity 0.3s;
+  box-shadow: 1px 1px 1px;
+}
+.menutop-config:hover .tooltiptext{
+    visibility: visible;
+    opacity: 1;
+}
+.menutop-finalizar .tooltiptext{
+  visibility: hidden;
+  width: 4,5%;
+  background-color: #e2e2e2;
+  color: #9e9e9e;
+  text-align: center;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  z-index: 1;
+  top: 3%;
+  left: 91.5%;
+  transition: opacity 0.3s;
+  box-shadow: 1px 1px solid;
+}
+.menutop-finalizar:hover .tooltiptext{
+    visibility: visible;
+    opacity: 1;
+}
 .menutop--icon{transition: all 0.2s ease;}
 .menutop--icon:hover{color:#35a4dd;}
 /* menu desplegable */
