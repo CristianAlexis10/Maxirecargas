@@ -37,28 +37,29 @@ require_once "controller/doizer.controller.php";
 		 $email = $_POST['email'];
 		 $título = $_POST['asunto'];
 		 $mensaje = '<!DOCTYPE html>
-		 <html>
-		   <head>
-		     <meta charset="utf-8">
-		     <title>contactanos</title>
+		 $mensaje = '<!DOCTYPE html>
+	 	<html>
+	 	  <head>
+	 	    <meta charset="utf-8">
+	 	    <title>contactanos</title>
 
-		   </head>
-		   <body style="margin: 0; padding: 0">
-		     <div class="container" style="background: #ddd;width: 100%;height: 100vh;">
-		       <div class="content" style="width: 80%;position: absolute;top: 0; left: 0; right: 0; bottom: 0;margin: auto;background: white;box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.2);text-align: center;font-family: lato, sans-serif;">
-		         <img src="https://maxirecargas.com.co/views/assets/image/logo.png">
-		         <h1 style="font-size: 40px;color: #35a4dd;text-transform: uppercase;">¡urgente!</h1>
-		         <p style="font-size: 22px;letter-spacing: 5px;color:#717171;">Un usuario desea ponerse en contacto con nosotros.</p>
-		         <ul style="list-style: none;text-align: left;padding: 15px 120px;text-transform: capitalize;color: #717171;">
-		           <li>nombre:'.$name.'</li>
-		           <li>correo:'.$email.'</li>
-		           <li>mensaje:'.$_POST['message'].'</li>
-		         </ul>
+	 	  </head>
+	 	  <body style="margin: 0; padding: 0">
+	 	    <div class="container" style="background: #ececec;width: 100%;height: 100vh; padding-top:20px">
+	 	      <div class="content" style="width: 80%;height:100%;position: absolute;top: 0; left: 0; right: 0; bottom: 0;margin:auto;background: white;text-align: center;font-family: lato, sans-serif;">
+	 	        <img src="https://maxirecargas.com.co/views/assets/image/logo.png" style="width:150px; padding-top:30px">
+	 	        <h1 style="font-size: 30px;color: #35a4dd;text-transform: uppercase; font-weight:300;">¡urgente!</h1>
+	 	        <p style="font-size: 18px;color:#717171;">Un usuario desea ponerse en contacto con nosotros.</p>
+	 	        <ul style="list-style: none;text-align: left;padding: 15px 50px;text-transform: capitalize;color: #717171;">
+	 	          <li>nombre:yo</li>
+	 	          <li>correo:yonosoybond@gmail.com</li>
+	 	          <li>mensaje:dasadsaddsad</li>
+	 	        </ul>
 
-		       </div>
-		     </div>
-		   </body>
-		 </html>';
+	 	      </div>
+	 	    </div>
+	 	  </body>
+	 	</html>';
 			// $mensaje = '
 			// <html>
 			// <head>
