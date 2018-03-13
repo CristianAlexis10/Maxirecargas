@@ -395,9 +395,7 @@ table.dataTable tbody th, table.dataTable tbody td{text-align: center;}
  width: 50%;
  padding-left: 10px;
 }
-.mudules.orders.detail{
-  display: flex;
-}
+
 .mudules.orders.detail .wrap--info{
 width: 60%;
 }

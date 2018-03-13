@@ -17,9 +17,28 @@
   .container--modales{width: 70%}
 }
 @media (max-width:576px) {
+  .container--menumobile{width: 50%}
+  .menu--top .items{width:50%}
   .wrap--pie{
     grid-template-areas:
     "pie1"
-    "pi2"
+    "pie2";
   }
+  .ui-tabs .ui-tabs-nav .ui-tabs-anchor{padding: 5px 10px}
+  .form-group .input{width: 90%}
+  .form-group .input.grande{width: 96%}
+  .user--info{width: 90%}
+  #frmUpdtateUser,#frmUpdaDataEmp,#frmUpdateProduct,.frmServices{margin-left:20px}
+  .title p{text-align: center;}
+  #tabs .ui-widget-header{flex-wrap: wrap;}
+  .new.products,.update,.maxContainer_profile{display: block;}
+  .form--left,.form--rigth,.frmprofile{width: 100%}
+  .ms-choice,.ms-drop{width: 405px !important}
+  #wrap-result{width: 300px !important; margin: 0 0 30px 0;}
+  .new--obj,.imgprofile{width: 50%}
+  .modules #tabs{width: auto;}
+  .table-fecha,.nodata-Observacion{display: none}
+  .detail{display: block; box-sizing: border-box;}
+  .mudules.orders.detail .wrap--info{width: 100%}
+  .container--modales.order{width: 90%}
 }
