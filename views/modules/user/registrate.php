@@ -217,6 +217,7 @@
           <div class="wrap--login">
             <label for="password" class="label-login">Contraseña</label>
             <input type="password" name="data-login" id="pass" class="input--login" required>
+            <span class="tooltiptext">La contraseña debe contener mínimo 8 caracteres, letras mayúsculas, mínusculas y números.</span>
           </div>
             <button type="submit" name="button" id="btn--login">iniciar sesion</button>
         </form>

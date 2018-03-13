@@ -242,6 +242,23 @@
   background-color:#35a4dd;
   transform: scaleX(0);
 }
+.wrap--login .tooltiptext{
+  visibility: hidden;
+  width: 99%;
+  background-color: #e2e2e2;
+  color: #9e9e9e;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  z-index: 1;
+  top: 107%;
+  transition: opacity 0.3s;
+  box-shadow: 1px 1px 1px;
+}
+.wrap--login:hover .tooltiptext{
+    visibility: visible;
+    opacity: 1;
+}
 .clr-label-login::after ,.clr-label::after{
   transform: scaleX(1);
 }
