@@ -139,50 +139,41 @@
           <?php }  ?>
           <input type="button" id="saveStyle" value="Guardar Cambios">
           <h1>Elige tu estilo</h1>
-          <div class="colors">
-            <form class="" action="index.html" method="post">
 
-            <input type="radio" name="colors" value=""><label for=""><span></span></label>
-            <input type="radio" name="colors" value=""><label for=""><span></span></label>
-            <input type="radio" name="colors" value=""><label for=""><span></span></label>
-            <input type="radio" name="colors" value=""><label for=""><span></span></label>
-            <input type="radio" name="colors" value=""><label for=""><span></span></label>
-          </form>
-          </div>
       </div>
       </form>
       <div id="contacto">
         <form id="form_contacto">
-          <div class="coso">
-            <label for="numer1">numero de telefono</label>
-            <input type="number" id="numer1">
+          <div class="form-group">
+            <label for="numer1" class="label">numero de telefono</label>
+            <input type="number" id="numer1" class="input">
           </div>
-          <div class="coso">
-            <label for="numer2">numero de telefono 2</label>
-            <input type="number" id="numer2">
+          <div class="form-group">
+            <label for="numer2" class="label">numero de telefono 2</label>
+            <input type="number" id="numer2" class="input">
           </div>
-          <div class="coso">
-            <label for="wpp">whatsapp</label>
-            <input type="number" id="wpp">
+          <div class="form-group">
+            <label for="wpp" class="label">whatsapp</label>
+            <input type="number" id="wpp" class="input">
           </div>
-          <div class="coso">
-            <label for="correocos">correo</label>
-            <input type="email" id="correocos">
+          <div class="form-group">
+            <label for="correocos" class="label">correo</label>
+            <input type="email" id="correocos" class="input">
           </div>
-          <div class="coso">
-            <label for="direccion">direccion</label>
-            <input type="text" id="direccion">
+          <div class="form-group">
+            <label for="direccion" class="label">direccion</label>
+            <input type="text" id="direccion" class="input">
           </div>
-          <div class="coso">
-            <label for="inicio">Hora Inicio Jornada laboral</label>
-            <input type="time" id="inicio">
+          <div class="form-group">
+            <label for="inicio" class="label">Hora Inicio Jornada laboral</label>
+            <input type="time" id="inicio" class="input">
           </div>
-          <div class="coso">
-            <label for="fin">Hora Fin Jornada laboral</label>
-            <input type="time" id="fin">
+          <div class="form-group">
+            <label for="fin" class="label">Hora Fin Jornada laboral</label>
+            <input type="time" id="fin" class="input">
           </div>
-          <div class="btn-coso">
-            <input type="submit" id="btn-coso">
+          <div class="form-group">
+            <input type="submit" id="btn-coso" class="btn">
           </div>
         </form>
       </div>

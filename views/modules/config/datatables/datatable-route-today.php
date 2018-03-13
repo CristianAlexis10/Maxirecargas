@@ -2,7 +2,7 @@
             <thead>
                     <tr>
                         <th>Encargado</th>
-                        <th>Correo</th>
+                        <th class="table-token">Correo</th>
                         <th>Celular</th>
                         <th>N° visitas del dia</th>
                         <th>Ver</th>
@@ -20,7 +20,7 @@
                   ?>
                      <tr>
                          <td><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ;?></td>
-                         <td><?php echo $row['usu_correo'];?></td>
+                         <td class="table-token"><?php echo $row['usu_correo'];?></td>
                          <td><?php echo $row['usu_celular'];?></td>
                             <td><?php echo $count['total']; ?></td>
                            <td>

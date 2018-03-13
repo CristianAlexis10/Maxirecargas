@@ -8,7 +8,7 @@
 			    <input type="text" name="dataNewService" id="nombre" class="input grande"required>
 			</div>
 			<div class="form-group">
-			    <label for="des" class="label">Descripción:</label>
+			    <label for="des" class="des">Descripción:</label>
 			    <textarea name="dataNewService" id="des" class="textarea"></textarea>
 			</div>
 			<div class="form-group">

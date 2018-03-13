@@ -103,7 +103,7 @@ if ($crud[1]==true) {
         <th>referencia</th>
         <th>Servicio</th>
         <th>cant</th>
-        <th>Observación</th>
+        <th class="nodata-Observacion">Observación</th>
       </tr>
     <?php
   		foreach ($data_order as $row) {
@@ -112,7 +112,7 @@ if ($crud[1]==true) {
        echo "<td>".$row['pro_referencia']."</td>";
        echo "<td>".$row['tip_ser_nombre']."</tb>";
        echo "<td>".$row['pedxpro_cantidad']."</tb>";
-       echo "<td>".$row['pedxpro_observacion']."</tb>";
+       echo "<td class='nodata-Observacion'>".$row['pedxpro_observacion']."</tb>";
        echo "</tr>";
   		}
   		?>

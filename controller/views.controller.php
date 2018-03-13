@@ -11,6 +11,9 @@
 	 	function newUser(){
 				require_once "views/modules/user/signin.php";
 		}
+	 	function newUserMobile(){
+				require_once "views/modules/user/registro-mobile.php";
+		}
 
 	}
 ?>

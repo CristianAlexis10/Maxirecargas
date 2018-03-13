@@ -183,7 +183,7 @@
   width: 100%;
 
 }
- .input{
+ .input, .inputregist{
    position: relative;
    background: #40464c;
    border: none;
@@ -193,6 +193,8 @@
    width: 100%;
    color: #9e9e9e;
  }
+.inputregist{padding: 8px}
+
 .label-login, .label{
   font-size: 16px;
   color: #9e9e9e;
@@ -306,6 +308,8 @@ transform: translateY(-12px);
   margin-top: 10px;
   text-transform: uppercase;
   color: #9e9e9e;
+  transition: all 0.5s ease;
+  opacity: 0
 }
 .container.two .section--one p{
   font-size: 60px;
@@ -322,15 +326,15 @@ transform: translateY(-12px);
   padding: 30px;
   display: flex;
   flex-direction: column;
-
 }
+.two--text, .two--text2{opacity: 0}
 .container.two .section--two .section-left h1, .section-rigth h1{
   font-family: 'oswald';
   font-weight: bold;
   font-size: 35px;
   text-transform: uppercase;
   color: #689198;
-  padding: 0px 0px 10px 30px
+  padding: 0px 0px 10px 30px;
 }
 .container.two .section--two .section-left p, .section-rigth p{
   padding: 0px 30px 50px 30px;
@@ -350,6 +354,8 @@ transform: translateY(-12px);
   justify-content: center;
   align-items: center;
 }
+
+
 #iconPc{
   padding: 0 0 0 30px;
   width: 300px;
@@ -412,7 +418,7 @@ transform: translateY(-12px);
   color: black;
 }
 .container.three .three--rigth{
-  width: 60%;
+  width: 53%;
   margin-top: -33px;
   background: url("../image/flat/fondo_servicios.png");
   background-repeat: no-repeat;
@@ -425,19 +431,18 @@ transform: translateY(-12px);
   width: 110px;
   height: 142px;
   margin-top: 120px;
-
 }
  #services-servicio{
   width: 158px;
   height: 260px;
   margin: 200px 60px 0 60px;
-
 }
  #services-asistencia{
    width: 122px;
    height: 139px;
    margin-top:120px;
  }
+
 .container.mediafour{
   width: 100%;
   height: 40vh;
@@ -458,15 +463,15 @@ transform: translateY(-12px);
   font-family: lato;
   font-weight: 300;
   font-size: 18px;
-
 }
-
+.mediafour .title{opacity: 0}
 .container.mediafour img{
   width: 20%;
   position: absolute;
   right: 0;
   padding-top: 20px;
 }
+/* .img--ambiente{transition: all .5s ease; transform: translateX(9px);} */
 
 .container.four{
   display: flex;
@@ -949,3 +954,14 @@ table.dataTable.no-footer{border: 1px solid #111;}
 table.dataTable.no-footer thead {background:grey;color: white;}
 table.dataTable tbody tr:nth-child(even){background: #dedede;border: 1px solid #ccc}
 table.dataTable tbody th, table.dataTable tbody td{text-align: center;}
+/* registrar-mobile */
+.registrar--mobile{
+  background: #2C3034;
+  height: 100vh; width: 100%;
+  font-family: 'lato'
+}
+/*animation scroll*/
+.section--one.animated.zoomIn{opacity: 1}
+.two--text.animated.slideInLeft, .two--text2.animated.slideInLeft{opacity: 1}
+.title.animated.slideInLeft{opacity: 1}
+/* .img--ambiente.hambiente{transform: translateX(0);} */

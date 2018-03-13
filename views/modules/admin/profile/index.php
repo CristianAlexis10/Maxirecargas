@@ -94,20 +94,19 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
     </div>
   </form>
   </div>
-  <form>
-    <div class="wrap_two_formgroup">
-      <div class="form-group">
-        <label for="contra" class="label">Contraseña:</label>
-        <input type="password"  id="contra" class="input" required>
-      </div>
-      <div class="form-group">
-        <label for="rep_contra" class="label">Repetir Contraseña:</label>
-        <input type="password"  id="rep_contra" class="input" required disabled>
-      </div>
+  <div class="wrap_two_formgroup">
+    <div class="form-group">
+      <label for="contra" class="label">Contraseña:</label>
+      <input type="password"  id="contra" class="input" required>
     </div>
+    <div class="form-group">
+      <label for="rep_contra" class="label">Repetir Contraseña:</label>
+      <input type="password"  id="rep_contra" class="input" required disabled>
+    </div>
+  </div>
+</form>
+  <form>
 
-
-  </form>
   <div id="img-product">
 			<div class="newMark--img">
 				<span id="closeImg">&times;</span>

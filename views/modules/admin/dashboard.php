@@ -2,7 +2,7 @@
 	if ($_SESSION['CUSTOMER']['ROL']==2) {?>
 		<div class="modules">
 			<div class="title">
-				<p>ESTADISTICAS</p>
+				<p>ESTADÍSTICAS</p>
 			</div>
 		</div>
 		<div class="container--charts">
@@ -22,7 +22,7 @@
 				<canvas id="linerGraphy"></canvas>
 			</div>
 			<div class="ventasDia">
-				<h2>ventas del dia</h2>
+				<h2>ventas del día</h2>
 				<p id="ventaDiaria"></p>
 			</div>
 			<div class="ventasMes">
@@ -30,7 +30,7 @@
 				<p id="ventaMes"></p>
 			</div>
 			<div class="visitas">
-				<h2>Pedidos del dia</h2>
+				<h2>Pedidos del día</h2>
 				<p id="pedDay"></p>
 			</div>
 			<div class="pedidopend">
@@ -77,7 +77,7 @@ var menuMobile =document.getElementById('menu--mobile');
 var nav = document.getElementById('navigator') ;
 menuMobile.onclick = function() {
 	nav.style.transform = "translateX(0px)";
-	
+
 
 }
 

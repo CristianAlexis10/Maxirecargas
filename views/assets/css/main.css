@@ -151,8 +151,6 @@ body{
   color:grey;
   font-size: 50px;
   font-weight: 300;
-
-
 }
 
 /*modules services*/
@@ -163,17 +161,10 @@ body{
   width: 30%;
   font-weight: bold;
   display: flex;
-
   transition: all 0.2s ease;
 }
-.new--obj:hover{
-  color: #35a4dd;
-}
-.new--obj a{
-padding-left: 8px;
-}
-
-
+.new--obj:hover{color: #35a4dd;}
+.new--obj a{padding-left: 8px;}
 /*tabs*/
 #tabs{
   border: none;
@@ -215,9 +206,7 @@ margin-bottom: 30px;
 margin-bottom: 30px;
 }
 
-table.dataTable.no-footer{
-  border: 1px solid #111;
-}
+table.dataTable.no-footer{border: 1px solid #111;}
 table.dataTable.no-footer thead {
   background:rgb(53, 164, 221);
   color: white;
@@ -225,12 +214,8 @@ table.dataTable.no-footer thead {
 table.dataTable tbody tr:nth-child(even){
 background: #eee;
 border: 1px solid #ccc
-
 }
-table.dataTable tbody th, table.dataTable tbody td{
-  text-align: center;
-
-}
+table.dataTable tbody th, table.dataTable tbody td{text-align: center;}
 /*FORM*/
 
 .new.products{display: flex;}
@@ -410,9 +395,7 @@ table.dataTable tbody th, table.dataTable tbody td{
  width: 50%;
  padding-left: 10px;
 }
-.mudules.orders.detail{
-  display: flex;
-}
+
 .mudules.orders.detail .wrap--info{
 width: 60%;
 }
@@ -436,6 +419,7 @@ align-items: center;
   width: 100%;
   margin-left: 70px;
 }
+
 .textarea{
   width: 90%;
   font-family:'lato';
@@ -538,9 +522,8 @@ align-items: center;
   margin-top: 30px;
 }
 /*recorta img*/
-#frmNewMar, #frmNewCategorie{
-  width: 80%;
-}
+#frmNewMar{width: 100%; padding-left: 50px}
+#frmNewCategorie{width: 80%}
 
 
 
@@ -637,6 +620,7 @@ margin: 0 auto;
 #modal-motive,.modal-status,#modal-total, #modal--detail--products, #modal-assign, #modal--new,#modal--newCt{
 	display: none;
 }
+#addOrder{margin-top: 40px}
 
 .elegir{
   text-transform: capitalize;
