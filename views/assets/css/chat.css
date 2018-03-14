@@ -5,13 +5,12 @@
 		color: #fff;
 		cursor: pointer;
 	}
-
-	#iniciar{
+#iniciar{
 		display: flex;
 		align-self: flex-end;
 		position: fixed;
 		right: 0;
-		margin-right: 20px;
+		top: 90%;
 		background-color: red;
 		padding: 10px;
 		cursor:pointer;
@@ -54,7 +53,7 @@ margin-right: 3px;
 .chat_wrapper {
 	width: 20%;
 	height:400px;
-	position: absolute;
+	position: fixed;
   left: 78%;
   top: 36.2vh;
 	background: #101113;
@@ -73,3 +72,4 @@ margin-right: 3px;
 .system_msg{color: #BDBDBD;font-style: italic;}
 .user_name{font-weight:bold;}
 .user_message{color: #88B6E0;}
+/* #finalizarChat{display: none} */

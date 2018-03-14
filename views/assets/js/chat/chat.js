@@ -1,3 +1,5 @@
+//eliminar evento window
+
 var conversacion = false;
 var token;
 //mostar/ocultar caja de mensajes
@@ -49,7 +51,7 @@ $('#send-btn').click(function(){
    $('#message').val("");
 });
 //finalizar conversacion
-$("#finalizar").click(function(){
+$("#finalizarChat").click(function(){
 	localStorage.removeItem("chat_token");
 	$('#cerrar_conversacion').click();
 	//cambiar estado de conversacion

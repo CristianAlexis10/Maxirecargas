@@ -19,7 +19,7 @@ class MsnController{
     if (!isset($_SESSION['user_chat'])) {
       // si no existe la estadoConversacion
       $token = $_POST["token"];
-      $result = $this->master->insert("chats",array($token,$user,date("Y-m-d"),date('G:i:s'),"proceso"),array("chat_asistente","fecha_fin","hora_fin"));
+      $result = $this->master->insert("chats",array($token,date("Y-m-d"),date('G:i:s'),"proceso"),array("chat_asistente","fecha_fin","hora_fin"));
       if ($result==true) {
         $_SESSION['user_chat']=$token;
         $result = true;
