@@ -37,7 +37,6 @@ require_once "controller/doizer.controller.php";
 		 $email = $_POST['email'];
 		 $título = $_POST['asunto'];
 		 $mensaje = '<!DOCTYPE html>
-		 $mensaje = '<!DOCTYPE html>
 	 	<html>
 	 	  <head>
 	 	    <meta charset="utf-8">
