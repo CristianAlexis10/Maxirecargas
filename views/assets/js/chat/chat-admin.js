@@ -19,7 +19,7 @@ function actualizarChats(){
       for (var i = 0; i < result.length; i++) {
         // if (document.getElementById(result[i].chat_token) == null) {
             //si no exite se crea el chat
-            $('.wrap-chats').append('<div class="item" id="'+result[i].chat_token+'" onclick="abrirChat(this)"><span>'+result[i].nombre+'</span><span  class="deleteUser"onclick="eliminarUsu('+result[i].usu_codigo+')">X</span></div>');
+            $('.wrap-chats').append('<div class="item" id="'+result[i].chat_token+'" onclick="abrirChat(this)"><span>'+result[i].usu_primer_nombre+'</span><span  class="deleteUser"onclick="eliminarUsu('+result[i].usu_codigo+')">X</span></div>');
           // }
         }
       }

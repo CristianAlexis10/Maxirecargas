@@ -48,7 +48,7 @@
             			<input type="text" name="message" id="message" placeholder="Message" maxlength="80"
             			onkeydown = "if (event.keyCode == 13)document.getElementById('send-btn').click()"  />
             	</div>
-            	<button id="send-btn" class=button>Send</button>
+            	<button id="send-btn" class=button>Responder</button>
             </div>
           </article>
       </div>
