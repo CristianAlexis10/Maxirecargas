@@ -72,4 +72,4 @@ margin-right: 3px;
 .system_msg{color: #BDBDBD;font-style: italic;}
 .user_name{font-weight:bold;}
 .user_message{color: #88B6E0;}
-/* #finalizarChat{display: none} */
+#finalizarChat{display: none}

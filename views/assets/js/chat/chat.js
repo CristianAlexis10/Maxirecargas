@@ -1,5 +1,3 @@
-//eliminar evento window
-
 var conversacion = false;
 var token;
 //mostar/ocultar caja de mensajes
@@ -13,6 +11,7 @@ $("#cerrar_conversacion").click(function(){
 });
 // estado inicial de conversacion
 iniciarConversacion();
+var total_mensajes = 0;
 //obtener usuario
 var user = localStorage.getItem('userName');
 //click en enviar
@@ -28,7 +27,11 @@ $('#send-btn').click(function(){
 		iniciarConversacion();
 	}
 	conversacion = true;
-
+	//
+	if(total_mensajes==0) {
+		agregarMensaje("sistema","Conversación iniciada");
+	}
+	total_mensajes++;
   //enviar datos a php
   $.ajax({
     url:"enviar-mensaje",
@@ -36,11 +39,11 @@ $('#send-btn').click(function(){
     dataType:"json",
     data:({msn:mymessage,token:token}),
     success:function(result){
-      console.log(result);
 			if (result==true) {
 				agregarMensaje(user,mymessage);
+				$("#finalizarChat").show();
 			}else{
-				agregarMensaje("system","Error al enviar mensaje");
+				agregarMensaje("sistema","Error al enviar mensaje");
 			}
     },
     error:function(result){
@@ -53,23 +56,30 @@ $('#send-btn').click(function(){
 //finalizar conversacion
 $("#finalizarChat").click(function(){
 	localStorage.removeItem("chat_token");
-	$('#cerrar_conversacion').click();
 	//cambiar estado de conversacion
 	conversacion = false;
 	iniciarConversacion();
 	//eliminar mensajes
-	$('#message_box').empty();
 	//ajax para enviar correo y eliminar session de chat
 	$.ajax({
 		url:"eliminar-chat",
 		success:function(res){
-			console.log(res);
+			agregarMensaje("sistema","Conversación Finalizada");
+			setTimeout(function(){
+				$("#finalizarChat").hide();
+				$('#message_box').empty();
+				$("#cerrar_conversacion").click();
+			},3000);
 		}
 	});
 });
 //agregar a la casa de mensajes
 function agregarMensaje(user_name,msn){
-	$('#message_box').append("<div><span class='user_name'>"+user_name+"</span> : <span class='user_message'>"+msn+"</span></div>");
+	if (user_name=="sistema") {
+		$('#message_box').append("<div><span class='system_msg'>"+user_name+"</span> : <span class='system_msg'>"+msn+"</span></div>");
+	}else{
+		$('#message_box').append("<div><span class='user_name'>"+user_name+"</span> : <span class='user_message'>"+msn+"</span></div>");
+	}
 }
 //crear token de cerrar_conversacion
 function crearToken(longitud) {
@@ -83,10 +93,11 @@ function crearToken(longitud) {
 function iniciarConversacion(){
 	//saber si existe el token de conversacion
 	if (localStorage.getItem('chat_token')!=null) {
+		$("#finalizarChat").show();
 		estadoConversacion = true;
+		conversacion = true;
 		token = localStorage.getItem('chat_token');
 		llenarChat(token);
-		console.log(token);
 	}else{
 	 	token = crearToken(15);
 		localStorage.setItem('chat_token',token);
@@ -100,7 +111,10 @@ function llenarChat(token){
 		dataType:"json",
 		data:({token:token}),
 		success:function(result){
-			console.log(result);
+			$("#message_box").empty();
+			if (result.length>0) {
+				agregarMensaje("sistema","Conversación iniciada");
+			}
 			var item = result.length-1;
 			for (var i = 0; i < result.length; i++) {
 					agregarMensaje(result[i][0],result[i][1]);
@@ -108,13 +122,13 @@ function llenarChat(token){
 		},
 		error:function(result){console.log(result);}
 	});
+	$("#message_box").animate({ scrollTop: $('#message_box')[0].scrollHeight}, 1000);
 }
 //actualizar mensajes cada 8 segundo
 function actualizarChat(){
 	if (conversacion==true) {
 		$("#message_box").empty();
 		llenarChat(token);
-		console.log(token);
 	}
 	setTimeout(function(){actualizarChat();},8000);
 }

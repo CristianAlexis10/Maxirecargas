@@ -14,12 +14,13 @@ class MsnController{
     // require_once "views/include/scope.footer.php";
   }
   function newMessage(){
+      unset($_SESSION['user_chat']);
     $msn = $_POST["msn"];
     $user = $_SESSION['CUSTOMER']['ID'];
     if (!isset($_SESSION['user_chat'])) {
       // si no existe la estadoConversacion
       $token = $_POST["token"];
-      $result = $this->master->insert("chats",array($token,date("Y-m-d"),date('G:i:s'),"proceso"),array("chat_asistente","fecha_fin","hora_fin"));
+      $result = $this->master->insert("chats",array($token,$user,date("Y-m-d"),date('G:i:s'),"proceso"),array("chat_asistente","fecha_fin","hora_fin"));
       if ($result==true) {
         $_SESSION['user_chat']=$token;
         $result = true;
@@ -28,7 +29,7 @@ class MsnController{
       }
     }
     // si  existe la Conversacion guuardar mensaje
-    $result = $this->master->insert("mensajexchat",array($_SESSION['user_chat'],$user,$msn),array("chat_asistente"));
+    $result = $this->master->insert("mensajexchat",array($_SESSION['user_chat'],$msn),array("chat_asistente"));
     if (!$result==true) {
         $result = $this->doizer->knowError($result);
     }
