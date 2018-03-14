@@ -1300,6 +1300,39 @@ class MasterModel{
     }
     return $result;
   }
+  function 	finalizarChat($data){
+    try {
+      $this->sql="call finalizarChat(?,?,?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute($data);
+      $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
+  function 	leerConversacion($data){
+    try {
+      $this->sql="call leerConversacion(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute($data);
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
+  function 	chats_actuales(){
+    try {
+      $this->sql="call chats_actuales()";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute();
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
 
 }
 

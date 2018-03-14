@@ -132,6 +132,16 @@ RewriteRule ^datos-contacto$ index.php?controller=contact&a=knowData
 RewriteRule ^nuevo_dato_contacto$ index.php?controller=setting&a=contact
 RewriteRule ^actualizar-datos-empresa$ index.php?controller=admin&a=UpdateBusi
 
+#ASISTENCIA VIRTUAL
+#ADMIN
+RewriteRule ^asistencia_virtual$ index.php?controller=msn&a=admin
+RewriteRule ^saber-chats-actuales$ index.php?controller=msn&a=AllchatsNow
+RewriteRule ^enviar-mensaje-admin$ index.php?controller=msn&a=newMessageAdmin
+#enviar mensaje
+RewriteRule ^enviar-mensaje$ index.php?controller=msn&a=newMessage
+RewriteRule ^eliminar-chat$ index.php?controller=msn&a=deleteChat
+RewriteRule ^llenar-chat$ index.php?controller=msn&a=readByToken
+
 #ERRORES
 ErrorDocument 404 /github/maxirecargas/views/modules/config/errors/error404.php
 ErrorDocument 404 /maxirecargas/views/modules/config/errors/error404.php
