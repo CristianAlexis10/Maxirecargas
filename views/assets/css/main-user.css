@@ -377,7 +377,7 @@ transform: translateY(-12px);
   align-items: center;
   padding-right: 30px;
 }
-.container.three .three--left h1{
+ .three--left .threeTitle{
   color: #f8f400;
   width: 100%;
   font-family: 'oswald';
@@ -387,15 +387,16 @@ transform: translateY(-12px);
   text-transform: uppercase;
   padding: 30px 0 0 30px;
   margin-bottom:20px;
+  opacity: 0;
 }
-.container.three .three--left p{
+.three--left .threeItem{
   width: 100%;
   color: #9e9e9e;
   font-family: 'lato';
   font-weight: 400;
   font-size: 18px;
   padding: 40px 0 0 50px;
-
+  opacity: 0;
 }
 .container.three .three--left p i{
   color: #f8f400;
@@ -443,6 +444,7 @@ transform: translateY(-12px);
    height: 139px;
    margin-top:120px;
  }
+ .imgAnimation,.imgAnimationServ{ transform: translateY(100px);opacity: 0;transition: all 1s ease}
 
 .container.mediafour{
   width: 100%;
@@ -472,7 +474,7 @@ transform: translateY(-12px);
   right: 0;
   padding-top: 20px;
 }
-/* .img--ambiente{transition: all .5s ease; transform: translateX(9px);} */
+.img--ambiente{transition: all .5s ease; opacity: 0}
 
 .container.four{
   display: flex;
@@ -484,6 +486,7 @@ transform: translateY(-12px);
 }
 .container.four .four--contact{
   width: 40%;
+  opacity: 0;
 }
 .container.four .four--contact h1{
   padding:60px 0 0 0;
@@ -962,7 +965,6 @@ table.dataTable tbody th, table.dataTable tbody td{text-align: center;}
   font-family: 'lato'
 }
 /*animation scroll*/
-.section--one.animated.zoomIn{opacity: 1}
-.two--text.animated.slideInLeft, .two--text2.animated.slideInLeft{opacity: 1}
-.title.animated.slideInLeft{opacity: 1}
-/* .img--ambiente.hambiente{transform: translateX(0);} */
+.section--one.animated.zoomIn,.two--text.animated.slideInLeft, .two--text2.animated.slideInLeft,.title.animated.slideInLeft,.threeTitle.animated.slideInLeft,.threeItem.animated.slideInLeft,.four--contact.animated.slideInLeft{opacity: 1}
+.animateImgs{opacity: 1;transform: translateY(0);}
+.hambiente{opacity: 1}
