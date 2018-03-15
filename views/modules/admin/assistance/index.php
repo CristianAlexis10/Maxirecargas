@@ -35,20 +35,23 @@
           <article>
             <div id="fondOscuro"></div>
             <?php
-            echo "<script>localStorage.setItem('userName', '".$_SESSION['CUSTOMER']['NAME']."');</script>";
+            echo "<script>localStorage.setItem('userName', '".$_SESSION['CUSTOMER']['NAME']." ".$_SESSION['CUSTOMER']['LAST_NAME']."');</script>";
             ?>
             <p id="notify">selecciona una conversación</p>
             <div class="wrap-chats"></div>
             <div class="chat_wrapper" id="containerChats">
-            		<span id="cerrar_conversacion">x</span>
+              <div class="chat-header">
+                <span id="name_chat"></span>
+                <span id="cerrar_conversacion">x</span>
+              </div>
             	<div class="message_box" id="message_box"></div>
             	<div class="panel">
-            			<input type="text" name="name" id="name" value="<?php echo $_SESSION['CUSTOMER']['NAME'] ?>" disabled />
-            			<input type="text" name="para" id="para" disabled />
+            			<input type="hidden" name="para" id="para" disabled />
             			<input type="text" name="message" id="message" placeholder="Message" maxlength="80"
             			onkeydown = "if (event.keyCode == 13)document.getElementById('send-btn').click()"  />
             	</div>
             	<button id="send-btn" class=button>Responder</button>
+              <button id="finalizarChat" class="button">finalizar</button>
             </div>
           </article>
       </div>

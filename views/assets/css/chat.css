@@ -1,9 +1,11 @@
 .chat_wrapper{
 	display: none;
 }
-	#cerrar_conversacion{
+.chat-header{
 		color: #fff;
 		cursor: pointer;
+		display: flex;
+		justify-content: space-between ;
 	}
 #iniciar{
 		display: flex;
@@ -19,6 +21,7 @@
   display: flex;
   padding: 5px;
 }
+
 .wrap-chats .item{
   margin: 5px;
   width: 200px;
@@ -73,3 +76,17 @@ margin-right: 3px;
 .user_name{font-weight:bold;}
 .user_message{color: #88B6E0;}
 #finalizarChat{display: none}
+/* como lo ve un admin */
+.admin_user_message{
+	background-color: blue;
+	border-radius: 5px;
+	margin:5px;
+}
+.admin_admin_message{
+	background-color: purple;
+	border-radius: 5px;
+	margin:5px;
+}
+/* como lo ve un usuario */
+.user_user_message{}
+.user_admin_message{}

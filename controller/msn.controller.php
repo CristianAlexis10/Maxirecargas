@@ -36,22 +36,32 @@ class MsnController{
     echo json_encode($result);
   }
   function readByToken(){
-    $user = "Cristian";
     $token = $_POST['token'];
     $result = $this->master->leerConversacion(array($token));
     $chat = [];
     foreach ($result as $row) {
       if ($row['chat_asistente']!="") {
-        $chat[]=array($row['chat_asistente'],$row['mensaje']);
+        $chat[]=array($row['chat_asistente'],$row['mensaje'],"admin");
       }else{
-        $chat[]=array($user,$row['mensaje']);
+        $chat[]=array($row['usu_primer_nombre']." ".$row['usu_primer_apellido'],$row['mensaje'],"user");
       }
     }
     echo json_encode($chat);
   }
 //eliminar chat
   function deleteChat(){
+    $result = $this->master->insert("mensajexchat",array($_SESSION['user_chat'],"sistema","Conversación Finalizada"));
     $result=$this->master->finalizarChat(array(date("Y-m-d"),date('G:i:s'),$_SESSION['user_chat'],"finalizado"));
+    if ($result==true) {
+      unset($_SESSION['user_chat']);
+      echo json_encode("Eliminado");
+    }else{
+      echo json_encode($this->doizer->knowError($result));
+    }
+  }
+  function deleteChatAdmin(){
+    $result = $this->master->insert("mensajexchat",array($_POST['token'],"sistema","Conversación Finalizada"));
+    $result=$this->master->finalizarChat(array(date("Y-m-d"),date('G:i:s'),$_POST['token'],"finalizado"));
     if ($result==true) {
       unset($_SESSION['user_chat']);
       echo json_encode("Eliminado");
@@ -66,7 +76,8 @@ class MsnController{
   function newMessageAdmin(){
     $msn = $_POST["msn"];
     $token = $_POST["token"];
-    $result = $this->master->insert("mensajexchat",array($token,$_SESSION['userName'],$msn),array("usu_codigo"));
+    $admin = $_SESSION['CUSTOMER']['NAME']." ".$_SESSION['CUSTOMER']['LAST_NAME'];
+    $result = $this->master->insert("mensajexchat",array($token,$admin,$msn));
     if (!$result==true) {
         $result = $this->doizer->knowError($result);
     }

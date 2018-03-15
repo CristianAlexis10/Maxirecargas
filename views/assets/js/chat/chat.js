@@ -8,6 +8,7 @@ $("#iniciar").click(function(){
 $("#cerrar_conversacion").click(function(){
 	$("#iniciar").show();
 	$(".chat_wrapper").hide();
+	$("#message").attr("disabled",false);
 });
 // estado inicial de conversacion
 iniciarConversacion();
@@ -74,11 +75,15 @@ $("#finalizarChat").click(function(){
 	});
 });
 //agregar a la casa de mensajes
-function agregarMensaje(user_name,msn){
+function agregarMensaje(user_name,msn,type){
 	if (user_name=="sistema") {
 		$('#message_box').append("<div><span class='system_msg'>"+user_name+"</span> : <span class='system_msg'>"+msn+"</span></div>");
 	}else{
-		$('#message_box').append("<div><span class='user_name'>"+user_name+"</span> : <span class='user_message'>"+msn+"</span></div>");
+		if (type=="user_message") {
+			$('#message_box').append("<div class='user_user_message'><span class='user_name'>"+user_name+"</span> : <span class='user_message'>"+msn+"</span></div>");
+		}else{
+			$('#message_box').append("<div class='user_admin_message'><span class='user_name'>"+user_name+"</span> : <span class='user_message'>"+msn+"</span></div>");
+		}
 	}
 }
 //crear token de cerrar_conversacion
@@ -97,12 +102,15 @@ function iniciarConversacion(){
 		estadoConversacion = true;
 		conversacion = true;
 		token = localStorage.getItem('chat_token');
+		$("#finalizarChat").show();
 		llenarChat(token);
 	}else{
 	 	token = crearToken(15);
 		localStorage.setItem('chat_token',token);
 	}
 }
+//ocular si no existe
+$("#finalizarChat").hide();
 //si la pagina se recarga no perder el chat
 function llenarChat(token){
 	$.ajax({
@@ -114,10 +122,27 @@ function llenarChat(token){
 			$("#message_box").empty();
 			if (result.length>0) {
 				agregarMensaje("sistema","Conversación iniciada");
+				$("#finalizarChat").show();
 			}
 			var item = result.length-1;
 			for (var i = 0; i < result.length; i++) {
-					agregarMensaje(result[i][0],result[i][1]);
+				if (result[i][1]=="Conversación Finalizada") {
+					//si la conversacion termino
+					agregarMensaje("sistema","Conversación Finalizada");
+						$("#message").attr("disabled",true);
+						localStorage.removeItem("chat_token");
+						//cambiar estado de conversacion
+						conversacion = false;
+						$("#finalizarChat").hide();
+						iniciarConversacion();
+				}else{
+					if (result[i][2]=="user") {
+							type = "user_message";
+					}else{
+						type = "admin_message";
+					}
+					agregarMensaje(result[i][0],result[i][1],type);
+				}
 			}
 		},
 		error:function(result){console.log(result);}

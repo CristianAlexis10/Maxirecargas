@@ -137,6 +137,7 @@ RewriteRule ^actualizar-datos-empresa$ index.php?controller=admin&a=UpdateBusi
 RewriteRule ^asistencia_virtual$ index.php?controller=msn&a=admin
 RewriteRule ^saber-chats-actuales$ index.php?controller=msn&a=AllchatsNow
 RewriteRule ^enviar-mensaje-admin$ index.php?controller=msn&a=newMessageAdmin
+RewriteRule ^eliminar-chat-admin$ index.php?controller=msn&a=deleteChatAdmin
 #enviar mensaje
 RewriteRule ^enviar-mensaje$ index.php?controller=msn&a=newMessage
 RewriteRule ^eliminar-chat$ index.php?controller=msn&a=deleteChat

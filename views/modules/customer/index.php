@@ -36,10 +36,13 @@
       		<span>Inicia tu conversación</span>
       	</div>
       <?php
-      echo "<script>localStorage.setItem('userName', '".$_SESSION['CUSTOMER']['NAME']."');</script>";
+      echo "<script>localStorage.setItem('userName', '".$_SESSION['CUSTOMER']['NAME']." ".$_SESSION['CUSTOMER']['LAST_NAME']."');</script>";
       ?>
       <div class="chat_wrapper">
-      	<span id="cerrar_conversacion">x</span>
+        <div class="chat-header">
+          <span >Asistente virtual Maxirecargas</span>
+          <span id="cerrar_conversacion">x</span>
+        </div>
       	<div class="message_box" id="message_box"></div>
       	<div class="panel">
       			<input type="text" name="message" id="message" placeholder="Message" maxlength="80"
