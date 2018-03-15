@@ -78,13 +78,13 @@
           <li><a id="contc">contáctanos</a></li>
           <li id="puto"><a id="opc--user"><i class="fa fa-user-o" aria-hidden="true"></i><p>
               <?php echo $_SESSION['CUSTOMER']['NAME'] ?>
-              <div id="user--dropdown">
-                  <a href="miperfil">perfil</a>
-                  <a href="historial">historial</a>
-                  <a href="finalizar">finalizar</a>
-              </div>
         </p></a></li>
         </ul>
+        <div id="user--dropdown">
+          <a href="miperfil">perfil</a>
+          <a href="historial">historial</a>
+          <a href="finalizar">finalizar</a>
+        </div>
         <div class="welcome">
           <p class="title">bienvenido</p>
          <p class="subtitle animated fadeInRight" id="desMaxi"></p>

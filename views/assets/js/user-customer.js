@@ -15,14 +15,17 @@ $("#contc").click(function() {
   });
 });
 
-var open = document.getElementById('puto');
-var opcions = document.getElementById('user--dropdown');
+// var open = document.getElementById('puto');
+// var opcions = document.getElementById('user--dropdown');
 // var cerrarOpc = $("section");
 
-
-// open.onmouseover = function(){
-//   opcions.style.display = "flex";
-// };
+$("#puto").click(function(){
+  $("#user--dropdown").css("display","flex");
+  setTimeout(function(){
+    $("#user--dropdown").css("display","none");
+  },5000);
+});
+//
 // open.onmouseover = function(){
 //   opcions.style.display = "flex";
 // };
