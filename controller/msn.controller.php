@@ -87,5 +87,25 @@ class MsnController{
   function other(){
     require_once "modules/dos.php";
   }
+  function newMessageDefault(){
+    $result = $this->master->insert("mensajes_personalizados",array($_SESSION['CUSTOMER']['ID'],$_POST['data']),array("id_mensaje"));
+    if ($result=true) {
+      echo json_encode($result);
+    }else{
+      echo json_encode($this->doizer->knowError($result));
+    }
+  }
+  function readBy(){
+    $result = $this->master->selectAllBy("mensajes_personalizados",array("usu_codigo",$_SESSION['CUSTOMER']['ID']));
+    echo json_encode($result);
+  }
+  function deleteMessage(){
+    $result = $this->master->delete("mensajes_personalizados",array("id_mensaje",$_POST['data']));
+    if ($result==true) {
+      echo json_encode($result);
+    }else{
+      echo json_encode($this->doizer->knowError($result));
+    }
+  }
 }
 ?>

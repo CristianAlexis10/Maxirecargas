@@ -140,6 +140,9 @@ RewriteRule ^asistencia_virtual$ index.php?controller=msn&a=admin
 RewriteRule ^saber-chats-actuales$ index.php?controller=msn&a=AllchatsNow
 RewriteRule ^enviar-mensaje-admin$ index.php?controller=msn&a=newMessageAdmin
 RewriteRule ^eliminar-chat-admin$ index.php?controller=msn&a=deleteChatAdmin
+RewriteRule ^nuevo-mensaje-predefinido$ index.php?controller=msn&a=newMessageDefault
+RewriteRule ^consulta-mensaje-predefinido$ index.php?controller=msn&a=readBy
+RewriteRule ^eliminar-mensaje-predefinido$ index.php?controller=msn&a=deleteMessage
 #enviar mensaje
 RewriteRule ^enviar-mensaje$ index.php?controller=msn&a=newMessage
 RewriteRule ^eliminar-chat$ index.php?controller=msn&a=deleteChat

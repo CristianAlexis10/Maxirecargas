@@ -130,6 +130,7 @@ function llenarChat(token){
 					agregarMensaje(result[i][0],result[i][1],type);
 				}
 			}
+			$("#message_box").animate({ scrollTop: $('#message_box')[0].scrollHeight}, 10);
 		},
 		error:function(result){console.log(result);}
 	});
@@ -155,6 +156,7 @@ $("#finalizarChat").click(function(){
 		dataType:"json",
 		data:({token:$("#para").val()}),
 		success:function(res){
+			$("#notify").show();
 			agregarMensaje("sistema","Conversación Finalizada");
 			$('#message_box').empty();
 			$(".chat_wrapper").hide();
@@ -178,4 +180,86 @@ function actualizarChatsDelete(){
         }
       }
   });
+}
+//elimiar sin abrir el chat
+function eliminarUsu(){
+	$("#finalizarChat").click();
+}
+//MENSAJES PREDETERMINADOS
+$("#modal-messaje_default").hide();
+$("#new-message-default").click(function(){
+		$("#modal-messaje_default").show();
+});
+$("#closeNewMes").click(function(){
+		$("#modal-messaje_default").hide();
+});
+// guardar mensajes predefinidos
+$("#saveMsn").submit(function(e){
+	e.preventDefault();
+	if ($("#msnDefault").val()=="") {
+		alert("Ingresar mensaje");
+		return ;
+	}
+	$.ajax({
+		url:"nuevo-mensaje-predefinido",
+		type:"post",
+		dataType:"json",
+		data:({data:$("#msnDefault").val()}),
+		success:function(result){
+			console.log(result);
+			if (result==true) {
+				$("#wrap-messages-default").empty();
+				$.ajax({
+					url:"consulta-mensaje-predefinido",
+					dataType:"json",
+					success:function(result){
+							for (var i = 0; i < result.length; i++) {
+								$("#wrap-messages-default").append('<div class="item-default"><p>'+result[i].mensaje+'</p><i class="fa fa-share-square" id="'+result[i].id_mensaje+'" onclick="enviarMensajeDefault(this)"></i>  <i class="fa fa-trash" onclick="eliminarMensajeDefault('+result[i].id_mensaje+')"></i></div>');
+									}
+							$("#modal-messaje_default").hide();
+					}
+				});
+			}
+		},
+		error:function(result){console.log(result);}
+	});
+});
+//enviar mensaje predeterminado
+function enviarMensajeDefault(e){
+	if (chat_abierto==true) {
+		let msn = $($($("#"+e.id).parents()[0]).children()[0]).text();
+		$("#message").val(msn);
+		$('#send-btn').click();
+	}else{
+		alert("no hay conversación abierta");
+	}
+}
+function eliminarMensajeDefault(id){
+	if (confirm("¿Eliminar mensaje?")) {
+		$.ajax({
+			url:"eliminar-mensaje-predefinido",
+			type:"post",
+			dataType:"json",
+			data:({data:id}),
+			success:function(result){
+				if (result==true) {
+					//recargar mensajes_personalizados
+					$("#wrap-messages-default").empty();
+					$.ajax({
+						url:"consulta-mensaje-predefinido",
+						dataType:"json",
+						success:function(result){
+								for (var i = 0; i < result.length; i++) {
+									$("#wrap-messages-default").append('<div class="item-default"><p>'+result[i].mensaje+'</p><i class="fa fa-share-square" id="'+result[i].id_mensaje+'" onclick="enviarMensajeDefault(this)"></i>  <i class="fa fa-trash" onclick="eliminarMensajeDefault('+result[i].id_mensaje+')"></i></div>');
+								}
+								$("#modal-messaje_default").hide();
+						}
+					});
+				}else{
+					alert(result);
+				}
+			},
+			error:function(result){console.log(result);}
+		});
+	}
 }

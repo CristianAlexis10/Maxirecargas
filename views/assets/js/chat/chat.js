@@ -30,7 +30,7 @@ $('#send-btn').click(function(){
 	conversacion = true;
 	//
 	if(total_mensajes==0) {
-		agregarMensaje("sistema","Conversación iniciada");
+		agregarMensaje("sistema","Conversación iniciada.");
 	}
 	total_mensajes++;
   //enviar datos a php
@@ -43,6 +43,9 @@ $('#send-btn').click(function(){
 			if (result==true) {
 				agregarMensaje(user,mymessage);
 				$("#finalizarChat").show();
+				if(total_mensajes==1) {
+					agregarMensaje("sistema","Un Asistente estará contigo en un momento.");
+				}
 			}else{
 				agregarMensaje("sistema","Error al enviar mensaje");
 			}
@@ -142,12 +145,15 @@ function llenarChat(token){
 						type = "admin_message";
 					}
 					agregarMensaje(result[i][0],result[i][1],type);
+					if(i==0) {
+						agregarMensaje("sistema","Un Asistente estará contigo en un momento.");
+					}
 				}
 			}
 		},
 		error:function(result){console.log(result);}
 	});
-	$("#message_box").animate({ scrollTop: $('#message_box')[0].scrollHeight}, 1000);
+	$("#message_box").animate({ scrollTop: $('#message_box')[0].scrollHeight}, 10);
 }
 //actualizar mensajes cada 8 segundo
 function actualizarChat(){

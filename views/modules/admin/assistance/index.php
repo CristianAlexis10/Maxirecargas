@@ -37,8 +37,27 @@
             <?php
             echo "<script>localStorage.setItem('userName', '".$_SESSION['CUSTOMER']['NAME']." ".$_SESSION['CUSTOMER']['LAST_NAME']."');</script>";
             ?>
+            <!-- registrar un nuevo mesaje predefinido -->
+            <div id="new-message-default">
+              Agregra mensaje predefinido <i class="fa fa-plus"></i>
+            </div>
+            <!-- lista de mesajes predefinidos -->
+            <div id="wrap-messages-default">
+              <?php ?>
+                <?php
+                  foreach ($this->master->selectAllBy("mensajes_personalizados",array("usu_codigo",$_SESSION['CUSTOMER']['ID'])) as $row) {?>
+                    <div class="item-default">
+                      <p><?php echo $row['mensaje']?></p>
+                      <i class="fa fa-share-square" id="<?php echo $row['id_mensaje'] ?>" onclick="enviarMensajeDefault(this)"></i>
+                      <i class="fa fa-trash" onclick="eliminarMensajeDefault(<?php echo $row['id_mensaje'] ?>)"></i>
+                    </div>
+              <?php   } ?>
+            </div>
             <p id="notify">selecciona una conversación</p>
+            <!-- contenedor de chats actuales -->
             <div class="wrap-chats"></div>
+
+            <!-- chat -->
             <div class="chat_wrapper" id="containerChats">
               <div class="chat-header">
                 <span id="name_chat"></span>
@@ -52,6 +71,23 @@
             	</div>
             	<button id="send-btn" class=button>Responder</button>
               <button id="finalizarChat" class="button">finalizar</button>
+            </div>
+
+            <!-- modal nuevo mensaje -->
+            <div id="modal-messaje_default" class="modales">
+            	<div class="container--modales">
+            		<span id="closeNewMes" class="closemodales">&times;</span>
+            		<h1>Nuevo mensaje</h1>
+                <form  id="saveMsn">
+                  <div class="frm-group">
+                    Mensaje:
+                    <textarea id="msnDefault" rows="8" cols="50"></textarea>
+                  </div>
+                  <div class="frm-group">
+                    <input type="submit" value="Guardar">
+                  </div>
+                </form>
+            	</div>
             </div>
           </article>
       </div>
