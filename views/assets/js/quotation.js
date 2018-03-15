@@ -20,7 +20,6 @@ $("#orderSiguiente").hide();
 $("#next").hide();
 $("#back").hide();
 $("#otroProducto").hide();
-
 //VALIDAR SI EXISTE LA REFERENCIA
 $("#searchPro").click(function(){
   $.ajax({
@@ -330,4 +329,7 @@ function seleccionarProducto(ele){
   $(".hide--service").hide();
   $(".hide--cantidad").hide();
   $(".hide--obs").hide();
+}
+if ($("#producto").val()!="") {
+  $("#searchPro").click();
 }

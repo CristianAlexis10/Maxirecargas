@@ -337,3 +337,6 @@ function eliminarLetras(e){
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 }
+if ($("#producto").val()!="") {
+  $("#searchPro").click();
+}

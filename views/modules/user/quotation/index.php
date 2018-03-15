@@ -7,7 +7,11 @@
                 <p class="subtitle quo">Ingresa los datos de los Productos o Servicios que desea cotizar y espera nuestra respuesta. </p>
                 <div class="form-groupuser3">
                   <label for="producto" class="labelyellow">Referencia del producto</label>
-                <input type="text" id="producto" class="inputYellow" >
+                <input type="text" id="producto" class="inputYellow" value="<?php
+                  if(isset($_GET['data'])){
+                      echo $_GET['data'];
+                  }
+                ?>">
                 </div>
                 <input type="button" id="searchPro" class="inputuser3" value="Buscar">
                 <a href="#" id="openSearch">¿No sabes cual es tu referencia?</a>

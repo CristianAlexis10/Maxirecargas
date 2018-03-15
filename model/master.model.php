@@ -1333,6 +1333,17 @@ class MasterModel{
     }
     return $result;
   }
+  function 	innerJoinProducto($data){
+    try {
+      $this->sql="call innerJoinProducto(?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute(array($data));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
 
 }
 

@@ -110,6 +110,18 @@
                           Eliminar <input type="checkbox" name="data-rol-routes" disabled value="1">
                       </div>
                   </div>
+                  <!-- asistencia virtual -->
+                  <div class="config--form" id="module-assistance">
+                      <div class="wrap--chmodule">
+                          <label>Asistencia virtual
+                              <input type="checkbox" id="checkassistance" class="swich green"  value="1">
+                              <div>
+                                  <div>
+                                  </div>
+                              </div>
+                          </label>
+                      </div>
+                  </div>
                   <button type="submit" name="button" class="saverol">Guargar</button>
               </div>
           </div>

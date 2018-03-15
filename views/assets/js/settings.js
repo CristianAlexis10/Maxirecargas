@@ -35,12 +35,14 @@ $("#frmNewRol").submit(function(e) {
     dataOrder = [];
     dataQuation = [];
     dataRoutes = [];
+    dataAssis = [];
     rol_maxi = false;
     var modUser = false;
     var modProducts = false;
     var modOrder = false;
     var modQuation = false;
     var modRoute = false;
+    var modAsis = false;
 
 
     $("input[name=data-rol-maxi]").each(function(){
@@ -96,10 +98,13 @@ $("#frmNewRol").submit(function(e) {
              dataRoutes.push(0);
         }
     });
+  if ($("#checkassistance").prop("checked")) {
+    modAsis=true;
+  }
     dataReal = new Object();
     dataReal['rol_name']=rolName;
     dataReal['rol_maxi']=rol_maxi;
-if (modUser==true || modProducts==true || modOrder==true || modQuation==true || modRoute==true) {
+if (modUser==true || modProducts==true || modOrder==true || modQuation==true || modRoute==true || modAsis ==true) {
     if (modUser==true) {
       dataReal["mod_user"]={"ver": 1 , "crear":dataUser[0],"modificar":dataUser[1] , "eliminar":dataUser[2]};
     }
@@ -115,6 +120,9 @@ if (modUser==true || modProducts==true || modOrder==true || modQuation==true || 
     if (modRoute==true) {
       dataReal["mod_routes"]={"ver": 1 , "crear":dataRoutes[0],"modificar":dataRoutes[1] , "eliminar":dataRoutes[2]};
     }
+    if (modAsis==true) {
+      dataReal["mod_assis"]={"ver": 1 , "crear":1,"modificar":1 , "eliminar":1};
+    }
     $.ajax({
       url: "nuevo-rol",
       type: "POST",
@@ -125,6 +133,11 @@ if (modUser==true || modProducts==true || modOrder==true || modQuation==true || 
         if (result==true) {
           $('#frmNewRol').after('<div class="message">Registrado Exitosamente</div>');
           $('#frmNewRol')[0].reset();
+          $(".wrap--perms").addClass("perms--hide");
+          $(".wrap--permsprod").addClass("perms--prod");
+          $(".wrap--permspedi").addClass("perms--pedi");
+          $(".wrap--permscot").addClass("perms--cot");
+          $(".wrap--permsruta").addClass("perms--ruta");
         }else{
           $('#frmNewRol').after('<div class="message">'+result+'</div>');
         }

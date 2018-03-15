@@ -12,6 +12,7 @@ RewriteRule ^cambiar-estilo$ index.php?controller=customers&a=chageStyle
 
 #COTIZACION
 RewriteRule ^cotizacion$ index.php?controller=quotation
+RewriteRule ^cotizacion-(\w+)$ index.php?controller=quotation&data=$1
 RewriteRule ^realizar-cotizacion-usuario$ index.php?controller=quotation&a=newQuotationUser
 RewriteRule ^guardar-cotizacion-session$ index.php?controller=quotation&a=saveSession
 RewriteRule ^realizar-cotizacion$ index.php?controller=quotation&a=newQuotationCustomer
@@ -31,6 +32,7 @@ RewriteRule ^validar-ingreso$ index.php?controller=login&a=validateUserpass
 
 #PEDIDOS
 RewriteRule ^pedidos$ index.php?controller=orders
+RewriteRule ^pedidos-(\w+)$ index.php?controller=orders&data=$1
 RewriteRule ^realizar-pedido$ index.php?controller=orders&a=newRegister
 RewriteRule ^detalles-pedido-(\w+)$ index.php?controller=orders&a=viewDetail&data=$1
 RewriteRule ^asignar-pedido$ index.php?controller=orders&a=assign

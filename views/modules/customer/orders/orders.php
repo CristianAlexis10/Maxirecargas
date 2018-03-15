@@ -8,7 +8,11 @@
           <form id="frmNewOrder">
             <div class="form-groupuser">
               <label for="producto" class="labelmagenta">Referencia</label>
-            <input type="text" id="producto" class="inputmagenta">
+            <input type="text" id="producto" class="inputmagenta"  value="<?php
+              if(isset($_GET['data'])){
+                  echo $_GET['data'];
+              }
+            ?>">
             </div>
             <input type="button" id="searchPro" class="labelmagenta" value="Buscar">
             <a href="#" id="openSearch">¿No sabes cuál es tu referencia?</a>

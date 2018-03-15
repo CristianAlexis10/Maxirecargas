@@ -309,3 +309,6 @@ function seleccionarProducto(ele){
   $(".hide--cantidad").hide();
   $(".hide--obs").hide();
 }
+if ($("#producto").val()!="") {
+  $("#searchPro").click();
+}

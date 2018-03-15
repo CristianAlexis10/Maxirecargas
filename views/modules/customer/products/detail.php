@@ -23,7 +23,7 @@
             <p>marca: <?php echo $data[0]['mar_nombre'] ?></p>
             <p>servicios: <?php echo $servicios ?></p>
             <p>especificaciones:<?php echo $data[0]['pro_descripcion'] ?></p>
-            <a href="pedidos"><input type="button"  value="hacer pedido"></a>
+            <a href="pedidos-<?php echo $data[0]['pro_referencia'] ?>"><input type="button"  value="hacer pedido"></a>
             <a href="cotizacion-<?php echo $data[0]['pro_referencia'] ?>"><input type="button"  value="cotizar producto"></a>
           </div>
         </div>

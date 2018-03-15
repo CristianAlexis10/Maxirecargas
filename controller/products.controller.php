@@ -38,7 +38,9 @@
 				require_once "views/modules/landing.html";
 			}
 			}elseif(isset($_SESSION['CUSTOMER']['ROL'])){
-				echo "Calma que no hemos hecho la vista";
+				require_once "views/include/user/scope.header.php";
+				require_once "views/modules/customer/products/index.php";
+				require_once "views/include/user/scope.footer.php";
 			}else{
 				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/user/products/index.php";
@@ -200,9 +202,9 @@
 		}
 		function viewDetail(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
-				require_once "views/include/customer/scope.header.php";
+				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/customer/products/detail.php";
-				require_once "views/include/customer/scope.footer.php";
+				require_once "views/include/user/scope.footer.php";
 			}else{
 				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/user/products/detail.php";
