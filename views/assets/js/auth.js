@@ -64,6 +64,46 @@ $("#form--login").submit(function(e) {
     }, 2000);
   }
 });
+$("#form_mobile").submit(function(e) {
+    e.preventDefault();
+    if ($('#dociden').val() != '' || $('#contra').val() != '' ) {
+            dataJson = [];
+            // $("input[name=data-login]").each(function(){
+            //     structure = {};
+            //     structure = $(this).val();
+                dataJson.push($('#dociden').val());
+                dataJson.push($('#contra').val());
+            // });
+            $.ajax({
+              url: "validar-inicio-sesion",
+              type: "POST",
+               dataType:'json',
+               data: ({data: dataJson}),
+               success: function(result){
+                 if (result=='customer') {
+                   location.href = 'maxirecargas';
+                    return;
+                 }else if (result==true) {
+                      location.href = 'dashboard';
+                      return;
+                  }else{
+                      $('#form_mobile').after('<div class="message-red">'+result+'</div>');
+                      setTimeout(function(){
+                          $('div.message-red').remove();
+                      }, 2000);
+                  }
+               },
+               error: function(result){
+                  console.log(result);
+               }
+            });
+  }else{
+    $('#form_mobile').after('<div class="message-red">Valores Requeridos</div>');
+    setTimeout(function(){
+        $('div.message-red').remove();
+    }, 2000);
+  }
+});
 
 // dasboard nuevo cliente
 // dataJson=[];
