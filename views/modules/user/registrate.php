@@ -207,8 +207,8 @@
         </div>
         <div class="runform--rigth">
         <div class="runform--contenido">
-        <h1>iniciar sesion</h1>
-        <p>Agrega tu documento de identidad y contraseña para ingresar a maxirecargas</p>
+        <h1>iniciar sesión</h1>
+        <p>Agrega tu documento de identidad y contraseña para ingresar a Maxirecargas</p>
         <form id="form--login" >
           <div class="wrap--login">
             <label for="document" class="label-login">Documento de identidad</label>
@@ -217,11 +217,14 @@
           <div class="wrap--login">
             <label for="password" class="label-login">Contraseña</label>
             <input type="password" name="data-login" id="pass" class="input--login" required>
+            <div class="show--pass">
+              <i class="fa fa-eye" id="show--pass"></i>
+            </div>
             <!-- <span class="tooltiptext">La contraseña debe contener mínimo 8 caracteres, letras mayúsculas, mínusculas y números.</span> -->
           </div>
-            <button type="submit" name="button" id="btn--login">iniciar sesion</button>
+            <button type="submit" name="button" id="btn--login">iniciar sesión</button>
         </form>
-        <button id="moveleft">Registrate</button>
+        <button id="moveleft">Regístrate</button>
       </div>
       </div>
       </div>

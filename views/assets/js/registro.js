@@ -635,3 +635,14 @@ function enableEmp(num_nit,contraEmp){
     $('#registrarEmp').attr('disabled',true);
   }
 }
+
+
+//MOSTRAR / OCULTAR CONTRASEÑA
+$(document).ready(function () {
+   $('#show--pass').click(function () {
+    if ($('#pass').attr('type') === 'text') {
+     $('#pass').attr('type', 'password');
+    } else {
+     $('#pass').attr('type', 'text');}
+   });
+  });

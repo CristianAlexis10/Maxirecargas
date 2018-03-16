@@ -810,6 +810,7 @@ transform: translateY(-12px);
   width: 30px;
   height: 30px;
   color: #9e9e9e;
+  cursor:pointer;
 }
 #customers--normal--part2, #customers--normal--part3{
   display: none;
@@ -968,3 +969,15 @@ table.dataTable tbody th, table.dataTable tbody td{text-align: center;}
 .section--one.animated.zoomIn,.two--text.animated.slideInLeft, .two--text2.animated.slideInLeft,.title.animated.slideInLeft,.threeTitle.animated.slideInLeft,.threeItem.animated.slideInLeft,.four--contact.animated.slideInLeft{opacity: 1}
 .animateImgs{opacity: 1;transform: translateY(0);}
 .hambiente{opacity: 1}
+
+/*MOSTRAR / OCULTAR CONTRASEÑA  */
+
+.wrap--login .show--pass{
+  display: flex;
+  color: #757575;
+  position: absolute;
+  left: 525px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.wrap--login .show--pass:hover{color: #35a4dd;}
