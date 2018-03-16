@@ -167,3 +167,8 @@ function eliminarLetras(e){
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 }
+
+
+// BLOQUEAR BOTÓN ATRÁS DEL NAVEGADOR
+  // if(history.forward(1)){
+  //   location.replace( history.forward(1) );}
