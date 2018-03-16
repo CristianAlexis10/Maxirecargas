@@ -4,7 +4,7 @@
 <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
 <?php
 if (isset($_SESSION['user_new_order'])) {
-  echo "<div class='new_order_token'>Tu Order se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de orden: <b>".$_SESSION['user_new_order']."</b></div>";
+  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Order se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de orden: <b>".$_SESSION['user_new_order']."</b></p></div></div>";
   unset($_SESSION['user_new_order']);
 }
 if (isset($_SESSION['user_quotation_new'])) {

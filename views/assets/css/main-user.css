@@ -119,6 +119,22 @@
   display:none;
   z-index: 99999;
 }
+.modales{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: rgba(0,0,0,.5);
+  z-index: 99999;
+}
+.new_order_token{
+  width: 500px;
+  height: 500px;
+  background: white;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
  .modal_session_mobile{
   width: 90%;
   height: 500px;
@@ -949,6 +965,35 @@ transform: translateY(-12px);
   text-align: center;
   width: 300px;
   padding: 15px;
+}
+#closeOrderListo{text-align: right; padding: 10px; font-size: 20px; cursor: pointer;}
+.check{
+  width: 100px; height: 50px;
+  border: 20px solid #08c353;
+  transform: rotate(-45deg);
+  border-top: none;
+  border-right:none;
+  box-shadow: -5px 6px 0px 0px #4caf5059;
+  animation: start 2s ease-out;
+  animation-delay: 2s;
+  margin: 0 auto;
+  margin-top: 50px
+}
+.textmodal{
+ margin-top: 150px;
+ padding: 15px 40px;
+ text-align: center;
+ font-size: 20px;
+ font-family:'lato'
+}
+@keyframes start {
+  0%{
+    width: 0; height: 0; opacity: 0
+  }
+  50%{
+    width:0px; height: 50px; opacity: 1
+  }
+  100%{width: 100px}
 }
 /*DATAGRID*/
 /*entries*/
