@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="views/assets/image/icn-maxi.png">
     <link rel="stylesheet" href="views/assets/css/main-user.css">
     <!-- <link rel="stylesheet" href="views/assets/css/ensayo.css"> -->
+    <link rel="stylesheet" href="views/assets/css/animate.css">
     <link rel="stylesheet" href="views/assets/css/responsive.css">
   </head>
   <body>
@@ -40,7 +41,7 @@
       ?>
       <div class="chat_wrapper">
         <div class="chat-header">
-          <span >Asistente virtual Maxirecargas</span>
+          <span>Asistente virtual Maxirecargas</span>
           <span id="cerrar_conversacion">x</span>
         </div>
       	<div class="message_box" id="message_box"></div>
@@ -69,7 +70,7 @@
     <section class="container one" >
       <div class="left">
         <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
-        <img src="views/assets/image/logo.png">
+        <img src="views/assets/image/logo.png" class="animated zoomIn">
       </div>
       <div class="rigth" id="cerrarOpc">
         <ul class="opcions">
@@ -86,9 +87,9 @@
           <a href="finalizar">finalizar</a>
         </div>
         <div class="welcome">
-          <p class="title">bienvenido</p>
+          <p class="title animated fadeInRight">bienvenido</p>
          <p class="subtitle animated fadeInRight" id="desMaxi"></p>
-          <div class="subtitle-contc">
+          <div class="subtitle-contc animated zoomIn">
             <p><i class="fa fa-phone" aria-hidden="true"></i><span id="tel1"><span></p>
             <p><i class="fa fa-phone" aria-hidden="true"></i><span id="tel2"><span></p>
             <p><i class="fa fa-whatsapp" aria-hidden="true"></i><span id="wpp"></span></p>
@@ -97,12 +98,12 @@
       </div>
     </section>
     <section class="container two">
-      <div class="section--one">
+      <div class="section--one animated">
         <p>¿quiénes somos?</p>
       </div>
       <div class="section--two">
         <div class="section-left">
-        <div class="two--text">
+        <div class="two--text animated">
           <h1>misión</h1>
          <p id="mision"></p>
         </div>
@@ -114,7 +115,7 @@
           <div class="two--image">
             <img src="views/assets/image/iconPrinter.png" id="iconPrinter">
           </div>
-          <div class="two--text">
+          <div class="two--text2 animated">
             <h1>visión</h1>
         <p id="vision"></p>
           </div>
@@ -123,21 +124,21 @@
     </section>
     <section class="container three">
       <div class="three--left">
-        <h1>nuestros servicios</h1>
-        <p><i class="fa fa-check" aria-hidden="true"></i>Recarga y Remanufactura de Toner y Cartuchos.</p>
-        <p><i class="fa fa-check" aria-hidden="true"></i>Venta de Toner y Cartuchos, Genéricos y  Originales.</p>
-        <p><i class="fa fa-check" aria-hidden="true"></i>Matenimiento y Reparación de Impresoras, Computadores y Fotocopiadoras.</p>
-        <p><i class="fa fa-check" aria-hidden="true"></i>Venta de insumos para oficinas.</p>
+        <h1 class="threeTitle animated">nuestros servicios</h1>
+        <p class="threeItem animated"><i class="fa fa-check" aria-hidden="true"></i>Recarga y Remanufactura de Toner y Cartuchos.</p>
+        <p class="threeItem animated"><i class="fa fa-check" aria-hidden="true"></i>Venta de Toner y Cartuchos, Genéricos y  Originales.</p>
+        <p class="threeItem animated"><i class="fa fa-check" aria-hidden="true"></i>Matenimiento y Reparación de Impresoras, Computadores y Fotocopiadoras.</p>
+        <p class="threeItem animated"><i class="fa fa-check" aria-hidden="true"></i>Venta de insumos para oficinas.</p>
         <button type="submit" name="button">hacer pedido</button>
       </div>
       <div class="three--rigth">
-          <img src="views/assets/image/flat/domicilio.png" id="services-domicilio">
-          <img src="views/assets/image/flat/servicio.png" id="services-servicio">
-          <img src="views/assets/image/flat/asistencia.png" id="services-asistencia">
+          <img class="imgAnimation" src="views/assets/image/flat/domicilio.png" id="services-domicilio">
+          <img class="imgAnimationServ" src="views/assets/image/flat/servicio.png" id="services-servicio">
+          <img class="imgAnimation" src="views/assets/image/flat/asistencia.png" id="services-asistencia">
       </div>
     </section>
     <section class="container mediafour">
-      <div class="title">
+      <div class="title animated">
         <h1>políticas de medio ambiente</h1>
         <h2 id="politicas"></h2>
       </div>
@@ -145,7 +146,7 @@
         <img src="views/assets/image/ambiente.png">
       </div>
     </section>
-    <section class="container four">
+    <section class="container four ">
       <div class="four--form">
         <form id="frmContact">
             <div class="wrap--contact">
@@ -167,7 +168,7 @@
               <button type="submit" id="buttonContact" class="btn--contact">ENVIAR</button>
             </form>
       </div>
-      <div class="four--contact">
+      <div class="four--contact animated">
         <h1>contáctanos</h1>
         <ul>
           <li><i class="fa fa-phone" aria-hidden="true"></i> <span id="telephone"></span> </li>
@@ -178,12 +179,11 @@
       </div>
     </section>
 
-
-
-
-
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="views/assets/lib/animate/animatescroll.js"> </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+  <script src="views/assets/js/animation.js"></script>
   <script src="views/assets/lib/parsley/parsley.min.js"></script>
   <script src="views/assets/lib/parsley/es.js"></script>
   <script type="text/javascript" src="views/assets/js/main-user.js"></script>
