@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-02-2018 a las 17:13:03
+-- Tiempo de generación: 22-03-2018 a las 13:18:16
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -50,6 +50,11 @@ BEGIN
 UPDATE pedido SET ped_estado = estado WHERE ped_codigo = orde ;
 UPDATE ventas SET ventas.ven_total = total, ven_fecha = fecha WHERE ventas.ped_codigo = orde ;
 UPDATE usuarioxpedido SET usuxped_total = total  WHERE ped_codigo = orde;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `chats_actuales` ()  NO SQL
+BEGIN
+SELECT chats.chat_token,chats.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido FROM chats INNER JOIN mensajexchat ON chats.chat_token=mensajexchat.chat_token  INNER JOIN usuario ON  chats.usu_codigo  = usuario.usu_codigo WHERE chats.chat_estado = "proceso" GROUP BY chats.chat_token;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `clientesEstrellas` ()  NO SQL
@@ -233,12 +238,17 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `filterCount` (IN `cat` VARCHAR(30), IN `vall` VARCHAR(60))  NO SQL
 BEGIN 
-SELECT COUNT(*) FROM producto INNER JOIN tipo_producto ON  tipo_producto.tip_pro_codigo=producto.tip_pro_codigo WHERE (producto.pro_referencia LIKE CONCAT("%",vall,"%") OR producto.mar_codigo LIKE CONCAT("%",vall,"%") OR producto.pro_descripcion LIKE CONCAT("%",vall,"%")) AND tipo_producto.tip_pro_nombre=cat;
+SELECT COUNT(*) FROM producto INNER JOIN tipo_producto ON  tipo_producto.tip_pro_codigo=producto.tip_pro_codigo WHERE ( (producto.pro_referencia LIKE CONCAT("%",vall,"%") OR producto.mar_codigo LIKE CONCAT("%",vall,"%") OR producto.pro_descripcion LIKE CONCAT("%",vall,"%")) ) AND tipo_producto.tip_pro_nombre=cat AND producto.pro_codigo= 1;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `filterProducts` (IN `cat` VARCHAR(30), IN `vall` VARCHAR(60), IN `ini` INT, IN `fin` INT)  NO SQL
 BEGIN 
-SELECT * FROM producto INNER JOIN tipo_producto ON  tipo_producto.tip_pro_codigo=producto.tip_pro_codigo WHERE (producto.pro_referencia LIKE CONCAT("%",vall,"%") OR producto.mar_codigo LIKE CONCAT("%",vall,"%") OR producto.pro_descripcion LIKE CONCAT("%",vall,"%")) AND tipo_producto.tip_pro_nombre=cat LIMIT ini,fin ;
+SELECT * FROM producto INNER JOIN tipo_producto ON  tipo_producto.tip_pro_codigo=producto.tip_pro_codigo WHERE ( (producto.pro_referencia LIKE CONCAT("%",vall,"%") OR producto.mar_codigo LIKE CONCAT("%",vall,"%") OR producto.pro_descripcion LIKE CONCAT("%",vall,"%"))) AND tipo_producto.tip_pro_nombre=cat AND producto.pro_estado = 1 LIMIT ini,fin ;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `finalizarChat` (IN `fecha` DATE, IN `hora` TIME, IN `token` VARCHAR(20), IN `estado` VARCHAR(20))  NO SQL
+BEGIN 
+UPDATE chats SET fecha_fin = fecha , hora_fin = hora , chat_estado = estado WHERE chat_token = token ;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `inactivar` (IN `estado` INT(11), IN `codigo` INT(11))  BEGIN
@@ -284,8 +294,8 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinProducto` (IN `codigo` INT(11))  BEGIN
 SELECT * FROM producto t1
 INNER JOIN tipo_producto t2 on t1.tip_pro_codigo=t2.tip_pro_codigo
-INNER JOIN marca t3 on t1.mar_codigo=t3.mar_codigo
-WHERE t1.pro_codigo=codigo;
+INNER JOIN marca t3 on t1.mar_codigo=t3.mar_codigo INNER JOIN servicioxproducto serpro ON t1.pro_codigo = serpro.pro_codigo INNER JOIN tipo_servicio tip ON serpro.tip_ser_cod = tip.Tip_ser_cod
+WHERE t1.pro_codigo=codigo ;
 
 END$$
 
@@ -299,6 +309,11 @@ INNER JOIN estado T5 on T1.id_estado=T5.id_estado
  where T1.usu_codigo=codigo;
 
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `leerConversacion` (IN `token` VARCHAR(20))  NO SQL
+BEGIN
+SELECT chats.*,mensajexchat.*,usuario.usu_primer_nombre,usuario.usu_primer_apellido FROM chats INNER JOIN mensajexchat ON chats.chat_token=mensajexchat.chat_token INNER JOIN usuario ON chats.usu_codigo = usuario.usu_codigo WHERE chats.chat_token = token;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listaVisitas` (IN `user` INT)  NO SQL
@@ -431,22 +446,22 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readByCategory` (IN `nombre` VARCHAR(20))  NO SQL
 BEGIN
-SELECT count(*) FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre;
+SELECT count(*) FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre AND producto.pro_estado =1;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readBycategoryPagination` (IN `nombre` VARCHAR(20), IN `ini` INT, IN `ele` INT)  NO SQL
 BEGIN
-SELECT * FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre LIMIT ini,ele;
+SELECT * FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre AND producto.pro_estado = 1 LIMIT ini,ele;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readOptionSearch` (IN `buscar` VARCHAR(40))  NO SQL
 BEGIN 
-SELECT pro.pro_referencia,pro.pro_descripcion,opc.opc_bus_tags,mar.mar_nombre,tipro.tip_pro_nombre             FROM producto pro INNER JOIN opciones_busqueda opc ON pro.pro_codigo=opc.pro_codigo INNER JOIN marca mar ON pro.mar_codigo=mar.mar_codigo  INNER JOIN tipo_producto tipro ON pro.tip_pro_codigo=tipro.tip_pro_codigo WHERE opc.opc_bus_tags LIKE CONCAT("%",buscar,"%") OR mar.mar_nombre LIKE CONCAT("%",buscar,"%")  OR tipro.tip_pro_nombre LIKE CONCAT("%",buscar,"%");
+SELECT pro.pro_referencia,pro.pro_descripcion,opc.opc_bus_tags,mar.mar_nombre,tipro.tip_pro_nombre             FROM producto pro INNER JOIN opciones_busqueda opc ON pro.pro_codigo=opc.pro_codigo INNER JOIN marca mar ON pro.mar_codigo=mar.mar_codigo  INNER JOIN tipo_producto tipro ON pro.tip_pro_codigo=tipro.tip_pro_codigo WHERE ( opc.opc_bus_tags LIKE CONCAT("%",buscar,"%") OR mar.mar_nombre LIKE CONCAT("%",buscar,"%")  OR tipro.tip_pro_nombre LIKE CONCAT("%",buscar,"%")) AND producto.pro_estado = 1;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readRefer` ()  NO SQL
 BEGIN 
-SELECT producto.pro_referencia FROM producto;
+SELECT producto.pro_referencia FROM producto WHERE producto.pro_estado = 1;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `servicioInner` (IN `cod` INT)  NO SQL
@@ -491,7 +506,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRuta` (IN `usu` INT, IN `dat` DATE)  NO SQL
 BEGIN 
-SELECT t1.usu_primer_nombre,t1.usu_primer_apellido,t1.usu_correo,t1.usu_celular,t2.ped_token, t2.ped_direccion ,t2.ped_hora_entrega,t2.ped_ciudad, usuped.usu_codigo FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado INNER JOIN usuarioxpedido usuped ON t2.ped_codigo = usuped.ped_codigo WHERE t1.usu_codigo = usu AND t2.ped_estado != "Terminado"  AND t2.ped_fecha_entrega = dat;
+SELECT t1.usu_primer_nombre,t1.usu_primer_apellido,t1.usu_correo,t1.usu_celular,t2.ped_token, t2.ped_direccion ,t2.ped_hora_entrega,t2.ped_ciudad, usuped.usu_codigo,t2.ped_estado FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado INNER JOIN usuarioxpedido usuped ON t2.ped_codigo = usuped.ped_codigo WHERE t1.usu_codigo = usu   AND t2.ped_fecha_entrega = dat;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaAplazada` (IN `usu` INT, IN `dat` DATE)  NO SQL
@@ -565,6 +580,48 @@ INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`) VALUES
 ('e83bf9f73eb3ca120fbbebfa5b7dfbd4', 15, '$2y$10$2Dvz9sLu2OvSpOr1OyUZ5ete/vliGPyKsmyVUH.KORtYczQHFiWPu'),
 ('f4e617ba3a7314bdd8f618b8f63e07d5', 12, '$2y$10$D07aE1bek1eqjjTArYfxQuidC4EIWgTKrdvf17eVYbyc1pP5lFI4e'),
 ('fa82f50683e23221b609ff3445ec133c', 3, '$2y$10$ihq75QwdpNDOla.z74W97OC.uy/CKGcvQZxFBbbEPwr7kInr62aIm');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `chats`
+--
+
+CREATE TABLE `chats` (
+  `chat_token` varchar(20) NOT NULL,
+  `usu_codigo` int(11) NOT NULL,
+  `chat_asistente` varchar(50) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `hora_inicio` time NOT NULL,
+  `fecha_fin` date NOT NULL,
+  `hora_fin` time NOT NULL,
+  `chat_estado` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `chats`
+--
+
+INSERT INTO `chats` (`chat_token`, `usu_codigo`, `chat_asistente`, `fecha_inicio`, `hora_inicio`, `fecha_fin`, `hora_fin`, `chat_estado`) VALUES
+('0Y3B2sl513Fmioc', 1, '', '2018-03-15', '12:50:22', '2018-03-15', '12:50:53', 'finalizado'),
+('bbhtiOgR3li6KuG', 1, '', '2018-03-15', '13:55:20', '2018-03-15', '13:56:41', 'finalizado'),
+('CNnLmFHyUvKcpNc', 1, '', '2018-03-15', '12:46:28', '2018-03-15', '12:46:38', 'finalizado'),
+('DIkD3iXHsJh6OJn', 1, '', '2018-03-15', '13:18:10', '2018-03-15', '13:54:53', 'finalizado'),
+('e7ddoTAotdiC7XN', 1, '', '2018-03-14', '21:32:35', '2018-03-14', '21:35:51', 'finalizado'),
+('gWGDPiCfQSgRaXA', 1, '', '2018-03-15', '12:52:33', '2018-03-15', '13:17:46', 'finalizado'),
+('IfJsBDWybb3KBjw', 1, '', '2018-03-15', '16:50:14', '2018-03-15', '16:50:43', 'finalizado'),
+('iZ0AGWB9R9Udx30', 1, '', '2018-03-15', '12:51:34', '2018-03-15', '12:52:26', 'finalizado'),
+('kM8jcu0I2dXHr76', 1, '', '2018-03-14', '22:41:52', '2018-03-14', '22:42:06', 'finalizado'),
+('KpTEfiQjYfFIfhZ', 1, '', '2018-03-15', '14:34:28', '2018-03-15', '15:00:45', 'finalizado'),
+('LYdUYMcHEmVN3HM', 1, '', '2018-03-15', '16:26:10', '2018-03-15', '16:27:12', 'finalizado'),
+('M0w35v6OMt1IqKR', 1, '', '2018-03-15', '12:46:02', '2018-03-15', '12:46:16', 'finalizado'),
+('ObexpVzYddSUv39', 1, '', '2018-03-15', '16:32:40', '2018-03-15', '16:34:02', 'finalizado'),
+('OeESXnp4Cqf6puP', 1, '', '2018-03-15', '12:42:51', '2018-03-15', '12:44:47', 'finalizado'),
+('ONS2tLhvXLpAIif', 1, '', '2018-03-15', '12:51:05', '2018-03-15', '12:51:25', 'finalizado'),
+('PDNSur357G8nOSi', 1, '', '2018-03-15', '14:08:17', '2018-03-15', '14:08:49', 'finalizado'),
+('XgxQcBJxHd7j5Ck', 1, '', '2018-03-14', '22:41:24', '2018-03-14', '22:41:30', 'finalizado'),
+('xOlnz7IZfmH10M1', 1, '', '2018-03-14', '21:36:08', '2018-03-14', '22:04:42', 'finalizado'),
+('XOy2OpaICwu91vi', 1, '', '2018-03-15', '12:47:57', '2018-03-15', '12:48:03', 'finalizado');
 
 -- --------------------------------------------------------
 
@@ -730,7 +787,7 @@ CREATE TABLE `estiloxusuario` (
 
 INSERT INTO `estiloxusuario` (`usu_codigo`, `est_usu_menu`, `est_usu_navigator`, `est_usu_menu_top`) VALUES
 (1, 'h', 'jjh', ''),
-(2, 'main--navdark ', 'navigatordark', 'menu--toposcuro'),
+(2, ' ', '  ', ' '),
 (21, ' ', ' ', ' '),
 (22, ' ', ' ', ' '),
 (25, ' ', ' ', ' '),
@@ -739,7 +796,7 @@ INSERT INTO `estiloxusuario` (`usu_codigo`, `est_usu_menu`, `est_usu_navigator`,
 (28, ' ', ' ', ' '),
 (29, ' ', ' ', ' '),
 (1, ' ', ' ', ' '),
-(2, 'main--navdark ', 'navigatordark', 'menu--toposcuro'),
+(2, ' ', '  ', ' '),
 (3, ' ', ' ', ' '),
 (3, ' ', ' ', ' '),
 (4, ' ', ' ', ' '),
@@ -829,7 +886,9 @@ INSERT INTO `historial_productos` (`id_his_pro`, `pro_codigo`, `his_pro_fecha`, 
 (23, 1, '2018-02-26', 11),
 (24, 1, '2018-02-26', 11),
 (25, 1, '2018-02-26', 11),
-(26, 12, '2018-02-26', 12);
+(26, 12, '2018-02-26', 12),
+(27, 1, '2018-03-15', 12),
+(28, 2, '2018-03-15', 234);
 
 -- --------------------------------------------------------
 
@@ -853,6 +912,129 @@ INSERT INTO `marca` (`mar_codigo`, `mar_nombre`, `mar_descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mensajes_personalizados`
+--
+
+CREATE TABLE `mensajes_personalizados` (
+  `id_mensaje` int(11) NOT NULL,
+  `usu_codigo` int(11) NOT NULL,
+  `mensaje` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `mensajes_personalizados`
+--
+
+INSERT INTO `mensajes_personalizados` (`id_mensaje`, `usu_codigo`, `mensaje`) VALUES
+(1, 2, 'Hola, Bienvenido a maxirecargas'),
+(3, 2, 'dame un momento'),
+(4, 2, 'Gracias por contactar con Maxirecargas.'),
+(6, 2, 'Â¿en quÃ© te puedo ayudar?'),
+(8, 2, 'espera\n'),
+(14, 2, 'hola putitos');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mensajexchat`
+--
+
+CREATE TABLE `mensajexchat` (
+  `chat_token` varchar(20) NOT NULL,
+  `chat_asistente` varchar(50) NOT NULL,
+  `mensaje` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `mensajexchat`
+--
+
+INSERT INTO `mensajexchat` (`chat_token`, `chat_asistente`, `mensaje`) VALUES
+('e7ddoTAotdiC7XN', '', 'holaaa'),
+('e7ddoTAotdiC7XN', 'sistema', 'ConversaciÃ³n Finalizada'),
+('xOlnz7IZfmH10M1', '', 'sadsa'),
+('xOlnz7IZfmH10M1', 'Cristian Lopera', 'sad'),
+('xOlnz7IZfmH10M1', 'Cristian Lopera', 'hell'),
+('xOlnz7IZfmH10M1', '', 'ajajaj'),
+('xOlnz7IZfmH10M1', '', 'tamos melos'),
+('xOlnz7IZfmH10M1', 'Cristian Lopera', 'eso se sabe'),
+('xOlnz7IZfmH10M1', 'sistema', 'ConversaciÃ³n Finalizada'),
+('XgxQcBJxHd7j5Ck', '', 'qwe'),
+('XgxQcBJxHd7j5Ck', 'sistema', 'ConversaciÃ³n Finalizada'),
+('kM8jcu0I2dXHr76', '', 'wqe'),
+('kM8jcu0I2dXHr76', 'sistema', 'ConversaciÃ³n Finalizada'),
+('OeESXnp4Cqf6puP', '', 'hola'),
+('OeESXnp4Cqf6puP', 'sistema', 'ConversaciÃ³n Finalizada'),
+('M0w35v6OMt1IqKR', '', 'nada'),
+('M0w35v6OMt1IqKR', 'sistema', 'ConversaciÃ³n Finalizada'),
+('M0w35v6OMt1IqKR', 'sistema', 'ConversaciÃ³n Finalizada'),
+('CNnLmFHyUvKcpNc', '', 'asd'),
+('CNnLmFHyUvKcpNc', 'sistema', 'ConversaciÃ³n Finalizada'),
+('XOy2OpaICwu91vi', '', 'sad'),
+('XOy2OpaICwu91vi', 'sistema', 'ConversaciÃ³n Finalizada'),
+('0Y3B2sl513Fmioc', '', 'hi'),
+('0Y3B2sl513Fmioc', 'sistema', 'ConversaciÃ³n Finalizada'),
+('ONS2tLhvXLpAIif', '', 'nada'),
+('ONS2tLhvXLpAIif', 'sistema', 'ConversaciÃ³n Finalizada'),
+('iZ0AGWB9R9Udx30', '', 'buenas'),
+('iZ0AGWB9R9Udx30', 'sistema', 'ConversaciÃ³n Finalizada'),
+('gWGDPiCfQSgRaXA', '', 'jajaaj'),
+('gWGDPiCfQSgRaXA', '', 'asdasd'),
+('gWGDPiCfQSgRaXA', '', 'sasd'),
+('gWGDPiCfQSgRaXA', '', 'sad'),
+('gWGDPiCfQSgRaXA', '', 'sad'),
+('gWGDPiCfQSgRaXA', '', 'asd'),
+('gWGDPiCfQSgRaXA', 'Cristian Lopera', 'sasd'),
+('gWGDPiCfQSgRaXA', 'sistema', 'ConversaciÃ³n Finalizada'),
+('DIkD3iXHsJh6OJn', '', 'hablamelo rata'),
+('DIkD3iXHsJh6OJn', 'Cristian Lopera', 'que se dice ps'),
+('DIkD3iXHsJh6OJn', 'sistema', 'ConversaciÃ³n Finalizada'),
+('bbhtiOgR3li6KuG', '', 'HOLA'),
+('bbhtiOgR3li6KuG', 'Cristian Lopera', 'QUE QUIERE'),
+('bbhtiOgR3li6KuG', '', 'NADA'),
+('bbhtiOgR3li6KuG', 'Cristian Lopera', 'entonces no chimbeeeee'),
+('bbhtiOgR3li6KuG', '', '.l.'),
+('bbhtiOgR3li6KuG', 'sistema', 'ConversaciÃ³n Finalizada'),
+('PDNSur357G8nOSi', '', 'sada'),
+('PDNSur357G8nOSi', 'Cristian Lopera', 'oeee'),
+('PDNSur357G8nOSi', '', 'sadsadsad'),
+('PDNSur357G8nOSi', 'sistema', 'ConversaciÃ³n Finalizada'),
+('KpTEfiQjYfFIfhZ', '', 'sad'),
+('KpTEfiQjYfFIfhZ', 'Cristian Lopera', 'Â¿en quÃ© te puedo ayudar?'),
+('KpTEfiQjYfFIfhZ', 'Cristian Lopera', '[object HTMLElement]'),
+('KpTEfiQjYfFIfhZ', 'Cristian Lopera', '[object Object]'),
+('KpTEfiQjYfFIfhZ', 'Cristian Lopera', '[object HTMLDivElement]'),
+('KpTEfiQjYfFIfhZ', 'Cristian Lopera', '[object Object]'),
+('KpTEfiQjYfFIfhZ', 'Cristian Lopera', 'holaaa'),
+('KpTEfiQjYfFIfhZ', 'Cristian Lopera', 'Â¿en quÃ© te puedo ayudar?'),
+('KpTEfiQjYfFIfhZ', 'Cristian Lopera', 'Gracias por contactar con Maxirecargas.'),
+('KpTEfiQjYfFIfhZ', 'Cristian Lopera', 'espera'),
+('KpTEfiQjYfFIfhZ', 'sistema', 'ConversaciÃ³n Finalizada'),
+('LYdUYMcHEmVN3HM', '', 'oee'),
+('LYdUYMcHEmVN3HM', '', 'quien me responde????'),
+('LYdUYMcHEmVN3HM', '', 'oe'),
+('LYdUYMcHEmVN3HM', '', 'oe'),
+('LYdUYMcHEmVN3HM', '', 'oe'),
+('LYdUYMcHEmVN3HM', '', 'oe'),
+('LYdUYMcHEmVN3HM', 'Cristian Lopera', 'padre que necesita'),
+('LYdUYMcHEmVN3HM', '', 'cuanto vale'),
+('LYdUYMcHEmVN3HM', 'Cristian Lopera', 'que monda'''),
+('LYdUYMcHEmVN3HM', '', 'hpta'),
+('LYdUYMcHEmVN3HM', 'sistema', 'ConversaciÃ³n Finalizada'),
+('ObexpVzYddSUv39', '', 'hola'),
+('ObexpVzYddSUv39', 'Cristian Lopera', 'dame un momento'),
+('ObexpVzYddSUv39', 'Cristian Lopera', 'Gracias por contactar con Maxirecargas.'),
+('ObexpVzYddSUv39', 'Cristian Lopera', 'Â¿en quÃ© te puedo ayudar?'),
+('ObexpVzYddSUv39', 'Cristian Lopera', 'hola putitos'),
+('ObexpVzYddSUv39', '', 'gracias'),
+('ObexpVzYddSUv39', 'sistema', 'ConversaciÃ³n Finalizada'),
+('ObexpVzYddSUv39', 'sistema', 'ConversaciÃ³n Finalizada'),
+('IfJsBDWybb3KBjw', '', 'ghh'),
+('IfJsBDWybb3KBjw', 'sistema', 'ConversaciÃ³n Finalizada');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `modulos`
 --
 
@@ -872,7 +1054,8 @@ INSERT INTO `modulos` (`id_modulo`, `mod_nombre`, `enlace`, `icon`) VALUES
 (2, 'productos', 'productos', '<i class="fa fa-shopping-cart" aria-hidden="true"></i>'),
 (3, 'Pedidos', 'pedidos', '<i class="fa fa-bullhorn" aria-hidden="true"></i>'),
 (4, 'cotizacion', 'cotizacion', '<i class="fa fa-wrench" aria-hidden="true"></i>'),
-(5, 'Rutas', 'rutas', '<i class="fa fa-motorcycle" aria-hidden="true"></i>');
+(5, 'Rutas', 'rutas', '<i class="fa fa-motorcycle" aria-hidden="true"></i>'),
+(6, 'Asistente Virtual', 'asistencia_virtual', '<i class="fa fa-comments"></i>');
 
 -- --------------------------------------------------------
 
@@ -951,10 +1134,11 @@ INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccio
 (42, 4, 1, 'Calle 95 #44-35', 'Terminado', 'f8AMF-SKEZj', '2018-02-25', '2018-02-25', '00:00:00'),
 (43, 6, 1, 'Calle 95 #44-35', 'En Proceso', 's45GL-bESn9', '2018-02-25', '2018-02-26', '00:00:00'),
 (44, 4, 1, 'Calle 95 #44-35', 'En Proceso', 'NMIiP-oi3px', '2018-02-25', '2018-02-27', '19:15:00'),
-(45, 3, 1, 'Calle 95 #44-35', 'En Proceso', 'aBhoH-sCtZx', '2018-02-26', '2018-02-27', '20:49:00'),
-(46, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'F9H2w-7TrMR', '2018-02-26', '2018-02-26', '20:49:00'),
-(47, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'I4q2C-9xWGL', '2018-02-26', '2018-02-26', '22:49:00'),
-(48, NULL, 1, 'Calle 95 #44-35', 'En Bodega', '9BAXf-2eYja', '2018-02-26', '2018-02-26', '19:20:00');
+(45, 3, 1, 'Calle 95 #44-35', 'Terminado', 'aBhoH-sCtZx', '2018-02-26', '2018-02-27', '20:49:00'),
+(46, 3, 1, 'Calle 95 #44-35', 'Cancelado', 'F9H2w-7TrMR', '2018-02-26', '2018-02-27', '20:49:00'),
+(47, 3, 1, 'Calle 95 #44-35', 'En Proceso', 'I4q2C-9xWGL', '2018-02-26', '2018-02-28', '22:49:00'),
+(48, NULL, 1, 'Calle 95 #44-35', 'En Bodega', '9BAXf-2eYja', '2018-02-26', '2018-02-26', '19:20:00'),
+(49, NULL, 1, 'Calle 95 #44-35', 'En Bodega', 'LYJSN-bpRJf', '2018-03-15', '2018-03-16', '14:00:00');
 
 -- --------------------------------------------------------
 
@@ -995,7 +1179,9 @@ INSERT INTO `pedidoxproducto` (`ped_codigo`, `pro_codigo`, `tip_ser_codigo`, `pe
 (45, 1, 3, 11, '11'),
 (46, 1, 3, 11, '11'),
 (47, 1, 3, 11, '21'),
-(48, 12, 5, 12, '12');
+(48, 12, 5, 12, '12'),
+(49, 1, 3, 12, 'ifwiuadbvis'),
+(49, 2, 3, 234, 'wefwefwe');
 
 --
 -- Disparadores `pedidoxproducto`
@@ -1032,7 +1218,20 @@ INSERT INTO `permiso` (`id_permiso`, `id_modulo`, `tip_usu_codigo`, `per_crear`,
 (4, 4, 2, 1, 1, 1, 1),
 (6, 5, 2, 1, 1, 1, 1),
 (7, 1, 6, 0, 1, 1, 0),
-(8, 5, 5, 0, 0, 1, 1);
+(8, 5, 5, 0, 0, 1, 1),
+(9, 6, 2, 1, 1, 1, 1),
+(10, 1, 7, 1, 1, 1, 1),
+(11, 1, 8, 1, 0, 0, 1),
+(12, 1, 8, 1, 0, 0, 1),
+(13, 6, 9, 1, 1, 1, 1),
+(14, 2, 10, 1, 0, 0, 1),
+(15, 1, 11, 0, 1, 0, 1),
+(16, 1, 12, 1, 0, 0, 1),
+(17, 2, 12, 1, 0, 0, 1),
+(18, 3, 12, 1, 0, 0, 1),
+(19, 4, 12, 1, 0, 0, 1),
+(20, 5, 12, 1, 0, 0, 1),
+(21, 6, 12, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1055,7 +1254,7 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`pro_codigo`, `mar_codigo`, `tip_pro_codigo`, `pro_referencia`, `pro_descripcion`, `pro_imagen`, `pro_estado`) VALUES
-(1, 1, 1, 'hola', 'carac															', '1518554159.png', 1),
+(1, 1, 1, 'hola', 'carac															', '1518554159.png', 2),
 (2, 1, 1, 'hola2', 'hoa', '1518554159.png', 1),
 (10, 51, 1, 'ihgjkjh', 'jhg', '1519501171.png', 1),
 (11, 51, 1, 'iusfdhj', 'jhg', '1519502089.png', 1),
@@ -1117,7 +1316,9 @@ INSERT INTO `reporte` (`rep_codigo`, `ped_codigo`, `rep_observacion`) VALUES
 (1, 32, ''),
 (2, 38, 'por que estoy ensayando'),
 (3, 40, 'nada'),
-(4, 41, 'sad');
+(4, 41, 'sad'),
+(5, 45, 'Por que si'),
+(6, 46, 'szs');
 
 -- --------------------------------------------------------
 
@@ -1194,7 +1395,8 @@ INSERT INTO `servicioxproducto` (`tip_ser_cod`, `pro_codigo`) VALUES
 (3, 17),
 (4, 18),
 (7, 19),
-(4, 21);
+(4, 21),
+(5, 11);
 
 -- --------------------------------------------------------
 
@@ -1335,7 +1537,13 @@ INSERT INTO `tipo_usuario` (`tip_usu_codigo`, `tip_usu_rol`, `tip_usu_maxi`) VAL
 (2, 'Administrador', 'true'),
 (3, 'Persona Juridica', 'false'),
 (5, 'Mensajero', 'true'),
-(6, 'Secretaria', 'true');
+(6, 'Secretaria', 'true'),
+(7, 'nada', 'false'),
+(8, 'jajajaj', 'false'),
+(9, 'jajajajajaj', 'false'),
+(10, 'as', 'false'),
+(11, 'sadsa', 'false'),
+(12, 'o', 'false');
 
 -- --------------------------------------------------------
 
@@ -1370,9 +1578,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
-(1, 1, 1214, 'Cristian', '', 'Lopera', '', 'yonosoygmail.com', 43, 1, 'Calle 95 #44-35', 32356789, '2018-01-17', 'null', 3, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
-(2, 1, 9904, 'Cristian', 'Lopera', 'Lopera', 'Bedoya', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 3157890, '2018-01-12', 'masculino', 2, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
-(3, 1, 123, 'Andres', '', 'Lopez', '', 'calopera1@misena.edu.co', 234567, 1, 'calle 90 ', 32256789, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-10', '2018-01-10'),
+(1, 1, 1214, 'Alexis', '', 'Bedoya', '', 'yonosoygmail.com', 43, 1, 'Calle 95 #44-35', 32356789, '2018-01-17', 'null', 3, 1, 'default.jpg', '2018-01-07', '2018-01-07'),
+(2, 1, 9904, 'Cristian', 'Lopera', 'Lopera', 'Bedoya', 'cristian1020011@gmail.com', 123, 1, 'Calle 95', 3157890, '2018-01-12', 'masculino', 2, 1, '1519771064.png', '2018-01-07', '2018-01-07'),
+(3, 1, 123, 'Andres', '', 'Lopez', '', 'calopera1@misena.edu.co', 234567, 1, 'calle 90 ', 32256789, '2018-02-07', 'masculino', 5, 1, 'default.jpg', '2018-01-10', '2018-01-10'),
 (4, 1, 1234, 'Carlos', '', 'gaviria', '', 'caloper18@misena.', 0, 2, 'calle 6 sur', 323355, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-01-15', '2018-01-15'),
 (5, 1, 8888, 'evelin', '', 'herrera', '', 'yonosoybond', 77, 1, 'calle 6 sur ', 521, '2018-01-20', 'femenino', 1, 2, 'default.jpg', '2018-01-20', '2018-01-20'),
 (6, 1, 1214746, 'Javier', '', 'nose', '', 'yonosoybond@gmail.co', 0, 1, 'calle 7 sur', 2147483647, '0000-00-00', 'masculino', 5, 2, 'default.jpg', '2018-01-20', '2018-01-20'),
@@ -1415,10 +1623,11 @@ INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`, `usuxped_total`) VALUE
 (1, 42, 324324),
 (1, 43, 0),
 (1, 44, 0),
-(1, 45, 0),
+(1, 45, 888),
 (1, 46, 0),
 (1, 47, 0),
-(1, 48, 0);
+(1, 48, 0),
+(1, 49, 0);
 
 --
 -- Disparadores `usuarioxpedido`
@@ -1460,10 +1669,11 @@ INSERT INTO `ventas` (`usu_codigo`, `id_venta`, `ven_total`, `ped_codigo`, `ven_
 (1, 33, 324324, 42, '2018-02-26'),
 (1, 34, 0, 43, '2018-02-25'),
 (1, 35, 0, 44, '2018-02-25'),
-(1, 36, 0, 45, '2018-02-26'),
+(1, 36, 888, 45, '2018-02-27'),
 (1, 37, 0, 46, '2018-02-26'),
 (1, 38, 0, 47, '2018-02-26'),
-(1, 39, 0, 48, '2018-02-26');
+(1, 39, 0, 48, '2018-02-26'),
+(1, 40, 0, 49, '2018-03-15');
 
 --
 -- Índices para tablas volcadas
@@ -1475,6 +1685,13 @@ INSERT INTO `ventas` (`usu_codigo`, `id_venta`, `ven_total`, `ped_codigo`, `ven_
 ALTER TABLE `acceso`
   ADD PRIMARY KEY (`token`),
   ADD KEY `fk_acceso_usuario1_idx` (`usu_codigo`);
+
+--
+-- Indices de la tabla `chats`
+--
+ALTER TABLE `chats`
+  ADD PRIMARY KEY (`chat_token`),
+  ADD KEY `usu_codigo` (`usu_codigo`);
 
 --
 -- Indices de la tabla `ciudad`
@@ -1552,6 +1769,19 @@ ALTER TABLE `historial_productos`
 ALTER TABLE `marca`
   ADD PRIMARY KEY (`mar_codigo`),
   ADD UNIQUE KEY `mar_nombre` (`mar_nombre`);
+
+--
+-- Indices de la tabla `mensajes_personalizados`
+--
+ALTER TABLE `mensajes_personalizados`
+  ADD PRIMARY KEY (`id_mensaje`),
+  ADD KEY `usu_codigo` (`usu_codigo`);
+
+--
+-- Indices de la tabla `mensajexchat`
+--
+ALTER TABLE `mensajexchat`
+  ADD KEY `chat_token` (`chat_token`);
 
 --
 -- Indices de la tabla `modulos`
@@ -1757,17 +1987,22 @@ ALTER TABLE `gestion_web`
 -- AUTO_INCREMENT de la tabla `historial_productos`
 --
 ALTER TABLE `historial_productos`
-  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
   MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
+-- AUTO_INCREMENT de la tabla `mensajes_personalizados`
+--
+ALTER TABLE `mensajes_personalizados`
+  MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `opciones_busqueda`
 --
@@ -1782,12 +2017,12 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
@@ -1797,7 +2032,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `ruta`
 --
@@ -1837,7 +2072,7 @@ ALTER TABLE `tipo_servicio`
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
@@ -1847,7 +2082,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- Restricciones para tablas volcadas
 --
@@ -1857,6 +2092,12 @@ ALTER TABLE `ventas`
 --
 ALTER TABLE `acceso`
   ADD CONSTRAINT `acceso_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `chats`
+--
+ALTER TABLE `chats`
+  ADD CONSTRAINT `chats_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ciudad`
@@ -1891,6 +2132,18 @@ ALTER TABLE `historial_productos`
   ADD CONSTRAINT `historial_productos_ibfk_1` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `mensajes_personalizados`
+--
+ALTER TABLE `mensajes_personalizados`
+  ADD CONSTRAINT `mensajes_personalizados_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `mensajexchat`
+--
+ALTER TABLE `mensajexchat`
+  ADD CONSTRAINT `mensajexchat_ibfk_1` FOREIGN KEY (`chat_token`) REFERENCES `chats` (`chat_token`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `opciones_busqueda`
 --
 ALTER TABLE `opciones_busqueda`
@@ -1917,69 +2170,6 @@ ALTER TABLE `pedidoxproducto`
 ALTER TABLE `permiso`
   ADD CONSTRAINT `permiso_ibfk_1` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `permiso_ibfk_2` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `producto`
---
-ALTER TABLE `producto`
-  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`tip_pro_codigo`) REFERENCES `tipo_producto` (`tip_pro_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`mar_codigo`) REFERENCES `marca` (`mar_codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `prodxcot`
---
-ALTER TABLE `prodxcot`
-  ADD CONSTRAINT `prodxcot_ibfk_2` FOREIGN KEY (`tip_servicio`) REFERENCES `tipo_servicio` (`Tip_ser_cod`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `prodxcot_ibfk_3` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `prodxcot_ibfk_4` FOREIGN KEY (`cot_codigo`) REFERENCES `cotizacion` (`cot_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `reporte`
---
-ALTER TABLE `reporte`
-  ADD CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `sede`
---
-ALTER TABLE `sede`
-  ADD CONSTRAINT `sede_ibfk_1` FOREIGN KEY (`emp_codigo`) REFERENCES `empresa` (`emp_codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `servicioxproducto`
---
-ALTER TABLE `servicioxproducto`
-  ADD CONSTRAINT `servicioxproducto_ibfk_2` FOREIGN KEY (`tip_ser_cod`) REFERENCES `tipo_servicio` (`Tip_ser_cod`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `servicioxproducto_ibfk_3` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `stock`
---
-ALTER TABLE `stock`
-  ADD CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`pro_codigo`) REFERENCES `producto` (`pro_codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_ibfk_4` FOREIGN KEY (`tip_usu_codigo`) REFERENCES `tipo_usuario` (`tip_usu_codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuarioxpedido`
---
-ALTER TABLE `usuarioxpedido`
-  ADD CONSTRAINT `usuarioxpedido_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuarioxpedido_ibfk_2` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `ventas`
---
-ALTER TABLE `ventas`
-  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`usu_codigo`) REFERENCES `usuario` (`usu_codigo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`ped_codigo`) REFERENCES `pedido` (`ped_codigo`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
