@@ -27,6 +27,19 @@ $(".inputblue").focusout(function(){
     $(this).parent().removeClass("color-labelmagent");
 
 });
+// modal inicio de sesion movil
+
+  var open_session = document.getElementById('session_mobile');
+  var modal_session =document.getElementById('modal_mobile');
+  var close_session = document.getElementById('modal_close_mobile');
+
+  open_session.onclick = function() {
+    console.log("ofinasgdbasdigb");
+    modal_session.style.display = "block";
+  };
+  close_session.onclick = function() {
+    modal_session.style.display= "none"
+  };
 
 
 
