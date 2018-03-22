@@ -1,22 +1,27 @@
-.chat_wrapper{
-	display: none;
-}
+.chat_wrapper{display: none;}
 .chat-header{
-		color: #fff;
-		cursor: pointer;
-		display: flex;
-		justify-content: space-between ;
-	}
+	color: #fff;
+	background: #35a4dd;
+	padding: 10px;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+}
 #iniciar{
-		display: flex;
-		align-self: flex-end;
-		position: fixed;
-		right: 0;
-		top: 90%;
-		background-color: red;
-		padding: 10px;
-		cursor:pointer;
+	display: flex;
+	align-self: flex-end;
+	position: fixed;
+	right: 0;
+	top: 94%;
+	background-color: #35a4dd;
+	border-radius: 5px 5px 0 0;
+	padding: 15px;
+	color: white;
+	font-family: 'lato', 'sans-serif';
+	cursor:pointer;
+	z-index: 9999;
 	}
+#iniciar span i {padding-right: 10px;}
 .wrap-chats{
   display: flex;
   padding: 5px;
@@ -34,42 +39,42 @@
   font-size: 20px;
 }
 .panel{
-margin-right: 3px;
+	width: 100%;
+	padding: 0 10px 0 10px;
+	box-sizing: border-box;
 }
-
+.panel input{
+	padding: 10px; border-radius: 5px; outline-color: #35a4dd; width: 100%;border: none
+}
 .button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-	margin-right: 30%;
-	margin-left: 30%;
-    text-decoration: none;
-    display: block;
-    font-size: 16px;
-    cursor: pointer;
-	width:30%;
-    height:40px;
-	margin-top: 5px;
+  background-color: #35a4dd;
+  border: none;
+  color: white;
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+	width:94%;
+  height:40px;
+	margin:10px;
 
 }
-
 .chat_wrapper {
-	width: 20%;
-	height:400px;
+	width: 25%;
+	height:470px;
 	position: fixed;
-  left: 78%;
+  right: 0;
   top: 36.2vh;
-	background: #101113;
-	border: 1px solid #999999;
-	padding: 10px;
-	font: 14px 'lucida grande',tahoma,verdana,arial,sans-serif;
+	box-shadow: -6px 2px 20px 0px #0000006e;
+	background: #d6d6d6;
+	font: 14px 'lato',tahoma,verdana,arial,sans-serif;
+	z-index: 9999;
 }
 .chat_wrapper .message_box {
 	background: #F7F7F7;
 	height:230px;
-		overflow: auto;
+	overflow: auto;
 	padding: 10px 10px 20px 10px;
-	border: 1px solid #999999;
+	margin: 10px
 }
 
 .system_msg{color: #BDBDBD;font-style: italic;}

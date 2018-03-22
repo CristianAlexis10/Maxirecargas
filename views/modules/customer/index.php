@@ -34,7 +34,8 @@
       </div>
         <!-- inicio chat -->
       	<div id="iniciar">
-      		<span>Inicia tu conversación</span>
+      		<span><i class="fa fa-comment" aria-hidden="true"></i>
+            Online - Maxirecargas</span>
       	</div>
       <?php
       echo "<script>localStorage.setItem('userName', '".$_SESSION['CUSTOMER']['NAME']." ".$_SESSION['CUSTOMER']['LAST_NAME']."');</script>";
@@ -46,7 +47,7 @@
         </div>
       	<div class="message_box" id="message_box"></div>
       	<div class="panel">
-      			<input type="text" name="message" id="message" placeholder="Message" maxlength="80"
+      			<input type="text" name="message" id="message" placeholder="Mensaje" maxlength="80"
       			onkeydown = "if (event.keyCode == 13)document.getElementById('send-btn').click()"  />
       	</div>
       	<button id="send-btn" class=button>Enviar</button>

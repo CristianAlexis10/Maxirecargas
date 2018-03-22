@@ -76,6 +76,12 @@
   #cantidad,#solicitud{width: 90%;}
   #quotationUser .form-groupuser{margin-bottom: 20px}
   .orderbtn input{padding: 8px 30px; margin-top: 10px; font-size: 14px}
+    /* product */
+  .products{margin-top: 0}
+  .title_banner{font-size: 130px}
+  .container_search{justify-content: center; width: 50%; align-items: flex-end;}
+  .products .item{margin-right: 20px}
+  .search_input,.search_input input{width: 80%}
   }
 @media (max-width: 658px ){
   .container.two .section--one{
