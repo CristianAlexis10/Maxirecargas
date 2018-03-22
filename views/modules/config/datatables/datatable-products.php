@@ -14,13 +14,15 @@
                           <!-- <td><?php //echo $row['id_marca'];?></td> -->
                           <td><?php echo $row['pro_descripcion'];?></td>
                          <td>
-                          <?php  
+                          <?php
                           if ($crud[2]==true) {?>
-                          <a href="modificar-producto-<?php echo rtrim(strtr(base64_encode($row['pro_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
+                          <div class="flex-container"><div class="tooltip--actualizar"><a href="modificar-producto-<?php echo rtrim(strtr(base64_encode($row['pro_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i>
+                            <span class="tooltiptext">Actualizar</span></a></div>
                           <?php } if ($crud[3]==true) {?>
-                          <a href="#" onclick="return confirmDeleteProduct(<?php echo $row['pro_codigo']?>)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                          <div class="tooltip--eliminar"><a href="#" onclick="return confirmDeleteProduct(<?php echo $row['pro_codigo']?>)"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                            <span class="tooltiptext">Eliminar</span></a></div>
                           <?php } ?>
-                         </td>
+                        </div></td>
                     </tr>
 
               <?php	} ?>

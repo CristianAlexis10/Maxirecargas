@@ -17,15 +17,16 @@
                                 $permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
                                 $crud = permisos($modulo,$permit);
                                 if ($crud[2]==true) {?>
-                            <a href="modificar-categoria-<?php echo rtrim(strtr(base64_encode($row['tip_pro_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i></a>
+                            <div class="flex-container"><div class="tooltip--actualizar"><a href="modificar-categoria-<?php echo rtrim(strtr(base64_encode($row['tip_pro_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-pencil-square-o"></i>
+                              <span class="tooltiptext">Actualizar</span></a></div>
                             <?php }  if ($crud[3]==true) { ?>
-                            <a href="#" onclick="return confirmDeleteCategories(
+                            <div class="tooltip--eliminar"><a href="#" onclick="return confirmDeleteCategories(
                             <?php
                                 echo $row['tip_pro_codigo'];
                             ?>
-                            )"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            )"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="tooltiptext">Eliminar</span></a></div>
                             <?php } ?>
-                           </td>
+                          </div></td>
                       </tr>
 
                 <?php	} ?>

@@ -220,7 +220,6 @@
             <div class="show--pass">
               <i class="fa fa-eye" id="show--pass"></i>
             </div>
-            <!-- <span class="tooltiptext">La contraseña debe contener mínimo 8 caracteres, letras mayúsculas, mínusculas y números.</span> -->
           </div>
             <button type="submit" name="button" id="btn--login">iniciar sesión</button>
         </form>

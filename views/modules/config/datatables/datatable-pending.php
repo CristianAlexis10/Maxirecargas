@@ -21,10 +21,12 @@
                                 $permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
                                 $crud = permisos($modulo,$permit);
                                 if ($crud[1]==true) {?>
-                            <a href="#" onclick="assign(<?php echo $row['ped_codigo']; ?>)" ><i class="fa fa-user-plus"></i></a>
-                            <a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
+                            <div class="flex-container"><div class="tooltip--assign"><a href="#" onclick="assign(<?php echo $row['ped_codigo']; ?>)" ><i class="fa fa-user-plus"></i>
+                              <span class="tooltiptext">Asignar</span></a></div>
+                            <div class="tooltip--ver"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i>
+                              <span class="tooltiptext">Detalle</span></a></div>
 
-                           </td>
+                           </div></td>
                       </tr>
 
                 <?php }	} ?>

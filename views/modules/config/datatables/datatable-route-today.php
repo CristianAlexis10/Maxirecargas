@@ -26,7 +26,8 @@
                            <td>
                             <?php
                                 if ($crud[1]==true) {?>
-                            <a href="ver-ruta-dia-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
+                            <div class="flex-container"><div class="tooltip--ver"><a href="ver-ruta-dia-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i>
+                              <span class="tooltiptext">Detalle</span></a></div></div>
 
                            </td>
                       </tr>
