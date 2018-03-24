@@ -21,7 +21,7 @@
         <div class="runform--contenido">
           <div class="superior">
             <h1>Crea tu cuenta</h1>
-            <p id="parralert">Registrate y conoce los beneficios que tenemos para ti</p>
+            <p id="parralert">Registrate para realizar tus pedidos y hablar con nosotros Online</p>
             <div class="form-group type--user">
               <label for="tipo_usu" class="select" >Tipo de Usuario:</label>
               <select class="input"  id="tipo_usu" required></select>
@@ -60,7 +60,6 @@
                     <label for="tel" class="label">Telefono:</label>
                     <input type="number" class="input dataCl" id="tel" onkeypress="return valida(event)" name="data" required>
                   </div>
-
                   <div id="selectAutocomplete">
                           <select class="dataCl input"  id="cuidad" required>
                             <?php
@@ -223,6 +222,7 @@
             <!-- <span class="tooltiptext">La contraseña debe contener mínimo 8 caracteres, letras mayúsculas, mínusculas y números.</span> -->
           </div>
             <button type="submit" name="button" id="btn--login">iniciar sesión</button>
+            <a href="" id="olviContra">¿olvide mi contraseña?</a>
         </form>
         <button id="moveleft">Regístrate</button>
       </div>

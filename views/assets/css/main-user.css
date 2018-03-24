@@ -72,9 +72,9 @@
   font-family: 'lato';
   padding: 15px 16px;
   text-transform: capitalize;
-
-
+  transition: all .5s ease;
 }
+#user--dropdown a:hover{background: #35a4dd;}
 .container .rigth ul li a:hover{
   background: rgba(255,255,255, 0.3);
 
@@ -114,6 +114,8 @@
 #modal_mobile{
   width: 100%;
   height: 100vh;
+  position: absolute;
+  top: 0;
   position: fixed;
   background: rgba(0,0,0,.5);
   display:none;
@@ -302,17 +304,18 @@ transform: translateY(-12px);
 }
 #btn--login{
   border: none;
-  padding: 15px 20px;
+  padding: 10px;
   background: #35a4dd;
   cursor: pointer;
-  margin-top: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: bold;
   color: white;
-
 }
-
+#olviContra{ color: #757575}
 .container.two{
   display: flex;
   flex-direction: column;

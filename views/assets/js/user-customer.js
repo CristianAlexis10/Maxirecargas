@@ -1,17 +1,17 @@
 $("#who").click(function(){
   $(".two").animatescroll({
-    scrollSpeed:2000, easing:'easeOutBounce'
+    scrollSpeed:2000, easing:'easeInOutSine'
   });
 });
 $("#our").click(function(){
   $(".three").animatescroll({
-    scrollSpeed:2000, easing:'easeOutBounce'
+    scrollSpeed:2000, easing:'easeInOutSine'
   });
 });
 
 $("#contc").click(function() {
   $(".four").animatescroll({
-    scrollSpeed:2000, easing:'easeOutBounce'
+    scrollSpeed:2000, easing:'easeInOutSine'
   });
 });
 

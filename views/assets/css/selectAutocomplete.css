@@ -1,32 +1,27 @@
 #selectAutocomplete .zelect {
-  display: inline-block;
-  background-color: white;
+  background:#40464c;
   min-width: 300px;
   cursor: pointer;
-  line-height: 36px;
-  border: 1px solid #dbdece;
-  border-radius: 6px;
+  line-height: 30px;
   position: relative;
+  margin: 20px 0 10px 0;
+  color: #9e9e9e;
+
 }
-#selectAutocomplete .zelected {
-  font-weight: bold;
-  padding-left: 10px;
-}
+
 #selectAutocomplete .zelected.placeholder {
-  color: #999f82;
+  color: #9e9e9e;
 }
 #selectAutocomplete .zelected:hover {
   border-color: #c0c4ab;
   box-shadow: inset 0px 5px 8px -6px #dbdece;
 }
-#selectAutocomplete .zelect.open {
+/* #selectAutocomplete .zelect.open {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-}
+} */
 #selectAutocomplete .dropdown {
-  background-color: white;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  background:#40464c;
   border: 1px solid #dbdece;
   border-top: none;
   position: absolute;
@@ -35,6 +30,7 @@
   top: 36px;
   z-index: 2;
   padding: 3px 5px 3px 3px;
+  color: #9e9e9e;
 }
 #selectAutocomplete .dropdown input {
   font-family: sans-serif;

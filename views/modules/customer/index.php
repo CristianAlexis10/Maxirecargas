@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="views/assets/css/chat.css">
     <link rel="shortcut icon" href="views/assets/image/icn-maxi.png">
     <link rel="stylesheet" href="views/assets/css/main-user.css">
-    <!-- <link rel="stylesheet" href="views/assets/css/ensayo.css"> -->
     <link rel="stylesheet" href="views/assets/css/animate.css">
     <link rel="stylesheet" href="views/assets/css/responsive.css">
   </head>
@@ -181,7 +180,7 @@
     </section>
 
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="views/assets/lib/animate/animatescroll.js"> </script>
+  <script src="views/assets/lib/animate/animatescroll.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
   <script src="views/assets/js/animation.js"></script>

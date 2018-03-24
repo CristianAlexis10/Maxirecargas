@@ -82,7 +82,8 @@
   .container_search{justify-content: center; width: 50%; align-items: flex-end;}
   .products .item{margin-right: 20px}
   .search_input,.search_input input{width: 80%}
-  }
+  .figure--product1, .figure--product2{display: none;}
+  .container--caracteristicas{padding: 0}
 @media (max-width: 658px ){
   .container.two .section--one{
     justify-content: center;
@@ -91,6 +92,8 @@
   .two--image{display: none;}
   .container.three .three--left button{margin-top: 30px;}
   .container.mediafour h2{padding: 0 160px 10px 30px;}
+  .content--product--detail{flex-direction: column;}
+  .container--caracteristicas{width: 100%}
 }
 @media (max-width: 575px ){
   .container .left img{

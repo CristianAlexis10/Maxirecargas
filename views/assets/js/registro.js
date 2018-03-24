@@ -646,3 +646,5 @@ $(document).ready(function () {
      $('#pass').attr('type', 'text');}
    });
   });
+
+// registrar mobile
