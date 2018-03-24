@@ -23,10 +23,13 @@
                                 $permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
                                 $crud = permisos($modulo,$permit);
                                 if ($crud[1]==true) {?>
-                                  <a href="#" onclick="assign(<?php echo $row['ped_codigo']; ?>)" ><i class="fa fa-user-times"></i></a>
-                                  <a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
-                                    <a href="#" id="changeStatus" onclick="changeStatus(<?php echo $row['ped_codigo']; ?>)"><i class="fa fa-refresh"></i></a>
-                           </td>
+                                  <div class="flex-container"><div class="tooltip--assign"><a href="#" onclick="assign(<?php echo $row['ped_codigo']; ?>)" ><i class="fa fa-user-times"></i>
+                                    <span class="tooltiptext">Encargado</span></a></div>
+                                  <div class="tooltip--ver"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i>
+                                    <span class="tooltiptext">Detalle</span></a></div>
+                                  <div class="tooltip--estados"><a href="#" id="changeStatus" onclick="changeStatus(<?php echo $row['ped_codigo']; ?>)"><i class="fa fa-refresh"></i>
+                                    <span class="tooltiptext">Estado</span></a></div>
+                           </div></td>
                       </tr>
 
                 <?php }	} ?>

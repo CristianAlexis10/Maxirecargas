@@ -17,14 +17,15 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
             <td><?php echo $row['usu_primer_nombre']?></td>
             <td><?php echo $row['usu_direccion']?></td>
             <td class="table-Celular"><?php echo $row['usu_celular']?></td>
-            <td><a href="ver-cliente-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+            <td><div class="flex-container"><div class="tooltip--actualizar"><a href="ver-cliente-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i>
+              <span class="tooltiptext">Actualizar</span></a></div>
             <!-- eliminar  -->
             <?php
              if($crud[3]==true){?>
-            <a href="#" onclick="return confirmDeleteUser(
+            <div class="tooltip--eliminar"><a href="#" onclick="return confirmDeleteUser(
             <?php
          echo $row['usu_codigo'];
-            ?>)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            ?>)"><i class="fa fa-trash" aria-hidden="true"></i><span class="tooltiptext">Eliminar</span></a></div>
 
             <!-- inactivar -->
             <?php
@@ -41,7 +42,7 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
                 echo $row['usu_codigo'];
                 ?>)">Activar</i></a>
             <?php } ?>
-        </td>
+        </div></td>
           </tr>
         <?php } ?>
       </tbody>

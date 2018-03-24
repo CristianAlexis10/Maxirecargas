@@ -21,7 +21,8 @@
                                 $permit = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
                                 $crud = permisos($modulo,$permit);
                                 if ($crud[1]==true) {?>
-                            <a href="ver-cotizacion-<?php echo rtrim(strtr(base64_encode($row['cot_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
+                            <div class="flex-container"><div class="tooltip--ver"><a href="ver-cotizacion-<?php echo rtrim(strtr(base64_encode($row['cot_codigo']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i>
+                              <span class="tooltiptext">Detalle</span></a></div></div>
                             </td>
                       </tr>
 

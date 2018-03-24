@@ -116,44 +116,7 @@ body{
   height: 40px;
   border-radius: 50px;
 }
-.menutop-config .tooltiptext{
-  visibility: hidden;
-  width: 7,5%;
-  background-color: #e2e2e2;
-  color: #9e9e9e;
-  text-align: center;
-  border-radius: 2px;
-  padding: 3px;
-  position: absolute;
-  z-index: 1;
-  top: 3%;
-  right: 9.5%;
-  transition: opacity 0.3s;
-  box-shadow: 1px 1px 1px;
-}
-.menutop-config:hover .tooltiptext{
-    visibility: visible;
-    opacity: 1;
-}
-.menutop-finalizar .tooltiptext{
-  visibility: hidden;
-  width: 4,5%;
-  background-color: #e2e2e2;
-  color: #9e9e9e;
-  text-align: center;
-  border-radius: 2px;
-  padding: 3px;
-  position: absolute;
-  z-index: 1;
-  top: 3%;
-  left: 91.5%;
-  transition: opacity 0.3s;
-  box-shadow: 1px 1px solid;
-}
-.menutop-finalizar:hover .tooltiptext{
-    visibility: visible;
-    opacity: 1;
-}
+
 .menutop--icon{transition: all 0.2s ease;}
 .menutop--icon:hover{color:#35a4dd;}
 /* menu desplegable */
@@ -741,3 +704,91 @@ margin: 0 auto;
 .data--customer--detail{display: flex; margin-top: 20px;}
 .firthP{ font-weight: bold; padding-right: 10px}
 .inputRespuesta{padding: 8px 10px; outline-color: #35a4dd}
+
+/*TOOLTIPS*/
+.menutop-config .tooltiptext{
+  visibility: hidden;
+  width: 7,5%;
+  background-color: #555;
+  color: #fff;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  z-index: 1;
+  top: 6%;
+  right: 5%;
+}
+.menutop-config:hover .tooltiptext{visibility: visible;}
+.menutop-finalizar .tooltiptext{
+  visibility: hidden;
+  width: 4,5%;
+  background-color: #555;
+  color: #fff;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  z-index: 1;
+  top: 6%;
+  left: 95%;
+}
+.menutop-finalizar:hover .tooltiptext{visibility: visible;}
+.flex-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.tooltip--actualizar .tooltiptext{
+  visibility: hidden;
+  width: 4,5%;
+  background-color: #555;
+  color: #fff;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  right: 18%;
+}
+.tooltip--actualizar:hover .tooltiptext{visibility: visible;}
+.tooltip--eliminar .tooltiptext{
+  visibility: hidden;
+  width: 4,5%;
+  background-color: #555;
+  color: #fff;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  left: 92,5%
+}
+.tooltip--eliminar:hover .tooltiptext{visibility: visible;}
+.tooltip--assign .tooltiptext{
+  visibility: hidden;
+  width: 4,5%;
+  background-color: #555;
+  color: #fff;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  left: 85%
+}
+.tooltip--assign:hover .tooltiptext{visibility: visible;}
+.tooltip--ver .tooltiptext{
+  visibility: hidden;
+  width: 4,5%;
+  background-color: #555;
+  color: #fff;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  left: 92%
+}
+.tooltip--ver:hover .tooltiptext{visibility: visible;}
+.tooltip--estados .tooltiptext{
+  visibility: hidden;
+  width: 4,5%;
+  background-color: #555;
+  color: #fff;
+  border-radius: 2px;
+  padding: 3px;
+  position: absolute;
+  left: 95%
+}
+.tooltip--estados:hover .tooltiptext{visibility: visible;}
