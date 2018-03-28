@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Asistente Virtual</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <link rel="shortcut icon" href="views/assets/image/icn-maxi.png">
   <link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"/>
@@ -37,25 +38,35 @@
             <?php
             echo "<script>localStorage.setItem('userName', '".$_SESSION['CUSTOMER']['NAME']." ".$_SESSION['CUSTOMER']['LAST_NAME']."');</script>";
             ?>
-            <!-- registrar un nuevo mesaje predefinido -->
-            <div id="new-message-default">
-              Agregra mensaje predefinido <i class="fa fa-plus"></i>
+            <div class="title">
+              <p>ASISTENTE VIRTUAL</p>
             </div>
-            <!-- lista de mesajes predefinidos -->
-            <div id="wrap-messages-default">
-              <?php ?>
-                <?php
+            <div class="container--asistente">
+              <div class="asistente--left">
+                <!-- registrar un nuevo mesaje predefinido -->
+                <div id="new-message-default">
+                  Agregra mensaje predefinido <i class="fa fa-plus"></i>
+                </div>
+                <!-- lista de mesajes predefinidos -->
+                <div id="wrap-messages-default">
+                  <?php ?>
+                  <?php
                   foreach ($this->master->selectAllBy("mensajes_personalizados",array("usu_codigo",$_SESSION['CUSTOMER']['ID'])) as $row) {?>
                     <div class="item-default">
                       <p><?php echo $row['mensaje']?></p>
-                      <i class="fa fa-share-square" id="<?php echo $row['id_mensaje'] ?>" onclick="enviarMensajeDefault(this)"></i>
+                      <i class="fa fa-paper-plane-o" id="<?php echo $row['id_mensaje'] ?>" onclick="enviarMensajeDefault(this)"></i>
                       <i class="fa fa-trash" onclick="eliminarMensajeDefault(<?php echo $row['id_mensaje'] ?>)"></i>
                     </div>
-              <?php   } ?>
+                  <?php   } ?>
+                </div>
+              </div>
+              <div class="asistente--right">
+                <p id="notify">selecciona una conversación</p>
+                <!-- contenedor de chats actuales -->
+                <div class="wrap-chats"></div>
+
+              </div>
             </div>
-            <p id="notify">selecciona una conversación</p>
-            <!-- contenedor de chats actuales -->
-            <div class="wrap-chats"></div>
 
             <!-- chat -->
             <div class="chat_wrapper" id="containerChats">

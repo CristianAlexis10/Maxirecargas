@@ -41,9 +41,12 @@
                           </label>
                       </div>
                       <div class="wrap--perms perms--hide" >
-                          Crear <input type="checkbox"  name="data-rol-users"  disabled  value="1" >
-                          Modificar <input type="checkbox" name="data-rol-users" disabled  value="1" >
-                          Eliminar <input type="checkbox" name="data-rol-users" disabled value="1"  >
+                        <label for="usu--crear">Crear</label>
+                         <input type="checkbox"  name="data-rol-users"  disabled  value="1" id="usu--crear">
+                         <label for="usu--modificar">Modificar</label>
+                        <input type="checkbox" name="data-rol-users" disabled  value="1" id="usu--modificar">
+                        <label for="usu--eliminar">Eliminar</label>
+                        <input type="checkbox" name="data-rol-users" disabled value="1" id="usu--eliminar" >
                       </div>
                   </div>
                   <div class="config--form" id="module-producto">
@@ -57,9 +60,12 @@
                           </label>
                       </div>
                       <div class="wrap--permsprod perms--prod" >
-                          Crear <input type="checkbox"  name="data-rol-products"  disabled  value="1">
-                          Modificar <input type="checkbox" name="data-rol-products" disabled value="1" >
-                          Eliminar <input type="checkbox" name="data-rol-products" disabled  value="1">
+                        <label for="prod--crear">Crear</label>
+                        <input type="checkbox"  name="data-rol-products"  disabled  value="1" id="prod--crear">
+                        <label for="prod--modificar">Modificar </label>
+                        <input type="checkbox" name="data-rol-products" disabled value="1" id="prod--modificar">
+                        <label for="prod--eliminar">  Eliminar </label>
+                        <input type="checkbox" name="data-rol-products" disabled  value="1" id="prod--eliminar">
                       </div>
                   </div>
                   <div class="config--form" id="module-pedido">
@@ -73,9 +79,12 @@
                           </label>
                       </div>
                       <div class="wrap--permspedi perms--pedi" >
-                          Crear <input type="checkbox"  name="data-rol-order"  disabled  value="1">
-                          Modificar <input type="checkbox" name="data-rol-order" disabled  value="1">
-                          Eliminar <input type="checkbox" name="data-rol-order" disabled  value="1">
+                        <label for="pedi--crear">Crear </label>
+                        <input type="checkbox"  name="data-rol-order"  disabled  value="1" id="pedi--crear">
+                        <label for="pedi--modificar">Modificar</label>
+                        <input type="checkbox" name="data-rol-order" disabled  value="1" id="pedi--modificar">
+                        <label for="pedi--eliminar">Eliminar </label>
+                        <input type="checkbox" name="data-rol-order" disabled  value="1" id="pedi--eliminar">
                       </div>
                   </div>
                   <div class="config--form" id="module-cotizaciones">
@@ -89,9 +98,12 @@
                           </label>
                       </div>
                       <div class="wrap--permscot perms--cot" >
-                          Crear <input type="checkbox"  name="data-rol-quoation"  disabled  value="1">
-                          Modificar <input type="checkbox" name="data-rol-quoation" disabled value="1">
-                          Eliminar <input type="checkbox" name="data-rol-quoation" disabled value="1">
+                        <label for="cot--crear"> Crear </label>
+                        <input type="checkbox"  name="data-rol-quoation"  disabled  value="1" id="cot--crear">
+                        <label for="cot--modificar">  Modificar </label>
+                        <input type="checkbox" name="data-rol-quoation" disabled value="1" id="cot--modificar">
+                        <label for="cot--eliminar">  Eliminar</label>
+                         <input type="checkbox" name="data-rol-quoation" disabled value="1" id="cot--eliminar">
                       </div>
                   </div>
                   <div class="config--form" id="module-ruta">
@@ -105,9 +117,12 @@
                           </label>
                       </div>
                       <div class="wrap--permsruta perms--ruta" >
-                          Crear <input type="checkbox"  name="data-rol-routes"  disabled value="1">
-                          Modificar <input type="checkbox" name="data-rol-routes" disabled value="1">
-                          Eliminar <input type="checkbox" name="data-rol-routes" disabled value="1">
+                        <label for="rut--crear">  Crear </label>
+                        <input type="checkbox"  name="data-rol-routes"  disabled value="1" id="rut--crear">
+                        <label for="rut--modificar">  Modificar </label>
+                        <input type="checkbox" name="data-rol-routes" disabled value="1" id="rut--modificar">
+                        <label for="rut--eliminar">Eliminar</label>
+                        <input type="checkbox" name="data-rol-routes" disabled value="1" id="rut--eliminar">
                       </div>
                   </div>
                   <!-- asistencia virtual -->

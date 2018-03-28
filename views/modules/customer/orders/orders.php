@@ -13,9 +13,9 @@
                   echo $_GET['data'];
               }
             ?>">
+            <a href="#" id="openSearch">¿No sabes cuál es tu referencia?</a>
             </div>
             <input type="button" id="searchPro" class="labelmagenta" value="Buscar">
-            <a href="#" id="openSearch">¿No sabes cuál es tu referencia?</a>
             <div class="form-groupuser3 hide--service ">
               <label for="servicio" class="labelmagenta">servicio</label>
               <select class="inputmagenta" id="servicio">
