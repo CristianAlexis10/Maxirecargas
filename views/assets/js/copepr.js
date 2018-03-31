@@ -9,7 +9,7 @@ $(".inputYellow").focusout(function(){
 });
 
 $(".inputblue").focus(function(){
-  $(this).parent().addClass("color-labelblue mover-labelblue");
+  $(this).parent().addClass("color-labelblue");
 });
 
 $(".inputblue").focusout(function(){
@@ -21,7 +21,7 @@ $(".inputblue").focusout(function(){
 $(".inputmagenta").focus(function(){
   $(this).parent().addClass("color-labelmagent");
 });
-$(".inputblue").focusout(function(){
+$(".inputmagenta").focusout(function(){
   if($(this).val() === "")
     $(this).parent().removeClass("mover-labelmagent");
     $(this).parent().removeClass("color-labelmagent");
@@ -31,13 +31,12 @@ $(".inputblue").focusout(function(){
 // modal inicio de sesion movil
 if (document.getElementById('modal_mobile')) {
   var open_session = document.getElementById('session_mobile');
-  var modal_session =document.getElementById('modal_mobile');
+  var modal_session = document.getElementById('modal_mobile');
   var close_session = document.getElementById('modal_close_mobile');
   open_session.onclick = function(){
-    modal_session.style.display = "block";
+    modal_session.style.display = "flex";
   };
   close_session.onclick = function(){
-    alert("ptos")
     modal_session.style.display= "none"
   };
 };

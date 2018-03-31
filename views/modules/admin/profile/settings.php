@@ -117,7 +117,7 @@
                           </label>
                       </div>
                       <div class="wrap--permsruta perms--ruta" >
-                        <label for="rut--crear">  Crear </label>
+                        <label for="rut--crear">Crear</label>
                         <input type="checkbox"  name="data-rol-routes"  disabled value="1" id="rut--crear">
                         <label for="rut--modificar">  Modificar </label>
                         <input type="checkbox" name="data-rol-routes" disabled value="1" id="rut--modificar">
@@ -146,6 +146,7 @@
           if ($_SESSION['CUSTOMER']['STYLE']['est_usu_menu']!=' ') {?>
             <div class="modo--color">
               <label>color
+                <h1>Elige tu estilo</h1>
                 <input type="checkbox" name="checkcolor" id="styleButton" checked class="swich green"  >
                 <div>
                   <div>
@@ -165,7 +166,7 @@
             </div>
           <?php }  ?>
           <input type="button" id="saveStyle" value="Guardar Cambios">
-          <h1>Elige tu estilo</h1>
+
 
       </div>
       </form>

@@ -3,8 +3,8 @@
  $_SESSION['cod_detail_id'] = base64_decode($_GET['data']);
  $_SESSION['usu_cot'] = $data_quo[0]['usu_codigo'];
 ?>
-<span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
 <div class="container--detail">
+  <span><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu"></i><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu-mobile"></i></span>
 	<div class="content--detail">
 		<h1>Detalles de la Cotización</h1>
 		<div class="detail">

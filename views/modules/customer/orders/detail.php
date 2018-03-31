@@ -1,4 +1,4 @@
-  <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
+<span><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu"></i><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu-mobile"></i></span>
   <?php
    $_SESSION['ped_detail_token'] = $data_order[0]['ped_token'];
   ?>
@@ -56,8 +56,7 @@
        <h2>Estamos feliz de trabajar para usted</h2>
        <h1>¡Gracias por trabajar con nosotros!</h1>
      </div>
-    <div class="detail--figure">
-    </div>
+    <div class="detail--figure"></div>
   </div>
 
 

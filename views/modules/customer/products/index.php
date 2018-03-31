@@ -23,6 +23,6 @@
           </div>
         <?php } ?>
       </div>
-      <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
+      <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
     </div>
     <div class="container--grid"></div>

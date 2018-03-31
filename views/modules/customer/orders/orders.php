@@ -15,8 +15,10 @@
             ?>">
             <a href="#" id="openSearch">¿No sabes cuál es tu referencia?</a>
             </div>
-            <input type="button" id="searchPro" class="labelmagenta" value="Buscar">
-            <div class="form-groupuser3 hide--service ">
+            <div class="form-groupuserBtn">
+              <input type="button" id="searchPro" class="btnMagenta" value="Buscar">
+            </div>
+            <div class="form-groupuser hide--service ">
               <label for="servicio" class="labelmagenta">servicio</label>
               <select class="inputmagenta" id="servicio">
                 <option>cosa</option>
@@ -36,28 +38,31 @@
           </form>
         </div>
         <!--  lpera te dejo aca el espacio para que ponga esos botones mas abajo estara el otro espacio-->
-        <button type="button" id="back">Anterior</button>
-        <button type="button" id="next">Siguiente</button>
-        <button type="button" id="otroProducto">Otro producto</button>
-        <button type="button" id="orderSiguiente">Terminar</button>
+        <div class="form-groupuser-btnMagenta">
+          <button type="button" id="back" class="btnMagenta">Anterior</button>
+          <button type="button" id="next" class="btnMagenta">Siguiente</button>
+          <button type="button" id="otroProducto" class="btnMagenta">Otro producto</button>
+          <button type="button" id="orderSiguiente" class="btnMagenta">Terminar</button>
+        </div>
       </div>
       <div id="order--formtwo">
         <div class="orderSuperior">
           <h1>Datos de entrega</h1>
           <p>¿Esta es la Dirección donde se solicita el pedido?</p>
           <h2 id="orderDir"><?php echo $_SESSION['CUSTOMER']['ADDRESS'];?></h2>
-          <label for="fechaEntrega" class="labelmagenta">Fecha de Entrega:</label>
-          <input type="date" id="fechaEntrega" class="inputmagenta" min="<?php
-          $fecha = date('Y-m-d');
-          $nuevafecha = strtotime ( '+0 day' , strtotime ( $fecha ) ) ;
-          $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+          <div class="form-groupuser">
+            <label for="fechaEntrega" class="labelblue order">Fecha de Entrega:</label>
+            <input type="date" id="fechaEntrega" class="inputblue order" min="<?php
+            $fecha = date('Y-m-d');
+            $nuevafecha = strtotime ( '+0 day' , strtotime ( $fecha ) ) ;
+            $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
 
-          echo $nuevafecha;
-           ?>">
-
-           <div>
-             <label for="horaEntrega" class="labelmagenta">Hora Aproximada de  Entrega:</label>
-             <input type="time" id="horaEntrega" class="inputmagenta" required>
+            echo $nuevafecha;
+             ?>">
+         </div>
+           <div class="form-groupuser">
+             <label for="horaEntrega" class="labelblue order">Hora Aproximada de  Entrega:</label>
+             <input type="time" id="horaEntrega" class="inputblue order" required>
            </div>
 
         </div>
@@ -67,15 +72,15 @@
                 <label for="Direc" class="labeluser2">referencia</label>
                 <input id="Direc" class="inputuser2">
               </div>
-              <div class="Orderbtn2">
-                <button type="button" id="confirmOrder">Realizar Pedido</button>
-                <button type="button" id="btnOtraDir">otra dirección</button>
-                <button type="button" id="viewOrder">Ver Pedido</button>
+              <div class="form-groupuser-btnBlue">
+                <button type="button" id="orderAtras" class="btnBlue">atrás</button>
+                <button type="button" id="confirmOrder" class="btnBlue">Realizar Pedido</button>
+                <button type="button" id="btnOtraDir" class="btnBlue">otra dirección</button>
+                <button type="button" id="viewOrder" class="btnBlue">Ver Pedido</button>
               </div>
           </form>
         </div>
         <!-- AQUIIIIIII -->
-        <button type="button" id="orderAtras">atrás</button>
       </div>
     </div>
     <div id="order--container">
@@ -103,16 +108,17 @@
     <span id="closemodal_dir">&times;</span>
     <img src="views/assets/image/logo.png" class="image_modal">
     <div class="modal_form">
-      <div class="form-groupuser3">
-        <label for="ciudad" class="">Ciudad</label>
-        <select class="" id="ciudad"></select>
+      <h2 class="modal_dirTitle">cambia tu dirección</h2>
+      <div class="form-groupuser">
+        <label for="ciudad" class="labelblue">Ciudad</label>
+        <select class="inputblue" id="ciudad" ></select>
       </div>
-      <div class="form-groupuser3">
-        <label for="dirSent" class="">Dirección de envío</label>
-        <input id="dirSent" class="">
+      <div class="form-groupuser">
+        <label for="dirSent" class="labelblue">Dirección de envío</label>
+        <input id="dirSent" class="inputblue">
       </div>
-      <div class="form-groupuser3">
-          <input type="button" id="newDir" value="Cambiar">
+      <div class="form-groupuser">
+          <input type="button" id="newDir" value="Cambiar" class="btnblue">
       </div>
     </div>
   </div>
@@ -123,29 +129,29 @@
 
 <!-- opciones de busqueda -->
 <div class="modal" id="modalSearch">
-  <div class="modal--container" >
-      <span id="close_modal_search">&times;</span>
+  <div class="modal--container busqueda">
+      <span id="close_modal_search" class="close--modal">&times;</span>
+      <h2 class="title--modal">Opciones de Busqueda</h2>
+      <p class="subtitle--modal">Puedes buscar por marca, palabras claves, tipo de producto,características, etc.</p>
       <form id="frmOptionSearch">
-        <h2>Opciones de Búsqueda</h2>
-        <p>Puedes buscar por marca, palabras claves, tipo de producto,características, etc.</p>
-        <div class="frm-group">
-            <input type="text" id="optionSearch" >
-            <input type="submit"  value="Buscar">
+        <div class="frm-groupuser">
+            <input type="text" id="optionSearch" class="inputblue" placeholder="buscar...">
+            <input type="submit"  value="Buscar" id="searchCot">
         </div>
         <!-- resultado -->
-        <div class="result">
-          <h1 id="message"></h1>
-          <table id="tabla" border=1>
-              <tr>
-                  <td>Referencia</td>
-                  <td>Categoría</td>
-                  <td>Marca</td>
-                  <td>Descripción</td>
-                  <td>Palabras Clave</td>
-                  <td>Si</td>
-              </tr>
-          </table>
-        </div>
       </form>
+      <div class="result">
+        <h2 id="message" class="title--modal"></h2>
+        <table id="tabla" class="tables">
+            <tr>
+                <th>Referencia</th>
+                <th>Categoría</th>
+                <th>Marca</th>
+                <th>Descripción</th>
+                <th>Palabras Clave</th>
+                <th>Seleccionar</th>
+            </tr>
+        </table>
+      </div>
   </div>
 </div>

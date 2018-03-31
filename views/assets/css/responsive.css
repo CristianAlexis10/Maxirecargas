@@ -20,15 +20,18 @@
    .quotation--rigth{width: 40%}
    .title--quo{font-size: 70px}
    .quotation--left .quotation--form{width: 80%}
+   /* detail order, product and quotatiom */
+   .detail--figure{left: 45%}
+   .content--detail{padding: 30px 30px 30px 90px}
 }
 @media (max-width: 768px) {
-  .container .left img{min-width: 300px;
-  max-width: 300px;
-  margin-top: 80px;
+  .container .left img{
+    min-width: 300px;
+    max-width: 300px;
+    margin-top: 80px;
   }
   .opcions, #menu{display: none !important; }
   #menu-mobile{display: block;}
-
   #wrap--menu--mobile{
     position: fixed;
     z-index: 999;
@@ -84,6 +87,10 @@
   .search_input,.search_input input{width: 80%}
   .figure--product1, .figure--product2{display: none;}
   .container--caracteristicas{padding: 0}
+  /* views detail order product and quotation*/
+  .detail--figure{display: none}
+  .content--detail{padding: 30px}
+}
 @media (max-width: 658px ){
   .container.two .section--one{
     justify-content: center;
@@ -94,6 +101,11 @@
   .container.mediafour h2{padding: 0 160px 10px 30px;}
   .content--product--detail{flex-direction: column;}
   .container--caracteristicas{width: 100%}
+  /* views product */
+  .container--grid figure{width: 200px}
+  /* views detail quotation order and product */
+  .container--detail{flex-direction: column;}
+  .content--detail{width: 100%}
 }
 @media (max-width: 575px ){
   .container .left img{
@@ -123,7 +135,13 @@
   .containerFormg{display: block;}
   #cantidad,#solicitud{width: 100%}
   .subtitle.quo{font-size: 16px; margin-bottom: 30px}
-
+ /* views product */
+ .products .item{margin-right: 0}
+ .title_banner{font-size: 100px}
+ .query-result h1{font-size: 30px}
+ .banneritem span{font-size: 25px; padding: 0 0 0 25px}
+ .titleitem_banner{font-size: 25px}
+ .container_search{justify-content: center;}
 }
 @media (max-width:510px){
   .container.one{
@@ -150,9 +168,7 @@
     min-width: 300px;
     margin-top: 25px;
   }
-  .container .rigth .opcions{
-    display: none;
-  }
+  .container .rigth .opcions{display: none;}
   .container .rigth .welcome{
     display: flex;
     flex-direction: column;
@@ -161,27 +177,18 @@
     margin: 0;
     width: 80%;
   }
-  .container .rigth .welcome .title{
-    font-size: 70px;
-  }
-  .container .rigth .welcome .subtitle{
-      font-size: 18px;
-  }
-
+  .container .rigth .welcome .title{font-size: 70px;  }
+  .container .rigth .welcome .subtitle{font-size: 18px;}
   .container.two .section--one p{
     padding: 0;
     font-size: 40px;
   }
-  .container.two .section--two{
-    flex-direction: column;
-  }
+  .container.two .section--two{flex-direction: column;}
   .container.two .section--two .section-left h1, .section-rigth h1{
     text-align: center;
     padding: 0 0 10px 0;
   }
-  .container.two .section--two .section-left p, .section-rigth p{
-    font-size: 18px;
-  }
+  .container.two .section--two .section-left p, .section-rigth p{font-size: 18px;}
   .container.three{
     flex-direction: column;
     height: auto;
@@ -191,13 +198,8 @@
     height: 80vh;
     box-sizing: border-box;
   }
-
-  .container.three .three--left h1{
-    text-align: center;
-  }
-  .container.three .three--left p{
-    font-size: 18px;
-  }
+  .container.three .three--left h1{ text-align: center;}
+  .container.three .three--left p{font-size: 18px;}
   .container.three .three--rigth{
     width: 100%;
     height: 60vh;
@@ -248,12 +250,10 @@
     width: 100%;
     height: 70vh;
   }
-  .container.four .four--contact h1{
-    font-size: 50px;
-  }
-  .container.four .four--contact li{
-    font-size: 20px;
-  }
+  .container.four .four--contact h1{font-size: 50px;}
+  .container.four .four--contact li{font-size: 20px;}
+  /* views product */
+  .products .item{width: 220px; height: 220px}
 }
 @media (max-width:360px) {
   .container .left span{
@@ -294,4 +294,12 @@
   /* quotation */
   .quotation--left .quotation--form{width: 80%}
   .title--movil{font-size: 30px}
+  /*product */
+  .banner{height: 200px}
+  .title_banner{font-size: 70px}
+  .banneritem{display: block; height: 120px}
+  .Btoner--content{width: 100%; margin: 20px 0;}
+  .titleitem_banner{ text-align: center; width: 80%}
+  .container_search{width: 100%; justify-content: center;}
+  .query-result h1{font-size: 24px}
 }

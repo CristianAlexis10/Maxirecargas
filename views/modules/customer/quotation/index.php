@@ -13,9 +13,11 @@
                       echo $_GET['data'];
                   }
                 ?>" >
-                </div>
-                <input type="button" id="searchPro" class="inputuser3" value="Buscar">
                 <a href="#" id="openSearch">¿No sabes cuál es tu referencia?</a>
+                </div>
+                <div class="form-groupuserBtn">
+                  <input type="button" id="searchPro" class="btnYellow" value="Buscar">
+                </div>
                 <div class="form-groupuser3 hide--service ">
                   <label for="servicio" class="labelyellow">servicio</label>
                   <select class="inputYellow " id="servicio">
@@ -34,10 +36,12 @@
                   <textarea name="name" rows="2" cols="100" id="observ" class="inputYellow"></textarea>
                 </div>
               </form>
-              <button type="button" id="back">Anterior</button>
-              <button type="button" id="next">siguiente</button>
-              <button type="button" id="otroProducto">Otro producto</button>
-              <button type="button" id="orderSiguiente">Terminar</button>
+              <div class="container_orderbtn">
+                <button type="button" id="back" class="btnYellow">Anterior</button>
+                <button type="button" id="next" class="btnYellow">Siguiente</button>
+                <button type="button" id="otroProducto" class="btnYellow">Otro producto</button>
+                <button type="button" id="orderSiguiente" class="btnYellow">Terminar</button>
+              </div>
         </div>
       </div>
       <div class="quotation--rigth">
@@ -93,34 +97,35 @@
 
 <!-- opciones de busqueda -->
 <div class="modal" id="modalSearch">
-  <div class="modal--container" >
-      <span id="close_modal_search">&times;</span>
+  <div class="modal--container busqueda">
+      <span id="close_modal_search" class="close--modal">&times;</span>
+      <h2 class="title--modal">Opciones de Busqueda</h2>
+      <p class="subtitle--modal">Puedes buscar por marca, palabras claves, tipo de producto,características, etc.</p>
       <form id="frmOptionSearch">
-        <h2>Opciones de Búsqueda</h2>
-        <p>Puedes buscar por marca, palabras claves, tipo de producto,características, etc.</p>
-        <div class="frm-group">
-            <input type="text" id="optionSearch" >
-            <input type="submit"  value="Buscar">
+        <div class="frm-groupuser">
+            <input type="text" id="optionSearch" class="inputblue" placeholder="buscar...">
+            <input type="submit"  value="Buscar" id="searchCot">
         </div>
         <!-- resultado -->
-        <div class="result">
-          <h1 id="message"></h1>
-          <table id="tabla" border=1>
-              <tr>
-                  <td>Referencia</td>
-                  <td>Categoría</td>
-                  <td>Marca</td>
-                  <td>Descripción</td>
-                  <td>Palabras Clave</td>
-                  <td>Si</td>
-              </tr>
-          </table>
-        </div>
       </form>
+      <div class="result">
+        <h2 id="message" class="title--modal"></h2>
+        <table id="tabla" class="tables">
+            <tr>
+                <th>Referencia</th>
+                <th>Categoría</th>
+                <th>Marca</th>
+                <th>Descripción</th>
+                <th>Palabras Clave</th>
+                <th>Seleccionar</th>
+            </tr>
+        </table>
+      </div>
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="views/assets/js/copepr.js"></script>
 <script type="text/javascript" src="views/assets/js/quotation-customer.js"></script>
 <script type="text/javascript" src="views/assets/js/menu.js"></script>
 

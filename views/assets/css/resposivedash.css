@@ -5,13 +5,15 @@
 
 }
 @media (max-width: 767px){
+  .userProfile--img img {width: 85%}
+  .navigator li a{padding-bottom: 15px}
   #navigator{transform: translateX(-999px);}
   .wrap--content{margin: 0}
   #menu--mobile{display: block;}
   #arrowLeft{display: block;}
   #wrap-result{width: 200px !important;}
   #wrap-result img{width: 200px}
-     /* datagrid eliminar columns */
+  /* datagrid eliminar columns */
   .table-Celular, .table-direction, .table-token{display: none}
   /* modales */
   .container--modales{width: 70%}

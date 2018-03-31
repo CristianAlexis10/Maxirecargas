@@ -12,9 +12,11 @@
                       echo $_GET['data'];
                   }
                 ?>">
-                </div>
-                <input type="button" id="searchPro" class="inputuser3" value="Buscar">
                 <a href="#" id="openSearch">¿No sabes cual es tu referencia?</a>
+                </div>
+                <div class="form-groupuserBtn">
+                  <input type="button" id="searchPro" class="btnYellow" value="Buscar">
+                </div>
                 <div class="form-groupuser3 hide--service ">
                   <label for="servicio" class="labelyellow">servicio</label>
                   <select class="inputYellow " id="servicio">
@@ -33,10 +35,12 @@
                   <textarea name="name" rows="2" cols="100" id="observ" class="inputYellow"></textarea>
                 </div>
               </form>
-              <button type="button" id="back">Anterior</button>
-              <button type="button" id="next">Siguiente</button>
-              <button type="button" id="otroProducto">Otro producto</button>
-              <button type="button" id="orderSiguiente">Terminar</button>
+              <div class="container_orderbtn">
+                <button type="button" id="back" class="btnYellow">Anterior</button>
+                <button type="button" id="next" class="btnYellow">Siguiente</button>
+                <button type="button" id="otroProducto" class="btnYellow">Otro producto</button>
+                <button type="button" id="orderSiguiente" class="btnYellow">Terminar</button>
+              </div>
         </div>
       </div>
       <div class="quotation--rigth">
@@ -47,7 +51,7 @@
 
       <div class="modal" id="modal_dir">
         <div class="content_modal_dir">
-          <!-- <span id="closemodal_dir">&times;</span> -->
+          <span id="closemodal_dir">&times;</span>
           <img src="views/assets/image/logo.png" class="image_modal">
           <div class="modal_form">
             <div class="form-groupuser3">
