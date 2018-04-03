@@ -1,7 +1,11 @@
 $(".datatable").DataTable();
 $( function() {
     $( "#tabs" ).tabs();
-} );
+});
+
+$("#closeCancel").click(function(){
+  $("#modalCancel").hide()
+});
 //cancelar pedido
 var orderToCancel;
 function viewCancelOrder(cod){

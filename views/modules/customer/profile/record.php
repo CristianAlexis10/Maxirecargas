@@ -1,5 +1,5 @@
 
-<span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
+<span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
 <?php
 if (isset($_SESSION['user_new_order'])) {
   echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Order se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de orden: <b>".$_SESSION['user_new_order']."</b></p><button type='button' class='checkBtn'>¡Entendido!</button></div></div>";
@@ -11,7 +11,6 @@ if (isset($_SESSION['user_quotation_new'])) {
 }
 ?>
 <div class="record--container">
-
   <div class="banner">
     <h1 class="title_banner">historial</h1>
   </div>
@@ -34,7 +33,7 @@ if (isset($_SESSION['user_quotation_new'])) {
 </div>
 <div id="modalCancel" class="modal">
       <div class="modal--container cancel">
-      <span class="close--modal">&times;</span>
+      <span class="close--modal" id="closeCancel">&times;</span>
       <h1 class="title--modal">cancelar servicio</h1>
       <form id="frmCancelOrder">
         <div class="form-groupuser">
