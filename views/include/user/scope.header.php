@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="views/assets/css/copepr.css">
     <link rel="stylesheet" href="views/assets/css/main-user.css">
     <link rel="stylesheet" href="views/assets/css/responsive.css">
+    <link rel="stylesheet" href="views/assets/css/selectAutocomplete.css">
   </head>
   <body>
 

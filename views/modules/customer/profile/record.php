@@ -1,6 +1,4 @@
-<style>
-  #modalCancel{display: none;}
-</style>
+
 <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
 <?php
 if (isset($_SESSION['user_new_order'])) {
@@ -8,7 +6,7 @@ if (isset($_SESSION['user_new_order'])) {
   unset($_SESSION['user_new_order']);
 }
 if (isset($_SESSION['user_quotation_new'])) {
-  echo "<div class='new_order_token'>Tu Cotización se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de tu cotización: <b>".$_SESSION['user_quotation_new']."</b></div>";
+  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p>Tu Cotización se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de tu cotización: <b>".$_SESSION['user_quotation_new']."</b></p></div></div>";
   unset($_SESSION['user_quotation_new']);
 }
 ?>
