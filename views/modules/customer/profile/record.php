@@ -1,16 +1,17 @@
 
-<span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
+<span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu" style="color:black"></i></span>
 <?php
 if (isset($_SESSION['user_new_order'])) {
-  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Order se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de orden: <b>".$_SESSION['user_new_order']."</b></p></div></div>";
+  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Order se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de orden: <b>".$_SESSION['user_new_order']."</b></p><button type='button' class='checkBtn'>¡Entendido!</button></div></div>";
   unset($_SESSION['user_new_order']);
 }
 if (isset($_SESSION['user_quotation_new'])) {
-  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p>Tu Cotización se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de tu cotización: <b>".$_SESSION['user_quotation_new']."</b></p></div></div>";
+  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Cotización se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de tu cotización: <b>".$_SESSION['user_quotation_new']."</b></p><button type='button' class='checkBtn'>¡Entendido!</button></div></div>";
   unset($_SESSION['user_quotation_new']);
 }
 ?>
 <div class="record--container">
+
   <div class="banner">
     <h1 class="title_banner">historial</h1>
   </div>
@@ -31,16 +32,20 @@ if (isset($_SESSION['user_quotation_new'])) {
         </div>
     </div>
 </div>
-    <div id="modalCancel">
+<div id="modalCancel" class="modal">
+      <div class="modal--container cancel">
+      <span class="close--modal">&times;</span>
+      <h1 class="title--modal">cancelar servicio</h1>
       <form id="frmCancelOrder">
-        <div class="frm-group">
-          <label for="motivo">Motivo</label>
-          <textarea id="motivo" rows="8" cols="80" placeholder="Motivo de cancelación del pedido"></textarea>
+        <div class="form-groupuser">
+          <label for="motivo" class="labelblue">¿Porque deseas cancelar el servicio?</label>
+          <textarea id="motivo" class="inputblue"rows="8" cols="80" placeholder="Motivo de cancelación del pedido"></textarea>
         </div>
-        <div class="frm-group">
-          <input type="submit" value="Cancelar Pedido">
+        <div class="form-groupuser">
+          <input type="submit" value="Cancelar Pedido" class="btnblue">
         </div>
       </form>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>

@@ -670,6 +670,10 @@ color:white}
   margin-top: 100px;
   display: flex;
 }
+.modal--container.cancel{
+  flex-direction: column;
+
+}
 .modal--container.busqueda{
   width: 80%;
   display: block;
@@ -690,7 +694,6 @@ color:white}
   text-transform: capitalize;
   text-align: center;
   color:#35a4dd;
-
 }
 .subtitle--modal{
   font-family: 'lato';
@@ -701,7 +704,7 @@ color:white}
   text-align: right;
   cursor: pointer;
   font-size: 20px;
-  padding: 10px 0 10px 10px;
+  padding: 10px;
 }
 .modal--container .quotation--form form{
   width: 90%;
