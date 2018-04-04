@@ -163,7 +163,7 @@
                       <select class="dataEmp input" id="cuidad2">
                         <?php
                         foreach ($this->master->selectAll("ciudad") as $row) {?>
-                        <option value="<?php  echo $row['id_ciudad']; ?>"><?php //echo $row['ciu_nombre'] ?></option>
+                        <option value="<?php  echo $row['id_ciudad']; ?>"><?php echo $row['ciu_nombre'] ?></option>
                         <?php    } ?>
                       </select>
                     </div>

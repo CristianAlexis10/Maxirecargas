@@ -8,12 +8,12 @@ if (document.getElementById('closeModal')) {
 }
 $("#frmContact").submit(function(e) {
   e.preventDefault();
-  if ($("#name").val() != "" && $("#email").val() != "" && $("#asunto").val() != "" && $("#message").val()!="") {
+  if ($("#name").val() != "" && $("#email").val() != "" && $("#asunto").val() != "" && $("#messageContact").val()!="") {
       $.ajax({
         url:"enviar-correo",
         type:"post",
         dataType:"json",
-        data:({name : $("#name").val() , email : $("#email").val() , asunto : $("#asunto").val() , message : $("#message").val() }),
+        data:({name : $("#name").val() , email : $("#email").val() , asunto : $("#asunto").val() , message : $("#messageContact").val() }),
         beforeSend:function(){
           $("#buttonContact").after("<div class='message'>Enviando...</div>");
         },
@@ -35,6 +35,7 @@ $("#frmContact").submit(function(e) {
         }
       });
   }else{
+    console.log($("#messageContact").val());
     $("#buttonContact").after("<div class='message'>Los campos son requeridos</div>");
     setTimeout(function() {
       $(".message").remove();
