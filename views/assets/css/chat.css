@@ -21,6 +21,7 @@
 	cursor:pointer;
 	z-index: 9999;
 	}
+#iniciar span{display: flex;}
 #iniciar span i {padding-right: 10px;}
 .wrap-chats{display: flex;}
 .wrap-chats .item{

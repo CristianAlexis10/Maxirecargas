@@ -33,8 +33,7 @@
       </div>
         <!-- inicio chat -->
       	<div id="iniciar">
-      		<span><i class="fa fa-comment" aria-hidden="true"></i>
-            Online - Maxirecargas</span>
+      		<span><i class="fa fa-comment" aria-hidden="true"></i><p>Online - Maxirecargas</p></span>
       	</div>
       <?php
       echo "<script>localStorage.setItem('userName', '".$_SESSION['CUSTOMER']['NAME']." ".$_SESSION['CUSTOMER']['LAST_NAME']."');</script>";
