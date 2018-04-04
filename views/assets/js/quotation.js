@@ -286,6 +286,7 @@ $("#frmOptionSearch").submit(function(e){
     dataType:"json",
     data:({data:$("#optionSearch").val()}),
     success:function(result){
+      console.log(result);
       $(".itemResult").remove();
       if (result.length>0) {
             //añadir tds
