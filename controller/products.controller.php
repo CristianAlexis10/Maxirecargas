@@ -198,7 +198,7 @@
 		function readOptionSearch(){
 			$data=$_POST['data'];
 			$result = $this->master->readOptionSearch($data);
-			echo json_encode($result);
+			echo json_encode($result); 
 		}
 		function viewDetail(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
