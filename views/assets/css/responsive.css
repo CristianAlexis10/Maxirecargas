@@ -23,6 +23,14 @@
    /* detail order, product and quotatiom */
    .detail--figure{left: 45%}
    .content--detail{padding: 30px 30px 30px 90px}
+   /*views order customer  */
+   .order--left, .order--rigth, #order--container,#orderSiguiente,#form-groupuser-cantidad, #orderAtras{display: none}
+   .order--fondo{overflow: hidden;}
+   #order--formone{width: 100%; transition: all .5s ease;}
+   #order--formtwo{width: 100%; transform: translateX(9999px); opacity: 1;transition: all .5s ease;}
+   #form-groupuser-cantidadMobile, #orderAtrasMobile{display: block;}
+   /* views record */
+   #tabs{width: 90%;}
 }
 @media (max-width: 768px) {
   .container .left img{
@@ -90,6 +98,16 @@
   /* views detail order product and quotation*/
   .detail--figure{display: none}
   .content--detail{padding: 30px}
+  /*views order customer  */
+  .order--left, .order--rigth, #order--container,#orderSiguiente,#form-groupuser-cantidad, #orderAtras{display: none}
+  .order--fondo{overflow: hidden;}
+  #order--formone{width: 100%; transition: all .5s ease;}
+  #order--formtwo{width: 100%; transform: translateX(9999px); opacity: 1;transition: all .5s ease;}
+  #form-groupuser-cantidadMobile, #orderAtrasMobile{display: block;}
+  /*views record */
+  .ui-tabs .ui-tabs-panel{padding: 0;}
+  #tabs{width: 85%}
+  .datatable--ocultar{display: none;}
 }
 @media (max-width: 658px ){
   .container.two .section--one{
@@ -106,6 +124,10 @@
   /* views detail quotation order and product */
   .container--detail{flex-direction: column;}
   .content--detail{width: 100%}
+  /*views record  */
+  #tabs .ui-widget-header li a{
+    width: 230px;
+  }
 }
 @media (max-width: 575px ){
   .container .left img{
@@ -142,6 +164,12 @@
  .banneritem span{font-size: 25px; padding: 0 0 0 25px}
  .titleitem_banner{font-size: 25px}
  .container_search{justify-content: center;}
+ /* views order customer */
+ .orderSuperior h1, #order--formtwo .orderSuperior h1{font-size: 30px; font-weight: normal; text-align: center;}
+ .orderSuperior p, #order--formtwo .orderSuperior p{font-size: 16px}
+ /*views record */
+ #tabs .ui-widget-header li a{width: 200px}
+ #tabs{width: 90%}
 }
 @media (max-width:510px){
   .container.one{
@@ -254,6 +282,7 @@
   .container.four .four--contact li{font-size: 20px;}
   /* views product */
   .products .item{width: 220px; height: 220px}
+
 }
 @media (max-width:360px) {
   .container .left span{
@@ -302,4 +331,8 @@
   .titleitem_banner{ text-align: center; width: 80%}
   .container_search{width: 100%; justify-content: center;}
   .query-result h1{font-size: 24px}
+  /* views order customer */
+  .orderSuperior h1{font-size: 20px}
+  .container--form{width: 80%}
+  .orderSuperior, #order--formtwo .orderSuperior{padding: 0 30px}
 }

@@ -89,7 +89,30 @@ $('#orderAtras').click(function() {
     'marginLeft': "0"
     });
 });
-
+$("#orderSiguiente-mobile").click(function() {
+  $("#order--formtwo").css({
+    "-webkit-transform":"translateX(0)",
+    "-ms-transform":"translateX(0)",
+    "transform":"translateX(0)"
+  });
+  $("#order--formone").css({
+    "-webkit-transform":"translateX(-9999px)",
+    "-ms-transform":"translateX(-9999px)",
+    "transform":"translateX(-9999px)"
+  })
+});
+$("#orderAtrasMobile").click(function() {
+  $("#order--formone").css({
+    "-webkit-transform":"translateX(0)",
+    "-ms-transform":"translateX(0)",
+    "transform":"translateX(0)"
+  });
+  $("#order--formtwo").css({
+    "-webkit-transform":"translateX(-9999px)",
+    "-ms-transform":"translateX(-9999px)",
+    "transform":"translateX(-9999px)"
+  })
+});
 // menu mobile
 // var close_mobile = document.getElementById('close--mobile');
 // var open_mobile = document.getElementById('menu-mobile');

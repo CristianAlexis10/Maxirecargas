@@ -387,8 +387,8 @@ color:white}
   padding: 30px;
   text-transform: uppercase;
   text-align: center;
-
 }
+#form-groupuser-cantidadMobile, #orderAtrasMobile, #orderSiguiente-mobile{display: none}
 .container--form{
   width: 70%;
   display: flex;

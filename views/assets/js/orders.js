@@ -15,6 +15,7 @@ $(".hide--service").hide();
 $(".hide--cantidad").hide();
 $(".hide--obs").hide();
 $("#orderSiguiente").hide();
+$("#orderSiguiente-mobile").hide();
 //OCULTAR BOTONES DE NAVEGACION
 $("#next").hide();
 $("#back").hide();
@@ -61,6 +62,15 @@ $("#cant").keyup(function(){
     $("#otroProducto").hide();
   }
 });
+$("#cantMobile").keyup(function(){
+  if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cantMobile").val()!="" && $("#cantMobile").val()>0) {
+      $("#orderSiguiente-mobile").show();
+      $("#otroProducto").show();
+  }else{
+    $("##orderSiguiente-mobile").hide();
+    $("#otroProducto").hide();
+  }
+});
 
 //GUARDAR
 var order = new Object();
@@ -73,6 +83,7 @@ $("#otroProducto").click(function(){
   $("#producto").val("");
   $("#servicio").val("");
   $("#cant").val("");
+  $("#cantMobile").val("");
   $("#observ").val("");
   $(".hide--service").hide();
   $(".hide--cantidad").hide();

@@ -4,7 +4,7 @@
                         <th>Encargado</th>
                         <th>Codigo del Pedido</th>
                         <th>Estado</th>
-                        <th>Dirección</th>
+                        <th class="datatable--ocultar">Dirección</th>
                         <th>Fecha Entrega</th>
                         <th>Acciones</th>
                     </tr>
@@ -23,9 +23,9 @@
                           }
                           ?></td>
                           <td><?php echo $row['ped_token'];?></td>
-                         <td><?php echo $row['ped_estado'] ;?></td>
-                            <td><?php echo $row['ciu_nombre']." ".$row['ped_direccion'];?></td>
-                            <td><?php echo $row['ped_fecha_entrega'];?></td>
+                          <td><?php echo $row['ped_estado'] ;?></td>
+                          <td class="datatable--ocultar"><?php echo $row['ciu_nombre']." ".$row['ped_direccion'];?></td>
+                          <td><?php echo $row['ped_fecha_entrega'];?></td>
                            <td>
                              <a href="mi-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" ><i class="fa fa-eye"></i></a>
                              <?php if ($row['ped_estado']=="En Bodega"){ ?>

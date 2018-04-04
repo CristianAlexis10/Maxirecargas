@@ -3,6 +3,9 @@ $( function() {
     $( "#tabs" ).tabs();
 });
 
+$("#closeOrderListo").click(function() {
+  $(".modales").hide()
+});
 $("#closeCancel").click(function(){
   $("#modalCancel").hide()
 });

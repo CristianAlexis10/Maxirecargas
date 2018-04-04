@@ -2,7 +2,7 @@
             <thead>
                     <tr>
                         <th class="table-token">Token</th>
-                        <th>Dirección</th>
+                        <th class="datatable--ocultar">Dirección</th>
                         <th>Fecha</th>
                         <th>Estado</th>
                         <th>Acciones</th>
@@ -12,7 +12,7 @@
                 <?php foreach ($this->master->cotizacionesRealizadasBy($_SESSION['CUSTOMER']['ID']) as $row) { ?>
                      <tr>
                           <td class="table-token"><?php echo $row['cot_token'];?></td>
-                          <td><?php echo $row['ciu_nombre']." ".$row['cot_dir'];?></td>
+                          <td class="datatable--ocultar"><?php echo $row['ciu_nombre']." ".$row['cot_dir'];?></td>
                           <td><?php echo $row['cot_fecha'];?></td>
                          <td><?php echo $row['cot_estado']; ?></td>
                            <td>

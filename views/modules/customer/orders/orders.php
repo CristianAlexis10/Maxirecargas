@@ -26,9 +26,13 @@
               </select>
             </div>
             <div class="juntos hide--cantidad">
-              <div class="form-groupuser">
+              <div class="form-groupuser" id="form-groupuser-cantidad">
                 <label for="cant" class="labelmagenta">cantidad</label>
                 <input id="cant" class="inputmagenta" onkeypress="return eliminarLetras(event)">
+              </div>
+              <div class="form-groupuser" id="form-groupuser-cantidadMobile">
+                <label for="cantMobile" class="labelmagenta">cantidad</label>
+                <input id="cantMobile" class="inputmagenta" onkeypress="return eliminarLetras(event)">
               </div>
             </div>
             <div class="form-groupuser hide--obs">
@@ -43,6 +47,7 @@
           <button type="button" id="next" class="btnMagenta">Siguiente</button>
           <button type="button" id="otroProducto" class="btnMagenta">Otro producto</button>
           <button type="button" id="orderSiguiente" class="btnMagenta">Terminar</button>
+          <button type="button" id="orderSiguiente-mobile" class="btnMagenta">Terminar</button>
         </div>
       </div>
       <div id="order--formtwo">
@@ -74,6 +79,7 @@
               </div>
               <div class="form-groupuser-btnBlue">
                 <button type="button" id="orderAtras" class="btnBlue">atrás</button>
+                <button type="button" id="orderAtrasMobile" class="btnBlue">atrás</button>
                 <button type="button" id="confirmOrder" class="btnBlue">Realizar Pedido</button>
                 <button type="button" id="btnOtraDir" class="btnBlue">otra dirección</button>
                 <button type="button" id="viewOrder" class="btnBlue">Ver Pedido</button>
