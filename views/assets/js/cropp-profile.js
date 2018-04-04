@@ -90,3 +90,30 @@ $("#frmUpdateProfile").submit(function(e) {
       }
     });
 });
+//cambiar contraseña
+$("#updatePassword").submit(function(e){
+  e.preventDefault();
+  if (confirm("¿Cambiar contraseña?")) {
+    if ($("#password").val() != "" && $("#new_password").val() != "" && $("#confirmCon").val() != "" ) {
+        $.ajax({
+          url:"cambiar-contrasena",
+          type:"post",
+          dataType:"json",
+          data:({pas:$("#password").val() , new_pas: $("#new_password").val() , new_pas2: $("#confirmCon").val()}),
+          success:function(result){
+            console.log(result);
+            if (result==true) {
+              $("#updatePassword").after("<div class='message'>Modificación Exitosa.</div>");
+              $("#updatePassword")[0].reset();
+            }else{
+              $("#updatePassword").after("<div class='message'>"+result+"</div>");
+            }
+          },
+          error:function(result){console.log(result);}
+        });
+    }else{
+      $("#updatePassword").after("<div class='message'>Campos vacios</div>");
+    }
+    setTimeout(function(){$("div.message").remove()},3000);
+  }
+});

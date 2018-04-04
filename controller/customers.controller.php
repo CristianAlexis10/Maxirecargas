@@ -442,5 +442,27 @@
 				echo json_encode($this->doizer->knowError($result));
 			}
 		}
+		function updatePass(){
+			$pas = $_POST['pas'];
+			$new = $_POST['new_pas'];
+			$new2 = $_POST['new_pas2'];
+			$result  = $this->master->selectBy("acceso",array("usu_codigo",$_SESSION['CUSTOMER']['ID']));
+			if (password_verify($pas , $result['acc_contra'])) {
+				$password =  $this->doizer->validateSecurityPassword($new);
+				if (is_array($password)) {
+						if ($new==$new2) {
+							$result = $this->master->cambiarContrasena(array($_SESSION['CUSTOMER']['ID'],$password[1]));
+							echo json_encode($result);
+						}else{
+							echo json_encode("Las contraseñas no coinciden");
+						}
+				}else{
+					echo json_encode($password);
+					return;
+				}
+			}else{
+				echo json_encode("La contraseña actual  es incorrecta");
+			}
+		}
 	}
 ?>

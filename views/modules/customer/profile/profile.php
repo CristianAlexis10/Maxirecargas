@@ -14,6 +14,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
     <link rel="stylesheet" href="views/assets/css/profile.css">
   </head>
   <body>
+    <?php require_once "views/include/user/scope.hamburger.php";?>
     <div class="container--profile">
       <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
       <div class="content--profile">
@@ -95,15 +96,19 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
           </div>
         </form>
           <p>cambiar contraseña</p>
-          <form class="" action="index.html" method="post">
+          <form id="updatePassword">
             <div class="container--oneinput">
               <div class="form-profile">
-                <label for="password" class="label--profile">contraseña:</label>
-                <input type="password" id="password" class="input--profile">
+                <label for="password" class="label--profile">contraseña Actual:</label>
+                <input type="password" id="password" class="input--profile" required>
+              </div>
+              <div class="form-profile">
+                <label for="password" class="label--profile">Nueva contraseña:</label>
+                <input type="password" id="new_password" class="input--profile" required>
               </div>
               <div class="form-profile">
                 <label for="confirmCon" class="label--profile">confirmar contraseña:</label>
-                <input type="password" class="input--profile" id="confirmCon">
+                <input type="password" class="input--profile" id="confirmCon" required>
               </div>
             </div>
             <div class="formbtn-profile">

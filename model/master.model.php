@@ -1311,6 +1311,17 @@ class MasterModel{
     }
     return $result;
   }
+  function 	cambiarContrasena($data){
+    try {
+      $this->sql="call cambiarContrasena(?,?)";
+      $query=$this->pdo->prepare($this->sql);
+      $query->execute($data);
+      $result = true;
+    } catch (PDOException $e) {
+      $result = $query->errorInfo()[1];
+    }
+    return $result;
+  }
   function 	leerConversacion($data){
     try {
       $this->sql="call leerConversacion(?)";
