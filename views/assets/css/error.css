@@ -20,6 +20,20 @@
   font-size: 150px;
   color:#576265;
 }
+.error h2{
+  color:#576265;
+  font-size: 100px;
+}
+.hipervinculo{
+  text-decoration: none;
+  color: white ;
+  background:#35a4dd;
+  padding: 15px 30px;
+  transition: all .5s ease;
+}
+.hipervinculo:hover{
+  box-shadow: 8px 7px 19px 0px rgba(0, 0, 0, 0.5);
+}
 .error p {
   font-size: 24px;
   font-weight: 300;
