@@ -78,8 +78,28 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
             <?php } ?>
             </select>
           </div>
-
-
+          <div class="title">
+            <p>Cambiar Contraseña</p>
+          </div>
+          <form id="updatePassword">
+            <div class="">
+              <div class="form-group">
+                <label for="password" class="label">Contraseña Actual:</label>
+                <input type="password"  id="password" class="input" required>
+              </div>
+              <div class="form-group">
+                <label for="new_password" class="label">Contraseña Nueva:</label>
+                <input type="password"  id="new_password" class="input" required>
+              </div>
+              <div class="form-group">
+                <label for="confirmCon" class="label">Repetir Contraseña:</label>
+                <input type="password"  id="confirmCon" class="input" required >
+              </div>
+              <div class="form-group">
+                <button class="btn">Guardar</button>
+              </div>
+            </div>
+          </form>
     </div>
   <div class="imgprofile">
       <div class="form-group Cambiar--img">
@@ -94,18 +114,7 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
     </div>
   </form>
   </div>
-  <div class="wrap_two_formgroup">
-    <div class="form-group">
-      <label for="contra" class="label">Contraseña:</label>
-      <input type="password"  id="contra" class="input" required>
-    </div>
-    <div class="form-group">
-      <label for="rep_contra" class="label">Repetir Contraseña:</label>
-      <input type="password"  id="rep_contra" class="input" required disabled>
-    </div>
-  </div>
-</form>
-  <form>
+
 
   <div id="img-product">
 			<div class="newMark--img">

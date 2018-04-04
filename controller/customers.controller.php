@@ -442,6 +442,11 @@
 		function updateAllProfile(){
 			$result = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
 			$data  = $_POST['data'];
+			$fecha = $this->doizer->validateDate($data[9],"past");
+			if (!$fecha==true) {
+				echo json_encode("fecha no valida");
+				return ;
+			}
 			//imagen
 			if (isset($_SESSION['new_cropp_image'])) {
 				$data[] = $_SESSION['new_cropp_image'];
