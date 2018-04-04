@@ -401,10 +401,29 @@
 		}
 		function activateAccount(){
 			$token = base64_decode($_GET['token']);
-			$result = $this->master->procedureConsultaToken($token);
-			$result = $this->master->procedureOFUser('inactivar',array(1,$result['usu_codigo']));
+			$resultData = $this->master->procedureConsultaToken($token);
+			$result = $this->master->procedureOFUser('inactivar',array(1,$resultData['usu_codigo']));
 			if ($result==1) {
-				echo "Activado Exitosamente";
+				$result= $this->master->selectBy("usuario",array("usu_codigo",$resultData['usu_codigo']));
+				print_r($result);
+				$_SESSION['CUSTOMER']['ROL'] = $result['tip_usu_codigo'];
+				$_SESSION['CUSTOMER']['ID']=$result['usu_codigo'];
+				$_SESSION['CUSTOMER']['NAME']=$result['usu_primer_nombre'];
+				$_SESSION['CUSTOMER']['LAST_NAME']=$result['usu_primer_apellido'];
+				$_SESSION['CUSTOMER']['DOCUMENT']=$result['usu_num_documento'];
+				$_SESSION['CUSTOMER']['MAIL']=$result['usu_correo'];
+				$_SESSION['CUSTOMER']['PHOTO']=$result['usu_foto'];
+				$_SESSION['CUSTOMER']['ADDRESS']=$result['usu_direccion'];
+				$_SESSION['CUSTOMER']['PERMITS'] = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+				$_SESSION['CUSTOMER']['STYLE'] = $this->master->selectBy('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
+				$fecha = date('Y-m-d');
+				// $this->master->updateMin('usuario',array('usu_ult_inicio_sesion'),array('usu_codigo',$result['usu_codigo']),$fecha);
+				if ($_SESSION['CUSTOMER']['ROL']==3 OR $_SESSION['CUSTOMER']['ROL']==1 ) {
+					$_SESSION['CUSTOMER']['CLIENT'] = true;
+					header("Location:maxirecargas");
+				}else{
+					header("Location:dashboard");
+				}
 			}else{
 				echo "Ocurrio un error";
 			}
