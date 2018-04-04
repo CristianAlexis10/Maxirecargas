@@ -163,7 +163,7 @@
             </div>
             <div class="wrap--contact">
                 <label for="contact--message" class="label-contact">Mensaje</label>
-                <textarea id="message" rows="1" cols="80"  class="input-contact"></textarea>
+                <textarea id="messageContact" rows="1" cols="80"  class="input-contact"></textarea>
             </div>
               <button type="submit" id="buttonContact" class="btn--contact">ENVIAR</button>
             </form>
