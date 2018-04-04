@@ -59,10 +59,10 @@
      </div>
     <div class="detail--figure"></div>
   </div>
-  <div class='modales' id="modalProductsCustomer">
-    <div class='new_order_token'>
-      <span id="close_modal_producto" class="closemodales">&times;</span>
-      <h1>detalles de productos</h1>
+  <div class='modal' id="modalProductsCustomer">
+    <div class='modal--container detail'>
+      <span id="close_modal_producto" class="close--modal">&times;</span>
+      <h1 class="title--modalDetail">Detalles Del Productos</h1>
       <div class="container_table">
         <table>
         <tr>
