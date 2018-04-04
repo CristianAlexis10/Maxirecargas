@@ -47,7 +47,7 @@ if (isset($_SESSION['user_quotation_new'])) {
     </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="views/assets/js/table.js"></script>
      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="views/assets/js/record.js"></script>
     <script type="text/javascript" src="views/assets/js/menu.js"></script>
