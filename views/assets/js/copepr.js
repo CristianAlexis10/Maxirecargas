@@ -41,9 +41,6 @@ if (document.getElementById('modal_mobile')) {
   };
 };
 
-
-
-
 // modals
 if (document.getElementById("modal_dir")) {
 var openModal_dir = document.getElementById('btnOtraDir');
