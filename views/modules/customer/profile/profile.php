@@ -1,9 +1,13 @@
+<?php
+$data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
+?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Editar perfil</title>
+    <link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="views/assets/image/logo.png">
     <link rel="stylesheet" href="views/assets/css/main-user.css">
@@ -15,56 +19,76 @@
       <div class="content--profile">
         <div class="profile--left">
           <p>editar información personal</p>
-          <form class="" action="index.html" method="post">
+          <form class="" action="modificar-mi-perfil" method="post">
           <div class="wrap_two_formgroup">
             <div class="form-profile">
               <label for="name" class="label--profile">primer nombre</label>
-              <input type="text" class="input--profile" id="name">
+              <input type="text" class="input--profile" id="name" name="data[]" value="<?php echo $data['usu_primer_nombre'] ?>" required>
             </div>
             <div class="form-profile">
               <label for="secondname" class="label--profile">segundo nombre</label>
-              <input type="text" class="input--profile" id="secondname">
+              <input type="text" class="input--profile" id="secondname" name="data[]" value="<?php echo $data['usu_segundo_nombre'] ?>" required>
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
               <label for="lastname" class="label--profile">primer apellido</label>
-              <input type="text" class="input--profile" id="lastname">
+              <input type="text" class="input--profile" id="lastname" name="data[]" value="<?php echo $data['usu_primer_apellido'] ?>" required>
             </div>
             <div class="form-profile">
               <label for="secondlast" class="label--profile">segundo apellido</label>
-              <input type="text" class="input--profile" id="secondlast">
+              <input type="text" class="input--profile" id="secondlast" name="data[]" value="<?php echo $data['usu_segundo_apellido'] ?>" required>
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
               <label for="email" class="label--profile">correo</label>
-              <input type="email" class="input--profile" id="email">
+              <input type="email" class="input--profile" id="email" name="data[]" value="<?php echo $data['usu_correo'] ?>" required>
             </div>
             <div class="form-profile">
               <label for="telphone" class="label--profile">teléfono:</label>
-              <input type="text" class="input--profile" id="telphone">
+              <input type="text" class="input--profile" id="telphone" name="data[]" value="<?php echo $data['usu_telefono'] ?>" required>
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
               <label for="country" class="label--profile">cuidad</label>
-              <select class="input--profile" id="country"></select>
+              <select class="input--profile" name="data[]" id="country">
+                <?php
+                  foreach ($this->master->selectAll("ciudad") as $row) {
+                    if ($row["id_ciudad"]==$data['id_ciudad']) {  ?>
+                      <option value="<?php   echo $row['id_ciudad']; ?>" selected><?php  echo $row['ciu_nombre'] ?></option>
+                <?php  }else{ ?>
+                  <option value="<?php   echo $row['id_ciudad']; ?>"><?php  echo $row['ciu_nombre'] ?></option>
+                <?php } } ?>
+              </select>
             </div>
             <div class="form-profile">
               <label for="address" class="label--profile">dirección:</label>
-              <input type="text" class="input--profile" id="address">
+              <input type="text" class="input--profile" id="address"  name="data[]"value="<?php echo $data['usu_direccion'] ?>" required>
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
               <label for="celphone" class="label--profile">celular</label>
-              <input type="number" id="celphone" class="input--profile">
+              <input type="number" id="celphone" class="input--profile" name="data[]" value="<?php echo $data['usu_celular'] ?>" required>
             </div>
             <div class="form-profile">
               <label for="datana" class="label--profile">fecha de nacimiento:</label>
-              <input type="date" class="input--profile" id="datana">
+              <input type="date" class="input--profile" id="datana" name="data[]" value="<?php echo $data['usu_fecha_nacimiento'] ?>" required>
             </div>
+          </div>
+          <div class="form-group">
+            <label for="sexo" class="select">Sexo:</label>
+            <select class="dataCl input grande"  id="sexo" name="data[]" required>
+              <?php if ($data['usu_sexo']=="masculino") {?>
+                  <option value="femenino">Femenino</option>
+                  <option value="masculino" selected>Masculino</option>
+              <?php }else{ ?>
+                <option value="femenino" selected>Femenino</option>
+                <option value="masculino">Masculino</option>
+            <?php } ?>
+            </select>
           </div>
           <div class="formbtn-profile">
             <button type="submit" name="button" id="btndata">guardar cambios</button>
@@ -89,9 +113,28 @@
           </div>
         <div class="profile--right">
           <p>editar foto</p>
-          <div class="cuadrito"></div>
+            <div class="imgprofile">
+                <div class="form-group Cambiar--img">
+                  <div id="wrap-result">
+                        <img src="views/assets/image/profile/<?php echo $data['usu_foto']; ?>" >
+                  </div>
+                  <span class="" id="cropp-img">Cambiar foto</span>
+                </div>
+              </div>
         </div>
 
+
+        <div id="img-product">
+            <div class="newMark--img">
+              <span id="closeImg">&times;</span>
+              <div id="uploadImage" class="modal">
+                <div id="wrap-upload" style="width:350px"></div>
+                <input type="file" id="upload">
+                <button class="btn btn-success upload-result">Recortar Imagen</button>
+              </div>
+            </div>
+          </div>
+      </div>
       </div>
     </div>
 
@@ -100,6 +143,9 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="views/assets/js/profile.js"></script>
   <script type="text/javascript" src="views/assets/js/user-customer.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+  <script src="views/assets/js/croppie.js"></script>
+  <script src="views/assets/js/cropp-profile.js"></script>
   <script type="text/javascript" src="views/assets/js/menu.js"></script>
 
 </html>

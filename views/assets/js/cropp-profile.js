@@ -19,7 +19,8 @@ $uploadCrop = $('#wrap-upload').croppie({
     enableExif: true,
     viewport: {
         width: 250,
-        height: 250
+        height: 250,
+         type: 'circle'
     },
     boundary: {
         width: 350,
@@ -55,6 +56,8 @@ $('.upload-result').on('click', function (ev) {
           console.log(data);
         html = '<img src="' + resp + '" />';
         $('.modal').modal('close');
+        $("#img-product").empty();
+        $("#img-product").hide();
         $("#wrap-result").html(html);
         console.log(data);
         $("#img").val(data);
