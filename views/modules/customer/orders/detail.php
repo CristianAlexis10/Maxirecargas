@@ -1,8 +1,8 @@
-<span><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu"></i><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu-mobile"></i></span>
   <?php
    $_SESSION['ped_detail_token'] = $data_order[0]['ped_token'];
   ?>
   <div class="container--detail">
+    <span><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu"></i><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu-mobile"></i></span>
     <div class="content--detail">
       <h1>Detalles De Pedidos</h1>
          <div class="detail">
