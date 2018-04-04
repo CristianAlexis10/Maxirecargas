@@ -3,7 +3,7 @@ $data = $this->master->selectBy('usuario',array('usu_codigo',$_POST['id']));
 $response = '
 <div class="modales" id="modalcontactar">
   <div class="container--modales">
-    <span class="closemodales" id="closeModal">&times;</span>
+    <span class="closemodales modalContacto"  onclick="cerrarModalContacto()">&times;</span>
     <h1>contactar cliente</h1>
     <div class="container_item">
         <div class="item">

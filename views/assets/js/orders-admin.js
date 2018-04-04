@@ -135,3 +135,62 @@ function loadDataTables(){
   $('#dataCancelled').load('index.php?controller=datatables&a=dataTableCancelled');
   $('#dataPostpone').load('index.php?controller=datatables&a=dataTablePostpone');
 }
+
+if (document.getElementById("close_modal_producto")) {
+    $("#viewAllProducts").click(function(){
+      $("#modalProductsCustomer").css({"display":"flex"});
+    });
+    $("#close_modal_producto").click(function(){
+      $("#modalProductsCustomer").hide();
+    });
+
+    //contacto
+    $(".contact--customer").click(function(){
+      var user = this.id;
+      $.ajax({
+        url:"index.php?controller=config&a=contact",
+        type:"post",
+        dataType:"json",
+        data:({id : user}),
+        success:function(result){
+          $("#contact").html(result);
+        },
+        error:function(result) {
+          console.log(result);
+        }
+      });
+    });
+
+    //enviar Correo
+    function sendMail(){
+      var data = [];
+      $(".dataContact").each(function(){
+        data.push(this.value);
+      });
+      $.ajax({
+        url:"index.php?controller=contact&a=sendMail",
+        type:"post",
+        dataType:"json",
+        data: ({values:data}),
+        beforeSend: function() {
+            $("#sendButton").after("<div id='message-load'>Enviando</div>");
+        },
+        success:function(result){
+          console.log(result);
+        },
+        error:function(result){
+          console.log(result);
+        },
+        complete: function() {
+          $("#message-load").remove();
+          $("#contact").empty();
+       }
+      });
+    }
+
+}
+
+function cerrarModalContacto(){
+  console.log("hg");
+  $("#modalcontactar").remove();
+}
