@@ -24,242 +24,242 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `activar` (IN `activar` VARCHAR(250))  BEGIN
+CREATE PROCEDURE `activar` (IN `activar` VARCHAR(250))  BEGIN
 
 SELECT * FROM acceso INNER JOIN usuario ON(acceso.usu_codigo = usuario.usu_codigo) WHERE acceso.token = activar;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `assign` (IN `orders` INT, IN `usu` INT, IN `estado` VARCHAR(20))  NO SQL
-BEGIN 
+CREATE PROCEDURE `assign` (IN `orders` INT, IN `usu` INT, IN `estado` VARCHAR(20))  NO SQL
+BEGIN
 UPDATE pedido SET pedido.ped_encargado = usu , ped_estado = estado WHERE  pedido.ped_codigo = orders ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiarDatosContacto` (IN `num1` INT(15), IN `num2` INT(15), IN `wpp` BIGINT(20), IN `correo` VARCHAR(150), IN `dir` VARCHAR(200), IN `inicio` TIME, IN `fin` TIME)  NO SQL
-BEGIN 
+CREATE PROCEDURE `cambiarDatosContacto` (IN `num1` INT(15), IN `num2` INT(15), IN `wpp` BIGINT(20), IN `correo` VARCHAR(150), IN `dir` VARCHAR(200), IN `inicio` TIME, IN `fin` TIME)  NO SQL
+BEGIN
 UPDATE gestion_web SET gw_ct_telefono = num1 ,gw_ct_telefono_2 = num2,gw_ct_whatsapp=wpp ,gw_ct_correo=correo,gw_ct_direccion=dir , gw_hora_inicio = inicio , gw_hora_fin = fin;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiarEstado` (IN `orde` INT, IN `estado` VARCHAR(20))  NO SQL
-BEGIN 
+CREATE PROCEDURE `cambiarEstado` (IN `orde` INT, IN `estado` VARCHAR(20))  NO SQL
+BEGIN
 UPDATE pedido SET ped_estado = estado WHERE ped_codigo = orde ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cambiarEstadoPagado` (IN `orde` INT, IN `estado` VARCHAR(20), IN `total` INT, IN `fecha` DATE)  NO SQL
-BEGIN 
+CREATE PROCEDURE `cambiarEstadoPagado` (IN `orde` INT, IN `estado` VARCHAR(20), IN `total` INT, IN `fecha` DATE)  NO SQL
+BEGIN
 UPDATE pedido SET ped_estado = estado WHERE ped_codigo = orde ;
 UPDATE ventas SET ventas.ven_total = total, ven_fecha = fecha WHERE ventas.ped_codigo = orde ;
 UPDATE usuarioxpedido SET usuxped_total = total  WHERE ped_codigo = orde;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `chats_actuales` ()  NO SQL
+CREATE PROCEDURE `chats_actuales` ()  NO SQL
 BEGIN
 SELECT chats.chat_token,chats.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido FROM chats INNER JOIN mensajexchat ON chats.chat_token=mensajexchat.chat_token  INNER JOIN usuario ON  chats.usu_codigo  = usuario.usu_codigo WHERE chats.chat_estado = "proceso" GROUP BY chats.chat_token;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `clientesEstrellas` ()  NO SQL
+CREATE PROCEDURE `clientesEstrellas` ()  NO SQL
 BEGIN
 	select usuario.*, count(*) as cantidad, ven_fecha from ventas   INNER JOIN usuario ON ventas.usu_codigo=usuario.usu_codigo group by ventas.usu_codigo order by ven_fecha desc LIMIT 5;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `clientesRegistrados` ()  NO SQL
+CREATE PROCEDURE `clientesRegistrados` ()  NO SQL
 BEGIN
 	SELECT COUNT(*) FROM usuario WHERE tip_usu_codigo = 3 OR tip_usu_codigo = 1;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaClienteEmpresarial` (IN `cliente` INT(11))  BEGIN
+CREATE PROCEDURE `consultaClienteEmpresarial` (IN `cliente` INT(11))  BEGIN
 SELECT * FROM cliente_empresarial WHERE usu_codigo = cliente;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultaEmpresa` (IN `empresa` INT(11))  BEGIN
+CREATE PROCEDURE `ConsultaEmpresa` (IN `empresa` INT(11))  BEGIN
 	SELECT * FROM empresa WHERE emp_codigo = empresa;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaExisteEmail` (IN `correo` VARCHAR(100))  BEGIN
+CREATE PROCEDURE `consultaExisteEmail` (IN `correo` VARCHAR(100))  BEGIN
   SELECT * FROM usuario INNER JOIN acceso ON(usuario.usu_codigo=acceso.usu_codigo) WHERE usuario.usu_correo = correo;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaExisteEmpresarial` (IN `empresarial` VARCHAR(100))  BEGIN
+CREATE PROCEDURE `consultaExisteEmpresarial` (IN `empresarial` VARCHAR(100))  BEGIN
   SELECT * FROM empresa WHERE emp_nit = empresarial;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaExisteUsuario` (IN `documento` VARCHAR(100))  BEGIN
+CREATE PROCEDURE `consultaExisteUsuario` (IN `documento` VARCHAR(100))  BEGIN
   SELECT * FROM usuario WHERE usu_num_documento = documento;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaLogin` (IN `documento` INT(11))  BEGIN
+CREATE PROCEDURE `consultaLogin` (IN `documento` INT(11))  BEGIN
   SELECT * FROM usuario INNER JOIN acceso ON(usuario.usu_codigo=acceso.usu_codigo) WHERE usuario.usu_num_documento = documento;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaSede` (IN `sede` INT(11))  BEGIN
+CREATE PROCEDURE `consultaSede` (IN `sede` INT(11))  BEGIN
 	SELECT * FROM sede WHERE sed_codigo = sede;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultaSedeExistente` (IN `nombre` VARCHAR(50))  BEGIN
+CREATE PROCEDURE `ConsultaSedeExistente` (IN `nombre` VARCHAR(50))  BEGIN
 	SELECT * FROM sede WHERE sed_nombre = nombre;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `consultaUsuariosRegistrados` ()  BEGIN
+CREATE PROCEDURE `consultaUsuariosRegistrados` ()  BEGIN
   SELECT count(*) FROM usuario WHERE id_estado = 1;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `contarPedidosCanceladasBy` (IN `usu` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `contarPedidosCanceladasBy` (IN `usu` INT)  NO SQL
+BEGIN
 SELECT COUNT(*) AS 'total' FROM  pedido WHERE ped_encargado = usu AND ped_estado="Cancelado" ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `contarPedidosPendientesBy` (IN `usu` INT, IN `dat` DATE)  NO SQL
-BEGIN 
+CREATE PROCEDURE `contarPedidosPendientesBy` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN
 SELECT COUNT(*) AS 'total' FROM  pedido WHERE ped_encargado = usu AND ped_estado="Aplazado" OR dat > ped_fecha_entrega;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `contarPedidosTerminadosBy` (IN `usu` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `contarPedidosTerminadosBy` (IN `usu` INT)  NO SQL
+BEGIN
 SELECT COUNT(*) AS 'total' FROM  pedido WHERE ped_encargado = usu AND ped_estado="Terminado";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ContarRutasParaHoyPorUsuario` (IN `usu` INT, IN `dat` DATE)  NO SQL
-BEGIN 
+CREATE PROCEDURE `ContarRutasParaHoyPorUsuario` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN
 SELECT COUNT(*) AS total FROM pedido WHERE pedido.ped_fecha_entrega = dat AND ped_encargado = usu;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ContarRutasPorUsuario` (IN `usu` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `ContarRutasPorUsuario` (IN `usu` INT)  NO SQL
+BEGIN
 SELECT COUNT(*) AS total FROM pedido WHERE ped_encargado = usu;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `contestarCotizacion` (IN `quota` INT, IN `respon` LONGTEXT, IN `estado` VARCHAR(20))  NO SQL
-BEGIN 
+CREATE PROCEDURE `contestarCotizacion` (IN `quota` INT, IN `respon` LONGTEXT, IN `estado` VARCHAR(20))  NO SQL
+BEGIN
 UPDATE cotizacion SET cotizacion.cot_estado = estado, cotizacion.cot_observacion = respon WHERE cotizacion.cot_codigo = quota;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cotizacionesPendientes` ()  NO SQL
+CREATE PROCEDURE `cotizacionesPendientes` ()  NO SQL
 BEGIN
 SELECT * FROM cotizacion INNER JOIN usuario ON cotizacion.usu_codigo = usuario.usu_codigo INNER JOIN ciudad ON cotizacion.cot_ciudad=ciudad.id_ciudad WHERE cotizacion.cot_estado = "En Recepcion";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cotizacionesRealizadasBy` (IN `usu` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `cotizacionesRealizadasBy` (IN `usu` INT)  NO SQL
+BEGIN
 SELECT * FROM cotizacion INNER JOIN ciudad ON cotizacion.cot_ciudad = ciudad.id_ciudad WHERE cotizacion.usu_codigo=usu;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cotizacionesTerminadas` ()  NO SQL
+CREATE PROCEDURE `cotizacionesTerminadas` ()  NO SQL
 BEGIN
 SELECT * FROM cotizacion INNER JOIN usuario ON cotizacion.usu_codigo = usuario.usu_codigo INNER JOIN ciudad ON cotizacion.cot_ciudad=ciudad.id_ciudad WHERE cotizacion.cot_estado = "Terminado";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `crearAcceso` (IN `token` VARCHAR(250), IN `usu_codigo` INT(11), IN `acc_contra` VARCHAR(255))  BEGIN
+CREATE PROCEDURE `crearAcceso` (IN `token` VARCHAR(250), IN `usu_codigo` INT(11), IN `acc_contra` VARCHAR(255))  BEGIN
 INSERT INTO acceso (token, usu_codigo, acc_contra) VALUES (token, usu_codigo, acc_contra);
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `crearClienteEmpresarial` (IN `usu_codigo` INT(11), IN `sed_codigo` INT(11), IN `cli_emp_cargo` VARCHAR(45))  BEGIN
+CREATE PROCEDURE `crearClienteEmpresarial` (IN `usu_codigo` INT(11), IN `sed_codigo` INT(11), IN `cli_emp_cargo` VARCHAR(45))  BEGIN
 
 INSERT INTO cliente_empresarial (usu_codigo, sed_codigo, cli_emp_cargo) VALUES (usu_codigo, sed_codigo, cli_emp_cargo);
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `crearEmpresa` (IN `emp_nombre` VARCHAR(50), IN `emp_nit` INT(100), IN `emp_razon_social` VARCHAR(100))  BEGIN
+CREATE PROCEDURE `crearEmpresa` (IN `emp_nombre` VARCHAR(50), IN `emp_nit` INT(100), IN `emp_razon_social` VARCHAR(100))  BEGIN
 
 INSERT INTO empresa (emp_nombre, emp_nit, emp_razon_social) VALUES (emp_nombre, emp_nit, emp_razon_social);
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `crearMarca` (IN `nombre` VARCHAR(50), IN `des` VARCHAR(200))  NO SQL
-BEGIN 
+CREATE PROCEDURE `crearMarca` (IN `nombre` VARCHAR(50), IN `des` VARCHAR(200))  NO SQL
+BEGIN
 INSERT INTO marca (mar_nombre,mar_descripcion) VALUES (nombre,des);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `crearReporte` (IN `orde` INT, IN `estado` VARCHAR(20), IN `obs` MEDIUMTEXT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `crearReporte` (IN `orde` INT, IN `estado` VARCHAR(20), IN `obs` MEDIUMTEXT)  NO SQL
+BEGIN
 UPDATE pedido SET ped_estado = estado WHERE ped_codigo = orde;
 INSERT INTO reporte (ped_codigo,rep_observacion) VALUES (orde,obs);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `crearSede` (IN `emp_codigo` INT(11), IN `sed_nombre` VARCHAR(50), IN `sed_direccion` VARCHAR(200), IN `sed_telefono` INT(11))  BEGIN
+CREATE PROCEDURE `crearSede` (IN `emp_codigo` INT(11), IN `sed_nombre` VARCHAR(50), IN `sed_direccion` VARCHAR(200), IN `sed_telefono` INT(11))  BEGIN
 
 INSERT INTO sede (emp_codigo, sed_nombre, sed_direccion, sed_telefono) VALUES (emp_codigo, sed_nombre, sed_direccion, sed_telefono);
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `crearUsuario` (IN `id_tipo_documento` INT(11), IN `usu_num_documento` INT(11), IN `usu_primer_nombre` VARCHAR(50), IN `usu_primer_apellido` VARCHAR(50), IN `usu_correo` VARCHAR(100), IN `usu_telefono` INT(10), IN `id_ciudad` INT(11), IN `dir` VARCHAR(200), IN `usu_sexo` VARCHAR(50), IN `tip_usu_codigo` INT(11), IN `id_estado` INT(11), IN `usu_foto` LONGTEXT, IN `usu_fechas_registro` DATE, IN `usu_ult_inicio_sesion` DATE)  BEGIN
+CREATE PROCEDURE `crearUsuario` (IN `id_tipo_documento` INT(11), IN `usu_num_documento` INT(11), IN `usu_primer_nombre` VARCHAR(50), IN `usu_primer_apellido` VARCHAR(50), IN `usu_correo` VARCHAR(100), IN `usu_telefono` INT(10), IN `id_ciudad` INT(11), IN `dir` VARCHAR(200), IN `usu_sexo` VARCHAR(50), IN `tip_usu_codigo` INT(11), IN `id_estado` INT(11), IN `usu_foto` LONGTEXT, IN `usu_fechas_registro` DATE, IN `usu_ult_inicio_sesion` DATE)  BEGIN
 INSERT INTO usuario  (id_tipo_documento, usu_num_documento, usu_primer_nombre, usu_primer_apellido,  usu_correo,  usu_celular, id_ciudad, usu_direccion,  usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion) VALUES (id_tipo_documento, usu_num_documento,  usu_primer_nombre, usu_primer_apellido, usu_correo, usu_telefono, id_ciudad, dir, usu_sexo, tip_usu_codigo, id_estado, usu_foto, usu_fechas_registro, usu_ult_inicio_sesion);
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `datosCotizacion` (IN `cod` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `datosCotizacion` (IN `cod` INT)  NO SQL
+BEGIN
 SELECT cot.cot_codigo,cot.cot_token,cot.cot_estado,usu.usu_primer_nombre,usu.usu_primer_apellido,proco.proxcot_cantidad,pro.pro_referencia,ser.tip_ser_nombre,ser.Tip_ser_cod,proco.proxcod_observacion, proco.proxcod_res,cot.cot_observacion FROM cotizacion cot INNER JOIN usuario usu ON usu.usu_codigo=cot.usu_codigo INNER JOIN prodxcot  proco ON proco.cot_codigo = cot.cot_codigo INNER JOIN producto pro ON proco.pro_codigo=pro.pro_codigo INNER JOIN tipo_servicio ser ON proco.tip_servicio = ser.Tip_ser_cod WHERE cot.cot_codigo = cod;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `direccionDeCotizacion` (IN `id` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `direccionDeCotizacion` (IN `id` INT)  NO SQL
+BEGIN
 SELECT pais.pai_nombre,departamento.dep_nombre,ciudad.ciu_nombre,cotizacion.cot_dir FROM cotizacion INNER JOIN ciudad ON cotizacion.cot_ciudad=ciudad.id_ciudad INNER JOIN departamento ON ciudad.id_departamento=departamento.id_departamento INNER JOIN pais ON departamento.id_pais = pais.id_pais WHERE cotizacion.cot_codigo = id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `direccionDePedido` (IN `token` VARCHAR(13))  NO SQL
-BEGIN 
+CREATE PROCEDURE `direccionDePedido` (IN `token` VARCHAR(13))  NO SQL
+BEGIN
 SELECT pais.pai_nombre,departamento.dep_nombre,ciudad.ciu_nombre,pedido.ped_direccion FROM pedido INNER JOIN ciudad ON pedido.ped_ciudad=ciudad.id_ciudad INNER JOIN departamento ON ciudad.id_departamento=departamento.id_departamento INNER JOIN pais ON departamento.id_pais = pais.id_pais WHERE pedido.ped_token = token;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarClienteEmpresarial` (IN `codigo` INT(11))  BEGIN
-IF EXISTS (SELECT id_cliente_empresarial FROM cliente_empresarial WHERE id_cliente_empresarial = codigo) 
-THEN 
+CREATE PROCEDURE `eliminarClienteEmpresarial` (IN `codigo` INT(11))  BEGIN
+IF EXISTS (SELECT id_cliente_empresarial FROM cliente_empresarial WHERE id_cliente_empresarial = codigo)
+THEN
 DELETE FROM cliente_empresarial WHERE id_cliente_empresarial = codigo;
 END if;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarEmpresa` (IN `codigo` INT(11))  BEGIN
-IF EXISTS (SELECT emp_codigo FROM empresa WHERE emp_codigo = codigo) 
-THEN 
+CREATE PROCEDURE `eliminarEmpresa` (IN `codigo` INT(11))  BEGIN
+IF EXISTS (SELECT emp_codigo FROM empresa WHERE emp_codigo = codigo)
+THEN
 DELETE FROM empresa WHERE emp_codigo = codigo;
 END if;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarSede` (IN `codigo` INT(11))  BEGIN
-IF EXISTS (SELECT sed_codigo FROM sede WHERE sed_codigo = codigo) 
-THEN 
+CREATE PROCEDURE `eliminarSede` (IN `codigo` INT(11))  BEGIN
+IF EXISTS (SELECT sed_codigo FROM sede WHERE sed_codigo = codigo)
+THEN
 DELETE FROM sede WHERE sed_codigo = codigo;
 END if;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarUsuario` (IN `codigo` INT(11))  BEGIN
-IF EXISTS (SELECT usu_codigo FROM usuario WHERE usu_codigo = codigo) 
-THEN 
+CREATE PROCEDURE `eliminarUsuario` (IN `codigo` INT(11))  BEGIN
+IF EXISTS (SELECT usu_codigo FROM usuario WHERE usu_codigo = codigo)
+THEN
 DELETE FROM usuario WHERE usu_codigo = codigo;
 END if;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarUsuarioyClienteEmpresarial` (IN `codigo` INT(11))  BEGIN
+CREATE PROCEDURE `EliminarUsuarioyClienteEmpresarial` (IN `codigo` INT(11))  BEGIN
 DELETE FROM cliente_empresarial WHERE usu_codigo = codigo;
 DELETE FROM usuario WHERE usu_codigo = codigo;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `filterCount` (IN `cat` VARCHAR(30), IN `vall` VARCHAR(60))  NO SQL
-BEGIN 
+CREATE PROCEDURE `filterCount` (IN `cat` VARCHAR(30), IN `vall` VARCHAR(60))  NO SQL
+BEGIN
 SELECT COUNT(*) FROM producto INNER JOIN tipo_producto ON  tipo_producto.tip_pro_codigo=producto.tip_pro_codigo WHERE ( (producto.pro_referencia LIKE CONCAT("%",vall,"%") OR producto.mar_codigo LIKE CONCAT("%",vall,"%") OR producto.pro_descripcion LIKE CONCAT("%",vall,"%")) ) AND tipo_producto.tip_pro_nombre=cat AND producto.pro_codigo= 1;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `filterProducts` (IN `cat` VARCHAR(30), IN `vall` VARCHAR(60), IN `ini` INT, IN `fin` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `filterProducts` (IN `cat` VARCHAR(30), IN `vall` VARCHAR(60), IN `ini` INT, IN `fin` INT)  NO SQL
+BEGIN
 SELECT * FROM producto INNER JOIN tipo_producto ON  tipo_producto.tip_pro_codigo=producto.tip_pro_codigo WHERE ( (producto.pro_referencia LIKE CONCAT("%",vall,"%") OR producto.mar_codigo LIKE CONCAT("%",vall,"%") OR producto.pro_descripcion LIKE CONCAT("%",vall,"%"))) AND tipo_producto.tip_pro_nombre=cat AND producto.pro_estado = 1 LIMIT ini,fin ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `finalizarChat` (IN `fecha` DATE, IN `hora` TIME, IN `token` VARCHAR(20), IN `estado` VARCHAR(20))  NO SQL
-BEGIN 
+CREATE PROCEDURE `finalizarChat` (IN `fecha` DATE, IN `hora` TIME, IN `token` VARCHAR(20), IN `estado` VARCHAR(20))  NO SQL
+BEGIN
 UPDATE chats SET fecha_fin = fecha , hora_fin = hora , chat_estado = estado WHERE chat_token = token ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inactivar` (IN `estado` INT(11), IN `codigo` INT(11))  BEGIN
+CREATE PROCEDURE `inactivar` (IN `estado` INT(11), IN `codigo` INT(11))  BEGIN
 
-UPDATE usuario 
+UPDATE usuario
 SET id_estado = estado
 WHERE usu_codigo = codigo;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinClienteEmpresarial` (IN `codigo` INT(11))  BEGIN
+CREATE PROCEDURE `innerJoinClienteEmpresarial` (IN `codigo` INT(11))  BEGIN
 SELECT * FROM usuario t1
 INNER JOIN cliente_empresarial t2 on t1.usu_codigo=t2.usu_codigo
 INNER JOIN sede t3 on t2.sed_codigo=t3.sed_codigo
@@ -268,7 +268,7 @@ WHERE t1.usu_codigo=codigo;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinClienteySede` (IN `codigo` INT(11))  BEGIN
+CREATE PROCEDURE `innerJoinClienteySede` (IN `codigo` INT(11))  BEGIN
 SELECT * FROM cliente_empresarial C1
 INNER JOIN sede C2 ON C1.sed_codigo = C2.sed_codigo
 INNER JOIN empresa C3 ON C2.emp_codigo = C3.emp_codigo
@@ -276,7 +276,7 @@ WHERE C1.usu_codigo=codigo;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinDireccion` ()  NO SQL
+CREATE PROCEDURE `innerJoinDireccion` ()  NO SQL
 BEGIN
 SELECT t1.usu_direccion, t1.usu_primer_nombre,t2.ciu_nombre, t4.dep_nombre, t3.pai_nombre FROM usuario t1
 INNER JOIN ciudad t2 on t1.id_ciudad=t2.id_ciudad
@@ -286,12 +286,12 @@ WHERE t1.tip_usu_codigo=1 OR t1.tip_usu_codigo=3 LIMIT 20;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinLocalizacion` (IN `ciu` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `innerJoinLocalizacion` (IN `ciu` INT)  NO SQL
+BEGIN
 SELECT ciudad.ciu_nombre,departamento.dep_nombre,pais.pai_nombre FROM ciudad INNER JOIN departamento on ciudad.id_departamento=departamento.id_departamento INNER JOIN pais ON departamento.id_pais = pais.id_pais WHERE ciudad.id_ciudad = ciu;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinProducto` (IN `codigo` INT(11))  BEGIN
+CREATE PROCEDURE `innerJoinProducto` (IN `codigo` INT(11))  BEGIN
 SELECT * FROM producto t1
 INNER JOIN tipo_producto t2 on t1.tip_pro_codigo=t2.tip_pro_codigo
 INNER JOIN marca t3 on t1.mar_codigo=t3.mar_codigo INNER JOIN servicioxproducto serpro ON t1.pro_codigo = serpro.pro_codigo INNER JOIN tipo_servicio tip ON serpro.tip_ser_cod = tip.Tip_ser_cod
@@ -299,7 +299,7 @@ WHERE t1.pro_codigo=codigo ;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `innerJoinUsuario` (IN `codigo` INT(11))  BEGIN
+CREATE PROCEDURE `innerJoinUsuario` (IN `codigo` INT(11))  BEGIN
 SELECT * FROM usuario T1
 INNER JOIN tipo_documento T2 on T1.id_tipo_documento=T2.id_tipo_documento
 INNER JOIN ciudad T3 on T1.id_ciudad=T3.id_ciudad
@@ -311,49 +311,49 @@ INNER JOIN estado T5 on T1.id_estado=T5.id_estado
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `leerConversacion` (IN `token` VARCHAR(20))  NO SQL
+CREATE PROCEDURE `leerConversacion` (IN `token` VARCHAR(20))  NO SQL
 BEGIN
 SELECT chats.*,mensajexchat.*,usuario.usu_primer_nombre,usuario.usu_primer_apellido FROM chats INNER JOIN mensajexchat ON chats.chat_token=mensajexchat.chat_token INNER JOIN usuario ON chats.usu_codigo = usuario.usu_codigo WHERE chats.chat_token = token;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `listaVisitas` (IN `user` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `listaVisitas` (IN `user` INT)  NO SQL
+BEGIN
 SELECT * FROM pedido WHERE ped_encargado = user;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarClienteEmpresarial` (IN `cargo` VARCHAR(45), IN `codigo` INT(11))  NO SQL
+CREATE PROCEDURE `modificarClienteEmpresarial` (IN `cargo` VARCHAR(45), IN `codigo` INT(11))  NO SQL
 BEGIN
 UPDATE cliente_empresarial
-SET  
+SET
      cli_emp_cargo = cargo
-     
+
 WHERE id_cliente_empresarial = codigo;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ModificarCotxPro` (IN `pro` INT, IN `cantidad` INT, IN `servicio` INT, IN `cot` INT, IN `total` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `ModificarCotxPro` (IN `pro` INT, IN `cantidad` INT, IN `servicio` INT, IN `cot` INT, IN `total` INT)  NO SQL
+BEGIN
 UPDATE prodxcot SET prodxcot.proxcod_res = total WHERE prodxcot.cot_codigo = cot AND prodxcot.pro_codigo = pro AND prodxcot.proxcot_cantidad = cantidad AND prodxcot.tip_servicio = servicio;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarDatosMaxi` (IN `micro` LONGTEXT, IN `mision` LONGTEXT, IN `vision` LONGTEXT, IN `poli` LONGTEXT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `modificarDatosMaxi` (IN `micro` LONGTEXT, IN `mision` LONGTEXT, IN `vision` LONGTEXT, IN `poli` LONGTEXT)  NO SQL
+BEGIN
 UPDATE gestion_web  SET gw_micro_des =  micro , gw_mision = mision , 	gw_vision = vision , gw_politicas = poli  ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarEmpresa` (IN `codigo` INT(11), IN `nombre` VARCHAR(50), IN `nit` INT(11), IN `razon_social` VARCHAR(100))  BEGIN
+CREATE PROCEDURE `modificarEmpresa` (IN `codigo` INT(11), IN `nombre` VARCHAR(50), IN `nit` INT(11), IN `razon_social` VARCHAR(100))  BEGIN
 
 UPDATE empresa
 SET  emp_nombre = nombre,
 	 emp_nit = nit,
      emp_razon_social = razon_social
-     
+
 WHERE emp_codigo = codigo;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarSede` (IN `codigo` INT(11), IN `nombre` VARCHAR(50), IN `dir` VARCHAR(200), IN `tel` INT(11))  NO SQL
-BEGIN 
+CREATE PROCEDURE `modificarSede` (IN `codigo` INT(11), IN `nombre` VARCHAR(50), IN `dir` VARCHAR(200), IN `tel` INT(11))  NO SQL
+BEGIN
 update sede SET
 sed_nombre = nombre,
 sed_direccion= dir,
@@ -361,9 +361,9 @@ sed_telefono = tel
 WHERE sed_codigo = codigo;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarUsuario` (IN `codigo` INT(11), IN `tipo_documento` INT(11), IN `documento` INT(11), IN `nombre` VARCHAR(50), IN `apellido` VARCHAR(50), IN `correo` VARCHAR(100), IN `telefono` INT(10), IN `ciudad` INT(11), IN `nacimiento` DATE, IN `sexo` VARCHAR(50), IN `tipo_codigo` INT(11), IN `estado` INT(11), IN `foto` LONGTEXT)  BEGIN
+CREATE PROCEDURE `modificarUsuario` (IN `codigo` INT(11), IN `tipo_documento` INT(11), IN `documento` INT(11), IN `nombre` VARCHAR(50), IN `apellido` VARCHAR(50), IN `correo` VARCHAR(100), IN `telefono` INT(10), IN `ciudad` INT(11), IN `nacimiento` DATE, IN `sexo` VARCHAR(50), IN `tipo_codigo` INT(11), IN `estado` INT(11), IN `foto` LONGTEXT)  BEGIN
 
-UPDATE usuario 
+UPDATE usuario
 SET  id_tipo_documento = tipo_documento,
 	 usu_num_documento = documento,
      usu_primer_nombre = nombre,
@@ -376,173 +376,173 @@ SET  id_tipo_documento = tipo_documento,
      tip_usu_codigo = tipo_codigo,
      id_estado = estado,
      usu_foto = foto
-     
+
 WHERE usu_codigo = codigo;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `opcionesBusqueda` (IN `cod` INT, IN `opciones` MEDIUMTEXT)  NO SQL
+CREATE PROCEDURE `opcionesBusqueda` (IN `cod` INT, IN `opciones` MEDIUMTEXT)  NO SQL
 BEGIN
 INSERT INTO opciones_busqueda (pro_codigo,opc_bus_tags) VALUES (cod,opciones);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosAplazados` ()  NO SQL
-BEGIN 
+CREATE PROCEDURE `pedidosAplazados` ()  NO SQL
+BEGIN
 SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_fecha_entrega,T1.ped_hora_entrega,T1.ped_token, T5.rep_observacion FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad INNER JOIN reporte T5 ON T1.ped_codigo = T5.ped_codigo WHERE T1.ped_estado ="Aplazado";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosAsignados` ()  NO SQL
-BEGIN 
+CREATE PROCEDURE `pedidosAsignados` ()  NO SQL
+BEGIN
 SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_fecha_entrega,T1.ped_hora_entrega,T1.ped_token, T1.ped_encargado FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_encargado is not null AND T1.ped_estado="En Proceso";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosCancelados` ()  NO SQL
-BEGIN 
+CREATE PROCEDURE `pedidosCancelados` ()  NO SQL
+BEGIN
 SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_token,T1.ped_fecha_entrega,T1.ped_hora_entrega, T5.rep_observacion FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad INNER JOIN reporte T5 ON T1.ped_codigo = T5.ped_codigo WHERE T1.ped_estado ="Cancelado";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosDelDia` (IN `fecha` DATE)  NO SQL
+CREATE PROCEDURE `pedidosDelDia` (IN `fecha` DATE)  NO SQL
 BEGIN
 SELECT COUNT(*) FROM pedido WHERE ped_fecha = fecha;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosFinalizados` ()  NO SQL
-BEGIN 
+CREATE PROCEDURE `pedidosFinalizados` ()  NO SQL
+BEGIN
 SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_fecha_entrega,T1.ped_hora_entrega,T1.ped_token FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_estado ="Terminado";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosPendientes` ()  NO SQL
-BEGIN 
+CREATE PROCEDURE `pedidosPendientes` ()  NO SQL
+BEGIN
 SELECT T3.usu_primer_nombre,T3.usu_primer_apellido,T1.ped_codigo,T4.ciu_nombre,T1.ped_direccion,T1.ped_fecha,T1.ped_fecha_entrega,T1.ped_hora_entrega,T1.ped_token FROM pedido T1 INNER JOIN usuarioxpedido T2 ON T1.ped_codigo=T2.ped_codigo INNER JOIN usuario T3 ON T2.usu_codigo = T3.usu_codigo  INNER JOIN ciudad T4 ON T1.ped_ciudad =T4.id_ciudad WHERE T1.ped_estado="En Bodega";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pedidosRealizadosBy` (IN `usu` INT)  NO SQL
+CREATE PROCEDURE `pedidosRealizadosBy` (IN `usu` INT)  NO SQL
 BEGIN
 SELECT * FROM usuarioxpedido t1 INNER JOIN pedido t2 ON t1.ped_codigo = t2.ped_codigo INNER JOIN usuario t3 ON t1.usu_codigo = t3.usu_codigo INNER JOIN ciudad t4 ON t2.ped_ciudad = t4.id_ciudad WHERE t1.usu_codigo = usu;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `porcentajeMensual` (IN `Mes` INT)  NO SQL
+CREATE PROCEDURE `porcentajeMensual` (IN `Mes` INT)  NO SQL
 BEGIN
 	select usu_codigo, count(*) as cantidad, ven_fecha from ventas  WHERE MONTH(ven_fecha)= Mes group by usu_codigo;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `porcentajeVentas` (IN `Mes` DATE)  NO SQL
+CREATE PROCEDURE `porcentajeVentas` (IN `Mes` DATE)  NO SQL
 BEGIN
 	DECLARE total INTEGER;
-    
+
     SELECT COUNT(*) INTO total FROM usuario WHERE tip_usu_codigo = 3 OR tip_usu_codigo = 1;
-    
+
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `productoMasVendido` (IN `Mes1` INT, IN `Mes2` INT, IN `Mes3` INT)  NO SQL
+CREATE PROCEDURE `productoMasVendido` (IN `Mes1` INT, IN `Mes2` INT, IN `Mes3` INT)  NO SQL
 BEGIN
 SELECT producto.*, SUM(his_pro_cantidad) FROM historial_productos INNER JOIN producto ON historial_productos.pro_codigo = producto.pro_codigo WHERE MONTH(his_pro_fecha) = Mes1 OR MONTH(his_pro_fecha) = Mes2 OR MONTH(his_pro_fecha) = Mes3 GROUP BY historial_productos.pro_codigo ORDER BY SUM(historial_productos.his_pro_cantidad) DESC LIMIT 5;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `productosAgotarse` ()  NO SQL
-BEGIN 
+CREATE PROCEDURE `productosAgotarse` ()  NO SQL
+BEGIN
 SELECT * FROM stock WHERE stock.sto_cantidad <= 5;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readByCategory` (IN `nombre` VARCHAR(20))  NO SQL
+CREATE PROCEDURE `readByCategory` (IN `nombre` VARCHAR(20))  NO SQL
 BEGIN
 SELECT count(*) FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre AND producto.pro_estado =1;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readBycategoryPagination` (IN `nombre` VARCHAR(20), IN `ini` INT, IN `ele` INT)  NO SQL
+CREATE PROCEDURE `readBycategoryPagination` (IN `nombre` VARCHAR(20), IN `ini` INT, IN `ele` INT)  NO SQL
 BEGIN
 SELECT * FROM tipo_producto INNER JOIN producto ON tipo_producto.tip_pro_codigo = producto.tip_pro_codigo WHERE tipo_producto.tip_pro_nombre=nombre AND producto.pro_estado = 1 LIMIT ini,ele;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readOptionSearch` (IN `buscar` VARCHAR(40))  NO SQL
-BEGIN 
+CREATE PROCEDURE `readOptionSearch` (IN `buscar` VARCHAR(40))  NO SQL
+BEGIN
 SELECT pro.pro_referencia,pro.pro_descripcion,opc.opc_bus_tags,mar.mar_nombre,tipro.tip_pro_nombre             FROM producto pro INNER JOIN opciones_busqueda opc ON pro.pro_codigo=opc.pro_codigo INNER JOIN marca mar ON pro.mar_codigo=mar.mar_codigo  INNER JOIN tipo_producto tipro ON pro.tip_pro_codigo=tipro.tip_pro_codigo WHERE ( opc.opc_bus_tags LIKE CONCAT("%",buscar,"%") OR mar.mar_nombre LIKE CONCAT("%",buscar,"%")  OR tipro.tip_pro_nombre LIKE CONCAT("%",buscar,"%")) AND producto.pro_estado = 1;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readRefer` ()  NO SQL
-BEGIN 
+CREATE PROCEDURE `readRefer` ()  NO SQL
+BEGIN
 SELECT producto.pro_referencia FROM producto WHERE producto.pro_estado = 1;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `servicioInner` (IN `cod` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `servicioInner` (IN `cod` INT)  NO SQL
+BEGIN
 SELECT * FROM servicioxproducto INNER JOIN tipo_servicio ON servicioxproducto.tip_ser_cod = tipo_servicio.Tip_ser_cod WHERE servicioxproducto.pro_codigo = cod;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `totalCotizaciones` ()  NO SQL
+CREATE PROCEDURE `totalCotizaciones` ()  NO SQL
 BEGIN
     SELECT COUNT(*) FROM cotizacion;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `totalPedidos` ()  NO SQL
+CREATE PROCEDURE `totalPedidos` ()  NO SQL
 BEGIN
 	SELECT COUNT(*) FROM pedido;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `totalPersonasJuridicas` ()  NO SQL
+CREATE PROCEDURE `totalPersonasJuridicas` ()  NO SQL
 BEGIN
 	SELECT COUNT(*) FROM usuario WHERE tip_usu_codigo = 3;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `totalPersonasNaturales` ()  NO SQL
+CREATE PROCEDURE `totalPersonasNaturales` ()  NO SQL
 BEGIN
 	SELECT COUNT(*) FROM usuario WHERE tip_usu_codigo = 1;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ventaDiaria` (IN `fecha` DATE)  NO SQL
+CREATE PROCEDURE `ventaDiaria` (IN `fecha` DATE)  NO SQL
 BEGIN
 SELECT SUM(ventas.ven_total) FROM ventas WHERE ven_fecha = fecha;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ventaMensual` (IN `Mes` INT)  NO SQL
+CREATE PROCEDURE `ventaMensual` (IN `Mes` INT)  NO SQL
 BEGIN
 SELECT SUM(ventas.ven_total) FROM ventas WHERE MONTH(ven_fecha)= Mes;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verCotizacion` (IN `id` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `verCotizacion` (IN `id` INT)  NO SQL
+BEGIN
 SELECT * FROM cotizacion T1 INNER JOIN usuario T2 ON T1.usu_codigo = T2.usu_codigo  INNER JOIN ciudad T3 ON T1.cot_ciudad=T3.id_ciudad INNER JOIN prodxcot T4 ON T1.cot_codigo =T4.cot_codigo  INNER JOIN producto T6 ON T4.pro_codigo = T6.pro_codigo INNER JOIN tipo_producto T5 ON T6.tip_pro_codigo = T5.tip_pro_codigo INNER JOIN tipo_servicio T7 ON T4.tip_servicio = T7.Tip_ser_cod WHERE T1.cot_codigo = id ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRuta` (IN `usu` INT, IN `dat` DATE)  NO SQL
-BEGIN 
+CREATE PROCEDURE `verDetalleRuta` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN
 SELECT t1.usu_primer_nombre,t1.usu_primer_apellido,t1.usu_correo,t1.usu_celular,t2.ped_token, t2.ped_direccion ,t2.ped_hora_entrega,t2.ped_ciudad, usuped.usu_codigo,t2.ped_estado FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado INNER JOIN usuarioxpedido usuped ON t2.ped_codigo = usuped.ped_codigo WHERE t1.usu_codigo = usu   AND t2.ped_fecha_entrega = dat;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaAplazada` (IN `usu` INT, IN `dat` DATE)  NO SQL
-BEGIN 
+CREATE PROCEDURE `verDetalleRutaAplazada` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN
 SELECT t2.ped_token FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Aplazado" or t2.ped_estado ="En Proceso" AND t2.ped_fecha_entrega < dat;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaCancelada` (IN `usu` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `verDetalleRutaCancelada` (IN `usu` INT)  NO SQL
+BEGIN
 SELECT t2.ped_token FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Cancelado";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaFinalizadaBy` (IN `usu` INT)  NO SQL
-BEGIN 
+CREATE PROCEDURE `verDetalleRutaFinalizadaBy` (IN `usu` INT)  NO SQL
+BEGIN
 SELECT t2.ped_token FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Terminado";
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaFutura` (IN `usu` INT, IN `dat` DATE)  NO SQL
-BEGIN 
+CREATE PROCEDURE `verDetalleRutaFutura` (IN `usu` INT, IN `dat` DATE)  NO SQL
+BEGIN
 SELECT * FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado != "Terminado"  AND t2.ped_estado != "Cancelado" AND t2.ped_fecha_entrega > dat;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verPedido` (IN `token` VARCHAR(15))  NO SQL
-BEGIN 
+CREATE PROCEDURE `verPedido` (IN `token` VARCHAR(15))  NO SQL
+BEGIN
 SELECT
-usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_telefono,pedido.ped_codigo,pedido.ped_encargado,ciudad.ciu_nombre,pedido.ped_direccion,pedido.ped_estado,pedido.ped_token,pedido.ped_fecha,tipo_producto.tip_pro_nombre,producto.pro_referencia,tipo_servicio.tip_ser_nombre,pedidoxproducto.pedxpro_cantidad,pedidoxproducto.pedxpro_observacion,pedido.ped_fecha_entrega,pedido.ped_hora_entrega  
+usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_telefono,pedido.ped_codigo,pedido.ped_encargado,ciudad.ciu_nombre,pedido.ped_direccion,pedido.ped_estado,pedido.ped_token,pedido.ped_fecha,tipo_producto.tip_pro_nombre,producto.pro_referencia,tipo_servicio.tip_ser_nombre,pedidoxproducto.pedxpro_cantidad,pedidoxproducto.pedxpro_observacion,pedido.ped_fecha_entrega,pedido.ped_hora_entrega
 FROM pedido INNER JOIN pedidoxproducto ON pedido.ped_codigo=pedidoxproducto.ped_codigo INNER JOIN producto ON pedidoxproducto.pro_codigo = producto.pro_codigo  INNER JOIN tipo_servicio ON tipo_servicio.Tip_ser_cod=pedidoxproducto.tip_ser_codigo
 INNER JOIN ciudad ON pedido.ped_ciudad=ciudad.id_ciudad INNER JOIN tipo_producto ON producto.tip_pro_codigo = tipo_producto.tip_pro_codigo INNER JOIN usuarioxpedido ON pedido.ped_codigo = usuarioxpedido.ped_codigo INNER JOIN usuario ON usuarioxpedido.usu_codigo=usuario.usu_codigo WHERE pedido.ped_token = token;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verRutas` ()  NO SQL
+CREATE PROCEDURE `verRutas` ()  NO SQL
 BEGIN
 SELECT usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_celular,ciudad.ciu_nombre,usuario.usu_direccion,usuario.usu_correo FROM usuario INNER JOIN ciudad ON usuario.id_ciudad=ciudad.id_ciudad  WHERE usuario.tip_usu_codigo = 5 ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verRutasBy` (IN `usu` INT)  NO SQL
+CREATE PROCEDURE `verRutasBy` (IN `usu` INT)  NO SQL
 BEGIN
 SELECT usuario.usu_codigo,usuario.usu_primer_nombre,usuario.usu_primer_apellido,usuario.usu_celular,ciudad.ciu_nombre,usuario.usu_direccion,usuario.usu_correo FROM usuario INNER JOIN ciudad ON usuario.id_ciudad=ciudad.id_ciudad  WHERE usuario.usu_codigo = usu ;
 END$$
