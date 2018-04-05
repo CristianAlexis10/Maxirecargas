@@ -14,7 +14,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
     <link rel="stylesheet" href="views/assets/css/profile.css">
   </head>
   <body>
-    <?php require_once "views/include/user/scope.hamburger.php";?>
+    <?php require_once "views/include/customer/scope.header.php";?>
     <div class="container--profile">
       <span class="menuprofile"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
       <div class="content--profile">

@@ -9,7 +9,7 @@ require_once "controller/doizer.controller.php";
 	 	}
 		function main(){
 			if (isset($_SESSION['CUSTOMER']['CLIENT'])) {
-				require_once "views/include/user/scope.header.php";
+				require_once "views/include/customer/scope.header.php";
 				require_once "views/modules/customer/quotation/index.php";
 			}elseif (isset($_SESSION['CUSTOMER']['ROL']) ) {
 				if (isset($_SESSION['CUSTOMER']['ROL'])) {
@@ -149,7 +149,7 @@ require_once "controller/doizer.controller.php";
 		function viewQuotationBy(){
 			if (isset($_SESSION['CUSTOMER']['ID'])) {
 				$data_quo = $this->master->verCotizacion(base64_decode($_GET['data']));
-				require_once "views/include/user/scope.header.php";
+				require_once "views/include/customer/scope.header.php";
 				require_once "views/modules/customer/quotation/detail.php";
 			}else{
 				header("Location: maxirecargas");

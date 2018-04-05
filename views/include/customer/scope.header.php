@@ -14,3 +14,4 @@
     <link rel="stylesheet" href="views/assets/css/selectAutocomplete.css">
   </head>
   <body>
+<?php require_once "views/include/customer/scope.menu.php";?>

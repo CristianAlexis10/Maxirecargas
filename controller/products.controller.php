@@ -38,9 +38,9 @@
 				require_once "views/modules/landing.html";
 			}
 			}elseif(isset($_SESSION['CUSTOMER']['ROL'])){
-				require_once "views/include/user/scope.header.php";
+				require_once "views/include/customer/scope.header.php";
 				require_once "views/modules/customer/products/index.php";
-				require_once "views/include/user/scope.footer.php";
+				require_once "views/include/customer/scope.footer.php";
 			}else{
 				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/user/products/index.php";
@@ -198,13 +198,13 @@
 		function readOptionSearch(){
 			$data=$_POST['data'];
 			$result = $this->master->readOptionSearch($data);
-			echo json_encode($result); 
+			echo json_encode($result);
 		}
 		function viewDetail(){
 			if (isset($_SESSION['CUSTOMER']['ROL'])) {
-				require_once "views/include/user/scope.header.php";
+				require_once "views/include/customer/scope.header.php";
 				require_once "views/modules/customer/products/detail.php";
-				require_once "views/include/user/scope.footer.php";
+				require_once "views/include/customer/scope.footer.php";
 			}else{
 				require_once "views/include/user/scope.header.php";
 				require_once "views/modules/user/products/detail.php";
