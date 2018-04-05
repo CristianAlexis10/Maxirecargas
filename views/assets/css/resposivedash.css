@@ -2,7 +2,8 @@
 /*module product  */
   #wrap-result{width: 250px !important; height: 250px !important;}
   .ms-choice{width: 254px !important;}
-
+/* chat */
+.chat_wrapper{width: 40%; top: 19.2vh}
 }
 @media (max-width: 767px){
   .userProfile--img img {width: 85%}
@@ -17,6 +18,9 @@
   .table-Celular, .table-direction, .table-token{display: none}
   /* modales */
   .container--modales{width: 70%}
+  /* chat */
+  .chat_wrapper{width: 50%; top: 19.2vh}
+
 }
 @media (max-width:576px) {
   .container--menumobile{width: 50%}

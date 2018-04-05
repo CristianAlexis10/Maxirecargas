@@ -543,8 +543,6 @@ align-items: center;
 .wrap--pie {
   margin-top: 10px;
   display: grid ;
-  grid-template-areas:
-  "pie1 pie2";
   justify-content: center;
 
   grid-gap: 10px;

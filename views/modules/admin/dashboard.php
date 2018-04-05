@@ -50,9 +50,6 @@
 			<div class="graphyPie1">
 				<canvas id="first--pie"></canvas>
 			</div>
-			<div class="graphyPie2">
-				<canvas id="second--pie"></canvas>
-			</div>
 		</div>
 		<div class="graphyData">
 			<h1>Clientes Premium </h1>

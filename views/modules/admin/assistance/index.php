@@ -10,19 +10,6 @@
   <link rel="stylesheet" href="views/assets/css/resposivedash.css">
   <link rel="stylesheet" href="views/assets/css/chat.css">
 </head>
-<style media="screen">
-	.chat_wrapper{
-		display: none;
-	}
-	#cerrar_conversacion{
-		color: white;
-	}
-	.deleteUser{
-		padding-left: 50px;
-		color: white;
-		font-size: 10px !important;
-	}
-</style>
 <body>
   <section class="container">
       <header id="navigator" class="main--nav <?php echo $_SESSION['CUSTOMER']['STYLE']['est_usu_menu'] ?>">

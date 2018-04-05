@@ -46,7 +46,6 @@ if($data!=array()){
    <ul>
      <?php foreach($data as $row){?>
          <li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
-
        <?php } ?>
      </ul>
  </div>
