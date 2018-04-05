@@ -1,9 +1,9 @@
 <table class="datatable" id="dataOrdenUser">
             <thead>
                     <tr>
-                        <th>Encargado</th>
+                        <th class="table-encargado">Encargado</th>
                         <th>Codigo del Pedido</th>
-                        <th>Estado</th>
+                        <th class="table-estado">Estado</th>
                         <th class="datatable--ocultar">Dirección</th>
                         <th>Fecha Entrega</th>
                         <th>Acciones</th>
@@ -15,7 +15,7 @@
                     $data_employe = $this->master->selectBy('usuario',array('usu_codigo',$row['ped_encargado']));
                 ?>
                      <tr>
-                         <td><?php
+                         <td class="table-encargado"><?php
                           if ($row['ped_encargado']==null) {
                               echo "Pendiente";
                           }else{
@@ -23,7 +23,7 @@
                           }
                           ?></td>
                           <td><?php echo $row['ped_token'];?></td>
-                          <td><?php echo $row['ped_estado'] ;?></td>
+                          <td class="table-estado"><?php echo $row['ped_estado'] ;?></td>
                           <td class="datatable--ocultar"><?php echo $row['ciu_nombre']." ".$row['ped_direccion'];?></td>
                           <td><?php echo $row['ped_fecha_entrega'];?></td>
                            <td>

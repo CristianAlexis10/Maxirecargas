@@ -1,5 +1,5 @@
 
-<span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i></span>
+<span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
 <?php
 if (isset($_SESSION['user_new_order'])) {
   echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Order se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de orden: <b>".$_SESSION['user_new_order']."</b></p><button type='button' class='checkBtn'>¡Entendido!</button></div></div>";
