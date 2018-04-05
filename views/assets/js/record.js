@@ -52,7 +52,7 @@ function cancelQuotation(cot){
       dataType:"json",
       data:({data:cot}),
       success:function(response){
-        $("#dataOrdenUser").load("index.php?controller=datatables&a=dataTableQuotation");
+        $("#dataQuotrationUser").load("index.php?controller=datatables&a=dataTableQuotation");
         $("#dataQuotrationUser").after("<div class='message'>"+response+"</div>");
         setTimeout(function(){$("div.message").remove()},3000);
       },
