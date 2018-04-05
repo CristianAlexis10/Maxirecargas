@@ -21,8 +21,13 @@
    .title--quo{font-size: 70px}
    .quotation--left .quotation--form{width: 80%}
    /* detail order, product and quotatiom */
-   .detail--figure{left: 45%}
-   .content--detail{padding: 30px 30px 30px 90px}
+   .detail--figure{display: none;}
+   .content--detail{padding: 30px 0 0 0}
+   .content--detailRight img{width: 270px; height: 270px}
+   .content--detail h1{margin-bottom: 20px}
+   .content--detail .detail{font-size: 18px}
+   .content--detailRight h1{font-size: 27px}
+   .modal--container.detail{width: 90%; margin-top: 45px}
    /*views order customer  */
    .order--left, .order--rigth, #order--container,#orderSiguiente,#form-groupuser-cantidad, #orderAtras{display: none}
    .order--fondo{overflow: hidden;}
@@ -31,6 +36,7 @@
    #form-groupuser-cantidadMobile, #orderAtrasMobile{display: block;}
    /* views record */
    #tabs{width: 90%;}
+
    /*chat  */
    .chat_wrapper{width: 40%}
 }
@@ -65,6 +71,7 @@
     top: 20px;
     font-size: 40px
     }
+   .container.two{height: 120vh;}
    #iconPc{width: 120px;}
    #iconPrinter{width: 180px; margin-left: 100px;}
   .container.three .three--rigth{
@@ -99,8 +106,12 @@
   .container--caracteristicas{padding: 0}
   /* views detail order product and quotation*/
   .detail--figure{display: none}
-  .content--detail{padding: 30px}
-  /*views order customer  */
+  .container--detail{flex-direction: column; overflow: auto;}
+  .content--detail{width: 100%; padding: 0; display: flex; flex-direction: column; align-items: center;}
+  .content--detailRight{display: none}
+  .content--detail h1{margin-bottom: 30px}
+  .modal--container.detail{width: 90%; margin-top:45px}
+  /*views order customer*/
   .order--left, .order--rigth, #order--container,#orderSiguiente,#form-groupuser-cantidad, #orderAtras{display: none}
   .order--fondo{overflow: hidden;}
   #order--formone{width: 100%; transition: all .5s ease;}
@@ -114,6 +125,8 @@
   .chat_wrapper{width: 50%;top: 18.2vh;}
 }
 @media (max-width: 658px ){
+  .container.one{background-position: 60%}
+  .section-rigth{padding: 30px}
   .container.two .section--one{
     justify-content: center;
     margin: 0
@@ -134,6 +147,7 @@
   }
 }
 @media (max-width: 575px ){
+  .container.one{background-position: 60%}
   .container .left img{
     max-width: 200px;
     min-width: 200px;
@@ -149,10 +163,7 @@
   align-items: center;
 
   }
-  .container.three .three--left p{
-  font-size: 16px;
-  padding: 30px 0 0 50px;
-  }
+  .container.three .three--left p{font-size: 16px;}
   .container.mediafour h1, .container.four .four--contact h1{font-size: 40px;}
   .container.four .four--contact{width: 50%;}
   .container.four .btn--contact{width: 100%}
@@ -174,6 +185,8 @@
  /*views record */
  #tabs .ui-widget-header li a{width: 200px}
  #tabs{width: 90%}
+ .table-estado{display: none;}
+ /* chat */
  .chat_wrapper{width: 100%; top: 0; height: 100%}
  .chat_wrapper .message_box{height: 300px}
  #iniciar{
@@ -191,23 +204,17 @@
  }
  #iniciar span i{padding: 0; font-size: 24px}
  #iniciar span p{display: none;}
+  /* views detail order and quotation */
+  .container_table{width: 100%; overflow: scroll;}
+
 }
 @media (max-width:510px){
-  .container.one{
-    flex-direction: column;
-    height: auto;
-  }
-
-  .container.one .left {
-    width: 100%;
-    height: auto;
-  }
-  .container.two{
-    height: auto;
-  }
+  .container.one{flex-direction: column;height: 110vh;}
+  .container.one .left {width: 100%;height: auto;}
+  .container.two{height: 120vh;}
   .container.one .rigth{
     width: 100%;
-    height: 50vh;
+    height: 61vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,16 +251,15 @@
   }
   .container.three .three--left{
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     box-sizing: border-box;
   }
   .container.three .three--left h1{ text-align: center;}
   .container.three .three--left p{font-size: 18px;}
   .container.three .three--rigth{
     width: 100%;
-    height: 60vh;
+    height: 90vh;
     background: #efefef;
-    flex-direction: row;
     justify-content: space-around;
     margin: 0;
   }
@@ -303,9 +309,13 @@
   .container.four .four--contact li{font-size: 20px;}
   /* views product */
   .products .item{width: 220px; height: 220px}
-
+  /* views record */
+  #tabs .ui-widget-header li{margin-left: 5px}
+  .table-encargado{display: none;}
+  .record--subtitle{text-align: center;}
 }
 @media (max-width:360px) {
+  .container.two .section--two .section-rigth{margin-top: 60px}
   .container .left span{
     margin: 20px 0 0 20px;
   }
@@ -356,4 +366,12 @@
   .orderSuperior h1{font-size: 20px}
   .container--form{width: 80%}
   .orderSuperior, #order--formtwo .orderSuperior{padding: 0 30px}
+  /* views record */
+  #tabs .ui-widget-header li a{width: 120px; padding: 10px}
+  /* views detail order and quotation */
+  .content--detail h1{font-size: 24px}
+  .content--detail .detail{font-size: 16px}
+  .detail--contbtn {width: 100%}
+  .detail--btn{padding: 12px 16px}
+
 }
