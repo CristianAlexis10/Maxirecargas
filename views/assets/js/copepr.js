@@ -29,16 +29,20 @@ $(".inputmagenta").focusout(function(){
 });
 
 // modal inicio de sesion movil
-if (document.getElementById('modal_mobile')) {
-  var open_session = document.getElementById('session_mobile');
-  var modal_session = document.getElementById('modal_mobile');
-  var close_session = document.getElementById('modal_close_mobile');
-  open_session.onclick = function(){
-    modal_session.style.display = "flex";
-  };
-  close_session.onclick = function(){
-    modal_session.style.display= "none"
-  };
+if (document.getElementById('session_mobileOpen')) {
+  $("#session_mobileOpen").click(function(){
+  $("#session_mobile").click();
+
+  });
+  // var open_session = document.getElementById('session_mobile');
+  // var modal_session = document.getElementById('modal_mobile');
+  // var close_session = document.getElementById('modal_close_mobile');
+  // open_session.onclick = function(){
+  //   modal_session.style.display = "flex";
+  // };
+  // close_session.onclick = function(){
+  //   modal_session.style.display= "none"
+  // };
 };
 
 // modals
