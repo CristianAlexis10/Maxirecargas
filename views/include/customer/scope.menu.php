@@ -23,7 +23,7 @@
   &times;
   </div>
   <ul>
-    <li><a href="">Inicio</a></li>
+    <li><a href="maxirecargas">Inicio</a></li>
     <li><a href="pedidos">Pedidos</a></li>
     <li><a href="cotizacion">Cotizaciones</a></li>
     <li><a href="productos">Productos</a></li>

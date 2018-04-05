@@ -443,6 +443,7 @@ color:white}
   font-size: 25px;
   color: white;
   position: absolute;
+  cursor: pointer;
 }
 .user_fondo_order{
   margin: 0 auto;
