@@ -16,34 +16,34 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
   <body>
     <?php require_once "views/include/user/scope.hamburger.php";?>
     <div class="container--profile">
-      <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
+      <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
       <div class="content--profile">
         <div class="profile--left">
           <p>editar información personal</p>
           <form class="" action="modificar-mi-perfil" method="post">
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="name" class="label--profile">primer nombre</label>
+              <label for="name" class="label--profile">primer nombre:</label>
               <input type="text" class="input--profile" id="name" name="data[]" value="<?php echo $data['usu_primer_nombre'] ?>" required>
             </div>
             <div class="form-profile">
-              <label for="secondname" class="label--profile">segundo nombre</label>
+              <label for="secondname" class="label--profile">segundo nombre:</label>
               <input type="text" class="input--profile" id="secondname" name="data[]" value="<?php echo $data['usu_segundo_nombre'] ?>" required>
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="lastname" class="label--profile">primer apellido</label>
+              <label for="lastname" class="label--profile">primer apellido:</label>
               <input type="text" class="input--profile" id="lastname" name="data[]" value="<?php echo $data['usu_primer_apellido'] ?>" required>
             </div>
             <div class="form-profile">
-              <label for="secondlast" class="label--profile">segundo apellido</label>
+              <label for="secondlast" class="label--profile">segundo apellido:</label>
               <input type="text" class="input--profile" id="secondlast" name="data[]" value="<?php echo $data['usu_segundo_apellido'] ?>" required>
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="email" class="label--profile">correo</label>
+              <label for="email" class="label--profile">correo:</label>
               <input type="email" class="input--profile" id="email" name="data[]" value="<?php echo $data['usu_correo'] ?>" required>
             </div>
             <div class="form-profile">
@@ -53,7 +53,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="country" class="label--profile">cuidad</label>
+              <label for="country" class="label--profile">cuidad:</label>
               <select class="input--profile" name="data[]" id="country">
                 <?php
                   foreach ($this->master->selectAll("ciudad") as $row) {
@@ -71,7 +71,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="celphone" class="label--profile">celular</label>
+              <label for="celphone" class="label--profile">celular:</label>
               <input type="number" id="celphone" class="input--profile" name="data[]" value="<?php echo $data['usu_celular'] ?>" required>
             </div>
             <div class="form-profile">
@@ -79,18 +79,19 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
               <input type="date" class="input--profile" id="datana" name="data[]" value="<?php echo $data['usu_fecha_nacimiento'] ?>" required>
             </div>
           </div>
-          <div class="form-group">
-            <label for="sexo" class="select">Sexo:</label>
-            <select class="dataCl input grande"  id="sexo" name="data[]" required>
+          <div class="wrap_formgroup">
+            <label for="sexo" class="label--profile">Sexo:</label>
+            <select class="dataCl input--profile"  id="sexo" name="data[]" required>
               <?php if ($data['usu_sexo']=="masculino") {?>
-                  <option value="femenino">Femenino</option>
-                  <option value="masculino" selected>Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="masculino" selected>Masculino</option>
               <?php }else{ ?>
                 <option value="femenino" selected>Femenino</option>
                 <option value="masculino">Masculino</option>
-            <?php } ?>
+              <?php } ?>
             </select>
           </div>
+
           <div class="formbtn-profile">
             <button type="submit" name="button" id="btndata">guardar cambios</button>
           </div>
@@ -123,7 +124,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
                   <div id="wrap-result">
                         <img src="views/assets/image/profile/<?php echo $data['usu_foto']; ?>" >
                   </div>
-                  <span class="" id="cropp-img">Cambiar foto</span>
+                  <span class="updateImagen" id="cropp-img">Cambiar foto</span>
                 </div>
               </div>
         </div>

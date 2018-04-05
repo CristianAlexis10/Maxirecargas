@@ -16,6 +16,14 @@
   text-transform: uppercase;
   transition: all .2s ease;
 }
+.updateImagen{
+  cursor: pointer;
+  font-size: 18px;
+  text-transform: uppercase;
+  transition: all .2s ease;
+  font-family: 'lato';
+  text-align: center;
+}
 #cropp-img:hover{color: #35a4dd;}
 #wrap-result img{width: 250px}
 #img-product{

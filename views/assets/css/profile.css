@@ -37,7 +37,10 @@
   justify-content: space-around;
   width: 100%;
   padding: 0 30px 0 30px;
-
+}
+.wrap_formgroup{
+  width: 100%;
+  padding: 0 30px 0 30px;
 }
 .form-profile{
   display: flex;
@@ -55,6 +58,7 @@
   background: transparent;
   width: 80%;
 }
+#new_password{width: 100%}
 #password,#confirmCon{
   width: 100%;
 }

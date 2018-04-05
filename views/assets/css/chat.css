@@ -23,7 +23,11 @@
 	}
 #iniciar span{display: flex;}
 #iniciar span i {padding-right: 10px;}
-.wrap-chats{display: flex;}
+.wrap-chats{
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+}
 .wrap-chats .item{
 	display: flex;
 	justify-content: space-between;
