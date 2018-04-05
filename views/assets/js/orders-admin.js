@@ -1,6 +1,10 @@
 //asignar pedidos
 var assignVar;
 $("#modal-assign").hide();
+function asignar(e) {
+  assignVar=e.id;
+    $("#modal-assign").show();
+}
 function assign(order){
   assignVar=order;
     $("#modal-assign").show();
@@ -30,7 +34,8 @@ $("#confirmAssign").click(function(){
       setTimeout(function(){
          $('div.message').remove();
        }, 2000);
-  }
+  },
+  error:function(result){console.log(result);}
   });
 });
 //cambiar estado

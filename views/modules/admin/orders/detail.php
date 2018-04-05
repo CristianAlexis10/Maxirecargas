@@ -77,7 +77,7 @@ if ($crud[1]==true) {
 			<li class="opcins--order"><a id="viewAllProducts">ver articulos</a></li>
 			<?php
 				if ($data_order[0]['ped_encargado']==null) {?>
-						<li class="opcins--order"><a id="assigEncargado" onclick="assign(<?php echo $data_order[0]['ped_codigo']; ?>)" >Asignar encargado</a></li>
+						<li class="opcins--order"><a id="<?php echo $data_order[0]['ped_codigo']; ?>" onclick="asignar(this)" >Asignar encargado</a></li>
 					<?php }else{ ?>
 						<li class="opcins--order"><a href="#"  class="contact--customer" id="<?php echo $data_order[0]['ped_encargado']; ?>">Contactar encargado</a></li>
 						<?php
