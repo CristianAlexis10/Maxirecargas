@@ -25,6 +25,7 @@
    }
      // $('#cuidad').zelect({ placeholder:'Selecciona una ciudad' })
     </script>
-
+    <script src="views/assets/lib/shortcut/shortcut.js"> </script>
+    <script type="text/javascript" src="views/assets/js/security.js"></script>
     </body>
 </html>
