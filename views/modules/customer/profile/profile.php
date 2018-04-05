@@ -16,7 +16,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
   <body>
     <?php require_once "views/include/user/scope.hamburger.php";?>
     <div class="container--profile">
-      <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
+      <span class="menuprofile"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
       <div class="content--profile">
         <div class="profile--left">
           <p>editar información personal</p>
