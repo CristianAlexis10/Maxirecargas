@@ -46,14 +46,34 @@
 	</div>
 </div>
 
-<div id="modal--detail--products">
-	<?php
-	foreach ($data_quo as $row) {
-	 echo "<b>Producto:</b> ".$row['tip_pro_nombre']." ".$row['pro_referencia']." <b>Servicio</b>: ".$row['tip_ser_nombre']." <b>Cantidad: </b>".$row['proxcot_cantidad']." <b>Observación: </b>".$row['proxcod_observacion']."<br>";
-	}
-	?>
+<div class='modal' id="modalProductsCustomer">
+  <div class='modal--container detail'>
+    <span id="close_modal_producto" class="close--modal">&times;</span>
+    <h1 class="title--modalDetail">Detalles Del Productos</h1>
+    <div class="container_table">
+      <table>
+      <tr>
+        <th>producto</th>
+        <th>referencia</th>
+        <th>Servicio</th>
+        <th>cant</th>
+        <th class="nodata-Observacion">Observación</th>
+      </tr>
+    <?php
+      foreach ($data_quo as $row) {
+      echo "<tr>";
+       echo "<td>".$row['tip_pro_nombre']."</td>";
+       echo "<td>".$row['pro_referencia']."</td>";
+       echo "<td>".$row['tip_ser_nombre']."</tb>";
+       echo "<td>".$row['proxcot_cantidad']."</tb>";
+       echo "<td class='nodata-Observacion'>".$row['proxcod_observacion']."</tb>";
+       echo "</tr>";
+      }
+      ?>
+    </table>
+    </div>
+  </div>
 </div>
-
 
 <!-- contacto -->
 <div id="contact"></div>
@@ -63,10 +83,7 @@
   </section>
  	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <script src="views/assets/js/orders-admin.js"></script>
+   <script type="text/javascript" src="views/assets/js/quotation-customer.js"></script>
    <script src="views/assets/js/menu.js"></script>
-	 <script type="text/javascript" src="views/assets/js/gmaps.js"></script>
-	  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYIb-jxF2zZivhG13bGeEKI9gJthF4Ovg&libraries=adsense&sensor=false&language=es"></script>
-    <script type="text/javascript" src="views/assets/js/map-quotation.js"></script>
     </body>
 </html>

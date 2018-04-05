@@ -1,3 +1,10 @@
+// ver todos los productos
+$("#viewAllProducts").click(function(){
+  $("#modalProductsCustomer").css({"display":"flex"});
+});
+$("#close_modal_producto").click(function(){
+  $("#modalProductsCustomer").css({"display":"none"});
+});
 //autocomplete
 $.ajax({
   url:"todas-referencias",
