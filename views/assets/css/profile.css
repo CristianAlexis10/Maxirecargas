@@ -85,6 +85,13 @@
   justify-content: flex-end;
 
 }
+.menuprofile{
+  cursor: pointer;
+  font-size: 20px;
+  padding: 20px;
+  position: absolute;
+  color: grey;
+}
 .formbtn-profile button{
   padding: 20px 15px;
   border: none;
