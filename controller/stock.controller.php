@@ -34,10 +34,10 @@
 			$id = $this->master->selectBy('producto',array('pro_referencia',$_SESSION['new_stock']));
 			//opciones de busqueda
 			$result = $this->master->opcionesBusqueda(array($id['pro_codigo'],$opciones));
-			$data[]=$id['pro_codigo'];
+			// $data[]=$id['pro_codigo'];
 			unset($_SESSION['new_stock']);
 			 // $data[]=date('Y-m-d');
-			$result = $this->master->insert($this->tableName,array($data[3],$data[0],$data[1],$data[2]),$this->insertException);
+			// $result = $this->master->insert($this->tableName,array($data[3],$data[0],$data[1],$data[2]),$this->insertException);
 			if ($result==1) {
 				$_SESSION['message']="Registrado Exitosamente";
 			}else{
