@@ -8,6 +8,9 @@ RewriteRule ^activarCuenta-(\w+)$ index.php?controller=customers&a=activateAccou
 RewriteRule ^eliminar-usuario$ index.php?controller=customers&a=delete
 RewriteRule ^inactivar-usuario$ index.php?controller=customers&a=offUser
 RewriteRule ^cambiar-contrasena$ index.php?controller=customers&a=updatePass
+RewriteRule ^recuperar-contrasena$ index.php?controller=views&a=recover
+RewriteRule ^enviar-token$ index.php?controller=customers&a=recoverPass
+RewriteRule ^comparar-token$ index.php?controller=customers&a=compareToken
 
 RewriteRule ^cambiar-estilo$ index.php?controller=customers&a=chageStyle
 

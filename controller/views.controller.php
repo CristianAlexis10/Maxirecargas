@@ -14,6 +14,9 @@
 	 	function newUserMobile(){
 				require_once "views/modules/user/registro-mobile.php";
 		}
+		function recover(){
+			require_once "views/modules/user/recover.php";
+		}
 
 	}
 ?>

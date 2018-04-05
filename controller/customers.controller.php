@@ -405,7 +405,7 @@
 			$result = $this->master->procedureOFUser('inactivar',array(1,$resultData['usu_codigo']));
 			if ($result==1) {
 				$result= $this->master->selectBy("usuario",array("usu_codigo",$resultData['usu_codigo']));
-				print_r($result);
+				// print_r($result);
 				$_SESSION['CUSTOMER']['ROL'] = $result['tip_usu_codigo'];
 				$_SESSION['CUSTOMER']['ID']=$result['usu_codigo'];
 				$_SESSION['CUSTOMER']['NAME']=$result['usu_primer_nombre'];
@@ -486,6 +486,78 @@
 				}
 			}else{
 				echo json_encode("La contraseña actual  es incorrecta");
+			}
+		}
+		function recoverPass(){
+			$doc = $_POST['documento'];
+			$result = $this->master->selectBy("usuario",array("usu_num_documento",$doc));
+			if ($result!=array()) {
+				$token = rand(1000,9999)."-".rand(1000,9999);
+				$resultInser=$this->master->crearTokenRecuperacion(array($result['usu_codigo'],$token));
+				if ($resultInser==true) {
+					$mensaje = '
+	 			 <html>
+	 			 <head>
+	 			 <title>Maxirecargas </title>
+	 			 </head>
+	 			 <body>
+	 			 <p>Tu codigo de recuperación es: '.$token.'
+	 			 </p>
+	 			 </body>
+	 			 </html>
+	 			 ';
+
+	 			 $cabeceras= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+	 			 if(mail($result['usu_correo'], "Recuperar contraseña", $mensaje, $cabeceras)){
+	 				 $result = true;
+					 echo json_encode($result);
+	 			 }else{
+					 echo json_encode("No es posible enviar el codigo de recuperación");
+	 			 }
+				}else{
+					echo json_encode($this->doizer->knowError($result));
+				}
+			}else{
+				echo json_encode("Este documento no esta registrado en el sistema.");
+			}
+		}
+		function compareToken(){
+			$cod = $_POST['token'];
+			$password=$_POST["contra"];
+			$password2=$_POST["contra2"];
+			$doc=$_POST['documento'];
+			$user = $this->master->selectBy("usuario",array("usu_num_documento",$doc));
+			$codeReal = $this->master->selectBy("acceso",array("usu_codigo",$user['usu_codigo']))['codigo_recuperacion'];
+			if ($cod==$codeReal) {
+				$pas =  $this->doizer->validateSecurityPassword($password);
+				if (is_array($pas)) {
+					if ($password==$password2) {
+						$res = $this->master->cambiarContrasena(array($user['usu_codigo'],$pas[1]));
+						$_SESSION['CUSTOMER']['ROL'] = $user['tip_usu_codigo'];
+						$_SESSION['CUSTOMER']['ID']=$user['usu_codigo'];
+						$_SESSION['CUSTOMER']['NAME']=$user['usu_primer_nombre'];
+						$_SESSION['CUSTOMER']['LAST_NAME']=$user['usu_primer_apellido'];
+						$_SESSION['CUSTOMER']['DOCUMENT']=$user['usu_num_documento'];
+						$_SESSION['CUSTOMER']['MAIL']=$user['usu_correo'];
+						$_SESSION['CUSTOMER']['PHOTO']=$user['usu_foto'];
+						$_SESSION['CUSTOMER']['ADDRESS']=$user['usu_direccion'];
+						$_SESSION['CUSTOMER']['PERMITS'] = $this->master->moduleSecurity($_SESSION['CUSTOMER']['ROL']);
+						$_SESSION['CUSTOMER']['STYLE'] = $this->master->selectBy('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
+						$fecha = date('Y-m-d');
+						// $this->master->updateMin('usuario',array('usu_ult_inicio_sesion'),array('usu_codigo',$user['usu_codigo']),$fecha);
+						if ($_SESSION['CUSTOMER']['ROL']==3 OR $_SESSION['CUSTOMER']['ROL']==1 ) {
+							$_SESSION['CUSTOMER']['CLIENT'] = true;
+							echo json_encode("cliente");
+						}else{
+							echo json_encode("admin");
+						}
+					}
+				}else{
+					echo json_encode($password);
+					return;
+				}
+			}else{
+				echo json_encode("Codigo incorrecto");
 			}
 		}
 	}

@@ -221,7 +221,7 @@
             </div>
           </div>
             <button type="submit" name="button" id="btn--login">iniciar sesión</button>
-            <a href="" id="olviContra">¿olvide mi contraseña?</a>
+            <a href="recuperar-contrasena" id="olviContra">¿olvide mi contraseña?</a>
         </form>
         <button id="moveleft">Regístrate</button>
       </div>
