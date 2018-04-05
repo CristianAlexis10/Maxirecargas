@@ -22,10 +22,10 @@
 					require_once "views/modules/admin/orders/index.php";
 					require_once "views/include/scope.footer.php";
 				}else{
-					require_once "views/include/user/scope.header.php";
-					require_once "views/include/user/scope.hamburger.php";
+					require_once "views/include/customer/scope.header.php";
+					// require_once "views/include/user/scope.hamburger.php";
 					require_once "views/modules/customer/orders/orders.php";
-					require_once "views/include/user/scope.footer.php";
+					require_once "views/include/customer/scope.footer.php";
 
 				}
 			}else{
