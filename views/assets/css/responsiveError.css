@@ -18,3 +18,22 @@
   .container--error img{left:38%}
   .container--forms{margin-top: 44%}
 }
+@media (max-width: 575px ){
+  .error h3{font-size: 24px}
+  .error p{font-size: 18px; width: 464px; letter-spacing: 0}
+  .container--error img{left: 34%}
+  .container--forms{margin-top: 48%}
+}
+@media (max-width:510px){
+  .error{padding-left: 30px}
+  .container--forms{margin-top: 53%}
+  .frm-group{width: 400px}
+}
+@media (max-width:360px){
+  .container--error img{width: 160px; left: 27%}
+  .error{padding-left: 45px}
+  .error p{width: 260px; padding-left: 0}
+  .container--forms{margin-top: 75%; margin-left: 20px}
+  .frm-group{width: 318px}
+
+}
