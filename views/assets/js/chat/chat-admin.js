@@ -208,13 +208,14 @@ $("#saveMsn").submit(function(e){
 		success:function(result){
 			console.log(result);
 			if (result==true) {
+					$("#msnDefault").val("");
 				$("#wrap-messages-default").empty();
 				$.ajax({
 					url:"consulta-mensaje-predefinido",
 					dataType:"json",
 					success:function(result){
 							for (var i = 0; i < result.length; i++) {
-								$("#wrap-messages-default").append('<div class="item-default"><p>'+result[i].mensaje+'</p><i class="fa fa-share-square" id="'+result[i].id_mensaje+'" onclick="enviarMensajeDefault(this)"></i>  <i class="fa fa-trash" onclick="eliminarMensajeDefault('+result[i].id_mensaje+')"></i></div>');
+								$("#wrap-messages-default").append('<div class="item-default"><p>'+result[i].mensaje+'</p><i class="fa fa-paper-plane-o" id="'+result[i].id_mensaje+'" onclick="enviarMensajeDefault(this)"></i>  <i class="fa fa-trash" onclick="eliminarMensajeDefault('+result[i].id_mensaje+')"></i></div>');
 									}
 							$("#modal-messaje_default").hide();
 					}
@@ -250,9 +251,10 @@ function eliminarMensajeDefault(id){
 						dataType:"json",
 						success:function(result){
 								for (var i = 0; i < result.length; i++) {
-									$("#wrap-messages-default").append('<div class="item-default"><p>'+result[i].mensaje+'</p><i class="fa fa-share-square" id="'+result[i].id_mensaje+'" onclick="enviarMensajeDefault(this)"></i>  <i class="fa fa-trash" onclick="eliminarMensajeDefault('+result[i].id_mensaje+')"></i></div>');
+									$("#wrap-messages-default").append('<div class="item-default"><p>'+result[i].mensaje+'</p><i class="fa fa-paper-plane-o" id="'+result[i].id_mensaje+'" onclick="enviarMensajeDefault(this)"></i>  <i class="fa fa-trash" onclick="eliminarMensajeDefault('+result[i].id_mensaje+')"></i></div>');
 								}
 								$("#modal-messaje_default").hide();
+
 						}
 					});
 				}else{

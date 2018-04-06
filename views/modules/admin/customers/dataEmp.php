@@ -39,7 +39,7 @@
 		</div>
 		<div class="detail">
 			<p class="item--detail">Direccion de la Sede:</p>
-			<p class="data--detail">lopera colocar el php aca</p>
+			<p class="data--detail"><?php echo $sede['sed_direccion']?></p>
 		</div>
 		<div class="detail">
 			<p class="item--detail">Cargo en la sede:</p>

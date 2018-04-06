@@ -91,6 +91,8 @@
       </div>
   </section>
 <script src="views/assets/js/chat/jquery-3.1.1.js"></script>
+<script src="views/assets/lib/shortcut/shortcut.js"> </script>
+<script type="text/javascript" src="views/assets/js/security.js"></script>
 <script src="views/assets/js/chat/chat-admin.js"></script>
 </body>
 </html>
