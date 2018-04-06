@@ -149,11 +149,11 @@
       <div class="four--form">
         <form id="frmContact">
             <div class="wrap--contact">
-                <label for="contact--name" class="label-contact">Nombre</label>
+                <label for="contact--name" class="label-contact notranslate">Nombre</label>
                 <input type="text" id="name" class="input-contact" value="<?php echo $_SESSION['CUSTOMER']['NAME']?>" >
             </div>
             <div class="wrap--contact">
-                <label for="contact--email" class="label-contact">Correo</label>
+                <label for="contact--email" class="label-contact notranslate">Correo</label>
                 <input type="email" id="email" class="input-contact" value="<?php echo $_SESSION['CUSTOMER']['MAIL']?>">
             </div>
             <div class="wrap--contact">
