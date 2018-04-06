@@ -2,11 +2,11 @@
 <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
 <?php
 if (isset($_SESSION['user_new_order'])) {
-  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Order se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de orden: <b>".$_SESSION['user_new_order']."</b></p><button type='button' class='checkBtn'>¡Entendido!</button></div></div>";
+  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Orden se ha realizado Exitosamente. Para realizarle seguimiento puedes usar este código de orden: <b>".$_SESSION['user_new_order']."</b></p><button type='button' class='checkBtn'>¡Entendido!</button></div></div>";
   unset($_SESSION['user_new_order']);
 }
 if (isset($_SESSION['user_quotation_new'])) {
-  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Cotización se ha Realizado Exitosamente, para realizarle seguimiento puedes usar este codigo de tu cotización: <b>".$_SESSION['user_quotation_new']."</b></p><button type='button' class='checkBtn'>¡Entendido!</button></div></div>";
+  echo "<div class='modales'><div class='new_order_token'><span id='closeOrderListo'>&times;</span><div class='check'></div><p class='textmodal'>Tu Cotización se ha realizado Exitosamente. Para realizarle seguimiento puedes usar este código de tu cotización: <b>".$_SESSION['user_quotation_new']."</b></p><button type='button' class='checkBtn'>¡Entendido!</button></div></div>";
   unset($_SESSION['user_quotation_new']);
 }
 ?>
@@ -21,12 +21,12 @@ if (isset($_SESSION['user_quotation_new'])) {
     </ul>
         <div id="tabs-2">
           <h2 class="record--title">Pedidos Realizados</h2>
-          <p class="record--subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+          <p class="record--subtitle">Recuerda que mientras tu pedido se encuentre "En Bodega", tienes la posibilidad de cancelar tu pedido antes de que cambie de estado.</p>
           <?php require_once "views/modules/config/datatables/datatable-orders-users.php"; ?>
         </div>
         <div id="tabs-3">
           <h2 class="record--title">Cotizaciones Realizadas</h2>
-          <p class="record--subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+          <p class="record--subtitle">Recuerda que mientras tu cotización se encuentre "En Recepción", tienes la posibilidad de cancelar tu solicitud antes de que cambie de estado.</p>
           <?php require_once "views/modules/config/datatables/datatable-quotation-users.php"; ?>
         </div>
     </div>
@@ -37,7 +37,7 @@ if (isset($_SESSION['user_quotation_new'])) {
       <h1 class="title--modal">cancelar servicio</h1>
       <form id="frmCancelOrder">
         <div class="form-groupuser">
-          <label for="motivo" class="labelblue">¿Porque deseas cancelar el servicio?</label>
+          <label for="motivo" class="labelblue">¿Por qué deseas cancelar el servicio?</label>
           <textarea id="motivo" class="inputblue"rows="8" cols="80" placeholder="Motivo de cancelación del pedido"></textarea>
         </div>
         <div class="form-groupuser">

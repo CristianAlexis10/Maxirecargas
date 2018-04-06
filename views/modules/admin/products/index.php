@@ -31,7 +31,7 @@
 		   <?php } ?>
 		  <?php if ($crud[1]==true) {?>
 		  	  <li><a href="#tabs-2">Lista de Productos</a></li>
-			    <li><a href="#tabs-3">Categorias</a></li>
+			    <li><a href="#tabs-3">Categorías</a></li>
 			    <li><a href="#tabs-4">Marcas</a></li>
 			    <li><a href="#tabs-5">Servicios</a></li>
 		 <?php } ?>
@@ -57,7 +57,7 @@
 			               </select>
 			            </div>
 			            <div class="form-group">
-			                <label for="categoria" class="select">Categoria:</label>
+			                <label for="categoria" class="select">Categoría:</label>
 			               <select  id="categoria" class="data-new-pro input " required>
 			               	<?php foreach($this->master->selectAll("tipo_producto") AS $row) {?>
 			               		<option value="<?php echo $row['tip_pro_codigo']?>"><?php echo $row['tip_pro_nombre'] ?></option>
@@ -79,7 +79,7 @@
 								</select>
 							</div>
 			             <div class="form-group">
-			                <label for="caracteristica" class="label">Caracteristicas:</label>
+			                <label for="caracteristica" class="label">Características:</label>
 											<textarea name="data[]" id="caracteristica" class="input data-new-pro"></textarea>
 			            </div>
 						<div class="form-group">
@@ -107,7 +107,7 @@
 		  	<?php if ($crud[0]==true) {?>
 			  	<div class="new--obj">
 						<i class="fa fa-plus" aria-hidden="true"></i>
-			  		<a href="nueva-categoria">Nueva Categoria</a>
+			  		<a href="nueva-categoria">Nueva Categoría</a>
 			  	</div>
 		  	<?php } if ($crud[1]==true) {
 		  	 require_once "views/modules/config/datatables/datatable-categories.php";

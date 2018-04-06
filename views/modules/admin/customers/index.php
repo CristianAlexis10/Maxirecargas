@@ -48,7 +48,7 @@
 								<select class="dataCl input" id="tip_doc"   required></select>
 							</div>
 							<div class="form-group">
-								<label for="numDoc" class="label">Numero de Documento:</label>
+								<label for="numDoc" class="label">Número de Documento:</label>
 								<input type="number"  id="numDoc"  onkeypress="return eliminarLetras(event)" class="input dataCl" required>
 							</div>
 						</div>
@@ -68,7 +68,7 @@
 								<input type="email" class=" input dataCl" id="correo" required>
 							</div>
 							<div class="form-group">
-								<label for="tel" class="label">Telefono:</label>
+								<label for="tel" class="label">Teléfono:</label>
 								<input type="number" class="input dataCl" onkeypress="return eliminarLetras(event)" id="tel"  required>
 							</div>
 						</div>
@@ -78,7 +78,7 @@
 								<select class="dataCl input"  id="cuidad" required> </select>
 							</div>
 							<div class="form-group">
-								<label for="dir" class="label">Direccion:</label>
+								<label for="dir" class="label">Dirección:</label>
 								<input type="text" class="input dataCl" id="dir"  required>
 							</div>
 						</div>
@@ -116,7 +116,7 @@
 								<input type="text" class="dataEmp input" id="nit" required>
 							</div>
 								<div class="form-group">
-								<label for="social" class="label">Razon social</label>
+								<label for="social" class="label">Razón social</label>
 								<input type="text" class="dataEmp input" id="social"required>
 							</div>
 							</div>
@@ -124,31 +124,31 @@
 								<label for="namebus" class="label">Nombre de la empresa</label>
 								<input type="text" class="dataEmp input grande" id="namebus" required>
 							</div>
-							<h1>datos de la sede</h1>
+							<h1>Datos de la sede</h1>
 							<div class="form-group">
 								<label for="sed-nom" class="label">Nombre de la sede</label>
 								<input type="text" class="dataEmp input grande" id="sed-nom" required>
 							</div>
 							<div class="wrap_two_formgroup">
 								<div class="form-group">
-								<label for="sede-dir" class="label">Direccion</label>
+								<label for="sede-dir" class="label">Dirección</label>
 								<input type="text" class="dataEmp input" id="sede-dir" required>
 								</div>
 								<div class="form-group">
-									<label for="sede-tel" class="label">Telefono</label>
+									<label for="sede-tel" class="label">Teléfono</label>
 									<input type="number" class="dataEmp input" onkeypress="return eliminarLetras(event)"  id="sede-tel" required>
 								</div>
 							</div>
-							<h1>datos del contacto</h1>
+							<h1>Datos del contacto</h1>
 							<div class="wrap_two_formgroup">
 								<div class="form-group">
 								<label for="tip_doc" class="label">Tipo de documento</label>
 								<select class="dataEmp input" id="tip_docBusi">
-									<option value="1">Cedula</option>
+									<option value="1">Cédula</option>
 								</select>
 							</div>
 								<div class="form-group">
-								<label for="numDoc" class="label">Numero de documento</label>
+								<label for="numDoc" class="label">Número de documento</label>
 								<input type="text" class="dataEmp input" onkeypress="return eliminarLetras(event)"  id="numDocEmp" required>
 							</div>
 							</div>
@@ -166,7 +166,7 @@
 							<div class="form-group">
 								<label for="cuidad" class="select">Ciudad</label>
 								<select class="dataEmp input" id="cuidadBusi">
-									<option value="1">Medellin</option>
+									<option value="1">Medellín</option>
 								</select>
 							</div>
 							<div class="form-group">

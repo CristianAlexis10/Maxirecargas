@@ -52,7 +52,7 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
             </select>
           </div>
           <div class="form-group">
-            <label for="dir" class="label">Direccion:</label>
+            <label for="dir" class="label">Dirección:</label>
             <input type="text" class="input dataCl" id="dir"  value="<?php echo $data['usu_direccion'];?>" required>
           </div>
         </div>
