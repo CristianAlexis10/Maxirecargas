@@ -1,3 +1,7 @@
+// $(".close--modal").click(function() {
+//   $("#viewDetail").hide();
+//   console.log("putos");
+// });
 //autocomplete
 $.ajax({
   url:"todas-referencias",
@@ -30,9 +34,11 @@ $("#searchPro").click(function(){
       data: ({data: $("#producto").val()}),
       success: function(result){
         if (result=='No existe Este producto') {
-                  $("#frmNewOrder").after('<div class="message">Este producto no existe</div>');
+                  $("#producto").after('<div class="message-red">Este producto no existe</div>');
+                  $("#producto").addClass("inputred");
+                  $("#labelProducto").addClass("alertRed");
                   setTimeout(function(){
-                    $("div.message").remove();
+                    $("div.message-red").remove();
                   },3000);
                   $(".hide--service").hide();
                   $(".hide--cantidad").hide();
@@ -40,6 +46,8 @@ $("#searchPro").click(function(){
                   $("#orderSiguiente").hide();
         }else{
           //mostrar y llenar el select de servicios
+          $("#producto").removeClass("inputred");
+          $("#labelProducto").removeClass("alertRed");
           $(".hide--service").show();
           $(".hide--cantidad").show();
           $(".hide--obs").show();
@@ -233,13 +241,14 @@ $("#viewOrder").click(function() {
     success: function(result){
       console.log(result);
       $("#wrap-detail").remove();
-      $("#viewDetail").after(result);
+      $("#viewDetail").after("<div class='modal detailOrder'><div class='modal--container'>"+result+"</div></div>");
     },
     error: function(result){
       console.log(result);
     }
   });
 });
+
 
 if (document.getElementById('typeProduct')) {
   $.ajax({

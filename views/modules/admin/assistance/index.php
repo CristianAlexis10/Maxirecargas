@@ -6,9 +6,9 @@
   <link rel="shortcut icon" href="views/assets/image/icn-maxi.png">
   <link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="views/assets/css/chat.css">
   <link rel="stylesheet" href="views/assets/css/main.css">
   <link rel="stylesheet" href="views/assets/css/resposivedash.css">
-  <link rel="stylesheet" href="views/assets/css/chat.css">
 </head>
 <body>
   <section class="container">
@@ -59,7 +59,7 @@
             <div class="chat_wrapper" id="containerChats">
               <div class="chat-header">
                 <span id="name_chat"></span>
-                <span id="cerrar_conversacion">x</span>
+                <span id="cerrar_conversacion">&lowbar;</span>
               </div>
             	<div class="message_box" id="message_box"></div>
             	<div class="panel">

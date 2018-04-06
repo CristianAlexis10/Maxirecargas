@@ -98,25 +98,6 @@ $.ajax({
   })
 
 
-
-
-
-var ctx2 = document.getElementById("second--pie");
-  var chartPie2 = new Chart(ctx2,{
-            type:'pie',
-            data: {
-                datasets: [{
-                    data: [12,34,56],
-                    backgroundColor: [
-                        window.chartColors.red,
-                        window.chartColors.purple,
-                        window.chartColors.yellow,
-                    ],
-                }],
-                labels:["red","purple","yellow"]},
-                option:{
-                  responsive: true
-                }});
  $("#dataGrid").DataTable();
 
 

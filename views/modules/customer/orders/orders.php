@@ -7,7 +7,7 @@
         <div class="container--form">
           <form id="frmNewOrder">
             <div class="form-groupuser">
-              <label for="producto" class="labelmagenta">Referencia</label>
+            <label for="producto" class="labelmagenta" id="labelProducto">Referencia</label>
             <input type="text" id="producto" class="inputmagenta"  value="<?php
               if(isset($_GET['data'])){
                   echo $_GET['data'];
@@ -130,7 +130,8 @@
   </div>
 </div>
 
-<div id="viewDetail"></div>
+    <div id="viewDetail"></div>
+
 
 
 <!-- opciones de busqueda -->

@@ -1,9 +1,9 @@
 @media (max-width: 991px){
-/*module product  */
-  #wrap-result{width: 250px !important; height: 250px !important;}
-  .ms-choice{width: 254px !important;}
-/* chat */
-.chat_wrapper{width: 40%; top: 19.2vh}
+  /*module product  */
+    #wrap-result{width: 250px !important; height: 250px !important;}
+    .ms-choice{width: 254px !important;}
+  /* chat */
+  .chat_wrapper{width: 40%; top: 19.2vh}
 }
 @media (max-width: 767px){
   .userProfile--img img {width: 85%}
@@ -25,11 +25,6 @@
 @media (max-width:576px) {
   .container--menumobile{width: 50%}
   .menu--top .items{width:50%}
-  .wrap--pie{
-    grid-template-areas:
-    "pie1"
-    "pie2";
-  }
   .ui-tabs .ui-tabs-nav .ui-tabs-anchor{padding: 5px 10px}
   .form-group .input{width: 90%}
   .form-group .input.grande{width: 96%}
@@ -47,4 +42,14 @@
   .detail{display: block; box-sizing: border-box;}
   .mudules.orders.detail .wrap--info{width: 100%}
   .container--modales.order{width: 90%}
+  /*views assitance  */
+  .container--asistente{flex-direction: column-reverse;}
+  .asistente--right{width: 100%; margin-bottom: 20px}
+  .asistente--left{display: none}
+  /* chat */
+  .chat_wrapper{width: 100%; height: 100%; top:0}
+  .chat_wrapper .message_box{height: 324px}
+}
+@media (max-width:510px){
+
 }

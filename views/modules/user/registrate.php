@@ -36,7 +36,7 @@
                     <label for="tip_doc" class="select">Tipo de Documento:</label>
                     <select class="dataCl dataEmp input" id="tip_doc" name="data"  required></select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" id="error-ndoc">
                     <label for="numDoc" class="label">Numero de Documento:</label>
                     <input type="number"  id="numDoc" onkeypress="return valida(event)" class="input dataCl" name="data" required>
                   </div>
@@ -209,11 +209,11 @@
         <h1>iniciar sesión</h1>
         <p>Agrega tu documento de identidad y contraseña para ingresar a Maxirecargas</p>
         <form id="form--login" >
-          <div class="wrap--login">
+          <div class="wrap--login" id="error">
             <label for="document" class="label-login">Documento de identidad</label>
             <input type="text" name="data-login" class="input--login" onkeypress="return valida(event)" id="document" required>
           </div>
-          <div class="wrap--login">
+          <div class="wrap--login" id="error-password">
             <label for="password" class="label-login">Contraseña</label>
             <input type="password" name="data-login" id="pass" class="input--login" required>
             <div class="show--pass">

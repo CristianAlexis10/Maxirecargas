@@ -198,8 +198,8 @@
   padding: 8px 0;
   font-size: 16px;
   width: 100%;
-
 }
+
  .input, .inputregist{
    position: relative;
    background: #40464c;
@@ -893,9 +893,11 @@ transform: translateY(-12px);
 
 /*alert*/
 .message-red{
-  padding: 10px;
-  background: #f44336;
-  color: white;
+  background: transparent;
+  text-align: right;
+  color: #f44336;
+  transition: all .5s ease;
+
 }
 
 /* activar cuenta */

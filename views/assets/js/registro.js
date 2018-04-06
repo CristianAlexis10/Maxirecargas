@@ -209,10 +209,11 @@ $("#frmNewUser").submit(function(e) {
        data:'data='+value,
    }).done(function(response){
      if (response=='true') {
-         $('#numDoc').after('<div class="no-usu">usuario no valido</div>');
+         $('#error-ndoc').after('<div class="message-red">Usuario no valido</div>');
           num_doc = false;
+
       }else{
-           $('.no-usu').remove();
+           $('.message-red').remove();
          num_doc = true;
       }
    });
@@ -263,10 +264,10 @@ $("#correo").keyup(function(){
        data:'data='+value,
    }).done(function(response){
      if (response=='true') {
-         $('#correo').after('<div class="no-usu">Correo no valido</div>');
+         $('#correo').after('<div class="message-red">Correo no valido</div>');
           usu_correo = false;
       }else{
-           $('.no-usu').remove();
+           $('.message-red').remove();
          usu_correo = true;
       }
    });
@@ -457,10 +458,10 @@ $('#nit').keyup(function(){
   }).done(function(response){
     console.log(response);
     if (response=='true') {
-        $('#nit').after('<div class="no-usu">Nit no valido</div>');
+        $('#nit').after('<div class="message-red">Nit no valido</div>');
          num_nit = false;
      }else{
-          $('.no-usu').remove();
+          $('.message-red').remove();
           num_nit = true;
      }
   });
@@ -504,10 +505,10 @@ function segundoPasoBusi(){
    }).done(function(response){
      console.log(response);
      if (response=='true') {
-       $('#numDocEmp').after('<div class="no-usu">Usuario no valido</div>');
+       $('#numDocEmp').after('<div class="message-red">Usuario no valido</div>');
        num_doc_emp = false;
      }else{
-       $('.no-usu').remove();
+       $('.message-red').remove();
        num_doc_emp = true;
      }
    });
@@ -535,11 +536,11 @@ $("#sede-correo").keyup(function(){
        data:'data='+value,
    }).done(function(response){
      if (response=='true') {
-         $('#sede-correo').after('<div class="no-usu">Correo no valido</div>');
+         $('#sede-correo').after('<div class="message-red">Correo no valido</div>');
           usu_correoEmp = false;
           cuartoPaso();
       }else{
-           $('.no-usu').remove();
+           $('.message-red').remove();
          usu_correoEmp = true;
          cuartoPaso();
       }

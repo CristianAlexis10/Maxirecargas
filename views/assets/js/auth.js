@@ -13,7 +13,7 @@ $('#pass').focus(function(){
 		    $(".message").remove();
 	     }else{
 	     	$(".message").remove();
-		$("#document").after("<div class='message-red'>Documento no valido</div>");
+		    $("#error").after("<div class='message-red'>Documento no valido</div>");
 	     }
 
 	  });
@@ -22,7 +22,7 @@ $('#pass').focus(function(){
     }
     setTimeout(function(){
        $('div.message-red').remove();
-     }, 2000);
+     }, 3000);
 });
 //capturar el evento submit
 $("#form--login").submit(function(e) {
@@ -47,10 +47,10 @@ $("#form--login").submit(function(e) {
                       location.href = 'dashboard';
                       return;
                   }else{
-                      $('#form--login').after('<div class="message-red">'+result+'</div>');
+                      $('#error-password').after('<div class="message-red">'+result+'</div>');
                       setTimeout(function(){
                           $('div.message-red').remove();
-                      }, 2000);
+                      }, 3000);
                   }
                },
                error: function(result){

@@ -27,7 +27,8 @@
 					<?php }?>
 					<!-- datos -->
 					<h1 class="title--customer--detail other">datos de los productos</h1>
-					<table>
+					<div class="containerTable">
+						<table>
 						<tr>
 							<th>N°</th>
 							<th>Producto</th>
@@ -36,6 +37,7 @@
 							<th>Obs</th>
 							<th>Total</th>
 						</tr>
+					</div>
 				<?php
 				$i = 0;
 				$n = 1;

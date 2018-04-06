@@ -41,7 +41,7 @@
       <div class="chat_wrapper">
         <div class="chat-header">
           <span>Asistente virtual Maxirecargas</span>
-          <span id="cerrar_conversacion">x</span>
+          <span id="cerrar_conversacion">&lowbar;</span>
         </div>
       	<div class="message_box" id="message_box"></div>
       	<div class="panel">
