@@ -210,10 +210,12 @@ $("#frmNewUser").submit(function(e) {
    }).done(function(response){
      if (response=='true') {
          $('#error-ndoc').after('<div class="message-red">Usuario no valido</div>');
+         $('#numDoc').addClass("inputLoginRed")
           num_doc = false;
 
       }else{
            $('.message-red').remove();
+           $('#numDoc').removeClass("inputLoginRed")
          num_doc = true;
       }
    });
@@ -264,10 +266,13 @@ $("#correo").keyup(function(){
        data:'data='+value,
    }).done(function(response){
      if (response=='true') {
-         $('#correo').after('<div class="message-red">Correo no valido</div>');
+         $('#error-regCorreo').after('<div class="message-red">Correo no valido</div>');
+         $('#correo').addClass("inputLoginRed")
           usu_correo = false;
       }else{
            $('.message-red').remove();
+           $('#correo').removeClass("inputLoginRed")
+
          usu_correo = true;
       }
    });
@@ -280,7 +285,9 @@ $("#correo").keyup(function(){
      customerPart2.style.display= "none"
      customerPart3.style.display= "block";
    }else if(validarEmail($("#correo").val())==false){
-     $("#normalIrParte3").after("<div class='message'>Correo no valido</div>");
+     $("#error-regCorreo").after("<div class='message-red'>Correo no valido</div>");
+     $('#correo').addClass("inputLoginRed")
+
    }else{
      $("#normalIrParte3").after("<div class='message'>Todos los campos son requeridos</div>");
    }
@@ -294,39 +301,45 @@ $("#correo").keyup(function(){
  //contraseñas
  $('#contra').keyup(function(){
    var contra_ingresada = $('#contra').val().length;
-   $('.contra-no-valid').remove();
+   $('.message-red').remove();
    if (contra_ingresada<8) {
-     $('#contra').after('<div class="contra-no-valid">La clave debe tener al menos 8 caracteres');
+     $('#error-regPassword').after('<div class="message-red">La clave debe tener al menos 8 caracteres');
+     $('#contra').addClass("inputLoginRed")
      contra=false;
      $('#rep_contra').attr('disabled',true);
      return ;
    }
    if (contra_ingresada>25) {
-     $('#contra').after('<div class="contra-no-valid">La clave no puede tener más de 25 caracteres');
+     $('#error-regPassword').after('<div class="message-red">La clave no puede tener más de 25 caracteres');
+     $('#contra').addClass("inputLoginRed")
      contra=false;
      $('#rep_contra').attr('disabled',true);
      return ;
    }
    if (minusculas($('#contra').val())==0) {
-     $('#contra').after('<div class="contra-no-valid">La clave debe tener al menos una letra minúscula');
+     $('#error-regPassword').after('<div class="message-red">La clave debe tener al menos una letra minúscula');
+     $('#contra').addClass("inputLoginRed")
      contra=false;
      $('#rep_contra').attr('disabled',true);
      return ;
    }
    if (mayusculas($('#contra').val())==0) {
-     $('#contra').after('<div class="contra-no-valid">La clave debe tener al menos una letra mayuscula');
+     $('#error-regPassword').after('<div class="message-red">La clave debe tener al menos una letra mayuscula');
+     $('#contra').addClass("inputLoginRed")
      contra=false;
      $('#rep_contra').attr('disabled',true);
      return ;
    }
    if (numeros($('#contra').val())==0) {
-     $('#contra').after('<div class="contra-no-valid">La clave debe tener al menos un caracter numérico');
+     $('#error-regPassword').after('<div class="message-red">La clave debe tener al menos un caracter numérico');
+     $('#contra').addClass("inputLoginRed")
      contra=false;
      $('#rep_contra').attr('disabled',true);
      return ;
    }
    if ($('#contra').val().indexOf(" ")!=-1) {
-    $('#contra').after( "<div class='contra-no-valid'>La clave no debe tener espacios en blaco");
+    $('#error-regPassword').after( "<div class='message-red'>La clave no debe tener espacios en blaco");
+    $('#contra').addClass("inputLoginRed")
     contra=false;
     $('#rep_contra').attr('disabled',true);
     return ;
@@ -344,7 +357,8 @@ $("#correo").keyup(function(){
      $('.rep_contrasena').remove();
    }else{
      contra=false;
-     $('#rep_contra').after('<div class="rep_contrasena">las contraseñas no coinciden</div>');
+     $('#error-regPassword-repite').after('<div class="rep_contrasena">las contraseñas no coinciden</div>');
+     $('#contra').addClass("inputLoginRed");
    }
      enable(num_doc,contra);
 
@@ -570,39 +584,39 @@ $("#sede-correo").keyup(function(){
  $('#rep_contraEmp').attr('disabled',true);
 $('#contraEmp').keyup(function(){
   var contra_ingresada = $('#contraEmp').val().length;
-  $('.contra-no-valid').remove();
+  $('.message-red').remove();
   if (contra_ingresada<8) {
-    $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos 8 caracteres');
+    $('#contraEmp').after('<div class="message-red">La clave debe tener al menos 8 caracteres');
     contraEmp=false;
     $('#rep_contraEmp').attr('disabled',true);
     return ;
   }
   if (contra_ingresada>25) {
-    $('#contraEmp').after('<div class="contra-no-valid">La clave no puede tener más de 25 caracteres');
+    $('#contraEmp').after('<div class="message-red">La clave no puede tener más de 25 caracteres');
     contraEmp=false;
     $('#rep_contraEmp').attr('disabled',true);
     return ;
   }
   if (minusculas($('#contraEmp').val())==0) {
-    $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos una letra minúscula');
+    $('#contraEmp').after('<div class="message-red">La clave debe tener al menos una letra minúscula');
     contraEmp=false;
     $('#rep_contraEmp').attr('disabled',true);
     return ;
   }
   if (mayusculas($('#contraEmp').val())==0) {
-    $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos una letra mayuscula');
+    $('#contraEmp').after('<div class="message-red">La clave debe tener al menos una letra mayuscula');
     contraEmp=false;
     $('#rep_contraEmp').attr('disabled',true);
     return ;
   }
   if (numeros($('#contraEmp').val())==0) {
-    $('#contraEmp').after('<div class="contra-no-valid">La clave debe tener al menos un caracter numérico');
+    $('#contraEmp').after('<div class="message-red">La clave debe tener al menos un caracter numérico');
     contraEmp=false;
     $('#rep_contraEmp').attr('disabled',true);
     return ;
   }
   if ($('#contraEmp').val().indexOf(" ")!=-1) {
-   $('#contraEmp').after( "<div class='contra-no-valid'>La clave no debe tener espacios en blaco");
+   $('#contraEmp').after( "<div class='message-red'>La clave no debe tener espacios en blaco");
    contraEmp=false;
    $('#rep_contraEmp').attr('disabled',true);
    return ;

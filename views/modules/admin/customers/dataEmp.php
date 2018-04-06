@@ -1,8 +1,7 @@
 <?php
 	$result = $this->master->consultaClienteEmpresarial(base64_decode($_GET['data']));
 	$sede= $this->master->consultaSedeByCodi($result['sed_codigo']);
-	$empresa= $this->master->ConsultaEmpresaByCod($sede['emp_codigo']);
-	// print_r($result);
+	$empresa= $this->master->selectBy("empresa",array("emp_codigo",$sede['emp_codigo']));
 ?>
 <div class="modules customers">
 	<div class="title">
@@ -10,6 +9,7 @@
 	</div>
 	<div class="wrap--btns">
 		<?php
+		// print_r($sede);
 		$modulo = 'usuarios';
 		$crud = permisos($modulo,$permit);
 		if($crud[2]==1){?>
