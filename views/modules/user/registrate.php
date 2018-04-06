@@ -52,7 +52,7 @@
                   <button type="button" id="normalIrParte2">siguiente</button>
                 </div>
                 <div id="customers--normal--part2">
-                  <div class="form-group">
+                  <div class="form-group" id="error-regCorreo">
                     <label for="correo" class="label">Correo:</label>
                     <input type="email" class=" input dataCl" id="correo" name="data" required>
                   </div>
@@ -61,7 +61,7 @@
                     <input type="number" class="input dataCl" id="tel" onkeypress="return valida(event)" name="data" required>
                   </div>
                   <div id="selectAutocomplete">
-                          <select class="dataCl input"  id="cuidad" required>
+                          <select class="dataCl input" id="cuidad" required>
                             <?php
                               foreach ($this->master->selectAll("ciudad") as $row) {?>
                                 <option value="<?php   echo $row['id_ciudad']; ?>"><?php  echo $row['ciu_nombre'] ?></option>
@@ -87,11 +87,11 @@
                     </select>
                   </div>
                   <div class="customers--password">
-                  <div class="form-group">
+                  <div class="form-group" id="error-regPassword">
                       <label for="contra" class="label">Contraseña:</label>
                       <input type="password" name="data" id="contra" class="input dataCl" required>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" id="error-regPassword-repite">
                       <label for="rep_contra" class="label">Repetir Contraseña:</label>
                       <input type="password" name="data" id="rep_contra" class="input dataCl" required disabled>
                     </div>

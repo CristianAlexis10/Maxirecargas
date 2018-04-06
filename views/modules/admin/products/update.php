@@ -28,7 +28,7 @@ foreach ($services as $key => $value) {
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="categoria" class="select">Categoria:</label>
+						<label for="categoria" class="select">Categoría:</label>
 						<select  id="categoria" class="data-new-pro input " required>
 							<?php foreach($this->master->selectAll("tipo_producto") AS $row) {
 								if ($result['tip_pro_codigo']==$row['tip_pro_codigo']) { ?>
@@ -58,7 +58,7 @@ foreach ($services as $key => $value) {
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="caracteristica" class="label">Caracteristicas:</label>
+							<label for="caracteristica" class="label">Características:</label>
 							<textarea name="data[]" id="caracteristica" class="input data-new-pro"><?php echo $result['pro_descripcion']?>
 							</textarea>
 						</div>

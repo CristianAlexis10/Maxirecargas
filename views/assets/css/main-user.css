@@ -581,6 +581,7 @@ transform: translateY(-12px);
  transform: translateY(16px);
  position: absolute;
 }
+.label-contact.notranslate{transform: translateY(-5px); font-size: 12px}
 .input-contact{
     position: relative;
     background: transparent;
@@ -589,8 +590,8 @@ transform: translateY(-12px);
     padding: 8px 0;
     font-size: 16px;
     color: white;
-
 }
+
 .wrap--contact::after{
   background-color: rgb(255,0,255);
   transform: scaleX(0);
@@ -888,16 +889,31 @@ transform: translateY(-12px);
 }
 
 
-#menu{display: block;}
+#menu{display: block; cursor: pointer;}
 #wrap--menu--mobile, #menu-mobile{display: none;}
 
-/*alert*/
+/*alerts*/
 .message-red{
   background: transparent;
   text-align: right;
   color: #f44336;
   transition: all .5s ease;
-
+}
+.inputLoginRed{
+  border-bottom: 2px solid #f44336;
+  z-index: 2;
+}
+.container-red{
+  background: #f44336;
+  padding: 10px;
+  color:white;
+  font-family: 'lato';
+}
+.alertRed{
+  color: #f44336;
+}
+.inputred{
+  border: 1px solid #f44336;
 }
 
 /* activar cuenta */

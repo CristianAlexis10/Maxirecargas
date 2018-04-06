@@ -117,6 +117,9 @@
   #order--formone{width: 100%; transition: all .5s ease;}
   #order--formtwo{width: 100%; transform: translateX(9999px); opacity: 1;transition: all .5s ease;}
   #form-groupuser-cantidadMobile, #orderAtrasMobile{display: block;}
+  /* views order user */
+  .btnOrder{display: none;}
+  .ocultarbtnOrder{display: inline-block;}
   /*views record */
   .ui-tabs .ui-tabs-panel{padding: 0;}
   #tabs{width: 85%}

@@ -1,0 +1,39 @@
+@media (max-width: 991px){
+  .error {top: 18%; padding-left: 60px;}
+  .error h3{font-size: 30px;}
+  .error p{font-size: 20px}
+  .container--forms{margin-left: 60px}
+  .container--error img{width: 200px}
+}
+@media (max-width: 768px){
+  .error{top: 33%}
+  .container--forms{margin-top: 37%}
+  .container--error img{top:3%; left: 21%}
+  .figura2{bottom: -235px}
+}
+@media (max-width: 658px ){
+  .figura1, .figura2{display: none;}
+  .error{text-align: center;}
+  .error p{text-align: center;}
+  .container--error img{left:38%}
+  .container--forms{margin-top: 44%}
+}
+@media (max-width: 575px ){
+  .error h3{font-size: 24px}
+  .error p{font-size: 18px; width: 464px; letter-spacing: 0}
+  .container--error img{left: 34%}
+  .container--forms{margin-top: 48%}
+}
+@media (max-width:510px){
+  .error{padding-left: 30px}
+  .container--forms{margin-top: 53%}
+  .frm-group{width: 400px}
+}
+@media (max-width:360px){
+  .container--error img{width: 160px; left: 27%}
+  .error{padding-left: 45px}
+  .error p{width: 260px; padding-left: 0}
+  .container--forms{margin-top: 75%; margin-left: 20px}
+  .frm-group{width: 318px}
+
+}

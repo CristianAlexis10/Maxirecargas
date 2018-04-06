@@ -222,7 +222,7 @@ $("#confirmOrder").click(function(){
           location.href = "historial" ;
         }else{
           // $("div.message").remove()
-          $("#orderAtras").after("<div class='message'>"+result+"</div>");
+          $(".form-groupuser-btnBlue").after("<div class='container-red'>"+result+"</div>");
           setTimeout(function(){$("div.message").remove()},5000);
         }
       },

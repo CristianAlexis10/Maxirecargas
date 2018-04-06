@@ -54,8 +54,8 @@
      </div>
      <div class="content--detailRight">
        <img src="views/assets/image/flat/check.png">
-       <h2>Estamos feliz de trabajar para usted</h2>
-       <h1>¡Gracias por trabajar con nosotros!</h1>
+       <!-- <h2>Estamos feliz de trabajar para usted</h2> -->
+       <h1>¡Estamos feliz de trabajar para usted!</h1>
      </div>
     <div class="detail--figure"></div>
   </div>

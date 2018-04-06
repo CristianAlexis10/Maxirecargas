@@ -6,15 +6,15 @@
             <div class="quotation--form">
               <form id="frmNewOrder">
                 <p class="subtitle quo">Ingresa los datos de los Productos y/o Servicios que desea cotizar y espera nuestra respuesta. </p>
-                <div class="form-groupuser3">
-                  <label for="producto" class="labelyellow">Referencia del producto</label>
+                <div class="form-groupuser3" id="error--quoRef">
+                  <label for="producto" class="labelyellow error">Referencia del producto</label>
                 <input type="text" id="producto" class="inputYellow" value="<?php
                   if(isset($_GET['data'])){
                       echo $_GET['data'];
                   }
                 ?>" >
-                <a href="#" id="openSearch">¿No sabes cuál es tu referencia?</a>
                 </div>
+                <a id="openSearch">¿No sabes cuál es tu referencia?</a>
                 <div class="form-groupuserBtn">
                   <input type="button" id="searchPro" class="btnYellow" value="Buscar">
                 </div>

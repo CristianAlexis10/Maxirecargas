@@ -36,9 +36,11 @@ $("#searchPro").click(function(){
       data: ({data: $("#producto").val()}),
       success: function(result){
         if (result=='No existe Este producto') {
-                  $("#frmNewOrder").after('<div class="message">Este producto no existe</div>');
+                  $("#error--quoRef").after('<div class="message-red">Este producto no existe</div>');
+                  $("#producto").addClass('inputred');
+                  $(".labelyellow.error").addClass('alertRed')
                   setTimeout(function(){
-                    $("div.message").remove();
+                    $("div.message-red").remove();
                   },3000);
                   $(".hide--service").hide();
                   $(".hide--cantidad").hide();
@@ -46,6 +48,8 @@ $("#searchPro").click(function(){
                   $("#orderSiguiente").hide();
         }else{
           //mostrar y llenar el select de servicios
+          $(".labelyellow.error").removeClass('alertRed')
+          $("#producto").removeClass('inputred')
           $(".hide--service").show();
           $(".hide--cantidad").show();
           $(".hide--obs").show();

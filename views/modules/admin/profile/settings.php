@@ -29,8 +29,8 @@
                       <label for="namerol" class="label">nombre del rol</label>
                       <input type="text" name="data-rol-name" class="input" id="namerol"required>
                   </div>
-                  <h1>Asirnar Permisos</h1>
-                  <p>Este rol tendra permisos para los siguientes modulos:</p>
+                  <h1>Asignar Permisos</h1>
+                  <p>Este rol tendrá permisos para los siguientes módulos:</p>
                   <div class="config--form" id="module-cliente">
                       <div class="wrap--chmodule">
                           <label>usuarios
@@ -138,7 +138,7 @@
                           </label>
                       </div>
                   </div>
-                  <button type="submit" name="button" class="saverol">Guargar</button>
+                  <button type="submit" name="button" class="saverol">Guardar</button>
               </div>
           </div>
       </div>
@@ -174,11 +174,11 @@
       <div id="contacto">
         <form id="form_contacto">
           <div class="form-group">
-            <label for="numer1" class="label">numero de telefono</label>
+            <label for="numer1" class="label">número de telefono</label>
             <input type="number" id="numer1" class="input">
           </div>
           <div class="form-group">
-            <label for="numer2" class="label">numero de telefono 2</label>
+            <label for="numer2" class="label">número de telefono 2</label>
             <input type="number" id="numer2" class="input">
           </div>
           <div class="form-group">
@@ -190,7 +190,7 @@
             <input type="email" id="correocos" class="input">
           </div>
           <div class="form-group">
-            <label for="direccion" class="label">direccion</label>
+            <label for="direccion" class="label">dirección</label>
             <input type="text" id="direccion" class="input">
           </div>
           <div class="form-group">
@@ -232,7 +232,7 @@
                     <textarea class="input dataUptadeBusi textarea" id="vision"   required><?php echo $data[0]['gw_vision']?></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="pma" class="select label">Politica de medio ambiente:</label>
+                    <label for="pma" class="select label">Política de medio ambiente:</label>
                     <textarea class="input dataUptadeBusi textarea" id="pma" required><?php echo $data[0]['gw_politicas']?></textarea>
                   </div>
 
@@ -243,7 +243,7 @@
 
               </div>
               <div class="form-group">
-                  <button type="submit" class="btn">hacer cambios</button>
+                  <button type="submit" class="btn">Hacer cambios</button>
               </div>
             </div>
           <?php }else{?>
@@ -251,7 +251,7 @@
                 <p><?php echo $data[0]['gw_mision']?></p>
                 <h1>Visión</h1>
                 <p><?php echo $data[0]['gw_vision']?></p>
-                <h1>Politica de medio ambiente</h1>
+                <h1>Política de medio ambiente</h1>
                 <p><?php echo $data[0]['gw_politicas']?></p>
           <?php  } ?>
           </div>

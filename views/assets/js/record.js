@@ -9,6 +9,9 @@ $("#closeOrderListo").click(function() {
 $("#closeCancel").click(function(){
   $("#modalCancel").hide()
 });
+$(".checkBtn").click(function() {
+  $(".modales").hide()
+})
 //cancelar pedido
 var orderToCancel;
 function viewCancelOrder(cod){
