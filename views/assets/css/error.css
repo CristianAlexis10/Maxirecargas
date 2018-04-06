@@ -24,6 +24,10 @@
   color:#576265;
   font-size: 100px;
 }
+.error h3{
+  color:#576265;
+  font-size:50px;
+}
 .hipervinculo{
   text-decoration: none;
   color: white ;
@@ -41,6 +45,34 @@
   color: #3b657b;
   width: 600px;
 }
+.container--forms{
+  margin-top: 25%;
+  position: absolute;
+  margin-left: 100px;
+}
+.frm-group{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 20px
+}
+.frm-group label{ color:#3b657b }
+.frm-group input{
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #3b657b;
+  outline: none;
+}
+ .btn{
+  border: none;
+  background: #3b657b ;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all .5s ease;
+  outline: none;
+}
+.btn:hover{box-shadow: 4px 5px 15px 0 rgba(0, 0, 0, 0.5);}
 .figura1{
   position: absolute;
   width: 300px;
@@ -56,39 +88,39 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-@-webkit-keyframes fig1 {
-  from {
-  -webkit-transform: rotate(20deg);
-  transform: rotate(20deg);
-  }
-  to {
-  -webkit-transform: rotate(25deg);
-  transform: rotate(25deg);
-  }
-}
 
-.figura2{
-  width: 100%;
-  height: 300px;
-  z-index: 5;
-  position: absolute;
-  background: #35a4dd;
-  right:-10%;
-  bottom:-301px;
-  box-shadow: 0px 0px 60px 10px rgba(131, 95, 214, 0.5),0px 0px  20px  0px  rgba(0,0,0,0.1);
-  transform: rotate(-20deg);
-  transition: all .5s;
-  animation-name: fig2;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  @-webkit-keyframes fig1 {
+    from {
+      -webkit-transform: rotate(20deg);
+      transform: rotate(20deg);
+    }
+    to {
+      -webkit-transform: rotate(25deg);
+      transform: rotate(25deg);
+    }
+  }
+  .figura2{
+    width: 100%;
+    height: 300px;
+    z-index: 5;
+    position: absolute;
+    background: #35a4dd;
+    right:-10%;
+    bottom:-301px;
+    box-shadow: 0px 0px 60px 10px rgba(131, 95, 214, 0.5),0px 0px  20px  0px  rgba(0,0,0,0.1);
+    transform: rotate(-20deg);
+    transition: all .5s;
+    animation-name: fig2;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  @-webkit-keyframes fig2 {
+    from { -webkit-transform: rotate(-15deg);
+      transform: rotate(-15deg);
+    }
+    to { -webkit-transform: rotate(-20deg);
+      transform: rotate(-20deg);
+    }
 }
-
-@-webkit-keyframes fig2 {
-  from { -webkit-transform: rotate(-15deg);
-  transform: rotate(-15deg);
-  }
-  to { -webkit-transform: rotate(-20deg);
-  transform: rotate(-20deg);
-  }

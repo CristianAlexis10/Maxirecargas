@@ -14,11 +14,12 @@ $('#pass').focus(function(){
 	     }else{
 	     	$(".message").remove();
 		    $("#error").after("<div class='message-red'>Documento no valido</div>");
+        $("#error .input--login").addClass("inputLoginRed");
 	     }
-
 	  });
     }else{
     	$(".message").remove();
+      $("#error .input--login").removeClass("inputLoginRed");
     }
     setTimeout(function(){
        $('div.message-red').remove();
@@ -51,6 +52,8 @@ $("#form--login").submit(function(e) {
                       setTimeout(function(){
                           $('div.message-red').remove();
                       }, 3000);
+                      $("#error-password .input--login").addClass("inputLoginRed");
+
                   }
                },
                error: function(result){

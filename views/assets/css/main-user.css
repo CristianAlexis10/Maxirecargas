@@ -891,13 +891,22 @@ transform: translateY(-12px);
 #menu{display: block;}
 #wrap--menu--mobile, #menu-mobile{display: none;}
 
-/*alert*/
+/*alerts*/
 .message-red{
   background: transparent;
   text-align: right;
   color: #f44336;
   transition: all .5s ease;
-
+}
+.inputLoginRed{
+  border-bottom: 2px solid #f44336;
+  z-index: 2;
+}
+.container-red{
+  background: #f44336;
+  padding: 10px;
+  color:white;
+  font-family: 'lato';
 }
 
 /* activar cuenta */

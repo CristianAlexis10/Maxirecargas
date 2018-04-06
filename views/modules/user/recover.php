@@ -6,21 +6,22 @@
     <title>Recuperar contraseña</title>
     <link rel="shortcut icon" href="views/assets/image/logo.png">
     <link rel="stylesheet" href="views/assets/css/error.css">
+    <link rel="stylesheet" href="views/assets/css/responsiveError.css">
   </head>
   <body>
-    <div class="container--error">
+    <div class="container--error ">
       <img src="views/assets/image/logo.png">
-      <div class="">
-        <h2>Recuperar mi contraseña</h2>
-      </div>
+      <div class="error">
+        <h3>Recuperar mi contraseña</h3>
+        <p>Ingresa tu documento y espera nuestro correo de confirmacion.</p>
+    </div>
+    <div class="container--forms">
       <form id="recoverPas">
           <div class="frm-group">
               <label for="documento">Numero de documento: </label>
               <input type="number" class="input" id="documento" required>
           </div>
-          <div class="frm-group">
-              <input type="submit" class="input" value="Enviar codigo al correo" >
-          </div>
+              <input type="submit" class="btn" value="Enviar codigo al correo" >
       </form>
       <form id="ingresarCodigo">
           <div class="frm-group">
@@ -35,10 +36,11 @@
               <label for="new2">Repetir contraseña: </label>
               <input type="password" class="input" id="new2" required>
           </div>
-          <div class="frm-group">
-              <input type="submit" class="input" value="Recuperar" >
-          </div>
+
+              <input type="submit" class="btn" value="Recuperar" >
+
       </form>
+    </div>
       <div class="figura1"></div>
       <div class="figura2"></div>
     </div>
