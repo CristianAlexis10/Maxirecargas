@@ -328,6 +328,11 @@
 		function update(){
 			$data=$_POST['data'];
 			//foto de perfil
+			$fecha = $this->doizer->validateDate($data[7],"past");
+			if (!$fecha==true) {
+				echo json_encode("fecha no valida");
+				return ;
+			}
 			if (isset($_FILES['file']['tmp_name'])) {
 				$profile = $this->doizer->ValidateImage($_FILES,"assets/image/profile/");
 				if (is_array($profile)) {
@@ -360,7 +365,7 @@
 				}
 				$i++;
 			}
-			$result = $this->master->procedureUpdate(array($_SESSION['user_update'],$data[0],$data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[10],$profile));
+			$result = $this->master->procedureUpdate(array($_SESSION['user_update'],$data[0],$data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[10],$data[11]));
 			if ($result==true) {
 				echo json_encode('Modificado Exitosamente');
 			}else{

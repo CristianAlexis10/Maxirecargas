@@ -72,19 +72,35 @@
 			 </div>
 			 <div class="wrap_two_formgroup">
 				 <div class="form-group">
-					 <label for="direccion" class="label">direccion:</label>
-					 <!-- lopera aca es donde tiene que funcionar GRACIAS -->
-					 <input type="text" name="data[]" id="direccion" class="userUpdate input">
-					</div>
-				 <div class="form-group">
 					 <label for="sexo" class="label">Sexo:</label>
-					 <input type="text" name="data[]" id="sexo" class="userUpdate input" value="<?php echo $result['usu_sexo']?>">
+					 <select name="data[]"  id="sexo" required class="userUpdate input">
+						<?php
+							if ($result['usu_sexo']=="masculino") {?>
+								<option value="masculino" selected>Masculino</option>
+								<option value="femenino" >Femenino</option>
+								<option value="otro" >Otro</option>
+								<?php
+							}elseif($result['usu_sexo']=="femenino"){?>
+								<option value="masculino" >Masculino</option>
+								<option value="femenino" selected>Femenino</option>
+								<option value="otro" >Otro</option>
+							<?php }else{?>
+								<option value="masculino" >Masculino</option>
+								<option value="femenino" >Femenino</option>
+								<option value="otro" selected>Otro</option>
+
+							 <?php }  ?>
+						</select>
+				 </div>
+				 <div class="form-group">
+					 <label for="direccion" class="label">direccion:</label>
+					 <input type="text" name="data[]" id="direccion" class="userUpdate input" value="<?php echo $result['usu_direccion']?>">
 				 </div>
 			 </div>
 			 <div class="wrap_two_formgroup">
 			 	<div class="form-group">
 			 		<label for="celphone" class="label">Celular</label>
-					<input type="number" class="userUpdate input" id="celphone">
+					<input type="number" class="userUpdate input" id="celphone" value="<?php echo $result['usu_celular']?>">
 			 	</div>
 				 <div class="form-group">
 			     <label for="estado" class="label">Estado:</label>

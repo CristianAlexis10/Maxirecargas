@@ -133,7 +133,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
         <div id="img-product">
             <div class="newMark--img">
               <span id="closeImg">&times;</span>
-              <div id="uploadImage" class="modal">
+              <div id="uploadImage" >
                 <div id="wrap-upload" style="width:350px"></div>
                 <input type="file" id="upload">
                 <button class="btn btn-success upload-result">Recortar Imagen</button>

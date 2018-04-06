@@ -8,7 +8,7 @@ var startmodal = document.getElementById('cropp-img');
 var closeImg = document.getElementById('closeImg');
 
 startmodal.onclick = function() {
-  modalimg.style.display = "flex"
+  modalimg.style.display = "flex";
 }
 closeImg.onclick = function(){
   modalimg.style.display="none"

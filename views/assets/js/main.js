@@ -731,14 +731,14 @@ $("#frmUpdtateUser").submit(function(e) {
                       structure = $(this).val();
                       dataJson.push(structure);
                   });
-                 // console.log(dataJson);
+                 console.log(dataJson);
                     $.ajax({
                       url: "guardar-modificacion-cliente",
                       type: "POST",
                        dataType:'json',
                        data: ({data: dataJson}),
                        success: function(result){
-                        // console.log(result);
+                        console.log(result);
                           $("#updateUser").after("<div class='message'>"+result+"</div>");
                          setTimeout(function(){
                             $('div.message').remove();
