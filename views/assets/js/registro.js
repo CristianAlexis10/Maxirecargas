@@ -209,6 +209,7 @@ $("#frmNewUser").submit(function(e) {
        data:'data='+value,
    }).done(function(response){
      if (response=='true') {
+        $('.message-red').remove();
          $('#error-ndoc').after('<div class="message-red">Usuario no valido</div>');
          $('#numDoc').addClass("inputLoginRed")
           num_doc = false;
@@ -266,6 +267,7 @@ $("#correo").keyup(function(){
        data:'data='+value,
    }).done(function(response){
      if (response=='true') {
+       $('.message-red').remove();
          $('#error-regCorreo').after('<div class="message-red">Correo no valido</div>');
          $('#correo').addClass("inputLoginRed")
           usu_correo = false;
@@ -357,7 +359,8 @@ $("#correo").keyup(function(){
      $('.rep_contrasena').remove();
    }else{
      contra=false;
-     $('#error-regPassword-repite').after('<div class="rep_contrasena">las contraseñas no coinciden</div>');
+     $("div.message-red").remove();
+     $('#error-regPassword-repite').after('<div class="message-red">las contraseñas no coinciden</div>');
      $('#contra').addClass("inputLoginRed");
    }
      enable(num_doc,contra);
