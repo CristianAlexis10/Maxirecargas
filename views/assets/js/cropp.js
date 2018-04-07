@@ -47,20 +47,26 @@ $('.upload-result').on('click', function (ev) {
     type: 'canvas',
     size: 'viewport'
   }).then(function (resp) {
-
-    $.ajax({
-      url: "cropp-products",
-      type: "POST",
-      data: {"image":resp},
-      success: function (data) {
-          console.log(data);
-          modalimg.style.display="none"
-        html = '<img src="' + resp + '" />';
-        $('.modal').modal('close');
-        $("#wrap-result").html(html);
-        console.log(data);
-        $("#img").val(data);
-      }
-    });
+    var cadena = resp,
+    separador = ";",
+    limite    = 2,
+    arregloDeSubCadenas = cadena.split(separador, limite);
+    // console.log(arregloDeSubCadenas);
+        $.ajax({
+            url:"cropp-products",
+            type:"post",
+            dataType:"json",
+            data:{"image":arregloDeSubCadenas},
+            success:function(data){
+                console.log(data);
+                html = '<img src="' + resp + '" />';
+                $('.modal').modal('close');
+                $("#img-product").empty();
+                $("#img-product").hide();
+                $("#wrap-result").html(html);
+                $("#img").val(data);
+            },
+            error:function(res){console.log(res)}
+        });
   });
 });

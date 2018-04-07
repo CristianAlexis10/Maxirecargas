@@ -41,28 +41,33 @@ $('#upload').on('change', function () {
     }
     reader.readAsDataURL(this.files[0]);
 });
-
 $('.upload-result').on('click', function (ev) {
   $uploadCrop.croppie('result', {
     type: 'canvas',
     size: 'viewport'
   }).then(function (resp) {
 
-    $.ajax({
-      url: "cropp-profile",
-      type: "POST",
-      data: {"image":resp},
-      success: function (data) {
-          console.log(data);
-        html = '<img src="' + resp + '" />';
-        $('.modal').modal('close');
-        $("#img-product").empty();
-        $("#img-product").hide();
-        $("#wrap-result").html(html);
-        console.log(data);
-        $("#img").val(data);
-      }
-    });
+    var cadena = resp,
+    separador = ";",
+    limite    = 2,
+    arregloDeSubCadenas = cadena.split(separador, limite);
+
+        $.ajax({
+            url:"cropp-profile",
+            type:"post",
+            dataType:"json",
+            data:{"image":arregloDeSubCadenas},
+            success:function(data){
+                console.log(data);
+                html = '<img src="' + resp + '" />';
+                $('.modal').modal('close');
+                $("#img-product").empty();
+                $("#img-product").hide();
+                $("#wrap-result").html(html);
+                $("#img").val(data);
+            },
+            error:function(res){console.log(res)}
+        });
   });
 });
 //modificar usuario
