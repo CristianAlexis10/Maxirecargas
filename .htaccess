@@ -129,6 +129,10 @@ RewriteRule ^ver-toda-ruta-(\w+)$ index.php?controller=routes&a=routeAll&data=$1
 
 #ROLES
 RewriteRule ^nuevo-rol$ index.php?controller=role&a=newRegister
+RewriteRule ^modificar-rol$ index.php?controller=role&a=update
+RewriteRule ^gestion-rol$ index.php?controller=role&a=allRoles
+RewriteRule ^ver-rol-(\w+)$ index.php?controller=role&a=viewUpdate&data=$1
+RewriteRule ^eliminar-rol$ index.php?controller=role&a=delete
 
 #CONTACTO
 RewriteRule ^enviar-correo$ index.php?controller=contact&a=landing

@@ -9,6 +9,9 @@ Inicio</a></li>
           foreach ($permit as $row) {
               echo '<li><a href="'.$row['enlace'].'" class="item">'.$row['icon'].' '.$row['mod_nombre'].'</a></li>';
           }
+          if ($_SESSION['CUSTOMER']['ROL']==2) {
+            echo '<li><a href="gestion-rol" class="item"><i class="fa fa-lock"></i> Roles</a></li>';
+          }
       }
         ?>
   </ul>

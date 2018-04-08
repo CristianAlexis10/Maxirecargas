@@ -11,6 +11,9 @@ require_once "controller/doizer.controller.php";
         function dataTableServices(){
             require_once "views/modules/config/datatables/datatable-services.php";
         }
+        function roles(){
+            require_once "views/modules/config/datatables/datatable-roles.php";
+        }
         function dataTableTrademark(){
             require_once "views/modules/config/datatables/datatable-trademark.php";
         }
