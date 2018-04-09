@@ -76,7 +76,9 @@
           <li><a id="who">¿quiénes somos?</a></li>
           <li><a id="our">nuestros servicios</a></li>
           <li><a id="contc">contáctanos</a></li>
-          <li id="puto"><a id="opc--user"><i class="fa fa-user-o" aria-hidden="true"></i><p>
+          <li id="puto"><a id="opc--user"><?php
+					echo "<img src='views/assets/image/profile/".$_SESSION['CUSTOMER']['PHOTO']."'/>";
+					?><p>
               <?php echo $_SESSION['CUSTOMER']['NAME'] ?>
         </p></a></li>
         </ul>

@@ -6,10 +6,11 @@
 			</div>
 			<div class="items">
 				<div class="profile">
-					<p><a href="perfil"><?php echo $_SESSION['CUSTOMER']['NAME']." ".$_SESSION['CUSTOMER']['LAST_NAME']?></a></p>
+					<p><a href="perfil">
 					<?php
-					//	echo "<img src='views/assets/image/profile/".$_SESSION['CUSTOMER']['PHOTO']."'/>";
+					echo "<img src='views/assets/image/profile/".$_SESSION['CUSTOMER']['PHOTO']."'/>";
 					?>
+					<?php echo $_SESSION['CUSTOMER']['NAME']." ".$_SESSION['CUSTOMER']['LAST_NAME']?></a></p>
 				</div>
 				<div>
 					<?php

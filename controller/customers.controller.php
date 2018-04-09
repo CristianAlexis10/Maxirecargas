@@ -337,6 +337,7 @@
 				$profile = $this->doizer->ValidateImage($_FILES,"assets/image/profile/");
 				if (is_array($profile)) {
 					$profile = $profile[1];
+					$_SESSION['CUSTOMER']['PHOTO']=$profile;
 				}else{
 					echo json_encode($profile);
 					return ;
@@ -436,7 +437,7 @@
 
 		function chageStyle(){
 			$data = $_POST['data'];
-			$result = $this->master->update('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']),$data,array('usu_codigo'));
+			$result = $this->master->update('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']),array($data["menu"],$data['navigator'],$data['menu_top']),array('usu_codigo'));
 			if ($result==true) {
 				$_SESSION['CUSTOMER']['STYLE'] = $this->master->selectBy('estiloxusuario',array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
 			}else{
@@ -455,6 +456,7 @@
 			//imagen
 			if (isset($_SESSION['new_cropp_image'])) {
 				$data[] = $_SESSION['new_cropp_image'];
+				$_SESSION['CUSTOMER']['PHOTO']=$_SESSION['new_cropp_image'];
 				unset($_SESSION['new_cropp_image']);
 				if ($result['usu_foto']!="default.jpg") {
 					unlink("views/assets/image/profile/".$result['usu_foto']);
