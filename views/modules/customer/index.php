@@ -12,25 +12,25 @@
     <link rel="stylesheet" href="views/assets/css/responsive.css">
   </head>
   <body>
-      <div class="wrap--menu" id="wrap--menu">
-        <div class="menu--home">
-          <img src="views/assets/image/iniciomenu.jpg">
-          <div class="menu--title"><a href="maxirecargas">Inicio</a></div>
-        </div>
-        <div class="menu--order">
-          <img src="views/assets/image/pedidosmenu.jpg">
-          <div class="menu--title"><a href="pedidos">Pedidos</a></div>
-        </div>
-        <div class="menu--quotation">
-          <img src="views/assets/image/cotizaciones.jpg">
-          <div class="menu--title"><a href="cotizacion">Cotizaciones</a></div>
-        </div>
-        <div class="menu--product">
-          <img src="views/assets/image/producto.jpg">
-          <span id="close-menu">&times;</span>
-          <div class="menu--title"><a href="productos">Productos</a></div>
-        </div>
+    <div class="wrap--menu" id="wrap--menu">
+      <div class="menu--home">
+        <img src="views/assets/image/iniciomenu.jpg">
+        <div class="menu--title"><a href="maxirecargas">Inicio</a></div>
       </div>
+      <div class="menu--order">
+        <img src="views/assets/image/producto.jpg">
+        <div class="menu--title"><a href="productos">Productos</a></div>
+      </div>
+      <div class="menu--quotation">
+        <img src="views/assets/image/cotizaciones.jpg">
+        <div class="menu--title"><a href="cotizacion">Cotizaciones</a></div>
+      </div>
+      <div class="menu--product">
+        <span id="close-menu">&times;</span>
+        <img src="views/assets/image/pedidosmenu.jpg">
+        <div class="menu--title"><a href="pedidos">Pedidos</a></div>
+      </div>
+    </div>
         <!-- inicio chat -->
       	<div id="iniciar">
       		<span><i class="fa fa-comment" aria-hidden="true"></i><p>Online - Maxirecargas</p></span>
