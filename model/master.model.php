@@ -802,6 +802,18 @@ class MasterModel{
 
        return $result;
    }
+    public function todosLosUsuario(){
+       try {
+           $this->sql="call todosLosUsuario()";
+           $query=$this->pdo->prepare($this->sql);
+           $query->execute();
+           $result = $query->fetchAll(PDO::FETCH_BOTH);
+       } catch (PDOException $e) {
+           $result = $query->errorInfo()[1];
+       }
+
+       return $result;
+   }
     public function totalPersonasNaturales(){
        try {
            $this->sql="call totalPersonasNaturales()";

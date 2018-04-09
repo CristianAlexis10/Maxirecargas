@@ -78,8 +78,8 @@ require_once "controller/doizer.controller.php";
 
 						  $cabeceras= 'Content-type: text/html; charset=utf-8' . "\r\n";
 							$destinatarios= $data[1]."";
-
-						  if(mail('yonosoybond@gmail.com' ,"Maxirecargas-Nueva cotizacion", $mensaje, $cabeceras)){
+							$dataEmp = $this->master->selectAll('gestion_web');
+						  if(mail( $dataEmp[0]['gw_ct_correo'],"Maxirecargas-Nueva cotizacion", $mensaje, $cabeceras)){
 							  $result = true;
 						  }else{
 							  $result = false;

@@ -12,7 +12,7 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',5)) as $row) {?>
+      <?php foreach ($this->master->todosLosUsuario() as $row) {?>
           <tr>
             <td><?php echo $row['usu_primer_nombre']?></td>
             <td class="table-direction"><?php echo $row['usu_direccion']?></td>

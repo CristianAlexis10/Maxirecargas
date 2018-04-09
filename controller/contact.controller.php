@@ -50,9 +50,9 @@ require_once "controller/doizer.controller.php";
 	 	        <h1 style="font-size: 30px;color: #35a4dd;text-transform: uppercase; font-weight:300;">¡urgente!</h1>
 	 	        <p style="font-size: 18px;color:#717171;">Un usuario desea ponerse en contacto con nosotros.</p>
 	 	        <ul style="list-style: none;text-align: left;padding: 15px 50px;text-transform: capitalize;color: #717171;">
-	 	          <li>nombre:yo</li>
-	 	          <li>correo:yonosoybond@gmail.com</li>
-	 	          <li>mensaje:dasadsaddsad</li>
+	 	          <li>nombre:'.$name.'</li>
+	 	          <li>correo:'.$email.'</li>
+	 	          <li>mensaje:'.$_POST['message'].'</li>
 	 	        </ul>
 
 	 	      </div>
