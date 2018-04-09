@@ -467,8 +467,13 @@
 			$result = $this->master->update("usuario",array("usu_codigo",$_SESSION['CUSTOMER']['ID']),$data,array('usu_codigo','id_tipo_documento','usu_num_documento','tip_usu_codigo','id_estado','usu_fechas_registro','usu_ult_inicio_sesion'));
 			if ($result==true) {
 				$_SESSION['CUSTOMER']['NAME']= $data[0];
-				$_SESSION['CUSTOMER']['LAST_NAME']= $data[1];
-				echo json_encode($result);
+				$_SESSION['CUSTOMER']['LAST_NAME']= $data[2];
+				if (isset($_SESSION['CUSTOMER']['CLIENT'])) {
+					$_SESSION['msn']="Modificación exitosa";
+					header("Location:miperfil");
+				}else{
+					echo json_encode($result);
+				}
 			}else{
 				echo json_encode($this->doizer->knowError($result));
 			}
