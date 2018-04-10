@@ -50,7 +50,7 @@
       </div>
         </form>
       <div class="mobile_pass">
-        <p>¿Olvidaste tu Contraseña?</p>
+        <p><a href="recuperar-contrasena">¿Olvidaste tu Contraseña?</a></p>
       </div>
     </div>
 </div>
