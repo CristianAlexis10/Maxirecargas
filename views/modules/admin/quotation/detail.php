@@ -49,9 +49,9 @@
 								<td><?php echo $item['tip_ser_nombre']; ?></td>
 								<td><?php echo $item['proxcod_observacion']; ?></td>
 								<?php if ($dataQuo[0]['cot_estado']=="Terminado"){ ?>
-									<td><input type="number" onkeypress="return eliminarLetras(event)" name="dataQuotation" id="<?php echo $i ;?>" class="<?php echo $item['pro_referencia']; ?> <?php echo $item['proxcot_cantidad'] ;?> <?php echo $item['Tip_ser_cod'];?> inputRespuesta" placeholder="Ingresa la respuesta" value="<?php echo $item['proxcod_res'] ?>" ></td>
+									<td><input type="number" onkeypress="return eliminarLetras(event)" name="dataQuotation" id="<?php echo $i ;?>" class="<?php echo  str_replace(" ","__",$item['pro_referencia']); ?> <?php echo $item['proxcot_cantidad'] ;?> <?php echo $item['Tip_ser_cod'];?> inputRespuesta" placeholder="Ingresa la respuesta" value="<?php echo $item['proxcod_res'] ?>" ></td>
 								<?php }else{ ?>
-									<td><input type="number" onkeypress="return eliminarLetras(event)" name="dataQuotation" id="<?php echo $i ;?>" class="<?php echo $item['pro_referencia']; ?> <?php echo $item['proxcot_cantidad'] ;?> <?php echo $item['Tip_ser_cod'];?> inputRespuesta" placeholder="Ingresa la respuesta"></td>
+									<td><input type="number" onkeypress="return eliminarLetras(event)" name="dataQuotation" id="<?php echo $i ;?>" class="<?php echo  str_replace(" ","__",$item['pro_referencia']); ?> <?php echo $item['proxcot_cantidad'] ;?> <?php echo $item['Tip_ser_cod'];?> inputRespuesta" placeholder="Ingresa la respuesta"></td>
 								<?php } ?>
 						</tr>
 					<?php

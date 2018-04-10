@@ -10,6 +10,7 @@ $("#saveResponse").click(function(){
       dataType:"json",
       data:({quotation:dataResponse, obs : $("#aditionalObs").val()}),
       success:function(result){
+        console.log(result);
         if (result==true) {
           $("#saveResponse").after("<div class='message'>Proceso exitoso.</div>");
           setTimeout(function(){

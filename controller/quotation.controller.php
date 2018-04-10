@@ -170,7 +170,7 @@ require_once "controller/doizer.controller.php";
 			$result = $this->master->contestarCotizacion($_SESSION['cod_detail_id'],$_POST['obs'],'Terminado');
 			if ($result==1) {
 				foreach ($quotation as $item) {
-					$dataPro=$this->master->selectBy("producto",array("pro_referencia",$item['referencia']));
+					$dataPro=$this->master->selectBy("producto",array("pro_referencia", str_replace("__"," ",$item['referencia'])));
 					$result = $this->master->ModificarCotxPro(array($dataPro['pro_codigo'],$item['cantidad'],$item['servicio'],$_SESSION['cod_detail_id'],$item['valor']));
 				}
 				echo json_encode($result);
