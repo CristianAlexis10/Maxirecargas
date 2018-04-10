@@ -36,7 +36,7 @@
     <span id="modal_close_mobile">&times;</span>
     <img src="views/assets/image/logo.png" class="img--modal">
     <h1 class="modal_session_title">inicia sesión</h1>
-      <form id="form_mobile">
+      <form id="form_mobile ">
       <div class="wrap_mobile">
         <label for="dociden" class="label-login">Documento de identidad</label>
         <input type="number" class="wrap_input_mobile" id="dociden">

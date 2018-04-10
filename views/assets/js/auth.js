@@ -67,16 +67,44 @@ $("#form--login").submit(function(e) {
     }, 2000);
   }
 });
+// mobile
+
+$('#contra2').focus(function(){
+    var value = $('#dociden').val();
+    if (value!='') {
+	    $.ajax({
+	      url: 'validar_documento',
+	      type:'post',
+	      dataType:'json',
+	      data:'data='+value,
+	  }).done(function(response){
+       if(response==true) {
+		    $(".message").remove();
+	     }else{
+	     	$(".message").remove();
+		    $("#form_mobile").after("<div class='message-red'>Documento no valido</div>");
+        $("#form_mobile .input--login").addClass("inputLoginRed");
+	     }
+	  });
+    }else{
+    	$(".message").remove();
+      $("#error .input--login").removeClass("inputLoginRed");
+    }
+    setTimeout(function(){
+       $('div.message-red').remove();
+     }, 3000);
+});
 $("#form_mobile").submit(function(e) {
     e.preventDefault();
-    if ($('#dociden').val() != '' || $('#contra').val() != '' ) {
+    if ($('#dociden').val() != '' || $('#contra2').val() != '' ) {
             dataJson = [];
             // $("input[name=data-login]").each(function(){
             //     structure = {};
             //     structure = $(this).val();
                 dataJson.push($('#dociden').val());
-                dataJson.push($('#contra').val());
+                dataJson.push($('#contra2').val());
             // });
+            console.log(dataJson);
             $.ajax({
               url: "validar-inicio-sesion",
               type: "POST",
@@ -107,20 +135,3 @@ $("#form_mobile").submit(function(e) {
     }, 2000);
   }
 });
-
-// dasboard nuevo cliente
-// dataJson=[];
-// $(input[name="dataCl"]).each(function(){
-//   structure={}
-//   structure= $(this).val();
-//   dataJson.push(structure);
-// });
-// $.ajax({
-//   url:"",
-//   type ="POST",
-//   dataType ='json',
-//   data=({customer:dataJson}),
-//   success: function(result) {
-//     $("form").after(result);
-//   }
-// })
