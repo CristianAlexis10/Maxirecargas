@@ -28,7 +28,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
             </div>
             <div class="form-profile">
               <label for="secondname" class="label--profile">segundo nombre:</label>
-              <input type="text" class="input--profile" id="secondname" name="data[]" value="<?php echo $data['usu_segundo_nombre'] ?>" required>
+              <input type="text" class="input--profile" id="secondname" name="data[]" value="<?php echo $data['usu_segundo_nombre'] ?>" >
             </div>
           </div>
           <div class="wrap_two_formgroup">
@@ -38,7 +38,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
             </div>
             <div class="form-profile">
               <label for="secondlast" class="label--profile">segundo apellido:</label>
-              <input type="text" class="input--profile" id="secondlast" name="data[]" value="<?php echo $data['usu_segundo_apellido'] ?>" required>
+              <input type="text" class="input--profile" id="secondlast" name="data[]" value="<?php echo $data['usu_segundo_apellido'] ?>" >
             </div>
           </div>
           <div class="wrap_two_formgroup">
@@ -96,6 +96,12 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
             <button type="submit" name="button" id="btndata">guardar cambios</button>
           </div>
         </form>
+        <?php
+        if (isset($_SESSION['msn'])) {
+            echo "<div class='message-red'>".$_SESSION['msn']."</div>";
+            unset($_SESSION['msn']);
+        }
+        ?>
           <p>cambiar contraseña</p>
           <form id="updatePassword">
             <div class="container--oneinput">
