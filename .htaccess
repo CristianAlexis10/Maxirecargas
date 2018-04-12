@@ -155,6 +155,8 @@ RewriteRule ^eliminar-mensaje-predefinido$ index.php?controller=msn&a=deleteMess
 RewriteRule ^enviar-mensaje$ index.php?controller=msn&a=newMessage
 RewriteRule ^eliminar-chat$ index.php?controller=msn&a=deleteChat
 RewriteRule ^llenar-chat$ index.php?controller=msn&a=readByToken
+#PDF
+RewriteRule ^generar-cotizacion-(\w+)$ index.php?controller=pdf&pdf=1&data=$1
 
 #ERRORES
 ErrorDocument 404 /github/maxirecargas/views/modules/config/errors/error404.php

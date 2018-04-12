@@ -23,7 +23,7 @@
 				</div>
 
 					<?php if ($dataQuo[0]['cot_estado']=="Terminado"){ ?>
-						<a href="#">Ver formato</a>
+						<a href="generar-cotizacion-<?php echo $dataQuo[0]['cot_codigo'] ?>">Ver formato</a>
 					<?php }?>
 					<!-- datos -->
 					<h1 class="title--customer--detail other">datos de los productos</h1>
