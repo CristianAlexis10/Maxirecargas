@@ -93,16 +93,19 @@ if($data!=array()){
          <th>Estado</th>
        </tr>
        <tr>
-         <td><a></a></td>
-         <td><a></a></td>
-         <td></td>
-         <td></td>
-         <td></td>
+         <?php foreach($data_future as $row){
+           $user = $this->master->selectBy('usuarioxpedido',array('ped_codigo',$row['ped_codigo']));
+           $dataUser = $this->master->selectBy('usuario',array('usu_codigo',$user['usu_codigo']));
+           ?>
+           <td><?php echo $dataUser['usu_primer_nombre']." ".$dataUser['usu_primer_apellido']; ?></td>
+           <td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></td>
+           <td><?php echo $row['ped_direccion']?></td>
+           <td><?php echo $row['ped_fecha_entrega']."(".$row['ped_hora_entrega'].")"?></td>
+           <td><?php echo $row['ped_estado']?></td>
+         <?php } ?>
       </tr>
      </table>
-     <?php foreach($data_future as $row){?>
-       <li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
-     <?php }
+     <?php
    }else{
      echo "<h1>No hay visitas Futuras</h1>";
    }
@@ -122,17 +125,20 @@ if($data!=array()){
          <th>Estado</th>
        </tr>
        <tr>
-         <td><a></a></td>
-         <td><a></a></td>
-         <td></td>
-         <td></td>
-         <td></td>
+         <?php foreach($data_future as $row){
+           $user = $this->master->selectBy('usuarioxpedido',array('ped_codigo',$row['ped_codigo']));
+           $dataUser = $this->master->selectBy('usuario',array('usu_codigo',$user['usu_codigo']));
+           ?>
+           <td><?php echo $dataUser['usu_primer_nombre']." ".$dataUser['usu_primer_apellido']; ?></td>
+           <td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></td>
+           <td><?php echo $row['ped_direccion']?></td>
+           <td><?php echo $row['ped_fecha_entrega']."(".$row['ped_hora_entrega'].")"?></td>
+           <td><?php echo $row['ped_estado']?></td>
+         <?php } ?>
+
       </tr>
      </table>
-     <?php foreach($data_future as $row){?>
-       <li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
-     <?php }
-   }else{
+   <?php }else{
      echo "<h1>No hay visitas Pendientes</h1>";
    }
      ?>
@@ -151,16 +157,19 @@ if($data!=array()){
          <th>Estado</th>
        </tr>
        <tr>
-         <td><a></a></td>
-         <td><a></a></td>
-         <td></td>
-         <td></td>
-         <td></td>
+         <?php foreach($data_cancel as $row){
+           $user = $this->master->selectBy('usuarioxpedido',array('ped_codigo',$row['ped_codigo']));
+           $dataUser = $this->master->selectBy('usuario',array('usu_codigo',$user['usu_codigo']));
+           ?>
+           <td><?php echo $dataUser['usu_primer_nombre']." ".$dataUser['usu_primer_apellido']; ?></td>
+           <td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></td>
+           <td><?php echo $row['ped_direccion']?></td>
+           <td><?php echo $row['ped_fecha_entrega']."(".$row['ped_hora_entrega'].")"?></td>
+           <td><?php echo $row['ped_estado']?></td>
+         <?php } ?>
       </tr>
      </table>
-     <?php foreach($data_cancel as $row){?>
-       <li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
-     <?php }
+<?php
    }else{
      echo "<h1>No hay visitas Canceladas</h1>";
    }
@@ -180,17 +189,19 @@ if($data!=array()){
          <th>Estado</th>
        </tr>
        <tr>
-         <td><a></a></td>
-         <td><a></a></td>
-         <td></td>
-         <td></td>
-         <td></td>
+         <?php foreach($data_end as $row){
+           $user = $this->master->selectBy('usuarioxpedido',array('ped_codigo',$row['ped_codigo']));
+           $dataUser = $this->master->selectBy('usuario',array('usu_codigo',$user['usu_codigo']));
+           ?>
+           <td><?php echo $dataUser['usu_primer_nombre']." ".$dataUser['usu_primer_apellido']; ?></td>
+           <td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></td>
+           <td><?php echo $row['ped_direccion']?></td>
+           <td><?php echo $row['ped_fecha_entrega']."(".$row['ped_hora_entrega'].")"?></td>
+           <td><?php echo $row['ped_estado']?></td>
+         <?php } ?>
       </tr>
      </table>
-     <?php foreach($data_end as $row){?>
-       <li class="opcins--order"><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></li>
-     <?php }
-   }else{
+   <?php }else{
      echo "<h1>No hay visitas Canceladas</h1>";
    }
      ?>
