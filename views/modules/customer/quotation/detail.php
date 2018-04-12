@@ -30,7 +30,7 @@
 		<?php if ($data_quo[0]['cot_estado']=="Terminado"){?>
 			<div class="detail">
 				<p class="item--detail">Respuesta:</p>
-				<p class="data--detail"><?php echo $data_quo[0]['cot_respuesta'];?> </p>
+				<a href="generar-cotizacion-<?php echo $data_quo[0]['cot_codigo'] ?>">Ver formato</a>
 			</div>
 		<?php } ?>
 		<div class="wrap--btns">
