@@ -52,7 +52,7 @@ use Dompdf\Dompdf;
 			$this->dompdf->setPaper('A4', 'landscape'); // (Opcional) Configurar papel y orientación
 			$this->dompdf->render(); // Generar el PDF desde contenido HTML
 			$pdf = $this->dompdf->output(); // Obtener el PDF generado
-			$this->dompdf->stream(); // Enviar el PDF generado al navegador
+			$this->dompdf->stream("Cotización-".$dataQuo[0]['usu_primer_nombre']." ".$dataQuo[0]['usu_primer_apellido']); // Enviar el PDF generado al navegador
 			}
 	}
 ?>
