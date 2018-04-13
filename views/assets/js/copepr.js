@@ -186,6 +186,7 @@ function cambiarPagina(pagina,numeroRegistros){
             }else{
               $(".container--grid").append('<a href="detalles-producto-'+result[i].pro_referencia+'"><figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/products/'+result[i].pro_imagen+'" alt=""></figure></a>');
             }
+
           }
           //paginacion
           $(".pagination").remove();

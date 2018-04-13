@@ -1,0 +1,2 @@
+ cot_codigo;pro_codigo;proxcot_cantidad;tip_servicio;proxcod_observacion;proxcod_res; 
+1;32;2;13;;25000;
