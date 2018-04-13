@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2018 a las 23:00:11
+-- Tiempo de generación: 13-04-2018 a las 14:32:40
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -501,7 +501,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `todosLosUsuario` ()  NO SQL
 BEGIN
-SELECT usuario.* FROM usuario  INNER JOIN tipo_usuario ON usuario.tip_usu_codigo = tipo_usuario.tip_usu_codigo WHERE tipo_usuario.tip_usu_maxi ="true" ;
+SELECT usuario.* FROM usuario WHERE  usuario.tip_usu_codigo != 1 AND usuario.tip_usu_codigo != 3 ;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `totalCotizaciones` ()  NO SQL
@@ -546,17 +546,17 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaAplazada` (IN `usu` INT, IN `dat` DATE)  NO SQL
 BEGIN 
-SELECT t2.ped_token FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Aplazado" or t2.ped_estado ="En Proceso" AND t2.ped_fecha_entrega < dat;
+SELECT t2.ped_token,t2.ped_codigo,t2.ped_direccion,t2.ped_fecha_entrega,t2.ped_hora_entrega,t2.ped_estado FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Aplazado" or t2.ped_estado ="En Proceso" AND t2.ped_fecha_entrega < dat;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaCancelada` (IN `usu` INT)  NO SQL
 BEGIN 
-SELECT t2.ped_token FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Cancelado";
+SELECT t2.ped_token,t2.ped_codigo,t2.ped_direccion,t2.ped_fecha_entrega,t2.ped_hora_entrega,t2.ped_estado FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Cancelado";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaFinalizadaBy` (IN `usu` INT)  NO SQL
 BEGIN 
-SELECT t2.ped_token FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Terminado";
+SELECT t2.ped_token,t2.ped_codigo,t2.ped_direccion,t2.ped_fecha_entrega,t2.ped_hora_entrega,t2.ped_estado FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Terminado";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaFutura` (IN `usu` INT, IN `dat` DATE)  NO SQL
@@ -690,6 +690,13 @@ CREATE TABLE `cotizacion` (
   `cot_fecha` date NOT NULL,
   `cot_observacion` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cotizacion`
+--
+
+INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `cot_ciudad`, `cot_dir`, `cot_token`, `cot_estado`, `cot_fecha`, `cot_observacion`) VALUES
+(1, 24, 1, 'calle 95 b', 'dpDIB-tjH1B', 'Terminado', '2018-04-09', 'Hola');
 
 -- --------------------------------------------------------
 
@@ -834,7 +841,9 @@ INSERT INTO `historial_productos` (`id_his_pro`, `pro_codigo`, `his_pro_fecha`, 
 (1, 35, '2018-04-06', 3),
 (2, 35, '2018-04-06', 3),
 (3, 31, '2018-04-06', 8),
-(4, 27, '2018-04-06', 98);
+(4, 27, '2018-04-06', 98),
+(5, 33, '2018-04-12', 8),
+(6, 32, '2018-04-13', 1);
 
 -- --------------------------------------------------------
 
@@ -991,7 +1000,9 @@ INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccio
 (1, NULL, 1, 'calle 95 b', 'En Bodega', 'L4o17-10tdX', '2018-04-06', '2018-04-06', '18:00:00'),
 (2, 26, 1, 'calle 95 b', 'Terminado', 'AkrFI-FqV9I', '2018-04-06', '2018-04-06', '18:00:00'),
 (3, NULL, 1, 'calle 95 b', 'En Bodega', 'PNva1-MRgPO', '2018-04-06', '2018-04-06', '18:00:00'),
-(4, 26, 1, 'calle 95 b', 'En Proceso', 'azygw-4K7Is', '2018-04-06', '2018-04-07', '10:00:00');
+(4, 26, 1, 'calle 95 b', 'Cancelado', 'azygw-4K7Is', '2018-04-06', '2018-04-07', '10:00:00'),
+(5, 26, 1, 'calle 95 b', 'En Proceso', 'UQaSv-7bo3e', '2018-04-12', '2018-04-14', '14:00:00'),
+(6, NULL, 1, 'calle 43', 'recepcion', 'vTzQC-6vzIW', '2018-04-13', '2018-04-14', '14:00:00');
 
 -- --------------------------------------------------------
 
@@ -1015,7 +1026,9 @@ INSERT INTO `pedidoxproducto` (`ped_codigo`, `pro_codigo`, `tip_ser_codigo`, `pe
 (1, 35, 11, 3, 'Ya'),
 (2, 35, 11, 3, 'Ya'),
 (3, 31, 13, 8, 'HOLA'),
-(4, 27, 11, 98, '89798');
+(4, 27, 11, 98, '89798'),
+(5, 33, 13, 8, '8'),
+(6, 32, 13, 1, '');
 
 --
 -- Disparadores `pedidoxproducto`
@@ -1103,6 +1116,13 @@ CREATE TABLE `prodxcot` (
   `proxcod_res` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `prodxcot`
+--
+
+INSERT INTO `prodxcot` (`cot_codigo`, `pro_codigo`, `proxcot_cantidad`, `tip_servicio`, `proxcod_observacion`, `proxcod_res`) VALUES
+(1, 32, 2, 13, '', 25000);
+
 -- --------------------------------------------------------
 
 --
@@ -1114,6 +1134,13 @@ CREATE TABLE `reporte` (
   `ped_codigo` int(11) NOT NULL,
   `rep_observacion` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `reporte`
+--
+
+INSERT INTO `reporte` (`rep_codigo`, `ped_codigo`, `rep_observacion`) VALUES
+(1, 4, 'loij');
 
 -- --------------------------------------------------------
 
@@ -1350,7 +1377,9 @@ INSERT INTO `usuarioxpedido` (`usu_codigo`, `ped_codigo`, `usuxped_total`) VALUE
 (24, 1, 0),
 (24, 2, 20000),
 (24, 3, 0),
-(24, 4, 0);
+(24, 4, 0),
+(24, 5, 0),
+(24, 6, 0);
 
 --
 -- Disparadores `usuarioxpedido`
@@ -1382,7 +1411,9 @@ INSERT INTO `ventas` (`usu_codigo`, `id_venta`, `ven_total`, `ped_codigo`, `ven_
 (24, 1, 0, 1, '2018-04-06'),
 (24, 2, 20000, 2, '2018-04-06'),
 (24, 3, 0, 3, '2018-04-06'),
-(24, 4, 0, 4, '2018-04-06');
+(24, 4, 0, 4, '2018-04-06'),
+(24, 5, 0, 5, '2018-04-12'),
+(24, 6, 0, 6, '2018-04-13');
 
 --
 -- Índices para tablas volcadas
@@ -1646,7 +1677,7 @@ ALTER TABLE `cliente_empresarial`
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
@@ -1671,7 +1702,7 @@ ALTER TABLE `gestion_web`
 -- AUTO_INCREMENT de la tabla `historial_productos`
 --
 ALTER TABLE `historial_productos`
-  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
@@ -1701,12 +1732,12 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
@@ -1716,7 +1747,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `sede`
 --
@@ -1746,7 +1777,7 @@ ALTER TABLE `tipo_servicio`
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
@@ -1756,7 +1787,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Restricciones para tablas volcadas
 --

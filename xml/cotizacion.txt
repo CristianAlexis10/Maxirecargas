@@ -1,0 +1,2 @@
+ cot_codigo;usu_codigo;cot_ciudad;cot_dir;cot_token;cot_estado;cot_fecha;cot_observacion; 
+1;24;1;calle 95 b;dpDIB-tjH1B;Terminado;2018-04-09;Hola;
