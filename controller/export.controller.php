@@ -8,7 +8,7 @@ require_once "controller/doizer.controller.php";
 	 		$this->doizer = new DoizerController;
 	 	}
 		function main(){
-			$nombre_tabla = "cotizacion";
+			$nombre_tabla = "gestion_web";
 			//trater todas las columnas
 			$columnas = $this->master->columnsOfTableExport($nombre_tabla);
 			$cantidad = explode(";",$columnas);
@@ -25,7 +25,7 @@ require_once "controller/doizer.controller.php";
 					//cambiar el nombre de la tabla
 					foreach ($this->master->selectAll($nombre_tabla) as $row) {
 						//poner la cantidad de row[]
-						if (fwrite($archivo, $row[0].";".$row[1].";".$row[2].";".$row[3].";".$row[4].";".$row[5].";".$row[6].";".$row[7].";"."\r\n")) {
+						if (fwrite($archivo, $row[0].";".$row[1].";".$row[2].";".$row[3].";".$row[4].";".$row[5].";".$row[6].";".$row[7].";".$row[8].";".$row[9].";".$row[10].";".$row[11].";".$row[12].";".$row[13].";".$row[14].";"."\r\n")) {
 						}else {
 							die("ha habido un problema al crear el archivo");
 						}

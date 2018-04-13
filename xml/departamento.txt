@@ -1,0 +1,6 @@
+ id_departamento;id_pais;dep_nombre; 
+1;1;Antioquia;
+2;1;Cundinamarca;
+3;1;Caldas;
+4;1;Cesar;
+5;1;Valle del Cauca;
