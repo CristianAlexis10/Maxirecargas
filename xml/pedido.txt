@@ -1,0 +1,7 @@
+ ped_codigo;ped_encargado;ped_ciudad;ped_direccion;ped_estado;ped_token;ped_fecha;ped_fecha_entrega;ped_hora_entrega; 
+1;;1;calle 95 b;En Bodega;L4o17-10tdX;2018-04-06;2018-04-06;18:00:00;
+2;26;1;calle 95 b;Terminado;AkrFI-FqV9I;2018-04-06;2018-04-06;18:00:00;
+3;;1;calle 95 b;En Bodega;PNva1-MRgPO;2018-04-06;2018-04-06;18:00:00;
+4;26;1;calle 95 b;Cancelado;azygw-4K7Is;2018-04-06;2018-04-07;10:00:00;
+5;26;1;calle 95 b;En Proceso;UQaSv-7bo3e;2018-04-12;2018-04-14;14:00:00;
+6;;1;calle 43;recepcion;vTzQC-6vzIW;2018-04-13;2018-04-14;14:00:00;

@@ -1,0 +1,12 @@
+ opc_bus_id;pro_codigo;opc_bus_tags; 
+15;25;HP, TONER, CB435A, GENERICO, ORIGINAL;
+16;26;HP, TONER, CE255A, GENERICO, ORIGINAL;
+17;27;HP, TONER, CE278A, GENERICO, ORIGINAL;
+18;28;HP, TONER, CF226A, GENERICO, ORIGINAL;
+19;29;HP, TONER, CF280X, GENERICO, ORIGINAL;
+20;30;PC, COMPUTADOR, MAC, IOS, APPLE, EAPLMQ2Y2E/A;
+21;31;HP, LaserJet, Enterprise, P3015d, impresora;
+22;32;HP, LaserJet, P1005, impresora;
+23;33;Hp, LaserJet, Pro 400, M401n, impresora;
+24;34;Hp, cartucho, hp-662;
+25;35;dragon ball z,juan,37;

@@ -1,0 +1,12 @@
+ pro_codigo;mar_codigo;tip_pro_codigo;pro_referencia;pro_descripcion;pro_imagen;pro_estado; 
+25;58;3;CB435A;;1522966526.png;1;
+26;58;3;CE255A;;1522966644.png;1;
+27;58;3;CE278A;;1522966706.png;1;
+28;58;3;CF226A;;1522966741.png;1;
+29;58;3;CF280X;;1522967199.png;1;
+30;57;1;EAPLMQ2Y2E/A;;1522967254.png;1;
+31;58;2;Hp LaserJet Enterprice P3015d;;1522967419.png;1;
+32;58;2;Hp LaserJet P1005;;1522967497.png;1;
+33;58;2;Hp LaserJet Pro 400 M401n;;1522967640.png;1;
+34;58;4;Hp-662;;1522967704.png;1;
+35;59;2;NJ2;Inrompible;1523039691.png;1;

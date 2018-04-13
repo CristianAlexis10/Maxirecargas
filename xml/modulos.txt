@@ -1,0 +1,7 @@
+ id_modulo;mod_nombre;enlace;icon; 
+1;usuarios;clientes;<i class="fa fa-users" aria-hidden="true"></i>;
+2;productos;productos;<i class="fa fa-shopping-cart" aria-hidden="true"></i>;
+3;Pedidos;pedidos;<i class="fa fa-bullhorn" aria-hidden="true"></i>;
+4;cotizacion;cotizacion;<i class="fa fa-wrench" aria-hidden="true"></i>;
+5;Rutas;rutas;<i class="fa fa-motorcycle" aria-hidden="true"></i>;
+6;Asistente Virtual;asistencia_virtual;<i class="fa fa-comments"></i>;

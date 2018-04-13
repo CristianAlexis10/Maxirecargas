@@ -1,0 +1,9 @@
+ id_permiso;id_modulo;tip_usu_codigo;per_crear;per_modificar;per_eliminar;per_buscar; 
+27;6;7;1;1;1;1;
+39;2;2;1;1;1;1;
+41;3;2;1;1;1;1;
+42;4;2;1;1;1;1;
+43;5;2;1;1;1;1;
+45;1;2;1;1;1;1;
+46;6;2;1;1;1;1;
+48;5;5;0;1;0;1;

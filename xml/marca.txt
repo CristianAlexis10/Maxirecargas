@@ -1,0 +1,7 @@
+ mar_codigo;mar_nombre;mar_descripcion; 
+53; Epson;Seiko Epson Corporation.;
+54; LG;LG Electronic.;
+56; Lenovo; Lenovo.;
+57; Apple; Apple Inc.;
+58;HP;Hewlett-Packard, más conocida como HP.;
+59;Samsung;Samsung Group.;

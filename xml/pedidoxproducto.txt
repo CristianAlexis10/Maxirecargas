@@ -1,0 +1,7 @@
+ ped_codigo;pro_codigo;tip_ser_codigo;pedxpro_cantidad;pedxpro_observacion; 
+1;35;11;3;Ya;
+2;35;11;3;Ya;
+3;31;13;8;HOLA;
+4;27;11;98;89798;
+5;33;13;8;8;
+6;32;13;1;;

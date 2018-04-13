@@ -1,0 +1,4 @@
+ id_mensaje;usu_codigo;mensaje; 
+1;21;Hola!. Bienvenido a la asistencia virtual Maxirecarga.;
+2;21;¿En que te podemos ayudar?;
+3;21;No pienses que te hemos abandonado. Dame un momento.;
