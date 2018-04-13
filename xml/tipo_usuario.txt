@@ -1,0 +1,6 @@
+ tip_usu_codigo;tip_usu_rol;tip_usu_maxi; 
+1;Persona Natural;false;
+2;Administrador;true;
+3;Persona Juridica;false;
+5;Mensajero;true;
+8;Profe;true;

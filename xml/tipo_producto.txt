@@ -1,0 +1,6 @@
+ tip_pro_codigo;tip_pro_nombre;tip_pro_descripcion;tip_pro_imagen; 
+1;Computador;desp
+;computador.png;
+2;Impresora;;impresora.png;
+3;Toner;;toner.png;
+4;Cartucho;;cartuchos.png;

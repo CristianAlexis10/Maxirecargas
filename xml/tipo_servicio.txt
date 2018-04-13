@@ -1,0 +1,6 @@
+ Tip_ser_cod;tip_ser_nombre;tip_ser_descripcion;tip_ser_registro; 
+11;Recarga;;2018-04-05;
+12;Remanufactura;;2018-04-05;
+13;Venta;;2018-04-05;
+14;Venta Original;;2018-04-05;
+15;Venta Generica;;2018-04-05;
