@@ -204,6 +204,7 @@ $("#newDir").click(function(){
       data : ({ id: $("#ciudad").val() }),
       success: function(result){
         $("#orderDir").html(result.ciu_nombre+', '+$("#dirSent").val());
+        $("#modal_dir").hide();
       }
   });
 });
@@ -223,7 +224,7 @@ $("#confirmOrder").click(function(){
         }else{
           // $("div.message").remove()
           $(".form-groupuser-btnBlue").after("<div class='container-red'>"+result+"</div>");
-          setTimeout(function(){$("div.message").remove()},5000);
+          setTimeout(function(){$("div.container-red").remove()},5000);
         }
       },
       error:function(result) {
