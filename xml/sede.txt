@@ -1,0 +1,4 @@
+ sed_codigo;emp_codigo;sed_nombre;sed_direccion;sed_telefono; 
+1;1;Calatrava;calle 98;3235467;
+2;2;Calatrava;calle 78;3234354;
+4;6;Sede sur;calle 4 sur;3234365;

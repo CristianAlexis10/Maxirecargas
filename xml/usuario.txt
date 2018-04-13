@@ -1,0 +1,10 @@
+ usu_codigo;id_tipo_documento;usu_num_documento;usu_primer_nombre;usu_segundo_nombre;usu_primer_apellido;usu_segundo_apellido;usu_correo;usu_telefono;id_ciudad;usu_direccion;usu_celular;usu_fecha_nacimiento;usu_sexo;tip_usu_codigo;id_estado;usu_foto;usu_fechas_registro;usu_ult_inicio_sesion; 
+21;1;9904;Cristian;Alexis;Lopera;Lopera;yonosoybond@gmail.com;4887088;1;calle 95;3233557660;2018-04-04;masculino;2;1;1523237236.png;2018-04-05;2018-04-05;
+22;1;1234;Carlos;;Gaviria;;calopera@misena.edu.co;3809897;1;calle 6 sur;3234322423;1966-11-11;masculino;5;1;default.jpg;2018-04-05;2018-04-05;
+24;1;1214;Cristian;hola;Lopera;89789;caloper@misena.edu.co;78;1;calle 95 b;67587;2018-04-03;masculino;1;1;1523246269.png;2018-04-05;2018-04-05;
+25;1;9898;Andres;;Salazar;;andressal@gmail.com;3234567;1;calle 6 sur;2147483647;1985-01-16;masculino;5;1;default.jpg;2018-04-06;2018-04-06;
+26;1;6767;Marlon;;Morenos;;mm@gmail.com;3453212;1;calle 50 ;0;0000-00-00;masculino;5;1;default.jpg;2018-04-06;2018-04-06;
+27;1;990;Javier;;Perez;;javi@gmail.com;3234567;1;calle 98;3115431232;1994-07-14;otro;3;1;defaul.jpg;2018-04-06;2018-04-06;
+28;1;746440;Jaime;;Cordoba;;jaime@maxirecargas.com;103;1;calle 78;0;0000-00-00;null;3;2;defaul.jpg;2018-04-06;2018-04-06;
+32;1;5050;Alfonso;;Bedoya;;ab@gmail.com;3;1;calle 4 sur;0;0000-00-00;null;3;2;defaul.jpg;2018-04-06;2018-04-06;
+36;1;909090909;luis;;becerra;;becerra@gmail.com;213214;2;calle 95 b;0;0000-00-00;masculino;8;1;default.jpg;2018-04-06;2018-04-06;

@@ -10,13 +10,14 @@
   </head>
   <body>
     <div class="registrar--mobile">
-      <h1>Crea tu cuenta</h1>
+      <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
+      <h1>Crea tu cusvsventa</h1>
       <p>Registrate y conoce los beneficios que tenemos para ti</p>
       <div class="form-group type--user">
         <label for="tipo_usu" class="select" >Tipo de Usuario:</label>
         <select class="input"  id="tipo_usu" required>
-          <option value="natural">persona natural</option>
-          <option value="juridico">persona juridica</option>
+          <option value="1">persona natural</option>
+          <option value="2">persona juridica</option>
         </select>
       </div>
       <div class="customers--normal">
@@ -50,12 +51,7 @@
           </div>
 
           <div id="selectAutocomplete">
-                  <select class="input"  id="cuidad" required>
-                    <?php
-                      foreach ($this->master->selectAll("ciudad") as $row) {?>
-                        <option value="<?php   echo $row['id_ciudad']; ?>"><?php  echo $row['ciu_nombre'] ?></option>
-                    <?php    } ?>
-                  </select>
+
           </div>
 
           <div class="form-group">
@@ -68,11 +64,14 @@
         </div>
       </div>
     </div>
+
+
+
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="views/assets/js/registro.js"></script>
+    <script type="text/javascript" src="views/assets/js/registrate.js"></script>
     <script type="text/javascript" src="views/assets/js/main-user.js"></script>
     <script type="text/javascript" src="views/assets/js/contact.js"></script>
-    <script type="text/javascript" src="views/assets/js/menu.js"></script>
+    <!-- <script type="text/javascript" src="views/assets/js/menu.js"></script> -->
 
   </body>
   </html>

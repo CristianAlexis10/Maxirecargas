@@ -1,0 +1,3 @@
+ id_tipo_documento;tip_doc_nombre; 
+1;Cedula;
+2;Tarjeta de identidad;
