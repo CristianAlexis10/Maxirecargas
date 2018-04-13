@@ -1,0 +1,6 @@
+ id_ciudad;id_departamento;ciu_nombre; 
+1;1;Medellin;
+2;2;Bogota;
+3;3;Manizales;
+4;4;Valledupar;
+5;5;Cali;

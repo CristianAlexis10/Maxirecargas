@@ -1,0 +1,4 @@
+ id_cliente_empresarial;usu_codigo;sed_codigo;cli_emp_cargo; 
+1;27;1;Supervisor;
+2;28;1;Supervisor;
+4;32;4;Gerente;

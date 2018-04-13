@@ -81,6 +81,32 @@ class MasterModel{
 
         return $result;
     }
+    function columnsOfTableExport($table,$skip = null){
+         try {
+            $dbname= DataBase::getName();
+            $sql="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$table'  AND table_schema = '$dbname'";
+            $query=$this->pdo->prepare($sql);
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_BOTH);
+            $columns=" ";
+            $i=0;
+            foreach ($result as $row) {
+                if ($row[0]==$skip[$i]) {
+                    if ($i<(count($skip)-1)) {
+                       $i++;
+                    }
+                }else{
+                    $columns.=$row[0].";";
+                }
+            }
+            $result=$columns;
+            // $result = substr($result, 0, -1);
+        } catch (PDOException $e) {
+            $result = $e->getMessage();
+        }
+
+        return $result;
+    }
 
     //saber el numero de  comodines
     public function comodines($comodines){
@@ -89,6 +115,16 @@ class MasterModel{
             $resultComodines.="?,";
         }
         $resultComodines = substr($resultComodines, 0, -1);
+        return $resultComodines;
+    }
+    public function exportarValores($comodines){
+        $resultComodines="";
+        $i = 0;
+        foreach ($comodines as $como) {
+            $resultComodines.='$row['.$i.'];';
+            $i++;
+        }
+        // $resultComodines = substr($resultComodines, 0, -1);
         return $resultComodines;
     }
     //saber los valores
