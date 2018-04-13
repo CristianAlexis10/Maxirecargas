@@ -1,0 +1,1 @@
+ sto_codigo;pro_codigo;sto_cantidad;sto_valor_compra;sto_valor_venta; 
