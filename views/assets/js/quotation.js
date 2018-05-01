@@ -298,7 +298,7 @@ $("#frmOptionSearch").submit(function(e){
               nuevaFila+="<td>"+result[i].pro_referencia+"</td>";
               nuevaFila+="<td>"+result[i].tip_pro_nombre+"</td>";
               nuevaFila+="<td>"+result[i].mar_nombre+"</td>";
-              nuevaFila+="<td>"+result[i].pro_descripcion+"</td>";
+              // nuevaFila+="<td>"+result[i].pro_descripcion+"</td>";
               nuevaFila+="<td>"+result[i].opc_bus_tags+"</td>";
               nuevaFila+='<td> <a href="#" id="'+result[i].pro_referencia+'" onclick="seleccionarProducto(this)"><i class="fa fa-check" aria-hidden="true"></i></a></td>';
               nuevaFila+="</tr>";

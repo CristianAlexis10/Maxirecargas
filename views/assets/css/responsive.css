@@ -96,6 +96,7 @@
   #cantidad,#solicitud{width: 90%;}
   #quotationUser .form-groupuser{margin-bottom: 20px}
   .orderbtn input{padding: 8px 30px; margin-top: 10px; font-size: 14px}
+  .modal--container.busqueda{width: 100%; margin-top:0; height: 100%}
     /* product */
   .products{margin-top: 0}
   .title_banner{font-size: 130px}
@@ -111,6 +112,7 @@
   .content--detailRight{display: none}
   .content--detail h1{margin-bottom: 30px}
   .modal--container.detail{width: 90%; margin-top:45px}
+  .container--quotation{height: 110vh}
   /*views order customer*/
   .order--left, .order--rigth, #order--container,#orderSiguiente,#form-groupuser-cantidad, #orderAtras{display: none}
   .order--fondo{overflow: hidden;}

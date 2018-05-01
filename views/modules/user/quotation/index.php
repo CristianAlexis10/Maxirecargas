@@ -71,15 +71,14 @@
 </div>
 
 <div class="modal" id="modalConfir">
-  <div class="modal--container">
+  <div class="detailQuotation">
     <div class="detalle">
-      <h2 class="title--modal">detalles de la cotización</h2>
         <div id="detalles">
         </div>
     </div>
     <div class="quotation--form">
+      <h1 class="title--modal">ingresa tus datos</h1>
       <form id="sendQuotation">
-        <h2 class="title--modal">ingresa tus datos</h2>
       <div class="form-groupuser">
         <label for="nameC" class="labelblue">Nombre Completo</label>
         <input type="text" name="data_user" class="inputblue" id="nameC" required>
@@ -125,7 +124,7 @@
                 <th>Referencia</th>
                 <th>Categoría</th>
                 <th>Marca</th>
-                <th>Descripción</th>
+                <!-- <th>Descripción</th> -->
                 <th>Palabras Clave</th>
                 <th>Seleccionar</th>
             </tr>

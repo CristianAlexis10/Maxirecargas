@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="views/assets/image/icn-maxi.png">
     <link rel="stylesheet" href="views/assets/css/main-user.css">
+    <link rel="stylesheet" href="views/assets/css/registrarMobile.css">
     <link rel="stylesheet" href="views/assets/css/responsive.css">
   </head>
   <body>
@@ -16,12 +17,13 @@
       <div class="form-group type--user">
         <label for="tipo_usu" class="select" >Tipo de Usuario:</label>
         <select class="input"  id="tipo_usu" required>
-          <option value="1">persona natural</option>
-          <option value="2">persona juridica</option>
+          <option value="natural">persona natural</option>
+          <option value="juridica">persona juridica</option>
         </select>
       </div>
-      <div class="customers--normal">
-        <div id="customers--normal--part1">
+      <form id="frmNewUserMobile">
+        <div class="normalMobile">
+        <div id="normalMobile--part1">
           <div class="form-group">
             <label for="tip_doc" class="select">Tipo de Documento:</label>
             <select class="input" id="tip_doc" name="data"  required></select>
@@ -40,7 +42,7 @@
           </div>
           <button type="button" id="normalIrParte2">siguiente</button>
         </div>
-        <div id="customers--normal--part2">
+        <div id="normalMobile--part2">
           <div class="form-group">
             <label for="correo" class="label">Correo:</label>
             <input type="email" class=" input" id="correo" name="data" required>
@@ -49,7 +51,6 @@
             <label for="tel" class="label">Telefono:</label>
             <input type="number" class="input" id="tel"  name="data" required>
           </div>
-
           <div id="selectAutocomplete">
 
           </div>
@@ -62,15 +63,41 @@
           <button type="button" id="normalIrParte3">siguiente</button>
 
         </div>
+        <div id="normalMoibile--part3">
+          <div class="form-group">
+            <label for="sexo" class="required select">Sexo:</label>
+            <select class="dataCl input"  id="sexo" required>
+              <option value="femenino">Femenino</option>
+              <option value="masculino">Masculino</option>
+            </select>
+          </div>
+          <div class="customers--password">
+          <div class="form-group" id="error-regPassword">
+              <label for="contra" class="label">Contraseña:</label>
+              <input type="password" name="data" id="contra" class="input dataCl" required>
+          </div>
+          <div class="form-group" id="error-regPassword-repite">
+              <label for="rep_contra" class="label">Repetir Contraseña:</label>
+              <input type="password" name="data" id="rep_contra" class="input dataCl" required disabled>
+            </div>
+            <div class="form-group">
+              <button class="btn" disabled id="registrar">Registrar Cliente</button>
+            </div>
+            <button type="button" id="irAtras2">atras</button>
+          </div>
+        </div>
       </div>
-    </div>
+      </form>
+      
+  </div>
+
 
 
 
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="views/assets/js/registrate.js"></script>
-    <script type="text/javascript" src="views/assets/js/main-user.js"></script>
-    <script type="text/javascript" src="views/assets/js/contact.js"></script>
+    <!-- <script type="text/javascript" src="views/assets/js/main-user.js"></script>
+    <script type="text/javascript" src="views/assets/js/contact.js"></script> -->
     <!-- <script type="text/javascript" src="views/assets/js/menu.js"></script> -->
 
   </body>
