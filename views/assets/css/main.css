@@ -62,7 +62,7 @@ body{
 }
  .navigator li a{
   transition: all 0.3s ease;
-  padding: 20px;
+  padding: 18px;
   text-transform: capitalize;
 }
  .navigator li a:hover{
@@ -84,6 +84,12 @@ body{
   width: 100%;
   margin-left: 250px;
 }
+.profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile p{ margin-left: 20px; }
 .menu--top{
   width: 100%;
   height: 60px;
@@ -91,14 +97,10 @@ body{
   background: rgba(187,187,187,0.5);
 }
 .menu--toposcuro{
-  /* width: 100%;
-  height: 60px;
-  display: flex; */
   background: transparent;
   border:none;
   border-bottom: 3px solid #c1c1c1;
 }
-
 .container--menumobile{
   width: 70%;
   display: flex;
@@ -426,6 +428,10 @@ align-items: center;
   font-family:'lato';
   font-size: 16px;
 }
+.textareaupdate{
+  width: 100%;
+  height: 100px;
+}
 
 /* tabla de detalle de modales */
 .container_table{
@@ -655,9 +661,8 @@ margin: 0 auto;
 .frmprofile{
   width: 70%;
 }
-.imgprofile{
-  width: 30%
-}
+.imgprofile{width: 30%}
+#updatePassword{width: 80%}
 /* contact-info */
 .container_item{
   width: 100%;
@@ -822,4 +827,20 @@ margin: 0 auto;
   overflow: scroll;
   border: 1px solid #9e9e9e;
   height: 380px;
+}
+
+/*setting*/
+.modo--color h1{
+  margin-bottom: 30px;
+  color: #35a4dd;
+}
+.modo--color {
+  margin-bottom: 30px;
+}
+#saveStyle{
+  padding: 10px 20px;
+  background: #35a4dd;
+  outline: none;
+  color: white;
+  border: none;
 }

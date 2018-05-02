@@ -329,8 +329,6 @@ if (document.getElementById('dataGrid1')) {
 $(".datatable").DataTable();
 
 
-
-
 $(".frm-bussiness").hide();
 $('#tipo_usu').change(function(){
   var value = $('#tipo_usu').val();
