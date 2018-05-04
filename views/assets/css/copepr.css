@@ -34,9 +34,11 @@
   font-size: 20px;
   margin-bottom: 40px;
 }
-#sendQuotation{ width: 90%; margin-top: 20px}
+#sendQuotation{ width: 100%; margin-top: 20px}
+#sendQuotation p{text-align: center;}
+
 .container_orderbtn{
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: space-around;
 }
@@ -628,7 +630,15 @@ color:white}
   width: 50%;
   background: white;
   display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 70vh;
   flex-direction: column;
+  padding-bottom: 40px;
 }
 .image_modal{
   width: 170px;
@@ -653,6 +663,9 @@ color:white}
   padding: 10px;
   font-size: 20px;
   cursor: pointer;
+}
+#orderDir{
+  text-align: center;
 }
 .modal{
   display: none;
@@ -685,7 +698,7 @@ color:white}
   display: block;
   overflow: scroll;
 }
-.detailQuotation{
+/* .detailQuotation{
   background: white;
   width: 88%;
   height: 560px;
@@ -700,7 +713,7 @@ color:white}
 .detailQuotation .quotation--form{
   width: 40%;
   padding: 20px;
-}
+} */
 .title--modal{
   font-family: 'oswald';
   text-transform: capitalize;
@@ -733,6 +746,14 @@ color:white}
   float: right;
   font-size: 25px;
   cursor: pointer;
+}
+.quotationBtn{text-align: center; margin-top: 30px;}
+.quotationBtn input{
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  background: #35a4dd;
+  color: white;
 }
 .form-groupuserbtn input {
   border: none;

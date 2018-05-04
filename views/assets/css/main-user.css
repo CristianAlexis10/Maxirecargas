@@ -51,13 +51,15 @@
   text-transform: capitalize;
   font-size: 14px
 }
-
 .container .rigth ul li a, #opc--user{
   cursor: pointer;
   display: flex;
   padding: 20px;
 }
-
+.container .rigth ul li img{
+  width: 40px;
+  height: 40px;
+}
 #user--dropdown{
   min-width: 120px;
   max-width: 120px;

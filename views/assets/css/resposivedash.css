@@ -6,20 +6,41 @@
   .chat_wrapper{width: 40%; top: 19.2vh}
 }
 @media (max-width: 767px){
+  .container--menumobile{width: 60%}
+  .menu--top .items{width: 40%}
   .userProfile--img img {width: 85%}
   .navigator li a{padding-bottom: 15px}
   #navigator{transform: translateX(-999px);}
   .wrap--content{margin: 0}
   #menu--mobile{display: block;}
   #arrowLeft{display: block;}
-  #wrap-result{width: 200px !important;}
-  #wrap-result img{width: 200px}
+  /* #wrap-result{width: 200px !important;}
+  #wrap-result img{width: 200px!important} */
+  #tabs .ui-widget-header li{margin-left: 5px}
+  .datatable.dataTable.no-footer{width: 95%!important}
+  #frmUpdtateUser, #frmUpdaDataEmp, #frmUpdateProduct, .frmServices{margin-left: 10px}
+  .form-group{margin-bottom: 20px}
   /* datagrid eliminar columns */
   .table-Celular, .table-direction, .table-token{display: none}
   /* modales */
   .container--modales{width: 70%}
   /* chat */
   .chat_wrapper{width: 50%; top: 19.2vh}
+  /*views profile  */
+  .maxContainer_profile{display: block;}
+  .frmprofile{width: 100%}
+  .imgprofile {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px; margin-top: 40px;
+    }
+  .form-group.Cambiar--img #wrap-result{
+    margin: 0 auto;
+  }
+  .updatePassword--container .form-group input{width: 100%}
 
 }
 @media (max-width:576px) {
@@ -41,7 +62,7 @@
   .table-fecha,.nodata-Observacion{display: none}
   .detail{display: block; box-sizing: border-box;}
   .mudules.orders.detail .wrap--info{width: 100%}
-  .container--modales.order{width: 90%}
+  .container--modales.order{width: 90%; overflow-y: scroll;}
   /*views assitance  */
   .container--asistente{flex-direction: column-reverse;}
   .asistente--right{width: 100%; margin-bottom: 20px}

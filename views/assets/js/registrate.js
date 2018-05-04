@@ -8,9 +8,13 @@ $(".input").focusout(function(){
 });
 $('#tipo_usu').change(function(){
   var tipo = $('#tipo_usu').val();
+  console.log(tipo);
   if (tipo=="juridica") {
     $('#frmNewUserMobile').hide();
     $('#frmNewBusiMobile').show();
+  }else {
+    $('#frmNewUserMobile').show();
+    $('#frmNewBusiMobile').hide();
   }
 });
 

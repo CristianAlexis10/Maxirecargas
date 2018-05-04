@@ -86,9 +86,105 @@
             <button type="button" id="irAtras2">atras</button>
           </div>
         </div>
-      </div>
+        </div>
       </form>
-      
+      <form id="frmNewBusiMobile">
+        <div class="businessMobile">
+          <div id="businessMobile--parte1">
+                      <h1>Datos de la empresa</h1>
+                      <div class="form-group">
+                        <label for="nit" class="label">NIT</label>
+                        <input type="text" class="dataEmp input" id="nit" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="social" class="label">Razon social</label>
+                        <input type="text" class="dataEmp input" id="social"required>
+                      </div>
+                      <div class="form-group">
+                        <label for="namebus" class="label">Nombre de la empresa</label>
+                        <input type="text" class="dataEmp input" id="namebus" required>
+                      </div>
+                      <button type="button" id="businessIrParte2">siguiente</button>
+                    </div>
+          <div id="businessMobile--parte2">
+                      <h1>datos de la sede</h1>
+                      <div class="form-group">
+                        <label for="sed-nom" class="label">Nombre de la sede</label>
+                        <input type="text" class="dataEmp input" id="sed-nom" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="sede-dir" class="label">Direccion</label>
+                        <input type="text" class="dataEmp input" id="sede-dir" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="sede-tel" class="label">Telefono</label>
+                        <input type="number" class="dataEmp input" onkeypress="return valida(event)" id="sede-tel" required>
+                      </div>
+                      <button type="button" id="irAtrasbusi">atras</button>
+                      <button type="button" id="businessIrParte3">siguiente</button>
+                    </div>
+          <div id="businessMobile--parte3">
+            <h1>datos del contacto</h1>
+            <div class="form-group">
+              <label for="tip_doc" class="select">Tipo de documento</label>
+              <select class="dataEmp input" id="tip_doc2">
+                <option value="1">Cedula</option>
+              </select>
+            </div>
+            <div class="form-group">
+                            <label for="numDocEmp" class="label">Numero de documento</label>
+                            <input type="text" class="dataEmp input" onkeypress="return valida(event)" id="numDocEmp" required>
+                        </div>
+            <div class="form-group">
+                            <label for="sede-enc" class="label">Nombre del contacto</label>
+                            <input type="text" class="dataEmp input"  id="sede-enc" required>
+                        </div>
+            <div class="form-group">
+                            <label for="sede-enc-ape" class="label">Apellido del contacto</label>
+                            <input type="text" class="dataEmp input"  id="esta_joda" required>
+                        </div>
+
+              <div id="selectAutocomplete">
+                <select class="dataEmp input" id="cuidad2">
+                  <?php
+                  foreach ($this->master->selectAll("ciudad") as $row) {?>
+                  <option value="<?php  echo $row['id_ciudad']; ?>"><?php echo $row['ciu_nombre'] ?></option>
+                  <?php    } ?>
+                </select>
+              </div>
+            <button type="button" id="irAtras3busi">atras</button>
+            <button type="button" id="businessIrParte4">siguiente</button>
+
+          </div>
+          <div id="businessMobile--parte4">
+            <div class="form-group">
+                <label for="sede-enc" class="label">Ext</label>
+                <input type="number" class="dataEmp input"  id="sede-ext" required>
+            </div>
+            <div class="form-group">
+                <label for="sede-correo" class="label">Correo</label>
+                <input type="email" class="dataEmp input"  id="sede-correo" required>
+            </div>
+            <div class="form-group">
+                <label for="cargo" class="label">Cargo:</label>
+                <input type="text"  id="cargo" class="input dataEmp" required>
+            </div>
+            <div class="form-group">
+                <label for="contraEmp" class="label">Contraseña:</label>
+                <input type="password"  id="contraEmp" class="input dataEmp" required>
+            </div>
+            <div class="form-group">
+                <label for="rep_contraEmp" class="label">Repetir Contraseña:</label>
+                <input type="password"  id="rep_contraEmp" class="input dataEmp" required >
+            </div>
+            <div class="form-group">
+              <button class="btn"  id="registrarEmp">Registrar Empresa</button>
+            </div>
+            <button type="button" id="irAtras4busi">atras</button>
+          </div>
+        </div>
+      </form>
+
   </div>
 
 

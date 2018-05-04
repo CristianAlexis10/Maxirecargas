@@ -1,19 +1,7 @@
+<link rel="stylesheet" href="views/assets/css/profile.css">
 <?php
 $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
 ?>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Editar perfil</title>
-    <link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="views/assets/image/logo.png">
-    <link rel="stylesheet" href="views/assets/css/main-user.css">
-    <link rel="stylesheet" href="views/assets/css/profile.css">
-  </head>
-  <body>
     <?php require_once "views/include/customer/scope.header.php";?>
     <div class="container--profile">
       <span class="menuprofile"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
