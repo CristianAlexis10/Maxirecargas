@@ -39,3 +39,35 @@ IrAtrasParte2N.onclick = function(){
   $("#normalMobile--part2").show();
   $("#normalMoibile--part3").hide();
 }
+
+var irParte2Buss = document.getElementById('businessIrParte2');
+var atrasParte1Buss= document.getElementById('irAtrasbusiMobile');
+var irParte3Buss = document.getElementById('businessIrParte3Mobile');
+var atrasParte2Buss= document.getElementById('irAtras3busiMobile');
+var irParte4Buss= document.getElementById('businessIrParte4Mobile');
+var atrasParte3Buss= document.getElementById('irAtras4busiMobile');
+
+irParte2Buss.onclick = function() {
+  $("#businessMobile--parte1").hide();
+  $("#businessMobile--parte2").show();
+}
+atrasParte1Buss.onclick = function() {
+  $("#businessMobile--parte1").show();
+  $("#businessMobile--parte2").hide();
+}
+irParte3Buss.onclick = function() {
+  $("#businessMobile--parte2").hide();
+  $("#businessMobile--parte3").show();
+}
+atrasParte2Buss.onclick= function() {
+  $("#businessMobile--parte3").hide();
+  $("#businessMobile--parte2").show();
+}
+irParte4Buss.onclick= function () {
+  $("#businessMobile--parte3").hide();
+  $("#businessMobile--parte4").show();
+}
+atrasParte3Buss.onclick= function(){
+  $("#businessMobile--parte4").hide();
+  $("#businessMobile--parte3").show();
+}

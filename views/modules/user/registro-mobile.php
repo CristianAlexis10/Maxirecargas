@@ -93,94 +93,91 @@
           <div id="businessMobile--parte1">
                       <h1>Datos de la empresa</h1>
                       <div class="form-group">
-                        <label for="nit" class="label">NIT</label>
-                        <input type="text" class="dataEmp input" id="nit" required>
+                        <label for="nitMobile" class="label">NIT</label>
+                        <input type="text" class="dataEmp input" id="nitMobile" required>
                       </div>
                       <div class="form-group">
-                        <label for="social" class="label">Razon social</label>
-                        <input type="text" class="dataEmp input" id="social"required>
+                        <label for="socialMobile" class="label">Razon social</label>
+                        <input type="text" class="dataEmp input" id="socialMobile" required>
                       </div>
                       <div class="form-group">
-                        <label for="namebus" class="label">Nombre de la empresa</label>
-                        <input type="text" class="dataEmp input" id="namebus" required>
+                        <label for="namebusMobile" class="label">Nombre de la empresa</label>
+                        <input type="text" class="dataEmp input" id="namebusMobile" required>
                       </div>
                       <button type="button" id="businessIrParte2">siguiente</button>
                     </div>
           <div id="businessMobile--parte2">
                       <h1>datos de la sede</h1>
                       <div class="form-group">
-                        <label for="sed-nom" class="label">Nombre de la sede</label>
-                        <input type="text" class="dataEmp input" id="sed-nom" required>
+                        <label for="sed-nomMobile" class="label">Nombre de la sede</label>
+                        <input type="text" class="dataEmp input" id="sed-nomMobile" required>
                       </div>
                       <div class="form-group">
-                        <label for="sede-dir" class="label">Direccion</label>
-                        <input type="text" class="dataEmp input" id="sede-dir" required>
+                        <label for="sede-dirMobile" class="label">Direccion</label>
+                        <input type="text" class="dataEmp input" id="sede-dirMobile" required>
                       </div>
                       <div class="form-group">
-                        <label for="sede-tel" class="label">Telefono</label>
-                        <input type="number" class="dataEmp input" onkeypress="return valida(event)" id="sede-tel" required>
+                        <label for="sede-telMobile" class="label">Telefono</label>
+                        <input type="number" class="dataEmp input" id="sede-telMobile" required>
                       </div>
-                      <button type="button" id="irAtrasbusi">atras</button>
-                      <button type="button" id="businessIrParte3">siguiente</button>
+                      <button type="button" id="irAtrasbusiMobile">atras</button>
+                      <button type="button" id="businessIrParte3Mobile">siguiente</button>
                     </div>
           <div id="businessMobile--parte3">
             <h1>datos del contacto</h1>
             <div class="form-group">
-              <label for="tip_doc" class="select">Tipo de documento</label>
-              <select class="dataEmp input" id="tip_doc2">
+              <label for="tip_docMobile" class="select">Tipo de documento</label>
+              <select class="dataEmp input" id="tip_doc2Mobile">
                 <option value="1">Cedula</option>
               </select>
             </div>
             <div class="form-group">
-                            <label for="numDocEmp" class="label">Numero de documento</label>
-                            <input type="text" class="dataEmp input" onkeypress="return valida(event)" id="numDocEmp" required>
-                        </div>
+              <label for="numDocEmpMobile" class="label">Numero de documento</label>
+              <input type="text" class="dataEmp input" id="numDocEmpMobile" required>
+            </div>
             <div class="form-group">
-                            <label for="sede-enc" class="label">Nombre del contacto</label>
-                            <input type="text" class="dataEmp input"  id="sede-enc" required>
-                        </div>
+                <label for="sede-encMobile" class="label">Nombre del contacto</label>
+                <input type="text" class="dataEmp input"  id="sede-encMobile" required>
+            </div>
             <div class="form-group">
-                            <label for="sede-enc-ape" class="label">Apellido del contacto</label>
-                            <input type="text" class="dataEmp input"  id="esta_joda" required>
-                        </div>
+                <label for="sede-enc-apeMobile" class="label">Apellido del contacto</label>
+                <input type="text" class="dataEmp input"  id="esta_jodaMobile" required>
+            </div>
 
               <div id="selectAutocomplete">
-                <select class="dataEmp input" id="cuidad2">
-                  <?php
-                  foreach ($this->master->selectAll("ciudad") as $row) {?>
-                  <option value="<?php  echo $row['id_ciudad']; ?>"><?php echo $row['ciu_nombre'] ?></option>
-                  <?php    } ?>
+                <select class="dataEmp input" id="cuidad2Mobile">
+                  <option value="">Medellin</option>
                 </select>
               </div>
-            <button type="button" id="irAtras3busi">atras</button>
-            <button type="button" id="businessIrParte4">siguiente</button>
+            <button type="button" id="irAtras3busiMobile">atras</button>
+            <button type="button" id="businessIrParte4Mobile">siguiente</button>
 
           </div>
           <div id="businessMobile--parte4">
             <div class="form-group">
-                <label for="sede-enc" class="label">Ext</label>
-                <input type="number" class="dataEmp input"  id="sede-ext" required>
+                <label for="sede-extMobile" class="label">Ext</label>
+                <input type="number" class="dataEmp input"  id="sede-extMobile" required>
             </div>
             <div class="form-group">
-                <label for="sede-correo" class="label">Correo</label>
-                <input type="email" class="dataEmp input"  id="sede-correo" required>
+                <label for="sede-correoMobile" class="label">Correo</label>
+                <input type="email" class="dataEmp input"  id="sede-correoMobile" required>
             </div>
             <div class="form-group">
-                <label for="cargo" class="label">Cargo:</label>
-                <input type="text"  id="cargo" class="input dataEmp" required>
+                <label for="cargoMobile" class="label">Cargo:</label>
+                <input type="text"  id="cargoMobile" class="input dataEmp" required>
             </div>
             <div class="form-group">
-                <label for="contraEmp" class="label">Contraseña:</label>
-                <input type="password"  id="contraEmp" class="input dataEmp" required>
+                <label for="contraEmpMobile" class="label">Contraseña:</label>
+                <input type="password"  id="contraEmpMobile" class="input dataEmp" required>
             </div>
             <div class="form-group">
-                <label for="rep_contraEmp" class="label">Repetir Contraseña:</label>
-                <input type="password"  id="rep_contraEmp" class="input dataEmp" required >
+                <label for="rep_contraEmpMobile" class="label">Repetir Contraseña:</label>
+                <input type="password"  id="rep_contraEmpMobile" class="input dataEmp" required >
             </div>
             <div class="form-group">
-              <button class="btn"  id="registrarEmp">Registrar Empresa</button>
+              <button class="btn"  id="registrarEmpMobile">Registrar Empresa</button>
             </div>
-            <button type="button" id="irAtras4busi">atras</button>
+            <button type="button" id="irAtras4busiMobile">atras</button>
           </div>
         </div>
       </form>

@@ -468,6 +468,10 @@ align-items: center;
   background: #2196F3;
   color: white;
 }
+.rep_contrasena, .contra-no-valid, .no-usu{
+  color: red;
+}
+
 /* modales  */
 .modales{
   background: rgba(0, 0, 0, 0.7);

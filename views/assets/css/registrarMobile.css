@@ -2,8 +2,13 @@
   background: #2C3034;
   width: 100%;
   height: 100vh;
-  font-family: 'lato'
+  font-family: 'lato';
+  margin: 20px;
 }
-#normalMobile--part2,#normalMoibile--part3, #frmNewBusiMobile{
-  display: none;
+#normalMobile--part2,#normalMoibile--part3, #frmNewBusiMobile,#businessMobile--parte2,#businessMobile--parte3,#businessMobile--parte4{display: none;}
+.registrar--mobile h1{
+  text-align: center;
+  color: #35a4dd;
+  
+
 }

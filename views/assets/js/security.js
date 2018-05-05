@@ -44,34 +44,34 @@ shortcut.add("Ctrl+Shift+i",function() {
   'propagate':false,
   'target':document
 });
-//eliminar F12
-shortcut.add("F12",function() {
-    var tecla = window.event;
-    console.log(window.event);
-    if (tecla == 73) {
-        console.log("yo");
-    }
-},{
-  'type':'keydown',
-  'propagate':false,
-  'target':document
-});
-//ver codigo fuente
-shortcut.add("Ctrl+u",function() {
-    var tecla = window.event;
-    if (tecla.key=="u") {
-        tecla.returnValue=false;
-    }
-
-},{
-  'type':'keydown',
-  'propagate':false,
-  'target':document
-});
-//eliminar click derecho
-$(function(){
-    $(document).bind("contextmenu",function(e){
-        alert("Función desactivada");
-        return false;
-    });
-});
+// //eliminar F12
+// shortcut.add("F12",function() {
+//     var tecla = window.event;
+//     console.log(window.event);
+//     if (tecla == 73) {
+//         console.log("yo");
+//     }
+// },{
+//   'type':'keydown',
+//   'propagate':false,
+//   'target':document
+// });
+// //ver codigo fuente
+// shortcut.add("Ctrl+u",function() {
+//     var tecla = window.event;
+//     if (tecla.key=="u") {
+//         tecla.returnValue=false;
+//     }
+//
+// },{
+//   'type':'keydown',
+//   'propagate':false,
+//   'target':document
+// });
+// //eliminar click derecho
+// $(function(){
+//     $(document).bind("contextmenu",function(e){
+//         alert("Función desactivada");
+//         return false;
+//     });
+// });
