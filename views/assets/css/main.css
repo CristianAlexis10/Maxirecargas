@@ -451,27 +451,15 @@ align-items: center;
   text-transform: capitalize;
   border-bottom: 1px solid;
 }
-.container_table table tr td{
-  padding: 15px;
-
-}
-.container_table table tr:nth-child(even){
-  background: #e9e9e9;
-
-}
-
-
-
+.container_table table tr td{padding: 15px;}
+.container_table table tr:nth-child(even){background: #e9e9e9;}
 /*mesajes de alerts*/
 .message{
   padding: 20px;
   background: #2196F3;
   color: white;
 }
-.rep_contrasena, .contra-no-valid, .no-usu{
-  color: red;
-}
-
+.rep_contrasena, .contra-no-valid, .no-usu{color: red;}
 /* modales  */
 .modales{
   background: rgba(0, 0, 0, 0.7);

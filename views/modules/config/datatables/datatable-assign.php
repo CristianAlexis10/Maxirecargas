@@ -4,7 +4,7 @@
                         <th class="table-token">Encargado</th>
                         <th>Cliente</th>
                         <th>Dirección</th>
-                        <th>Fecha Entrega</th>
+                        <th class="dataDelete">Fecha Entrega</th>
                         <th class="table-token">Token</th>
                         <th>Acciones</th>
                     </tr>
@@ -17,7 +17,7 @@
                          <td class="table-token"><?php echo $data_employe['usu_primer_nombre']." ".$data_employe['usu_primer_apellido'] ;?></td>
                          <td><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ;?></td>
                             <td><?php echo $row['ciu_nombre']." ".$row['ped_direccion'];?></td>
-                            <td><?php echo $row['ped_fecha_entrega'];?></td>
+                            <td class="dataDelete"><?php echo $row['ped_fecha_entrega'];?></td>
                             <td class="table-token"><?php echo $row['ped_token'];?></td>
                            <td>
                             <?php

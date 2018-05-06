@@ -3,7 +3,7 @@
                     <tr>
                         <th>Cliente</th>
                         <th>Dirección</th>
-                        <th>Fecha</th>
+                        <th class="dataDelete">Fecha</th>
                         <th class="table-token">Token</th>
                         <th class="table-token">Motivo</th>
                         <th>Acciones</th>
@@ -14,7 +14,7 @@
                      <tr>
                          <td><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ;?></td>
                             <td><?php echo $row['ciu_nombre']." ".$row['ped_direccion'];?></td>
-                            <td><?php echo $row['ped_fecha_entrega'];?></td>
+                            <td class="dataDelete"><?php echo $row['ped_fecha_entrega'];?></td>
                             <td class="table-token"><?php echo $row['ped_token'];?></td>
                             <td class="table-token"><?php echo $row['rep_observacion'];?></td>
                            <td>

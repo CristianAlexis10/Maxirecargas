@@ -63,6 +63,7 @@
   .detail{display: block; box-sizing: border-box;}
   .mudules.orders.detail .wrap--info{width: 100%}
   .container--modales.order{width: 90%; overflow-y: scroll;}
+
   /*views assitance  */
   .container--asistente{flex-direction: column-reverse;}
   .asistente--right{width: 100%; margin-bottom: 20px}
@@ -70,7 +71,32 @@
   /* chat */
   .chat_wrapper{width: 100%; height: 100%; top:0}
   .chat_wrapper .message_box{height: 324px}
+  /*datagrip vertical */
+  .ui-widget.ui-widget-content{display: block !important;}
+  .ui-tabs-vertical .ui-tabs-nav{width: 100%; margin-bottom: 30px}
+  .ui-tabs-vertical .ui-tabs-nav li{ width: 98%; border: 1px solid !important;}
+   .profileDetalle{display: block;}
+
 }
 @media (max-width:510px){
-
+  .container--modales{width: 100%}
+  #frmNewMar{padding-left: 25px}
+  .form-group .input{width: 100%}
+  .title p,.graphyData h1, .container--map h1{font-size: 33px;}
+}
+@media (max-width:360px){
+  .container--menumobile{width: 30%}
+  .menu--top .items{width: 70%}
+  .ms-choice{width: 280px !important}
+  #frmNewMar{padding-left: 0}
+  .dataDelete{display: none;}
+  .croppie-container .cr-boundary{margin: 10px !important}
+  .ui-tabs .ui-tabs-panel{padding: 0}
+  #frmUpdateProduct{margin-left: 0}
+  .container--modales.order{width: 100%}
+  .mudules.orders.detail .wrap--btns{width: 100%; margin-top: 20px; display: block;}
+  .wrap_two_formgroup, .customers--password{display: block;}
+  .form-group .input.grande{width: 100% }
+  .config--form{margin-bottom: 20px; }
+  .ui-tabs-vertical .ui-tabs-panel{padding: 10px}
 }

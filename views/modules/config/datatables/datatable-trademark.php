@@ -2,7 +2,7 @@
             <thead>
                     <tr>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
+                            <th class="dataDelete">Descripcion</th>
                             <th>Acciones</th>
                     </tr>
          </thead>
@@ -10,7 +10,7 @@
                 <?php foreach ($this->master->selectAll('marca') as $row) {?>
                      <tr>
                          <td><?php echo $row['mar_nombre'];?></td>
-                            <td><?php echo $row['mar_descripcion'];?></td>
+                            <td class="dataDelete"><?php echo $row['mar_descripcion'];?></td>
                            <td>
                             <?php
                              $modulo = 'productos';
