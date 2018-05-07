@@ -159,8 +159,22 @@ $("#orderSiguiente").click(function(){
     guardar();
   }
 });
+//BOTON TERMINAR
+$("#orderSiguiente-mobile").click(function(){
+  //validar si hay que guardar
+  if ($("#producto").val()!=""  && $("#servicio").val()!="" && $("#cantMobile").val()!=""  && $("#cantMobile").val()>0) {
+    guardarMobile();
+    console.log(order);
+  }else{
+    console.log($("#cantMobile").val());
+  }
+});
+
 //cuando le de orderAtras
 $("#orderAtras").click(function(){
+  indice_actual=indice_actual-1;
+});
+$("#orderAtrasMobile").click(function(){
   indice_actual=indice_actual-1;
 });
 //guardar en el array
@@ -174,6 +188,20 @@ function guardar() {
   }else{
     // si existe
     order[indice_actual]={'producto':$("#producto").val(), 'servicio':$("#servicio").val(), 'cantidad':$("#cant").val() ,'obs':$("#observ").val()};
+    //igualar inidice
+    indice_actual=indice;
+  }
+}
+function guardarMobile() {
+  if (order[indice_actual]==undefined) {
+        //si no existe
+        order[indice]={'producto':$("#producto").val(), 'servicio':$("#servicio").val(), 'cantidad':$("#cantMobile").val() ,'obs':$("#observ").val()};
+        //Aumentar indice
+        indice++;
+        indice_actual++;
+  }else{
+    // si existe
+    order[indice_actual]={'producto':$("#producto").val(), 'servicio':$("#servicio").val(), 'cantidad':$("#cantMobile").val() ,'obs':$("#observ").val()};
     //igualar inidice
     indice_actual=indice;
   }
@@ -210,6 +238,7 @@ $("#newDir").click(function(){
 });
 //enviar los datos a PHP
 $("#confirmOrder").click(function(){
+  console.log(order);
   $.ajax({
       url: "realizar-pedido",
       type: "POST",
