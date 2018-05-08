@@ -1,5 +1,5 @@
 <?php
-  $data = $this->master->selectBy("producto",array("pro_referencia",$_GET['data']));
+  $data = $this->master->selectBy("producto",array("pro_referencia",str_replace("_"," ",$_GET['data'])));
   $data = $this->master->innerJoinProducto($data['pro_codigo']);
     ?>
       <div class="container--detail">
