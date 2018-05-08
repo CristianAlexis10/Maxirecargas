@@ -22,6 +22,40 @@ use Dompdf\Dompdf;
 			$content .= '<head>';
 			$content .= '<link type="text/css" rel="stylesheet" href="views/assets/css/pdf.css"/>';
 			$content .= '</head><body>';
+			$content .= '  <div class="cabecera">
+		      <div class="logo"><img src="views/assets/image/icn-maxi.png"></div>
+					<div class="title"><h3>MAXIRECARGAS S.A.S</h3>
+		      <p>Toner y Cartuchos</p></div>
+		    </div>
+		    <div class="informacion">
+		      <p>informacion</p>
+		    </div>
+		      <div class="informacion--container">
+		        <div class="left--container">
+		          <div class="empresa">
+		            <h2>nombre de la empresa:</h2>
+		            <p>nombre de contacto</p>
+		            <p>telefono</p>
+		            <p>correo</p>
+		            <p>cuidad</p>
+		          </div>
+		          <div class="cliente">
+		            <h2>nombre de la empresa:</h2>
+		            <p>nombre de contacto</p>
+		            <p>telefono</p>
+		            <p>correo</p>
+		            <p>cuidad</p>
+		          </div>
+		        </div>
+		        <div class="rigth--container">
+		          <p>numero de cotizacion</p>
+		          <p>fecha actual</p>
+		          <p>cotizacion valida</p>
+		        </div>
+		      </div>
+		      <div class="informacion">
+		        <p>contizacion</p>
+		      </div>';
 			$content.= "<table>";
 			$content.= "<tr>";
 			$content.= "<td>N°</td>";

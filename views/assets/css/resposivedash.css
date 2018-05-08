@@ -99,4 +99,17 @@
   .form-group .input.grande{width: 100% }
   .config--form{margin-bottom: 20px; }
   .ui-tabs-vertical .ui-tabs-panel{padding: 10px}
+  .container--charts{
+      grid-template-areas:
+      "number1 number2"
+      "number3 ventadia"
+      "ventames visitas"
+      "pedido1 pedido2"
+      "pedido3 pedido3"
+      "liner liner  ";
+
+
+  }
+
+
 }
