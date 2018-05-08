@@ -184,7 +184,11 @@
 		}
 		function readBycategoryPagination(){
 			$result=$this->master->readBycategoryPagination(array($_POST['name'],$_POST['ini'],$_POST['totalElePag']));
-			echo json_encode($result);
+			$dataReal;
+			foreach ($result as $row) {
+				$datareal[]=array("producto"=>$row['pro_referencia'],"enlace"=>str_replace(" ","_",$row['pro_referencia']),"imagen"=>$row['pro_imagen']);
+			}
+			echo json_encode($datareal);
 		}
 
 		function readRefer(){
