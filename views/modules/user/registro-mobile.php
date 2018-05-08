@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="views/assets/css/responsive.css">
   </head>
   <body>
+    <?php require_once "views/include/customer/scope.menu.php";?>
     <div class="registrar--mobile">
       <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
       <div class="container--registrar--mobile">
