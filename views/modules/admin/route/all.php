@@ -129,11 +129,13 @@ if($data!=array()){
            $user = $this->master->selectBy('usuarioxpedido',array('ped_codigo',$row['ped_codigo']));
            $dataUser = $this->master->selectBy('usuario',array('usu_codigo',$user['usu_codigo']));
            ?>
+            <tr>
            <td><?php echo $dataUser['usu_primer_nombre']." ".$dataUser['usu_primer_apellido']; ?></td>
            <td><a href="ver-pedido-<?php echo rtrim(strtr(base64_encode($row['ped_token']), '+/', '-_'), '=');?>" target="_blank"><?php echo $row['ped_token']?></a></td>
            <td><?php echo $row['ped_direccion']?></td>
            <td><?php echo $row['ped_fecha_entrega']."(".$row['ped_hora_entrega'].")"?></td>
            <td><?php echo $row['ped_estado']?></td>
+         </tr>
          <?php } ?>
 
       </tr>
