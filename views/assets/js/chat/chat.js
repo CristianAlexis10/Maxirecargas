@@ -80,12 +80,12 @@ $("#finalizarChat").click(function(){
 //agregar a la casa de mensajes
 function agregarMensaje(user_name,msn,type){
 	if (user_name=="sistema") {
-		$('#message_box').append("<div><div class='system_msg'>"+user_name+"</div> :<div class='system_msg'>"+msn+"</div></div>");
+		$('#message_box').append("<div><div class='system_msg'>"+user_name+":"+"</div><div class='system_msg'>"+msn+"</div></div>");
 	}else{
 		if (type=="user_message") {
-			$('#message_box').append("<div class='user_user_message'><div class='user_name'>"+user_name+"</div> : <div class='user_message'>"+msn+"</div></div>");
+			$('#message_box').append("<div class='user_user_message'><div class='user_name'>"+user_name+":"+"</div><div class='user_message'>"+msn+"</div></div>");
 		}else{
-			$('#message_box').append("<div class='user_admin_message'><div class='user_name'>"+user_name+"</div> : <div class='user_message'>"+msn+"</div></div>");
+			$('#message_box').append("<div class='user_admin_message'><div class='user_name'>"+user_name+":"+"</div><div class='user_message'>"+msn+"</div></div>");
 		}
 	}
 }

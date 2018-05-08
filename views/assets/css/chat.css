@@ -1,4 +1,3 @@
-
 #cerrar_conversacion{
 	color: white;
 	font-weight: bold;
@@ -70,8 +69,8 @@
 	width:94%;
   height:40px;
 	margin:10px;
-
 }
+
 .chat_wrapper {
 	width: 25%;
 	height:470px;
@@ -98,7 +97,7 @@
 #finalizarChat{display: none}
 /* como lo ve un admin */
 .admin_user_message{
-	background-color: #e9e9e9;
+	background-color:#c7c7c7;
 	padding: 10px;
 	border-radius: 10px;
 	margin:5px;
@@ -125,7 +124,7 @@
 	overflow-wrap: break-word;
 }
 .user_admin_message{
-	background-color: #e9e9e9;
+	background-color: #c7c7c7;
 	flex-wrap: wrap;
 	padding: 10px;
 	border-radius: 10px;
