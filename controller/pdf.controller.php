@@ -33,14 +33,14 @@ use Dompdf\Dompdf;
 		      <div class="informacion--container">
 		        <div class="left--container">
 		          <div class="empresa">
-		            <h2>nombre de la empresa:</h2>
+		            <h2>nombre de la empresa</h2>
 		            <p>nombre de contacto</p>
 		            <p>telefono</p>
 		            <p>correo</p>
 		            <p>cuidad</p>
 		          </div>
 		          <div class="cliente">
-		            <h2>nombre de la empresa:</h2>
+		            <h2>nombre de la empresa</h2>
 		            <p>nombre de contacto</p>
 		            <p>telefono</p>
 		            <p>correo</p>
