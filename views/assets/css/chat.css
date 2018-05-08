@@ -102,24 +102,27 @@
 	padding: 10px;
 	border-radius: 10px;
 	margin:5px;
-	max-width: 100px
+	max-width: 90%;
+	box-sizing: border-box;
+	overflow-wrap: break-word;
 }
-.admin_user_message span{box-sizing: border-box;}
+.admin_user_message div{box-sizing: border-box;max-width: 90%;display: flex; flex-wrap: wrap; }
 .admin_admin_message{
-	max-width: 100px;
+	max-width: 90%;
 	box-sizing: border-box;
 	padding: 10px;
 	border-radius: 10px;
 	margin:5px;
-
+	overflow-wrap: break-word;
 }
 /* como lo ve un usuario */
 .user_user_message{
-	width: 80%;
+	max-width: 90%;
 	box-sizing: border-box;
 	padding: 10px;
 	border-radius: 10px;
 	margin:5px;
+	overflow-wrap: break-word;
 }
 .user_admin_message{
 	background-color: #e9e9e9;
@@ -127,4 +130,11 @@
 	padding: 10px;
 	border-radius: 10px;
 	margin:5px;
+	overflow-wrap: break-word;
+}
+
+.system_msg, .user_message{
+	box-sizing: border-box;
+	max-width: 90%;
+
 }

@@ -12,13 +12,13 @@ $response = '
         <div class="item subtitle--modal">
             Enviar Correo: '.$data['usu_correo'].'
         </div>
-        <div class="form-group">
-            <label class="label" for="asunt">Asunto:</label>
-            <input type="text" class="dataContact input " id="asunt" required>
+        <div class="form-groupContact">
+            <label for="asunt">Asunto:</label>
+            <input type="text" class="dataContact" id="asunt" required>
         </div>
-        <div class="form-group">
-            <label class="label" for="mensaje">mensaje</label>
-            <textarea class="dataContact input " id="mensaje"></textarea>
+        <div class="form-groupContact">
+            <label for="mensaje">mensaje</label>
+            <textarea class="dataContact" id="mensaje"></textarea>
         </div>
         <div class="item">
             <input type="button" value="Enviar correo" onclick="sendMail()" id="sendButton" class="btn">

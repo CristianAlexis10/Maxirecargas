@@ -71,12 +71,12 @@
 </div>
 
 <div class="modal" id="modalConfir">
-  <div class="detailQuotation">
+  <div class="modal--container busqueda">
     <div class="detalle">
         <div id="detalles">
         </div>
     </div>
-    <div class="quotation--form">
+    <div class="quotation--form user">
       <h1 class="title--modal">ingresa tus datos</h1>
       <form id="sendQuotation">
       <div class="form-groupuser">
@@ -95,11 +95,11 @@
         <label for="dir" class="labelblue">Dirección</label>
         <input type="text" name="data_user" class="inputblue" id="dir" required>
       </div>
-      <div class="form-groupuserbtn">
+      <div class="quotationBtn">
         <input type="submit" id="confirmQuotation" value="realizar cotizacion">
         <input type="button" id="orderAtras" value="atras">
       </div>
-  </form>
+      </form>
     </div>
   </div>
 </div>

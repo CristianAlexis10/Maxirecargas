@@ -130,7 +130,7 @@
         <p class="threeItem animated"><i class="fa fa-check" aria-hidden="true"></i>Venta de Toner y Cartuchos, Genéricos y  Originales.</p>
         <p class="threeItem animated"><i class="fa fa-check" aria-hidden="true"></i>Matenimiento y Reparación de Impresoras, Computadores y Fotocopiadoras.</p>
         <p class="threeItem animated"><i class="fa fa-check" aria-hidden="true"></i>Venta de insumos para oficinas.</p>
-        <button type="submit" name="button">hacer pedido</button>
+        <a href="pedidos"><button type="submit" name="button">hacer pedido</button></a>
       </div>
       <div class="three--rigth">
           <img class="imgAnimation" src="views/assets/image/flat/domicilio.png" id="services-domicilio">

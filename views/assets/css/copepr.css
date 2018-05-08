@@ -741,7 +741,11 @@ color:white}
   width: 90%;
   font-family: 'lato';
 }
-
+.quotation--form.user{
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 30px
+}
 .modal--container .quotation--form span{
   float: right;
   font-size: 25px;
