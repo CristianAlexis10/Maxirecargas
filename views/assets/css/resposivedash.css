@@ -84,7 +84,7 @@
   .form-group .input{width: 100%}
   .title p,.graphyData h1, .container--map h1{font-size: 33px;}
 }
-@media (max-width:360px){
+@media (max-width:375px){
   .container--menumobile{width: 30%}
   .menu--top .items{width: 70%}
   .ms-choice{width: 280px !important}
