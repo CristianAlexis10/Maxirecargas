@@ -1,6 +1,6 @@
    <div class="container--quotation">
       <div class="quotation--left">
-        <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="truex" id="menu-mobile"></i></span>
+        <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
           <h1 class="title--movil">crea tu cotización</h1>
             <div class="quotation--form">
               <form id="frmNewOrder">
@@ -73,8 +73,7 @@
 <div class="modal" id="modalConfir">
   <div class="modal--container busqueda">
     <div class="detalle">
-        <div id="detalles">
-        </div>
+        <div id="detalles"></div>
     </div>
     <div class="quotation--form">
       <form id="sendQuotation">

@@ -181,10 +181,11 @@ function cambiarPagina(pagina,numeroRegistros){
             $(".container--grid").append("<div class='query-result'><h1>No hay productos disponibles.</h1></div>");
         }else{
           for (var i = 0; i < result.length; i++) {
+            console.log(result);
             if (result[i].pro_imagen=="icn-maxi.png") {
-              $(".container--grid").append('<a href="detalles-producto-'+result[i].pro_referencia+'"><figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/'+result[i].pro_imagen+'" alt=""></figure></a>');
+              $(".container--grid").append('<a href="detalles-producto-'+result[i].enlace+'"><figure class="vermas"><figcaption>'+result[i].producto+'</figcaption><img src="views/assets/image/'+result[i].imagen+'" alt=""></figure></a>');
             }else{
-              $(".container--grid").append('<a href="detalles-producto-'+result[i].pro_referencia+'"><figure class="vermas"><figcaption>'+result[i].pro_referencia+'</figcaption><img src="views/assets/image/products/'+result[i].pro_imagen+'" alt=""></figure></a>');
+              $(".container--grid").append('<a href="detalles-producto-'+result[i].enlace+'"><figure class="vermas"><figcaption>'+result[i].producto+'</figcaption><img src="views/assets/image/products/'+result[i].imagen+'" alt=""></figure></a>');
             }
 
           }
