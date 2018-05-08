@@ -1,6 +1,6 @@
 @media (max-width: 991px){
   .error {top: 18%; padding-left: 60px;}
-  .error h3{font-size: 30px;}
+  .error h1{font-size: 50px;}
   .error p{font-size: 20px}
   .container--forms{margin-left: 60px}
   .container--error img{width: 200px}
@@ -29,7 +29,7 @@
   .container--forms{margin-top: 53%}
   .frm-group{width: 400px}
 }
-@media (max-width:360px){
+@media (max-width:375px){
   .container--error img{width: 160px; left: 27%}
   .error{padding-left: 45px}
   .error p{width: 260px; padding-left: 0}

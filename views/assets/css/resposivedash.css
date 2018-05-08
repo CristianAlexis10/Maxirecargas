@@ -6,20 +6,41 @@
   .chat_wrapper{width: 40%; top: 19.2vh}
 }
 @media (max-width: 767px){
+  .container--menumobile{width: 60%}
+  .menu--top .items{width: 40%}
   .userProfile--img img {width: 85%}
   .navigator li a{padding-bottom: 15px}
   #navigator{transform: translateX(-999px);}
   .wrap--content{margin: 0}
   #menu--mobile{display: block;}
   #arrowLeft{display: block;}
-  #wrap-result{width: 200px !important;}
-  #wrap-result img{width: 200px}
+  /* #wrap-result{width: 200px !important;}
+  #wrap-result img{width: 200px!important} */
+  #tabs .ui-widget-header li{margin-left: 5px}
+  .datatable.dataTable.no-footer{width: 95%!important}
+  #frmUpdtateUser, #frmUpdaDataEmp, #frmUpdateProduct, .frmServices{margin-left: 10px}
+  .form-group{margin-bottom: 20px}
   /* datagrid eliminar columns */
   .table-Celular, .table-direction, .table-token{display: none}
   /* modales */
   .container--modales{width: 70%}
   /* chat */
   .chat_wrapper{width: 50%; top: 19.2vh}
+  /*views profile  */
+  .maxContainer_profile{display: block;}
+  .frmprofile{width: 100%}
+  .imgprofile {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px; margin-top: 40px;
+    }
+  .form-group.Cambiar--img #wrap-result{
+    margin: 0 auto;
+  }
+  .updatePassword--container .form-group input{width: 100%}
 
 }
 @media (max-width:576px) {
@@ -41,7 +62,8 @@
   .table-fecha,.nodata-Observacion{display: none}
   .detail{display: block; box-sizing: border-box;}
   .mudules.orders.detail .wrap--info{width: 100%}
-  .container--modales.order{width: 90%}
+  .container--modales.order{width: 90%; overflow-y: scroll;}
+
   /*views assitance  */
   .container--asistente{flex-direction: column-reverse;}
   .asistente--right{width: 100%; margin-bottom: 20px}
@@ -49,7 +71,45 @@
   /* chat */
   .chat_wrapper{width: 100%; height: 100%; top:0}
   .chat_wrapper .message_box{height: 324px}
+  /*datagrip vertical */
+  .ui-widget.ui-widget-content{display: block !important;}
+  .ui-tabs-vertical .ui-tabs-nav{width: 100%; margin-bottom: 30px}
+  .ui-tabs-vertical .ui-tabs-nav li{ width: 98%; border: 1px solid !important;}
+   .profileDetalle{display: block;}
+
 }
 @media (max-width:510px){
+  .container--modales{width: 100%}
+  #frmNewMar{padding-left: 25px}
+  .form-group .input{width: 100%}
+  .title p,.graphyData h1, .container--map h1{font-size: 33px;}
+}
+@media (max-width:360px){
+  .container--menumobile{width: 30%}
+  .menu--top .items{width: 70%}
+  .ms-choice{width: 280px !important}
+  #frmNewMar{padding-left: 0}
+  .dataDelete{display: none;}
+  .croppie-container .cr-boundary{margin: 10px !important}
+  .ui-tabs .ui-tabs-panel{padding: 0}
+  #frmUpdateProduct{margin-left: 0}
+  .container--modales.order{width: 100%}
+  .mudules.orders.detail .wrap--btns{width: 100%; margin-top: 20px; display: block;}
+  .wrap_two_formgroup, .customers--password{display: block;}
+  .form-group .input.grande{width: 100% }
+  .config--form{margin-bottom: 20px; }
+  .ui-tabs-vertical .ui-tabs-panel{padding: 10px}
+  .container--charts{
+      grid-template-areas:
+      "number1 number2"
+      "number3 ventadia"
+      "ventames visitas"
+      "pedido1 pedido2"
+      "pedido3 pedido3"
+      "liner liner  ";
+
+
+  }
+
 
 }

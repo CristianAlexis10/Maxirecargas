@@ -99,7 +99,7 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
     <p>Cambiar Contraseña</p>
   </div>
   <form id="updatePassword">
-    <div class="">
+    <div class="updatePassword--container">
       <div class="form-group">
         <label for="password" class="label">Contraseña Actual:</label>
         <input type="password"  id="password" class="input" required>

@@ -254,10 +254,13 @@
 		}
 		function preview(){
 			$content = "";
+			$content .= "<span class='close--modal' id='closeModalOrder'>&times;</span><div class='verPedido'><h1 class='title--modal'>mira tu pedido</h1>";
+			$content .= "<table class='tables'><thead><th>Producto:</th><th>Servicio:</th><th>Cantidad:</th><th> Observación :</th></thead><tbody>";
 			foreach ($_POST['data'] as $row) {
 				$data = $this->master->selectBy('tipo_servicio',array("Tip_ser_cod",$row['servicio']));
-				 $content.="<span class='close--modal' id='closeModalOrder'>&times;</span><div class='verPedido'><h1 class='title--modal'>mira tu pedido</h1><table class='tables'><thead><th>Producto:</th><th>Servicio:</th><th>Cantidad:</th><th> Observación :</th></thead><tbody><td>".$row['producto']."</td><td>".$data['tip_ser_nombre']."</td><td>".$row['cantidad']."</td><td> ".$row['obs']."</td></tbody></table></div>";
+				 $content.="<tr><td>".$row['producto']."</td><td>".$data['tip_ser_nombre']."</td><td>".$row['cantidad']."</td><td> ".$row['obs']."</td></tr>";
 			}
+			$content .= "</tbody></table></div>";
 			echo json_encode("<div id='wrap-detail'>".$content."</div>");
 		}
 		function randAlphanum($length){

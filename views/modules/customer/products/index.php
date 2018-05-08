@@ -2,8 +2,10 @@
       <h1 class="title_banner">categorías</h1>
     </div>
     <div class="banneritem Btoner">
-      <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
-      <h1 class="titleitem_banner" id="categoryName">toner</h1>
+      <div class="Btoner--content">
+        <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
+        <h1 class="titleitem_banner" id="categoryName">toner</h1>
+      </div>
       <div class="container_search">
         <div class="search_input">
           <input type="search" id="readBy" placeholder="buscar por referencia,marca">

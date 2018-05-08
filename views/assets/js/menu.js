@@ -4,7 +4,6 @@ var menuStart = document.getElementById('wrap--menu');
 var closeMenu = document.getElementById('close-menu');
 
 menu.onclick = function() {
-
   $(".wrap--menu").show();
     $(".wrap--menu").css({"transform":"translateX(0)"});
     $("body").css({"overflow":"hidden"});

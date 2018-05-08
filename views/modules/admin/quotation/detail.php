@@ -64,13 +64,48 @@
 					<?php if ($dataQuo[0]['cot_estado']=="Terminado"){ ?>
 						<textarea id="aditionalObs" rows="4" cols="80" class="input grande"><?php echo $dataQuo[0]['cot_observacion'] ?></textarea>
 				</div>
+				<h4>Condiciones Comerciales:</h4>
+				<div class="form-group">
+					<label for="condi" class="label">Pago</label>
+					<input type="text" id="condi" value="<?php echo $dataQuo[0]['cot_pago'] ?>">
+				</div>
+				<div class="form-group">
+					<label for="iva" class="label">Iva</label>
+					<input type="text" id="iva" value="<?php echo $dataQuo[0]['cot_iva'] ?>">
+				</div>
+				<div class="form-group">
+					<label for="plazo" class="label">Plazo de entrega</label>
+					<input type="text" id="plazo" value="<?php echo $dataQuo[0]['cot_plazo'] ?>">
+				</div>
+				<div class="form-group">
+					<label for="entrega" class="label">Entrega</label>
+					<input type="text" id="entrega" value="<?php echo $dataQuo[0]['cot_entrega'] ?>">
+				</div>
 					<div class="form-group">
 						<input type="button" name="" id="saveResponse" value="Modificar" class="btn">
 					</div>
+
 						<?php }else{ ?>
 					<div class="form-group">
 						<textarea id="aditionalObs" rows="4" cols="80" class="input grande"></textarea>
 
+					</div>
+					<h4>Condiciones Comerciales:</h4>
+					<div class="form-group">
+						<label for="condi" class="label">Pago</label>
+						<input type="text" id="condi" value="Segun convenio">
+					</div>
+					<div class="form-group">
+						<label for="iva" class="label">Iva</label>
+						<input type="text" id="iva" value="19%">
+					</div>
+					<div class="form-group">
+						<label for="plazo" class="label">Plazo de entrega</label>
+						<input type="text" id="plazo" value="1 dia habil.">
+					</div>
+					<div class="form-group">
+						<label for="entrega" class="label">Entrega</label>
+						<input type="text" id="entrega" value="Domicilio Gratis">
 					</div>
 						</div>
 						<div class="form-group">

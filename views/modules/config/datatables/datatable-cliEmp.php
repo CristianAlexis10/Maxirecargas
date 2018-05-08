@@ -6,7 +6,7 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Dirección</th>
+        <th class="dataDelete">Dirección</th>
         <th class="table-Celular">Celular</th>
         <th>Acciones</th>
       </tr>
@@ -15,7 +15,7 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
       <?php foreach ($this->master->selectAllBy('usuario',array('tip_usu_codigo',3)) as $row) {?>
           <tr>
             <td><?php echo $row['usu_primer_nombre']?></td>
-            <td><?php echo $row['usu_direccion']?></td>
+            <td class="dataDelete"><?php echo $row['usu_direccion']?></td>
             <td class="table-Celular"><?php echo $row['usu_celular']?></td>
             <td><div class="flex-container"><div class="tooltip--actualizar"><a href="ver-cliente-empresarial-<?php echo rtrim(strtr(base64_encode($row['usu_codigo']), '+/', '-_'), '=');?>"><i class="fa fa-external-link" aria-hidden="true"></i>
               <span class="tooltiptext">Actualizar</span></a></div>

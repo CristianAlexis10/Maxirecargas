@@ -2,7 +2,7 @@
             <thead>
                     <tr>
                         <th>Cliente</th>
-                        <th>Dirección</th>
+                        <th class="dataDelete">Dirección</th>
                         <th>Fecha</th>
                         <th class="table-token">Token</th>
                         <th>Acciones</th>
@@ -12,7 +12,7 @@
                 <?php foreach ($this->master->cotizacionesTerminadas() as $row) {  ?>
                      <tr>
                          <td><?php echo $row['usu_primer_nombre']." ".$row['usu_primer_apellido'] ;?></td>
-                            <td><?php echo $row['ciu_nombre'].",".$row['cot_dir'];?></td>
+                            <td class="dataDelete"><?php echo $row['ciu_nombre'].",".$row['cot_dir'];?></td>
                             <td><?php echo $row['cot_fecha'];?></td>
                             <td class="table-token"><?php echo $row['cot_token'];?></td>
                            <td>

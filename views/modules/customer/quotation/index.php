@@ -1,7 +1,6 @@
-
-         <div class="container--quotation">
+   <div class="container--quotation">
       <div class="quotation--left">
-        <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
+        <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="truex" id="menu-mobile"></i></span>
           <h1 class="title--movil">crea tu cotización</h1>
             <div class="quotation--form">
               <form id="frmNewOrder">
@@ -55,15 +54,15 @@
           <span id="closemodal_dir">&times;</span>
           <img src="views/assets/image/logo.png" class="image_modal">
           <div class="modal_form">
-            <div class="form-groupuser3">
-              <label for="ciudad" class="">Ciudad</label>
-              <select class="" id="ciudad"></select>
+            <div class="form-groupuser">
+              <label for="ciudad" class="labelblue">Ciudad</label>
+              <select class="inputblue" id="ciudad"></select>
             </div>
-            <div class="form-groupuser3">
-              <label for="dirSent" class="">Dirección de envío</label>
-              <input id="dirSent" class="">
+            <div class="form-groupuser">
+              <label for="dirSent" class="labelblue">Dirección de envío</label>
+              <input id="dirSent" class="inputblue">
             </div>
-            <div class="form-groupuser3">
+            <div class="quotationBtn">
                 <input type="button" id="newDir" value="Cambiar">
             </div>
           </div>
@@ -72,22 +71,18 @@
 </div>
 
 <div class="modal" id="modalConfir">
-  <div class="modal--container">
+  <div class="modal--container busqueda">
     <div class="detalle">
-      <h2>detalles de la cotización</h2>
         <div id="detalles">
         </div>
     </div>
     <div class="quotation--form">
-      <!-- <span id="closeConfir">&times;</span> -->
       <form id="sendQuotation">
-      <h2>ingresa tus datos</h2>
-      <h1>Datos de entrega</h1>
-      <p>¿Esta es la dirección donde se solicita el pedido?</p>
+      <p>¿Esta es la dirección donde se solicita el pedido? si no es asi darle click al boton otra direccion para actualizar este dato.</p>
       <h2 id="orderDir"><?php echo $_SESSION['CUSTOMER']['ADDRESS'];?></h2>
-    <div class="form-groupuserbtn">
-      <input type="button" id="confirmOrder" value="realizar cotizacion">
+    <div class="quotationBtn">
       <input type="button" id="orderAtras" value="atras">
+      <input type="button" id="confirmOrder" value="realizar cotizacion">
       <input type="button" id="btnOtraDir" value="otra direccion">
     </div>
   </form>

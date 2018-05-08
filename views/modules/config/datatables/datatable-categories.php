@@ -1,16 +1,16 @@
 <table class="datatable" id="dataCategories">
-            <thead>
-                    <tr>
-                        <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Acciones</th>
-                    </tr>
-         </thead>
+    <thead>
+      <tr>
+            <th>Nombre</th>
+            <th class="dataDelete">Descripcion</th>
+            <th>Acciones</th>
+      </tr>
+  </thead>
             <tbody>
                 <?php foreach ($this->master->selectAll('tipo_producto') as $row) {?>
                      <tr>
                          <td><?php echo $row['tip_pro_nombre'];?></td>
-                            <td><?php echo $row['tip_pro_descripcion'];?></td>
+                            <td class="dataDelete"><?php echo $row['tip_pro_descripcion'];?></td>
                            <td>
                             <?php
                                 $modulo = 'productos';

@@ -15,7 +15,6 @@ $(this).prop('Counter',0).animate({
           setTimeout( function(){
             $('.figura').addClass('ocultar');
           }, 800);
-
           setTimeout( function(){
             $('.container').addClass('open');
           }, 1200)

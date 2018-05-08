@@ -3,7 +3,7 @@
                   <tr>
                           <th>Referencia</th>
                           <!-- <th>Marca</th> -->
-                          <th>Descripción</th>
+                          <th class="dataDelete">Descripción</th>
                           <th>Acciones</th>
                   </tr>
        </thead>
@@ -12,7 +12,7 @@
                    <tr>
                        <td><?php echo $row['pro_referencia'];?></td>
                           <!-- <td><?php //echo $row['id_marca'];?></td> -->
-                          <td><?php echo $row['pro_descripcion'];?></td>
+                          <td class="dataDelete"><?php echo $row['pro_descripcion'];?></td>
                          <td>
                           <?php
                           if ($crud[2]==true) {?>

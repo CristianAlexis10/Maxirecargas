@@ -53,10 +53,6 @@ $("#frmNewRol").submit(function(e) {
         }
     });
 
-
-
-
-
     var rolName = $("input[name=data-rol-name]").val();
     $("input[name=data-rol-users]").each(function(){
         if ($(this).prop("checked")) {
@@ -218,6 +214,34 @@ if (document.getElementById('numer1')) {
 }
 
 //Update Bussines
+$("#micro_des").on("keyup", function() {
+  var caracterMicro=$('#micro_des').val().length;
+  console.log(caracterMicro);
+  if (caracterMicro > 100 || caracterMicro <= 0) {
+    alert("el contenido no debe tener mas de 100 caracteres")
+  }
+});
+$("#mision").on("keyup", function() {
+  var caracterMision = $("#mision").val();
+  console.log(caracterMision.length);
+  if (caracterMision>300|| caracterMicro <= 0) {
+    alert("el contenido no debe tener mas de 300 caracteres")
+  }
+});
+$("#vision").on("keyup", function() {
+  var caracterVision = $("#vision").val().length;
+  console.log(caracterVision);
+  if (caracterVision>340|| caracterMicro <= 0) {
+    alert("el contenido no debe tener mas de 340 caracteres")
+  }
+});
+$("#pma").on("keyup", function() {
+  var caracterPma = $("#pma").val().length;
+  console.log(caracterPma);
+  if (caracterPma>300|| caracterPma <= 0) {
+    alert("el contenido no debe tener mas de 300 caracteres")
+  }
+});
 $("#frmProfileBusi").submit(function(e){
     e.preventDefault();
     var data = [];

@@ -21,8 +21,8 @@
         <?php
           if ($_SESSION['CUSTOMER']['STYLE']['est_usu_menu']!=' ') {?>
             <div class="modo--color">
+              <h1>Elige tu estilo </h1>
               <label>color
-                <h1>Elige tu estilo</h1>
                 <input type="checkbox" name="checkcolor" id="styleButton" checked class="swich green"  >
                 <div>
                   <div>
@@ -85,30 +85,28 @@
         <?php
         $data = $this->master->selectAll("gestion_web");
         ?>
-        <div class="modules profile">
-          <div class="title">
-            <p>MAXIRECARGAS</p>
-          </div>
+        <div class="modules profileDetalle">
+          <p>Cambia los datos del a pagina inicial de maxirecargas tales con la descripcion inicial de la empresa,mision,vision y las politas de medio ambientes</p>
           <div class="maxContainer_profile">
             <?php if($_SESSION['CUSTOMER']['ROL']==2){?>
             <div class="frmprofile">
               <form id="frmProfileBusi">
                   <div class="form-group">
-                    <label for="micro_des" class="select label">Micro Descripción:</label>
-                    <textarea class="input dataUptadeBusi textarea" id="micro_des"   required><?php echo $data[0]['gw_micro_des']?></textarea>
+                    <label for="micro_des" class="label">Micro Descripción:</label>
+                    <textarea maxlength="100" class=" dataUptadeBusi textareaupdate" id="micro_des"   required><?php echo $data[0]['gw_micro_des']?></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="mision" class="select label">Misión:</label>
-                    <textarea class="input dataUptadeBusi textarea" id="mision" required><?php echo $data[0]['gw_mision']?></textarea>
+                    <label for="mision" class=" label">Misión:</label>
+                    <textarea maxlength="300"class=" dataUptadeBusi textareaupdate" id="mision" required><?php echo $data[0]['gw_mision']?></textarea>
                   </div>
 
                   <div class="form-group">
-                    <label for="vision" class="select label">Visión:</label>
-                    <textarea class="input dataUptadeBusi textarea" id="vision"   required><?php echo $data[0]['gw_vision']?></textarea>
+                    <label for="vision" class="label">Visión:</label>
+                    <textarea maxlength="340" class="dataUptadeBusi textareaupdate" id="vision"   required><?php echo $data[0]['gw_vision']?></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="pma" class="select label">Política de medio ambiente:</label>
-                    <textarea class="input dataUptadeBusi textarea" id="pma" required><?php echo $data[0]['gw_politicas']?></textarea>
+                    <label for="pma" class="label">Política de medio ambiente:</label>
+                    <textarea maxlength="300" class=" dataUptadeBusi textareaupdate" id="pma" required><?php echo $data[0]['gw_politicas']?></textarea>
                   </div>
 
                 <div class="wrap_two_formgroup">

@@ -325,6 +325,7 @@ $('#rep_contraEmp').keyup(function(){
   }else{
     contraEmp=false;
     $('#rep_contraEmp').after('<div class="rep_contrasena">las contraseñas no coinciden</div>');
+    $('.dataCl').addClass("alertInput");
   }
     enableEmp(num_nit,contraEmp);
 

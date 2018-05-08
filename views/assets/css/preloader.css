@@ -5,47 +5,21 @@
   position: fixed;
   overflow: hidden;
   background: #c7c7c7;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.preloader{
-  width: 150px;
-  position: relative;
-  height: 150px;
-  border: 3px solid transparent;
-  border-top-color: #35a4dd;
-  border-radius: 50%;
-  margin: auto;
-  top: 50%;
-  animation: girar 2s linear infinite;
-  }
-  .preloader:before{
-    content: "";
-    position: absolute;
-    top: 5px; left: 5px; bottom: 5px; right: 5px;
-    border: 3px solid transparent;
-    border-radius: 50%;
-    border-top-color: #f8f400;
-    animation: girar 3s linear infinite;
-  }
-  .preloader:after{
-    content: "";
-    position: absolute;
-    top: 15px; left: 15px; bottom: 15px; right: 15px;
-    border: 3px solid transparent;
-    border-radius: 50%;
-    border-top-color: #ff00ff;
-    animation: girar 1.5s linear infinite;
-  }
-  @keyframes girar {
-    0% {transform: rotate(0deg);}
-    100% {transform: rotate(360deg);}
-}
+
 .figura{
   font-family: 'lato', sans-serif;
   font-size: 200px;
-  position: absolute;
-  right: 0;
-  top: 5%;
   color: #afafaf;
+  margin: auto;
 }
 .figura.ocultar{opacity: 0}
 .container-pre.open{transform: translateX(-99999px;);}
+
+@media (max-width: 658px ){
+  .figura{font-size: 100px;}
+}

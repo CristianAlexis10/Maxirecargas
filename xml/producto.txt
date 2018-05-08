@@ -22,6 +22,7 @@
 33;58;2;Hp LaserJet Pro 400 M401n;;1522967640.png;1;
 34;58;4;Hp-662;;1522967704.png;1;
 35;59;2;NJ2;Inrompible;1523039691.png;1;
+<<<<<<< HEAD
  pro_codigo;mar_codigo;tip_pro_codigo;pro_referencia;pro_descripcion;pro_imagen;pro_estado; 
 25;58;3;CB435A;;1522966526.png;1;
 26;58;3;CE255A;;1522966644.png;1;
@@ -34,3 +35,5 @@
 33;58;2;Hp LaserJet Pro 400 M401n;;1522967640.png;1;
 34;58;4;Hp-662;;1522967704.png;1;
 35;59;2;NJ2;Inrompible;1523039691.png;1;
+=======
+>>>>>>> 8e4e4919ce82206538694451f43f9d2edabf8ad7
