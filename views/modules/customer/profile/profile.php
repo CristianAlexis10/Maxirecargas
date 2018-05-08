@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="views/assets/css/profile.css">
+<link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"/>
+
 <?php
 $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
 ?>
@@ -122,8 +124,6 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
                 </div>
               </div>
         </div>
-
-
         <div id="img-product">
             <div class="newMark--img">
               <span id="closeImg">&times;</span>

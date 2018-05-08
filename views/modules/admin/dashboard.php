@@ -65,6 +65,9 @@
 				<div class="title">
 					<p>Bienvenido <?php echo $_SESSION['CUSTOMER']['NAME'];?></p>
 				</div>
+				<div class="employeMessage">
+					<p>Gracias por ser parte de la familia maxirecargas. Recuerda verificar tu ruta diariamente</p>
+				</div>
 			</div>
 
 		<?php } ?>

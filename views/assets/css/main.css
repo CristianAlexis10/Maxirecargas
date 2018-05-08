@@ -77,9 +77,7 @@ body{
   font-size: 20px;
   color:#8f9aac;
 }
-
 /*2.menu superior .menu--top*/
-
 .wrap--content{
   width: 100%;
   margin-left: 250px;
@@ -126,8 +124,6 @@ body{
 .modules #tabs{
 	width: 100%;
 }
-
-
 .wrap--content article{
   background: white;
   width: 90%;
@@ -141,19 +137,22 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
  .title{
   width: 100%;
   margin-bottom: 30px;
   display: flex;
   justify-content: center;
-
 }
  .title p{
   color:grey;
   font-size: 50px;
   font-weight: 300;
+}
+.employeMessage p {
+  font-size: 20px;
+  font-family: 'Oswald';
+  
 }
 
 /*modules services*/
@@ -542,7 +541,6 @@ align-items: center;
   margin-top: 10px;
   display: grid ;
   justify-content: center;
-
   grid-gap: 10px;
 }
 .graphyPie1{
