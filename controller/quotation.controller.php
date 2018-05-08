@@ -157,6 +157,11 @@ require_once "controller/doizer.controller.php";
 		}
 		function response(){
 			$quotation = $_POST['quotation'];
+			$obs =$_POST['obs'];
+			$condi =$_POST['condi'];
+			$iva =$_POST['iva'];
+			$plazo =$_POST['plazo'];
+			$entrega =$_POST['entrega'];
 			//validar cantidades
 			$i = 0;
 			foreach ($quotation as $item) {
@@ -167,7 +172,7 @@ require_once "controller/doizer.controller.php";
 				$i++;
 			}
 			//insertar
-			$result = $this->master->contestarCotizacion($_SESSION['cod_detail_id'],$_POST['obs'],'Terminado');
+			$result = $this->master->contestarCotizacion($_SESSION['cod_detail_id'],$_POST['obs'],'Terminado',array($condi,$iva,$plazo,$entrega,$_SESSION['CUSTOMER']['ID']));
 			if ($result==1) {
 				foreach ($quotation as $item) {
 					$dataPro=$this->master->selectBy("producto",array("pro_referencia", str_replace("__"," ",$item['referencia'])));

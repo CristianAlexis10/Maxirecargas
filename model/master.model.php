@@ -1297,11 +1297,11 @@ class MasterModel{
 
     return $result;
   }
-  public function contestarCotizacion($quotation,$response,$status){
+  public function contestarCotizacion($quotation,$response,$status,$valores){
     try {
-      $this->sql="call contestarCotizacion(?,?,?)";
+      $this->sql="call contestarCotizacion(?,?,?,?,?,?,?,?)";
       $query=$this->pdo->prepare($this->sql);
-      $query->execute(array($quotation,$response,$status));
+      $query->execute(array($quotation,$response,$status,$valores[0],$valores[1],$valores[2],$valores[3],$valores[4]));
       $result = true;
     } catch (PDOException $e) {
       $result = $query->errorInfo()[1];

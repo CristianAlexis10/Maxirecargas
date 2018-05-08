@@ -17,6 +17,7 @@ use Dompdf\Dompdf;
 				exit;
 			}
 			$dataQuo = $this->master->datosCotizacion($_GET['data']);
+			$dataEn= $this->master->selectBy("usuario",array("usu_codigo",$dataQuo[0]['cot_encargado']));
 			//contenido del pdf
 			$content = '<html>';
 			$content .= '<head>';
@@ -79,6 +80,12 @@ use Dompdf\Dompdf;
 			}
 			$content.= "</table>";
 			$content .= "<b>Observaciones: </b>".$dataQuo[0]['cot_observacion'];
+			$content .= "<b>Condiciones de pago: </b>".$dataQuo[0]['cot_pago'];
+			$content .= "<b>Iva: </b>".$dataQuo[0]['cot_iva'];
+			$content .= "<b>Plazo de entrega: </b>".$dataQuo[0]['cot_plazo'];
+			$content .= "<b>Entrega: </b>".$dataQuo[0]['cot_entrega'];
+			$content .= "<b>Encargado: </b>".$dataEn['usu_primer_nombre']." ".$dataEn['usu_primer_apellido'];
+			$content .= "<b>Correo: </b>".$dataEn['usu_correo'];
 			$content .= '</body></html>';
 			//crear el pdf
 

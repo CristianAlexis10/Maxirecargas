@@ -254,7 +254,7 @@
 		}
 		function preview(){
 			$content = "";
-			$content .= "<div class='verPedido'><h1 class='title--modal'>mira tu pedido</h1>";
+			$content .= "<span class='close--modal' id='closeModalOrder'>&times;</span><div class='verPedido'><h1 class='title--modal'>mira tu pedido</h1>";
 			$content .= "<table class='tables'><thead><th>Producto:</th><th>Servicio:</th><th>Cantidad:</th><th> Observación :</th></thead><tbody>";
 			foreach ($_POST['data'] as $row) {
 				$data = $this->master->selectBy('tipo_servicio',array("Tip_ser_cod",$row['servicio']));
