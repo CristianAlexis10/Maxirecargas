@@ -23,7 +23,7 @@ use Dompdf\Dompdf;
 			$content .= '<head>';
 			$content .= '<link type="text/css" rel="stylesheet" href="views/assets/css/pdf.css"/>';
 			$content .= '</head><body>';
-			$content .= '  <div class="cabecera">
+			$content .= '<div class="cabecera">
 		      <div class="logo"><img src="views/assets/image/icn-maxi.png"></div>
 					<div class="title"><h3>MAXIRECARGAS S.A.S</h3>
 		      <p>Toner y Cartuchos</p></div>
@@ -34,14 +34,14 @@ use Dompdf\Dompdf;
 		      <div class="informacion--container">
 		        <div class="left--container">
 		          <div class="empresa">
-		            <h2>nombre de la empresa</h2>
+		            <h3>nombre de la empresa</h3>
 		            <p>nombre de contacto</p>
 		            <p>telefono</p>
 		            <p>correo</p>
 		            <p>cuidad</p>
 		          </div>
 		          <div class="cliente">
-		            <h2>nombre de la empresa</h2>
+		            <h3>nombre de la empresa</h3>
 		            <p>nombre de contacto</p>
 		            <p>telefono</p>
 		            <p>correo</p>
@@ -49,9 +49,9 @@ use Dompdf\Dompdf;
 		          </div>
 		        </div>
 		        <div class="rigth--container">
-		          <p>numero de cotizacion</p>
-		          <p>fecha actual</p>
-		          <p>cotizacion valida</p>
+		          <p>Nº Cotizacion</p>
+		          <p>Fecha Actual</p>
+		          <p>Cotizacion Valida</p>
 		        </div>
 		      </div>
 		      <div class="informacion">
@@ -59,12 +59,12 @@ use Dompdf\Dompdf;
 		      </div>';
 			$content.= "<table>";
 			$content.= "<tr>";
-			$content.= "<td>N°</td>";
-			$content.= "<td>Producto</td>";
-			$content.= "<td>Cantidad</td>";
-			$content.= "<td>Servicio</td>";
-			$content.= "<td>Obs</td>";
-			$content.= "<td>Total</td>";
+			$content.= "<th>N°</th>";
+			$content.= "<th>Producto</th>";
+			$content.= "<th>Cantidad</th>";
+			$content.= "<th>Servicio</th>";
+			$content.= "<th>Obs</th>";
+			$content.= "<th>Total</th>";
 			$content.= "</tr>";
 			$n = 1;
 			foreach ($dataQuo as $item) {
