@@ -104,7 +104,7 @@
   #cantidad,#solicitud{width: 90%;}
   #quotationUser .form-groupuser{margin-bottom: 20px}
   .orderbtn input{padding: 8px 30px; margin-top: 10px; font-size: 14px}
-  .modal--container.busqueda{width: 100%; margin-top:0; height: 100%}
+  .modal--container.busqueda{width: 100%; margin-top:0; height: 100%; overflow: scroll;}
     /* product */
   .products{margin-top: 0}
   .title_banner{font-size: 130px}
@@ -234,7 +234,7 @@
  #iniciar span p{display: none;}
   /* views detail order and quotation */
   .container_table{width: 100%; overflow: scroll;}
-
+  .dataTable.no-footer{width: auto;}
 }
 @media (max-width:510px){
   .container.one{flex-direction: column;height: 110vh;}
@@ -343,12 +343,14 @@
   .record--subtitle{text-align: center;}
   /*views order customer  */
   .content_modal_dir{width: 100%; height: 90vh}
+  .modal--container{width: 100%; height: 100vh; margin-top: 0; overflow: scroll;}
   /*views quotation customer  */
   .quotation--left .quotation--form{margin-top: 20px; width: 80%}
   .form-groupuser3{margin-bottom: 10px}
   .check {margin: 77px 0 0 142px;}
+  .title--movil{margin: 0;}
 }
-@media (max-width:360px) {
+@media (max-width:375px) {
   .container.two .section--two .section-rigth{margin-top: 60px}
   .container .left span{
     margin: 20px 0 0 20px;
@@ -393,7 +395,8 @@
   .title_banner{font-size: 70px}
   .banneritem{display: block; height: 120px}
   .Btoner--content{width: 100%; margin: 20px 0;}
-  .titleitem_banner{ text-align: center; width: 80%}
+  .banneritem span{display: inline;}
+  .titleitem_banner{ text-align: center; width: 80%;}
   .container_search{width: 100%; justify-content: center;}
   .query-result h1{font-size: 24px}
   /* views order customer */

@@ -6,6 +6,7 @@
     <title>Maxirecargas</title>
     <link rel="shortcut icon" href="views/assets/image/logo.png">
     <link rel="stylesheet" href="views/assets/css/error.css">
+    <link rel="stylesheet" href="views/assets/css/responsiveError.css">
   </head>
   <body>
     <div class="container--error">
