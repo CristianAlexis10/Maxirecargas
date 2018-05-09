@@ -117,12 +117,4 @@
       </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="views/assets/js/copepr.js"></script>
-<script type="text/javascript" src="views/assets/js/quotation-customer.js"></script>
-<script type="text/javascript" src="views/assets/js/menu.js"></script>
-
-
-  </body>
-</html>
+<?php require_once "views/include/customer/scope.footer.php";?>

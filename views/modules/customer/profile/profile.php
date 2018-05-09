@@ -1,9 +1,8 @@
 <link rel="stylesheet" href="views/assets/css/profile.css">
 <link type="text/css" rel="stylesheet" href="views/assets/css/croppie.css"/>
-
-<?php
-$data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
-?>
+    <?php
+    $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
+    ?>
     <?php require_once "views/include/customer/scope.header.php";?>
     <div class="container--profile">
       <span class="menuprofile"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
@@ -137,15 +136,4 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
       </div>
       </div>
     </div>
-
-
-  </body>
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="views/assets/js/profile.js"></script>
-  <script type="text/javascript" src="views/assets/js/user-customer.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-  <script src="views/assets/js/croppie.js"></script>
-  <script src="views/assets/js/cropp-profile.js"></script>
-  <script type="text/javascript" src="views/assets/js/menu.js"></script>
-
-</html>
+    <?php require_once "views/include/customer/scope.footer.php";?>
