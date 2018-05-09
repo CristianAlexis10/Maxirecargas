@@ -10,7 +10,7 @@
             <label for="producto" class="labelmagenta" id="labelProducto">Referencia</label>
             <input type="text" id="producto" class="inputmagenta"  value="<?php
               if(isset($_GET['data'])){
-                  echo $_GET['data'];
+                  echo str_replace("_"," ",$_GET['data']);;
               }
             ?>">
             <a href="#" id="openSearch">¿No sabes cuál es tu referencia?</a>

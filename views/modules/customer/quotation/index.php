@@ -9,7 +9,7 @@
                   <label for="producto" class="labelyellow error">Referencia del producto</label>
                 <input type="text" id="producto" class="inputYellow" value="<?php
                   if(isset($_GET['data'])){
-                      echo $_GET['data'];
+                      echo str_replace("_"," ",$_GET['data']);
                   }
                 ?>" >
                 </div>
