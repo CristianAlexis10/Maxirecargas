@@ -107,7 +107,7 @@
         </div>
       </div>
     </div>
-    <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
+    <span class="menuorder"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
 <div class="modal--dir" id="modal_dir">
   <div class="content_modal_dir">
     <span id="closemodal_dir">&times;</span>

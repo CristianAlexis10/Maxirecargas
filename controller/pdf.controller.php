@@ -79,12 +79,12 @@ use Dompdf\Dompdf;
 					$n++;
 			}
 			$content.= "</table>";
-			$content.= "<div class=""><b>Condiciones de pago: </b>.$dataQuo[0]['cot_pago']</div>";
-			$content .= "<div><b>Observaciones: </b>.$dataQuo[0]['cot_observacion']</div>";
-			$content .= "<div><b>Iva: </b>.$dataQuo[0]['cot_iva']</div>";
-			$content .= "<div><b>Plazo de entrega: </b>.$dataQuo[0]['cot_plazo']</div>";
-			$content .= "<div><b>Entrega: </b>.$dataQuo[0]['cot_entrega'</div>"];
-			$content .= "<div><b>Encargado: </b>.$dataEn['usu_primer_nombre'</div>"]." ".$dataEn['usu_primer_apellido'];
+			$content.= "<b>Condiciones de pago: </b>".$dataQuo[0]['cot_pago'];
+			$content .= "<b>Observaciones: </b>".$dataQuo[0]['cot_observacion'];
+			$content .= "<b>Iva: </b>".$dataQuo[0]['cot_iva'];
+			$content .= "<b>Plazo de entrega: </b>".$dataQuo[0]['cot_plazo'];
+			$content .= "<b>Entrega:</b>".$dataQuo[0]['cot_entrega'];
+			$content .= "<b>Encargado:</b>".$dataEn['usu_primer_nombre']." ".$dataEn['usu_primer_apellido'];
 			$content .= "<b>Correo: </b>".$dataEn['usu_correo'];
 			$content .= '</body></html>';
 			//crear el pdf

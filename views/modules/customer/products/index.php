@@ -3,7 +3,7 @@
     </div>
     <div class="banneritem Btoner">
       <div class="Btoner--content">
-        <span class="menuProduct"><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
+        <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
         <h1 class="titleitem_banner" id="categoryName">toner</h1>
       </div>
       <div class="container_search">
@@ -25,6 +25,6 @@
           </div>
         <?php } ?>
       </div>
-      <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
+      <span class="menuProduct"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
     </div>
     <div class="container--grid"></div>

@@ -280,6 +280,7 @@
     visibility: visible;
     opacity: 1;
 }
+
 .clr-label-login::after ,.clr-label::after{
   transform: scaleX(1);
 }
