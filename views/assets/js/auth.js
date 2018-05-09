@@ -72,20 +72,23 @@ $("#form--login").submit(function(e) {
 $('#contra2').focus(function(){
     var value = $('#dociden').val();
     if (value!='') {
-	    $.ajax({
-	      url: 'validar_documento',
-	      type:'post',
-	      dataType:'json',
-	      data:'data='+value,
-	  }).done(function(response){
-       if(response==true) {
-		    $(".message").remove();
-	     }else{
-	     	$(".message").remove();
-		    $("#form_mobile").after("<div class='message-red'>Documento no valido</div>");
-        $("#form_mobile .input--login").addClass("inputLoginRed");
-	     }
-	  });
+    	    $.ajax({
+    	      url: 'validar_documento',
+    	      type:'post',
+    	      dataType:'json',
+    	      data:'data='+value,
+    	  success:function(response){
+          console.log(response);
+           if(response==true) {
+    		    $(".message").remove();
+    	     }else{
+    	     	$(".message").remove();
+    		    $("#contra2").after("<div class='message-red'>Documento no valido</div>");
+            $("#form_mobile .input--login").addClass("inputLoginRed");
+    	     }
+    	  },
+      error:function(res){console.log(res);}
+    });
     }else{
     	$(".message").remove();
       $("#error .input--login").removeClass("inputLoginRed");
@@ -94,8 +97,8 @@ $('#contra2').focus(function(){
        $('div.message-red').remove();
      }, 3000);
 });
-$("#form_mobile").submit(function(e) {
-    e.preventDefault();
+$("#button").click(function() {
+    // e.preventDefault();
     if ($('#dociden').val() != '' || $('#contra2').val() != '' ) {
             dataJson = [];
             // $("input[name=data-login]").each(function(){

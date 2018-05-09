@@ -5,6 +5,8 @@
 <script type="text/javascript" src="views/assets/js/main-user.js"></script>
 <script type="text/javascript" src="views/assets/js/orders.js"></script>
 <script type="text/javascript" src="views/assets/js/menu.js"></script>
+<script type="text/javascript" src="views/assets/js/auth.js"></script>
+
 <script src="views/assets/lib/shortcut/shortcut.js"> </script>
 <script type="text/javascript" src="views/assets/js/security.js"></script>
 
