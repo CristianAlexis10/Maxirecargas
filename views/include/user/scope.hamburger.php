@@ -46,7 +46,7 @@
         <input type="password" class="wrap_input_mobile" id="contra2">
       </div>
       <div class="wrap_btn_mobile">
-        <button type="submit" name="button">Ingresar</button>
+        <button type="button" id="button">Ingresar</button>
       </div>
         </form>
       <div class="mobile_pass">
