@@ -5,7 +5,7 @@
   <div class="container--detail">
     <span><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu"></i><i class="fa fa-bars menuDetail" aria-hidden="true" id="menu-mobile"></i></span>
     <div class="content--detail">
-      <h1>Detalles De Pedidos</h1>
+      <h1>Detalles de los pedidos</h1>
          <div class="detail">
            <p class="item--detail">Código del pedido:</p>
            <p class="data--detail"><?php echo $data_order[0]['ped_token'];?> </p>
@@ -55,18 +55,18 @@
      <div class="content--detailRight">
        <img src="views/assets/image/flat/check.png">
        <!-- <h2>Estamos feliz de trabajar para usted</h2> -->
-       <h1>¡Estamos feliz de trabajar para usted!</h1>
+       <h2>¡Estamos felices de trabajar para usted!</h2>
      </div>
     <div class="detail--figure"></div>
   </div>
   <div class='modal' id="modalProductsCustomer">
     <div class='modal--container detail'>
       <span id="close_modal_producto" class="close--modal">&times;</span>
-      <h1 class="title--modalDetail">Detalles Del Productos</h1>
+      <h1 class="title--modalDetail">Detalles de los productos</h1>
       <div class="container_table">
         <table>
         <tr>
-          <th>pProducto</th>
+          <th>Producto</th>
           <th>Referencia</th>
           <th>Servicio</th>
           <th>Cant</th>

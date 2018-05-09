@@ -49,7 +49,7 @@
 <div class='modal' id="modalProductsCustomer">
   <div class='modal--container detail'>
     <span id="close_modal_producto" class="close--modal">&times;</span>
-    <h1 class="title--modalDetail">Detalles Del Productos</h1>
+    <h1 class="title--modalDetail">Detalles de los productos</h1>
     <div class="container_table">
       <table>
       <tr>
