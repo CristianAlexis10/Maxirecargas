@@ -7,26 +7,26 @@
 		</div>
 		<div class="container--charts">
 			<div class="num--users">
-					<h2>usuarios registrados</h2>
+					<h2>Usuarios registrados</h2>
 					<p id="userRegistrado"></p>
 				</div>
 			<div class="num--orders">
-					<h2>total pedidos solicitados</h2>
+					<h2>Total pedidos solicitados</h2>
 					<p id="totalPed"></p>
 				</div>
 			<div class="num--quotation">
-					<h2>cotizaciones solicitadas</h2>
+					<h2>Cotizaciones solicitadas</h2>
 					<p id="totalCot"></p>
 				</div>
 			<div class="liner">
 				<canvas id="linerGraphy"></canvas>
 			</div>
 			<div class="ventasDia">
-				<h2>ventas del día</h2>
+				<h2>Precio total de ventas del día</h2>
 				<p id="ventaDiaria"></p>
 			</div>
 			<div class="ventasMes">
-				<h2>ventas del mes</h2>
+				<h2>Precio total de ventas del mes</h2>
 				<p id="ventaMes"></p>
 			</div>
 			<div class="visitas">
@@ -34,11 +34,11 @@
 				<p id="pedDay"></p>
 			</div>
 			<div class="pedidopend">
-				<h2>pedidos pendientes</h2>
+				<h2>Pedidos pendientes</h2>
 				<p id="pedidosPendientes"></p>
 			</div>
 			<div class="pedidoterm">
-				<h2>pedidos terminados</h2>
+				<h2>Pedidos terminados</h2>
 				<p id="pedidosTerminados"></p>
 			</div>
 			<div class="pedidoapla">
@@ -57,7 +57,7 @@
 
 			</div>
 			<div class="container--map">
-				<h1>mapa de Cliente</h1>
+				<h1>Mapa de Cliente</h1>
 				<div id="map"></div>
 			</div>
 		<?php }else{?>
@@ -66,7 +66,7 @@
 					<p>Bienvenido <?php echo $_SESSION['CUSTOMER']['NAME'];?></p>
 				</div>
 				<div class="employeMessage">
-					<p>Gracias por ser parte de la familia maxirecargas. Recuerda verificar tu ruta diariamente</p>
+					<p>Gracias por ser parte de la familia Maxirecargas. Recuerda verificar tu ruta diariamente</p>
 				</div>
 			</div>
 

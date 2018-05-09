@@ -1,10 +1,10 @@
     <div class="banner">
-      <h1 class="title_banner">categorías</h1>
+      <h1 class="title_banner">Categorías</h1>
     </div>
     <div class="banneritem Btoner">
       <div class="Btoner--content">
         <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
-        <h1 class="titleitem_banner" id="categoryName">toner</h1>
+        <h1 class="titleitem_banner" id="categoryName">Toner</h1>
       </div>
       <div class="container_search">
         <div class="search_input">

@@ -13,19 +13,19 @@
       <img src="views/assets/image/logo.png">
       <div class="error">
         <h3>Recuperar mi contraseña</h3>
-        <p>Ingresa tu documento y espera nuestro correo de confirmacion.</p>
+        <p>Ingresa tu documento y espera nuestro correo de confirmación.</p>
     </div>
     <div class="container--forms">
       <form id="recoverPas">
           <div class="frm-group">
-              <label for="documento">Numero de documento: </label>
+              <label for="documento">Número de documento: </label>
               <input type="number" class="input" id="documento" required>
           </div>
               <input type="submit" class="btn" value="Enviar codigo al correo" >
       </form>
       <form id="ingresarCodigo">
           <div class="frm-group">
-              <label for="codigo">Inserta tu codigo: </label>
+              <label for="codigo">Ingresa tú código: </label>
               <input type="text" class="input" id="codigo" required>
           </div>
           <div class="frm-group">

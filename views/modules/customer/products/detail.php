@@ -30,21 +30,21 @@
       }
       ?>
       <div class="content--detailRight product">
-        <h1>Caracteristicas</h1>
+        <h1>Características</h1>
         <div class="detail">
-          <p class="item--detail">referencia:</p>
+          <p class="item--detail">Referencia:</p>
           <p class="data--detail"> <?php echo $data[0]['pro_referencia'] ?></p>
         </div>
         <div class="detail">
-          <p class="item--detail">marca:</p>
+          <p class="item--detail">Marca:</p>
           <p class="data--detail"> <?php echo $data[0]['mar_nombre'] ?></p>
         </div>
         <div class="detail">
-          <p class="item--detail">servicios: </p>
+          <p class="item--detail">Servicios: </p>
           <p class="data--detail"><?php echo $servicios ?></p>
         </div>
         <div class="detail">
-          <p class="item--detail">especificaciones:</p>
+          <p class="item--detail">Especificaciones:</p>
           <p class="data--detail"><?php echo $data[0]['pro_descripcion'] ?></p>
         </div>
 

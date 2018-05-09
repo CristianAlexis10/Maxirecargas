@@ -4,7 +4,7 @@
                         <th>Encargado</th>
                         <th class="table-token">Correo</th>
                         <th>Celular</th>
-                        <th>N° visitas del dia</th>
+                        <th>N° visitas del día</th>
                         <th>Ver</th>
                     </tr>
          </thead>

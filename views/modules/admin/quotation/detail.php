@@ -1,4 +1,4 @@
-<div class="modules">
+<!-- <div class="modules"> -->
 	<div class="title">
 			<p>Responder Cotización</p>
 		</div>
@@ -8,13 +8,13 @@
 				$_SESSION['cod_detail_id'] = $dataQuo[0]['cot_codigo'];
 			?>
 			<div class="visit today">
-				<h1 class="title--customer--detail">datos del cliente</h1>
+				<h1 class="title--customer--detail">Datos del cliente</h1>
 				<div class="data--customer--detail">
 					<p class="firthP">Cliente:</p>
 					<p class="secondP"><?php echo $dataQuo[0]['usu_primer_nombre']." ".$dataQuo[0]['usu_primer_apellido']; ?></p>
 				</div>
 				<div class="data--customer--detail">
-					<p class="firthP">Codigo:</p>
+					<p class="firthP">Código:</p>
 					<p class="secondP"><?php echo $dataQuo[0]['cot_token']?> </p>
 				</div>
 				<div class="data--customer--detail">
@@ -26,7 +26,7 @@
 						<a href="generar-cotizacion-<?php echo $dataQuo[0]['cot_codigo'] ?>">Ver formato</a>
 					<?php }?>
 					<!-- datos -->
-					<h1 class="title--customer--detail other">datos de los productos</h1>
+					<h1 class="title--customer--detail other">Datos de los productos</h1>
 					<div class="containerTable">
 						<table>
 						<tr>

@@ -21,7 +21,7 @@
 						 </select>
 					 </div>
 					 <div class="form-group">
-						 <label for="numDoc" class="label">Numero de Documento:</label>
+						 <label for="numDoc" class="label">Número de Documento:</label>
 						 <input type="number" name="data[]" id="numDoc" class="userUpdate input" value="<?php echo $result['usu_num_documento']?>" required>
 					 </div>
 
@@ -44,7 +44,7 @@
 					 <input type="email" name="data[]" id="correo" class="userUpdate input" value="<?php echo $result['usu_correo']?>" required>
 				 </div>
 				 <div class="form-group">
-					 <label for="tel" class="label">Telefono:</label>
+					 <label for="tel" class="label">Teléfono:</label>
 					 <input type="number" name="data[]" id="tel" onkeypress="return eliminarLetras(event)" class="userUpdate input" value="<?php echo $result['usu_telefono']?>" required>
 				 </div>
 
@@ -93,7 +93,7 @@
 						</select>
 				 </div>
 				 <div class="form-group">
-					 <label for="direccion" class="label">direccion:</label>
+					 <label for="direccion" class="label">Direccion:</label>
 					 <input type="text" name="data[]" id="direccion" class="userUpdate input" value="<?php echo $result['usu_direccion']?>">
 				 </div>
 			 </div>

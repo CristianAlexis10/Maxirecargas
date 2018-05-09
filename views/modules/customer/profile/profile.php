@@ -9,41 +9,41 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
       <span class="menuprofile"><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
       <div class="content--profile">
         <div class="profile--left">
-          <p>editar información personal</p>
+          <p>Editar información personal</p>
           <form class="" action="modificar-mi-perfil" method="post">
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="name" class="label--profile">primer nombre:</label>
+              <label for="name" class="label--profile">Primer nombre:</label>
               <input type="text" class="input--profile" id="name" name="data[]" value="<?php echo $data['usu_primer_nombre'] ?>" required>
             </div>
             <div class="form-profile">
-              <label for="secondname" class="label--profile">segundo nombre:</label>
+              <label for="secondname" class="label--profile">Segundo nombre:</label>
               <input type="text" class="input--profile" id="secondname" name="data[]" value="<?php echo $data['usu_segundo_nombre'] ?>" >
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="lastname" class="label--profile">primer apellido:</label>
+              <label for="lastname" class="label--profile">Primer apellido:</label>
               <input type="text" class="input--profile" id="lastname" name="data[]" value="<?php echo $data['usu_primer_apellido'] ?>" required>
             </div>
             <div class="form-profile">
-              <label for="secondlast" class="label--profile">segundo apellido:</label>
+              <label for="secondlast" class="label--profile">Segundo apellido:</label>
               <input type="text" class="input--profile" id="secondlast" name="data[]" value="<?php echo $data['usu_segundo_apellido'] ?>" >
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="email" class="label--profile">correo:</label>
+              <label for="email" class="label--profile">Correo:</label>
               <input type="email" class="input--profile" id="email" name="data[]" value="<?php echo $data['usu_correo'] ?>" required>
             </div>
             <div class="form-profile">
-              <label for="telphone" class="label--profile">teléfono:</label>
+              <label for="telphone" class="label--profile">Teléfono:</label>
               <input type="text" class="input--profile" id="telphone" name="data[]" value="<?php echo $data['usu_telefono'] ?>" required>
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="country" class="label--profile">cuidad:</label>
+              <label for="country" class="label--profile">Cuidad:</label>
               <select class="input--profile" name="data[]" id="country">
                 <?php
                   foreach ($this->master->selectAll("ciudad") as $row) {
@@ -55,17 +55,17 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
               </select>
             </div>
             <div class="form-profile">
-              <label for="address" class="label--profile">dirección:</label>
+              <label for="address" class="label--profile">Dirección:</label>
               <input type="text" class="input--profile" id="address"  name="data[]"value="<?php echo $data['usu_direccion'] ?>" required>
             </div>
           </div>
           <div class="wrap_two_formgroup">
             <div class="form-profile">
-              <label for="celphone" class="label--profile">celular:</label>
+              <label for="celphone" class="label--profile">Celular:</label>
               <input type="number" id="celphone" class="input--profile" name="data[]" value="<?php echo $data['usu_celular'] ?>" required>
             </div>
             <div class="form-profile">
-              <label for="datana" class="label--profile">fecha de nacimiento:</label>
+              <label for="datana" class="label--profile">Fecha de nacimiento:</label>
               <input type="date" class="input--profile" id="datana" name="data[]" value="<?php echo $data['usu_fecha_nacimiento'] ?>" required>
             </div>
           </div>
@@ -83,7 +83,7 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
           </div>
 
           <div class="formbtn-profile">
-            <button type="submit" name="button" id="btndata">guardar cambios</button>
+            <button type="submit" name="button" id="btndata">Guardar cambios</button>
           </div>
         </form>
         <?php
@@ -92,11 +92,11 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
             unset($_SESSION['msn']);
         }
         ?>
-          <p>cambiar contraseña</p>
+          <p>Cambiar contraseña</p>
           <form id="updatePassword">
             <div class="container--oneinput">
               <div class="form-profile">
-                <label for="password" class="label--profile">contraseña Actual:</label>
+                <label for="password" class="label--profile">Contraseña Actual:</label>
                 <input type="password" id="password" class="input--profile" required>
               </div>
               <div class="form-profile">
@@ -104,17 +104,17 @@ $data = $this->master->innerJoinUsuario($_SESSION['CUSTOMER']['ID']);
                 <input type="password" id="new_password" class="input--profile" required>
               </div>
               <div class="form-profile">
-                <label for="confirmCon" class="label--profile">confirmar contraseña:</label>
+                <label for="confirmCon" class="label--profile">Confirmar contraseña:</label>
                 <input type="password" class="input--profile" id="confirmCon" required>
               </div>
             </div>
             <div class="formbtn-profile">
-              <button type="submit" name="button" id="btnpassword">guardar cambios</button>
+              <button type="submit" name="button" id="btnpassword">Guardar cambios</button>
             </div>
           </form>
           </div>
         <div class="profile--right">
-          <p>editar foto</p>
+          <p>Editar foto</p>
             <div class="imgprofile">
                 <div class="form-group Cambiar--img">
                   <div id="wrap-result">

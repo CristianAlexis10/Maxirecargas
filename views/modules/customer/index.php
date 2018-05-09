@@ -49,7 +49,7 @@
       			onkeydown = "if (event.keyCode == 13)document.getElementById('send-btn').click()"  />
       	</div>
       	<button id="send-btn" class=button>Enviar</button>
-      	<button id="finalizarChat" class="button">finalizar</button>
+      	<button id="finalizarChat" class="button">Finalizar</button>
       </div>
       <!-- FIN CHAT -->
       <div id="wrap--menu--mobile">
@@ -61,9 +61,9 @@
           <li><a href="pedidos">Pedidos</a></li>
           <li><a href="cotizacion">Cotizaciones</a></li>
           <li><a href="productos">Productos</a></li>
-          <li><a href="miperfil">perfil</a></li>
-          <li><a href="historial">historial</a></li>
-          <li><a href="finalizar">cerrar sesión</a></li>
+          <li><a href="miperfil">Perfil</a></li>
+          <li><a href="historial">Historial</a></li>
+          <li><a href="finalizar">Cerrar sesión</a></li>
         </ul>
       </div>
     <section class="container one" >
@@ -83,12 +83,12 @@
         </p></a></li>
         </ul>
         <div id="user--dropdown">
-          <a href="miperfil">perfil</a>
-          <a href="historial">historial</a>
-          <a href="finalizar">finalizar</a>
+          <a href="miperfil">Perfil</a>
+          <a href="historial">Historial</a>
+          <a href="finalizar">Finalizar</a>
         </div>
         <div class="welcome">
-          <p class="title animated fadeInRight">bienvenido</p>
+          <p class="title animated fadeInRight">Bienvenido</p>
          <p class="subtitle animated fadeInRight" id="desMaxi"></p>
           <div class="subtitle-contc animated zoomIn">
             <p><i class="fa fa-phone" aria-hidden="true"></i><span id="tel1"><span></p>
@@ -140,7 +140,7 @@
     </section>
     <section class="container mediafour">
       <div class="title animated">
-        <h1>políticas de medio ambiente</h1>
+        <h1>Políticas de medio ambiente</h1>
         <h2 id="politicas"></h2>
       </div>
       <div class="img--ambiente">
@@ -170,7 +170,7 @@
             </form>
       </div>
       <div class="four--contact animated">
-        <h1>contáctanos</h1>
+        <h1>Contáctanos</h1>
         <ul>
           <li><i class="fa fa-phone" aria-hidden="true"></i> <span id="telephone"></span> </li>
           <li><i class="fa fa-whatsapp" aria-hidden="true"></i><span id="smartPhone"></span></li>

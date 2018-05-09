@@ -22,7 +22,7 @@
           if ($_SESSION['CUSTOMER']['STYLE']['est_usu_menu']!=' ') {?>
             <div class="modo--color">
               <h1>Elige tu estilo </h1>
-              <label>color
+              <label>Color
                 <input type="checkbox" name="checkcolor" id="styleButton" checked class="swich green"  >
                 <div>
                   <div>
@@ -32,7 +32,7 @@
             </div>
           <?PHP }else{?>
             <div class="modo--color">
-              <label>color
+              <label>Color
                 <input type="checkbox" name="checkcolor" id="styleButton"  class="swich green"  >
                 <div>
                   <div>
@@ -49,31 +49,31 @@
       <div id="contacto">
         <form id="form_contacto">
           <div class="form-group">
-            <label for="numer1" class="label">número de telefono</label>
+            <label for="numer1" class="label">Número de teléfono</label>
             <input type="number" id="numer1" class="input">
           </div>
           <div class="form-group">
-            <label for="numer2" class="label">número de telefono 2</label>
+            <label for="numer2" class="label">Número de teléfono 2</label>
             <input type="number" id="numer2" class="input">
           </div>
           <div class="form-group">
-            <label for="wpp" class="label">whatsapp</label>
+            <label for="wpp" class="label">Whatsapp</label>
             <input type="number" id="wpp" class="input">
           </div>
           <div class="form-group">
-            <label for="correocos" class="label">correo</label>
+            <label for="correocos" class="label">Correo</label>
             <input type="email" id="correocos" class="input">
           </div>
           <div class="form-group">
-            <label for="direccion" class="label">dirección</label>
+            <label for="direccion" class="label">Dirección</label>
             <input type="text" id="direccion" class="input">
           </div>
           <div class="form-group">
-            <label for="inicio" class="label">Hora Inicio Jornada laboral</label>
+            <label for="inicio" class="label">Hora inicio jornada laboral</label>
             <input type="time" id="inicio" class="input">
           </div>
           <div class="form-group">
-            <label for="fin" class="label">Hora Fin Jornada laboral</label>
+            <label for="fin" class="label">Hora fin jornada laboral</label>
             <input type="time" id="fin" class="input">
           </div>
           <div class="form-group">
@@ -86,7 +86,7 @@
         $data = $this->master->selectAll("gestion_web");
         ?>
         <div class="modules profileDetalle">
-          <p>Cambia los datos del a pagina inicial de maxirecargas tales con la descripcion inicial de la empresa,mision,vision y las politas de medio ambientes</p>
+          <p>Cambia los datos de la página principal de Maxirecargas, tales como la descripción inicial de la empresa, misión, visión y las políticas de medio ambiente</p>
           <div class="maxContainer_profile">
             <?php if($_SESSION['CUSTOMER']['ROL']==2){?>
             <div class="frmprofile">
@@ -105,7 +105,7 @@
                     <textarea maxlength="340" class="dataUptadeBusi textareaupdate" id="vision"   required><?php echo $data[0]['gw_vision']?></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="pma" class="label">Política de medio ambiente:</label>
+                    <label for="pma" class="label">Políticas de medio ambiente:</label>
                     <textarea maxlength="300" class=" dataUptadeBusi textareaupdate" id="pma" required><?php echo $data[0]['gw_politicas']?></textarea>
                   </div>
 

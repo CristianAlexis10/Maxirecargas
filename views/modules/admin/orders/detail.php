@@ -9,7 +9,7 @@ if ($crud[1]==true) {
 <div class="mudules orders detail" id="detail-reload">
 	<div class="wrap--info">
 		<div class="detail">
-			<p class="item--detail">Codigo del pedido:</p>
+			<p class="item--detail">Código del pedido:</p>
 			<p class="data--detail"><?php echo $data_order[0]['ped_token'];?> </p>
 		</div>
 		<div class="detail">
@@ -25,7 +25,7 @@ if ($crud[1]==true) {
 			<p class="data--detail"><?php echo $data_order[0]['ciu_nombre'].", ".$data_order[0]['ped_direccion'];?>  </p>
 		</div>
 		<div class="detail">
-			<p class="item--detail">Telefono:</p>
+			<p class="item--detail">Teléfono:</p>
 			<p class="data--detail"><?php echo $data_order[0]['usu_telefono'];?> </p>
 		</div>
 		<div class="detail">
@@ -33,7 +33,7 @@ if ($crud[1]==true) {
 			<p class="data--detail"><?php echo $data_order[0]['ped_fecha_entrega'];?> </p>
 		</div>
 		<div class="detail">
-			<p class="item--detail">Hora Aproximada de entrega:</p>
+			<p class="item--detail">Hora aproximada de entrega:</p>
 			<p class="data--detail"><?php echo $data_order[0]['ped_hora_entrega'];?> </p>
 		</div>
 		<?php if ($data_order[0]['ped_encargado']!=null) {
@@ -74,7 +74,7 @@ if ($crud[1]==true) {
 	</div>
 	<div class="wrap--btns">
 		<ul>
-			<li class="opcins--order"><a id="viewAllProducts">ver articulos</a></li>
+			<li class="opcins--order"><a id="viewAllProducts">Ver articulos</a></li>
 			<?php
 				if ($data_order[0]['ped_encargado']==null) {?>
 						<li class="opcins--order"><a id="<?php echo $data_order[0]['ped_codigo']; ?>" onclick="asignar(this)" >Asignar encargado</a></li>
@@ -95,14 +95,14 @@ if ($crud[1]==true) {
 <div id="modal--detail--products" class="modales">
 	<div class="container--modales order">
 		<span id="close_modal_producto" class="closemodales">&times;</span>
-		<h1>detalles de productos</h1>
+		<h1>Detalles de productos</h1>
     <div class="container_table">
       <table>
       <tr>
-        <th>producto</th>
-        <th>referencia</th>
+        <th>Producto</th>
+        <th>Referencia</th>
         <th>Servicio</th>
-        <th>cant</th>
+        <th>Cant</th>
         <th class="nodata-Observacion">Observación</th>
       </tr>
     <?php

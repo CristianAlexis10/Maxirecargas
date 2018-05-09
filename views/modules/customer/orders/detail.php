@@ -66,10 +66,10 @@
       <div class="container_table">
         <table>
         <tr>
-          <th>producto</th>
-          <th>referencia</th>
+          <th>pProducto</th>
+          <th>Referencia</th>
           <th>Servicio</th>
-          <th>cant</th>
+          <th>Cant</th>
           <th class="nodata-Observacion">Observación</th>
         </tr>
       <?php

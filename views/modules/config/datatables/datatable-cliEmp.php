@@ -31,7 +31,7 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
                 <a href="#" onclick="return confirmOffUserEmp(2,
                 <?php
                 echo $row['usu_codigo'];
-                ?>)">inactivar</i></a>
+                ?>)">Inactivar</i></a>
                 <!-- activar -->
             <?php }else{?>
                     <a href="#" onclick="return confirmOffUserEmp(1,

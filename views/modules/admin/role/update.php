@@ -55,7 +55,7 @@ foreach ($permits as $row) {
         <div class="config--rol">
             <div class="config--form">
               <div class="wrap--chmodule">
-                  <label>Este Rol pertenece a Maxirecargas
+                  <label>Este rol pertenece a Maxirecargas
                       <input type="checkbox" name="data-rol-maxi" class="swich green" <?php if($result['tip_usu_maxi']=="false"){}else{echo "checked";} ?>>
                       <div>
                           <div>
@@ -65,14 +65,14 @@ foreach ($permits as $row) {
               </div>
             </div>
                   <div class="form-group">
-                      <label for="namerol" class="label">nombre del rol</label>
+                      <label for="namerol" class="label">Nombre del rol</label>
                       <input type="text" name="data-rol-name" class="input" id="namerol" value="<?php echo $result['tip_usu_rol'] ?>" required>
                   </div>
                   <h1>Asignar Permisos</h1>
-                  <p>Este rol tendrá permisos para los siguientes módulos:</p>
+                  <p>Este rol tendrá permisos en los siguientes módulos:</p>
                   <div class="config--form" id="module-cliente">
                       <div class="wrap--chmodule">
-                          <label>usuarios
+                          <label>Usuarios
                               <input type="checkbox" name="checkcliente" class="swich green" <?php if($user == true){echo "checked";} ?>>
                               <div>
                                   <div>
@@ -91,7 +91,7 @@ foreach ($permits as $row) {
                   </div>
                   <div class="config--form" id="module-producto">
                       <div class="wrap--chmodule">
-                          <label>productos
+                          <label>Productos
                               <input type="checkbox" name="checkpro" class="swich green" <?php if($products == true){echo "checked";} ?> >
                               <div>
                                   <div>
@@ -110,7 +110,7 @@ foreach ($permits as $row) {
                   </div>
                   <div class="config--form" id="module-pedido">
                       <div class="wrap--chmodule">
-                          <label>pedidos
+                          <label>Pedidos
                               <input type="checkbox" name="checkpedido" class="swich green" <?php if($orders == true){echo "checked";} ?>>
                               <div>
                                   <div>
@@ -129,7 +129,7 @@ foreach ($permits as $row) {
                   </div>
                   <div class="config--form" id="module-cotizaciones">
                       <div class="wrap--chmodule">
-                          <label>cotizaciones
+                          <label>Cotizaciones
                               <input type="checkbox" name="checkcotiza" class="swich green"  <?php if($qoutation == true){echo "checked";} ?>>
                               <div>
                                   <div>
@@ -148,7 +148,7 @@ foreach ($permits as $row) {
                   </div>
                   <div class="config--form" id="module-ruta">
                       <div class="wrap--chmodule">
-                          <label>rutas
+                          <label>Rutas
                               <input type="checkbox" name="checkruta" class="swich green" <?php if($routes == true){echo "checked";} ?> >
                               <div>
                                   <div>

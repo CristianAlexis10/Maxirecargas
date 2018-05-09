@@ -15,12 +15,12 @@
       <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
       <div class="container--registrar--mobile">
         <h1>Crea tu cuenta</h1>
-        <p>Registrate y conoce los beneficios que tenemos para ti</p>
+        <p>Regístrate y descubre los beneficios que tenemos para ti</p>
         <div class="form-group type--user">
           <label for="tipo_usu" class="select" >Tipo de Usuario:</label>
           <select class="input"  id="tipo_usu" required>
-            <option value="natural">persona natural</option>
-            <option value="juridica">persona juridica</option>
+            <option value="natural">Persona natural</option>
+            <option value="juridica">Persona juridica</option>
           </select>
         </div>
         <form id="frmNewUserMobile">
@@ -31,7 +31,7 @@
                 <select class="input" id="tip_doc" name="data"  required></select>
               </div>
               <div class="form-group">
-                <label for="numDoc" class="label">Numero de Documento:</label>
+                <label for="numDoc" class="label">Número de Documento:</label>
                 <input type="number"  id="numDoc" class="input" name="data" required>
               </div>
               <div class="form-group">
@@ -42,7 +42,7 @@
                 <label for="priApe" class="label">Apellido:</label>
                 <input type="text" id="priApe" class="input" name="data" required>
               </div>
-              <button type="button" id="normalIrParte2">siguiente</button>
+              <button type="button" id="normalIrParte2">Siguiente</button>
             </div>
             <div id="normalMobile--part2">
               <div class="form-group">
@@ -50,7 +50,7 @@
                 <input type="email" class=" input" id="correo" name="data" required>
               </div>
               <div class="form-group">
-                <label for="tel" class="label">Telefono:</label>
+                <label for="tel" class="label">Teléfono:</label>
                 <input type="number" class="input" id="tel"  name="data" required>
               </div>
               <div id="selectAutocomplete">
@@ -61,8 +61,8 @@
                 <label for="dir" class="label">Dirección:</label>
                 <input type="text" name="data"  id="dir" class="input"  required>
               </div>
-              <button type="button"  id="irAtras">atras</button>
-              <button type="button" id="normalIrParte3">siguiente</button>
+              <button type="button"  id="irAtras">Atrás</button>
+              <button type="button" id="normalIrParte3">Siguiente</button>
 
             </div>
             <div id="normalMoibile--part3">
@@ -85,7 +85,7 @@
                 <div class="form-group">
                   <button class="btn" disabled id="registrar">Registrar Cliente</button>
                 </div>
-                <button type="button" id="irAtras2">atras</button>
+                <button type="button" id="irAtras2">Atrás</button>
               </div>
             </div>
           </div>
@@ -99,42 +99,42 @@
                 <input type="text" class="dataEmp input" id="nitMobile" required>
               </div>
               <div class="form-group">
-                <label for="socialMobile" class="label">Razon social</label>
+                <label for="socialMobile" class="label">Razón social</label>
                 <input type="text" class="dataEmp input" id="socialMobile" required>
               </div>
               <div class="form-group">
                 <label for="namebusMobile" class="label">Nombre de la empresa</label>
                 <input type="text" class="dataEmp input" id="namebusMobile" required>
               </div>
-              <button type="button" id="businessIrParte2">siguiente</button>
+              <button type="button" id="businessIrParte2">Siguiente</button>
             </div>
             <div id="businessMobile--parte2">
-              <h1>datos de la sede</h1>
+              <h1>Datos de la sede</h1>
               <div class="form-group">
                 <label for="sed-nomMobile" class="label">Nombre de la sede</label>
                 <input type="text" class="dataEmp input" id="sed-nomMobile" required>
               </div>
               <div class="form-group">
-                <label for="sede-dirMobile" class="label">Direccion</label>
+                <label for="sede-dirMobile" class="label">Dirección</label>
                 <input type="text" class="dataEmp input" id="sede-dirMobile" required>
               </div>
               <div class="form-group">
                 <label for="sede-telMobile" class="label">Telefono</label>
                 <input type="number" class="dataEmp input" id="sede-telMobile" required>
               </div>
-              <button type="button" id="irAtrasbusiMobile">atras</button>
-              <button type="button" id="businessIrParte3Mobile">siguiente</button>
+              <button type="button" id="irAtrasbusiMobile">Atrás</button>
+              <button type="button" id="businessIrParte3Mobile">Siguiente</button>
             </div>
             <div id="businessMobile--parte3">
-              <h1>datos del contacto</h1>
+              <h1>Datos del contacto</h1>
               <div class="form-group">
                 <label for="tip_docMobile" class="select">Tipo de documento</label>
                 <select class="dataEmp input" id="tip_doc2Mobile">
-                  <option value="1">Cedula</option>
+                  <option value="1">Cédula</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="numDocEmpMobile" class="label">Numero de documento</label>
+                <label for="numDocEmpMobile" class="label">Número de documento</label>
                 <input type="text" class="dataEmp input" id="numDocEmpMobile" required>
               </div>
               <div class="form-group">
@@ -148,11 +148,11 @@
 
               <div id="selectAutocomplete">
                 <select class="dataEmp input" id="cuidad2Mobile">
-                  <option value="">Medellin</option>
+                  <option value="">Medellín</option>
                 </select>
               </div>
-              <button type="button" id="irAtras3busiMobile">atras</button>
-              <button type="button" id="businessIrParte4Mobile">siguiente</button>
+              <button type="button" id="irAtras3busiMobile">Atrás</button>
+              <button type="button" id="businessIrParte4Mobile">Siguiente</button>
 
             </div>
             <div id="businessMobile--parte4">
@@ -179,7 +179,7 @@
               <div class="form-group">
                 <button class="btn"  id="registrarEmpMobile">Registrar Empresa</button>
               </div>
-              <button type="button" id="irAtras4busiMobile">atras</button>
+              <button type="button" id="irAtras4busiMobile">Atrás</button>
             </div>
           </div>
         </form>

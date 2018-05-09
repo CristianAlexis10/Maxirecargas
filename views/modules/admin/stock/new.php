@@ -2,7 +2,7 @@
 	<div class="title">
 		<p>OPCIONES DE BUSQUEDA</p>
 	</div>
-	<p>*Las opciones de busqueda sirven para que los usuarios puedan encontrar de manera mas rápida y  fácil sus productos. </p>
+	<p>*Las opciones de búsqueda sirven para que los usuarios puedan encontrar de manera mas rápida y fácil sus productos. </p>
 	<p>Separa por comas(,) las palabras claves para encontrar este producto. </p>
 		<form class="form Services" action="guardar-inventario" method="post" >
 		 <div class="form-group">
