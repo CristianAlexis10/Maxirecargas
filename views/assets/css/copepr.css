@@ -471,7 +471,7 @@ color:white}
   transition: .5s ease;
 }
 .user_fondo_order button:hover{box-shadow: -5px 10px 10px 0px rgba(0,0,0,0.5)}
-/* .ocultarbtnOrder{display: none} */
+.ocultarbtnOrder{display: none}
 
 /*inputs*/
 .form-groupuser{

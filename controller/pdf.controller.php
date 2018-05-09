@@ -34,7 +34,7 @@ use Dompdf\Dompdf;
 		      <div class="informacion--container">
 		        <div class="left--container">
 		          <div class="empresa">
-		            <h3>nombre de la empresa</h3>
+		            <h3>Maxirecargas</h3>
 		            <p>nombre de contacto</p>
 		            <p>telefono</p>
 		            <p>correo</p>
@@ -79,7 +79,7 @@ use Dompdf\Dompdf;
 					$n++;
 			}
 			$content.= "</table>";
-			$content.= "<b>Condiciones de pago: </b>".$dataQuo[0]['cot_pago'];
+			$content.= "<div class='condi'><b>Condiciones de pago: </b>".$dataQuo[0]['cot_pago']"</div>";
 			$content .= "<b>Observaciones: </b>".$dataQuo[0]['cot_observacion'];
 			$content .= "<b>Iva: </b>".$dataQuo[0]['cot_iva'];
 			$content .= "<b>Plazo de entrega: </b>".$dataQuo[0]['cot_plazo'];
