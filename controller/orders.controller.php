@@ -166,7 +166,7 @@
 				$crud=array(1,1,1,1);
 				$data_order = $this->master->verPedido($order);
 				require_once "views/include/scope.header.php";
-				if ($data_order[0]['ped_encargado']==$_SESSION['CUSTOMER']['ID']) {
+				if (isset($data_order[0]['ped_encargado']) && $data_order[0]['ped_encargado']==$_SESSION['CUSTOMER']['ID']) {
 					require_once "views/modules/employe/orders/detail.php";
 				}else{
 					echo "No Tienes Acceso a este pedido";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2018 a las 05:34:53
+-- Tiempo de generación: 09-05-2018 a las 02:28:45
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -546,7 +546,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaAplazada` (IN `usu` INT, IN `dat` DATE)  NO SQL
 BEGIN 
-SELECT t2.ped_token,t2.ped_codigo,t2.ped_direccion,t2.ped_fecha_entrega,t2.ped_hora_entrega,t2.ped_estado FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t1.usu_codigo = usu AND t2.ped_estado = "Aplazado" or t2.ped_estado ="En Proceso" AND t2.ped_fecha_entrega < dat;
+SELECT t2.ped_token,t2.ped_codigo,t2.ped_direccion,t2.ped_fecha_entrega,t2.ped_hora_entrega,t2.ped_estado FROM usuario t1 INNER JOIN pedido t2 ON t1.usu_codigo = t2.ped_encargado WHERE t2.ped_encargado = usu AND t2.ped_estado = "Aplazado" or t2.ped_estado ="En Proceso" AND t2.ped_fecha_entrega < dat AND t2.ped_encargado = usu;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verDetalleRutaCancelada` (IN `usu` INT)  NO SQL
@@ -1007,14 +1007,13 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`ped_codigo`, `ped_encargado`, `ped_ciudad`, `ped_direccion`, `ped_estado`, `ped_token`, `ped_fecha`, `ped_fecha_entrega`, `ped_hora_entrega`) VALUES
-(1, NULL, 1, 'calle 95 b', 'En Bodega', 'L4o17-10tdX', '2018-04-06', '2018-04-06', '18:00:00'),
+(1, 22, 1, 'calle 95 b', 'En Proceso', 'L4o17-10tdX', '2018-04-06', '2018-04-06', '18:00:00'),
 (2, 26, 1, 'calle 95 b', 'Terminado', 'AkrFI-FqV9I', '2018-04-06', '2018-04-06', '18:00:00'),
-(3, NULL, 1, 'calle 95 b', 'En Bodega', 'PNva1-MRgPO', '2018-04-06', '2018-04-06', '18:00:00'),
+(3, 22, 1, 'calle 95 b', 'En Proceso', 'PNva1-MRgPO', '2018-04-06', '2018-04-06', '18:00:00'),
 (4, 26, 1, 'calle 95 b', 'Cancelado', 'azygw-4K7Is', '2018-04-06', '2018-04-07', '10:00:00'),
 (5, 26, 1, 'calle 95 b', 'En Proceso', 'UQaSv-7bo3e', '2018-04-12', '2018-04-14', '14:00:00'),
-(6, NULL, 1, 'calle 43', 'recepcion', 'vTzQC-6vzIW', '2018-04-13', '2018-04-14', '14:00:00'),
-(7, NULL, 1, 'calle 95 b', 'En Bodega', 'mpxF8-5JiCb', '2018-05-07', '2018-05-23', '12:01:00'),
-(8, NULL, 1, 'calle 95 b', 'En Bodega', 'yPv4s-n3yqv', '2018-05-07', '2018-05-23', '12:01:00'),
+(6, 22, 1, 'calle 43', 'recepcion', 'vTzQC-6vzIW', '2018-04-13', '2018-05-10', '14:00:00'),
+(8, NULL, 1, 'calle 95 b', 'En Bodega', 'yPv4s-n3yqv', '2018-05-07', '2018-05-09', '12:01:00'),
 (9, NULL, 1, 'calle 95 b', 'En Bodega', 'WZVlp-fVtbD', '2018-05-07', '2018-05-23', '12:01:00'),
 (10, NULL, 1, 'calle 95 b', 'En Bodega', 'SYs1M-sYK50', '2018-05-07', '2018-05-23', '12:01:00'),
 (11, NULL, 1, 'calle 95 b', 'En Bodega', 'VELd3-4hbAQ', '2018-05-07', '2018-05-23', '12:01:00'),
