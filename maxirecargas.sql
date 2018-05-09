@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2018 a las 02:28:45
+-- Tiempo de generación: 09-05-2018 a las 06:20:00
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -844,8 +844,6 @@ CREATE TABLE `historial_productos` (
 --
 
 INSERT INTO `historial_productos` (`id_his_pro`, `pro_codigo`, `his_pro_fecha`, `his_pro_cantidad`) VALUES
-(1, 35, '2018-04-06', 3),
-(2, 35, '2018-04-06', 3),
 (3, 31, '2018-04-06', 8),
 (4, 27, '2018-04-06', 98),
 (5, 33, '2018-04-12', 8),
@@ -963,8 +961,7 @@ INSERT INTO `opciones_busqueda` (`opc_bus_id`, `pro_codigo`, `opc_bus_tags`) VAL
 (21, 31, 'HP, LaserJet, Enterprise, P3015d, impresora'),
 (22, 32, 'HP, LaserJet, P1005, impresora'),
 (23, 33, 'Hp, LaserJet, Pro 400, M401n, impresora'),
-(24, 34, 'Hp, cartucho, hp-662'),
-(25, 35, 'dragon ball z,juan,37');
+(24, 34, 'Hp, cartucho, hp-662');
 
 -- --------------------------------------------------------
 
@@ -1045,8 +1042,8 @@ CREATE TABLE `pedidoxproducto` (
 --
 
 INSERT INTO `pedidoxproducto` (`ped_codigo`, `pro_codigo`, `tip_ser_codigo`, `pedxpro_cantidad`, `pedxpro_observacion`) VALUES
-(1, 35, 11, 3, 'Ya'),
-(2, 35, 11, 3, 'Ya'),
+(1, 30, 11, 3, 'Ya'),
+(2, 30, 11, 3, 'Ya'),
 (3, 31, 13, 8, 'HOLA'),
 (4, 27, 11, 98, '89798'),
 (5, 33, 13, 8, '8'),
@@ -1124,8 +1121,7 @@ INSERT INTO `producto` (`pro_codigo`, `mar_codigo`, `tip_pro_codigo`, `pro_refer
 (31, 58, 2, 'Hp LaserJet Enterprice P3015d', '', '1522967419.png', 1),
 (32, 58, 2, 'Hp LaserJet P1005', '', '1522967497.png', 1),
 (33, 58, 2, 'Hp LaserJet Pro 400 M401n', '', '1522967640.png', 1),
-(34, 58, 4, 'Hp-662', '', '1522967704.png', 1),
-(35, 59, 2, 'NJ2', 'Inrompible', '1523039691.png', 1);
+(34, 58, 4, 'Hp 662', '', '1522967704.png', 1);
 
 -- --------------------------------------------------------
 
@@ -1376,7 +1372,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `usu_primer_nombre`, `usu_segundo_nombre`, `usu_primer_apellido`, `usu_segundo_apellido`, `usu_correo`, `usu_telefono`, `id_ciudad`, `usu_direccion`, `usu_celular`, `usu_fecha_nacimiento`, `usu_sexo`, `tip_usu_codigo`, `id_estado`, `usu_foto`, `usu_fechas_registro`, `usu_ult_inicio_sesion`) VALUES
 (21, 1, 9904, 'Cristian', 'Alexis', 'Lopera', 'Lopera', 'yonosoybond@gmail.com', 4887088, 1, 'calle 95', 3233557660, '2018-04-04', 'masculino', 2, 1, '1523237236.png', '2018-04-05', '2018-04-05'),
 (22, 1, 1234, 'Carlos', '', 'Gaviria', '', 'calopera@misena.edu.co', 3809897, 1, 'calle 6 sur', 3234322423, '1966-11-11', 'masculino', 5, 1, 'default.jpg', '2018-04-05', '2018-04-05'),
-(24, 1, 1214, 'Cristian', 'hola', 'Lopera', '89789', 'caloper@misena.edu.co', 78, 1, 'calle 95 b', 67587, '2018-04-03', 'masculino', 1, 1, '1523246269.png', '2018-04-05', '2018-04-05'),
+(24, 1, 1214, 'Cristian', 'hola', 'Lopera', '89789', 'caloper@misena.edu.co', 78, 1, 'calle 95 ', 67587, '2018-04-03', 'masculino', 1, 1, '1523246269.png', '2018-04-05', '2018-04-05'),
 (25, 1, 9898, 'Andres', '', 'Salazar', '', 'andressal@gmail.com', 3234567, 1, 'calle 6 sur', 2147483647, '1985-01-16', 'masculino', 5, 1, 'default.jpg', '2018-04-06', '2018-04-06'),
 (26, 1, 6767, 'Marlon', '', 'Morenos', '', 'mm@gmail.com', 3453212, 1, 'calle 50 ', 0, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-04-06', '2018-04-06'),
 (27, 1, 990, 'Javier', '', 'Perez', '', 'javi@gmail.com', 3234567, 1, 'calle 98', 3115431232, '1994-07-14', 'otro', 3, 1, 'defaul.jpg', '2018-04-06', '2018-04-06'),

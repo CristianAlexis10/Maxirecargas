@@ -17,9 +17,9 @@
           <img src="views/assets/image/products/<?php echo $data[0]['pro_imagen'] ?>" class="imgProduct">
           <div class="wrap--btns">
             <ul class="detail--contbtn">
-              <li class="opcins--order"><a href="pedidos" ><input type="button"  value="hacer pedido" class="detail--btn"></a></li>
+              <li class="opcins--order"><a href="pedidos" ><input type="button"  value="Hacer pedido" class="detail--btn"></a></li>
               <li class="opcins--order">
-              <a href="cotizacion-<?php echo str_replace(" ","_",$data[0]['pro_referencia']) ?>"><input type="button"  value="cotizar producto"  class="detail--btn"></a></li>
+              <a href="cotizacion-<?php echo str_replace(" ","_",$data[0]['pro_referencia']) ?>"><input type="button"  value="Cotizar producto"  class="detail--btn"></a></li>
             </ul>
           </div>
         </div>
@@ -30,7 +30,7 @@
       }
       ?>
       <div class="content--detailRight product">
-        <h1>CaracterÍsticas</h1>
+        <h1>Características</h1>
         <div class="detail">
           <p class="item--detail">Referencia:</p>
           <p class="data--detail"> <?php echo $data[0]['pro_referencia'] ?></p>
