@@ -3,17 +3,8 @@
     </div>
     <div class="banneritem Btoner">
       <div class="Btoner--content">
-<<<<<<< HEAD
-        <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
-=======
-<<<<<<< HEAD
         <span><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
         <h1 class="titleitem_banner" id="categoryName">Toner</h1>
-=======
-        <span class="menuProduct"><i class="fa fa-arrow-left" aria-hidden="true" id="pedAtras"></i></span>
->>>>>>> ac346f3b74afd2012b9483cf388ca7c78801c40f
-        <h1 class="titleitem_banner" id="categoryName">toner</h1>
->>>>>>> dbacc1310998aef03cf2e70117db05b33d349a56
       </div>
       <div class="container_search">
         <div class="search_input">

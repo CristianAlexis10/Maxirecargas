@@ -35,23 +35,23 @@ use Dompdf\Dompdf;
 		        <div class="left--container">
 		          <div class="empresa">
 		            <h3>Maxirecargas</h3>
-		            <p>nombre de contacto</p>
-		            <p>telefono</p>
-		            <p>correo</p>
-		            <p>cuidad</p>
+		            <p>2557878 – 5774223</p>
+		            <p>maxirecargas2009@hotmail.com</p>
+		            <p>Calle 6C sur 83ª 45 INT 202</p>
+								<p>Medellín – Antioquia.</p>
 		          </div>
 		          <div class="cliente">
 		            <h3>nombre de la empresa</h3>
-		            <p>nombre de contacto</p>
-		            <p>telefono</p>
-		            <p>correo</p>
-		            <p>cuidad</p>
+		            <p>cristian</p>
+		            <p>1234456</p>
+		            <p>yonosoybond@gmail.com</p>
+		            <p>Medellín – Antioquia.</p>
 		          </div>
 		        </div>
 		        <div class="rigth--container">
-		          <p>Nº Cotizacion</p>
-		          <p>Fecha Actual</p>
-		          <p>Cotizacion Valida</p>
+		          <p>Nº Cotizacion: 001242</p>
+		          <p>Fecha Actual: 10/05/2018</p>
+		          <p>Cotizacion Valida:10/11/2018</p>
 		        </div>
 		      </div>
 		      <div class="informacion">
@@ -79,7 +79,7 @@ use Dompdf\Dompdf;
 					$n++;
 			}
 			$content.= "</table>";
-			$content.= "<div class='condi'><b>Condiciones de pago: </b>".$dataQuo[0]['cot_pago']"</div>";
+			$content.= "<b>Condiciones de pago: </b>".$dataQuo[0]['cot_pago'];
 			$content .= "<b>Observaciones: </b>".$dataQuo[0]['cot_observacion'];
 			$content .= "<b>Iva: </b>".$dataQuo[0]['cot_iva'];
 			$content .= "<b>Plazo de entrega: </b>".$dataQuo[0]['cot_plazo'];
