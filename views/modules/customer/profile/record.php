@@ -12,7 +12,7 @@ if (isset($_SESSION['user_quotation_new'])) {
 ?>
 <div class="record--container">
   <div class="banner">
-    <h1 class="title_banner">historial</h1>
+    <h1 class="title_banner">Historial</h1>
   </div>
   <div id="tabs">
     <ul>
@@ -34,7 +34,7 @@ if (isset($_SESSION['user_quotation_new'])) {
 <div id="modalCancel" class="modal">
       <div class="modal--container cancel">
       <span class="close--modal" id="closeCancel">&times;</span>
-      <h1 class="title--modal">cancelar servicio</h1>
+      <h1 class="title--modal">Cancelar servicio</h1>
       <form id="frmCancelOrder">
         <div class="form-groupuser">
           <label for="motivo" class="labelblue">¿Por qué deseas cancelar el servicio?</label>

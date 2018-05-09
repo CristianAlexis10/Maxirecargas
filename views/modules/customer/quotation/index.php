@@ -1,7 +1,7 @@
    <div class="container--quotation">
       <div class="quotation--left">
         <span><i class="fa fa-bars" aria-hidden="true" id="menu"></i><i class="fa fa-bars" aria-hidden="true" id="menu-mobile"></i></span>
-          <h1 class="title--movil">crea tu cotización</h1>
+          <h1 class="title--movil">Crea tu cotización</h1>
             <div class="quotation--form">
               <form id="frmNewOrder">
                 <p class="subtitle quo">Ingresa los datos de los Productos y/o Servicios que desea cotizar y espera nuestra respuesta. </p>
@@ -18,7 +18,7 @@
                   <input type="button" id="searchPro" class="btnYellow" value="Buscar">
                 </div>
                 <div class="form-groupuser3 hide--service ">
-                  <label for="servicio" class="labelyellow">servicio</label>
+                  <label for="servicio" class="labelyellow">Servicio</label>
                   <select class="inputYellow " id="servicio">
                     <option>cosa</option>
                     <option>cosa2</option>
@@ -26,12 +26,12 @@
                 </div>
                 <div class="juntos hide--cantidad">
                   <div class="form-groupuser3">
-                    <label for="cant" class="labelyellow">cantidad</label>
+                    <label for="cant" class="labelyellow">Cantidad</label>
                     <input type="number" id="cant" onkeypress="return eliminarLetras(event)" class="inputYellow">
                   </div>
                 </div>
                 <div class="form-groupuser3 hide--obs">
-                  <label for="observ" class="labelyellow">observaciones</label>
+                  <label for="observ" class="labelyellow">Observaciones</label>
                   <textarea name="name" rows="2" cols="100" id="observ" class="inputYellow"></textarea>
                 </div>
               </form>
@@ -77,7 +77,7 @@
     </div>
     <div class="quotation--form">
       <form id="sendQuotation">
-      <p>¿Esta es la dirección donde se solicita el pedido? si no es asi darle click al boton otra direccion para actualizar este dato.</p>
+      <p>¿Ésta es la dirección donde se solicita el pedido? Si no es asi, solo debes dar click al botón "Otra Dirección" para actualizar este dato.</p>
       <h2 id="orderDir"><?php echo $_SESSION['CUSTOMER']['ADDRESS'];?></h2>
     <div class="quotationBtn">
       <input type="button" id="orderAtras" value="atras">
