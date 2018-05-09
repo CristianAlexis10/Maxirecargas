@@ -2,7 +2,7 @@
 <html>
 <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+
 </head>
 <body>
 	<div id="iniciar">
@@ -21,7 +21,7 @@ echo "<script>localStorage.setItem('userName', '".$_SESSION['userName']."');</sc
 			onkeydown = "if (event.keyCode == 13)document.getElementById('send-btn').click()"  />
 	</div>
 	<button id="send-btn" class=button>Enviar</button>
-	<button id="finalizar" class=button>finalizar</button>
+	<button id="finalizar" class=button>Finalizar</button>
 </div>
 <script src="js/jquery-3.1.1.js"></script>
 <script src="js/chat.js"></script>

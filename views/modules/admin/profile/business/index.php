@@ -23,7 +23,7 @@ $data = $this->master->selectAll("gestion_web");
             <textarea class="input dataUptadeBusi textarea" id="vision"   required><?php echo $data[0]['gw_vision']?></textarea>
           </div>
           <div class="form-group">
-            <label for="pma" class="select label">Politica de medio ambiente:</label>
+            <label for="pma" class="select label">Política de medio ambiente:</label>
             <textarea class="input dataUptadeBusi textarea" id="pma" required><?php echo $data[0]['gw_politicas']?></textarea>
           </div>
 
@@ -34,7 +34,7 @@ $data = $this->master->selectAll("gestion_web");
 
       </div>
       <div class="form-group">
-          <button type="submit" class="btn">hacer cambios</button>
+          <button type="submit" class="btn">Hacer cambios</button>
       </div>
     </div>
   <?php }else{?>
@@ -42,7 +42,7 @@ $data = $this->master->selectAll("gestion_web");
         <p><?php echo $data[0]['gw_mision']?></p>
         <h1>Visión</h1>
         <p><?php echo $data[0]['gw_vision']?></p>
-        <h1>Politica de medio ambiente</h1>
+        <h1>Política de medio ambiente</h1>
         <p><?php echo $data[0]['gw_politicas']?></p>
   <?php  } ?>
   </div>

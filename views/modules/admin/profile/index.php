@@ -34,7 +34,7 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
             <input type="email" class=" input dataCl" id="correo" value="<?php echo $data['usu_correo'];?>" required>
           </div>
           <div class="form-group">
-            <label for="tel" class="label">Telefono:</label>
+            <label for="tel" class="label">Teléfono:</label>
             <input type="number" class="input dataCl" id="tel" value="<?php echo $data['usu_telefono'];?>"  required>
           </div>
         </div>
@@ -88,7 +88,7 @@ $data = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER
         <span class="" id="cropp-img">Cambiar foto</span>
       </div>
       <div class="form-group">
-        <button class="btn">hacer cambios</button>
+        <button class="btn">Hacer cambios</button>
       </div>
     </div>
   </form>

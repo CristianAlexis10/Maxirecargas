@@ -80,14 +80,14 @@ if ($crud[1]==true) {
 <div id="modal--detail--products" class="modales">
 	<div class="container--modales order">
 		<span id="close_modal_producto" class="closemodales">&times;</span>
-		<h1>detalles de productos</h1>
+		<h1>Detalles de productos</h1>
     <div class="container_table">
       <table>
       <tr>
-        <th>producto</th>
-        <th>referencia</th>
+        <th>Producto</th>
+        <th>Referencia</th>
         <th>Servicio</th>
-        <th>cant</th>
+        <th>Cant</th>
         <th>Observación</th>
       </tr>
     <?php

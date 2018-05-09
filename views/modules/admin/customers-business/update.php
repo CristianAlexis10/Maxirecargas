@@ -39,7 +39,7 @@
 					<input type="text" class="dataEmp input" value="<?php echo  $sede['sed_direccion'];?>">
 				</div>
 				<div class="form-group">
-					<label class="label">Telefono sede:</label>
+					<label class="label">Teléfono sede:</label>
 					<input type="text" class="dataEmp input" value="<?php echo  $sede['sed_telefono'];?>">
 				</div>
 			</div>

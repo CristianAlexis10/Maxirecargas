@@ -39,8 +39,8 @@
 	 </div>
 	 <div class="content--detailRight">
 		 <img src="views/assets/image/flat/check.png">
-		 <h2>Estamos feliz de trabajar para usted</h2>
-		 <h1>¡Gracias por trabajar con nosotros!</h1>
+		 <h2>¡Estamos felices de trabajar para usted!</h2>
+		 <!-- <h1>¡Gracias por trabajar con nosotros!</h1> -->
 	 </div>
 	<div class="detail--figure">
 	</div>
@@ -53,10 +53,10 @@
     <div class="container_table">
       <table>
       <tr>
-        <th>producto</th>
-        <th>referencia</th>
+        <th>Producto</th>
+        <th>Referencia</th>
         <th>Servicio</th>
-        <th>cant</th>
+        <th>Cant</th>
         <th class="nodata-Observacion">Observación</th>
       </tr>
     <?php

@@ -12,13 +12,13 @@
                       echo str_replace("_"," ",$_GET['data']);
                   }
                 ?>">
-                <a href="#" id="openSearch">¿No sabes cual es tu referencia?</a>
+                <a href="#" id="openSearch">¿No sabes cuál es tu referencia?</a>
                 </div>
                 <div class="form-groupuserBtn">
                   <input type="button" id="searchPro" class="btnYellow" value="Buscar">
                 </div>
                 <div class="form-groupuser3 hide--service ">
-                  <label for="servicio" class="labelyellow">servicio</label>
+                  <label for="servicio" class="labelyellow">Servicio</label>
                   <select class="inputYellow " id="servicio">
                     <option>cosa</option>
                     <option>cosa2</option>
@@ -26,12 +26,12 @@
                 </div>
                 <div class="juntos hide--cantidad">
                   <div class="form-groupuser3">
-                    <label for="cant" class="labelyellow">cantidad</label>
+                    <label for="cant" class="labelyellow">Cantidad</label>
                     <input type="number" id="cant" onkeypress="return eliminarLetras(event)" class="inputYellow">
                   </div>
                 </div>
                 <div class="form-groupuser3 hide--obs">
-                  <label for="observ" class="labelyellow">observaciones</label>
+                  <label for="observ" class="labelyellow">Observaciones</label>
                   <textarea name="name" rows="2" cols="100" id="observ" class="inputYellow"></textarea>
                 </div>
               </form>
@@ -77,7 +77,7 @@
         </div>
     </div>
     <div class="quotation--form user">
-      <h1 class="title--modal">ingresa tus datos</h1>
+      <h1 class="title--modal">Ingresa tus datos</h1>
       <form id="sendQuotation">
       <div class="form-groupuser">
         <label for="nameC" class="labelblue">Nombre Completo</label>
@@ -109,7 +109,7 @@
   <div class="modal--container busqueda">
       <span id="close_modal_search" class="close--modal">&times;</span>
       <h2 class="title--modal">Opciones de Busqueda</h2>
-      <p class="subtitle--modal">Puedes buscar por marca, palabras claves, tipo de producto,características, etc.</p>
+      <p class="subtitle--modal">Puedes buscar por marca, palabras claves, tipo de producto, características, etc.</p>
       <form id="frmOptionSearch">
         <div class="frm-groupuser">
             <input type="text" id="optionSearch" class="inputblue" placeholder="buscar...">

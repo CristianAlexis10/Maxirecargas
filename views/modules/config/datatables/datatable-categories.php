@@ -2,7 +2,7 @@
     <thead>
       <tr>
             <th>Nombre</th>
-            <th class="dataDelete">Descripcion</th>
+            <th class="dataDelete">Descripción</th>
             <th>Acciones</th>
       </tr>
   </thead>

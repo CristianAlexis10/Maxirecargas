@@ -30,7 +30,7 @@
 			<p class="data--detail"><?php echo $inner['tip_doc_nombre']?> </p>
 		</div>
 		<div class="detail">
-			<p class="item--detail">Numero De Documento:</p>
+			<p class="item--detail">Número De Documento:</p>
 			<p class="data--detail"><?php echo  $result['usu_num_documento'];?> </p>
 		</div>
 		<div class="detail">
@@ -54,7 +54,7 @@
 			<p class="data--detail"><?php echo  $result['usu_celular'];?></p>
 		</div>
 		<div class="detail">
-			<p class="item--detail">Telefono:</p>
+			<p class="item--detail">Teléfono:</p>
 			<p class="data--detail"><?php echo  $result['usu_telefono'];?></p>
 		</div>
 		<div class="detail">

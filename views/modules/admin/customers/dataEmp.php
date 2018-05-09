@@ -34,11 +34,11 @@
 			<p class="data--detail"><?php echo  $sede['sed_nombre'];?> </p>
 		</div>
 		<div class="detail">
-			<p class="item--detail">Telefono de la Sede:</p>
+			<p class="item--detail">Teléfono de la Sede:</p>
 			<p class="data--detail"><?php echo $sede['sed_telefono']?> </p>
 		</div>
 		<div class="detail">
-			<p class="item--detail">Direccion de la Sede:</p>
+			<p class="item--detail">Dirección de la Sede:</p>
 			<p class="data--detail"><?php echo $sede['sed_direccion']?></p>
 		</div>
 		<div class="detail">

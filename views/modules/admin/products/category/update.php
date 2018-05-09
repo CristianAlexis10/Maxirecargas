@@ -17,7 +17,7 @@ $_SESSION['category_update']=base64_decode($_GET['data']);
 			 </div>
 
 			            <div class="form-group">
-			                <button class="btn">Actualizar Categoria</button>
+			                <button class="btn">Actualizar Categoría</button>
 			            </div>
 		    	</form>
 </div>

@@ -2,7 +2,7 @@
             <thead>
                     <tr>
                         <th class="table-encargado">Encargado</th>
-                        <th>Codigo del Pedido</th>
+                        <th>Código del Pedido</th>
                         <th class="table-estado">Estado</th>
                         <th class="datatable--ocultar">Dirección</th>
                         <th>Fecha Entrega</th>

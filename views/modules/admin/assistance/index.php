@@ -32,7 +32,7 @@
               <div class="asistente--left">
                 <!-- registrar un nuevo mesaje predefinido -->
                 <div id="new-message-default">
-                  Agregra mensaje predefinido <i class="fa fa-plus"></i>
+                  Agregar mensaje predefinido <i class="fa fa-plus"></i>
                 </div>
                 <!-- lista de mesajes predefinidos -->
                 <div id="wrap-messages-default">
@@ -48,7 +48,7 @@
                 </div>
               </div>
               <div class="asistente--right">
-                <p id="notify">selecciona una conversación</p>
+                <p id="notify">Selecciona una conversación</p>
                 <!-- contenedor de chats actuales -->
                 <div class="wrap-chats"></div>
 
@@ -68,7 +68,7 @@
             			onkeydown = "if (event.keyCode == 13)document.getElementById('send-btn').click()"  />
             	</div>
             	<button id="send-btn" class=button>Responder</button>
-              <button id="finalizarChat" class="button">finalizar</button>
+              <button id="finalizarChat" class="button">Finalizar</button>
             </div>
 
             <!-- modal nuevo mensaje -->

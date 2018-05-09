@@ -7,8 +7,8 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
       <tr>
         <th>Nombre</th>
         <th class="table-direction">Dirección</th>
-        <th class="dataDelete">Telefono</th>
-        <th>Ver mas</th>
+        <th class="dataDelete">Teléfono</th>
+        <th>Ver más</th>
       </tr>
     </thead>
     <tbody>
@@ -31,7 +31,7 @@ $crud = permisos($modulo,$_SESSION['CUSTOMER']['PERMITS']);
                 <a href="#" onclick="return confirmOffUserEmpleado(2,
                 <?php
                 echo $row['usu_codigo'];
-                ?>)">inactivar</i></a>
+                ?>)">Inactivar</i></a>
                 <!-- activar -->
             <?php }else{?>
                     <a href="#" onclick="return confirmOffUserEmpleado(1,

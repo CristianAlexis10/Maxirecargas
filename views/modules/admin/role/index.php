@@ -4,17 +4,17 @@
 </div>
 <div id="tabsConf">
   <ul>
-    <li><a href="#config-permisos">Nuevo Rol</a></li>
-    <li><a href="#list">Lista de Roles</a></li>
+    <li><a href="#config-permisos">Nuevo rol</a></li>
+    <li><a href="#list">Lista de roles</a></li>
   </ul>
   <div id="config-permisos">
       <form id="frmNewRol">
           <div class="wrap--config">
               <div class="config--rol">
-                  <h1>Crear un nuevo Rol</h1>
+                  <h1>Crear un nuevo rol</h1>
                   <div class="config--form">
                     <div class="wrap--chmodule">
-                        <label>Este Rol pertenece a Maxirecargas
+                        <label>Este rol pertenece a Maxirecargas
                             <input type="checkbox" name="data-rol-maxi" class="swich green">
                             <div>
                                 <div>
@@ -24,14 +24,14 @@
                     </div>
                   </div>
                   <div class="form-group">
-                      <label for="namerol" class="label">nombre del rol</label>
+                      <label for="namerol" class="label">Nombre del rol</label>
                       <input type="text" name="data-rol-name" class="input" id="namerol"required>
                   </div>
                   <h1>Asignar Permisos</h1>
-                  <p>Este rol tendrá permisos para los siguientes módulos:</p>
+                  <p>Este rol tendrá permisos en los siguientes módulos:</p>
                   <div class="config--form" id="module-cliente">
                       <div class="wrap--chmodule">
-                          <label>usuarios
+                          <label>Usuarios
                               <input type="checkbox" name="checkcliente" class="swich green">
                               <div>
                                   <div>
@@ -50,7 +50,7 @@
                   </div>
                   <div class="config--form" id="module-producto">
                       <div class="wrap--chmodule">
-                          <label>productos
+                          <label>Productos
                               <input type="checkbox" name="checkpro" class="swich green"  >
                               <div>
                                   <div>
@@ -69,7 +69,7 @@
                   </div>
                   <div class="config--form" id="module-pedido">
                       <div class="wrap--chmodule">
-                          <label>pedidos
+                          <label>Pedidos
                               <input type="checkbox" name="checkpedido" class="swich green"  >
                               <div>
                                   <div>
@@ -88,7 +88,7 @@
                   </div>
                   <div class="config--form" id="module-cotizaciones">
                       <div class="wrap--chmodule">
-                          <label>cotizaciones
+                          <label>Cotizaciones
                               <input type="checkbox" name="checkcotiza" class="swich green"  >
                               <div>
                                   <div>
@@ -107,7 +107,7 @@
                   </div>
                   <div class="config--form" id="module-ruta">
                       <div class="wrap--chmodule">
-                          <label>rutas
+                          <label>Rutas
                               <input type="checkbox" name="checkruta" class="swich green"  >
                               <div>
                                   <div>

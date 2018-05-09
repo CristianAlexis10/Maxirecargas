@@ -16,7 +16,7 @@ if($data!=array()){
      <p class="data--detail"><?php echo $data[0]['usu_correo']?></p>
    </div>
    <div class="detail">
-     <p class="item--detail">Numero de Celular:</p>
+     <p class="item--detail">Número de Celular:</p>
      <p class="data--detail"><?php echo $data[0]['usu_celular'];?> </p>
    </div>
    <div class="detail">
@@ -45,9 +45,9 @@ if($data!=array()){
    <h2>Visitas para hoy</h2>
    <table>
      <tr>
-       <th>cliente</th>
-       <th>Codigo</th>
-       <th>direccion</th>
+       <th>Cliente</th>
+       <th>Código</th>
+       <th>Dirección</th>
        <th>Hora Aprox.</th>
        <th>Estado</th>
      </tr>
@@ -82,9 +82,9 @@ if($data!=array()){
      <h1>Visitas Futuras</h1>
      <table>
        <tr>
-         <th>cliente</th>
-         <th>Codigo</th>
-         <th>direccion</th>
+         <th>Cliente</th>
+         <th>Código</th>
+         <th>Dirección</th>
          <th>Hora Aprox.</th>
          <th>Estado</th>
        </tr>
@@ -114,9 +114,9 @@ if($data!=array()){
      <h1>Visitas Pendientes</h1>
      <table>
        <tr>
-         <th>cliente <?php echo base64_decode($_GET['data'])?></th>
-         <th>Codigo</th>
-         <th>direccion</th>
+         <th>Cliente <?php echo base64_decode($_GET['data'])?></th>
+         <th>Código</th>
+         <th>Dirección</th>
          <th>Hora Aprox.</th>
          <th>Estado</th>
        </tr>
@@ -148,9 +148,9 @@ if($data!=array()){
      <h1>Visitas Canceladas</h1>
      <table>
        <tr>
-         <th>cliente</th>
-         <th>Codigo</th>
-         <th>direccion</th>
+         <th>Cliente</th>
+         <th>Código</th>
+         <th>Dirección</th>
          <th>Hora Aprox.</th>
          <th>Estado</th>
        </tr>
@@ -180,9 +180,9 @@ if($data!=array()){
      <h1>Visitas Terminadas</h1>
      <table>
        <tr>
-         <th>cliente</th>
-         <th>Codigo</th>
-         <th>direccion</th>
+         <th>Cliente</th>
+         <th>Código</th>
+         <th>Dirección</th>
          <th>Hora Aprox.</th>
          <th>Estado</th>
        </tr>

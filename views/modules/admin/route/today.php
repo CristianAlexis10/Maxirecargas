@@ -10,12 +10,12 @@ if($data!=array()){ ?>
 	<p><?php echo $data[0]['usu_celular'];?></p>
 </div>
 <div class="visit today">
-	<h1>visitas para hoy <?php echo $count['total'];?></h1>
+	<h1>Visitas para hoy <?php echo $count['total'];?></h1>
 	<table>
 		<tr>
-			<th>cliente</th>
-			<th>Codigo</th>
-			<th>direccion</th>
+			<th>Cliente</th>
+			<th>Código</th>
+			<th>Dirección</th>
 			<th>Hora Aprox.</th>
 			<th>Estado</th>
 		</tr>
@@ -62,5 +62,5 @@ if($data!=array()){ ?>
     </body>
 </html>
 <?php }else{
-	echo "No Tienes permiso para acceder a este  modulo";
+	echo "No tienes permiso para acceder a este  módulo";
 }?>
