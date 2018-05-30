@@ -5,44 +5,9 @@ $data = $this->master->verDetalleRuta(date('Y-m-d'),base64_decode($_GET['data'])
 $_SESSION['mapRouteToday']= $data;
 if($data!=array()){
 ?>
-<div class="mudules orders detail" id="detail-reload">
- <div class="wrap--info">
-   <div class="detail">
-     <p class="item--detail">Nombre Encargado:</p>
-     <p class="data--detail"><?php echo $data[0]['usu_primer_nombre']." ".$data[0]['usu_primer_apellido'];?>  </p>
-   </div>
-   <div class="detail">
-     <p class="item--detail">Correo:</p>
-     <p class="data--detail"><?php echo $data[0]['usu_correo']?></p>
-   </div>
-   <div class="detail">
-     <p class="item--detail">Número de Celular:</p>
-     <p class="data--detail"><?php echo $data[0]['usu_celular'];?> </p>
-   </div>
-   <div class="detail">
-     <p class="item--detail">Total de visitas:</p>
-     <p class="data--detail"><?php echo $count['total'];?> </p>
-   </div>
-   <div class="detail">
-     <p class="item--detail">Total de visitas Terminadas:</p>
-     <p class="data--detail"><?php  echo $this->master->contarPedidosTerminadosBy(base64_decode($_GET['data']))['total'];?> </p>
-   </div>
-   <div class="detail">
-     <p class="item--detail">Total de visitas Pendientes:</p>
-     <p class="data--detail"><?php  echo $this->master->contarPedidosPendientesBy(base64_decode($_GET['data']),date('Y-m-d'))['total'];?> </p>
-   </div>
-   <div class="detail">
-     <p class="item--detail">Total de visitas Canceladas:</p>
-     <p class="data--detail"><?php  echo $this->master->contarPedidosCanceladasBy(base64_decode($_GET['data']))['total'];?> </p>
-   </div>
-   <div class="detail">
-     <a href="#"  class="contact--customer" id="<?php echo $data[0]['usu_codigo']; ?>">Contactar encargado</a>
-   </div>
 
-   </ul>
- </div>
  <div class="visit today">
-   <h2>Visitas para hoy</h2>
+   <h1>Visitas para hoy</h1>
    <table>
      <tr>
        <th>Cliente</th>
@@ -68,7 +33,7 @@ if($data!=array()){
    </table>
 
  </div>
-</div>
+
 <div id="contact"></div>
 <?php }else{
  $result = $this->master->selectBy('usuario',array('usu_codigo',base64_decode($_GET['data'])));
