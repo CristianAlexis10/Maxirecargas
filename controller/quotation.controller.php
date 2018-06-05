@@ -98,7 +98,7 @@ require_once "controller/doizer.controller.php";
 			$order = $_POST['data'];
 			$ciudad = $_POST['ciudad'];
 			$dir = $_POST['dir'];
-			$token = $this->randAlphanum(5)."-".$this->randAlphanum(5);
+			$token = $this->numbers(5)."-".$this->numbers(5);
 			//registrar en cotizacion
 			if ($dir=="default") {
 				$result = $this->master->selectBy("usuario",array('usu_codigo',$_SESSION['CUSTOMER']['ID']));
@@ -213,6 +213,15 @@ require_once "controller/doizer.controller.php";
 		}
 		function randAlphanum($length){
 		  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		  $charactersLength = strlen($characters);
+		  $randomAlpha = '';
+		  for ($i = 0; $i < $length; $i++) {
+		       $randomAlpha .= $characters[rand(0, $charactersLength - 1)];
+		  }
+		  return $randomAlpha;
+		}
+		function numbers($length){
+		  $characters = '0123456789';
 		  $charactersLength = strlen($characters);
 		  $randomAlpha = '';
 		  for ($i = 0; $i < $length; $i++) {

@@ -226,13 +226,13 @@ $("#confirmOrder").click(function(){
       data: ({data: order, ciudad: $("#ciudad").val() ,dir : direccion}),
       success: function(result){
         console.log(result);
-        // if (result==true) {
-        //   $("#frmNewOrder")[0].reset();
-        //   delete order;
-        //   location.href = "historial";
-        // }else{
-        //   $("#orderAtras").after("<div class='message'>Ocurrio un error</div>");
-        // }
+        if (result==true) {
+          $("#frmNewOrder")[0].reset();
+          delete order;
+          location.href = "historial";
+        }else{
+          $("#orderAtras").after("<div class='message'>Ocurrio un error</div>");
+        }
       },
       error:function(result) {
         console.log(result);
