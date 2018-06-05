@@ -16,8 +16,15 @@ use Dompdf\Dompdf;
 				echo '<a href="index.php?pdf=1">Generar documento PDF</a>';
 				exit;
 			}
+			$dataEmpresa  = $this->master->selectAll("gestion_web");
 			$dataQuo = $this->master->datosCotizacion($_GET['data']);
 			$dataEn= $this->master->selectBy("usuario",array("usu_codigo",$dataQuo[0]['cot_encargado']));
+			$dataUsuario  = $this->master->selectBy("usuario",array('usu_codigo',$dataQuo[0]['usu_codigo']));
+			if ($dataUsuario['tip_usu_codigo']==3) {
+				$cliEmp = $this->master->selectBy("cliente_empresarial",array("usu_codigo",$dataQuo[0]['usu_codigo']));
+				$sede = $this->master->selectBy("sede",array('sed_codigo',$cliEmp['sed_codigo']));
+				$empresa = $this->selectBy('empresa',array('emp_codigo',$sede['emp_codigo']));
+			}
 			//contenido del pdf
 			$content = '<html>';
 			$content .= '<head>';
@@ -35,23 +42,25 @@ use Dompdf\Dompdf;
 		        <div class="left--container">
 		          <div class="empresa">
 		            <h3>Maxirecargas</h3>
-		            <p>2557878 – 5774223</p>
-		            <p>maxirecargas2009@hotmail.com</p>
-		            <p>Calle 6C sur 83ª 45 INT 202</p>
-								<p>Medellín – Antioquia.</p>
+		            <p>'.$dataEmpresa[0]['gw_ct_telefono'].' – '.$dataEmpresa[0]['gw_ct_telefono_2'].'</p>
+		            <p>'.$dataEmpresa[0]['gw_ct_correo'].'</p>
+		            <p>'.$dataEmpresa[0]['gw_ct_direccion'].'</p>
 		          </div>
-		          <div class="cliente">
-		            <h3>nombre de la empresa</h3>
-		            <p>cristian</p>
-		            <p>1234456</p>
-		            <p>yonosoybond@gmail.com</p>
-		            <p>Medellín – Antioquia.</p>
+		          <div class="cliente">';
+		            if (isset($empresa)) {
+		            	$content .= '<h3>'.$empresa['emp_nombre'].'</h3>';
+		            }else{
+									$content .= '<h3>Cliente</h3>';
+								}
+		            $content.= '<p>'.$dataUsuario['usu_primer_nombre'].' '.$dataUsuario['usu_primer_apellido'].'</p>
+		            <p>'.$dataUsuario['usu_celular'].'</p>
+		            <p>'.$dataUsuario['usu_correo'].'</p>
+		            <p>'.$dataUsuario['usu_direccion'].'</p>
 		          </div>
 		        </div>
 		        <div class="rigth--container">
-		          <p>Nº Cotizacion: 001242</p>
-		          <p>Fecha Actual: 10/05/2018</p>
-		          <p>Cotizacion Valida:10/11/2018</p>
+		          <p>Nº Cotizacion: '.$dataQuo[0]['cot_token'].'</p>
+		          <p>Fecha Realización: '.$dataQuo[0]['cot_fecha'].'</p>
 		        </div>
 		      </div>
 		      <div class="informacion">
@@ -92,7 +101,7 @@ use Dompdf\Dompdf;
 			$this->dompdf->setPaper('A4', 'portrait'); // (Opcional) Configurar papel y orientación
 			$this->dompdf->render(); // Generar el PDF desde contenido HTML
 			$pdf = $this->dompdf->output(); // Obtener el PDF generado
-			$this->dompdf->stream("Cotización-".$dataQuo[0]['usu_primer_nombre']." ".$dataQuo[0]['usu_primer_apellido']); // Enviar el PDF generado al navegador
+			$this->dompdf->stream("Cotización-".$dataQuo[0]['cot_token']); // Enviar el PDF generado al navegador
 			}
 	}
 ?>

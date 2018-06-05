@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2018 a las 06:20:00
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 05-06-2018 a las 22:12:00
+-- Versión del servidor: 10.1.32-MariaDB
+-- Versión de PHP: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -204,7 +206,7 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `datosCotizacion` (IN `cod` INT)  NO SQL
 BEGIN 
-SELECT cot.cot_codigo,cot.cot_token,cot.cot_encargado,cot.cot_estado,usu.usu_primer_nombre,usu.usu_primer_apellido,proco.proxcot_cantidad,pro.pro_referencia,ser.tip_ser_nombre,ser.Tip_ser_cod,proco.proxcod_observacion,cot.cot_pago,cot.cot_iva,cot.cot_plazo,cot.cot_entrega, proco.proxcod_res,cot.cot_observacion FROM cotizacion cot INNER JOIN usuario usu ON usu.usu_codigo=cot.usu_codigo INNER JOIN prodxcot  proco ON proco.cot_codigo = cot.cot_codigo INNER JOIN producto pro ON proco.pro_codigo=pro.pro_codigo INNER JOIN tipo_servicio ser ON proco.tip_servicio = ser.Tip_ser_cod WHERE cot.cot_codigo = cod;
+SELECT cot.cot_codigo,cot.cot_token,cot.cot_encargado,cot.cot_estado,usu.usu_primer_nombre,usu.usu_primer_apellido,proco.proxcot_cantidad,pro.pro_referencia,ser.tip_ser_nombre,ser.Tip_ser_cod,proco.proxcod_observacion,cot.cot_pago,cot.cot_iva,cot.cot_plazo,cot.cot_entrega, proco.proxcod_res,cot.cot_observacion , cot.cot_fecha,cot.cot_entrega, cot.usu_codigo FROM cotizacion cot INNER JOIN usuario usu ON usu.usu_codigo=cot.usu_codigo INNER JOIN prodxcot  proco ON proco.cot_codigo = cot.cot_codigo INNER JOIN producto pro ON proco.pro_codigo=pro.pro_codigo INNER JOIN tipo_servicio ser ON proco.tip_servicio = ser.Tip_ser_cod WHERE cot.cot_codigo = cod;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `direccionDeCotizacion` (IN `id` INT)  NO SQL
@@ -609,6 +611,7 @@ INSERT INTO `acceso` (`token`, `usu_codigo`, `acc_contra`, `codigo_recuperacion`
 ('7daa8868e2ff6d30764b8302cc4b9452', 26, '$2y$10$r4wav4dUPOenSzXhK9yocuac/1krhmsTuUvelCMpDRJfafSrSaKzK', ''),
 ('80a428ff61b0a746cfa3f1d30ec93ea2', 27, '$2y$10$wpalXqSEAzk7P3zHCq52CeTiUDL7fPXIjiglAne787XMrxN/zFP2S', ''),
 ('cb6e1e74239543a5be4578f05916988e', 36, '$2y$10$1sV94DO.8tgs2ZavpVOrZ.N/bWlLsVjAHaSe8zQz8.xc0jqdLAUui', ''),
+('d5a625f59a84bffad718430e07917494', 37, '$2y$10$/7Qv0wNXxevFSQYWitta/uc0MezMkTnwxwTZ12ClJ/iQZqoSJZ11q', ''),
 ('ec77b2af2cb5f9cd227ac2c551c50e83', 25, '$2y$10$MXcWTV2/YVF2ep8N8RcIiOVF4jdJyTPvxGMd1qXMPeFlc9i0Dn1ZO', ''),
 ('f37a43902966fbd56968034d9781f0f9', 22, '$2y$10$JfBsA4Q8Qw5KMAwqWxcxweQGWFJICtrN6Dc1WAOlI.4NqlJ7sUF/C', '');
 
@@ -695,14 +698,6 @@ CREATE TABLE `cotizacion` (
   `cot_entrega` varchar(100) NOT NULL,
   `cot_encargado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `cotizacion`
---
-
-INSERT INTO `cotizacion` (`cot_codigo`, `usu_codigo`, `cot_ciudad`, `cot_dir`, `cot_token`, `cot_estado`, `cot_fecha`, `cot_observacion`, `cot_pago`, `cot_iva`, `cot_plazo`, `cot_entrega`, `cot_encargado`) VALUES
-(1, 24, 1, 'calle 95 b', 'dpDIB-tjH1B', 'Terminado', '2018-04-09', 'Hola', '', '', '', '', 0),
-(2, 24, 1, 'calle 95 b', 'ZwEQl-4nwMU', 'Terminado', '2018-05-07', '', 'sajdkas', '21321', 'sd', 'das', 21);
 
 -- --------------------------------------------------------
 
@@ -1144,7 +1139,21 @@ CREATE TABLE `prodxcot` (
 
 INSERT INTO `prodxcot` (`cot_codigo`, `pro_codigo`, `proxcot_cantidad`, `tip_servicio`, `proxcod_observacion`, `proxcod_res`) VALUES
 (1, 32, 2, 13, '', 25000),
-(2, 26, 1, 11, '', 213);
+(2, 26, 1, 11, '', 213),
+(0, 32, 213, 13, '', 0),
+(0, 32, 232122, 13, '', 0),
+(0, 27, 32, 11, '', 0),
+(0, 27, 32, 11, '', 0),
+(0, 27, 32, 11, '', 0),
+(3, 27, 32, 11, '', 4324),
+(4, 29, 23, 11, '', 0),
+(5, 29, 23, 11, '', 0),
+(6, 29, 23, 11, '', 0),
+(7, 29, 23, 11, '', 0),
+(8, 29, 23, 11, '', 0),
+(9, 25, 324, 11, '', 0),
+(10, 29, 2, 11, '', 0),
+(11, 29, 2321, 11, '', 213213);
 
 -- --------------------------------------------------------
 
@@ -1376,9 +1385,10 @@ INSERT INTO `usuario` (`usu_codigo`, `id_tipo_documento`, `usu_num_documento`, `
 (25, 1, 9898, 'Andres', '', 'Salazar', '', 'andressal@gmail.com', 3234567, 1, 'calle 6 sur', 2147483647, '1985-01-16', 'masculino', 5, 1, 'default.jpg', '2018-04-06', '2018-04-06'),
 (26, 1, 6767, 'Marlon', '', 'Morenos', '', 'mm@gmail.com', 3453212, 1, 'calle 50 ', 0, '0000-00-00', 'masculino', 5, 1, 'default.jpg', '2018-04-06', '2018-04-06'),
 (27, 1, 990, 'Javier', '', 'Perez', '', 'javi@gmail.com', 3234567, 1, 'calle 98', 3115431232, '1994-07-14', 'otro', 3, 1, 'defaul.jpg', '2018-04-06', '2018-04-06'),
-(28, 1, 746440, 'Jaime', '', 'Cordoba', '', 'jaime@maxirecargas.com', 103, 1, 'calle 78', 0, '0000-00-00', 'null', 3, 2, 'defaul.jpg', '2018-04-06', '2018-04-06'),
-(32, 1, 5050, 'Alfonso', '', 'Bedoya', '', 'ab@gmail.com', 3, 1, 'calle 4 sur', 0, '0000-00-00', 'null', 3, 2, 'defaul.jpg', '2018-04-06', '2018-04-06'),
-(36, 1, 909090909, 'luis', '', 'becerra', '', 'becerra@gmail.com', 213214, 2, 'calle 95 b', 0, '0000-00-00', 'masculino', 8, 1, 'default.jpg', '2018-04-06', '2018-04-06');
+(28, 1, 746440, 'Jaime', '', 'Cordoba', '', 'jaime@maxirecargas.com', 103, 1, 'calle 78', 0, '0000-00-00', 'null', 3, 1, 'defaul.jpg', '2018-04-06', '2018-04-06'),
+(32, 1, 5050, 'Alfonso', '', 'Bedoya', '', 'ab@gmail.com', 3, 1, 'calle 4 sur', 0, '2018-06-01', 'otro', 3, 1, 'defaul.jpg', '2018-04-06', '2018-04-06'),
+(36, 1, 909090909, 'luis', '', 'becerra', '', 'becerra@gmail.com', 213214, 2, 'calle 95 b', 0, '0000-00-00', 'masculino', 8, 1, 'default.jpg', '2018-04-06', '2018-04-06'),
+(37, 1, 343254, '234', '', '23423', '', '4@gmail.com', 32432, 1, '2434', 0, '1993-06-15', 'femenino', 1, 1, 'default.jpg', '2018-06-05', '2018-06-05');
 
 -- --------------------------------------------------------
 
@@ -1717,126 +1727,151 @@ ALTER TABLE `ventas`
 --
 ALTER TABLE `ciudad`
   MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `cliente_empresarial`
 --
 ALTER TABLE `cliente_empresarial`
   MODIFY `id_cliente_empresarial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `cotizacion`
 --
 ALTER TABLE `cotizacion`
-  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cot_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT de la tabla `departamento`
 --
 ALTER TABLE `departamento`
   MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
   MODIFY `emp_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
   MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `gestion_web`
 --
 ALTER TABLE `gestion_web`
   MODIFY `gw_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `historial_productos`
 --
 ALTER TABLE `historial_productos`
   MODIFY `id_his_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
   MODIFY `mar_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
 --
 -- AUTO_INCREMENT de la tabla `mensajes_personalizados`
 --
 ALTER TABLE `mensajes_personalizados`
   MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
   MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `opciones_busqueda`
 --
 ALTER TABLE `opciones_busqueda`
-  MODIFY `opc_bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `opc_bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
 --
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
   MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   MODIFY `ped_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
   MODIFY `rep_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
   MODIFY `sed_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
   MODIFY `sto_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
   MODIFY `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_producto`
 --
 ALTER TABLE `tipo_producto`
   MODIFY `tip_pro_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_servicio`
 --
 ALTER TABLE `tipo_servicio`
   MODIFY `Tip_ser_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
   MODIFY `tip_usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `usu_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
   MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -1936,6 +1971,7 @@ ALTER TABLE `pedidoxproducto`
 ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`tip_pro_codigo`) REFERENCES `tipo_producto` (`tip_pro_codigo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`mar_codigo`) REFERENCES `marca` (`mar_codigo`) ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

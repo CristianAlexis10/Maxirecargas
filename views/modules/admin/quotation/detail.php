@@ -94,7 +94,7 @@
 					<h4>Condiciones Comerciales:</h4>
 					<div class="form-group">
 						<label for="condi" class="label">Pago</label>
-						<input type="text" id="condi" value="Segun convenio">
+						<input type="text" id="condi" value="Según convenio">
 					</div>
 					<div class="form-group">
 						<label for="iva" class="label">Iva</label>
