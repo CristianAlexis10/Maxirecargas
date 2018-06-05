@@ -225,13 +225,14 @@ $("#confirmOrder").click(function(){
       dataType:'json',
       data: ({data: order, ciudad: $("#ciudad").val() ,dir : direccion}),
       success: function(result){
-        if (result==true) {
-          $("#frmNewOrder")[0].reset();
-          delete order;
-          location.href = "historial";
-        }else{
-          $("#orderAtras").after("<div class='message'>Ocurrio un error</div>");
-        }
+        console.log(result);
+        // if (result==true) {
+        //   $("#frmNewOrder")[0].reset();
+        //   delete order;
+        //   location.href = "historial";
+        // }else{
+        //   $("#orderAtras").after("<div class='message'>Ocurrio un error</div>");
+        // }
       },
       error:function(result) {
         console.log(result);
