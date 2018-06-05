@@ -21,10 +21,11 @@
 					<p class="firthP">Estado: </p>
 					<p class="secondP"><?php echo $dataQuo[0]['cot_estado']?> </p>
 				</div>
-
-					<?php if ($dataQuo[0]['cot_estado']=="Terminado"){ ?>
-						<a href="generar-cotizacion-<?php echo $dataQuo[0]['cot_codigo'] ?>">Ver formato</a>
-					<?php }?>
+					<div class="form-group">
+						<?php if ($dataQuo[0]['cot_estado']=="Terminado"){ ?>
+							<a href="generar-cotizacion-<?php echo $dataQuo[0]['cot_codigo'] ?>" class="btn">Ver formato</a>
+						<?php }?>
+					</div>
 					<!-- datos -->
 					<h1 class="title--customer--detail other">Datos de los productos</h1>
 					<div class="containerTable">
@@ -114,7 +115,7 @@
 						<?php } ?>
 			</div>
 			<div class="observation">
-				
+
 			</div>
 	</div>
 </div>
