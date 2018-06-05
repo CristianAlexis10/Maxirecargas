@@ -79,18 +79,19 @@ use Dompdf\Dompdf;
 					$n++;
 			}
 			$content.= "</table>";
-			$content.= "<b>Condiciones de pago: </b>".$dataQuo[0]['cot_pago'];
-			$content .= "<b>Observaciones: </b>".$dataQuo[0]['cot_observacion'];
-			$content .= "<b>Iva: </b>".$dataQuo[0]['cot_iva'];
-			$content .= "<b>Plazo de entrega: </b>".$dataQuo[0]['cot_plazo'];
-			$content .= "<b>Entrega:</b>".$dataQuo[0]['cot_entrega'];
-			$content .= "<b>Encargado:</b>".$dataEn['usu_primer_nombre']." ".$dataEn['usu_primer_apellido'];
-			$content .= "<b>Correo: </b>".$dataEn['usu_correo'];
+			$content .= '<div class="informacion">
+										<p>codiciones de pago</p>
+									</div>';
+			$content.= '<div class="observation"><b>Condiciones de pago: </b>'." ".$dataQuo[0]["cot_pago"].'</div>';
+			$content .= '<div class="observation"><b>Iva: </b>'." ".$dataQuo[0]["cot_iva"].'%'.'</div>';
+			$content .= '<div class="observation"><b>Plazo de entrega: </b>'." ".$dataQuo[0]['cot_plazo'].'</div>';
+			$content .= '<div class="observation"><b>Entrega:</b>'." ".$dataQuo[0]['cot_entrega'].'</div>';
+			$content .= '<div class="observation"><b>Observaciones: </b>'." ".$dataQuo[0]["cot_observacion"].'</div>';
 			$content .= '</body></html>';
 			//crear el pdf
 
 			$this->dompdf->loadHtml($content);
-			$this->dompdf->setPaper('A4', 'landscape'); // (Opcional) Configurar papel y orientación
+			$this->dompdf->setPaper('A4', 'portrait'); // (Opcional) Configurar papel y orientación
 			$this->dompdf->render(); // Generar el PDF desde contenido HTML
 			$pdf = $this->dompdf->output(); // Obtener el PDF generado
 			$this->dompdf->stream("Cotización-".$dataQuo[0]['usu_primer_nombre']." ".$dataQuo[0]['usu_primer_apellido']); // Enviar el PDF generado al navegador

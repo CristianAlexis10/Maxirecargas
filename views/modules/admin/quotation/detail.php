@@ -113,5 +113,8 @@
 						</div>
 						<?php } ?>
 			</div>
+			<div class="observation">
+				
+			</div>
 	</div>
 </div>
